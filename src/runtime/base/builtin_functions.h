@@ -240,6 +240,8 @@ String getUndefinedConstant(CStrRef name);
 
 inline bool isset(CVarRef v) { return !v.isNull();}
 inline bool isset(CObjRef v) { return !v.isNull();}
+inline bool isset(CStrRef v) { return !v.isNull();}
+inline bool isset(CArrRef v) { return !v.isNull();}
 
 bool isset(CVarRef v, bool    offset);
 bool isset(CVarRef v, int64   offset);
@@ -250,6 +252,16 @@ bool isset(CVarRef v, CObjRef offset);
 bool isset(CVarRef v, CVarRef offset);
 bool isset(CVarRef v, litstr  offset, bool isString = false);
 bool isset(CVarRef v, CStrRef offset, bool isString = false);
+
+bool isset(CArrRef v, int64   offset);
+inline bool isset(CArrRef v, bool   offset) { return isset(v, (int64)offset); }
+inline bool isset(CArrRef v, int    offset) { return isset(v, (int64)offset); }
+inline bool isset(CArrRef v, double offset) { return isset(v, (int64)offset); }
+bool isset(CArrRef v, CArrRef offset);
+bool isset(CArrRef v, CObjRef offset);
+bool isset(CArrRef v, CVarRef offset);
+bool isset(CArrRef v, litstr  offset, bool isString = false);
+bool isset(CArrRef v, CStrRef offset, bool isString = false);
 
 inline Variant unset(Variant &v)               { v.unset();   return null;}
 inline Variant unset(CVarRef v)                {              return null;}
@@ -477,8 +489,9 @@ inline const SmartObject<T> &id(const SmartObject<T> &v) { return v; }
 
 /**
  * For wrapping return values to prevent elision of copy
- * constructors (which can incorrectly pass through
- * the contagious bit).
+ * constructors. This can be a problem if the function
+ * returns by value, but a "referenced" variant is returned
+ * through copy-constructor elision.
  */
 inline Variant wrap_variant(CVarRef x) { return x; }
 
@@ -521,10 +534,35 @@ private:
 };
 
 void checkClassExists(CStrRef name, Globals *g, bool nothrow = false);
-bool checkClassExists(CStrRef name, const bool *declared, bool autoloadExists,
-                      bool nothrow = false);
-bool checkInterfaceExists(CStrRef name, const bool *declared,
-                          bool autoloadExists, bool nothrow = false);
+
+bool autoloadClassThrow(CStrRef name, bool *declared);
+bool autoloadClassNoThrow(CStrRef name, bool *declared);
+bool autoloadInterfaceThrow(CStrRef name, bool *declared);
+bool autoloadInterfaceNoThrow(CStrRef name, bool *declared);
+
+inline ALWAYS_INLINE bool checkClassExistsThrow(CStrRef name,
+                                                bool *declared) {
+  if (LIKELY(*declared)) return true;
+  return autoloadClassThrow(name, declared);
+}
+
+inline ALWAYS_INLINE bool checkClassExistsNoThrow(CStrRef name,
+                                                  bool *declared) {
+  if (LIKELY(*declared)) return true;
+  return autoloadClassNoThrow(name, declared);
+}
+
+inline ALWAYS_INLINE bool checkInterfaceExistsThrow(CStrRef name,
+                                                    bool *declared) {
+  if (LIKELY(*declared)) return true;
+  return autoloadInterfaceThrow(name, declared);
+}
+
+inline ALWAYS_INLINE bool checkInterfaceExistsNoThrow(CStrRef name,
+                                                      bool *declared) {
+  if (LIKELY(*declared)) return true;
+  return autoloadInterfaceNoThrow(name, declared);
+}
 
 class CallInfo;
 

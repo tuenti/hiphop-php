@@ -783,6 +783,63 @@ bool TestCodeRun::TestVariableArgument() {
        "$b = 2;"
        "baz(1,$b,3,4,5);");
 
+  MVCR("<?php\n"
+       "function f() {\n"
+       "  var_dump(func_get_args());\n"
+       "}\n"
+       "function g($x) {\n"
+       "  if ($x) $f = 'f';\n"
+       "  else    $f = '__nocall__';\n"
+       "  call_user_func_array($f, "
+       "    array('x' => 10, 'y' => 20, 'z' => 30, 'j' => 40));\n"
+       "  call_user_func_array($f, "
+       "    array(3 => 10, 80 => 20, 10 => 30, 30 => 40));\n"
+       "}\n"
+       "g(10);\n");
+
+  MVCR("<?php\n"
+       "function f() {\n"
+       "  var_dump(func_get_arg(-1));\n"
+       "  var_dump(func_get_arg(0));\n"
+       "  var_dump(func_get_arg(1));\n"
+       "  if (func_get_arg(2)) {\n"
+       "    $x = 0;\n"
+       "  } else {\n"
+       "    $x = 1;\n"
+       "  }\n"
+       "  var_dump(func_get_arg($x++));\n"
+       "}\n"
+       "function g($x, &$y) {\n"
+       "  var_dump(func_get_arg(-1));\n"
+       "  var_dump(func_get_arg(0));\n"
+       "  var_dump(func_get_arg(1));\n"
+       "  var_dump(func_get_arg(2));\n"
+       "  var_dump(func_get_arg(3));\n"
+       "}\n"
+       "function h($x, &$y, array $z) {\n"
+       "  var_dump(func_get_arg(-1));\n"
+       "  var_dump(func_get_arg(0));\n"
+       "  var_dump(func_get_arg(1));\n"
+       "  var_dump(func_get_arg(2));\n"
+       "  var_dump(func_get_arg(3));\n"
+       "  var_dump(func_get_arg(4));\n"
+       "}\n"
+       "function i(&$x) {\n"
+       "  $x = 30;\n"
+       "  var_dump(func_get_args());\n"
+       "  var_dump(func_get_arg(0));\n"
+       "  $y =& func_get_arg(0);\n"
+       "  $y = 40;\n"
+       "  var_dump(func_get_arg(0));\n"
+       "}\n"
+       "f(10);\n"
+       "$x = 1;\n"
+       "g(0, $x, 2);\n"
+       "h(0, $x, array(1, 2), 3);\n"
+       "$x = 10;\n"
+       "i($x);\n"
+       "i();\n");
+
   return true;
 }
 
@@ -4342,6 +4399,24 @@ bool TestCodeRun::TestObjectProperty() {
        "}"
        "foo()->v[0] += 5;"
        "var_dump(shuffle(foo()->v));");
+
+  MVCR("<?php "
+       "class A {}"
+       "class B {"
+       "  public $data;"
+       "  public function setData(A $result = null) {"
+       "    $this->data = $result;"
+       "  }"
+       "}"
+       "function foo($obj) {"
+       "  $obj->data = new A;"
+       "  $a = $obj->data;"
+       "  var_dump($a);"
+       "  $obj->setData(null);"
+       "  $a = $obj->data;"
+       "  var_dump($a);"
+       "}"
+       "foo(new B);");
 
  return true;
 }
@@ -12928,6 +13003,17 @@ bool TestCodeRun::TestClassConstant() {
       "  }"
       "}"
       "var_dump(ABCD::foo());");
+
+  MVCR("<?php "
+       "function __autoload($x) { var_dump('AUTOLOAD:'.$x); }"
+       "class X {"
+       "  public $foo = Y::FOO;"
+       "  function foo() {"
+       "    var_dump(__METHOD__, $this);"
+       "  }"
+       "}"
+       "X::foo();");
+
   return true;
 }
 

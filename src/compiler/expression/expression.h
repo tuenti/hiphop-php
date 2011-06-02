@@ -115,7 +115,7 @@ public:
                                  // eg $b in &$b['foo']
     AccessContext = 0x80000,     // ArrayElementExpression::m_variable or
                                  // ObjectPropertyExpression::m_object
-    RefAssignmentLHS = 0x100000  // LHS of a reference assignment
+    RefAssignmentLHS = 0x100000, // LHS of a reference assignment
   };
 
   enum Order {
@@ -144,7 +144,17 @@ public:
   ExpressionPtr replaceValue(ExpressionPtr rep);
   void clearContext();
   int getContext() const { return m_context;}
-  bool hasContext(Context context) const { return m_context & context; }
+  bool hasContext(Context context) const { return (m_context & context) == context; }
+  bool hasAnyContext(int context) const {
+    if ((context & Declaration) == Declaration) {
+      // special case Declaration because it is 2 bit fields
+      if (hasContext(Declaration)) return true;
+      // clear Declaration since we already checked for it
+      context &= ~Declaration;  
+    }
+    return m_context & context; 
+  }
+  bool hasAllContext(int context) const { return (m_context & context) == context; }
   bool hasSubExpr(ExpressionPtr sub) const;
   virtual void setComment(const std::string &) {}
   /**
@@ -203,7 +213,7 @@ public:
   unsigned getCanonID() const { return m_canon_id; }
   void setCanonPtr(ExpressionPtr e) { m_canonPtr = e; }
   ExpressionPtr getCanonPtr() const {
-    return m_context & (LValue|RefValue|UnsetContext) ?
+    return m_context & (LValue|RefValue|UnsetContext|DeepReference) ?
       ExpressionPtr() : m_canonPtr;
   }
   ExpressionPtr getCanonLVal() const {
@@ -225,6 +235,7 @@ public:
   }
   virtual bool isThis() const { return false;}
   virtual bool isLiteralString() const { return false;}
+  virtual bool isLiteralNull() const { return false;}
   bool isUnquotedScalar() const;
   virtual std::string getLiteralString() const { return "";}
   virtual bool containsDynamicConstant(AnalysisResultPtr ar) const {
@@ -330,6 +341,7 @@ public:
   static void CheckPassByReference(AnalysisResultPtr ar,
                                    ExpressionPtr param);
 
+  static bool CheckNeededRHS(ExpressionPtr value);
   static bool CheckNeeded(ExpressionPtr variable, ExpressionPtr value);
 
   void fixExpectedType(AnalysisResultConstPtr ar);
@@ -342,7 +354,7 @@ public:
   /**
    * Correctly compute the local expression altered bit
    */
-  virtual void computeLocalExprAltered() { /* no-op */ }
+  void computeLocalExprAltered(); 
 
 protected:
   static bool IsIdentifier(const std::string &value);

@@ -36,7 +36,7 @@ class c_SplFileObject : public c_SplFileInfo {
 
   // Class Map
   virtual bool o_instanceof(CStrRef s) const;
-  DECLARE_CLASS_COMMON(SplFileObject, SplFileObject)
+  DECLARE_CLASS_COMMON_NO_SWEEP(SplFileObject, SplFileObject)
   DECLARE_INVOKE_EX(SplFileObject, SplFileObject, SplFileInfo)
 
   // DECLARE_STATIC_PROP_OPS
@@ -66,14 +66,14 @@ class c_SplFileObject : public c_SplFileInfo {
   public:
   void init();
   public: void t___construct(Variant v_filename, Variant v_open_mode = NAMSTR(s_sys_ss0d42ecf6, "r"), Variant v_use_include_path = false, Variant v_context = null);
-  public: c_SplFileObject *create(CVarRef v_filename, CVarRef v_open_mode = NAMSTR(s_sys_ss0d42ecf6, "r"), CVarRef v_use_include_path = false, CVarRef v_context = null_variant);
+  public: c_SplFileObject *create(CVarRef v_filename, CVarRef v_open_mode = NAMVAR(s_sys_svs0d42ecf6, "r"), CVarRef v_use_include_path = false_varNR, CVarRef v_context = null_variant);
   public: void dynConstruct(CArrRef params);
   public: void getConstructor(MethodCallPackage &mcp);
   public: Variant t_current();
   public: bool t_eof();
   public: bool t_fflush();
   public: String t_fgetc();
-  public: Variant t_fgetcsv(CVarRef v_delimiter = NAMSTR(s_sys_ssd332baa7, ","), CVarRef v_enclosure = NAMSTR(s_sys_ss7e5fc106, "\""), CVarRef v_escape = NAMSTR(s_sys_ssd59e789f, "\\"));
+  public: Variant t_fgetcsv(CVarRef v_delimiter = NAMVAR(s_sys_svsd332baa7, ","), CVarRef v_enclosure = NAMVAR(s_sys_svs7e5fc106, "\""), CVarRef v_escape = NAMVAR(s_sys_svsd59e789f, "\\"));
   public: String t_fgets();
   public: String t_fgetss(CVarRef v_allowable_tags);
   public: bool t_flock(CVarRef v_operation, VRefParam rv_wouldblock);
@@ -93,7 +93,7 @@ class c_SplFileObject : public c_SplFileInfo {
   public: void t_next();
   public: void t_rewind();
   public: void t_seek(CVarRef v_line_pos);
-  public: void t_setcsvcontrol(CVarRef v_delimiter = NAMSTR(s_sys_ssd332baa7, ","), CVarRef v_enclosure = NAMSTR(s_sys_ss7e5fc106, "\""), CVarRef v_escape = NAMSTR(s_sys_ssd59e789f, "\\"));
+  public: void t_setcsvcontrol(CVarRef v_delimiter = NAMVAR(s_sys_svsd332baa7, ","), CVarRef v_enclosure = NAMVAR(s_sys_svs7e5fc106, "\""), CVarRef v_escape = NAMVAR(s_sys_svsd59e789f, "\\"));
   public: void t_setflags(CVarRef v_flags);
   public: void t_setmaxlinelen(CVarRef v_max_len);
   public: bool t_valid();
@@ -127,13 +127,12 @@ class c_SplFileObject : public c_SplFileInfo {
   DECLARE_METHOD_INVOKE_HELPERS(fstat);
   DECLARE_METHOD_INVOKE_HELPERS(rewind);
 };
+extern struct ObjectStaticCallbacks cw_SplFileObject;
+ObjectData *coo_SplFileObject() NEVER_INLINE;
 extern const int64 q_SplFileObject_DROP_NEW_LINE;
 extern const int64 q_SplFileObject_READ_AHEAD;
 extern const int64 q_SplFileObject_SKIP_EMPTY;
 extern const int64 q_SplFileObject_READ_CSV;
-extern struct ObjectStaticCallbacks cw_SplFileObject;
-Object co_SplFileObject(CArrRef params, bool init = true);
-Object coo_SplFileObject();
 
 ///////////////////////////////////////////////////////////////////////////////
 }

@@ -589,10 +589,63 @@ Variant &Array::lvalAt(CVarRef key, ACCESSPARAMS_IMPL) {
   return Variant::lvalBlackHole();
 }
 
+template<typename T>
+inline ALWAYS_INLINE
+CVarRef Array::setImpl(const T &key, CVarRef v) {
+  if (!m_px) {
+    ArrayData *data = ArrayData::Create(key, v);
+    SmartPtr<ArrayData>::operator=(data);
+  } else {
+    ArrayData *escalated =
+      m_px->set(key, v, (m_px->getCount() > 1));
+    if (escalated) {
+      SmartPtr<ArrayData>::operator=(escalated);
+    }
+  }
+  return v;
+}
+
+template<typename T>
+inline ALWAYS_INLINE
+CVarRef Array::setRefImpl(const T &key, CVarRef v) {
+  if (!m_px) {
+    ArrayData *data = ArrayData::CreateRef(key, v);
+    SmartPtr<ArrayData>::operator=(data);
+  } else {
+    escalate();
+    ArrayData *escalated =
+      m_px->setRef(key, v, (m_px->getCount() > 1));
+    if (escalated) {
+      SmartPtr<ArrayData>::operator=(escalated);
+    }
+  }
+  return v;
+}
+
+template<typename T>
+inline ALWAYS_INLINE
+CVarRef Array::addImpl(const T &key, CVarRef v) {
+  if (!m_px) {
+    ArrayData *data = ArrayData::Create(key, v);
+    SmartPtr<ArrayData>::operator=(data);
+  } else {
+    ArrayData *escalated = m_px->add(key, v, (m_px->getCount() > 1));
+    if (escalated) {
+      SmartPtr<ArrayData>::operator=(escalated);
+    }
+  }
+  return v;
+}
+
+CVarRef Array::set(int64   key, CVarRef v) {
+  return setImpl(key, v);
+}
+
 CVarRef Array::set(litstr  key, CVarRef v, bool isKey /* = false */) {
   if (isKey) return setImpl(String(key), v);
   return setImpl(String(key).toKey(), v);
 }
+
 CVarRef Array::set(CStrRef key, CVarRef v, bool isKey /* = false */) {
   if (isKey) return setImpl(key, v);
   return setImpl(key.toKey(), v);
@@ -610,16 +663,41 @@ CVarRef Array::set(CVarRef key, CVarRef v, bool isKey /* = false */) {
   return Variant::lvalBlackHole();
 }
 
+CVarRef Array::setRef(int64   key, CVarRef v) {
+  return setRefImpl(key, v);
+}
+CVarRef Array::setRef(litstr  key, CVarRef v, bool isKey /* = false */) {
+  if (isKey) return setRefImpl(String(key), v);
+  return setRefImpl(String(key).toKey(), v);
+}
+CVarRef Array::setRef(CStrRef key, CVarRef v, bool isKey /* = false */) {
+  if (isKey) return setRefImpl(key, v);
+  return setRefImpl(key.toKey(), v);
+}
+
+CVarRef Array::setRef(CVarRef key, CVarRef v, bool isKey /* = false */) {
+  if (key.getRawType() == KindOfInt64) {
+    return setRefImpl(key.getNumData(), v);
+  }
+  if (isKey) return setRefImpl(key, v);
+  VarNR k(key.toKey());
+  if (!k.isNull()) {
+    return setRefImpl<Variant>(k, v);
+  }
+  return Variant::lvalBlackHole();
+}
+
+CVarRef Array::add(int64   key, CVarRef v) {
+  return addImpl(key, v);
+}
 CVarRef Array::add(litstr  key, CVarRef v, bool isKey /* = false */) {
   if (isKey) return addImpl(String(key), v);
   return addImpl(String(key).toKey(), v);
 }
-
 CVarRef Array::add(CStrRef key, CVarRef v, bool isKey /* = false */) {
   if (isKey) return addImpl(key, v);
   return addImpl(key.toKey(), v);
 }
-
 CVarRef Array::add(CVarRef key, CVarRef v, bool isKey /* = false */) {
   if (key.getRawType() == KindOfInt64) {
     return addImpl(key.getNumData(), v);
@@ -655,14 +733,14 @@ Variant &Array::addLval(CVarRef key, bool isKey /* = false */) {
 }
 
 Variant Array::refvalAt(CStrRef key, bool isString /* = false */) {
-  return ref(lvalAt(key, AccessFlags::IsKey(isString)));
+  return strongBind(lvalAt(key, AccessFlags::IsKey(isString)));
 }
 
 Variant Array::argvalAt(bool byRef, CStrRef key, bool isString /* = false */) {
   if (byRef) {
-    return ref(lvalAt(key, AccessFlags::IsKey(isString)));
+    return strongBind(lvalAt(key, AccessFlags::IsKey(isString)));
   } else {
-    return rvalAt(key);
+    return rvalAtRef(key);
   }
 }
 
@@ -780,7 +858,7 @@ void Array::removeAll() {
   operator=(Create());
 }
 
-Variant Array::append(CVarRef v) {
+CVarRef Array::append(CVarRef v) {
   if (!m_px) {
     SmartPtr<ArrayData>::operator=(ArrayData::Create(v));
   } else {
@@ -792,7 +870,19 @@ Variant Array::append(CVarRef v) {
   return v;
 }
 
-Variant Array::appendWithRef(CVarRef v) {
+CVarRef Array::appendRef(CVarRef v) {
+  if (!m_px) {
+    SmartPtr<ArrayData>::operator=(ArrayData::CreateRef(v));
+  } else {
+    ArrayData *escalated = m_px->appendRef(v, (m_px->getCount() > 1));
+    if (escalated) {
+      SmartPtr<ArrayData>::operator=(escalated);
+    }
+  }
+  return v;
+}
+
+CVarRef Array::appendWithRef(CVarRef v) {
   if (!m_px) {
     SmartPtr<ArrayData>::operator=(ArrayData::Create());
   }

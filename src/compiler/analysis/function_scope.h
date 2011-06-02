@@ -96,6 +96,7 @@ public:
   void setNeedsCheckMem() { m_needsCheckMem = true; }
   bool needsCheckMem() const { return m_needsCheckMem; }
   void setClosureGenerator() { m_closureGenerator = true; }
+  bool needsClassParam();
 
   void setInlineSameContext(bool f) { m_inlineSameContext = f; }
   bool getInlineSameContext() const { return m_inlineSameContext; }
@@ -104,6 +105,12 @@ public:
   void setInlineAsExpr(bool f) { m_inlineAsExpr = f; }
   bool getInlineAsExpr() const { return m_inlineAsExpr; }
   int nextInlineIndex() { return ++m_inlineIndex; }
+
+  bool usesLSB() const { return !m_noLSB; }
+  void clearUsesLSB() { m_noLSB = true; }
+  bool nextLSB() const { return m_nextLSB; }
+  void setNextLSB(bool f) { m_nextLSB = f; }
+
   /**
    * Either __construct or a class-name constructor.
    */
@@ -367,6 +374,10 @@ public:
     m_closureVars = closureVars;
   }
 
+  ExpressionListPtr getClosureVars() const {
+    return m_closureVars;
+  }
+
   void addCaller(BlockScopePtr caller);
   ReadWriteMutex &getInlineMutex() { return m_inlineMutex; }
 
@@ -447,6 +458,8 @@ private:
   unsigned m_needsRefTemp : 1;
   unsigned m_needsCheckMem : 1;
   unsigned m_closureGenerator : 1;
+  unsigned m_noLSB : 1;
+  unsigned m_nextLSB : 1;
 
   int m_redeclaring; // multiple definition of the same function
   StatementPtr m_stmtCloned; // cloned method body stmt

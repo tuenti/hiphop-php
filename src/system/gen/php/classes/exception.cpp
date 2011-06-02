@@ -75,7 +75,7 @@ Variant c_UnexpectedValueException::os_constant(const char *s) {
   return c_RuntimeException::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_UnexpectedValueException
-IMPLEMENT_CLASS(UnexpectedValueException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(UnexpectedValueException)
 bool c_UnexpectedValueException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 7) {
@@ -92,7 +92,7 @@ bool c_UnexpectedValueException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_UnexpectedValueException::cloneImpl() {
-  c_UnexpectedValueException *obj = NEWOBJ(c_UnexpectedValueException)();
+  ObjectData *obj = coo_UnexpectedValueException();
   c_UnexpectedValueException::cloneSet(obj);
   return obj;
 }
@@ -165,7 +165,7 @@ Variant c_OverflowException::os_constant(const char *s) {
   return c_RuntimeException::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_OverflowException
-IMPLEMENT_CLASS(OverflowException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(OverflowException)
 bool c_OverflowException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 7) {
@@ -182,7 +182,7 @@ bool c_OverflowException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_OverflowException::cloneImpl() {
-  c_OverflowException *obj = NEWOBJ(c_OverflowException)();
+  ObjectData *obj = coo_OverflowException();
   c_OverflowException::cloneSet(obj);
   return obj;
 }
@@ -255,7 +255,7 @@ Variant c_OutOfBoundsException::os_constant(const char *s) {
   return c_RuntimeException::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_OutOfBoundsException
-IMPLEMENT_CLASS(OutOfBoundsException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(OutOfBoundsException)
 bool c_OutOfBoundsException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 7) {
@@ -272,7 +272,7 @@ bool c_OutOfBoundsException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_OutOfBoundsException::cloneImpl() {
-  c_OutOfBoundsException *obj = NEWOBJ(c_OutOfBoundsException)();
+  ObjectData *obj = coo_OutOfBoundsException();
   c_OutOfBoundsException::cloneSet(obj);
   return obj;
 }
@@ -345,7 +345,7 @@ Variant c_LogicException::os_constant(const char *s) {
   return c_Exception::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_LogicException
-IMPLEMENT_CLASS(LogicException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(LogicException)
 bool c_LogicException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 3) {
@@ -361,7 +361,7 @@ bool c_LogicException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_LogicException::cloneImpl() {
-  c_LogicException *obj = NEWOBJ(c_LogicException)();
+  ObjectData *obj = coo_LogicException();
   c_LogicException::cloneSet(obj);
   return obj;
 }
@@ -434,7 +434,7 @@ Variant c_RangeException::os_constant(const char *s) {
   return c_RuntimeException::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_RangeException
-IMPLEMENT_CLASS(RangeException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(RangeException)
 bool c_RangeException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 7) {
@@ -451,7 +451,7 @@ bool c_RangeException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_RangeException::cloneImpl() {
-  c_RangeException *obj = NEWOBJ(c_RangeException)();
+  ObjectData *obj = coo_RangeException();
   c_RangeException::cloneSet(obj);
   return obj;
 }
@@ -524,7 +524,7 @@ Variant c_InvalidArgumentException::os_constant(const char *s) {
   return c_LogicException::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_InvalidArgumentException
-IMPLEMENT_CLASS(InvalidArgumentException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(InvalidArgumentException)
 bool c_InvalidArgumentException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 7) {
@@ -543,7 +543,7 @@ bool c_InvalidArgumentException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_InvalidArgumentException::cloneImpl() {
-  c_InvalidArgumentException *obj = NEWOBJ(c_InvalidArgumentException)();
+  ObjectData *obj = coo_InvalidArgumentException();
   c_InvalidArgumentException::cloneSet(obj);
   return obj;
 }
@@ -616,7 +616,7 @@ Variant c_UnderflowException::os_constant(const char *s) {
   return c_RuntimeException::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_UnderflowException
-IMPLEMENT_CLASS(UnderflowException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(UnderflowException)
 bool c_UnderflowException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 7) {
@@ -631,7 +631,7 @@ bool c_UnderflowException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_UnderflowException::cloneImpl() {
-  c_UnderflowException *obj = NEWOBJ(c_UnderflowException)();
+  ObjectData *obj = coo_UnderflowException();
   c_UnderflowException::cloneSet(obj);
   return obj;
 }
@@ -704,7 +704,7 @@ Variant c_OutOfRangeException::os_constant(const char *s) {
   return c_LogicException::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_OutOfRangeException
-IMPLEMENT_CLASS(OutOfRangeException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(OutOfRangeException)
 bool c_OutOfRangeException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 7) {
@@ -721,7 +721,7 @@ bool c_OutOfRangeException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_OutOfRangeException::cloneImpl() {
-  c_OutOfRangeException *obj = NEWOBJ(c_OutOfRangeException)();
+  ObjectData *obj = coo_OutOfRangeException();
   c_OutOfRangeException::cloneSet(obj);
   return obj;
 }
@@ -794,7 +794,7 @@ Variant c_BadMethodCallException::os_constant(const char *s) {
   return c_BadFunctionCallException::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_BadMethodCallException
-IMPLEMENT_CLASS(BadMethodCallException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(BadMethodCallException)
 bool c_BadMethodCallException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 7) {
@@ -816,7 +816,7 @@ bool c_BadMethodCallException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_BadMethodCallException::cloneImpl() {
-  c_BadMethodCallException *obj = NEWOBJ(c_BadMethodCallException)();
+  ObjectData *obj = coo_BadMethodCallException();
   c_BadMethodCallException::cloneSet(obj);
   return obj;
 }
@@ -889,7 +889,7 @@ Variant c_RuntimeException::os_constant(const char *s) {
   return c_Exception::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_RuntimeException
-IMPLEMENT_CLASS(RuntimeException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(RuntimeException)
 bool c_RuntimeException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 3) {
@@ -903,7 +903,7 @@ bool c_RuntimeException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_RuntimeException::cloneImpl() {
-  c_RuntimeException *obj = NEWOBJ(c_RuntimeException)();
+  ObjectData *obj = coo_RuntimeException();
   c_RuntimeException::cloneSet(obj);
   return obj;
 }
@@ -1035,7 +1035,7 @@ Variant c_Exception::os_constant(const char *s) {
   return c_ObjectData::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_Exception
-IMPLEMENT_CLASS(Exception)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(Exception)
 bool c_Exception::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 1) {
@@ -1048,7 +1048,7 @@ bool c_Exception::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_Exception::cloneImpl() {
-  c_Exception *obj = NEWOBJ(c_Exception)();
+  ObjectData *obj = coo_Exception();
   c_Exception::cloneSet(obj);
   return obj;
 }
@@ -1073,38 +1073,29 @@ CallInfo c_Exception::ci_getfile((void*)&c_Exception::i_getfile, (void*)&c_Excep
 CallInfo c_Exception::ci_gettraceasstring((void*)&c_Exception::i_gettraceasstring, (void*)&c_Exception::ifa_gettraceasstring, 0, 4, 0x0000000000000000LL);
 CallInfo c_Exception::ci_gettrace((void*)&c_Exception::i_gettrace, (void*)&c_Exception::ifa_gettrace, 0, 4, 0x0000000000000000LL);
 Variant c_Exception::i_getmessage(MethodCallPackage &mcp, CArrRef params) {
-  int count ATTRIBUTE_UNUSED = params.size();
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return i_dummy(mcp, params, i_getmessage, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getMessage", 0, 1);
   return (self->t_getmessage());
 }
 Variant c_Exception::i___tostring(MethodCallPackage &mcp, CArrRef params) {
-  int count ATTRIBUTE_UNUSED = params.size();
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return i_dummy(mcp, params, i___tostring, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::__toString", 0, 1);
   return (self->t___tostring());
 }
 Variant c_Exception::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  int count ATTRIBUTE_UNUSED = params.size();
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return i_dummy(mcp, params, i___construct, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
   if (UNLIKELY(count > 3)) return throw_toomany_arguments("Exception::__construct", 3, 2);
   {
     ArrayData *ad(params.get());
@@ -1119,119 +1110,89 @@ Variant c_Exception::i___construct(MethodCallPackage &mcp, CArrRef params) {
   }
 }
 Variant c_Exception::i_getcode(MethodCallPackage &mcp, CArrRef params) {
-  int count ATTRIBUTE_UNUSED = params.size();
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return i_dummy(mcp, params, i_getcode, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getCode", 0, 1);
   return (self->t_getcode());
 }
 Variant c_Exception::i_getprevious(MethodCallPackage &mcp, CArrRef params) {
-  int count ATTRIBUTE_UNUSED = params.size();
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return i_dummy(mcp, params, i_getprevious, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getPrevious", 0, 1);
   return (self->t_getprevious());
 }
 Variant c_Exception::i_getline(MethodCallPackage &mcp, CArrRef params) {
-  int count ATTRIBUTE_UNUSED = params.size();
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return i_dummy(mcp, params, i_getline, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getLine", 0, 1);
   return (self->t_getline());
 }
 Variant c_Exception::i___init__(MethodCallPackage &mcp, CArrRef params) {
-  int count ATTRIBUTE_UNUSED = params.size();
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return i_dummy(mcp, params, i___init__, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::__init__", 0, 1);
   return (self->t___init__(), null);
 }
 Variant c_Exception::i_getfile(MethodCallPackage &mcp, CArrRef params) {
-  int count ATTRIBUTE_UNUSED = params.size();
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return i_dummy(mcp, params, i_getfile, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getFile", 0, 1);
   return (self->t_getfile());
 }
 Variant c_Exception::i_gettraceasstring(MethodCallPackage &mcp, CArrRef params) {
-  int count ATTRIBUTE_UNUSED = params.size();
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return i_dummy(mcp, params, i_gettraceasstring, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getTraceAsString", 0, 1);
   return (self->t_gettraceasstring());
 }
 Variant c_Exception::i_gettrace(MethodCallPackage &mcp, CArrRef params) {
-  int count ATTRIBUTE_UNUSED = params.size();
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return i_dummy(mcp, params, i_gettrace, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getTrace", 0, 1);
   return (self->t_gettrace());
 }
 Variant c_Exception::ifa_getmessage(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getmessage, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getMessage", 0, 1);
   return (self->t_getmessage());
 }
 Variant c_Exception::ifa___tostring(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___tostring, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::__toString", 0, 1);
   return (self->t___tostring());
 }
 Variant c_Exception::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
   if (UNLIKELY(count > 3)) return throw_toomany_arguments("Exception::__construct", 3, 2);
   if (count <= 0) return (self->t___construct(), null);
   CVarRef arg0(a0);
@@ -1242,79 +1203,58 @@ Variant c_Exception::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_F
   return (self->t___construct(arg0, arg1, arg2), null);
 }
 Variant c_Exception::ifa_getcode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getcode, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getCode", 0, 1);
   return (self->t_getcode());
 }
 Variant c_Exception::ifa_getprevious(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getprevious, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getPrevious", 0, 1);
   return (self->t_getprevious());
 }
 Variant c_Exception::ifa_getline(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getline, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getLine", 0, 1);
   return (self->t_getline());
 }
 Variant c_Exception::ifa___init__(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___init__, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::__init__", 0, 1);
   return (self->t___init__(), null);
 }
 Variant c_Exception::ifa_getfile(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getfile, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getFile", 0, 1);
   return (self->t_getfile());
 }
 Variant c_Exception::ifa_gettraceasstring(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_gettraceasstring, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getTraceAsString", 0, 1);
   return (self->t_gettraceasstring());
 }
 Variant c_Exception::ifa_gettrace(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  c_Exception *self = NULL;
-  p_Exception pobj;
-  if (mcp.obj) {
-    self = static_cast<c_Exception*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_gettrace, coo_Exception);
   }
+  c_Exception *self ATTRIBUTE_UNUSED (static_cast<c_Exception*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("Exception::getTrace", 0, 1);
   return (self->t_gettrace());
 }
@@ -1391,8 +1331,8 @@ bool c_Exception::o_get_call_info(MethodCallPackage &mcp, int64 hash) {
   mcp.obj = this;
   return os_get_call_info(mcp, hash);
 }
-c_Exception *c_Exception::create(CVarRef v_message //  = NAMSTR(s_sys_ss00000000, "")
-, CVarRef v_code //  = 0LL
+c_Exception *c_Exception::create(CVarRef v_message //  = NAMVAR(s_sys_svs00000000, "")
+, CVarRef v_code //  = NAMVAR(s_sys_svif01bca90, 0LL)
 , CVarRef v_previous //  = null_variant
 ) {
   CountableHelper h(this);
@@ -1439,10 +1379,10 @@ struct ObjectStaticCallbacks cw_Exception = {
 void c_Exception::init() {
   m_message = NAMSTR(s_sys_ss00000000, "");
   m_code = 0LL;
-  m_previous = null;
-  m_file = null;
-  m_line = null;
-  m_trace = null;
+  setNull(m_previous);
+  setNull(m_file);
+  setNull(m_line);
+  setNull(m_trace);
   {CountableHelper h(this); t___init__();}
 }
 /* SRC: classes/exception.php line 24 */
@@ -1727,7 +1667,7 @@ Variant c_ErrorException::os_constant(const char *s) {
   return c_Exception::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_ErrorException
-IMPLEMENT_CLASS(ErrorException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(ErrorException)
 bool c_ErrorException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 3) {
@@ -1743,7 +1683,7 @@ bool c_ErrorException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_ErrorException::cloneImpl() {
-  c_ErrorException *obj = NEWOBJ(c_ErrorException)();
+  ObjectData *obj = coo_ErrorException();
   c_ErrorException::cloneSet(obj);
   return obj;
 }
@@ -1755,14 +1695,11 @@ void c_ErrorException::cloneSet(ObjectData *cl) {
 CallInfo c_ErrorException::ci___construct((void*)&c_ErrorException::i___construct, (void*)&c_ErrorException::ifa___construct, 5, 4, 0x0000000000000000LL);
 CallInfo c_ErrorException::ci_getseverity((void*)&c_ErrorException::i_getseverity, (void*)&c_ErrorException::ifa_getseverity, 0, 4, 0x0000000000000000LL);
 Variant c_ErrorException::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  int count ATTRIBUTE_UNUSED = params.size();
-  c_ErrorException *self = NULL;
-  p_ErrorException pobj;
-  if (mcp.obj) {
-    self = static_cast<c_ErrorException*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return i_dummy(mcp, params, i___construct, coo_ErrorException);
   }
+  c_ErrorException *self ATTRIBUTE_UNUSED (static_cast<c_ErrorException*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
   if (UNLIKELY(count > 5)) return throw_toomany_arguments("ErrorException::__construct", 5, 2);
   {
     ArrayData *ad(params.get());
@@ -1781,25 +1718,19 @@ Variant c_ErrorException::i___construct(MethodCallPackage &mcp, CArrRef params) 
   }
 }
 Variant c_ErrorException::i_getseverity(MethodCallPackage &mcp, CArrRef params) {
-  int count ATTRIBUTE_UNUSED = params.size();
-  c_ErrorException *self = NULL;
-  p_ErrorException pobj;
-  if (mcp.obj) {
-    self = static_cast<c_ErrorException*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return i_dummy(mcp, params, i_getseverity, coo_ErrorException);
   }
+  c_ErrorException *self ATTRIBUTE_UNUSED (static_cast<c_ErrorException*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("ErrorException::getSeverity", 0, 1);
   return (self->t_getseverity());
 }
 Variant c_ErrorException::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  c_ErrorException *self = NULL;
-  p_ErrorException pobj;
-  if (mcp.obj) {
-    self = static_cast<c_ErrorException*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_ErrorException);
   }
+  c_ErrorException *self ATTRIBUTE_UNUSED (static_cast<c_ErrorException*>(mcp.obj));
   if (UNLIKELY(count > 5)) return throw_toomany_arguments("ErrorException::__construct", 5, 2);
   if (count <= 0) return (self->t___construct(), null);
   CVarRef arg0(a0);
@@ -1814,13 +1745,10 @@ Variant c_ErrorException::ifa___construct(MethodCallPackage &mcp, int count, INV
   return (self->t___construct(arg0, arg1, arg2, arg3, arg4), null);
 }
 Variant c_ErrorException::ifa_getseverity(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  c_ErrorException *self = NULL;
-  p_ErrorException pobj;
-  if (mcp.obj) {
-    self = static_cast<c_ErrorException*>(mcp.obj);
-  } else {
-    self = createDummy(pobj);
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getseverity, coo_ErrorException);
   }
+  c_ErrorException *self ATTRIBUTE_UNUSED (static_cast<c_ErrorException*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("ErrorException::getSeverity", 0, 1);
   return (self->t_getseverity());
 }
@@ -1847,9 +1775,9 @@ bool c_ErrorException::o_get_call_info(MethodCallPackage &mcp, int64 hash) {
   mcp.obj = this;
   return os_get_call_info(mcp, hash);
 }
-c_ErrorException *c_ErrorException::create(CVarRef v_message //  = NAMSTR(s_sys_ss00000000, "")
-, CVarRef v_code //  = 0LL
-, CVarRef v_severity //  = 0LL
+c_ErrorException *c_ErrorException::create(CVarRef v_message //  = NAMVAR(s_sys_svs00000000, "")
+, CVarRef v_code //  = NAMVAR(s_sys_svif01bca90, 0LL)
+, CVarRef v_severity //  = NAMVAR(s_sys_svif01bca90, 0LL)
 , CVarRef v_filename //  = null_variant
 , CVarRef v_lineno //  = null_variant
 ) {
@@ -1906,7 +1834,7 @@ struct ObjectStaticCallbacks cw_ErrorException = {
 };
 void c_ErrorException::init() {
   c_Exception::init();
-  m_severity = null;
+  setNull(m_severity);
 }
 /* SRC: classes/exception.php line 288 */
 void c_ErrorException::t___construct(Variant v_message //  = NAMSTR(s_sys_ss00000000, "")
@@ -1984,7 +1912,7 @@ Variant c_BadFunctionCallException::os_constant(const char *s) {
   return c_LogicException::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_BadFunctionCallException
-IMPLEMENT_CLASS(BadFunctionCallException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(BadFunctionCallException)
 bool c_BadFunctionCallException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 7) {
@@ -2003,7 +1931,7 @@ bool c_BadFunctionCallException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_BadFunctionCallException::cloneImpl() {
-  c_BadFunctionCallException *obj = NEWOBJ(c_BadFunctionCallException)();
+  ObjectData *obj = coo_BadFunctionCallException();
   c_BadFunctionCallException::cloneSet(obj);
   return obj;
 }
@@ -2076,7 +2004,7 @@ Variant c_LengthException::os_constant(const char *s) {
   return c_LogicException::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_LengthException
-IMPLEMENT_CLASS(LengthException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(LengthException)
 bool c_LengthException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 7) {
@@ -2093,7 +2021,7 @@ bool c_LengthException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_LengthException::cloneImpl() {
-  c_LengthException *obj = NEWOBJ(c_LengthException)();
+  ObjectData *obj = coo_LengthException();
   c_LengthException::cloneSet(obj);
   return obj;
 }
@@ -2166,7 +2094,7 @@ Variant c_DomainException::os_constant(const char *s) {
   return c_LogicException::os_constant(s);
 }
 #endif // OMIT_JUMP_TABLE_CLASS_CONSTANT_DomainException
-IMPLEMENT_CLASS(DomainException)
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(DomainException)
 bool c_DomainException::o_instanceof(CStrRef s) const {
   int64 hash = s->hash();
   switch (hash & 7) {
@@ -2183,7 +2111,7 @@ bool c_DomainException::o_instanceof(CStrRef s) const {
   return false;
 }
 ObjectData *c_DomainException::cloneImpl() {
-  c_DomainException *obj = NEWOBJ(c_DomainException)();
+  ObjectData *obj = coo_DomainException();
   c_DomainException::cloneSet(obj);
   return obj;
 }
@@ -2210,125 +2138,50 @@ struct ObjectStaticCallbacks cw_DomainException = {
 void c_DomainException::init() {
   c_LogicException::init();
 }
-Object co_UnexpectedValueException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_UnexpectedValueException)())->dynCreate(params, init));
+ObjectData *coo_UnexpectedValueException() {
+  return NEWOBJ(c_UnexpectedValueException)();
 }
-Object coo_UnexpectedValueException() {
-  Object r(NEWOBJ(c_UnexpectedValueException)());
-  r->init();
-  return r;
+ObjectData *coo_OverflowException() {
+  return NEWOBJ(c_OverflowException)();
 }
-Object co_OverflowException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_OverflowException)())->dynCreate(params, init));
+ObjectData *coo_OutOfBoundsException() {
+  return NEWOBJ(c_OutOfBoundsException)();
 }
-Object coo_OverflowException() {
-  Object r(NEWOBJ(c_OverflowException)());
-  r->init();
-  return r;
+ObjectData *coo_LogicException() {
+  return NEWOBJ(c_LogicException)();
 }
-Object co_OutOfBoundsException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_OutOfBoundsException)())->dynCreate(params, init));
+ObjectData *coo_RangeException() {
+  return NEWOBJ(c_RangeException)();
 }
-Object coo_OutOfBoundsException() {
-  Object r(NEWOBJ(c_OutOfBoundsException)());
-  r->init();
-  return r;
+ObjectData *coo_InvalidArgumentException() {
+  return NEWOBJ(c_InvalidArgumentException)();
 }
-Object co_LogicException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_LogicException)())->dynCreate(params, init));
+ObjectData *coo_UnderflowException() {
+  return NEWOBJ(c_UnderflowException)();
 }
-Object coo_LogicException() {
-  Object r(NEWOBJ(c_LogicException)());
-  r->init();
-  return r;
+ObjectData *coo_OutOfRangeException() {
+  return NEWOBJ(c_OutOfRangeException)();
 }
-Object co_RangeException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_RangeException)())->dynCreate(params, init));
+ObjectData *coo_BadMethodCallException() {
+  return NEWOBJ(c_BadMethodCallException)();
 }
-Object coo_RangeException() {
-  Object r(NEWOBJ(c_RangeException)());
-  r->init();
-  return r;
+ObjectData *coo_RuntimeException() {
+  return NEWOBJ(c_RuntimeException)();
 }
-Object co_InvalidArgumentException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_InvalidArgumentException)())->dynCreate(params, init));
+ObjectData *coo_Exception() {
+  return NEWOBJ(c_Exception)();
 }
-Object coo_InvalidArgumentException() {
-  Object r(NEWOBJ(c_InvalidArgumentException)());
-  r->init();
-  return r;
+ObjectData *coo_ErrorException() {
+  return NEWOBJ(c_ErrorException)();
 }
-Object co_UnderflowException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_UnderflowException)())->dynCreate(params, init));
+ObjectData *coo_BadFunctionCallException() {
+  return NEWOBJ(c_BadFunctionCallException)();
 }
-Object coo_UnderflowException() {
-  Object r(NEWOBJ(c_UnderflowException)());
-  r->init();
-  return r;
+ObjectData *coo_LengthException() {
+  return NEWOBJ(c_LengthException)();
 }
-Object co_OutOfRangeException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_OutOfRangeException)())->dynCreate(params, init));
-}
-Object coo_OutOfRangeException() {
-  Object r(NEWOBJ(c_OutOfRangeException)());
-  r->init();
-  return r;
-}
-Object co_BadMethodCallException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_BadMethodCallException)())->dynCreate(params, init));
-}
-Object coo_BadMethodCallException() {
-  Object r(NEWOBJ(c_BadMethodCallException)());
-  r->init();
-  return r;
-}
-Object co_RuntimeException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_RuntimeException)())->dynCreate(params, init));
-}
-Object coo_RuntimeException() {
-  Object r(NEWOBJ(c_RuntimeException)());
-  r->init();
-  return r;
-}
-Object co_Exception(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_Exception)())->dynCreate(params, init));
-}
-Object coo_Exception() {
-  Object r(NEWOBJ(c_Exception)());
-  r->init();
-  return r;
-}
-Object co_ErrorException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_ErrorException)())->dynCreate(params, init));
-}
-Object coo_ErrorException() {
-  Object r(NEWOBJ(c_ErrorException)());
-  r->init();
-  return r;
-}
-Object co_BadFunctionCallException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_BadFunctionCallException)())->dynCreate(params, init));
-}
-Object coo_BadFunctionCallException() {
-  Object r(NEWOBJ(c_BadFunctionCallException)());
-  r->init();
-  return r;
-}
-Object co_LengthException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_LengthException)())->dynCreate(params, init));
-}
-Object coo_LengthException() {
-  Object r(NEWOBJ(c_LengthException)());
-  r->init();
-  return r;
-}
-Object co_DomainException(CArrRef params, bool init /* = true */) {
-  return Object((NEWOBJ(c_DomainException)())->dynCreate(params, init));
-}
-Object coo_DomainException() {
-  Object r(NEWOBJ(c_DomainException)());
-  r->init();
-  return r;
+ObjectData *coo_DomainException() {
+  return NEWOBJ(c_DomainException)();
 }
 Variant pm_php$classes$exception_php(bool incOnce /* = false */, LVariableTable* variables /* = NULL */, Globals *globals /* = get_globals() */) {
   PSEUDOMAIN_INJECTION_BUILTIN(run_init::classes/exception.php, pm_php$classes$exception_php);

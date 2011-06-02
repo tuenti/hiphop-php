@@ -36,7 +36,7 @@ class c_ReflectionMethod : public c_ReflectionFunctionAbstract {
 
   // Class Map
   virtual bool o_instanceof(CStrRef s) const;
-  DECLARE_CLASS_COMMON(ReflectionMethod, ReflectionMethod)
+  DECLARE_CLASS_COMMON_NO_SWEEP(ReflectionMethod, ReflectionMethod)
   DECLARE_INVOKE_EX(ReflectionMethod, ReflectionMethod, ReflectionFunctionAbstract)
 
   // DECLARE_STATIC_PROP_OPS
@@ -65,11 +65,11 @@ class c_ReflectionMethod : public c_ReflectionFunctionAbstract {
   public:
   void init();
   public: void t___construct(Variant v_cls, Variant v_name = NAMSTR(s_sys_ss00000000, ""));
-  public: c_ReflectionMethod *create(CVarRef v_cls, CVarRef v_name = NAMSTR(s_sys_ss00000000, ""));
+  public: c_ReflectionMethod *create(CVarRef v_cls, CVarRef v_name = NAMVAR(s_sys_svs00000000, ""));
   public: void dynConstruct(CArrRef params);
   public: void getConstructor(MethodCallPackage &mcp);
   public: String t___tostring();
-  public: static Variant ti_export(CStrRef cls, Variant v_cls, CVarRef v_name, CVarRef v_ret);
+  public: static Variant t_export(Variant v_cls, CVarRef v_name, CVarRef v_ret);
   public: Variant t_invoke(int num_args, CVarRef v_obj, Array args = Array());
   public: Variant t_invokeargs(CVarRef v_obj, CVarRef v_args);
   public: Variant t_isfinal();
@@ -83,7 +83,6 @@ class c_ReflectionMethod : public c_ReflectionFunctionAbstract {
   public: Variant t_getmodifiers();
   public: Variant t_getclosure();
   public: Variant t_getdeclaringclass();
-  public: static Variant t_export(CVarRef v_cls, CVarRef v_name, CVarRef v_ret) { return ti_export(c_ReflectionMethod::s_class_name, v_cls, v_name, v_ret); }
   DECLARE_METHOD_INVOKE_HELPERS(isprivate);
   DECLARE_METHOD_INVOKE_HELPERS(__tostring);
   DECLARE_METHOD_INVOKE_HELPERS(isprotected);
@@ -101,15 +100,14 @@ class c_ReflectionMethod : public c_ReflectionFunctionAbstract {
   DECLARE_METHOD_INVOKE_HELPERS(getclosure);
   DECLARE_METHOD_INVOKE_HELPERS(isabstract);
 };
+extern struct ObjectStaticCallbacks cw_ReflectionMethod;
+ObjectData *coo_ReflectionMethod() NEVER_INLINE;
 extern const int64 q_ReflectionMethod_IS_STATIC;
 extern const int64 q_ReflectionMethod_IS_PUBLIC;
 extern const int64 q_ReflectionMethod_IS_PROTECTED;
 extern const int64 q_ReflectionMethod_IS_PRIVATE;
 extern const int64 q_ReflectionMethod_IS_ABSTRACT;
 extern const int64 q_ReflectionMethod_IS_FINAL;
-extern struct ObjectStaticCallbacks cw_ReflectionMethod;
-Object co_ReflectionMethod(CArrRef params, bool init = true);
-Object coo_ReflectionMethod();
 
 ///////////////////////////////////////////////////////////////////////////////
 }

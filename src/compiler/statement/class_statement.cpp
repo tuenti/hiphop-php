@@ -235,17 +235,22 @@ void ClassStatement::outputCPPClassDecl(CodeGenerator &cg,
   ClassScopeRawPtr classScope = getClassScope();
   VariableTablePtr variables = classScope->getVariables();
   ConstantTablePtr constants = classScope->getConstants();
+  const char *sweep =
+    classScope->isUserClass() && !classScope->isSepExtension() ?
+    "_NO_SWEEP" : "";
+
   if (variables->hasAllJumpTables() && constants->hasJumpTable() &&
       classScope->hasAllJumpTables()) {
-    cg_printf("DECLARE_CLASS(%s, %s, %s)\n", clsName, originalName, parent);
+    cg_printf("DECLARE_CLASS%s(%s, %s, %s)\n",
+              sweep, clsName, originalName, parent);
     return;
   }
 
   // Now we start to break down DECLARE_CLASS into lines of code that could
   // be generated differently...
 
-  cg_printf("DECLARE_CLASS_COMMON(%s, %s)\n", clsName,
-            cg.escapeLabel(originalName).c_str());
+  cg_printf("DECLARE_CLASS_COMMON%s(%s, %s)\n", sweep,
+            clsName, cg.escapeLabel(originalName).c_str());
   cg_printf("DECLARE_INVOKE_EX%s(%s, %s, %s)\n",
       Option::UseMethodIndex ? "WITH_INDEX" : "", clsName,
             cg.escapeLabel(originalName).c_str(), parent);
@@ -357,12 +362,11 @@ void ClassStatement::outputCPPImpl(CodeGenerator &cg, AnalysisResultPtr ar) {
         if (cg.checkHoistedClass(*it)) continue;
         ClassScopePtr base = ar->findClass(*it);
         if (base && base->isVolatile()) {
-          cg_printf("checkClassExists(");
+          cg_printf("checkClassExistsThrow(");
           cg_printString(base->getOriginalName(), ar, shared_from_this());
           string lname = Util::toLower(base->getOriginalName());
-          cg_printf(", &%s->CDEC(%s), %s->FVF(__autoload));\n",
-                    cg.getGlobals(ar), cg.formatLabel(lname).c_str(),
-                    cg.getGlobals(ar));
+          cg_printf(", &%s->CDEC(%s));\n",
+                    cg.getGlobals(ar), cg.formatLabel(lname).c_str());
         }
       }
     }
@@ -551,11 +555,14 @@ void ClassStatement::outputCPPImpl(CodeGenerator &cg, AnalysisResultPtr ar) {
       }
       cg_indentEnd("};\n");
 
+      classScope->outputCPPGlobalTableWrappersDecl(cg, ar);
+      classScope->outputCPPDynamicClassDecl(cg);
+
       if (redeclared) {
         cg_indentBegin("class %s%s : public ClassStatics {\n",
                        Option::ClassStaticsPrefix, clsName);
         cg_printf("public:\n");
-        cg_printf("DECLARE_OBJECT_ALLOCATION(%s%s);\n",
+        cg_printf("DECLARE_OBJECT_ALLOCATION_NO_SWEEP(%s%s);\n",
                   Option::ClassStaticsPrefix, clsName);
         cg_printf("%s%s() : ClassStatics(%d) {}\n",
                   Option::ClassStaticsPrefix, clsName,
@@ -575,11 +582,10 @@ void ClassStatement::outputCPPImpl(CodeGenerator &cg, AnalysisResultPtr ar) {
         cg_printf("return %s%s::%slval(s);\n", Option::ClassPrefix,
                   clsName, Option::ObjectStaticPrefix);
         cg_indentEnd("}\n");
-        cg_indentBegin("Object createOnly(ObjectData* root = NULL) {\n");
-        cg_printf("Object r((NEWOBJ(%s%s)(root)));\n", Option::ClassPrefix,
-            clsName);
-        cg_printf("r->init();\n");
-        cg_printf("return r;\n");
+        cg_indentBegin("ObjectData *createOnlyNoInit"
+                       "(ObjectData* root = NULL) {\n");
+        cg_printf("return %s%s(root);\n",
+                  Option::CreateObjectOnlyPrefix, clsName);
         cg_indentEnd("}\n");
         cg_indentBegin("Variant %sconstant(const char* s) {\n",
                        Option::ObjectStaticPrefix);
@@ -600,8 +606,6 @@ void ClassStatement::outputCPPImpl(CodeGenerator &cg, AnalysisResultPtr ar) {
         m_stmt->outputCPP(cg, ar);
         cg.setContext(CodeGenerator::CppDeclaration);
       }
-
-      classScope->outputCPPGlobalTableWrappersDecl(cg, ar);
     }
     break;
   case CodeGenerator::CppImplementation:
@@ -614,7 +618,7 @@ void ClassStatement::outputCPPImpl(CodeGenerator &cg, AnalysisResultPtr ar) {
     classScope->outputCPPSupportMethodsImpl(cg, ar);
 
     if (redeclared) {
-      cg_printf("IMPLEMENT_OBJECT_ALLOCATION(%s%s);\n",
+      cg_printf("IMPLEMENT_OBJECT_ALLOCATION_NO_DEFAULT_SWEEP(%s%s);\n",
                 Option::ClassStaticsPrefix, clsName);
     }
 

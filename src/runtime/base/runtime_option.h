@@ -84,6 +84,7 @@ public:
   static std::string ServerIP;
   static std::string ServerPrimaryIP;
   static int ServerPort;
+  static int ServerPortFd;
   static int ServerBacklog;
   static int ServerConnectionLimit;
   static int ServerThreadCount;
@@ -141,6 +142,7 @@ public:
 
   static bool EnableSSL;
   static int SSLPort;
+  static int SSLPortFd;
   static std::string SSLCertificateFile;
   static std::string SSLCertificateKeyFile;
 
@@ -358,9 +360,10 @@ public:
   static std::string SendmailPath;
   static std::string MailForceExtraParameters;
 
-  // preg stack depth options
+  // preg stack depth and debug support options
   static int PregBacktraceLimit;
   static int PregRecursionLimit;
+  static bool EnablePregErrorLog;
 
   static bool MethodSlotCalls;
 };

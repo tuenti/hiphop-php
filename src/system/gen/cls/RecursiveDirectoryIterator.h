@@ -34,7 +34,7 @@ class c_RecursiveDirectoryIterator : public c_DirectoryIterator {
 
   // Class Map
   virtual bool o_instanceof(CStrRef s) const;
-  DECLARE_CLASS_COMMON(RecursiveDirectoryIterator, RecursiveDirectoryIterator)
+  DECLARE_CLASS_COMMON_NO_SWEEP(RecursiveDirectoryIterator, RecursiveDirectoryIterator)
   DECLARE_INVOKE_EX(RecursiveDirectoryIterator, RecursiveDirectoryIterator, DirectoryIterator)
 
   // DECLARE_STATIC_PROP_OPS
@@ -64,7 +64,7 @@ class c_RecursiveDirectoryIterator : public c_DirectoryIterator {
   public:
   void init();
   public: void t___construct(Variant v_path, Variant v_flags = 16LL /* RecursiveDirectoryIterator::CURRENT_AS_FILEINFO */);
-  public: c_RecursiveDirectoryIterator *create(CVarRef v_path, CVarRef v_flags = 16LL /* RecursiveDirectoryIterator::CURRENT_AS_FILEINFO */);
+  public: c_RecursiveDirectoryIterator *create(CVarRef v_path, CVarRef v_flags = NAMVAR(s_sys_svi86af027e, 16LL) /* RecursiveDirectoryIterator::CURRENT_AS_FILEINFO */);
   public: void dynConstruct(CArrRef params);
   public: void getConstructor(MethodCallPackage &mcp);
   public: Variant t_current();
@@ -91,15 +91,14 @@ class c_RecursiveDirectoryIterator : public c_DirectoryIterator {
   DECLARE_METHOD_INVOKE_HELPERS(current);
   DECLARE_METHOD_INVOKE_HELPERS(rewind);
 };
+extern struct ObjectStaticCallbacks cw_RecursiveDirectoryIterator;
+ObjectData *coo_RecursiveDirectoryIterator() NEVER_INLINE;
 extern const int64 q_RecursiveDirectoryIterator_CURRENT_AS_SELF;
 extern const int64 q_RecursiveDirectoryIterator_CURRENT_AS_FILEINFO;
 extern const int64 q_RecursiveDirectoryIterator_CURRENT_AS_PATHNAME;
 extern const int64 q_RecursiveDirectoryIterator_KEY_AS_PATHNAME;
 extern const int64 q_RecursiveDirectoryIterator_KEY_AS_FILENAME;
 extern const int64 q_RecursiveDirectoryIterator_NEW_CURRENT_AND_KEY;
-extern struct ObjectStaticCallbacks cw_RecursiveDirectoryIterator;
-Object co_RecursiveDirectoryIterator(CArrRef params, bool init = true);
-Object coo_RecursiveDirectoryIterator();
 
 ///////////////////////////////////////////////////////////////////////////////
 }

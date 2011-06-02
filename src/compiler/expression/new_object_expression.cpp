@@ -87,7 +87,7 @@ TypePtr NewObjectExpression::inferTypes(AnalysisResultPtr ar, TypePtr type,
   m_classScope.reset();
   m_funcScope.reset();
   ConstructPtr self = shared_from_this();
-  if (!m_name.empty()) {
+  if (!m_name.empty() && !isStatic()) {
     ClassScopePtr cls = resolveClass();
     m_name = m_className;
 
@@ -188,18 +188,21 @@ void NewObjectExpression::outputCPPImpl(CodeGenerator &cg,
       if (outsideClass) {
         cls->outputVolatileCheckBegin(cg, ar, getScope(), cname);
       }
-      cg_printf("%s%s((NEWOBJ(%s%s)())->create(",
+      cg_printf("%s%s(((%s%s*)%s%s())->create(",
                 Option::SmartPtrPrefix, cls->getId(cg).c_str(),
-                Option::ClassPrefix, cls->getId(cg).c_str());
+                Option::ClassPrefix, cls->getId(cg).c_str(),
+                Option::CreateObjectOnlyPrefix, cls->getId(cg).c_str());
     } else {
-      cg_printf("(%s->create(", m_receiverTemp.c_str());
+      cg_printf("((%s%s*)%s.get()->create(",
+                Option::ClassPrefix, cls->getId(cg).c_str(),
+                m_receiverTemp.c_str());
     }
 
     FunctionScope::OutputCPPArguments(m_params, m_funcScope, cg, ar, m_extraArg,
                                       m_variableArgument, m_argArrayId,
                                       m_argArrayHash, m_argArrayIndex);
     if (m_receiverTemp.empty()) {
-      cg_printf("))");
+    cg_printf("))");
       if (outsideClass) {
         cls->outputVolatileCheckEnd(cg);
       }
@@ -311,8 +314,9 @@ bool NewObjectExpression::preOutputCPP(CodeGenerator &cg, AnalysisResultPtr ar,
       if (outsideClass) {
         m_classScope->outputVolatileCheckBegin(cg, ar, getScope(), cname);
       }
-      cg_printf("NEWOBJ(%s%s)()",
-                Option::ClassPrefix, m_classScope->getId(cg).c_str());
+      cg_printf("%s%s()",
+                Option::CreateObjectOnlyPrefix,
+                m_classScope->getId(cg).c_str());
       if (outsideClass) {
         m_classScope->outputVolatileCheckEnd(cg);
       }

@@ -39,6 +39,7 @@ class BucketMapEntry {
   void endScope();
   void resetScope();
   void pop_back() { m_exprs.pop_back(); }
+  ExpressionPtr back() { return m_exprs.back(); }
   ExpressionPtrList::iterator begin() { return m_exprs.begin(); }
   ExpressionPtrList::iterator end() { return m_exprs.end(); }
   ExpressionPtrList::reverse_iterator rbegin() { return m_exprs.rbegin(); }
@@ -125,6 +126,8 @@ class AliasManager {
     size_t              m_size;
     ExpressionPtrList   m_exprs;
   };
+
+  void performReferencedAndNeededAnalysis(MethodStatementPtr m);
 
   typedef std::set<std::string> StringSet;
 
@@ -236,6 +239,7 @@ class AliasManager {
 
   int                       m_exprIdx;
   StatementPtr              m_exprParent;
+  ExpressionPtrVec          m_exprBeginStack;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -119,7 +119,9 @@ extern Object create_object_only(const char *s, ObjectData *root = NULL);
 extern Object create_builtin_object(const char *s, const Array &params,
                                     bool init = true, ObjectData *root = NULL);
 extern Object create_builtin_object_only(const char *s,
-    ObjectData *root = NULL);
+                                         ObjectData *root = NULL);
+extern ObjectData *create_builtin_object_only_no_init(const char *s,
+                                                      ObjectData *root = NULL);
 /**
  * Dynamically include a file.
  */
@@ -146,6 +148,7 @@ class GlobalVariables;
 extern GlobalVariables *get_global_variables();
 extern GlobalVariables *get_global_variables_check();
 extern void init_global_variables();
+extern void init_literal_varstrings();
 extern void free_global_variables();
 extern Array get_global_array_wrapper();
 extern Array get_global_state();

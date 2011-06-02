@@ -297,7 +297,7 @@ Variant invoke_static_method(CStrRef s, CStrRef method, CArrRef params,
 
 Variant invoke_failed(const char *func, CArrRef params, int64 hash,
                       bool fatal /* = true */) {
-  INTERCEPT_INJECTION_ALWAYS("?", func, params, ref(r));
+  INTERCEPT_INJECTION_ALWAYS("?", func, params, strongBind(r));
 
   if (fatal) {
     throw InvalidFunctionCallException(func);
@@ -839,113 +839,140 @@ bool empty(CVarRef v, bool    offset) {
   return empty(v, Variant(offset));
 }
 bool empty(CVarRef v, int64   offset) {
-  if (!v.isArray()) {
-    return empty(v, Variant(offset));
+  Variant::TypedValueAccessor tva = v.getTypedAccessor();
+  if (LIKELY(Variant::GetAccessorType(tva) == KindOfArray)) {
+    return empty(Variant::GetArrayData(tva)->get(offset));
   }
-  return !toBoolean(v.toArrNR().rvalAtRef(offset));
+  return empty(v, VarNR(offset));
 }
 bool empty(CVarRef v, double  offset) {
-  return empty(v, Variant(offset));
+  return empty(v, VarNR(offset));
 }
 bool empty(CVarRef v, CArrRef offset) {
-  return empty(v, Variant(offset));
+  return empty(v, VarNR(offset));
 }
 bool empty(CVarRef v, CObjRef offset) {
-  return empty(v, Variant(offset));
+  return empty(v, VarNR(offset));
 }
-
 bool empty(CVarRef v, litstr offset, bool isString /* = false */) {
-  if (!v.isArray()) {
-    return empty(v, Variant(offset));
+  Variant::TypedValueAccessor tva = v.getTypedAccessor();
+  if (LIKELY(Variant::GetAccessorType(tva) == KindOfArray)) {
+    return empty(Variant::GetAsArray(tva).
+                 rvalAtRef(offset, AccessFlags::IsKey(isString)));
   }
-  return !toBoolean(v.toArrNR().rvalAtRef(offset,
-                                          AccessFlags::IsKey(isString)));
+  return empty(v, Variant(offset));
 }
 
 bool empty(CVarRef v, CStrRef offset, bool isString /* = false */) {
-  if (!v.isArray()) {
-    return empty(v, Variant(offset));
+  Variant::TypedValueAccessor tva = v.getTypedAccessor();
+  if (LIKELY(Variant::GetAccessorType(tva) == KindOfArray)) {
+    return empty(Variant::GetAsArray(tva).
+                 rvalAtRef(offset, AccessFlags::IsKey(isString)));
   }
-  return !toBoolean(v.toArrNR().rvalAtRef(offset,
-                                          AccessFlags::IsKey(isString)));
+  return empty(v, VarNR(offset));
 }
 
 bool empty(CVarRef v, CVarRef offset) {
-  if (v.isArray()) {
-    return !toBoolean(v.toArrNR().rvalAtRef(offset));
-  } else if (v.is(KindOfObject)) {
-    if (!v.getArrayAccess()->o_invoke(s_offsetExists, Array::Create(offset))) {
+  Variant::TypedValueAccessor tva = v.getTypedAccessor();
+  if (LIKELY(Variant::GetAccessorType(tva) == KindOfArray)) {
+    return empty(Variant::GetAsArray(tva).rvalAtRef(offset));
+  }
+  if (Variant::GetAccessorType(tva) == KindOfObject) {
+    if (!Variant::GetArrayAccess(tva)->
+        o_invoke(s_offsetExists, Array::Create(offset))) {
       return true;
     }
     // fall through to check for 'empty'ness of the value.
-  } else if (v.isString()) {
-    int pos = offset.toInt32();
-    if (pos < 0 || pos >= v.getStringData()->size()) {
+  } else if (Variant::IsString(tva)) {
+    uint64 pos = offset.toInt64();
+    if (pos >= (uint64)Variant::GetStringData(tva)->size()) {
       return true;
     }
   }
-  return !toBoolean(v.rvalAt(offset));
+  return empty(v.rvalAt(offset));
+}
+
+bool isset(CArrRef v, int64 offset) {
+  return isset(v.rvalAtRef(offset));
+}
+bool isset(CArrRef v, CArrRef offset) {
+  return isset(v, VarNR(offset));
+}
+bool isset(CArrRef v, CObjRef offset) {
+  return isset(v, VarNR(offset));
+}
+bool isset(CArrRef v, CStrRef offset, bool isString /* = false */) {
+  return isset(v.rvalAtRef(offset, AccessFlags::IsKey(isString)));
+}
+bool isset(CArrRef v, litstr offset, bool isString /* = false */) {
+  return isset(v.rvalAtRef(offset, AccessFlags::IsKey(isString)));
+}
+bool isset(CArrRef v, CVarRef offset) {
+  return isset(v.rvalAtRef(offset));
 }
 
 bool isset(CVarRef v, bool    offset) {
-  return isset(v, Variant(offset));
+  return isset(v, VarNR(offset));
 }
 bool isset(CVarRef v, int64   offset) {
-  if (v.isArray()) {
-    return isset(v.toArrNR().rvalAtRef(offset));
+  Variant::TypedValueAccessor tva = v.getTypedAccessor();
+  if (LIKELY(Variant::GetAccessorType(tva) == KindOfArray)) {
+    return isset(Variant::GetArrayData(tva)->get(offset));
   }
-  if (v.isObject()) {
-    return v.getArrayAccess()->o_invoke(s_offsetExists,
-                                        Array::Create(offset), -1);
+  if (Variant::GetAccessorType(tva) == KindOfObject) {
+    return Variant::GetArrayAccess(tva)->
+      o_invoke(s_offsetExists, Array::Create(offset), -1);
   }
-  if (v.isString()) {
-    int pos = (int)offset;
-    return pos >= 0 && pos < v.getStringData()->size();
+  if (Variant::IsString(tva)) {
+    return (uint64)offset < (uint64)Variant::GetStringData(tva)->size();
   }
   return false;
 }
 bool isset(CVarRef v, double  offset) {
-  return isset(v, Variant(offset));
+  return isset(v, VarNR(offset));
 }
 bool isset(CVarRef v, CArrRef offset) {
-  return isset(v, Variant(offset));
+  return isset(v, VarNR(offset));
 }
 bool isset(CVarRef v, CObjRef offset) {
-  return isset(v, Variant(offset));
+  return isset(v, VarNR(offset));
 }
-
 bool isset(CVarRef v, CVarRef offset) {
-  if (v.isArray()) {
-    return isset(v.toArrNR().rvalAtRef(offset));
+  Variant::TypedValueAccessor tva = v.getTypedAccessor();
+  if (LIKELY(Variant::GetAccessorType(tva) == KindOfArray)) {
+    return isset(Variant::GetAsArray(tva).rvalAtRef(offset));
   }
-  if (v.isObject()) {
-    return v.getArrayAccess()->o_invoke(s_offsetExists,
-                                        Array::Create(offset), -1);
+  if (Variant::GetAccessorType(tva) == KindOfObject) {
+    return Variant::GetArrayAccess(tva)->
+      o_invoke(s_offsetExists, Array::Create(offset), -1);
   }
-  if (v.isString()) {
-    int pos = offset.toInt32();
-    return pos >= 0 && pos < v.getStringData()->size();
+  if (Variant::IsString(tva)) {
+    uint64 pos = offset.toInt64();
+    return pos < (uint64)Variant::GetStringData(tva)->size();
   }
   return false;
 }
-
 bool isset(CVarRef v, litstr offset, bool isString /* = false */) {
-  if (v.isArray()) {
-    return isset(v.toArrNR().rvalAtRef(offset,
-                                       AccessFlags::IsKey(isString)));
+  Variant::TypedValueAccessor tva = v.getTypedAccessor();
+  if (LIKELY(Variant::GetAccessorType(tva) == KindOfArray)) {
+    return isset(Variant::GetAsArray(tva).rvalAtRef(
+                   offset, AccessFlags::IsKey(isString)));
   }
-  if (v.isObject() || v.isString()) {
+  if (Variant::GetAccessorType(tva) == KindOfObject ||
+      Variant::IsString(tva)) {
     return isset(v, Variant(offset));
   }
   return false;
 }
 
 bool isset(CVarRef v, CStrRef offset, bool isString /* = false */) {
-  if (v.isArray()) {
-    return isset(v.toArrNR().rvalAtRef(offset,
-                                       AccessFlags::IsKey(isString)));
+  Variant::TypedValueAccessor tva = v.getTypedAccessor();
+  if (LIKELY(Variant::GetAccessorType(tva) == KindOfArray)) {
+    return isset(Variant::GetAsArray(tva).rvalAtRef(
+                   offset, AccessFlags::IsKey(isString)));
   }
-  if (v.isObject() || v.isString()) {
+  if (Variant::GetAccessorType(tva) == KindOfObject ||
+      Variant::IsString(tva)) {
     return isset(v, Variant(offset));
   }
   return false;
@@ -1175,11 +1202,7 @@ bool AutoloadHandler::invokeHandler(CStrRef className, bool checkDeclared,
   bool l_running = m_running;
   m_running = true;
   if (m_handlers.empty()) {
-
-    if (checkDeclared) {
-      autoloadExists = function_exists(s___autoload);
-    }
-    if (autoloadExists) {
+    if (function_exists(s___autoload)) {
       invoke(s___autoload, params, -1, true, false);
       m_running = l_running;
       return true;
@@ -1273,31 +1296,30 @@ void checkClassExists(CStrRef name, Globals *g, bool nothrow /* = false */) {
   }
 }
 
-bool checkClassExists(CStrRef name, const bool *declared, bool autoloadExists,
-                      bool nothrow /* = false */) {
-  if (declared && *declared) return true;
-  AutoloadHandler::s_instance->invokeHandler(name, false, declared,
-                                             autoloadExists);
-  if (declared && *declared) return true;
-  if (nothrow) return false;
+bool autoloadClassThrow(CStrRef name, bool *declared) {
+  if (autoloadClassNoThrow(name, declared)) return true;
   string msg = "unknown class ";
   msg += name.c_str();
   throw_fatal(msg.c_str());
   return false;
 }
 
-bool checkInterfaceExists(CStrRef name, const bool *declared,
-                          bool autoloadExists, bool nothrow /* = false */) {
-  if (*declared) return true;
-  AutoloadHandler::s_instance->invokeHandler(name, false, declared,
-                                             autoloadExists);
-  if (!*declared) {
-    if (nothrow) return false;
-    string msg = "unknown interface ";
-    msg += name.c_str();
-    throw_fatal(msg.c_str());
-  }
-  return true;
+bool autoloadClassNoThrow(CStrRef name, bool *declared) {
+  AutoloadHandler::s_instance->invokeHandler(name, false, declared);
+  return declared && *declared;
+}
+
+bool autoloadInterfaceThrow(CStrRef name, bool *declared) {
+  if (autoloadInterfaceNoThrow(name, declared)) return true;
+  string msg = "unknown interface ";
+  msg += name.c_str();
+  throw_fatal(msg.c_str());
+  return false;
+}
+
+bool autoloadInterfaceNoThrow(CStrRef name, bool *declared) {
+  AutoloadHandler::s_instance->invokeHandler(name, false, declared);
+  return declared && *declared;
 }
 
 Variant &get_static_property_lval(const char *s, const char *prop) {
@@ -1321,7 +1343,7 @@ Variant invoke_static_method_bind(CStrRef s, CStrRef method,
   if (!isStatic) {
     FrameInjection::ResetStaticClassName(info);
   }
-  return ref(ret);
+  return strongBind(ret);
 }
 #endif /* ENABLE_LATE_STATIC_BINDING */
 

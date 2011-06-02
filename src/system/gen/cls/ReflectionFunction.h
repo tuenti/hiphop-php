@@ -34,7 +34,7 @@ class c_ReflectionFunction : public c_ReflectionFunctionAbstract {
 
   // Class Map
   virtual bool o_instanceof(CStrRef s) const;
-  DECLARE_CLASS_COMMON(ReflectionFunction, ReflectionFunction)
+  DECLARE_CLASS_COMMON_NO_SWEEP(ReflectionFunction, ReflectionFunction)
   DECLARE_INVOKE_EX(ReflectionFunction, ReflectionFunction, ReflectionFunctionAbstract)
 
   // DECLARE_STATIC_PROP_OPS
@@ -67,20 +67,18 @@ class c_ReflectionFunction : public c_ReflectionFunctionAbstract {
   public: void dynConstruct(CArrRef params);
   public: void getConstructor(MethodCallPackage &mcp);
   public: String t___tostring();
-  public: static Variant ti_export(CStrRef cls, CVarRef v_name, CVarRef v_ret);
+  public: static Variant t_export(CVarRef v_name, CVarRef v_ret);
   public: Variant t_invoke(int num_args, Array args = Array());
   public: Variant t_invokeargs(CVarRef v_args);
-  public: static Variant t_export(CVarRef v_name, CVarRef v_ret) { return ti_export(c_ReflectionFunction::s_class_name, v_name, v_ret); }
   DECLARE_METHOD_INVOKE_HELPERS(__tostring);
   DECLARE_METHOD_INVOKE_HELPERS(__construct);
   DECLARE_METHOD_INVOKE_HELPERS(invokeargs);
   DECLARE_METHOD_INVOKE_HELPERS(export);
   DECLARE_METHOD_INVOKE_HELPERS(invoke);
 };
-extern const int64 q_ReflectionFunction_IS_DEPRECATED;
 extern struct ObjectStaticCallbacks cw_ReflectionFunction;
-Object co_ReflectionFunction(CArrRef params, bool init = true);
-Object coo_ReflectionFunction();
+ObjectData *coo_ReflectionFunction() NEVER_INLINE;
+extern const int64 q_ReflectionFunction_IS_DEPRECATED;
 
 ///////////////////////////////////////////////////////////////////////////////
 }

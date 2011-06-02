@@ -48,6 +48,7 @@
 #include <compiler/analysis/dictionary.h>
 #include <compiler/analysis/expr_dict.h>
 #include <compiler/analysis/live_dict.h>
+#include <compiler/analysis/ref_dict.h>
 
 #include <util/parser/hphp.tab.hpp>
 #include <util/util.h>
@@ -1128,12 +1129,20 @@ ExpressionPtr AliasManager::canonicalizeNode(
                     Handling unset of a variable which hasnt been
                     used since it was last assigned
                   */
-                  if (!e->is(Expression::KindOfSimpleVariable) ||
-                      spc(SimpleVariable, e)->couldBeAliased()) {
+                  if (!e->is(Expression::KindOfSimpleVariable)) {
                     break;
                   }
 
                   AssignmentExpressionPtr a = spc(AssignmentExpression, rep);
+
+                  assert(
+                    a->getVariable()->is(Expression::KindOfSimpleVariable));
+                  SimpleVariablePtr variable =
+                    spc(SimpleVariable, a->getVariable());
+                  if (variable->couldBeAliased()) {
+                    break;
+                  }
+
                   ExpressionPtr value = a->getValue();
                   if (value->getContext() & Expression::RefValue) {
                     break;
@@ -1505,12 +1514,16 @@ void AliasManager::canonicalizeKid(ConstructPtr c, ExpressionPtr kid, int i) {
     StatementPtr sp(dpc(Statement, c));
     if (sp) beginInExpression(sp);
     kid = canonicalizeRecur(kid);
-    if (sp) endInExpression(sp);
     if (kid) {
       c->setNthKid(i, kid);
       c->recomputeEffects();
-      kid->computeLocalExprAltered();
       setChanged();
+    }
+    if (sp) {
+      endInExpression(sp);
+      ExpressionPtr kid0(dpc(Expression, c->getNthKid(i)));
+      ASSERT(kid0);
+      kid0->computeLocalExprAltered();
     }
   }
 }
@@ -1544,6 +1557,7 @@ ExpressionPtr AliasManager::canonicalizeRecur(ExpressionPtr e) {
   }
 
   bool delayVars = true;
+  bool pushStack = false;
 
   switch (e->getKindOf()) {
     case Expression::KindOfQOpExpression:
@@ -1568,14 +1582,27 @@ ExpressionPtr AliasManager::canonicalizeRecur(ExpressionPtr e) {
       break;
 
     case Expression::KindOfExpressionList:
+      delayVars = false;
+      break;
+
     case Expression::KindOfObjectMethodExpression:
     case Expression::KindOfDynamicFunctionCall:
     case Expression::KindOfSimpleFunctionCall:
       delayVars = false;
+      // fall through
+      
+    case Expression::KindOfNewObjectExpression:
+      pushStack = m_accessList.size() > 0;
       break;
 
     default:
       break;
+  }
+
+  ExpressionPtr aBack;
+  if (pushStack) {
+    aBack = m_accessList.back();
+    ASSERT(aBack);
   }
 
   int n = e->getKidCount();
@@ -1606,7 +1633,10 @@ ExpressionPtr AliasManager::canonicalizeRecur(ExpressionPtr e) {
     }
   }
 
-  return canonicalizeNode(e);
+  if (pushStack) m_exprBeginStack.push_back(aBack);
+  ExpressionPtr ret(canonicalizeNode(e));
+  if (pushStack) m_exprBeginStack.pop_back();
+  return ret;
 }
 
 StatementPtr AliasManager::canonicalizeRecur(StatementPtr s, int &ret) {
@@ -1898,8 +1928,9 @@ int AliasManager::collectAliasInfoRecur(ConstructPtr cs, bool unused) {
     }
     e->setUnused(unused);
     int context = e->getContext();
-    switch (e->getKindOf()) {
-    case Expression::KindOfAssignmentExpression:
+    int ekind = e->getKindOf();
+    switch (ekind) {
+      case Expression::KindOfAssignmentExpression:
       {
         AssignmentExpressionPtr ae = spc(AssignmentExpression, e);
         ExpressionPtr var = ae->getVariable();
@@ -1917,7 +1948,7 @@ int AliasManager::collectAliasInfoRecur(ConstructPtr cs, bool unused) {
         }
       }
       break;
-    case Expression::KindOfListAssignment:
+      case Expression::KindOfListAssignment:
       {
         ListAssignmentPtr la = spc(ListAssignment, e);
         ExpressionListPtr vars = la->getVariables();
@@ -1932,7 +1963,7 @@ int AliasManager::collectAliasInfoRecur(ConstructPtr cs, bool unused) {
         }
       }
       break;
-    case Expression::KindOfSimpleVariable:
+      case Expression::KindOfSimpleVariable:
       {
         SimpleVariablePtr sv(spc(SimpleVariable, e));
         if (Symbol *sym = sv->getSymbol()) {
@@ -1961,17 +1992,17 @@ int AliasManager::collectAliasInfoRecur(ConstructPtr cs, bool unused) {
         }
       }
       break;
-    case Expression::KindOfDynamicVariable:
-      m_variables->setAttribute(VariableTable::ContainsDynamicVariable);
-      if (context & (Expression::RefValue|
-                     Expression::LValue)) {
-        m_variables->setAttribute(VariableTable::ContainsLDynamicVariable);
-        if (context & Expression::RefValue) {
-          m_wildRefs = true;
+      case Expression::KindOfDynamicVariable:
+        m_variables->setAttribute(VariableTable::ContainsDynamicVariable);
+        if (context & (Expression::RefValue|
+                       Expression::LValue)) {
+          m_variables->setAttribute(VariableTable::ContainsLDynamicVariable);
+          if (context & Expression::RefValue) {
+            m_wildRefs = true;
+          }
         }
-      }
-      break;
-    case Expression::KindOfIncludeExpression:
+        break;
+      case Expression::KindOfIncludeExpression:
       {
         IncludeExpressionPtr inc(spc(IncludeExpression, e));
         if (!inc->getPrivateScope()) {
@@ -1979,7 +2010,7 @@ int AliasManager::collectAliasInfoRecur(ConstructPtr cs, bool unused) {
         }
       }
       break;
-    case Expression::KindOfArrayElementExpression:
+      case Expression::KindOfArrayElementExpression:
       {
         int n = 1;
         while (n < 10 &&
@@ -1996,7 +2027,7 @@ int AliasManager::collectAliasInfoRecur(ConstructPtr cs, bool unused) {
         }
       }
       break;
-    case Expression::KindOfObjectPropertyExpression:
+      case Expression::KindOfObjectPropertyExpression:
       {
         e = spc(ObjectPropertyExpression, e)->getObject();
         if (e->is(Expression::KindOfSimpleVariable)) {
@@ -2009,32 +2040,60 @@ int AliasManager::collectAliasInfoRecur(ConstructPtr cs, bool unused) {
         }
       }
       break;
-    case Expression::KindOfSimpleFunctionCall:
-      spc(SimpleFunctionCall, e)->updateVtFlags();
-    case Expression::KindOfDynamicFunctionCall:
-    case Expression::KindOfClassConstantExpression:
-    case Expression::KindOfStaticMemberExpression:
-    case Expression::KindOfNewObjectExpression:
-      if (m_graph) {
+      case Expression::KindOfSimpleFunctionCall:
+        spc(SimpleFunctionCall, e)->updateVtFlags();
+      case Expression::KindOfDynamicFunctionCall:
+      case Expression::KindOfClassConstantExpression:
+      case Expression::KindOfStaticMemberExpression:
+      case Expression::KindOfNewObjectExpression: {
         StaticClassName *p = dynamic_cast<StaticClassName*>(e.get());
         assert(p);
-        const std::string &name = p->getClassName();
-        if (!name.empty()) {
-          int &id = m_gidMap[name];
-          if (!id) id = m_gidMap.size();
-          e->setCanonID(id);
+        bool useLSB = false;
+        if (p->isStatic()) {
+          useLSB = true;
+        } else if (ekind == Expression::KindOfDynamicFunctionCall) {
+          if ((p->getClassName().empty() && !p->getClass()) ||
+              p->isParent() || p->isSelf()) {
+            useLSB = true;
+          }
         }
+        if (useLSB) {
+          m_scope->getContainingFunction()->setNextLSB(true);
+        }
+        if (m_graph) {
+          const std::string &name = p->getClassName();
+          if (!name.empty()) {
+            int &id = m_gidMap[name];
+            if (!id) id = m_gidMap.size();
+            e->setCanonID(id);
+          }
+        }
+        break;
       }
-      break;
 
-    case Expression::KindOfUnaryOpExpression:
-      if (Option::EnableEval > Option::NoEval && spc(UnaryOpExpression, e)->
-          getOp() == T_EVAL) {
-        m_variables->setAttribute(VariableTable::ContainsLDynamicVariable);
+      case Expression::KindOfUnaryOpExpression:
+        if (Option::EnableEval > Option::NoEval && spc(UnaryOpExpression, e)->
+            getOp() == T_EVAL) {
+          m_variables->setAttribute(VariableTable::ContainsLDynamicVariable);
+        }
+        break;
+
+      case Expression::KindOfBinaryOpExpression: {
+        BinaryOpExpressionPtr b(spc(BinaryOpExpression, e));
+        if (b->getOp() == T_INSTANCEOF) {
+          ExpressionPtr s = b->getExp2();
+          if (s->is(Expression::KindOfScalarExpression)) {
+            ScalarExpressionPtr scalar(spc(ScalarExpression, s));
+            if (!scalar->isQuoted() && scalar->getString() == "static") {
+              m_scope->getContainingFunction()->setNextLSB(true);
+            }
+          }
+        }
+        break;
       }
-      break;
-    default:
-      break;
+
+      default:
+        break;
     }
   }
   return kidCost;
@@ -2070,6 +2129,7 @@ void AliasManager::gatherInfo(AnalysisResultConstPtr ar, MethodStatementPtr m) {
   func->setContainsThis(false);
   func->setContainsBareThis(false);
   func->setInlineSameContext(false);
+  func->setNextLSB(false);
 
   int i, nkid = m->getKidCount(), cost = 0;
   for (i = 0; i < nkid; i++) {
@@ -2095,6 +2155,13 @@ void AliasManager::gatherInfo(AnalysisResultConstPtr ar, MethodStatementPtr m) {
     }
   }
   func->setInlineAsExpr(m_inlineAsExpr);
+
+  if (!func->nextLSB()) {
+    if (func->usesLSB()) {
+      func->clearUsesLSB();
+      m_changes = true;
+    }
+  }
 }
 
 static void markAvailable(ExpressionRawPtr e) {
@@ -2202,8 +2269,48 @@ void AliasManager::doFinal(MethodStatementPtr m) {
   }
 }
 
+void AliasManager::performReferencedAndNeededAnalysis(MethodStatementPtr m) {
+  assert(m_graph != NULL);
+
+  // bail out for pseudomain context
+  if (m->getScope()->inPseudoMain()) return;
+
+  if (Option::DumpAst) {
+    printf("----- Before reference + needed analysis -----\n");
+    m_graph->dump(m_arp);
+  }
+
+  RefDict rd(*this);
+  rd.build(m);
+  AttributeTagger<RefDict> rt(m_graph, rd);
+  RefDictWalker rdw(m_graph);
+
+  // referenced analysis
+  rd.updateParams();
+  rt.walk();
+  DataFlow::ComputePartialReferenced(*m_graph);
+  rdw.walk();
+
+  rd.togglePass();
+  rdw.togglePass();
+
+  // needed analysis
+  rd.updateParams();
+  rt.walk();
+  DataFlow::ComputePartialNeeded(*m_graph);
+  rdw.walk();
+
+  if (Option::DumpAst) {
+    printf("----- After reference + needed analysis -----\n");
+    m_graph->dump(m_arp);
+  }
+}
+
 int AliasManager::copyProp(MethodStatementPtr m) {
   m_graph = ControlFlowGraph::buildControlFlow(m);
+
+  performReferencedAndNeededAnalysis(m);
+
   ExprDict ed(*this);
   m_genAttrs = true;
   ed.build(m);
@@ -2276,6 +2383,9 @@ void AliasManager::finalSetup(AnalysisResultConstPtr ar, MethodStatementPtr m) {
     if (Option::VariableCoalescing &&
         !m_inPseudoMain &&
         !m_variables->getAttribute(VariableTable::ContainsDynamicVariable)) {
+
+      performReferencedAndNeededAnalysis(m);
+
       LiveDict ld(*this);
       m_genAttrs = true;
       ld.build(m);
@@ -2550,13 +2660,19 @@ void AliasManager::markAllLocalExprAltered(ExpressionPtr e) {
   e->setLocalExprAltered();
   ExpressionPtrList::reverse_iterator it(m_accessList.rbegin());
   int curIdx = m_accessList.size() - 1;
+  bool found = m_exprBeginStack.empty();
   for (; curIdx >= m_exprIdx; --curIdx, ++it) {
     ExpressionPtr p(*it);
-    bool isLoad; int depth, effects;
-    int interf = checkAnyInterf(e, p, isLoad, depth, effects);
-    if (interf == InterfAccess ||
-        interf == SameAccess) {
-      p->setLocalExprAltered();
+    if (!found && p == m_exprBeginStack.back()) {
+      found = true;
+    }
+    if (found) {
+      bool isLoad; int depth, effects;
+      int interf = checkAnyInterf(e, p, isLoad, depth, effects);
+      if (interf == InterfAccess ||
+          interf == SameAccess) {
+        p->setLocalExprAltered();
+      }
     }
   }
 }

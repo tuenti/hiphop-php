@@ -33,7 +33,7 @@ class c_UnexpectedValueException : public c_RuntimeException {
 
   // Class Map
   virtual bool o_instanceof(CStrRef s) const;
-  DECLARE_CLASS_COMMON(UnexpectedValueException, UnexpectedValueException)
+  DECLARE_CLASS_COMMON_NO_SWEEP(UnexpectedValueException, UnexpectedValueException)
   DECLARE_INVOKE_EX(UnexpectedValueException, UnexpectedValueException, RuntimeException)
 
   // DECLARE_STATIC_PROP_OPS
@@ -63,8 +63,7 @@ class c_UnexpectedValueException : public c_RuntimeException {
   void init();
 };
 extern struct ObjectStaticCallbacks cw_UnexpectedValueException;
-Object co_UnexpectedValueException(CArrRef params, bool init = true);
-Object coo_UnexpectedValueException();
+ObjectData *coo_UnexpectedValueException() NEVER_INLINE;
 
 ///////////////////////////////////////////////////////////////////////////////
 }

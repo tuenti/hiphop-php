@@ -33,7 +33,7 @@ class c_MutableArrayIterator : public c_ArrayIterator {
 
   // Class Map
   virtual bool o_instanceof(CStrRef s) const;
-  DECLARE_CLASS_COMMON(MutableArrayIterator, MutableArrayIterator)
+  DECLARE_CLASS_COMMON_NO_SWEEP(MutableArrayIterator, MutableArrayIterator)
   DECLARE_INVOKE_EX(MutableArrayIterator, MutableArrayIterator, ArrayIterator)
 
   // DECLARE_STATIC_PROP_OPS
@@ -62,7 +62,7 @@ class c_MutableArrayIterator : public c_ArrayIterator {
   public:
   void init();
   public: void t___construct(VRefParam rv_array, Variant v_flags = 0LL);
-  public: c_MutableArrayIterator *create(VRefParam v_array, CVarRef v_flags = 0LL);
+  public: c_MutableArrayIterator *create(VRefParam v_array, CVarRef v_flags = NAMVAR(s_sys_svif01bca90, 0LL));
   public: void dynConstruct(CArrRef params);
   public: void getConstructor(MethodCallPackage &mcp);
   public: Variant t_currentref();
@@ -70,8 +70,7 @@ class c_MutableArrayIterator : public c_ArrayIterator {
   DECLARE_METHOD_INVOKE_HELPERS(__construct);
 };
 extern struct ObjectStaticCallbacks cw_MutableArrayIterator;
-Object co_MutableArrayIterator(CArrRef params, bool init = true);
-Object coo_MutableArrayIterator();
+ObjectData *coo_MutableArrayIterator() NEVER_INLINE;
 
 ///////////////////////////////////////////////////////////////////////////////
 }

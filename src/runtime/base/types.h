@@ -42,6 +42,7 @@ class Array;
 class Object;
 template<typename T> class SmartObject;
 class Variant;
+class VarNR;
 typedef Variant Numeric;
 typedef Variant Primitive;
 typedef Variant PlusOperand;
@@ -51,7 +52,13 @@ typedef Variant Sequence;
  * Macros related to Variant that are needed by StringData, ObjectData,
  * and ArrayData.
  */
-extern const Variant null_variant;
+extern const Variant &null_variant;
+extern const VarNR &null_varNR;
+extern const VarNR &true_varNR;
+extern const VarNR &false_varNR;
+extern const VarNR &INF_varNR;
+extern const VarNR &NEGINF_varNR;
+extern const VarNR &NAN_varNR;
 extern const String null_string;
 extern const Array null_array;
 #if defined(__GNUC__) && defined(WORDSIZE_IS_64)
@@ -156,32 +163,32 @@ typedef const Variant & CVarRef;
 
 typedef const class VRefParamValue    &VRefParam;
 typedef const class RefResultValue    &RefResult;
-typedef const class VariantWeakBind   &CVarWeakBind;
 typedef const class VariantStrongBind &CVarStrongBind;
+typedef const class VariantWithRefBind&CVarWithRefBind;
 typedef VRefParam                     VRefParamWrap;
 
-inline CVarWeakBind
-weakBind(CVarRef v)       { return *(VariantWeakBind*)&v; }
 inline CVarStrongBind
 strongBind(CVarRef v)     { return *(VariantStrongBind*)&v; }
 inline CVarStrongBind
 strongBind(RefResult v)   { return *(VariantStrongBind*)&v; }
-inline CVarRef
-variant(CVarWeakBind v)   { return *(Variant*)&v; }
+inline CVarWithRefBind
+withRefBind(CVarRef v)    { return *(VariantWithRefBind*)&v; }
+
 inline CVarRef
 variant(CVarStrongBind v) { return *(Variant*)&v; }
 inline CVarRef
+variant(CVarWithRefBind v){ return *(Variant*)&v; }
+inline CVarRef
 variant(RefResult v)      { return *(Variant*)&v; }
+inline CVarRef
+variant(CVarRef v)        { return v; }
 
 /**
- * ref() sets contagious flag, so that next assignment will make both sides
- * strongly bind to the same underlying variant data. For example,
+ * ref() can be used to cause strong binding
  *
  *   a = ref(b); // strong binding: now both a and b point to the same data
  *   a = b;      // weak binding: a will copy or copy-on-write
  *
- * The case of VarNR is only supposed to show up in ifa_ calls where it
- * it should be made no effect.
  */
 inline RefResult ref(CVarRef v) {
   return *(RefResultValue*)&v;

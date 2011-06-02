@@ -33,7 +33,7 @@ class c_SplFileInfo : public ExtObjectData {
 
   // Class Map
   virtual bool o_instanceof(CStrRef s) const;
-  DECLARE_CLASS_COMMON(SplFileInfo, SplFileInfo)
+  DECLARE_CLASS_COMMON_NO_SWEEP(SplFileInfo, SplFileInfo)
   DECLARE_INVOKE_EX(SplFileInfo, SplFileInfo, ObjectData)
 
   // DECLARE_STATIC_PROP_OPS
@@ -68,10 +68,10 @@ class c_SplFileInfo : public ExtObjectData {
   public: void getConstructor(MethodCallPackage &mcp);
   public: String t_getpath();
   public: String t_getfilename();
-  public: Object t_getfileinfo(CVarRef v_class_name = NAMSTR(s_sys_ss00000000, ""));
-  public: String t_getbasename(CVarRef v_suffix = NAMSTR(s_sys_ss00000000, ""));
+  public: Object t_getfileinfo(CVarRef v_class_name = NAMVAR(s_sys_svs00000000, ""));
+  public: String t_getbasename(CVarRef v_suffix = NAMVAR(s_sys_svs00000000, ""));
   public: String t_getpathname();
-  public: Object t_getpathinfo(CVarRef v_class_name = NAMSTR(s_sys_ss00000000, ""));
+  public: Object t_getpathinfo(CVarRef v_class_name = NAMVAR(s_sys_svs00000000, ""));
   public: int64 t_getperms();
   public: int64 t_getinode();
   public: int64 t_getsize();
@@ -90,9 +90,9 @@ class c_SplFileInfo : public ExtObjectData {
   public: String t_getlinktarget();
   public: Variant t_getrealpath();
   public: String t___tostring();
-  public: Object t_openfile(CVarRef v_mode = NAMSTR(s_sys_ss0d42ecf6, "r"), CVarRef v_use_include_path = false, CVarRef v_context = null_variant);
-  public: void t_setfileclass(CVarRef v_class_name = NAMSTR(s_sys_ss5d909898, "SplFileObject"));
-  public: void t_setinfoclass(CVarRef v_class_name = NAMSTR(s_sys_ss914a58e9, "SplFileInfo"));
+  public: Object t_openfile(CVarRef v_mode = NAMVAR(s_sys_svs0d42ecf6, "r"), CVarRef v_use_include_path = false_varNR, CVarRef v_context = null_variant);
+  public: void t_setfileclass(CVarRef v_class_name = NAMVAR(s_sys_svs5d909898, "SplFileObject"));
+  public: void t_setinfoclass(CVarRef v_class_name = NAMVAR(s_sys_svs914a58e9, "SplFileInfo"));
   DECLARE_METHOD_INVOKE_HELPERS(getperms);
   DECLARE_METHOD_INVOKE_HELPERS(iswritable);
   DECLARE_METHOD_INVOKE_HELPERS(getbasename);
@@ -123,8 +123,7 @@ class c_SplFileInfo : public ExtObjectData {
   DECLARE_METHOD_INVOKE_HELPERS(gettype);
 };
 extern struct ObjectStaticCallbacks cw_SplFileInfo;
-Object co_SplFileInfo(CArrRef params, bool init = true);
-Object coo_SplFileInfo();
+ObjectData *coo_SplFileInfo() NEVER_INLINE;
 
 ///////////////////////////////////////////////////////////////////////////////
 }

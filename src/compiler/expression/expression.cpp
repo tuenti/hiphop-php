@@ -387,24 +387,29 @@ void Expression::setDynamicByIdentifier(AnalysisResultPtr ar,
   }
 }
 
+bool Expression::CheckNeededRHS(ExpressionPtr value) {
+  bool needed = true;
+  assert(value);
+  while (value->is(KindOfAssignmentExpression)) {
+    value = dynamic_pointer_cast<AssignmentExpression>(value)->getValue();
+  }
+  if (value->isScalar()) {
+    needed = false;
+  } else {
+    TypePtr type = value->getType();
+    if (type && (type->is(Type::KindOfSome) || type->is(Type::KindOfAny))) {
+      type = value->getActualType();
+    }
+    if (type && type->isNoObjectInvolved()) needed = false;
+  }
+  return needed;
+}
+
 bool Expression::CheckNeeded(ExpressionPtr variable, ExpressionPtr value) {
   // if the value may involve object, consider the variable as "needed"
   // so that objects are not destructed prematurely.
   bool needed = true;
-  if (value) {
-    while (value->is(KindOfAssignmentExpression)) {
-      value = dynamic_pointer_cast<AssignmentExpression>(value)->getValue();
-    }
-    if (value->isScalar()) {
-      needed = false;
-    } else {
-      TypePtr type = value->getType();
-      if (type && (type->is(Type::KindOfSome) || type->is(Type::KindOfAny))) {
-        type = value->getActualType();
-      }
-      if (type && type->isNoObjectInvolved()) needed = false;
-    }
-  }
+  if (value) needed = CheckNeededRHS(value);
   if (variable->is(Expression::KindOfSimpleVariable)) {
     SimpleVariablePtr var =
       dynamic_pointer_cast<SimpleVariable>(variable);
@@ -540,6 +545,23 @@ ExpressionPtr Expression::fetchReplacement() {
   ExpressionPtr t = m_replacement;
   m_replacement.reset();
   return t;
+}
+
+void Expression::computeLocalExprAltered() {
+  // if no kids, do nothing
+  if (getKidCount() == 0) return;
+
+  bool res = false;
+  for (int i = 0; i < getKidCount(); i++) {
+    ExpressionPtr k = getNthExpr(i);
+    if (k) {
+      k->computeLocalExprAltered();
+      res |= k->isLocalExprAltered();
+    }
+  }
+  if (res) {
+    setLocalExprAltered();
+  }
 }
 
 bool Expression::isUnquotedScalar() const {
@@ -1012,7 +1034,11 @@ void Expression::outputCPPInternal(CodeGenerator &cg, AnalysisResultPtr ar) {
   } else {
     if (hasContext(RefValue) && !hasContext(NoRefWrapper) &&
         isRefable()) {
-      cg_printf("ref(");
+      if (hasContext(RefParameter)) {
+        cg_printf("strongBind(");
+      } else {
+        cg_printf("ref(");
+      }
       closeParen++;
     }
     if (is(Expression::KindOfArrayElementExpression)) {
@@ -1083,7 +1109,13 @@ void Expression::outputCPP(CodeGenerator &cg, AnalysisResultPtr ar) {
     bool ref = (m_context & RefValue) &&
       !(m_context & NoRefWrapper) &&
       isRefable();
-    if (ref) cg_printf("ref(");
+    if (ref) {
+      if (m_context & RefParameter) {
+        cg_printf("strongBind(");
+      } else {
+        cg_printf("ref(");
+      }
+    }
     cg_printf("%s", m_cppTemp.c_str());
     if (ref) cg_printf(")");
   } else {

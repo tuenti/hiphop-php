@@ -365,8 +365,15 @@ ExpressionPtr UnaryOpExpression::postOptimize(AnalysisResultConstPtr ar) {
     if (m_exp->getActualType()->is(Type::KindOfBoolean)) {
       return replaceValue(m_exp);
     }
+  } else if (m_op != T_ARRAY &&
+             m_exp &&
+             m_exp->isScalar()) {
+    Variant value;
+    Variant result;
+    if (m_exp->getScalarValue(value) && preCompute(value, result)) {
+      return replaceValue(makeScalarExpression(ar, result));
+    }
   }
-
   return ExpressionPtr();
 }
 
@@ -691,14 +698,26 @@ void UnaryOpExpression::outputCPPImpl(CodeGenerator &cg,
                                    m_exp, hash, index, text); // empty array
     }
     if (id != -1) {
+      bool scalarVariant =
+        Option::UseScalarVariant && cg.hasScalarVariant();
+      if (scalarVariant) {
+        ar->addNamedScalarVarArray(text);
+        getFileScope()->addUsedScalarVarArray(text);
+      }
       if (Option::UseNamedScalarArray && cg.isFileOrClassHeader()) {
         if (getClassScope()) {
           getClassScope()->addUsedDefaultValueScalarArray(text);
+          if (scalarVariant) {
+            getClassScope()->addUsedDefaultValueScalarVarArray(text);
+          }
         } else {
           getFileScope()->addUsedDefaultValueScalarArray(text);
+          if (scalarVariant) {
+            getFileScope()->addUsedDefaultValueScalarVarArray(text);
+          }
         }
       }
-      ar->outputCPPScalarArrayId(cg, id, hash, index);
+      ar->outputCPPScalarArrayId(cg, id, hash, index, scalarVariant);
       return;
     }
   }

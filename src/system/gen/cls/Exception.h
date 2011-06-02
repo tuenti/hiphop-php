@@ -38,7 +38,7 @@ class c_Exception : public ExtObjectData {
 
   // Class Map
   virtual bool o_instanceof(CStrRef s) const;
-  DECLARE_CLASS_COMMON(Exception, Exception)
+  DECLARE_CLASS_COMMON_NO_SWEEP(Exception, Exception)
   DECLARE_INVOKE_EX(Exception, Exception, ObjectData)
 
   // DECLARE_STATIC_PROP_OPS
@@ -68,7 +68,7 @@ class c_Exception : public ExtObjectData {
   void init();
   public: void t___init__();
   public: void t___construct(Variant v_message = NAMSTR(s_sys_ss00000000, ""), Variant v_code = 0LL, Variant v_previous = null);
-  public: c_Exception *create(CVarRef v_message = NAMSTR(s_sys_ss00000000, ""), CVarRef v_code = 0LL, CVarRef v_previous = null_variant);
+  public: c_Exception *create(CVarRef v_message = NAMVAR(s_sys_svs00000000, ""), CVarRef v_code = NAMVAR(s_sys_svif01bca90, 0LL), CVarRef v_previous = null_variant);
   public: void dynConstruct(CArrRef params);
   public: void getConstructor(MethodCallPackage &mcp);
   public: Variant t_getmessage();
@@ -91,8 +91,7 @@ class c_Exception : public ExtObjectData {
   DECLARE_METHOD_INVOKE_HELPERS(gettrace);
 };
 extern struct ObjectStaticCallbacks cw_Exception;
-Object co_Exception(CArrRef params, bool init = true);
-Object coo_Exception();
+ObjectData *coo_Exception() NEVER_INLINE;
 
 ///////////////////////////////////////////////////////////////////////////////
 }

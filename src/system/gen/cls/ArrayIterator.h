@@ -37,7 +37,7 @@ class c_ArrayIterator : public ExtObjectData {
 
   // Class Map
   virtual bool o_instanceof(CStrRef s) const;
-  DECLARE_CLASS_COMMON(ArrayIterator, ArrayIterator)
+  DECLARE_CLASS_COMMON_NO_SWEEP(ArrayIterator, ArrayIterator)
   DECLARE_INVOKE_EX(ArrayIterator, ArrayIterator, ObjectData)
 
   // DECLARE_STATIC_PROP_OPS
@@ -66,7 +66,7 @@ class c_ArrayIterator : public ExtObjectData {
   public:
   void init();
   public: void t___construct(Variant v_array, Variant v_flags = 0LL);
-  public: c_ArrayIterator *create(CVarRef v_array, CVarRef v_flags = 0LL);
+  public: c_ArrayIterator *create(CVarRef v_array, CVarRef v_flags = NAMVAR(s_sys_svif01bca90, 0LL));
   public: void dynConstruct(CArrRef params);
   public: void getConstructor(MethodCallPackage &mcp);
   public: void t_append(CVarRef v_value);
@@ -115,8 +115,7 @@ class c_ArrayIterator : public ExtObjectData {
   DECLARE_METHOD_INVOKE_HELPERS(offsetset);
 };
 extern struct ObjectStaticCallbacks cw_ArrayIterator;
-Object co_ArrayIterator(CArrRef params, bool init = true);
-Object coo_ArrayIterator();
+ObjectData *coo_ArrayIterator() NEVER_INLINE;
 
 ///////////////////////////////////////////////////////////////////////////////
 }

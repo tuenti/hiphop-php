@@ -95,7 +95,6 @@ const char *Option::BuiltinFunctionPrefix = "x_";
 const char *Option::InvokePrefix = "i_";
 const char *Option::InvokeFewArgsPrefix = "ifa_";
 const char *Option::InvokeSinglePrefix = "is_";
-const char *Option::CreateObjectPrefix = "co_";
 const char *Option::CreateObjectOnlyPrefix = "coo_";
 const char *Option::PseudoMainPrefix = "pm_";
 const char *Option::VariablePrefix = "v_";
@@ -129,6 +128,15 @@ const char *Option::TempVariablePrefix = "r_";
 const char *Option::EvalOrderTempPrefix = "eo_";
 const char *Option::CallInfoPrefix = "ci_";
 const char *Option::SilencerPrefix = "sil_";
+
+const char *Option::ScalarPrefix = "s_";
+const char *Option::SysPrefix = "sys_";
+const char *Option::StaticStringPrefix = "ss";
+const char *Option::StaticArrayPrefix = "sa";
+const char *Option::StaticVarIntPrefix = "svi";
+const char *Option::StaticVarDblPrefix = "svd";
+const char *Option::StaticVarStrPrefix = "svs";
+const char *Option::StaticVarArrPrefix = "sva";
 
 const char *Option::FFIFnPrefix = "ffi_";
 
@@ -173,6 +181,7 @@ bool Option::GenHashTableInvokeFile = true;
 bool Option::GenHashTableInvokeFunc = true;
 bool Option::GenHashTableDynClass= true;
 bool Option::GenHashTableGetConstant = true;
+bool Option::UseScalarVariant = true;
 bool Option::KeepStatementsWithNoEffect = false;
 
 int Option::ConditionalIncludeExpandLevel = 1;
@@ -299,7 +308,6 @@ void Option::Load(Hdf &config) {
     READ_CG_OPTION(FunctionPrefix);
     READ_CG_OPTION(BuiltinFunctionPrefix);
     READ_CG_OPTION(InvokePrefix);
-    READ_CG_OPTION(CreateObjectPrefix);
     READ_CG_OPTION(PseudoMainPrefix);
     READ_CG_OPTION(VariablePrefix);
     READ_CG_OPTION(HiddenVariablePrefix);

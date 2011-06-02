@@ -166,6 +166,8 @@ public:
    */
   static bool GenHashTableGetConstant;
 
+  static bool UseScalarVariant;
+
   /**
    * Separate compilation
    */
@@ -216,7 +218,6 @@ public:
   static const char *InvokePrefix;
   static const char *InvokeFewArgsPrefix;
   static const char *InvokeSinglePrefix;
-  static const char *CreateObjectPrefix;
   static const char *CreateObjectOnlyPrefix;
   static const char *PseudoMainPrefix;
   static const char *VariablePrefix;
@@ -250,6 +251,14 @@ public:
   static const char *EvalOrderTempPrefix;
   static const char *SilencerPrefix;
   static const char *CallInfoPrefix;
+  static const char *SysPrefix;
+  static const char *ScalarPrefix;
+  static const char *StaticStringPrefix;
+  static const char *StaticArrayPrefix;
+  static const char *StaticVarIntPrefix;
+  static const char *StaticVarDblPrefix;
+  static const char *StaticVarStrPrefix;
+  static const char *StaticVarArrPrefix;
 
   static const char *TempPrefix;
   static const char *MapPrefix;

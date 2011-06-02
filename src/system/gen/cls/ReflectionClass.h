@@ -35,7 +35,7 @@ class c_ReflectionClass : public ExtObjectData {
 
   // Class Map
   virtual bool o_instanceof(CStrRef s) const;
-  DECLARE_CLASS_COMMON(ReflectionClass, ReflectionClass)
+  DECLARE_CLASS_COMMON_NO_SWEEP(ReflectionClass, ReflectionClass)
   DECLARE_INVOKE_EX(ReflectionClass, ReflectionClass, ObjectData)
 
   // DECLARE_STATIC_PROP_OPS
@@ -71,7 +71,7 @@ class c_ReflectionClass : public ExtObjectData {
   public: Variant t_fetch(CVarRef v_what);
   public: bool t_test(CVarRef v_what, CVarRef v_name);
   public: String t___tostring();
-  public: static Variant ti_export(CStrRef cls, CVarRef v_name, CVarRef v_ret);
+  public: static Variant t_export(CVarRef v_name, CVarRef v_ret);
   public: Variant t_getname();
   public: Variant t_isinternal();
   public: bool t_isuserdefined();
@@ -85,9 +85,9 @@ class c_ReflectionClass : public ExtObjectData {
   public: Variant t_getdoccomment();
   public: Variant t_getconstructor();
   public: p_ReflectionMethod t_getmethod(CVarRef v_name);
-  public: Array t_getmethods(CVarRef v_filter = 65535LL);
+  public: Array t_getmethods(CVarRef v_filter = NAMVAR(s_sys_svi5830e7c6, 65535LL));
   public: p_ReflectionProperty t_getproperty(CVarRef v_name);
-  public: Array t_getproperties(CVarRef v_filter = 65535LL);
+  public: Array t_getproperties(CVarRef v_filter = NAMVAR(s_sys_svi5830e7c6, 65535LL));
   public: Variant t_getconstants();
   public: Variant t_getconstant(CVarRef v_name);
   public: Array t_getinterfaces();
@@ -109,7 +109,6 @@ class c_ReflectionClass : public ExtObjectData {
   public: bool t_implementsinterface(Variant v_cls);
   public: Variant t_getextension();
   public: Variant t_getextensionname();
-  public: static Variant t_export(CVarRef v_name, CVarRef v_ret) { return ti_export(c_ReflectionClass::s_class_name, v_name, v_ret); }
   DECLARE_METHOD_INVOKE_HELPERS(getmethods);
   DECLARE_METHOD_INVOKE_HELPERS(isiterateable);
   DECLARE_METHOD_INVOKE_HELPERS(getstaticpropertyvalue);
@@ -153,12 +152,11 @@ class c_ReflectionClass : public ExtObjectData {
   DECLARE_METHOD_INVOKE_HELPERS(getproperty);
   DECLARE_METHOD_INVOKE_HELPERS(isinternal);
 };
+extern struct ObjectStaticCallbacks cw_ReflectionClass;
+ObjectData *coo_ReflectionClass() NEVER_INLINE;
 extern const int64 q_ReflectionClass_IS_IMPLICIT_ABSTRACT;
 extern const int64 q_ReflectionClass_IS_EXPLICIT_ABSTRACT;
 extern const int64 q_ReflectionClass_IS_FINAL;
-extern struct ObjectStaticCallbacks cw_ReflectionClass;
-Object co_ReflectionClass(CArrRef params, bool init = true);
-Object coo_ReflectionClass();
 
 ///////////////////////////////////////////////////////////////////////////////
 }

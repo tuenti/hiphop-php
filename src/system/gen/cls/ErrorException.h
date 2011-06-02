@@ -34,7 +34,7 @@ class c_ErrorException : public c_Exception {
 
   // Class Map
   virtual bool o_instanceof(CStrRef s) const;
-  DECLARE_CLASS_COMMON(ErrorException, ErrorException)
+  DECLARE_CLASS_COMMON_NO_SWEEP(ErrorException, ErrorException)
   DECLARE_INVOKE_EX(ErrorException, ErrorException, Exception)
 
   // DECLARE_STATIC_PROP_OPS
@@ -63,7 +63,7 @@ class c_ErrorException : public c_Exception {
   public:
   void init();
   public: void t___construct(Variant v_message = NAMSTR(s_sys_ss00000000, ""), Variant v_code = 0LL, Variant v_severity = 0LL, Variant v_filename = null, Variant v_lineno = null);
-  public: c_ErrorException *create(CVarRef v_message = NAMSTR(s_sys_ss00000000, ""), CVarRef v_code = 0LL, CVarRef v_severity = 0LL, CVarRef v_filename = null_variant, CVarRef v_lineno = null_variant);
+  public: c_ErrorException *create(CVarRef v_message = NAMVAR(s_sys_svs00000000, ""), CVarRef v_code = NAMVAR(s_sys_svif01bca90, 0LL), CVarRef v_severity = NAMVAR(s_sys_svif01bca90, 0LL), CVarRef v_filename = null_variant, CVarRef v_lineno = null_variant);
   public: void dynConstruct(CArrRef params);
   public: void getConstructor(MethodCallPackage &mcp);
   public: Variant t_getseverity();
@@ -71,8 +71,7 @@ class c_ErrorException : public c_Exception {
   DECLARE_METHOD_INVOKE_HELPERS(getseverity);
 };
 extern struct ObjectStaticCallbacks cw_ErrorException;
-Object co_ErrorException(CArrRef params, bool init = true);
-Object coo_ErrorException();
+ObjectData *coo_ErrorException() NEVER_INLINE;
 
 ///////////////////////////////////////////////////////////////////////////////
 }

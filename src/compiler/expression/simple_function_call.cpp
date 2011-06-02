@@ -77,6 +77,8 @@ void SimpleFunctionCall::InitFunctionTypeMap() {
     FunctionTypeMap["get_defined_vars"]     = GetDefinedVarsFunction;
 
     FunctionTypeMap["fb_call_user_func_safe"] = FBCallUserFuncSafeFunction;
+    FunctionTypeMap["fb_call_user_func_array_safe"] =
+      FBCallUserFuncSafeFunction;
     FunctionTypeMap["fb_call_user_func_safe_return"] =
       FBCallUserFuncSafeFunction;
   }
@@ -436,9 +438,23 @@ bool SimpleFunctionCall::writesLocals() const {
 }
 
 void SimpleFunctionCall::updateVtFlags() {
-  if (m_funcScope && m_funcScope->getContextSensitive()) {
-    if (FunctionScopeRawPtr f = getFunctionScope()) {
-      f->setInlineSameContext(true);
+  FunctionScopeRawPtr f = getFunctionScope();
+  if (f) {
+    if (m_funcScope) {
+      if (m_funcScope->getContextSensitive()) {
+        f->setInlineSameContext(true);
+      }
+      if ((m_classScope && (isSelf() || isParent()) &&
+           m_funcScope->usesLSB()) ||
+          isStatic() ||
+          m_type == FBCallUserFuncSafeFunction ||
+          m_name == "call_user_func" ||
+          m_name == "call_user_func_array" ||
+          m_name == "forward_static_call" ||
+          m_name == "forward_static_call_array" ||
+          m_name == "get_called_class") {
+        f->setNextLSB(true);
+      }
     }
   }
   if (m_type != UnknownType) {
@@ -777,13 +793,13 @@ ExpressionPtr SimpleFunctionCall::preOptimize(AnalysisResultConstPtr ar) {
             if (Option::DynamicInvokeFunctions.find(lname) ==
                 Option::DynamicInvokeFunctions.end()) {
               FunctionScopePtr func = ar->findFunction(lname);
-              if (!func) {
+              if (!func && m_type == FunctionExistsFunction) {
                 return CONSTANT("false");
               }
               if (func->isUserFunction()) {
                 func->setVolatile();
               }
-              if (!func->isVolatile()) {
+              if (!func->isVolatile() && m_type == FunctionExistsFunction) {
                 return CONSTANT("true");
               }
             }
@@ -978,7 +994,7 @@ TypePtr SimpleFunctionCall::inferAndCheck(AnalysisResultPtr ar, TypePtr type,
         ->setAttribute(VariableTable::NeedGlobalPointer);
     }
     if (!cls) {
-      if (!isRedeclared() && getScope()->isFirstPass()) {
+      if (!m_class && !isRedeclared() && getScope()->isFirstPass()) {
         Compiler::Error(Compiler::UnknownClass, self);
       }
       if (m_params) {
@@ -1797,7 +1813,7 @@ void SimpleFunctionCall::outputCPPImpl(CodeGenerator &cg,
       {
         FunctionScopePtr func = getFunctionScope();
         if (func) {
-          bool isGetArgs = m_name == "func_get_args"; 
+          bool isGetArgs = m_name == "func_get_args";
           if (func->isGenerator()) {
             cg_printf("%s%s.%sinvoke(\"%s\", ",
                       Option::VariablePrefix, CONTINUATION_OBJECT_NAME,
@@ -1815,17 +1831,63 @@ void SimpleFunctionCall::outputCPPImpl(CodeGenerator &cg,
             cg_printf(".create()))%s", isGetArgs ? ".toArray()" : "");
             return;
           }
-          if (isGetArgs && func->getMaxParamCount() == 0) {
+          if (isGetArgs &&
+              func->getMaxParamCount() == 0 &&
+              (!m_params || m_params->getCount() == 0)) {
             // in the special case of calling func_get_args() for
             // a function with no explicit params, bypass the call
-            // to func_get_args() and simply use the passed in args 
+            // to func_get_args() and simply use the passed in args
             // array or the empty array
             if (func->isVariableArgument()) {
-              cg_printf("args.isNull() ? Array::Create() : args");
+              cg_printf("(args.isNull() ? Array::Create() : args)");
             } else {
               cg_printf("Array::Create()");
             }
             return;
+          } else if (m_name == "func_get_arg" &&
+                     m_params &&
+                     m_params->getCount() == 1) {
+            Variant v;
+            ExpressionPtr p((*m_params)[0]);
+            if (p->getScalarValue(v) && v.isInteger()) {
+              // if func_get_arg is called with a scalar int, then
+              // optimize the call to func_get_arg away
+              int64 idx = v.toInt64();
+              if (idx < 0) {
+                cg_printf("Variant(false)");
+                return;
+              }
+              if (idx >= func->getMaxParamCount()) {
+                if (func->isVariableArgument()) {
+                  int64 idx0 = idx - func->getMaxParamCount();
+                  cg_printf("(%lldLL < num_args ? "
+                            "args.rvalAt(%lldLL) : Variant(false))",
+                            idx, idx0);
+                } else {
+                  cg_printf("Variant(false)");
+                }
+                return;
+              }
+              const string& funcName = func->getParamName(idx);
+              bool needsCast =
+                !func->getParamType(idx)->is(Type::KindOfVariant) &&
+                !func->getParamType(idx)->is(Type::KindOfSome);
+              bool isStashed =
+                func->getVariables()->getSymbol(funcName)->isStashedVal();
+              if (func->isVariableArgument()) {
+                cg_printf("(%lldLL < num_args ? ", idx);
+              }
+              if (needsCast) cg_printf("Variant(");
+              cg_printf("%s%s%s",
+                        isStashed ? "v" : "",
+                        Option::VariablePrefix,
+                        funcName.c_str());
+              if (needsCast) cg_printf(")");
+              if (func->isVariableArgument()) {
+                cg_printf(" : Variant(false))");
+              }
+              return;
+            }
           }
           cg_printf("%s(", m_name.c_str());
           func->outputCPPParamsCall(cg, ar, true);
@@ -1906,15 +1968,14 @@ void SimpleFunctionCall::outputCPPImpl(CodeGenerator &cg,
                   cg_printf("true");
                 } else {
                   if (m_type == ClassExistsFunction) {
-                    cg_printf("checkClassExists(");
+                    cg_printf("checkClassExistsNoThrow(");
                   } else {
-                    cg_printf("checkInterfaceExists(");
+                    cg_printf("checkInterfaceExistsNoThrow(");
                   }
                   cg_printString(symbol, ar, shared_from_this());
-                  cg_printf(", &%s->CDEC(%s), %s->FVF(__autoload), true)",
+                  cg_printf(", &%s->CDEC(%s))",
                             cg.getGlobals(ar),
-                            cg.formatLabel(lname).c_str(),
-                            cg.getGlobals(ar));
+                            cg.formatLabel(lname).c_str());
                 }
               } else {
                 if (m_type == ClassExistsFunction) {

@@ -78,6 +78,8 @@ struct ProgramOptions {
   string     config;
   StringVec  confStrings;
   int        port;
+  int        portfd;
+  int        sslportfd;
   int        admin_port;
   string     user;
   string     file;
@@ -604,7 +606,7 @@ static int open_server_log_file() {
         if (Logger::Output) return 1;
       }
     } else {
-      if (RuntimeOption::LogFile[0] == '|') {
+      if (Logger::IsPipeOutput) {
         Logger::Output = popen(RuntimeOption::LogFile.substr(1).c_str(), "w");
         if (Logger::Output) return 2;
       } else {
@@ -650,6 +652,10 @@ static int execute_program_impl(int argc, char **argv) {
      "name can be any valid configuration for a config file")
     ("port,p", value<int>(&po.port)->default_value(-1),
      "start an HTTP server at specified port")
+    ("port-fd", value<int>(&po.portfd)->default_value(-1),
+     "use specified fd instead of creating a socket")
+    ("ssl-port-fd", value<int>(&po.sslportfd)->default_value(-1),
+     "use specified fd for SSL instead of creating a socket")
     ("admin-port", value<int>(&po.admin_port)->default_value(-1),
      "start admin listener at specified port")
     ("debug-host,h", value<string>(&po.debugger_options.host),
@@ -765,6 +771,12 @@ static int execute_program_impl(int argc, char **argv) {
   RuntimeOption::BuildId = po.buildId;
   if (po.port != -1) {
     RuntimeOption::ServerPort = po.port;
+  }
+  if (po.portfd != -1) {
+    RuntimeOption::ServerPortFd = po.portfd;
+  }
+  if (po.sslportfd != -1) {
+    RuntimeOption::SSLPortFd = po.sslportfd;
   }
   if (po.admin_port != -1) {
     RuntimeOption::AdminServerPort = po.admin_port;
@@ -962,11 +974,17 @@ public:
 };
 static IMPLEMENT_THREAD_LOCAL(WarmupState, s_warmup_state);
 
+extern "C" void hphp_fatal_error(const char *s) {
+  throw_fatal(s);
+}
+
 void hphp_process_init() {
+  Variant::RuntimeCheck();
   init_thread_locals();
   ClassInfo::Load();
   Process::InitProcessStatics();
   init_static_variables();
+  init_literal_varstrings();
   PageletServer::Restart();
   XboxServer::Restart();
   FiberAsyncFunc::Restart();
@@ -1099,7 +1117,7 @@ bool hphp_invoke_simple(const std::string &filename,
 }
 
 bool hphp_invoke(ExecutionContext *context, const std::string &cmd,
-                 bool func, CArrRef funcParams, Variant funcRet,
+                 bool func, CArrRef funcParams, VRefParam funcRet,
                  const string &warmupDoc, const string &reqInitFunc,
                  const string &reqInitDoc,
                  bool &error, string &errorMsg,
@@ -1135,7 +1153,7 @@ bool hphp_invoke(ExecutionContext *context, const std::string &cmd,
     try {
       ServerStatsHelper ssh("invoke");
       if (func) {
-        funcRet = invoke(cmd.c_str(), funcParams);
+        funcRet->assignVal(invoke(cmd.c_str(), funcParams));
       } else {
         if (isServer) hphp_chdir_file(cmd);
         include_impl_invoke(cmd.c_str(), once, get_variable_table());
