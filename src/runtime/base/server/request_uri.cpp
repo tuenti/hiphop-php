@@ -20,6 +20,7 @@
 #include <runtime/base/runtime_option.h>
 #include <runtime/base/server/static_content_cache.h>
 #include <runtime/base/string_util.h>
+#include <runtime/base/externals.h>
 
 using namespace std;
 
@@ -66,15 +67,17 @@ bool RequestURI::process(const VirtualHost *vhost, Transport *transport,
   splitURL(url, m_originalURL, m_queryString);
   m_originalURL = StringUtil::UrlDecode(m_originalURL, false);
 
-  // Fast path for files that exist
-  String canon = Util::canonicalize(string(m_originalURL.c_str(),
-                                           m_originalURL.size()));
-  String relUrl(canon.charAt(0) == '/' ? canon.substr(1) : canon);
-  if (virtualFileExists(vhost, sourceRoot, pathTranslation, relUrl)) {
-    m_rewrittenURL = relUrl;
-    m_resolvedURL = relUrl;
-    PrependSlash(m_resolvedURL);
-    return true;
+  // Fast path for files that exist if static cache is enabled
+  if (RuntimeOption::EnableStaticContentCache) {
+    String canon = Util::canonicalize(string(m_originalURL.c_str(),
+                                             m_originalURL.size()));
+    String relUrl(canon.charAt(0) == '/' ? canon.substr(1) : canon);
+    if (virtualFileExists(vhost, sourceRoot, pathTranslation, relUrl)) {
+      m_rewrittenURL = relUrl;
+      m_resolvedURL = relUrl;
+      PrependSlash(m_resolvedURL);
+      return true;
+    }
   }
 
   if (!rewriteURL(vhost, transport, pathTranslation, sourceRoot)) {
@@ -216,6 +219,10 @@ bool RequestURI::virtualFileExists(const VirtualHost *vhost,
     }
     m_path = fullname;
     m_absolutePath = String(sourceRoot) + m_path;
+
+    if (find_file(fullname)) {
+      return true;
+    }
 
     if (StaticContentCache::TheFileCache && !fullname.empty() &&
         StaticContentCache::TheFileCache->fileExists(fullname.c_str())) {
