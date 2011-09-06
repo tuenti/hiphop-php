@@ -512,7 +512,7 @@ bool TestCodeRun::RunTests(const std::string &which) {
 
   // PHP 5.3 features
   RUN_TEST(TestVariableClassName);
-  RUN_TEST(TestLateStaticBinding); // requires ENABLE_LATE_STATIC_BINDING
+  RUN_TEST(TestLateStaticBinding);
   RUN_TEST(TestCallStatic);
   RUN_TEST(TestNowDoc);
   RUN_TEST(TestTernaryShortcut);
@@ -5776,7 +5776,9 @@ bool TestCodeRun::TestObjectMagicMethod() {
       "}"
       "$obj = new MemberTest;"
       "$obj->a = 1;"
-      "echo $obj->a;");
+      "var_dump($obj->a);"
+      "var_dump(isset($obj->a));"
+      "unset($obj->a);");
   MVCR("<?php "
       "class foo"
       "{"

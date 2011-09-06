@@ -66,10 +66,11 @@ class ObjectData : public CountableNF {
     HasSleep      = 4,    // __sleep()
     UseSet        = 8,    // __set()
     UseGet        = 16,   // __get()
-    UseUnset      = 32,   // __unset()
-    HasLval       = 64,   // defines ___lval
-    HasCall       = 128,  // defines __call
-    HasCallStatic = 256,  // defines __callStatic
+    UseIsset      = 32,   // __isset()
+    UseUnset      = 64,   // __unset()
+    HasLval       = 128,  // defines ___lval
+    HasCall       = 256,  // defines __call
+    HasCallStatic = 512,  // defines __callStatic
   };
   enum {
     RealPropCreate = 1,   // Property should be created if it doesnt exist
@@ -78,8 +79,7 @@ class ObjectData : public CountableNF {
     RealPropUnchecked = 8,// Dont check property accessibility
   };
 
-  ObjectData(bool isResource = false)
-    : o_properties(NULL), o_attribute(0) {
+  ObjectData(bool isResource = false) : o_attribute(0) {
     if (!isResource) {
       o_id = ++(*os_max_id);
     }
@@ -133,14 +133,12 @@ class ObjectData : public CountableNF {
   virtual int64  o_toInt64() const;
   virtual double o_toDouble()  const { return o_toInt64();}
 
-#ifdef ENABLE_LATE_STATIC_BINDING
   template<typename T>
   T *bindClass(ThreadInfo *info) {
     bindThis(info);
     return static_cast<T*>(this);
   }
   void bindThis(ThreadInfo *info);
-#endif
 
   void setDummy();
   static Variant ifa_dummy(MethodCallPackage &mcp, int count,
@@ -321,7 +319,7 @@ public:
                                        const ObjectStaticCallbacks *osc);
  protected:
   int o_id;                      // a numeric identifier of this object
-  mutable Array *o_properties;   // dynamic properties
+  Array         o_properties;    // dynamic properties
   void          cloneDynamic(ObjectData *orig);
  private:
   mutable int16  o_attribute;    // vairous flags
