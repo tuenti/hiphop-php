@@ -247,6 +247,10 @@ include_directories(${READLINE_INCLUDE_DIR})
 find_package(CClient REQUIRED)
 include_directories(${CCLIENT_INCLUDE_PATH})
 
+FIND_PACKAGE(Magick REQUIRED)
+include_directories(${MAGICK_INCLUDE_DIR})
+link_directories(${MAGICK_LIB_DIR})
+
 CONTAINS_STRING("${CCLIENT_INCLUDE_PATH}/utf8.h" U8T_DECOMPOSE RECENT_CCLIENT)
 if (NOT RECENT_CCLIENT)
 	unset(RECENT_CCLIENT CACHE)
@@ -393,6 +397,7 @@ endif()
 	target_link_libraries(${target} ${READLINE_LIBRARY})
 	target_link_libraries(${target} ${NCURSES_LIBRARY})
 	target_link_libraries(${target} ${CCLIENT_LIBRARY})
+	target_link_libraries(${target} ${MAGICK_WAND_LIBRARIES})
 
 	if (CCLIENT_NEEDS_PAM)
 		target_link_libraries(${target} ${PAM_LIBRARY})

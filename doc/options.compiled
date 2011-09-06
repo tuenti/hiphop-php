@@ -798,3 +798,48 @@ kill it to avoid extra server cost by turning on KillOnTimeout.
 This feature allows a machine to overwrite configurations just by matching
 machine names with specified regex pattern. This block of configuration can
 appear at any location of the file, even at top.
+
+= User Partition
+
+  UserPartition {
+    CacheFile = /tmp/user_partitions_cache.bin
+  }
+
+- CacheFile
+
+This setting allow to change the file used to store the cached user partitions IDs 
+
+= Bucket Cache
+
+  BucketCache {
+    CacheFile = /tmp/bucketcache.bin
+    TTL = 3600
+    StaleDataReusability = 120
+    TTLForPrimingStaleData = 12
+  }
+
+- CacheFile
+
+This setting allow to change the file used to store the cached bucket data
+
+- TTL (seconds)
+
+Time to live of the elements in the cache
+
+- StaleDataReusability (seconds)
+
+Extra time (beyond the expiration time) while a element is considered recent enought to be reused when expired. The first request to the function will receive a false and it will have to "pay" the cache refresh.
+
+- TTLForPrimingStaleData (seconds)
+
+Aditional time to add to the TTL whenever the item is being reused because of the activation of StaleDataReusability option
+
+= Json Cache
+
+  JsonCache {
+    RefreshTime = 1;
+  }
+
+- RefreshTime (seconds)
+
+This setting allow to change the default refresh value for cached Jsons. This is used to not stat the file on every request.

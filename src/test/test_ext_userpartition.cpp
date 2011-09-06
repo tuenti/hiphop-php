@@ -14,34 +14,27 @@
    +----------------------------------------------------------------------+
 */
 
-#include <runtime/base/types.h>
+#include <test/test_ext_userpartition.h>
+#include <runtime/ext/ext_userpartition.h>
 
-#ifndef __SYSTEMLIB_H__
-#define __SYSTEMLIB_H__
-
-namespace HPHP {
+IMPLEMENT_SEP_EXTENSION_TEST(Userpartition);
 ///////////////////////////////////////////////////////////////////////////////
 
-class SystemLib {
- public:
-  static ObjectData* AllocStdClassObject();
-  static ObjectData* AllocExceptionObject(CVarRef message);
-  static ObjectData* AllocDOMExceptionObject(CVarRef message,
-                                             CVarRef code);
-  static ObjectData* AllocPDOExceptionObject();
-  static ObjectData* AllocSoapFaultObject(CVarRef code,
-                                          CVarRef message,
-                                          CVarRef actor = null_variant,
-                                          CVarRef detail = null_variant,
-                                          CVarRef name = null_variant,
-                                          CVarRef header = null_variant);
-  static ObjectData* AllocGmagickExceptionObject(CVarRef message, 
-		                                         CVarRef code);
-  static ObjectData* AllocUserPartitionExceptionObject(CVarRef message);
-  static ObjectData* AllocBucketCacheExceptionObject(CVarRef message);
-};
+bool TestExtUserpartition::RunTests(const std::string &which) {
+  bool ret = true;
 
-///////////////////////////////////////////////////////////////////////////////
+  RUN_TEST(test_get_tuenti_user_partition);
+  RUN_TEST(test_set_tuenti_user_partition);
+
+  return ret;
 }
 
-#endif
+///////////////////////////////////////////////////////////////////////////////
+
+bool TestExtUserpartition::test_get_tuenti_user_partition() {
+  return Count(true);
+}
+
+bool TestExtUserpartition::test_set_tuenti_user_partition() {
+  return Count(true);
+}
