@@ -383,6 +383,15 @@ public:
   static int PregBacktraceLimit;
   static int PregRecursionLimit;
   static bool EnablePregErrorLog;
+
+  // Tuenti specific config
+  static std::string UserPartitionCacheFile;
+
+  static std::string BucketCacheFile;
+  static int BucketCacheTTL;
+  static int BucketCacheStaleDataReusability;
+  static int BucketCacheTTLForPrimingStaleData;
+  static int JsonCacheRefreshTime;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

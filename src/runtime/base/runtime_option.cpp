@@ -374,6 +374,14 @@ int RuntimeOption::ProfilerTraceBuffer = 2000000;
 double RuntimeOption::ProfilerTraceExpansion = 1.2;
 int RuntimeOption::ProfilerMaxTraceBuffer = 0;
 
+// Tuenti specific config
+std::string RuntimeOption::UserPartitionCacheFile = "/tmp/user_partitions_cache.bin";
+std::string RuntimeOption::BucketCacheFile = "/tmp/bucketcache.bin";
+int RuntimeOption::BucketCacheTTL = 3600;
+int RuntimeOption::BucketCacheStaleDataReusability = 120;
+int RuntimeOption::BucketCacheTTLForPrimingStaleData = 12;
+int RuntimeOption::JsonCacheRefreshTime = 1;
+
 ///////////////////////////////////////////////////////////////////////////////
 // keep this block after all the above static variables, or we will have
 // static variable dependency problems on initialization
@@ -1082,6 +1090,22 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
     PregBacktraceLimit = preg["BacktraceLimit"].getInt32(100000);
     PregRecursionLimit = preg["RecursionLimit"].getInt32(100000);
     EnablePregErrorLog = preg["ErrorLog"].getBool(true);
+  }
+  {
+     Hdf userpartition = config["UserPartition"];
+     UserPartitionCacheFile = userpartition["CacheFile"].getString("/tmp/user_partitions_cache.bin");
+  }
+  {
+     Hdf userpartition = config["BucketCache"];
+     BucketCacheFile = userpartition["CacheFile"].getString("/tmp/bucketcache.bin");
+     BucketCacheTTL = userpartition["TTL"].getInt32(3600);
+     BucketCacheStaleDataReusability = userpartition["StaleDataReusability"].getInt32(120);
+     BucketCacheTTLForPrimingStaleData = userpartition["TTLForPrimingStaleData"].getInt32(12);
+  }
+
+  {
+     Hdf jsoncache= config["JsonCache"];
+     JsonCacheRefreshTime = jsoncache["RefreshTime"].getInt32(1);
   }
 
   Extension::LoadModules(config);

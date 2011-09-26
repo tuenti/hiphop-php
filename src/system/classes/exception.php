@@ -319,3 +319,20 @@ class PDOException extends Exception {
   }
 }
 
+class GmagickException extends Exception {
+  public function __construct($message, $code) {
+    parent::__construct($message, $code);
+  }
+}
+
+class UserPartitionException extends Exception {
+  public function __construct($message) {
+    parent::__construct($message);
+  }
+}
+
+class BucketCacheException extends Exception {
+  public function __construct($message) {
+    parent::__construct($message);
+  }
+}
