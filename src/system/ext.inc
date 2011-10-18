@@ -41,6 +41,7 @@
 #include "mcrypt.inc"
 #include "memcache.inc"
 #include "memcached.inc"
+#include "memcachepool.inc"
 #include "misc.inc"
 #include "mysql.inc"
 #include "network.inc"
