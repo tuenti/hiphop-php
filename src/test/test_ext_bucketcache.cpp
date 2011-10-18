@@ -14,34 +14,27 @@
    +----------------------------------------------------------------------+
 */
 
-#include <runtime/base/types.h>
+#include <test/test_ext_bucketcache.h>
+#include <runtime/ext/ext_bucketcache.h>
 
-#ifndef __SYSTEMLIB_H__
-#define __SYSTEMLIB_H__
-
-namespace HPHP {
+IMPLEMENT_SEP_EXTENSION_TEST(Bucketcache);
 ///////////////////////////////////////////////////////////////////////////////
 
-class SystemLib {
- public:
-  static ObjectData* AllocStdClassObject();
-  static ObjectData* AllocExceptionObject(CVarRef message);
-  static ObjectData* AllocDOMExceptionObject(CVarRef message,
-                                             CVarRef code);
-  static ObjectData* AllocPDOExceptionObject();
-  static ObjectData* AllocSoapFaultObject(CVarRef code,
-                                          CVarRef message,
-                                          CVarRef actor = null_variant,
-                                          CVarRef detail = null_variant,
-                                          CVarRef name = null_variant,
-                                          CVarRef header = null_variant);
-  static ObjectData* AllocGmagickExceptionObject(CVarRef message, 
-		                                         CVarRef code);
-  static ObjectData* AllocUserPartitionExceptionObject(CVarRef message);
-  static ObjectData* AllocBucketCacheExceptionObject(CVarRef message);
-};
+bool TestExtBucketcache::RunTests(const std::string &which) {
+  bool ret = true;
 
-///////////////////////////////////////////////////////////////////////////////
+  RUN_TEST(test_get_bucket_cache_info);
+  RUN_TEST(test_set_bucket_cache_info);
+
+  return ret;
 }
 
-#endif
+///////////////////////////////////////////////////////////////////////////////
+
+bool TestExtBucketcache::test_get_bucket_cache_info() {
+  return Count(true);
+}
+
+bool TestExtBucketcache::test_set_bucket_cache_info() {
+  return Count(true);
+}

@@ -1,0 +1,10 @@
+UserPartition {
+	CacheFile = /tmp/custom.userpartition.cache
+}
+
+BucketCache {
+    CacheFile = /tmp/custom.bucketcache.bin
+    TTL = 10
+    StaleDataReusability = 5
+    TTLForPrimingStaleData = 7
+}

@@ -21,6 +21,7 @@
 #include <test/test_ext_apd.h>
 #include <test/test_ext_array.h>
 #include <test/test_ext_bcmath.h>
+#include <test/test_ext_bucketcache.h>
 #include <test/test_ext_bzip2.h>
 #include <test/test_ext_class.h>
 #include <test/test_ext_closure.h>
@@ -34,6 +35,7 @@
 #include <test/test_ext_fb.h>
 #include <test/test_ext_file.h>
 #include <test/test_ext_function.h>
+#include <test/test_ext_gmagick.h>
 #include <test/test_ext_hash.h>
 #include <test/test_ext_iconv.h>
 #include <test/test_ext_icu.h>
@@ -77,7 +79,9 @@
 #include <test/test_ext_string.h>
 #include <test/test_ext_thread.h>
 #include <test/test_ext_thrift.h>
+#include <test/test_ext_tuenti_jsonloader.h>
 #include <test/test_ext_url.h>
+#include <test/test_ext_userpartition.h>
 #include <test/test_ext_variable.h>
 #include <test/test_ext_xml.h>
 #include <test/test_ext_xmlreader.h>

@@ -23,6 +23,7 @@
 #include <runtime/ext/profile/extprofile_apd.h>
 #include <runtime/ext/profile/extprofile_array.h>
 #include <runtime/ext/profile/extprofile_bcmath.h>
+#include <runtime/ext/profile/extprofile_bucketcache.h>
 #include <runtime/ext/profile/extprofile_bzip2.h>
 #include <runtime/ext/profile/extprofile_class.h>
 #include <runtime/ext/profile/extprofile_closure.h>
@@ -36,6 +37,7 @@
 #include <runtime/ext/profile/extprofile_fb.h>
 #include <runtime/ext/profile/extprofile_file.h>
 #include <runtime/ext/profile/extprofile_function.h>
+#include <runtime/ext/profile/extprofile_gmagick.h>
 #include <runtime/ext/profile/extprofile_hash.h>
 #include <runtime/ext/profile/extprofile_iconv.h>
 #include <runtime/ext/profile/extprofile_icu.h>
@@ -79,7 +81,9 @@
 #include <runtime/ext/profile/extprofile_string.h>
 #include <runtime/ext/profile/extprofile_thread.h>
 #include <runtime/ext/profile/extprofile_thrift.h>
+#include <runtime/ext/profile/extprofile_tuenti_jsonloader.h>
 #include <runtime/ext/profile/extprofile_url.h>
+#include <runtime/ext/profile/extprofile_userpartition.h>
 #include <runtime/ext/profile/extprofile_variable.h>
 #include <runtime/ext/profile/extprofile_xml.h>
 #include <runtime/ext/profile/extprofile_xmlreader.h>
