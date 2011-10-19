@@ -41,6 +41,7 @@ RUN_TESTSUITE(TestExtMb);
 RUN_TESTSUITE(TestExtMcrypt);
 RUN_TESTSUITE(TestExtMemcache);
 RUN_TESTSUITE(TestExtMemcached);
+RUN_TESTSUITE(TestExtMemcachepool);
 RUN_TESTSUITE(TestExtMisc);
 RUN_TESTSUITE(TestExtMysql);
 RUN_TESTSUITE(TestExtNetwork);

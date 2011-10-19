@@ -61,8 +61,10 @@ BeginClass(
    'desc'   => 'Gmagick pixel class',
    'flags'  => HasDocComment,
    'footer' => <<<EOT
- private:
-  PixelWand *pixel_wand;
+   public: 
+     PixelWand *get_PixelWand();
+   private:
+     PixelWand *pixel_wand;
 EOT
  ));
 
@@ -101,6 +103,11 @@ BeginClass(
    'flags'  => HasDocComment,
    'footer' => <<<EOT
  private:
+  void checkResult(int result);
+  void checkNotEmpty(); 
+  void checkHasFormat();
+  void throwException(const char * magick_message, int magick_severity);
+  bool adjust_dimensions(bool bestfit, long desired_width, long desired_height, long *new_width, long *new_height);
   MagickWand *magick_wand;
 EOT
  ));

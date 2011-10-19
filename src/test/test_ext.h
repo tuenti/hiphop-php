@@ -56,6 +56,7 @@
 #include <test/test_ext_mcrypt.h>
 #include <test/test_ext_memcache.h>
 #include <test/test_ext_memcached.h>
+#include <test/test_ext_memcachepool.h>
 #include <test/test_ext_misc.h>
 #include <test/test_ext_mysql.h>
 #include <test/test_ext_network.h>

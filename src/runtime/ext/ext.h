@@ -58,6 +58,7 @@
 #include <runtime/ext/profile/extprofile_mcrypt.h>
 #include <runtime/ext/profile/extprofile_memcache.h>
 #include <runtime/ext/profile/extprofile_memcached.h>
+#include <runtime/ext/profile/extprofile_memcachepool.h>
 #include <runtime/ext/profile/extprofile_misc.h>
 #include <runtime/ext/profile/extprofile_mysql.h>
 #include <runtime/ext/profile/extprofile_network.h>

@@ -35,7 +35,7 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
   DECLARE_CLASS(MemcachePool, MemcachePool, ObjectData)
 
   // need to implement
-  public: c_MemcachePool(const ObjectStaticCallbacks *cb);
+  public: c_MemcachePool(const ObjectStaticCallbacks *cb = &cw_MemcachePool);
   public: ~c_MemcachePool();
   public: void t___construct();
   DECLARE_METHOD_INVOKE_HELPERS(__construct);
