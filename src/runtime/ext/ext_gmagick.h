@@ -276,7 +276,7 @@ class c_GmagickPixel : public ExtObjectData {
   DECLARE_CLASS(GmagickPixel, GmagickPixel, ObjectData)
 
   // need to implement
-  public: c_GmagickPixel();
+  public: c_GmagickPixel(const ObjectStaticCallbacks *cb);
   public: ~c_GmagickPixel();
   public: void t___construct(CStrRef color = null_string);
   DECLARE_METHOD_INVOKE_HELPERS(__construct);
@@ -301,7 +301,7 @@ class c_Gmagick : public ExtObjectData {
   DECLARE_CLASS(Gmagick, Gmagick, ObjectData)
 
   // need to implement
-  public: c_Gmagick();
+  public: c_Gmagick(const ObjectStaticCallbacks *cb);
   public: ~c_Gmagick();
   public: void t___construct();
   DECLARE_METHOD_INVOKE_HELPERS(__construct);

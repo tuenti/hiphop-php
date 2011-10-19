@@ -85,8 +85,9 @@ bool memcachepool_ini_on_update_hash_function(CStrRef value, void *p) {
 ///////////////////////////////////////////////////////////////////////////////
 // methods
 
-c_MemcachePool::c_MemcachePool() : m_memcache(), m_memcache_udp(), m_compress_threshold(0),
-                           m_min_compress_savings(0.2) {
+c_MemcachePool::c_MemcachePool(const ObjectStaticCallbacks *cb) 
+  : ExtObjectData(cb), m_memcache(), m_memcache_udp(), 
+  m_compress_threshold(0), m_min_compress_savings(0.2) {
   memcached_create(&m_memcache);
   memcached_create(&m_memcache_udp);
 

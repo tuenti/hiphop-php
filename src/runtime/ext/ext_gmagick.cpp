@@ -38,7 +38,7 @@ static GmagickStaticInitializer s_gmagick_initializer;
 ///////////////////////////////////////////////////////////////////////////////
 // class GmagickPixel
 
-c_GmagickPixel::c_GmagickPixel() {
+c_GmagickPixel::c_GmagickPixel(const ObjectStaticCallbacks *cb) :ExtObjectData(cb) {
 }
 
 c_GmagickPixel::~c_GmagickPixel() {
@@ -298,7 +298,7 @@ const int q_Gmagick_DISPOSE_NONE = NoneDispose;
 const int q_Gmagick_DISPOSE_BACKGROUND = BackgroundDispose;
 const int q_Gmagick_DISPOSE_PREVIOUS = PreviousDispose;
 
-c_Gmagick::c_Gmagick() {
+c_Gmagick::c_Gmagick(const ObjectStaticCallbacks *cb) :ExtObjectData(cb){
   magick_wand = NewMagickWand();
 }
 
