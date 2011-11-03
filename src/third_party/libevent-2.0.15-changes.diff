@@ -1,6 +1,6 @@
-diff -Nuar libevent-2.0.12-orig/http.c libevent-2.0.12-hiphop/http.c
---- libevent-2.0.12-orig/http.c	2011-05-27 21:08:12.000000000 +0200
-+++ libevent-2.0.12-hiphop/http.c	2011-08-03 18:44:23.833359369 +0200
+diff -Nuar libevent-2.0.15-stable/http.c libevent-2.0.15-stable-hh/http.c
+--- libevent-2.0.15-stable/http.c	2011-07-05 20:51:24.000000000 +0200
++++ libevent-2.0.15-stable-hh/http.c	2011-10-20 10:52:16.808356809 +0200
 @@ -198,6 +198,11 @@
  static int evhttp_find_vhost(struct evhttp *http, struct evhttp **outhttp,
  		  const char *hostname);
@@ -13,7 +13,7 @@ diff -Nuar libevent-2.0.12-orig/http.c libevent-2.0.12-hiphop/http.c
  #ifndef _EVENT_HAVE_STRSEP
  /* strsep replacement for platforms that lack it.  Only works if
   * del is one character long. */
-@@ -1140,10 +1145,8 @@
+@@ -1142,10 +1147,8 @@
  		evhttp_request_free(req);
  	}
  
@@ -26,7 +26,7 @@ diff -Nuar libevent-2.0.12-orig/http.c libevent-2.0.12-hiphop/http.c
  
  	if (event_initialized(&evcon->retry_ev)) {
  		event_del(&evcon->retry_ev);
-@@ -1527,13 +1530,16 @@
+@@ -1529,13 +1532,16 @@
  	if (line == NULL)
  		return (-1);
  	uri = strsep(&line, " ");
@@ -48,7 +48,7 @@ diff -Nuar libevent-2.0.12-orig/http.c libevent-2.0.12-hiphop/http.c
  	if (strcmp(method, "GET") == 0) {
  		req->type = EVHTTP_REQ_GET;
  	} else if (strcmp(method, "POST") == 0) {
-@@ -1542,14 +1548,43 @@
+@@ -1544,14 +1550,43 @@
  		req->type = EVHTTP_REQ_HEAD;
  	} else if (strcmp(method, "PUT") == 0) {
  		req->type = EVHTTP_REQ_PUT;
@@ -92,7 +92,7 @@ diff -Nuar libevent-2.0.12-orig/http.c libevent-2.0.12-hiphop/http.c
  	} else {
  		req->type = _EVHTTP_REQ_UNKNOWN;
  		event_debug(("%s: bad method %s on request %p from %s",
-@@ -2418,6 +2453,42 @@
+@@ -2420,6 +2455,42 @@
  	evhttp_send(req, databuf);
  }
  
@@ -135,7 +135,7 @@ diff -Nuar libevent-2.0.12-orig/http.c libevent-2.0.12-hiphop/http.c
  void
  evhttp_send_reply_start(struct evhttp_request *req, int code,
      const char *reason)
-@@ -3065,18 +3136,8 @@
+@@ -3067,18 +3138,8 @@
  	evhttp_get_request(http, nfd, peer_sa, peer_socklen);
  }
  
@@ -155,7 +155,7 @@ diff -Nuar libevent-2.0.12-orig/http.c libevent-2.0.12-hiphop/http.c
  {
  	evutil_socket_t fd;
  	struct evhttp_bound_socket *bound;
-@@ -3084,7 +3145,7 @@
+@@ -3086,7 +3147,7 @@
  	if ((fd = bind_socket(address, port, 1 /*reuse*/)) == -1)
  		return (NULL);
  
@@ -164,7 +164,7 @@ diff -Nuar libevent-2.0.12-orig/http.c libevent-2.0.12-hiphop/http.c
  		event_sock_warn(fd, "%s: listen", __func__);
  		evutil_closesocket(fd);
  		return (NULL);
-@@ -3102,6 +3163,27 @@
+@@ -3104,6 +3165,27 @@
  }
  
  int
@@ -192,7 +192,7 @@ diff -Nuar libevent-2.0.12-orig/http.c libevent-2.0.12-hiphop/http.c
  evhttp_accept_socket(struct evhttp *http, evutil_socket_t fd)
  {
  	struct evhttp_bound_socket *bound =
-@@ -3742,13 +3824,71 @@
+@@ -3750,13 +3832,71 @@
  	 * if we want to accept more than one request on a connection,
  	 * we need to know which http server it belongs to.
  	 */
@@ -266,9 +266,9 @@ diff -Nuar libevent-2.0.12-orig/http.c libevent-2.0.12-hiphop/http.c
  
  /*
   * Network helper functions that we do not want to export to the rest of
-diff -Nuar libevent-2.0.12-orig/http-internal.h libevent-2.0.12-hiphop/http-internal.h
---- libevent-2.0.12-orig/http-internal.h	2010-12-16 19:05:27.000000000 +0100
-+++ libevent-2.0.12-hiphop/http-internal.h	2011-08-02 16:46:43.363376095 +0200
+diff -Nuar libevent-2.0.15-stable/http-internal.h libevent-2.0.15-stable-hh/http-internal.h
+--- libevent-2.0.15-stable/http-internal.h	2010-12-16 19:05:27.000000000 +0100
++++ libevent-2.0.15-stable-hh/http-internal.h	2011-10-20 10:52:16.808356809 +0200
 @@ -154,6 +154,9 @@
  
  	int timeout;
@@ -279,9 +279,9 @@ diff -Nuar libevent-2.0.12-orig/http-internal.h libevent-2.0.12-hiphop/http-inte
  	size_t default_max_headers_size;
  	ev_uint64_t default_max_body_size;
  
-diff -Nuar libevent-2.0.12-orig/include/event2/http.h libevent-2.0.12-hiphop/include/event2/http.h
---- libevent-2.0.12-orig/include/event2/http.h	2011-03-03 18:55:15.000000000 +0100
-+++ libevent-2.0.12-hiphop/include/event2/http.h	2011-08-03 09:50:12.813365105 +0200
+diff -Nuar libevent-2.0.15-stable/include/event2/http.h libevent-2.0.15-stable-hh/include/event2/http.h
+--- libevent-2.0.15-stable/include/event2/http.h	2011-07-05 19:04:30.000000000 +0200
++++ libevent-2.0.15-stable-hh/include/event2/http.h	2011-10-20 10:55:13.898356756 +0200
 @@ -104,7 +104,36 @@
   * @return Handle for the socket on success, NULL on failure.
   * @see evhttp_bind_socket(), evhttp_del_accept_socket()
@@ -362,9 +362,9 @@ diff -Nuar libevent-2.0.12-orig/include/event2/http.h libevent-2.0.12-hiphop/inc
  /* Low-level response interface, for streaming/chunked replies */
  
  /**
-diff -Nuar libevent-2.0.12-orig/include/event2/http_struct.h libevent-2.0.12-hiphop/include/event2/http_struct.h
---- libevent-2.0.12-orig/include/event2/http_struct.h	2010-12-16 19:05:27.000000000 +0100
-+++ libevent-2.0.12-hiphop/include/event2/http_struct.h	2011-08-03 18:44:21.453359370 +0200
+diff -Nuar libevent-2.0.15-stable/include/event2/http_struct.h libevent-2.0.15-stable-hh/include/event2/http_struct.h
+--- libevent-2.0.15-stable/include/event2/http_struct.h	2011-07-05 19:04:30.000000000 +0200
++++ libevent-2.0.15-stable-hh/include/event2/http_struct.h	2011-10-20 10:56:15.868356738 +0200
 @@ -90,6 +90,7 @@
  
  	enum evhttp_request_kind kind;
