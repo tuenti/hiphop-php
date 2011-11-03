@@ -577,7 +577,8 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
                              bool persistent, int weight, int timeout, 
                              int retry_interval, bool status) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::addserver);
-  memcached_return_t ret;
+  memcached_return_t ret  = MEMCACHED_SUCCESS;
+  memcached_return_t ret2 = MEMCACHED_SUCCESS;
 
   if (!host.empty() && host[0] == '/') {
     ret = memcached_server_add_unix_socket_with_weight(&m_memcache,
@@ -586,12 +587,12 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
     if (tcp_port > 0)
       ret = memcached_server_add_with_weight(&m_memcache, host.c_str(), 
                                              tcp_port, weight);
-    else
-      ret = memcached_server_add_udp_with_weight(&m_memcache_udp, host.c_str(), 
+    if (udp_port > 0)
+      ret2 = memcached_server_add_udp_with_weight(&m_memcache_udp, host.c_str(), 
                                                  udp_port, weight);
   }
 
-  if (ret == MEMCACHED_SUCCESS) {
+  if ((ret == MEMCACHED_SUCCESS) && (ret2 == MEMCACHED_SUCCESS)) {
     return true;
   }
 
