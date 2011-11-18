@@ -275,6 +275,7 @@ void LibEventServer::stop() {
 
   // inform LibEventServer::onRequest() to stop queuing
   setStatus(STOPPING);
+  evhttp_del_accept_socket(m_server, evhttp_sock);
 
   // stop JobQueue processing
   m_dispatcher.stop();
