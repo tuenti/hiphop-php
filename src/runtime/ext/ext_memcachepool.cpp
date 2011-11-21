@@ -202,7 +202,7 @@ bool c_MemcachePool::t_add(CStrRef key, CVarRef var, int flag /*= 0*/,
                                         serialized.c_str(),
                                         serialized.length(),
                                         expire, flag);
-
+  t_close();
   return (ret == MEMCACHED_SUCCESS);
 }
 
@@ -222,6 +222,7 @@ bool c_MemcachePool::t_set(CStrRef key, CVarRef var, int flag /*= 0*/,
                                         serialized.length(),
                                         expire, flag);
 
+  t_close();
   if (ret == MEMCACHED_SUCCESS) {
     return true;
   }
@@ -244,6 +245,7 @@ bool c_MemcachePool::t_replace(CStrRef key, CVarRef var, int flag /*= 0*/,
                                              serialized.c_str(),
                                              serialized.length(),
                                              expire, flag);
+  t_close();
   return (ret == MEMCACHED_SUCCESS);
 }
 
@@ -327,6 +329,7 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
   }
 
   memcached_result_free(&result);
+  t_close();
 
   if (key.is(KindOfArray))
     return return_val;
@@ -344,6 +347,8 @@ bool c_MemcachePool::t_delete(CStrRef key, int expire /*= 0*/) {
   memcached_return_t ret = memcached_delete(&m_memcache,
                                             key.c_str(), key.length(),
                                             expire);
+  t_close();
+
   return (ret == MEMCACHED_SUCCESS);
 }
 
@@ -357,6 +362,8 @@ int64 c_MemcachePool::t_increment(CStrRef key, int offset /*= 1*/) {
   uint64_t value;
   memcached_return_t ret = memcached_increment(&m_memcache, key.c_str(),
                                               key.length(), offset, &value);
+
+  t_close();
 
   if (ret == MEMCACHED_SUCCESS) {
     return (int64)value;
@@ -375,6 +382,7 @@ int64 c_MemcachePool::t_decrement(CStrRef key, int offset /*= 1*/) {
   uint64_t value;
   memcached_return_t ret = memcached_decrement(&m_memcache, key.c_str(),
                                               key.length(), offset, &value);
+  t_close();
 
   if (ret == MEMCACHED_SUCCESS) {
     return (int64)value;
