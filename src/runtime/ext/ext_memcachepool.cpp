@@ -18,6 +18,7 @@
 #include <runtime/ext/ext_memcachepool.h>
 #include <runtime/base/util/request_local.h>
 #include <runtime/base/ini_setting.h>
+#include <util/logger.h>
 
 #define MMC_SERIALIZED 1
 #define MMC_COMPRESSED 2
@@ -36,29 +37,48 @@ IMPLEMENT_DEFAULT_EXTENSION(memcachepool);
 bool memcachepool_ini_on_update_hash_strategy(CStrRef value, void *p);
 bool memcachepool_ini_on_update_hash_function(CStrRef value, void *p);
 
-class MEMCACHEPOOLGlobals : public RequestEventHandler {
-public:
-  std::string hash_strategy;
-  std::string hash_function;
-
-  MEMCACHEPOOLGlobals() {}
-
-  virtual void requestInit() {
-    hash_strategy = "standard";
-    hash_function = "crc32";
-
-    IniSetting::Bind("memcachepool.hash_strategy", "standard",
-                     memcachepool_ini_on_update_hash_strategy,  &hash_strategy);
-    IniSetting::Bind("memcachepool.hash_function", "crc32",
-                     memcachepool_ini_on_update_hash_function,  &hash_function);
-  }
-
-  virtual void requestShutdown() {
-  }
+struct MemcacheObjectData {
+  memcached_st *tcp_st;
+  memcached_st *udp_st;
+  int compress_threshold;
+  int min_compress_savings;
 };
 
-IMPLEMENT_STATIC_REQUEST_LOCAL(MEMCACHEPOOLGlobals, s_memcachepool_globals);
-#define MEMCACHEG(name) s_memcachepool_globals->name
+class MemcachePoolRequest: public RequestEventHandler {
+  public:
+    // Global data
+    std::string hash_strategy;
+    std::string hash_function;
+    
+    // Static map per thread to contain per-instante data
+    std::map<c_MemcachePool *, MemcacheObjectData> obj_map;
+
+    virtual void requestInit() {
+      hash_strategy = "standard";
+      hash_function = "crc32";
+  
+      IniSetting::Bind("memcachepool.hash_strategy", "standard",
+                       memcachepool_ini_on_update_hash_strategy, &hash_strategy);
+      IniSetting::Bind("memcachepool.hash_function", "crc32",
+                       memcachepool_ini_on_update_hash_function, &hash_function);
+    }
+
+    virtual void requestShutdown() {
+      // This is done to close all TCP connections because libmemcached use
+      // persistent connections which could not afford
+      std::map<c_MemcachePool *, MemcacheObjectData>::iterator it;
+
+      for (it = obj_map.begin(); it != obj_map.end(); it++) {
+        (*it).first->t_close();
+      }
+    }
+};
+
+IMPLEMENT_STATIC_REQUEST_LOCAL(MemcachePoolRequest, s_memcachepool_data);
+
+// Macros to access to global an per-instante variables
+#define MEMCACHEG(name) s_memcachepool_data->name
+#define MEMCACHEL(name) s_memcachepool_data->obj_map[this].name
 
 bool memcachepool_ini_on_update_hash_strategy(CStrRef value, void *p) {
   if (!strncasecmp(value.data(), "standard", sizeof("standard"))) {
@@ -85,48 +105,51 @@ bool memcachepool_ini_on_update_hash_function(CStrRef value, void *p) {
 ///////////////////////////////////////////////////////////////////////////////
 // methods
 
-c_MemcachePool::c_MemcachePool(const ObjectStaticCallbacks *cb) 
-  : ExtObjectData(cb), m_memcache(), m_memcache_udp(), 
-  m_compress_threshold(0), m_min_compress_savings(0.2) {
-  memcached_create(&m_memcache);
-  memcached_create(&m_memcache_udp);
+c_MemcachePool::c_MemcachePool(const ObjectStaticCallbacks *cb) : ExtObjectData(cb) {
+  Logger::Verbose("[MemcachePool] Creating new c_MemcachePool object %p", this);
+  MEMCACHEL(tcp_st) = memcached_create(NULL);
+  MEMCACHEL(udp_st) = memcached_create(NULL);
+  MEMCACHEL(compress_threshold) = 0;
+  MEMCACHEL(min_compress_savings) = 0.2;
 
   if (MEMCACHEG(hash_strategy) == "consistent") {
     // need to hook up a global variable to set this
-    memcached_behavior_set(&m_memcache, MEMCACHED_BEHAVIOR_DISTRIBUTION,
+    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_DISTRIBUTION,
                            MEMCACHED_DISTRIBUTION_CONSISTENT_KETAMA);
-    memcached_behavior_set(&m_memcache_udp, MEMCACHED_BEHAVIOR_DISTRIBUTION,
+    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_DISTRIBUTION,
                            MEMCACHED_DISTRIBUTION_CONSISTENT_KETAMA);
   } else {
-    memcached_behavior_set(&m_memcache, MEMCACHED_BEHAVIOR_DISTRIBUTION,
+    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_DISTRIBUTION,
                            MEMCACHED_DISTRIBUTION_MODULA);
-    memcached_behavior_set(&m_memcache_udp, MEMCACHED_BEHAVIOR_DISTRIBUTION,
+    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_DISTRIBUTION,
                            MEMCACHED_DISTRIBUTION_MODULA);
   }
 
   if (MEMCACHEG(hash_function) == "fnv") {
-    memcached_behavior_set(&m_memcache, MEMCACHED_BEHAVIOR_HASH,
+    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_HASH,
                            MEMCACHED_HASH_FNV1A_32);
-    memcached_behavior_set(&m_memcache_udp, MEMCACHED_BEHAVIOR_HASH,
+    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_HASH,
                            MEMCACHED_HASH_FNV1A_32);
   } else {
-    memcached_behavior_set(&m_memcache, MEMCACHED_BEHAVIOR_HASH,
+    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_HASH,
                            MEMCACHED_HASH_CRC);
-    memcached_behavior_set(&m_memcache_udp, MEMCACHED_BEHAVIOR_HASH,
+    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_HASH,
                            MEMCACHED_HASH_CRC);
   }
 
-  memcached_behavior_set(&m_memcache_udp, MEMCACHED_BEHAVIOR_USE_UDP, 1);
-  memcached_behavior_set(&m_memcache_udp, MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 1);
-  memcached_behavior_set(&m_memcache_udp, MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 1);
-  memcached_behavior_set(&m_memcache_udp, MEMCACHED_BEHAVIOR_NOREPLY, 0);
-  memcached_behavior_set(&m_memcache_udp, MEMCACHED_BEHAVIOR_NO_BLOCK, 1);
-  memcached_behavior_set(&m_memcache_udp, MEMCACHED_BEHAVIOR_UDP_ALWAYS_FLUSH, 1);
+  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_USE_UDP, 1);
+  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 1);
+  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 1);
+  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_NOREPLY, 0);
+  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_NO_BLOCK, 1);
+  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_UDP_ALWAYS_FLUSH, 1);
 }
 
 c_MemcachePool::~c_MemcachePool() {
-  memcached_free(&m_memcache);
-  memcached_free(&m_memcache_udp);
+  Logger::Verbose("[MemcachePool] Destroying %p", this);
+  memcached_free(MEMCACHEL(tcp_st));
+  memcached_free(MEMCACHEL(udp_st));
+  MEMCACHEG(obj_map).erase(this);
 }
 
 void c_MemcachePool::t___construct() {
@@ -141,9 +164,9 @@ bool c_MemcachePool::t_connect(CStrRef host, int port /*= 0*/,
   memcached_return_t ret;
 
   if (!host.empty() && host[0] == '/') {
-    ret = memcached_server_add_unix_socket(&m_memcache, host.c_str());
+    ret = memcached_server_add_unix_socket(MEMCACHEL(tcp_st), host.c_str());
   } else {
-    ret = memcached_server_add(&m_memcache, host.c_str(), port);
+    ret = memcached_server_add(MEMCACHEL(tcp_st), host.c_str(), port);
   }
 
   return (ret == MEMCACHED_SUCCESS);
@@ -197,12 +220,11 @@ bool c_MemcachePool::t_add(CStrRef key, CVarRef var, int flag /*= 0*/,
 
   String serialized = memcache_prepare_for_storage(var, flag);
 
-  memcached_return_t ret = memcached_add(&m_memcache,
+  memcached_return_t ret = memcached_add(MEMCACHEL(tcp_st),
                                         key.c_str(), key.length(),
                                         serialized.c_str(),
                                         serialized.length(),
                                         expire, flag);
-  t_close();
   return (ret == MEMCACHED_SUCCESS);
 }
 
@@ -216,13 +238,12 @@ bool c_MemcachePool::t_set(CStrRef key, CVarRef var, int flag /*= 0*/,
 
   String serialized = memcache_prepare_for_storage(var, flag);
 
-  memcached_return_t ret = memcached_set(&m_memcache,
+  memcached_return_t ret = memcached_set(MEMCACHEL(tcp_st),
                                         key.c_str(), key.length(),
                                         serialized.c_str(),
                                         serialized.length(),
                                         expire, flag);
 
-  t_close();
   if (ret == MEMCACHED_SUCCESS) {
     return true;
   }
@@ -240,12 +261,11 @@ bool c_MemcachePool::t_replace(CStrRef key, CVarRef var, int flag /*= 0*/,
 
   String serialized = memcache_prepare_for_storage(var, flag);
 
-  memcached_return_t ret = memcached_replace(&m_memcache,
+  memcached_return_t ret = memcached_replace(MEMCACHEL(tcp_st),
                                              key.c_str(), key.length(),
                                              serialized.c_str(),
                                              serialized.length(),
                                              expire, flag);
-  t_close();
   return (ret == MEMCACHED_SUCCESS);
 }
 
@@ -254,9 +274,9 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
   TAINT_OBSERVER(TAINT_BIT_ALL, TAINT_BIT_NONE);
 
   // Use UDP if we have any server available
-  memcached_st *memc = &m_memcache;
-  if (memcached_server_count(&m_memcache_udp) > 0)
-    memc = &m_memcache_udp;
+  memcached_st *memc = MEMCACHEL(tcp_st);
+  if (memcached_server_count(MEMCACHEL(udp_st)) > 0)
+    memc = MEMCACHEL(udp_st);
 
   std::vector<const char *> real_keys;
   std::vector<size_t> key_len;
@@ -329,7 +349,6 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
   }
 
   memcached_result_free(&result);
-  t_close();
 
   if (key.is(KindOfArray))
     return return_val;
@@ -344,11 +363,9 @@ bool c_MemcachePool::t_delete(CStrRef key, int expire /*= 0*/) {
     return false;
   }
 
-  memcached_return_t ret = memcached_delete(&m_memcache,
+  memcached_return_t ret = memcached_delete(MEMCACHEL(tcp_st),
                                             key.c_str(), key.length(),
                                             expire);
-  t_close();
-
   return (ret == MEMCACHED_SUCCESS);
 }
 
@@ -360,10 +377,8 @@ int64 c_MemcachePool::t_increment(CStrRef key, int offset /*= 1*/) {
   }
 
   uint64_t value;
-  memcached_return_t ret = memcached_increment(&m_memcache, key.c_str(),
+  memcached_return_t ret = memcached_increment(MEMCACHEL(tcp_st), key.c_str(),
                                               key.length(), offset, &value);
-
-  t_close();
 
   if (ret == MEMCACHED_SUCCESS) {
     return (int64)value;
@@ -380,10 +395,8 @@ int64 c_MemcachePool::t_decrement(CStrRef key, int offset /*= 1*/) {
   }
 
   uint64_t value;
-  memcached_return_t ret = memcached_decrement(&m_memcache, key.c_str(),
+  memcached_return_t ret = memcached_decrement(MEMCACHEL(tcp_st), key.c_str(),
                                               key.length(), offset, &value);
-  t_close();
-
   if (ret == MEMCACHED_SUCCESS) {
     return (int64)value;
   }
@@ -393,23 +406,23 @@ int64 c_MemcachePool::t_decrement(CStrRef key, int offset /*= 1*/) {
 
 bool c_MemcachePool::t_close() {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::close);
-  memcached_quit(&m_memcache);
+  memcached_quit(MEMCACHEL(tcp_st));
   return true;
 }
 
 Variant c_MemcachePool::t_getversion() {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::getversion);
-  int server_count = memcached_server_count(&m_memcache);
+  int server_count = memcached_server_count(MEMCACHEL(tcp_st));
   char version[16];
   int version_len = 0;
 
-  if (memcached_version(&m_memcache) != MEMCACHED_SUCCESS) {
+  if (memcached_version(MEMCACHEL(tcp_st)) != MEMCACHED_SUCCESS) {
     return false;
   }
 
   for (int x = 0; x < server_count; x++) {
     memcached_server_instance_st instance =
-      memcached_server_instance_by_position(&m_memcache, x);
+      memcached_server_instance_by_position(MEMCACHEL(tcp_st), x);
 
     if (!instance->major_version) {
       continue;
@@ -426,7 +439,7 @@ Variant c_MemcachePool::t_getversion() {
 
 bool c_MemcachePool::t_flush(int expire /*= 0*/) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::flush);
-  return memcached_flush(&m_memcache, expire) == MEMCACHED_SUCCESS;
+  return memcached_flush(MEMCACHEL(tcp_st), expire) == MEMCACHED_SUCCESS;
 }
 
 bool c_MemcachePool::t_setoptimeout(int64 timeoutms) {
@@ -459,8 +472,8 @@ bool c_MemcachePool::t_setcompressthreshold(int threshold,
     return false;
   }
 
-  m_compress_threshold = threshold;
-  m_min_compress_savings = min_savings;
+  MEMCACHEL(compress_threshold) = threshold;
+  MEMCACHEL(min_compress_savings) = min_savings;
 
   return true;
 }
@@ -499,7 +512,7 @@ Array static memcache_build_stats(const memcached_st *ptr,
 Array c_MemcachePool::t_getstats(CStrRef type /* = null_string */,
                              int slabid /* = 0 */, int limit /* = 100 */) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::getstats);
-  if (!memcached_server_count(&m_memcache)) {
+  if (!memcached_server_count(MEMCACHEL(tcp_st))) {
     return NULL;
   }
 
@@ -513,7 +526,7 @@ Array c_MemcachePool::t_getstats(CStrRef type /* = null_string */,
   }
 
   memcached_server_instance_st instance =
-    memcached_server_instance_by_position(&m_memcache, 0);
+    memcached_server_instance_by_position(MEMCACHEL(tcp_st), 0);
 
   memcached_stat_st stats;
   if (memcached_stat_servername(&stats, extra_args, instance->hostname,
@@ -522,7 +535,7 @@ Array c_MemcachePool::t_getstats(CStrRef type /* = null_string */,
   }
 
   memcached_return_t ret;
-  return memcache_build_stats(&m_memcache, &stats, &ret);
+  return memcache_build_stats(MEMCACHEL(tcp_st), &stats, &ret);
 }
 
 Array c_MemcachePool::t_getextendedstats(CStrRef type /* = null_string */,
@@ -532,12 +545,12 @@ Array c_MemcachePool::t_getextendedstats(CStrRef type /* = null_string */,
   memcached_return_t ret;
   memcached_stat_st *stats;
 
-  stats = memcached_stat(&m_memcache, NULL, &ret);
+  stats = memcached_stat(MEMCACHEL(tcp_st), NULL, &ret);
   if (ret != MEMCACHED_SUCCESS) {
     return NULL;
   }
 
-  int server_count = memcached_server_count(&m_memcache);
+  int server_count = memcached_server_count(MEMCACHEL(tcp_st));
 
   Array return_val;
 
@@ -547,10 +560,10 @@ Array c_MemcachePool::t_getextendedstats(CStrRef type /* = null_string */,
     char stats_key[30] = {0};
     size_t key_len;
 
-    server = memcached_server_instance_by_position(&m_memcache, server_id);
+    server = memcached_server_instance_by_position(MEMCACHEL(tcp_st), server_id);
     stat = stats + server_id;
 
-    Array server_stats = memcache_build_stats(&m_memcache, stat, &ret);
+    Array server_stats = memcache_build_stats(MEMCACHEL(tcp_st), stat, &ret);
     if (ret != MEMCACHED_SUCCESS) {
       continue;
     }
@@ -589,14 +602,14 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
   memcached_return_t ret2 = MEMCACHED_SUCCESS;
 
   if (!host.empty() && host[0] == '/') {
-    ret = memcached_server_add_unix_socket_with_weight(&m_memcache,
+    ret = memcached_server_add_unix_socket_with_weight(MEMCACHEL(tcp_st),
                                                        host.c_str(), weight);
   } else {
     if (tcp_port > 0)
-      ret = memcached_server_add_with_weight(&m_memcache, host.c_str(), 
+      ret = memcached_server_add_with_weight(MEMCACHEL(tcp_st), host.c_str(), 
                                              tcp_port, weight);
     if (udp_port > 0)
-      ret2 = memcached_server_add_udp_with_weight(&m_memcache_udp, host.c_str(), 
+      ret2 = memcached_server_add_udp_with_weight(MEMCACHEL(udp_st), host.c_str(), 
                                                  udp_port, weight);
   }
 

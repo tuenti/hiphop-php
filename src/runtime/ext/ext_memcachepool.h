@@ -25,7 +25,6 @@
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
 
-
 ///////////////////////////////////////////////////////////////////////////////
 // class MemcachePool
 
@@ -84,15 +83,10 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
 
   // implemented by HPHP
   public: c_MemcachePool *create();
-
- private:
-  memcached_st m_memcache;
-  memcached_st m_memcache_udp;
-  int m_compress_threshold;
-  double m_min_compress_savings;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
+
 }
 
 #endif // __EXT_MEMCACHEPOOL_H__

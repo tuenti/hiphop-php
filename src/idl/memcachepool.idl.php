@@ -91,15 +91,6 @@ BeginClass(
     'bases'  => array('Sweepable'),
     'desc'   => "Represents a connection to a set of memcache servers.",
     'flags'  =>  HasDocComment,
-    'footer' => <<<EOT
-
- private:
-  memcached_st m_memcache;
-  memcached_st m_memcache_udp;
-  int m_compress_threshold;
-  double m_min_compress_savings;
-EOT
-,
   ));
 
 DefineFunction(
