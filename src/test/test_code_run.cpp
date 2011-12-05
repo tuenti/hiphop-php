@@ -7242,6 +7242,13 @@ bool TestCodeRun::TestUnset() {
        "goo();\n"
        "unset($this);\n"
        "var_dump($this);\n");
+
+  MVCR("<?php "
+       "function rmv($a, $b) { unset($a[$b]); return $a; }"
+       "$a = array('foo');"
+       "$b = array();"
+       "var_dump(rmv($a, $b));");
+
   return true;
 }
 
@@ -7600,26 +7607,62 @@ bool TestCodeRun::TestReference() {
        "$p($some_ref = &$q);"
        "var_dump($some_ref,$q);");
 
+  MVCR("<?php "
+       "function foo(&$x, $y) { $x++; var_dump($x); }"
+       "function bar(&$x, $y, $f) {"
+       "  $f($x, $x = &$y);"
+       "  foo($x, $x = &$y);"
+       "  foo($y, $y = 2);"
+       "}"
+       "$x = 0;"
+       "bar($x, $x, 'foo');"
+       "var_dump($x);");
+
+  MVCR("<?php "
+       "function f($x) {"
+       "  global $u;"
+       "  if (isset($u)) return null;"
+       "  return $x;"
+       "}"
+       "function test($a) {"
+       "  $a++;"
+       "  return $a;"
+       "}"
+       "function &foo() {"
+       "  return $GLOBALS['x'];"
+       "}"
+       "$x = 1;"
+       "test(foo());"
+       "var_dump($x);"
+       "$f = f('foo');"
+       "$x = 1;"
+       "test($f());"
+       "var_dump($x);"
+       "$t = f('test');"
+       "$x = 1;"
+       "$t(foo());"
+       "var_dump($x);");
+
   return true;
 }
 
 bool TestCodeRun::TestDynamicConstants() {
   MVCR("<?php function foo($a) { return $a + 10;} define('TEST', foo(10)); "
-      "var_dump(TEST);");
-  MVCR("<?php function foo() { return 15;} "
-      "var_dump(TEST); define('TEST', foo()); var_dump(TEST);");
+       "var_dump(TEST);");
+  MVCR("<?php function foo() { global $g; return $g ? -1 : 15;} "
+       "var_dump(TEST); define('TEST', foo()); var_dump(TEST);");
   MVCR("<?php if (true) define('TEST', 1); else define('TEST', 2); "
-      "var_dump(TEST);");
+       "var_dump(TEST);");
   MVCR("<?php var_dump(TEST); define('TEST', 1); var_dump(TEST); "
-      "define('TEST', 2); var_dump(TEST);");
+       "define('TEST', 2); var_dump(TEST);");
   MVCR("<?php if (false) define('TEST', 1); else define('TEST', 2); "
-      "var_dump(TEST);");
+       "var_dump(TEST);");
   MVCR("<?php var_dump(defined('TEST')); var_dump(TEST);"
-      "define('TEST', 13);"
-      "var_dump(defined('TEST')); var_dump(TEST);");
+       "define('TEST', 13);"
+       "var_dump(defined('TEST')); var_dump(TEST);");
   MVCR("<?php define('FOO', BAR); define('BAR', FOO); echo FOO; echo BAR;");
   MVCR("<?php define('A', 10); class T { static $a = array(A); } "
-      "define('A', 20); var_dump(T::$a);");
+       "define('A', 20); var_dump(T::$a);");
 
   return true;
 }
@@ -8770,9 +8813,10 @@ bool TestCodeRun::TestCompilation() {
   MVCR("<?php class A { public static $foo = 123;} $a = foo(); "
        "function foo() { return 'foo';} var_dump(A::$$a);");
 
-  // testing re-declared classes with missing parents
-  MVCR("<?php $a = bar(); if ($a) { class fOO extends Unknown {} } else "
-       "{ class Foo extends unknOwn {} } function bar() { return 123;}");
+  // testing re-declared classes with missing parents, HPHPi raises error
+  // but the compiled code does not.
+  //MVCR("<?php $a = bar(); if ($a) { class fOO extends Unknown {} } else "
+  //     "{ class Foo extends unknOwn {} } function bar() { return 123;}");
 
   // testing re-declared classes with different cases
   MVCR("<?php $a = bar(); if ($a) { class fOO {} } else "
@@ -18505,7 +18549,8 @@ bool TestCodeRun::TestAPC() {
 }
 
 bool TestCodeRun::TestInlining() {
-  WithOpt w(Option::AutoInline);
+  int ai = Option::AutoInline;
+  Option::AutoInline = 5;
 
   MVCR("<?php "
        "function id($x) {"
@@ -18641,6 +18686,46 @@ bool TestCodeRun::TestInlining() {
           "int(30)\n");
   }
 
+  MVCR("<?php "
+       "function &test(&$x,$y) {"
+       "  $GLOBALS['x'] = &$y;"
+       "  return $x[0];"
+       "}"
+       "$x = array((object)1);"
+       "$y = &test($x,0);"
+       "$y++;"
+       "var_dump($x, $y);");
+
+  MVCR("<?php "
+       "function &test(&$x) {"
+       "  $x = 1;"
+       "  return $x;"
+       "}"
+       "$x = 0;"
+       "$y = &test($x);"
+       "$y++;"
+       "var_dump($x, $y);");
+
+  MVCRNW("<?php "
+        "function foo($u, $v, $w) {"
+        "  $u = 10;"
+        "  $v = 20;"
+        "  $w = 20;"
+        "}"
+        "$u = 1;"
+        "$v = 2;"
+        "$w = 3;"
+        "foo(&$u, &$v, $w);"
+        "var_dump($u, $v, $w);");
+
+  MVCR("<?php "
+       "function foo() { return $GLOBALS['g']; }"
+       "$g = 0;"
+       "$a =& foo();"
+       "$a++;"
+       "var_dump($a, $g);");
+
+  Option::AutoInline = ai;
   return true;
 }
 
@@ -19723,6 +19808,80 @@ bool TestCodeRun::TestGoto() {
         "string(10) \"after try1\"\n"
         "string(4) \"none\"\n"
         "string(10) \"after try1\"\n");
+
+  MVCRO("<?php "
+        "function g($x) {"
+        "  var_dump($x);"
+        "  if ($x == 123) {"
+        "    throw new Exception();"
+        "  }"
+        "}"
+        "function f($x) {"
+        "  if ($x == 1) {"
+        "    goto mylabel1;"
+        "  } else if ($x == 2) {"
+        "    goto mylabel2;"
+        "  } else if ($x == 3) {"
+        "    goto mylabel3;"
+        "  } else if ($x == 4) {"
+        "    goto mylabel4;"
+        "  }"
+        "  try {"
+        "    g($x);"
+        "    echo \"Should not get here\\n\";"
+        "    try {"
+        "      try {"
+        "        mylabel1:"
+        "        g($x);"
+        "      } catch (exception $e) {"
+        "        echo \"1a\\n\";"
+        "      }"
+        "      try {"
+        "        mylabel2:"
+        "        g($x);"
+        "      } catch (exception $e) {"
+        "        echo \"1b\\n\";"
+        "      }"
+        "    } catch (exception $e) {"
+        "      echo \"1\\n\";"
+        "    }"
+        "    try {"
+        "      try {"
+        "        mylabel3:"
+        "        g($x);"
+        "      } catch (exception $e) {"
+        "        echo \"2a\\n\";"
+        "      }"
+        "      try {"
+        "        mylabel4:"
+        "        g($x);"
+        "      } catch (exception $e) {"
+        "        echo \"2b\\n\";"
+        "      }"
+        "    } catch (exception $e) {"
+        "      echo \"2\\n\";"
+        "    }"
+        "  } catch (Exception $e) {"
+        "    echo \"0\\n\";"
+        "  }"
+        "}"
+        "f(1);"
+        "f(2);"
+        "f(3);"
+        "f(4);"
+        "f(123);",
+        "int(1)\n"
+        "int(1)\n"
+        "int(1)\n"
+        "int(1)\n"
+        "int(2)\n"
+        "int(2)\n"
+        "int(2)\n"
+        "int(3)\n"
+        "int(3)\n"
+        "int(4)\n"
+        "int(123)\n"
+        "0\n");
 
   return true;
 }
@@ -27101,6 +27260,256 @@ bool TestCodeRun::TestTraits() {
         "string(4) \"test\"\n"
         "string(3) \"foo\"\n"
         "string(3) \"bar\"\n"
+       );
+
+  MVCRO(
+    "<?php\n"
+    "trait T {\n"
+    "  static function foo() {\n"
+    "    echo \"I'm in class \" . get_class() . \"\\n\";"
+    "  }\n"
+    "}\n"
+    "class C { use T; }\n"
+    "class D extends C {}\n"
+    "trait T2 { use T; }\n"
+    "trait T3 { use T2; }\n"
+    "$x = new D();\n"
+    "$x->foo();\n"
+    "C::foo();\n"
+    "D::foo();\n"
+    "T::foo();\n"
+    "T2::foo();\n"
+    "T3::foo();\n"
+    "?>"
+    ,
+    "I'm in class C\n"
+    "I'm in class C\n"
+    "I'm in class C\n"
+    "I'm in class T\n"
+    "I'm in class T2\n"
+    "I'm in class T3\n"
+  );
+
+  MVCRO(
+        "<?php\n"
+        "class Base {}\n"
+        "trait T {\n"
+        "  public function sayClass() {\n"
+        "    echo get_class() . \"\\n\";\n"
+        "  }\n"
+        "  public function sayParent() {\n"
+        "    echo get_parent_class();\n"
+        "  }\n"
+        "}\n"
+        "class Cls extends Base { use T; }\n"
+        "$o = new Cls();\n"
+        "$o->sayClass();  // echo Cls\n"
+        "$o->sayParent(); // echos Base\n"
+        "?>\n"
+        "\n"
+       ,
+        "Cls\n"
+        "Base\n"
+       );
+
+  MVCRO(
+        "<?php\n"
+        "trait T {\n"
+        "  public static $x=1;\n"
+        "  public function printX() { var_dump(self::$x); }\n"
+        "}\n"
+        "class C1 { use T; }\n"
+        "class C2 { use T; }\n"
+        "$o1 = new C1;\n"
+        "$o2 = new C2;\n"
+        "var_dump(T::$x);\n"
+        "var_dump(C1::$x);\n"
+        "var_dump(C2::$x);\n"
+        "$o1->printX();\n"
+        "$o2->printX();\n"
+        "T::$x++;\n"
+        "var_dump(T::$x);\n"
+        "var_dump(C1::$x);\n"
+        "var_dump(C2::$x);\n"
+        "$o1->printX();\n"
+        "$o2->printX();\n"
+        "C1::$x++;\n"
+        "var_dump(T::$x);\n"
+        "var_dump(C1::$x);\n"
+        "var_dump(C2::$x);\n"
+        "$o1->printX();\n"
+        "$o2->printX();\n"
+        "C2::$x++;\n"
+        "var_dump(T::$x);\n"
+        "var_dump(C1::$x);\n"
+        "var_dump(C2::$x);\n"
+        "$o1->printX();\n"
+        "$o2->printX();\n"
+        "$o1->x++;\n"
+        "var_dump(T::$x);\n"
+        "var_dump(C1::$x);\n"
+        "var_dump(C2::$x);\n"
+        "$o1->printX();\n"
+        "$o2->printX();\n"
+       ,
+        "int(1)\n"
+        "int(1)\n"
+        "int(1)\n"
+        "int(1)\n"
+        "int(1)\n"
+        "int(2)\n"
+        "int(1)\n"
+        "int(1)\n"
+        "int(1)\n"
+        "int(1)\n"
+        "int(2)\n"
+        "int(2)\n"
+        "int(1)\n"
+        "int(2)\n"
+        "int(1)\n"
+        "int(2)\n"
+        "int(2)\n"
+        "int(2)\n"
+        "int(2)\n"
+        "int(2)\n"
+        "int(2)\n"
+        "int(2)\n"
+        "int(2)\n"
+        "int(2)\n"
+        "int(2)\n"
+       );
+
+  MVCRO(
+        "<?php\n"
+        "trait MyTrait {\n"
+        "  public static function callNew() {\n"
+        "    new self(\"called via SELF\");\n"
+        "    new parent(\"called via PARENT\");\n"
+        "  }\n"
+        "}\n"
+        "class MyBaseClass {\n"
+        "  public function __construct($arg) {\n"
+        "    echo __class__ . \": \" . $arg . \"\\n\";\n"
+        "  }\n"
+        "}\n"
+        "class MyDerivedClass extends MyBaseClass {\n"
+        "  use MyTrait;\n"
+        "  public function __construct($arg) {\n"
+        "    echo __class__ . \": \" . $arg . \"\\n\";\n"
+        "  }\n"
+        "}\n"
+        "$o= MyDerivedClass::callNew();\n"
+       ,
+        "MyDerivedClass: called via SELF\n"
+        "MyBaseClass: called via PARENT\n"
+       );
+
+  MVCRO(
+        "<?php\n"
+        "trait my_trait {\n"
+        "  abstract function foo();\n"
+        "  public function bar() {\n"
+        "    echo \"I am bar\\n\";\n"
+        "    self::foo();\n"
+        "  }\n"
+        "}\n"
+        "class my_class {\n"
+        "  use my_trait;\n"
+        "  private function foo() {\n"
+        "    echo \"I am foo\\n\";\n"
+        "  }\n"
+        "}\n"
+        "$o = new my_class;\n"
+        "$o->bar();\n"
+       ,
+        "I am bar\n"
+        "I am foo\n"
+       );
+
+  MVCRO(
+        "<?php\n"
+        "trait T1 {\n"
+        "  public function inc($who) {\n"
+        "    static $x=0;\n"
+        "    $x++;\n"
+        "    echo $who . \" (\" . __class__ . \"): \" . $x . \"\\n\";\n"
+        "  }\n"
+        "}\n"
+        "class B { use T1; }\n"
+        "class C { use T1; }\n"
+        "class D extends C {}\n"
+        "$c1 = new C;\n"
+        "$c2 = new C;\n"
+        "$d1 = new D;\n"
+        "$b1 = new B;\n"
+        "$c1->inc(\"c1\");\n"
+        "$c2->inc(\"c2\");\n"
+        "$d1->inc(\"d1\");\n"
+        "$b1->inc(\"b1\");\n"
+        "$b1->inc(\"b1\");\n"
+        "$c2->inc(\"c2\");\n"
+        "$d1->inc(\"d1\");\n"
+        "$c1->inc(\"c1\");\n"
+       ,
+        "c1 (C): 1\n"
+        "c2 (C): 2\n"
+        "d1 (C): 1\n"
+        "b1 (B): 1\n"
+        "b1 (B): 2\n"
+        "c2 (C): 3\n"
+        "d1 (C): 2\n"
+        "c1 (C): 4\n"
+       );
+
+  MVCRO(
+        "<?php\n"
+        "trait T {\n"
+        "  abstract public function bar();\n"
+        "  public function foo() {\n"
+        "    $this->bar();\n"
+        "  }\n"
+        "}\n"
+        "class B {\n"
+        "  public function bar() {\n"
+        "    echo \"I'm bar\\n\";\n"
+        "  }\n"
+        "}\n"
+        "class C extends B {\n"
+        "  use T;\n"
+        "}\n"
+        "$o = new C;\n"
+        "$o->foo();\n"
+        "\n"
+       ,
+        "I'm bar\n"
+       );
+
+  MVCRO(
+        "<?php\n"
+        "\n"
+        "trait T1 {\n"
+        "  abstract function bar();\n"
+        "  public function foo() {\n"
+        "    $this->bar();\n"
+        "  }\n"
+        "}\n"
+        "\n"
+        "trait T2 {\n"
+        "  public function bar() {\n"
+        "    echo \"Hello from bar()\\n\";\n"
+        "  }\n"
+        "}\n"
+        "\n"
+        "class C {\n"
+        "  use T1, T2;\n"
+        "}\n"
+        "\n"
+        "$o = new C;\n"
+        "$o->foo();\n"
+        "\n"
+        "\n"
+       ,
+        "Hello from bar()\n"
        );
 
   return true;

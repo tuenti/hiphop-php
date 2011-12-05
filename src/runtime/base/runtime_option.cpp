@@ -331,7 +331,7 @@ bool RuntimeOption::CheckSymLink = false;
 bool RuntimeOption::NativeXHP = true;
 int RuntimeOption::ScannerType = 0;
 bool RuntimeOption::SandboxCheckMd5 = false;
-int RuntimeOption::MaxUserFunctionId = 65536;
+int RuntimeOption::MaxUserFunctionId = (2 * 65536);
 
 #ifdef TAINTED
 bool RuntimeOption::EnableTaintWarnings = false;
@@ -638,7 +638,8 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
     EnableEarlyFlush = server["EnableEarlyFlush"].getBool(true);
     ForceChunkedEncoding = server["ForceChunkedEncoding"].getBool();
     MaxPostSize = (server["MaxPostSize"].getInt32(100)) * (1LL << 20);
-    AlwaysPopulateRawPostData = server["AlwaysPopulateRawPostData"].getBool();
+    AlwaysPopulateRawPostData =
+      server["AlwaysPopulateRawPostData"].getBool(true);
     LibEventSyncSend = server["LibEventSyncSend"].getBool(true);
     TakeoverFilename = server["TakeoverFilename"].getString();
     ExpiresActive = server["ExpiresActive"].getBool(true);
@@ -1038,7 +1039,7 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
     EnableObjDestructCall = eval["EnableObjDestructCall"].getBool(false);
     EnableEvalOptimization = eval["EnableEvalOptimization"].getBool(true);
     EvalScalarValueExprLimit = eval["EvalScalarValueExprLimit"].getInt32(64);
-    MaxUserFunctionId = eval["MaxUserFunctionId"].getInt32(65536);
+    MaxUserFunctionId = eval["MaxUserFunctionId"].getInt32(2 * 65536);
     CheckSymLink = eval["CheckSymLink"].getBool(false);
     NativeXHP = eval["NativeXHP"].getBool(true);
     if (EnableXHP && !NativeXHP) ScannerType |= Scanner::PreprocessXHP;

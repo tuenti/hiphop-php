@@ -134,11 +134,14 @@ void AnalysisResult::parseOnDemand(const std::string &name) const {
     if (name.find(root) == 0) {
       rname = name.substr(root.length());
     }
-    if (m_files.find(rname) == m_files.end() &&
-        (m_parseOnDemand || inParseOnDemandDirs(rname)) &&
+    if ((m_parseOnDemand || inParseOnDemandDirs(rname)) &&
         Option::PackageExcludeFiles.find(rname) ==
         Option::PackageExcludeFiles.end() &&
         !Option::IsFileExcluded(rname, Option::PackageExcludePatterns)) {
+      {
+        Locker l(this);
+        if (m_files.find(rname) != m_files.end()) return;
+      }
       m_package->addSourceFile(rname.c_str());
     }
   }
@@ -2596,7 +2599,7 @@ void AnalysisResult::outputCPPExtClassImpl(CodeGenerator &cg) {
        iter != m_systemClasses.end(); ++iter) {
     ClassScopePtr cls = iter->second;
     bool extension = cls->getAttribute(ClassScope::Extension);
-    if (cls->isInterface() || cls->isTrait()) continue;
+    if (cls->isInterface()) continue;
 
     classes.push_back(cls->getOriginalName().c_str());
     merged[cls->getName()].push_back(cls);
@@ -2615,7 +2618,7 @@ void AnalysisResult::outputCPPExtClassImpl(CodeGenerator &cg) {
     for (ClassScopePtrVec::const_iterator iter2 = iter->second.begin();
          iter2 != iter->second.end(); ++iter2) {
       ClassScopePtr cls = *iter2;
-      if (!cls->isInterface() && !cls->isTrait()) {
+      if (!cls->isInterface()) {
         classes.push_back(cls->getOriginalName().c_str());
         break;
       }
@@ -3116,7 +3119,7 @@ void AnalysisResult::outputCPPDynamicClassTables(
       for (ClassScopePtrVec::const_iterator iter2 = iter->second.begin();
            iter2 != iter->second.end(); ++iter2) {
         cls = *iter2;
-        if (cls->isUserClass() && !cls->isInterface() && !cls->isTrait()) {
+        if (cls->isUserClass() && !cls->isInterface()) {
           classes.push_back(cls->getOriginalName().c_str());
           classScopes[cls->getName()].push_back(cls);
           if (!cls->isRedeclaring()) {
@@ -3129,14 +3132,14 @@ void AnalysisResult::outputCPPDynamicClassTables(
   }
   if (system) {
     BOOST_FOREACH(tie(n, cls), m_systemClasses) {
-      if (!cls->isInterface() && !cls->isSepExtension() && !cls->isTrait()) {
+      if (!cls->isInterface() && !cls->isSepExtension()) {
         classes.push_back(cls->getOriginalName().c_str());
       }
     }
     outputCPPExtClassImpl(cg);
   } else {
     BOOST_FOREACH(tie(n, cls), m_systemClasses) {
-      if (!cls->isInterface() && cls->isSepExtension() && !cls->isTrait()) {
+      if (!cls->isInterface() && cls->isSepExtension()) {
         classes.push_back(cls->getOriginalName().c_str());
         cls->outputCPPDynamicClassDecl(cg);
         cls->outputCPPGlobalTableWrappersDecl(cg, ar);
