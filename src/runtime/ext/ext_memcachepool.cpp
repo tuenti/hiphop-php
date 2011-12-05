@@ -18,6 +18,7 @@
 #include <runtime/ext/ext_memcachepool.h>
 #include <runtime/base/util/request_local.h>
 #include <runtime/base/ini_setting.h>
+#include <runtime/ext/ext_function.h>
 #include <util/logger.h>
 
 #define MMC_SERIALIZED 1
@@ -26,22 +27,15 @@
 namespace HPHP {
 IMPLEMENT_DEFAULT_EXTENSION(memcachepool);
 
-#define getCheckedArrayRetType(input, fail, type)                       \
-  Variant::TypedValueAccessor tva_##input = input.getTypedAccessor();   \
-  if (UNLIKELY(Variant::GetAccessorType(tva_##input) != KindOfArray)) { \
-    throw_bad_array_exception();                                        \
-    return fail;                                                        \
-  }                                                                     \
-  type arr_##input = Variant::GetAsArray(tva_##input);
-
 bool memcachepool_ini_on_update_hash_strategy(CStrRef value, void *p);
 bool memcachepool_ini_on_update_hash_function(CStrRef value, void *p);
 
-struct MemcacheObjectData {
-  memcached_st *tcp_st;
-  memcached_st *udp_st;
-  int compress_threshold;
-  int min_compress_savings;
+class MemcacheObjectData;
+
+struct StorageData {
+  time_t last_config_update;
+  bool persistent;
+  c_MemcachePool * memcachepool_object;
 };
 
 class MemcachePoolRequest: public RequestEventHandler {
@@ -51,7 +45,8 @@ class MemcachePoolRequest: public RequestEventHandler {
     std::string hash_function;
     
     // Static map per thread to contain per-instante data
-    std::map<c_MemcachePool *, MemcacheObjectData> obj_map;
+    std::map<int, StorageData> storage_map;
+    std::map<c_MemcachePool *, MemcacheObjectData *> obj_map;
 
     virtual void requestInit() {
       hash_strategy = "standard";
@@ -66,10 +61,12 @@ class MemcachePoolRequest: public RequestEventHandler {
     virtual void requestShutdown() {
       // This is done to close all TCP connections because libmemcached use
       // persistent connections which could not afford
-      std::map<c_MemcachePool *, MemcacheObjectData>::iterator it;
+      std::map<int, StorageData>::iterator it;
 
-      for (it = obj_map.begin(); it != obj_map.end(); it++) {
-        (*it).first->t_close();
+      for (it = storage_map.begin(); it != storage_map.end(); it++) {
+        if (! (*it).second.persistent) {
+          (*it).second.memcachepool_object->t_close();
+        }
       }
     }
 };
@@ -78,7 +75,61 @@ IMPLEMENT_STATIC_REQUEST_LOCAL(MemcachePoolRequest, s_memcachepool_data);
 
 // Macros to access to global an per-instante variables
 #define MEMCACHEG(name) s_memcachepool_data->name
-#define MEMCACHEL(name) s_memcachepool_data->obj_map[this].name
+#define MEMCACHEL(name) s_memcachepool_data->obj_map[this]->name
+
+class MemcacheObjectData {
+  public:
+  memcached_st *tcp_st;
+  memcached_st *udp_st;
+  int compress_threshold;
+  int min_compress_savings;
+  Variant failure_callback;
+
+  MemcacheObjectData() {
+    tcp_st = memcached_create(NULL);
+    udp_st = memcached_create(NULL);
+    compress_threshold = 0;
+    min_compress_savings = 0.2;
+    failure_callback.setNull();
+
+    if (MEMCACHEG(hash_strategy) == "consistent") {
+      // need to hook up a global variable to set this
+      memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION,
+                             MEMCACHED_DISTRIBUTION_CONSISTENT_KETAMA);
+      memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION,
+                             MEMCACHED_DISTRIBUTION_CONSISTENT_KETAMA);
+    } else {
+      memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION,
+                             MEMCACHED_DISTRIBUTION_MODULA);
+      memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION,
+                             MEMCACHED_DISTRIBUTION_MODULA);
+    }
+
+    if (MEMCACHEG(hash_function) == "fnv") {
+      memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_HASH,
+                             MEMCACHED_HASH_FNV1A_32);
+      memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_HASH,
+                             MEMCACHED_HASH_FNV1A_32);
+    } else {
+      memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_HASH,
+                             MEMCACHED_HASH_CRC);
+      memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_HASH,
+                             MEMCACHED_HASH_CRC);
+    }
+  
+    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_USE_UDP, 1);
+    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 1);
+    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 1);
+    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_NOREPLY, 0);
+    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_NO_BLOCK, 1);
+    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_UDP_ALWAYS_FLUSH, 1);
+  }
+
+  ~MemcacheObjectData() {
+    memcached_free(tcp_st);
+    memcached_free(udp_st);
+  }
+};
 
 bool memcachepool_ini_on_update_hash_strategy(CStrRef value, void *p) {
   if (!strncasecmp(value.data(), "standard", sizeof("standard"))) {
@@ -104,51 +155,55 @@ bool memcachepool_ini_on_update_hash_function(CStrRef value, void *p) {
 
 ///////////////////////////////////////////////////////////////////////////////
 // methods
+   
+Object c_MemcachePool::ti_getstoragememcache(const char *, int storage_id, int timestamp, 
+                                             VRefParam empty, bool persistent) {
+  STATIC_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::getstoragememcache);
+  StorageData *st_data;
+
+  empty = false;
+
+  if (MEMCACHEG(storage_map).count(storage_id) < 1) {
+    Logger::Verbose("[MemcachePool] Creating new MemcachePool object for storage id  %d", storage_id);
+
+    // Insert new entry
+    st_data = &(MEMCACHEG(storage_map)[storage_id]);
+    st_data->last_config_update = timestamp;
+    st_data->persistent = persistent;
+    st_data->memcachepool_object = NEWOBJ(c_MemcachePool);
+
+    MEMCACHEG(obj_map)[st_data->memcachepool_object] = new MemcacheObjectData;
+
+    empty = true;
+  } else {
+    // Get old entry
+    st_data = &(MEMCACHEG(storage_map)[storage_id]);
+  }
+
+  if (st_data->last_config_update < timestamp) {
+    Logger::Verbose("[MemcachePool] Object too old for storage id  %d, destroying data", storage_id);
+
+    delete MEMCACHEG(obj_map)[st_data->memcachepool_object];
+    MEMCACHEG(obj_map)[st_data->memcachepool_object] = new MemcacheObjectData;
+
+    st_data->last_config_update = timestamp;
+    st_data->persistent = persistent;
+
+    empty = true;
+  } 
+
+  return st_data->memcachepool_object;
+}
 
 c_MemcachePool::c_MemcachePool(const ObjectStaticCallbacks *cb) : ExtObjectData(cb) {
-  Logger::Verbose("[MemcachePool] Creating new c_MemcachePool object %p", this);
-  MEMCACHEL(tcp_st) = memcached_create(NULL);
-  MEMCACHEL(udp_st) = memcached_create(NULL);
-  MEMCACHEL(compress_threshold) = 0;
-  MEMCACHEL(min_compress_savings) = 0.2;
-
-  if (MEMCACHEG(hash_strategy) == "consistent") {
-    // need to hook up a global variable to set this
-    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_DISTRIBUTION,
-                           MEMCACHED_DISTRIBUTION_CONSISTENT_KETAMA);
-    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_DISTRIBUTION,
-                           MEMCACHED_DISTRIBUTION_CONSISTENT_KETAMA);
-  } else {
-    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_DISTRIBUTION,
-                           MEMCACHED_DISTRIBUTION_MODULA);
-    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_DISTRIBUTION,
-                           MEMCACHED_DISTRIBUTION_MODULA);
+  MEMCACHEG(obj_map)[this] = NULL;
+  if (! s_memcachepool_data->obj_map[this]) {
+    s_memcachepool_data->obj_map[this] = new MemcacheObjectData;
   }
-
-  if (MEMCACHEG(hash_function) == "fnv") {
-    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_HASH,
-                           MEMCACHED_HASH_FNV1A_32);
-    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_HASH,
-                           MEMCACHED_HASH_FNV1A_32);
-  } else {
-    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_HASH,
-                           MEMCACHED_HASH_CRC);
-    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_HASH,
-                           MEMCACHED_HASH_CRC);
-  }
-
-  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_USE_UDP, 1);
-  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 1);
-  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 1);
-  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_NOREPLY, 0);
-  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_NO_BLOCK, 1);
-  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_UDP_ALWAYS_FLUSH, 1);
 }
 
 c_MemcachePool::~c_MemcachePool() {
-  Logger::Verbose("[MemcachePool] Destroying %p", this);
-  memcached_free(MEMCACHEL(tcp_st));
-  memcached_free(MEMCACHEL(udp_st));
+  Logger::Verbose("[MemcachePool] Destroying MemcachePool object %p", this);
   MEMCACHEG(obj_map).erase(this);
 }
 
@@ -169,7 +224,7 @@ bool c_MemcachePool::t_connect(CStrRef host, int port /*= 0*/,
     ret = memcached_server_add(MEMCACHEL(tcp_st), host.c_str(), port);
   }
 
-  return (ret == MEMCACHED_SUCCESS);
+  return check_memcache_return(MEMCACHEL(tcp_st), ret, "", "Error adding server");
 }
 
 bool c_MemcachePool::t_pconnect(CStrRef host, int port /*= 0*/,
@@ -225,7 +280,8 @@ bool c_MemcachePool::t_add(CStrRef key, CVarRef var, int flag /*= 0*/,
                                         serialized.c_str(),
                                         serialized.length(),
                                         expire, flag);
-  return (ret == MEMCACHED_SUCCESS);
+
+  return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
 }
 
 bool c_MemcachePool::t_set(CStrRef key, CVarRef var, int flag /*= 0*/,
@@ -244,11 +300,26 @@ bool c_MemcachePool::t_set(CStrRef key, CVarRef var, int flag /*= 0*/,
                                         serialized.length(),
                                         expire, flag);
 
-  if (ret == MEMCACHED_SUCCESS) {
-    return true;
+  return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
+}
+
+bool c_MemcachePool::t_cas(CStrRef key, CVarRef var, int flag,
+                       int expire, double cas) {
+  INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::cas);
+  if (key.empty()) {
+    raise_warning("Key cannot be empty");
+    return false;
   }
 
-  return false;
+  String serialized = memcache_prepare_for_storage(var, flag);
+
+  memcached_return_t ret = memcached_cas(MEMCACHEL(tcp_st),
+                                        key.c_str(), key.length(),
+                                        serialized.c_str(),
+                                        serialized.length(),
+                                        expire, flag, cas);
+
+  return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
 }
 
 bool c_MemcachePool::t_replace(CStrRef key, CVarRef var, int flag /*= 0*/,
@@ -266,7 +337,7 @@ bool c_MemcachePool::t_replace(CStrRef key, CVarRef var, int flag /*= 0*/,
                                              serialized.c_str(),
                                              serialized.length(),
                                              expire, flag);
-  return (ret == MEMCACHED_SUCCESS);
+  return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
 }
 
 Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam cas /*= null*/) {
@@ -282,10 +353,17 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
   std::vector<size_t> key_len;
   Array keyArr;
 
-  if (key.is(KindOfArray)) 
+  if (key.is(KindOfArray)) {
     keyArr = key.toArray();
-  else 
+
+    if (cas.isReferenced())
+      cas = Array();
+    if (flags.isReferenced())
+      flags = Array();
+  }
+  else {
     keyArr = Array(key);
+  }
 
   real_keys.reserve(keyArr.size());
   key_len.reserve(keyArr.size());
@@ -308,44 +386,46 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
 
   memcached_return_t ret = memcached_mget(memc, &real_keys[0], &key_len[0], 
                                           real_keys.size());
+
+  if (ret != MEMCACHED_SUCCESS) {
+    return check_memcache_return(memc, ret, "", "Error doing multiget");
+  }
+
   memcached_result_create(memc, &result);
 
   while ((memcached_fetch_result(memc, &result, &ret)) != NULL) {
     if (ret != MEMCACHED_SUCCESS) {
-      // should probably notify about errors
+      check_memcache_return(memc, ret, "", "Error getting multiget results");
       continue;
     }
 
     payload     = memcached_result_value(&result);
     payload_len = memcached_result_length(&result);
-    cflags      = memcached_result_flags(&result);
-    ccas        = memcached_result_cas(&result);
     res_key     = memcached_result_key_value(&result);
+    ccas        = memcached_result_cas(&result);
+    cflags      = memcached_result_flags(&result);
     res_key_len = memcached_result_key_length(&result);
 
     curkey = String(res_key, res_key_len, CopyString);
 
     return_val.set(curkey, memcache_fetch_from_storage(payload, payload_len, cflags));
 
-    if (!flags.is(KindOfNull)) {
-      if (key.is(KindOfArray)) {
-        getCheckedArrayRetType(flags, null, Array &);
-        arr_flags.set(curkey, cflags);
-      }
-      else {
+    if (flags.isReferenced()) {
+      if (key.is(KindOfArray))
+        flags->set(curkey, cflags, true);
+      else
         flags = cflags;
-      }
     }
-    
-    if (!cas.is(KindOfNull)) {
-      if (key.is(KindOfArray)) {
-        getCheckedArrayRetType(cas, null, Array &);
-        arr_cas.set(curkey, ccas);
-      }
-      else {
+        
+    if (cas.isReferenced()) {
+      if (key.is(KindOfArray))
+        cas->set(curkey, ccas, true);
+      else
         cas = ccas;
-      }
     }
+  }
+  if ((ret != MEMCACHED_END) && (ret != MEMCACHED_NOTFOUND)) {
+    check_memcache_return(memc, ret, "", "Error getting multiget results");
   }
 
   memcached_result_free(&result);
@@ -366,7 +446,7 @@ bool c_MemcachePool::t_delete(CStrRef key, int expire /*= 0*/) {
   memcached_return_t ret = memcached_delete(MEMCACHEL(tcp_st),
                                             key.c_str(), key.length(),
                                             expire);
-  return (ret == MEMCACHED_SUCCESS);
+  return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
 }
 
 int64 c_MemcachePool::t_increment(CStrRef key, int offset /*= 1*/) {
@@ -384,7 +464,7 @@ int64 c_MemcachePool::t_increment(CStrRef key, int offset /*= 1*/) {
     return (int64)value;
   }
 
-  return false;
+  return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
 }
 
 int64 c_MemcachePool::t_decrement(CStrRef key, int offset /*= 1*/) {
@@ -401,7 +481,7 @@ int64 c_MemcachePool::t_decrement(CStrRef key, int offset /*= 1*/) {
     return (int64)value;
   }
 
-  return false;
+  return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
 }
 
 bool c_MemcachePool::t_close() {
@@ -416,7 +496,10 @@ Variant c_MemcachePool::t_getversion() {
   char version[16];
   int version_len = 0;
 
-  if (memcached_version(MEMCACHEL(tcp_st)) != MEMCACHED_SUCCESS) {
+  memcached_return_t ret = memcached_version(MEMCACHEL(tcp_st));
+
+  if (ret != MEMCACHED_SUCCESS) {
+    check_memcache_return(MEMCACHEL(tcp_st), ret, "", "Error getting memcached version");
     return false;
   }
 
@@ -439,7 +522,9 @@ Variant c_MemcachePool::t_getversion() {
 
 bool c_MemcachePool::t_flush(int expire /*= 0*/) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::flush);
-  return memcached_flush(MEMCACHEL(tcp_st), expire) == MEMCACHED_SUCCESS;
+  memcached_return_t ret = memcached_flush(MEMCACHEL(tcp_st), expire);
+    
+  return check_memcache_return(MEMCACHEL(tcp_st), ret, "", "Error flushing servers");
 }
 
 bool c_MemcachePool::t_setoptimeout(int64 timeoutms) {
@@ -447,7 +532,9 @@ bool c_MemcachePool::t_setoptimeout(int64 timeoutms) {
   if (timeoutms < 1) {
     timeoutms = 1000; // make default
   }
-
+  
+  memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeoutms);
+  memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeoutms);
   /* intentionally doing nothing for now */
 
   return true;
@@ -529,12 +616,14 @@ Array c_MemcachePool::t_getstats(CStrRef type /* = null_string */,
     memcached_server_instance_by_position(MEMCACHEL(tcp_st), 0);
 
   memcached_stat_st stats;
-  if (memcached_stat_servername(&stats, extra_args, instance->hostname,
-                                instance->port) != MEMCACHED_SUCCESS) {
+  memcached_return_t ret;
+  ret = memcached_stat_servername(&stats, extra_args, instance->hostname, 
+                                  instance->port);
+  if (ret != MEMCACHED_SUCCESS) {
+    check_memcache_return(MEMCACHEL(tcp_st), ret, "", "Error getting stats from server");
     return NULL;
   }
 
-  memcached_return_t ret;
   return memcache_build_stats(MEMCACHEL(tcp_st), &stats, &ret);
 }
 
@@ -547,6 +636,7 @@ Array c_MemcachePool::t_getextendedstats(CStrRef type /* = null_string */,
 
   stats = memcached_stat(MEMCACHEL(tcp_st), NULL, &ret);
   if (ret != MEMCACHED_SUCCESS) {
+    check_memcache_return(MEMCACHEL(tcp_st), ret, "", "Error getting memcache stats");
     return NULL;
   }
 
@@ -581,16 +671,94 @@ Array c_MemcachePool::t_getextendedstats(CStrRef type /* = null_string */,
 bool c_MemcachePool::t_setserverparams(CStrRef host, int port /* = 11211 */,
                                    int timeout /* = 0 */,
                                    int retry_interval /* = 0 */,
-                                   bool status /* = true */,
-                                   CVarRef failure_callback /* = null_variant */) {
+                                   bool status /* = true */) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::setserverparams);
-  /* intentionally doing nothing for now */
+  memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeout);
+  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeout);
+  memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeout);
+  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeout);
+  memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_RETRY_TIMEOUT, retry_interval);
+  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_RETRY_TIMEOUT, retry_interval);
+
+ /* intentionally doing nothing for now */
   return true;
+}
+
+/* 
+ * Call to the user defined callback. Callback function have this prototype:
+ * function mycallback($host, $tcp_port, $udp_port, $error, $errnum)
+ *
+ */
+void c_MemcachePool::exec_failure_callback(const char * hostname, int tcp_port, int udp_port,
+                                          memcached_return_t ret, const char * error) {
+  if (MEMCACHEL(failure_callback).isNull())
+    return;
+
+  Array params(ArrayInit(5).set(hostname).set(tcp_port).set(udp_port).set(ret).set(error));
+
+  f_call_user_func_array(MEMCACHEL(failure_callback), params);
+}
+
+/* 
+ * Check memcache return value and obtain further information on error if
+ * possible. Also returns a boolean with the exit status, in order to use
+ * this function return value on API functions
+ *
+ */
+bool c_MemcachePool::check_memcache_return(memcached_st * st,
+                                           memcached_return_t ret,
+                                           String key,  /* = "" */
+                                           char * default_msg /* = "" */) {
+  memcached_server_instance_st instance;
+  const char * str_error, *hostname="";
+  int tcp_port=0, udp_port=0;
+
+
+  if ((MEMCACHEL(failure_callback).isNull()) || (ret == MEMCACHED_SUCCESS))
+    return (ret == MEMCACHED_SUCCESS);
+
+  if (ret == MEMCACHED_ERRNO) {
+    if (st->cached_errno != 0)
+      str_error = strerror(st->cached_errno);
+    else
+      str_error = strerror(errno);
+  }
+
+  if (key.length() > 1) {
+    // If we have a key we can try to get the server used
+    memcached_return_t ret2;
+
+    instance = memcached_server_by_key(st, key.c_str(), key.length(), &ret2);
+    if (instance) {
+      hostname = instance->hostname;
+
+      if (memcached_behavior_get(st, MEMCACHED_BEHAVIOR_USE_UDP))
+        tcp_port = instance->port;
+      else
+        udp_port = instance->port;
+    }
+
+    if (ret != MEMCACHED_ERRNO)
+      str_error = memcached_server_error(instance);
+  }
+
+  if (!str_error)
+    str_error = memcached_strerror(st, ret);
+
+  exec_failure_callback(hostname, tcp_port, udp_port, ret, str_error);
+
+  return (ret == MEMCACHED_SUCCESS);
 }
 
 bool c_MemcachePool::t_setfailurecallback(CVarRef failure_callback) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::setfailurecallback);
-  /* intentionally doing nothing for now */
+  if (!f_is_callable(failure_callback)) {
+    raise_warning("Not a valid callback function %s", failure_callback.toString().data());
+    return false;
+  } 
+
+  MEMCACHEL(failure_callback) = failure_callback;
+
   return true;
 }
 
@@ -605,15 +773,28 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
     ret = memcached_server_add_unix_socket_with_weight(MEMCACHEL(tcp_st),
                                                        host.c_str(), weight);
   } else {
-    if (tcp_port > 0)
+    if (tcp_port > 0) {
       ret = memcached_server_add_with_weight(MEMCACHEL(tcp_st), host.c_str(), 
                                              tcp_port, weight);
-    if (udp_port > 0)
+      check_memcache_return(MEMCACHEL(tcp_st), ret, "", "Cannot add server");
+    }
+
+    if (udp_port > 0) {
       ret2 = memcached_server_add_udp_with_weight(MEMCACHEL(udp_st), host.c_str(), 
-                                                 udp_port, weight);
+                                                udp_port, weight);
+
+      check_memcache_return(MEMCACHEL(tcp_st), ret, "", "Cannot add server");
+    }
   }
 
   if ((ret == MEMCACHED_SUCCESS) && (ret2 == MEMCACHED_SUCCESS)) {
+    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeout);
+    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeout);
+    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeout);
+    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeout);
+    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_RETRY_TIMEOUT, retry_interval);
+    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_RETRY_TIMEOUT, retry_interval);
+
     return true;
   }
 

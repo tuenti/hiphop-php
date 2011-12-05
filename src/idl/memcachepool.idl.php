@@ -88,9 +88,16 @@ CPP
 BeginClass(
   array(
     'name'   => "MemcachePool",
-    'bases'  => array('Sweepable'),
     'desc'   => "Represents a connection to a set of memcache servers.",
     'flags'  =>  HasDocComment,
+		'footer' => <<<EOT
+  private: 
+    bool check_memcache_return(memcached_st * st, memcached_return_t ret, 
+                               String key = "", char *default_msg = "");
+    void exec_failure_callback(const char * hostname, int tcp_port, int udp_port,
+                               memcached_return_t ret, const char * error);
+EOT
+,
   ));
 
 DefineFunction(
@@ -104,11 +111,50 @@ DefineFunction(
 
 DefineFunction(
   array(
+    'name'   => "getstoragememcache",
+		'desc'   => "MemcachePool::getstoragememcache() is a static member to get
+		only one instance per storage_id and thread. The timestamp is used to know
+		if the stored object have old configuration and need to be recreated",
+    'flags'  =>  IsStatic | HasDocComment,
+    'return' => array(
+      'type'   => Object,
+			'desc'   => "Returns a MemcachePool Object or NULL if we need to create
+			new one (next call will return a new Object).",
+    ),
+    'args'   => array(
+      array(
+        'name'   => "storage_id",
+        'type'   => Int32,
+        'desc'   => "Number of the storage id (used to get only one instance per
+				storage).",
+      ),
+      array(
+        'name'   => "timestamp",
+        'type'   => Int32,
+        'desc'   => "Time of the last configuration change.",
+      ),
+			array(
+        'name'   => "empty",
+        'type'   => Variant | Reference,
+				'desc'   => "This parameter is needed to indicate if the memcached
+				object is new and needs to be populated with the memcached servers",
+			),
+			array(
+        'name'   => "persistent",
+        'type'   => Boolean,
+        'value'  => "false",
+        'desc'   => "Defines if the tcp connections should be persistent",
+      ),
+    ),
+  ));
+
+DefineFunction(
+  array(
     'name'   => "connect",
-		'desc'   => "Memcache::connect() establishes a connection to the memcached
-		server. The connection, which was opened using Memcache::connect() will be
+		'desc'   => "MemcachePool::connect() establishes a connection to the memcached
+		server. The connection, which was opened using MemcachePool::connect() will be
 		automatically closed at the end of script execution. Also you can close it
-		with Memcache::close(). Also you can use memcache_connect() function.",
+		with MemcachePool::close(). Also you can use memcache_connect() function.",
     'flags'  =>  HasDocComment,
     'return' => array(
       'type'   => Boolean,
@@ -149,10 +195,10 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "pconnect",
-		'desc'   => "Memcache::pconnect() is similar to Memcache::connect() with the
+		'desc'   => "MemcachePool::pconnect() is similar to MemcachePool::connect() with the
 		difference, that the connection it establishes is persistent. This
 		connection is not closed after the end of script execution and by
-		Memcache::close() function. Also you can use memcache_pconnect() function.",
+		MemcachePool::close() function. Also you can use memcache_pconnect() function.",
     'flags'  =>  HasDocComment,
     'return' => array(
       'type'   => Boolean,
@@ -193,14 +239,14 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "add",
-		'desc'   => "Memcache::add() stores variable var with key only if such key
+		'desc'   => "MemcachePool::add() stores variable var with key only if such key
 		doesn't exist at the server yet. Also you can use memcache_add() function.",
     'flags'  =>  HasDocComment,
     'return' => array(
       'type'   => Boolean,
 			'desc'   => "Returns TRUE on success or FALSE on failure. Returns FALSE if
-			such key already exist. For the rest Memcache::add() behaves similarly to
-			Memcache::set().",
+			such key already exist. For the rest MemcachePool::add() behaves similarly to
+			MemcachePool::set().",
     ),
     'args'   => array(
       array(
@@ -235,8 +281,54 @@ DefineFunction(
 
 DefineFunction(
   array(
+    'name'   => "cas",
+		'desc'   => "MemcachePool::cas() have the same behaviour as set, but only
+		changes the item if its was unchanged from the last time the value was
+		obtained. This is checked using CAS parameter, obtained when calling get",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Boolean,
+      'desc'   => "Returns TRUE on success or FALSE on failure.",
+    ),
+    'args'   => array(
+      array(
+        'name'   => "key",
+        'type'   => String,
+        'desc'   => "The key that will be associated with the item.",
+      ),
+      array(
+        'name'   => "var",
+        'type'   => Variant,
+				'desc'   => "The variable to store. Strings and integers are stored as
+				is, other types are stored serialized.",
+      ),
+      array(
+        'name'   => "flag",
+        'type'   => Int32,
+				'desc'   => "Use MEMCACHE_COMPRESSED to store the item compressed (uses
+				zlib).",
+      ),
+      array(
+        'name'   => "expire",
+        'type'   => Int32,
+				'desc'   => "Expiration time of the item. If it's equal to zero, the
+				item will never expire. You can also use Unix timestamp or a number of
+				seconds starting from current time, but in the latter case the number of
+				seconds may not exceed 2592000 (30 days).",
+      ),
+      array(
+        'name'   => "cas_token",
+        'type'   => Double,
+        'desc'   => "Unique value associated with the existing item. Generated
+				by memcache.",
+      ),
+    ),
+  ));
+
+DefineFunction(
+  array(
     'name'   => "set",
-		'desc'   => "Memcache::set() stores an item var with key on the memcached
+		'desc'   => "MemcachePool::set() stores an item var with key on the memcached
 		server. Parameter expire is expiration time in seconds. If it's 0, the item
 		never expires (but memcached server doesn't guarantee this item to be stored
 		all the time, it could be deleted from the cache to make place for other
@@ -284,10 +376,10 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "replace",
-		'desc'   => "Memcache::replace() should be used to replace value of existing
+		'desc'   => "MemcachePool::replace() should be used to replace value of existing
 		item with key. In case if item with such key doesn't exists,
-		Memcache::replace() returns FALSE. For the rest Memcache::replace() behaves
-		similarly to Memcache::set(). Also you can use memcache_replace()
+		MemcachePool::replace() returns FALSE. For the rest MemcachePool::replace() behaves
+		similarly to MemcachePool::set(). Also you can use memcache_replace()
 		function.",
     'flags'  =>  HasDocComment,
     'return' => array(
@@ -328,9 +420,9 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "get",
-		'desc'   => "Memcache::get() returns previously stored data if an item with
+		'desc'   => "MemcachePool::get() returns previously stored data if an item with
 		such key exists on the server at this moment.\n\nYou can pass array of keys
-		to Memcache::get() to get array of values. The result array will contain
+		to MemcachePool::get() to get array of values. The result array will contain
 		only found key-value pairs.",
     'flags'  =>  HasDocComment,
     'return' => array(
@@ -350,7 +442,7 @@ DefineFunction(
         'value'  => "null",
 				'desc'   => "If present, flags fetched along with the values will be
 				written to this parameter. These flags are the same as the ones given to
-				for example Memcache::set(). The lowest byte of the int is reserved for
+				for example MemcachePool::set(). The lowest byte of the int is reserved for
 				pecl/memcache internal usage (e.g. to indicate compression and
 				serialization status).",
       ),
@@ -371,7 +463,7 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "delete",
-		'desc'   => "Memcache::delete() deletes item with the key. If parameter
+		'desc'   => "MemcachePool::delete() deletes item with the key. If parameter
 		timeout is specified, the item will expire after timeout seconds. Also you
 		can use memcache_delete() function.",
     'flags'  =>  HasDocComment,
@@ -399,12 +491,12 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "increment",
-		'desc'   => "Memcache::increment() increments value of an item by the
+		'desc'   => "MemcachePool::increment() increments value of an item by the
 		specified value. If item specified by key was not numeric and cannot be
 		converted to a number, it will change its value to value.
-		Memcache::increment() does not create an item if it doesn't already
-		exist.\n\nDo not use Memcache::increment() with items that have been stored
-		compressed because subsequent calls to Memcache::get() will fail. Also you
+		MemcachePool::increment() does not create an item if it doesn't already
+		exist.\n\nDo not use MemcachePool::increment() with items that have been stored
+		compressed because subsequent calls to MemcachePool::get() will fail. Also you
 		can use memcache_increment() function.",
     'flags'  =>  HasDocComment,
     'return' => array(
@@ -429,12 +521,12 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "decrement",
-		'desc'   => "Memcache::decrement() decrements value of the item by value.
-		Similarly to Memcache::increment(), current value of the item is being
+		'desc'   => "MemcachePool::decrement() decrements value of the item by value.
+		Similarly to MemcachePool::increment(), current value of the item is being
 		converted to numerical and after that value is substracted.\n\nNew item's
-		value will not be less than zero.\n\nDo not use Memcache::decrement() with
+		value will not be less than zero.\n\nDo not use MemcachePool::decrement() with
 		item, which was stored compressed, because consequent call to
-		Memcache::get() will fail. Memcache::decrement() does not create an item if
+		MemcachePool::get() will fail. MemcachePool::decrement() does not create an item if
 		it didn't exist. Also you can use memcache_decrement() function.",
     'flags'  =>  HasDocComment,
     'return' => array(
@@ -459,7 +551,7 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "getversion",
-		'desc'   => "Memcache::getVersion() returns a string with server's version
+		'desc'   => "MemcachePool::getVersion() returns a string with server's version
 		number. Also you can use memcache_get_version() function.",
     'flags'  =>  HasDocComment,
     'return' => array(
@@ -471,8 +563,8 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "flush",
-		'desc'   => "Memcache::flush() immediately invalidates all existing items.
-		Memcache::flush() doesn't actually free any resources, it only marks all the
+		'desc'   => "MemcachePool::flush() immediately invalidates all existing items.
+		MemcachePool::flush() doesn't actually free any resources, it only marks all the
 		items as expired, so occupied memory will be overwritten by new items. Also
 		you can use memcache_flush() function.",
     'flags'  =>  HasDocComment,
@@ -507,7 +599,7 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "close",
-		'desc'   => "Memcache::close() closes connection to memcached server. This
+		'desc'   => "MemcachePool::close() closes connection to memcached server. This
 		function doesn't close persistent connections, which are closed only during
 		web-server shutdown/restart. Also you can use memcache_close() function.",
     'flags'  =>  HasDocComment,
@@ -520,7 +612,7 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "getserverstatus",
-		'desc'   => "Memcache::getServerStatus() returns a the servers
+		'desc'   => "MemcachePool::getServerStatus() returns a the servers
 		online/offline status. You can also use memcache_get_server_status()
 		function.\n\nThis function has been added to Memcache version 2.1.0.",
     'flags'  =>  HasDocComment,
@@ -549,7 +641,7 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "setcompressthreshold",
-		'desc'   => "Memcache::setCompressThreshold() enables automatic compression
+		'desc'   => "MemcachePool::setCompressThreshold() enables automatic compression
 		of large values. You can also use the memcache_set_compress_threshold()
 		function.\n\nThis function has been added to Memcache version 2.0.0.",
     'flags'  =>  HasDocComment,
@@ -578,7 +670,7 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "getstats",
-		'desc'   => "Memcache::getStats() returns an associative array with server's
+		'desc'   => "MemcachePool::getStats() returns an associative array with server's
 		statistics. Array keys correspond to stats parameters and values to
 		parameter's values. Also you can use memcache_get_stats() function.",
     'flags'  =>  HasDocComment,
@@ -618,7 +710,7 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "getextendedstats",
-		'desc'   => "Memcache::getExtendedStats() returns a two-dimensional
+		'desc'   => "MemcachePool::getExtendedStats() returns a two-dimensional
 		associative array with server statistics. Array keys correspond to host:port
 		of server and values contain the individual server statistics. A failed
 		server will have its corresponding entry set to FALSE. You can also use the
@@ -661,7 +753,7 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "setserverparams",
-		'desc'   => "Memcache::setServerParams() changes server parameters at
+		'desc'   => "MemcachePool::setServerParams() changes server parameters at
 		runtime. You can also use the memcache_set_server_params() function.\n\nThis
 		function has been added to Memcache version 2.1.0.",
     'flags'  =>  HasDocComment,
@@ -711,22 +803,13 @@ DefineFunction(
 				immediately depending on the memcache.allow_failover setting. Default to
 				TRUE, meaning the server should be considered online.",
       ),
-      array(
-        'name'   => "failure_callback",
-        'type'   => Variant,
-        'value'  => "null_variant",
-				'desc'   => "Allows the user to specify a callback function to run upon
-				encountering an error. The callback is run before failover is attempted.
-				The function takes two parameters, the hostname and port of the failed
-				server.",
-      ),
     ),
   ));
 
 DefineFunction(
   array(
     'name'   => "setfailurecallback",
-		'desc'   => "Memcache::setfailurecallback() assigns a pool-specific failure
+		'desc'   => "MemcachePool::setfailurecallback() assigns a pool-specific failure
 		callback which will be called when  a request fails. May be null in order to
 		disable callbacks. The callback receive arguments like:
 		function mycallback(host, tcp_port, udp_port, error, errnum) 
@@ -752,12 +835,12 @@ DefineFunction(
 DefineFunction(
   array(
     'name'   => "addserver",
-		'desc'   => "Memcache::addServer() adds a server to the connection pool. The
-		connection, which was opened using Memcache::addServer() will be
+		'desc'   => "MemcachePool::addServer() adds a server to the connection pool. The
+		connection, which was opened using MemcachePool::addServer() will be
 		automatically closed at the end of script execution, you can also close it
-		manually with Memcache::close(). You can also use the memcache_add_server()
-		function.\n\nWhen using this method (as opposed to Memcache::connect() and
-		Memcache::pconnect()) the network connection is not established until
+		manually with MemcachePool::close(). You can also use the memcache_add_server()
+		function.\n\nWhen using this method (as opposed to MemcachePool::connect() and
+		MemcachePool::pconnect()) the network connection is not established until
 		actually needed. Thus there is no overhead in adding a large number of
 		servers to the pool, even though they might not all be used.\n\nFailover may
 		occur at any stage in any of the methods, as long as other servers are

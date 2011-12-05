@@ -27,7 +27,15 @@ class TestExtMemcachepool : public TestCppExt {
  public:
   virtual bool RunTests(const std::string &which);
 
-  bool test_MemcachePool();
+  bool test_MemcachePool_getInstance();
+  bool test_MemcachePool_flush();
+  bool test_MemcachePool_get_set();
+  bool test_MemcachePool_add();
+  bool test_MemcachePool_replace();
+  bool test_MemcachePool_incdec();
+  bool test_MemcachePool_expiration();
+  bool test_MemcachePool_cas();
+  bool test_MemcachePool_delete();
 };
 
 ///////////////////////////////////////////////////////////////////////////////

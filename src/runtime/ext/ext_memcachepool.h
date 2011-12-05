@@ -3,7 +3,6 @@
    | HipHop for PHP                                                       |
    +----------------------------------------------------------------------+
    | Copyright (c) 2010- Facebook, Inc. (http://www.facebook.com)         |
-   | Copyright (c) 1997-2010 The PHP Group                                |
    +----------------------------------------------------------------------+
    | This source file is subject to version 3.01 of the PHP license,      |
    | that is bundled with this package in the file LICENSE, and is        |
@@ -25,11 +24,12 @@
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // class MemcachePool
 
 FORWARD_DECLARE_CLASS_BUILTIN(MemcachePool);
-class c_MemcachePool : public ExtObjectData, public Sweepable {
+class c_MemcachePool : public ExtObjectData {
  public:
   DECLARE_CLASS(MemcachePool, MemcachePool, ObjectData)
 
@@ -38,12 +38,19 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
   public: ~c_MemcachePool();
   public: void t___construct();
   DECLARE_METHOD_INVOKE_HELPERS(__construct);
+  public: static Object ti_getstoragememcache(const char* cls , int storage_id, int timestamp, VRefParam empty, bool persistent = false);
+  public: static Object t_getstoragememcache(int storage_id, int timestamp, VRefParam empty, bool persistent = false) {
+    return ti_getstoragememcache("memcachepool", storage_id, timestamp, empty, persistent);
+  }
+  DECLARE_METHOD_INVOKE_HELPERS(getstoragememcache);
   public: bool t_connect(CStrRef host, int port = 0, int timeout = 0, int timeoutms = 0);
   DECLARE_METHOD_INVOKE_HELPERS(connect);
   public: bool t_pconnect(CStrRef host, int port = 0, int timeout = 0, int timeoutms = 0);
   DECLARE_METHOD_INVOKE_HELPERS(pconnect);
   public: bool t_add(CStrRef key, CVarRef var, int flag = 0, int expire = 0);
   DECLARE_METHOD_INVOKE_HELPERS(add);
+  public: bool t_cas(CStrRef key, CVarRef var, int flag, int expire, double cas_token);
+  DECLARE_METHOD_INVOKE_HELPERS(cas);
   public: bool t_set(CStrRef key, CVarRef var, int flag = 0, int expire = 0);
   DECLARE_METHOD_INVOKE_HELPERS(set);
   public: bool t_replace(CStrRef key, CVarRef var, int flag = 0, int expire = 0);
@@ -72,7 +79,7 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
   DECLARE_METHOD_INVOKE_HELPERS(getstats);
   public: Array t_getextendedstats(CStrRef type = null_string, int slabid = 0, int limit = 100);
   DECLARE_METHOD_INVOKE_HELPERS(getextendedstats);
-  public: bool t_setserverparams(CStrRef host, int port = 11211, int timeout = 0, int retry_interval = 0, bool status = true, CVarRef failure_callback = null_variant);
+  public: bool t_setserverparams(CStrRef host, int port = 11211, int timeout = 0, int retry_interval = 0, bool status = true);
   DECLARE_METHOD_INVOKE_HELPERS(setserverparams);
   public: bool t_setfailurecallback(CVarRef failure_callback = null_variant);
   DECLARE_METHOD_INVOKE_HELPERS(setfailurecallback);
@@ -83,10 +90,14 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
 
   // implemented by HPHP
   public: c_MemcachePool *create();
+  private: 
+    bool check_memcache_return(memcached_st * st, memcached_return_t ret, 
+                               String key = "", char *default_msg = "");
+    void exec_failure_callback(const char * hostname, int tcp_port, int udp_port,
+                               memcached_return_t ret, const char * error);
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-
 }
 
 #endif // __EXT_MEMCACHEPOOL_H__
