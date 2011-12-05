@@ -295,7 +295,7 @@ extern const int q_Gmagick$$DISPOSE_PREVIOUS;
 // class Gmagick
 
 FORWARD_DECLARE_CLASS_BUILTIN(Gmagick);
-class c_Gmagick : public ExtObjectData {
+class c_Gmagick : public ExtObjectData, public Sweepable {
  public:
   DECLARE_CLASS(Gmagick, Gmagick, ObjectData)
 

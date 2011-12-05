@@ -58,6 +58,7 @@ CPP
 BeginClass(
  array (
    'name'   => 'GmagickPixel',
+   'bases'  => array('Sweepable'),
    'desc'   => 'Gmagick pixel class',
    'flags'  => HasDocComment,
    'footer' => <<<EOT
@@ -99,6 +100,7 @@ EndClass(
 BeginClass(
  array (
    'name'   => 'Gmagick',
+   'bases'  => array('Sweepable'),
    'desc'   => 'Gmagick main class',
    'flags'  => HasDocComment,
    'footer' => <<<EOT
