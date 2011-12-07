@@ -92,8 +92,13 @@ Array f_error_get_last() {
   if (lastError.isNull()) {
     return (ArrayData *)NULL;
   }
-  return CREATE_MAP2("message", g_context->getLastError(),
-                     "type", g_context->getLastErrorNumber());
+
+  Array frame = FrameInjection::GetBacktrace(true).begin().second().toArray();
+
+  return CREATE_MAP4("message", g_context->getLastError(),
+                     "type", g_context->getLastErrorNumber(),
+                     "file", frame->get("file").toString(),
+                     "line", frame->get("line").toString());
 }
 
 bool f_error_log(CStrRef message, int message_type /* = 0 */,

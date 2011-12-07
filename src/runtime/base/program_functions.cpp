@@ -337,8 +337,7 @@ static bool hphp_chdir_file(const string filename) {
       ret = true;
     } else {
       struct stat sb;
-      stat(dir, &sb);
-      if ((sb.st_mode & S_IFMT) == S_IFDIR) {
+      if ((stat(dir, &sb) == 0) && ((sb.st_mode & S_IFMT) == S_IFDIR)) {
         ret = true;
         if (*dir != '.') {
           g_context->setCwd(String(dir, CopyString));

@@ -35,6 +35,10 @@ class SystemLib {
                                           CVarRef detail = null_variant,
                                           CVarRef name = null_variant,
                                           CVarRef header = null_variant);
+  static ObjectData* AllocGmagickExceptionObject(CVarRef message, 
+		                                         CVarRef code);
+  static ObjectData* AllocUserPartitionExceptionObject(CVarRef message);
+  static ObjectData* AllocBucketCacheExceptionObject(CVarRef message);
 };
 
 ///////////////////////////////////////////////////////////////////////////////

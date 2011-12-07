@@ -50,6 +50,30 @@ SystemLib::AllocSoapFaultObject(CVarRef code,
                                          header);
 }
 
+// Workaround for first compilation when merging our code with HipHop
+// repository. This classes would not be pressent until we run the code
+// generator on src/system after the first compilation. Generated code is not
+// upload to repository because it cause conflicts when merging code with
+// facebook branch
+#ifndef c_GmagickException
+#warning Using mocked exceptions on tuenti extensions
+#define c_GmagickException c_DOMException
+#define c_UserPartitionException c_Exception
+#define c_BucketCacheException c_Exception
+#endif
+
+ObjectData* SystemLib::AllocGmagickExceptionObject(CVarRef message, CVarRef code) {
+  return (NEWOBJ(c_GmagickException)())->create(message, code);
+}
+
+ObjectData* SystemLib::AllocUserPartitionExceptionObject(CVarRef message) {
+  return (NEWOBJ(c_UserPartitionException)())->create(message);
+}
+
+ObjectData* SystemLib::AllocBucketCacheExceptionObject(CVarRef message) {
+  return (NEWOBJ(c_BucketCacheException)())->create(message);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 }
 
