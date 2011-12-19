@@ -3,6 +3,7 @@
    | HipHop for PHP                                                       |
    +----------------------------------------------------------------------+
    | Copyright (c) 2010- Facebook, Inc. (http://www.facebook.com)         |
+   | Copyright (c) 1997-2010 The PHP Group                                |
    +----------------------------------------------------------------------+
    | This source file is subject to version 3.01 of the PHP license,      |
    | that is bundled with this package in the file LICENSE, and is        |
@@ -29,7 +30,7 @@ namespace HPHP {
 // class MemcachePool
 
 FORWARD_DECLARE_CLASS_BUILTIN(MemcachePool);
-class c_MemcachePool : public ExtObjectData {
+class c_MemcachePool : public ExtObjectData, public Sweepable {
  public:
   DECLARE_CLASS(MemcachePool, MemcachePool, ObjectData)
 
@@ -94,7 +95,7 @@ class c_MemcachePool : public ExtObjectData {
     bool check_memcache_return(memcached_st * st, memcached_return_t ret, 
                                String key = "", char *default_msg = "");
     void exec_failure_callback(const char * hostname, int tcp_port, int udp_port,
-                               memcached_return_t ret, const char * error);
+                               memcached_return_t ret, const char * error, Array backtrace);
 };
 
 ///////////////////////////////////////////////////////////////////////////////

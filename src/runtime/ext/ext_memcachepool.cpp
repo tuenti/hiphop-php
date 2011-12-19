@@ -19,6 +19,7 @@
 #include <runtime/base/util/request_local.h>
 #include <runtime/base/ini_setting.h>
 #include <runtime/ext/ext_function.h>
+#include <runtime/ext/ext_error.h>
 #include <util/logger.h>
 
 #define MMC_SERIALIZED 1
@@ -171,6 +172,8 @@ Object c_MemcachePool::ti_getstoragememcache(const char *, int storage_id, int t
     st_data->last_config_update = timestamp;
     st_data->persistent = persistent;
     st_data->memcachepool_object = NEWOBJ(c_MemcachePool);
+    // We don't want this object to be destroyed when it gets unreferenced on PHP
+    st_data->memcachepool_object->incRefCount();
 
     MEMCACHEG(obj_map)[st_data->memcachepool_object] = new MemcacheObjectData;
 
@@ -181,6 +184,7 @@ Object c_MemcachePool::ti_getstoragememcache(const char *, int storage_id, int t
   }
 
   if (st_data->last_config_update < timestamp) {
+  //if (timestamp == 1) {
     Logger::Verbose("[MemcachePool] Object too old for storage id  %d, destroying data", storage_id);
 
     delete MEMCACHEG(obj_map)[st_data->memcachepool_object];
@@ -532,10 +536,12 @@ bool c_MemcachePool::t_setoptimeout(int64 timeoutms) {
   if (timeoutms < 1) {
     timeoutms = 1000; // make default
   }
-  
+
+  timeoutms *= 1000;
+
   memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeoutms);
   memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeoutms);
-  /* intentionally doing nothing for now */
+  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeoutms);
 
   return true;
 }
@@ -673,14 +679,20 @@ bool c_MemcachePool::t_setserverparams(CStrRef host, int port /* = 11211 */,
                                    int retry_interval /* = 0 */,
                                    bool status /* = true */) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::setserverparams);
+
+  if (timeout < 1) {
+    timeout = 1000; // make default
+  }
+
+  // Timeout on libmemcached is specified on milliseconds
+  timeout *= 1000;
+
   memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeout);
-  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeout);
   memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeout);
   memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeout);
   memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_RETRY_TIMEOUT, retry_interval);
   memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_RETRY_TIMEOUT, retry_interval);
 
- /* intentionally doing nothing for now */
   return true;
 }
 
@@ -690,11 +702,11 @@ bool c_MemcachePool::t_setserverparams(CStrRef host, int port /* = 11211 */,
  *
  */
 void c_MemcachePool::exec_failure_callback(const char * hostname, int tcp_port, int udp_port,
-                                          memcached_return_t ret, const char * error) {
+                                          memcached_return_t ret, const char * error, Array backtrace) {
   if (MEMCACHEL(failure_callback).isNull())
     return;
 
-  Array params(ArrayInit(5).set(hostname).set(tcp_port).set(udp_port).set(ret).set(error));
+  Array params(ArrayInit(5).set(hostname).set(tcp_port).set(udp_port).set(ret).set(error).set(backtrace));
 
   f_call_user_func_array(MEMCACHEL(failure_callback), params);
 }
@@ -710,12 +722,14 @@ bool c_MemcachePool::check_memcache_return(memcached_st * st,
                                            String key,  /* = "" */
                                            char * default_msg /* = "" */) {
   memcached_server_instance_st instance;
-  const char * str_error, *hostname="";
+  const char * str_error=NULL, *hostname="";
   int tcp_port=0, udp_port=0;
 
+  if ((ret == MEMCACHED_SUCCESS) || (ret == MEMCACHED_NOTFOUND) || (ret == MEMCACHED_NOTSTORED))
+    return true;
 
-  if ((MEMCACHEL(failure_callback).isNull()) || (ret == MEMCACHED_SUCCESS))
-    return (ret == MEMCACHED_SUCCESS);
+  if (MEMCACHEL(failure_callback).isNull())
+    return false;
 
   if (ret == MEMCACHED_ERRNO) {
     if (st->cached_errno != 0)
@@ -733,9 +747,9 @@ bool c_MemcachePool::check_memcache_return(memcached_st * st,
       hostname = instance->hostname;
 
       if (memcached_behavior_get(st, MEMCACHED_BEHAVIOR_USE_UDP))
-        tcp_port = instance->port;
-      else
         udp_port = instance->port;
+      else
+        tcp_port = instance->port;
     }
 
     if (ret != MEMCACHED_ERRNO)
@@ -745,9 +759,10 @@ bool c_MemcachePool::check_memcache_return(memcached_st * st,
   if (!str_error)
     str_error = memcached_strerror(st, ret);
 
-  exec_failure_callback(hostname, tcp_port, udp_port, ret, str_error);
+  Array backtrace = f_debug_backtrace(false);
+  exec_failure_callback(hostname, tcp_port, udp_port, ret, str_error, backtrace);
 
-  return (ret == MEMCACHED_SUCCESS);
+  return false;
 }
 
 bool c_MemcachePool::t_setfailurecallback(CVarRef failure_callback) {
@@ -768,33 +783,37 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::addserver);
   memcached_return_t ret  = MEMCACHED_SUCCESS;
   memcached_return_t ret2 = MEMCACHED_SUCCESS;
+  int port;
+
+  if (timeout < 1) {
+    timeout = 1000; // make default
+  }
+
+  // Timeout on libmemcached is specified on milliseconds
+  timeout *= 1000;
 
   if (!host.empty() && host[0] == '/') {
     ret = memcached_server_add_unix_socket_with_weight(MEMCACHEL(tcp_st),
                                                        host.c_str(), weight);
   } else {
     if (tcp_port > 0) {
+      port = tcp_port;
       ret = memcached_server_add_with_weight(MEMCACHEL(tcp_st), host.c_str(), 
                                              tcp_port, weight);
       check_memcache_return(MEMCACHEL(tcp_st), ret, "", "Cannot add server");
     }
 
     if (udp_port > 0) {
+      port = udp_port;
       ret2 = memcached_server_add_udp_with_weight(MEMCACHEL(udp_st), host.c_str(), 
                                                 udp_port, weight);
 
-      check_memcache_return(MEMCACHEL(tcp_st), ret, "", "Cannot add server");
+      check_memcache_return(MEMCACHEL(udp_st), ret, "", "Cannot add server");
     }
   }
 
   if ((ret == MEMCACHED_SUCCESS) && (ret2 == MEMCACHED_SUCCESS)) {
-    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeout);
-    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeout);
-    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeout);
-    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeout);
-    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_RETRY_TIMEOUT, retry_interval);
-    memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_RETRY_TIMEOUT, retry_interval);
-
+    t_setserverparams(host, port, timeout, retry_interval,status);
     return true;
   }
 
