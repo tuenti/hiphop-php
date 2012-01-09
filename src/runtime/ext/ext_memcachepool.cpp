@@ -533,11 +533,6 @@ bool c_MemcachePool::t_flush(int expire /*= 0*/) {
 
 bool c_MemcachePool::t_setoptimeout(int64 timeoutms) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::setoptimeout);
-  if (timeoutms < 1) {
-    timeoutms = 1000; // make default
-  }
-
-  timeoutms *= 1000;
 
   memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeoutms);
   memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeoutms);
@@ -680,16 +675,8 @@ bool c_MemcachePool::t_setserverparams(CStrRef host, int port /* = 11211 */,
                                    bool status /* = true */) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::setserverparams);
 
-  if (timeout < 1) {
-    timeout = 1000; // make default
-  }
+  t_setoptimeout(1000 * timeout);
 
-  // Timeout on libmemcached is specified on milliseconds
-  timeout *= 1000;
-
-  memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeout);
-  memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeout);
-  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeout);
   memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_RETRY_TIMEOUT, retry_interval);
   memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_RETRY_TIMEOUT, retry_interval);
 
@@ -783,14 +770,7 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::addserver);
   memcached_return_t ret  = MEMCACHED_SUCCESS;
   memcached_return_t ret2 = MEMCACHED_SUCCESS;
-  int port;
-
-  if (timeout < 1) {
-    timeout = 1000; // make default
-  }
-
-  // Timeout on libmemcached is specified on milliseconds
-  timeout *= 1000;
+  int port = 0;
 
   if (!host.empty() && host[0] == '/') {
     ret = memcached_server_add_unix_socket_with_weight(MEMCACHEL(tcp_st),
@@ -813,7 +793,7 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
   }
 
   if ((ret == MEMCACHED_SUCCESS) && (ret2 == MEMCACHED_SUCCESS)) {
-    t_setserverparams(host, port, timeout, retry_interval,status);
+    t_setserverparams(host, port, timeout, retry_interval, status);
     return true;
   }
 
