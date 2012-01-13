@@ -55,12 +55,14 @@ SystemLib::AllocSoapFaultObject(CVarRef code,
 // generator on src/system after the first compilation. Generated code is not
 // upload to repository because it cause conflicts when merging code with
 // facebook branch
+/*
 #ifndef c_GmagickException
 #warning Using mocked exceptions on tuenti extensions
 #define c_GmagickException c_DOMException
 #define c_UserPartitionException c_Exception
 #define c_BucketCacheException c_Exception
 #endif
+*/
 
 ObjectData* SystemLib::AllocGmagickExceptionObject(CVarRef message, CVarRef code) {
   return (NEWOBJ(c_GmagickException)())->create(message, code);
