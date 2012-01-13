@@ -22,14 +22,11 @@
 #include <runtime/ext/ext_error.h>
 #include <util/logger.h>
 
-#define MMC_SERIALIZED 1
-#define MMC_COMPRESSED 2
-
 namespace HPHP {
 IMPLEMENT_DEFAULT_EXTENSION(memcachepool);
 
-bool memcachepool_ini_on_update_hash_strategy(CStrRef value, void *p);
-bool memcachepool_ini_on_update_hash_function(CStrRef value, void *p);
+const int64 k_MEMCACHE_SERIALIZED = 1;
+const int64 k_MEMCACHE_COMPRESSED = 2;
 
 class MemcacheObjectData;
 
@@ -41,22 +38,11 @@ struct StorageData {
 
 class MemcachePoolRequest: public RequestEventHandler {
   public:
-    // Global data
-    std::string hash_strategy;
-    std::string hash_function;
-    
     // Static map per thread to contain per-instante data
     std::map<int, StorageData> storage_map;
     std::map<c_MemcachePool *, MemcacheObjectData *> obj_map;
 
     virtual void requestInit() {
-      hash_strategy = "standard";
-      hash_function = "crc32";
-  
-      IniSetting::Bind("memcachepool.hash_strategy", "standard",
-                       memcachepool_ini_on_update_hash_strategy, &hash_strategy);
-      IniSetting::Bind("memcachepool.hash_function", "crc32",
-                       memcachepool_ini_on_update_hash_function, &hash_function);
     }
 
     virtual void requestShutdown() {
@@ -93,31 +79,11 @@ class MemcacheObjectData {
     min_compress_savings = 0.2;
     failure_callback.setNull();
 
-    if (MEMCACHEG(hash_strategy) == "consistent") {
-      // need to hook up a global variable to set this
-      memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION,
-                             MEMCACHED_DISTRIBUTION_CONSISTENT_KETAMA);
-      memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION,
-                             MEMCACHED_DISTRIBUTION_CONSISTENT_KETAMA);
-    } else {
-      memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION,
-                             MEMCACHED_DISTRIBUTION_MODULA);
-      memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION,
-                             MEMCACHED_DISTRIBUTION_MODULA);
-    }
+    memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION, RuntimeOption::MemcachePoolHashStrategy);
+    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION, RuntimeOption::MemcachePoolHashStrategy);
+    memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_HASH, RuntimeOption::MemcachePoolHashFunction);
+    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_HASH, RuntimeOption::MemcachePoolHashFunction);
 
-    if (MEMCACHEG(hash_function) == "fnv") {
-      memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_HASH,
-                             MEMCACHED_HASH_FNV1A_32);
-      memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_HASH,
-                             MEMCACHED_HASH_FNV1A_32);
-    } else {
-      memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_HASH,
-                             MEMCACHED_HASH_CRC);
-      memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_HASH,
-                             MEMCACHED_HASH_CRC);
-    }
-  
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_USE_UDP, 1);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 1);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 1);
@@ -131,28 +97,6 @@ class MemcacheObjectData {
     memcached_free(udp_st);
   }
 };
-
-bool memcachepool_ini_on_update_hash_strategy(CStrRef value, void *p) {
-  if (!strncasecmp(value.data(), "standard", sizeof("standard"))) {
-    MEMCACHEG(hash_strategy) = "standard";
-  } else if (!strncasecmp(value.data(), "standard", sizeof("consistent"))) {
-    MEMCACHEG(hash_strategy) = "consistent";
-  } else {
-    return false;
-  }
-  return true;
-}
-
-bool memcachepool_ini_on_update_hash_function(CStrRef value, void *p) {
-  if (!strncasecmp(value.data(), "crc32", sizeof("crc32"))) {
-    MEMCACHEG(hash_strategy) = "crc32";
-  } else if (!strncasecmp(value.data(), "fnv", sizeof("fnv"))) {
-    MEMCACHEG(hash_strategy) = "fnv";
-  } else {
-    return false;
-  }
-  return true;
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 // methods
@@ -244,7 +188,7 @@ String static memcache_prepare_for_storage(CVarRef var, int &flag) {
   } else if (var.isNumeric() || var.isBoolean()) {
     return var.toString();
   } else {
-    flag |= MMC_SERIALIZED;
+    flag |= k_MEMCACHE_SERIALIZED;
     return f_serialize(var);
   }
 }
@@ -254,12 +198,12 @@ Variant static memcache_fetch_from_storage(const char *payload,
                                            uint32_t flags) {
   Variant ret = null;
 
-  if (flags & MMC_COMPRESSED) {
+  if (flags & k_MEMCACHE_COMPRESSED) {
     raise_warning("Unable to handle compressed values yet");
     return null;
   }
 
-  if (flags & MMC_SERIALIZED) {
+  if (flags & k_MEMCACHE_SERIALIZED) {
     ret = f_unserialize(String(payload, payload_len, CopyString));
     // raise_notice("unable to unserialize data");
   } else {
@@ -533,7 +477,6 @@ bool c_MemcachePool::t_flush(int expire /*= 0*/) {
 
 bool c_MemcachePool::t_setoptimeout(int64 timeoutms) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::setoptimeout);
-
   memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeoutms);
   memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeoutms);
   memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeoutms);
@@ -674,7 +617,6 @@ bool c_MemcachePool::t_setserverparams(CStrRef host, int port /* = 11211 */,
                                    int retry_interval /* = 0 */,
                                    bool status /* = true */) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::setserverparams);
-
   t_setoptimeout(1000 * timeout);
 
   memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_RETRY_TIMEOUT, retry_interval);

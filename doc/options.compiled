@@ -843,3 +843,33 @@ Aditional time to add to the TTL whenever the item is being reused because of th
 - RefreshTime (seconds)
 
 This setting allow to change the default refresh value for cached Jsons. This is used to not stat the file on every request.
+
+= MemcachePool
+
+  MemcachePool {
+    HashStrategy = 0;
+    HashFunction = 11;
+  }
+
+ - HashStrategy
+
+Using this you can enable different means of distributing values to servers. See MEMCACHED_BEHAVIOR_DISTRIBUTION on libmemcached documentation. Valid values are: 
+    - 0 Standard hashing
+    - 1 Consistent hashing
+
+ - HashFunction
+
+Sets the hashing algorithm for host mapping on continuum. Values are used directly on libmemcached on MEMCACHED_BEHAVIOR_KETAMA_HASH beavior configuration parameter. Valid values depends on your version of libmemcached. Here are current ones for reference.
+
+  - 0  DEFAULT
+  - 1  MD5
+  - 2  CRC
+  - 3  FNV1_64
+  - 4  FNV1A_64
+  - 5  FNV1_32
+  - 6  FNV1A_32
+  - 7  HSIEH
+  - 8  MURMUR
+  - 9  JENKINS
+  - 10 CUSTOM
+  - 11 FNV1A_COMPAT (Use this to match the fnv PHP memcache extension hash)

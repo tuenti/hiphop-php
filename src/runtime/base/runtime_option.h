@@ -394,6 +394,9 @@ public:
   static int BucketCacheStaleDataReusability;
   static int BucketCacheTTLForPrimingStaleData;
   static int JsonCacheRefreshTime;
+
+  static int MemcachePoolHashStrategy;
+  static int MemcachePoolHashFunction;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

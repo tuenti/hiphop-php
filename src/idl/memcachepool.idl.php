@@ -88,14 +88,15 @@ CPP
 BeginClass(
   array(
     'name'   => "MemcachePool",
+	'bases'  => array('Sweepable'),
     'desc'   => "Represents a connection to a set of memcache servers.",
     'flags'  =>  HasDocComment,
-		'footer' => <<<EOT
+	'footer' => <<<EOT
   private: 
     bool check_memcache_return(memcached_st * st, memcached_return_t ret, 
                                String key = "", char *default_msg = "");
     void exec_failure_callback(const char * hostname, int tcp_port, int udp_port,
-                               memcached_return_t ret, const char * error);
+                               memcached_return_t ret, const char * error, Array backtrace);
 EOT
 ,
   ));
@@ -937,6 +938,9 @@ DefineFunction(
     ),
   ));
 
+
 EndClass(
 );
 
+DefineConstant(array('name' => "MEMCACHE_COMPRESSED", 'type' => Int64,));
+DefineConstant(array('name' => "MEMCACHE_SERIALIZED", 'type' => Int64,));
