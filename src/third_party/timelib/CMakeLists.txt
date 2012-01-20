@@ -42,5 +42,5 @@ add_definitions(-DNDEBUG)
 add_library(timelib STATIC astro.c dow.c parse_date.c parse_tz.c 
 	timelib.c tm2unixtime.c unixtime2tm.c)
 
-INSTALL(TARGETS timelib DESTINATION lib)
-INSTALL(FILES timelib.h timelib_structs.h timelib_config.h DESTINATION include)
+INSTALL(TARGETS timelib DESTINATION lib COMPONENT dev)
+INSTALL(FILES timelib.h timelib_structs.h timelib_config.h DESTINATION include COMPONENT dev)

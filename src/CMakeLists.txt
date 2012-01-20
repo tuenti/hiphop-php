@@ -86,14 +86,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 #auto_sources(TIMELIB_SOURCES "*.c" "RECURSE" "${CMAKE_CURRENT_SOURCE_DIR}/third_party/timelib")
 #add_library(timelib STATIC ${TIMELIB_SOURCES})
 
-if (NOT SKIP_BUNDLED_XHP)
-	add_subdirectory(third_party/xhp/xhp)
-endif()
-
-add_subdirectory(third_party/libafdt)
-add_subdirectory(third_party/libmbfl)
-add_subdirectory(third_party/libsqlite3)
-add_subdirectory(third_party/timelib)
+add_subdirectory(third_party)
 
 foreach (CXX_FILE ${CXX_SOURCES})
 	if(${CXX_FILE} MATCHES ".no.cpp$")
@@ -111,6 +104,7 @@ SET_TARGET_PROPERTIES(hphp_runtime_static PROPERTIES OUTPUT_NAME "hphp_runtime")
 SET_TARGET_PROPERTIES(hphp_runtime_static PROPERTIES PREFIX "lib")
 #SET_TARGET_PROPERTIES(hphp_runtime PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 SET_TARGET_PROPERTIES(hphp_runtime_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+add_dependencies(hphp_runtime_static curl libevent graphicsmagick libmemcached)
 
 hphp_link(hphp_runtime_static)
 

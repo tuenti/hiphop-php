@@ -1,0 +1,21 @@
+diff -Nuar graphicsmagick-1-3-13/coders/jpeg.c graphicsmagick-1-3-13/coders/jpeg.c
+--- graphicsmagick-1-3-13/coders/jpeg.c	2012-01-17 17:05:59.592539314 +0000
++++ graphicsmagick-1-3-13/coders/jpeg.c	2012-01-17 17:19:43.262539650 +0000
+@@ -1478,7 +1478,7 @@
+ #endif
+ 
+   entry=SetMagickInfo("JPEG");
+-  entry->thread_support=False; /* libjpeg is not thread safe */
++  entry->thread_support=True;
+ #if defined(HasJPEG)
+   entry->decoder=(DecoderHandler) ReadJPEGImage;
+   entry->encoder=(EncoderHandler) WriteJPEGImage;
+@@ -1493,7 +1493,7 @@
+   (void) RegisterMagickInfo(entry);
+ 
+   entry=SetMagickInfo("JPG");
+-  entry->thread_support=False; /* libjpeg is not thread safe */
++  entry->thread_support=True;
+ #if defined(HasJPEG)
+   entry->decoder=(DecoderHandler) ReadJPEGImage;
+   entry->encoder=(EncoderHandler) WriteJPEGImage;

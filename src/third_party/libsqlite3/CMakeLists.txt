@@ -60,6 +60,6 @@ mark_as_advanced(SQLITE_DEFINITIONS)
 
 add_library(sqlite3 STATIC sqlite3.c)
 
-INSTALL(TARGETS sqlite3 DESTINATION lib)
-INSTALL(FILES sqlite3.h DESTINATION include)
+INSTALL(TARGETS sqlite3 DESTINATION lib COMPONENT dev)
+INSTALL(FILES sqlite3.h DESTINATION include COMPONENT dev)
 

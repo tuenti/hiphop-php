@@ -37,34 +37,9 @@ if (MYSQL_UNIX_SOCK_ADDR)
   add_definitions(-DPHP_MYSQL_UNIX_SOCK_ADDR="${MYSQL_UNIX_SOCK_ADDR}")
 endif()
 
-# libmemcached checks
-find_package(Libmemcached REQUIRED)
-if (LIBMEMCACHED_VERSION VERSION_LESS "0.39")
-  unset(LIBMEMCACHED_INCLUDE_DIR CACHE)
-  unset(LIBMEMCACHED_LIBRARY CACHE)
-  unset(LIBMEMCACHED_VERSION CACHE)
-  message(FATAL_ERROR "libmemcache is too old, found ${LIBMEMCACHED_VERSION} and we need 0.39")
-endif ()
-include_directories(${LIBMEMCACHED_INCLUDE_DIR})
-
 # pcre checks
 find_package(PCRE REQUIRED)
 include_directories(${PCRE_INCLUDE_DIRS})
-
-# libevent checks
-find_package(LibEvent REQUIRED)
-include_directories(${LIBEVENT_INCLUDE_DIR})
-
-set(CMAKE_REQUIRED_LIBRARIES "${LIBEVENT_LIB}")
-CHECK_FUNCTION_EXISTS("evhttp_bind_socket_with_handle" HAVE_CUSTOM_LIBEVENT)
-if (NOT HAVE_CUSTOM_LIBEVENT)
-	unset(HAVE_CUSTOM_LIBEVENT CACHE)
-	unset(LIBEVENT_INCLUDE_DIR CACHE)
-	unset(LIBEVENT_LIB CACHE)
-	unset(LibEvent_FOUND CACHE)
-	message(FATAL_ERROR "Custom libevent is required with HipHop patches")
-endif ()
-set(CMAKE_REQUIRED_LIBRARIES)
 
 # GD checks
 find_package(GD REQUIRED)
@@ -75,21 +50,6 @@ if (WANT_FB_LIBMCC)
 else ()
 	# nothing for now
 endif()
-
-# CURL checks
-find_package(CURL REQUIRED)
-include_directories(${CURL_INCLUDE_DIR})
-
-set(CMAKE_REQUIRED_LIBRARIES "${CURL_LIBRARIES}")
-CHECK_FUNCTION_EXISTS("curl_multi_select" HAVE_CUSTOM_CURL)
-if (NOT HAVE_CUSTOM_CURL)
-	unset(HAVE_CUSTOM_CURL CACHE)
-	unset(CURL_INCLUDE_DIR CACHE)
-	unset(CURL_LIBRARIES CACHE)
-	unset(CURL_FOUND CACHE)
-        message(FATAL_ERROR "Custom libcurl is required with the HipHop patch")
-endif ()
-set(CMAKE_REQUIRED_LIBRARIES)
 
 # LibXML2 checks
 find_package(LibXml2 REQUIRED)
@@ -339,8 +299,7 @@ macro(hphp_link target)
 	target_link_libraries(${target} ${MYSQL_CLIENT_LIBS})
 	target_link_libraries(${target} ${PCRE_LIBRARY})
 	target_link_libraries(${target} ${ICU_LIBRARIES} ${ICU_I18N_LIBRARIES})
-	target_link_libraries(${target} ${LIBEVENT_LIB})
-	target_link_libraries(${target} ${CURL_LIBRARIES})
+	target_link_libraries(${target} "-levent -lcurl -lmemcached")
 
 if (LINUX)
 	target_link_libraries(${target} ${CAP_LIB})
@@ -371,8 +330,6 @@ endif()
 
 	target_link_libraries(${target} ${LDAP_LIBRARIES})
 	target_link_libraries(${target} ${LBER_LIBRARIES})
-
-	target_link_libraries(${target} ${LIBMEMCACHED_LIBRARY})
 
 	if (LINUX OR FREEBSD)
 		target_link_libraries(${target} ${CRYPT_LIB})

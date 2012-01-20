@@ -25,7 +25,8 @@ ENDIF()
 file(TO_CMAKE_PATH "$ENV{HPHP_HOME}" HPHP_HOME)
 
 IF(NOT IS_DIRECTORY ${HPHP_HOME})
-	message(FATAL_ERROR "The value of HPHP_HOME does not exist")
+	message(FATAL_ERROR "The value of HPHP_HOME does not exist, falling to default value: /opt/hiphop")
+    set(HPHP_HOME "/opt/hiphop")
 ENDIF()
 
 IF(NOT EXISTS "${HPHP_HOME}/LICENSE.PHP")
@@ -35,6 +36,8 @@ ENDIF()
 SET(CMAKE_MODULE_PATH "${HPHP_HOME}/CMake" ${CMAKE_MODULE_PATH})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${HPHP_HOME}/include)
+link_directories(${HPHP_HOME}/lib)
 
 include(HPHPFunctions)
 include(CheckFunctionExists)

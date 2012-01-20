@@ -21,4 +21,4 @@ SET(CMAKE_CXX_FLAGS "-fPIC -g -Wall -O3 -minline-all-stringops")
 #add_library(xhp STATIC code_rope.cpp xhp_preprocess.cpp xhpize.cpp fastpath.cpp ${FLEX_XHPScanner_OUTPUTS} ${BISON_XHPParser_OUTPUTS})
 
 add_library(xhp STATIC code_rope.cpp xhp_preprocess.cpp xhpize.cpp fastpath.cpp parser.yacc.cpp scanner.lex.cpp)
-INSTALL(TARGETS xhp DESTINATION lib)
+INSTALL(TARGETS xhp DESTINATION lib COMPONENT runtime)

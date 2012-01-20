@@ -63,3 +63,7 @@ CMakeCache.txt
 cmake_install.cmake
 
 /output_gd/
+
+tags
+doc/www.pid
+build/
