@@ -478,6 +478,7 @@ bool c_MemcachePool::t_flush(int expire /*= 0*/) {
 bool c_MemcachePool::t_setoptimeout(int64 timeoutms) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::setoptimeout);
   memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeoutms);
+  memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeoutms);
   memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeoutms);
   memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeoutms);
 

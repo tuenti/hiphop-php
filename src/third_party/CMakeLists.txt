@@ -28,7 +28,6 @@ ExternalProject_Add(
 ExternalProject_Add(
     libmemcached
     GIT_REPOSITORY git://github.com/dpaneda/libmemcached.git
-    GIT_TAG f3813dcbc440f358b53a54bf11c52975b8e1d275
     INSTALL_DIR ${CMAKE_BINARY_DIR}/external_build/
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR>
 )
