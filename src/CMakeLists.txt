@@ -113,3 +113,74 @@ add_subdirectory(compiler)
 add_subdirectory(hphp)
 
 add_subdirectory(test)
+
+INSTALL(DIRECTORY "${CMAKE_BINARY_DIR}/external_build/lib"
+        DESTINATION .
+        COMPONENT runtime
+        FILES_MATCHING PATTERN "lib*so*"
+        PATTERN "Graphi*" EXCLUDE
+        PATTERN "pkgconfig" EXCLUDE)
+
+INSTALL(DIRECTORY "${CMAKE_BINARY_DIR}/external_build/include"
+        DESTINATION .
+        COMPONENT dev
+        FILES_MATCHING PATTERN "*.h")
+
+INSTALL(PROGRAMS
+        ${CMAKE_BINARY_DIR}/src/hphp/hphpi
+        ${CMAKE_BINARY_DIR}/src/hphp/hphp
+        ${CMAKE_SOURCE_DIR}/bin/libhphp_runtime.a
+        ${CMAKE_SOURCE_DIR}/bin/run.sh
+        ${CMAKE_SOURCE_DIR}/bin/CMakeLists.base.txt
+        DESTINATION bin
+        COMPONENT dev)
+
+INSTALL(DIRECTORY ${CMAKE_SOURCE_DIR}/CMake
+        DESTINATION .
+        COMPONENT dev)
+
+INSTALL(DIRECTORY
+        ${CMAKE_SOURCE_DIR}/src/util
+        ${CMAKE_SOURCE_DIR}/src/runtime
+        ${CMAKE_SOURCE_DIR}/src/system
+        DESTINATION src
+        COMPONENT dev
+        FILES_MATCHING PATTERN "*.h")
+
+INSTALL(DIRECTORY ${CMAKE_SOURCE_DIR}/src/system
+        DESTINATION src
+        COMPONENT dev
+        FILES_MATCHING PATTERN "*.php")
+
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/LICENSE.PHP
+        DESTINATION .
+        COMPONENT dev)
+
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/src/runtime/base/memory/smart_allocator.inc_gen
+        DESTINATION src/runtime/base/memory
+        COMPONENT dev)
+
+SET(CPACK_DEB_COMPONENT_INSTALL ON)
+SET(CPACK_GENERATOR "DEB")
+
+if (CMAKE_BUILD_TYPE STREQUAL Debug)
+    message(STATUS "Building debug package")
+    SET(CPACK_PACKAGE_NAME "hiphop-debug")
+    SET(CPACK_PACKAGING_INSTALL_PREFIX "/opt/hiphop-debug")
+else ()  
+    message(STATUS "Building release package")
+    SET(CPACK_PACKAGE_NAME "hiphop")
+    SET(CPACK_PACKAGING_INSTALL_PREFIX "/opt/hiphop")
+endif ()
+
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "dpaneda@tuenti.com")
+
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "HipHop compiler and runtime dependencies")
+SET(CPACK_PACKAGE_VENDOR "Tuenti")
+SET(CPACK_PACKAGE_VERSION_MAJOR "0")
+SET(CPACK_PACKAGE_VERSION_MINOR "1")
+SET(CPACK_PACKAGE_VERSION_PATCH "tuenti")
+
+SET(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
+
+INCLUDE(CPack)

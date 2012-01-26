@@ -16,3 +16,6 @@ mbfl_ident.c mbfl_memory_device.c mbfl_allocators.c mbfl_filter_output.c
 mbfilter_pass.c mbfilter_wchar.c mbfilter_8bit.c)
 
 add_library(mbfl STATIC ${mbfl_files} ${mbfl_filters_files} ${mbfl_nls_files})
+
+
+INSTALL(TARGETS mbfl DESTINATION lib COMPONENT dev)
