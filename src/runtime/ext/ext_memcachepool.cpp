@@ -380,8 +380,11 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
 
   if (key.is(KindOfArray))
     return return_val;
-  else
+  else {
+    if (return_val[curkey].is(KindOfNull))
+        return false;
     return return_val[curkey];
+  }
 }
 
 bool c_MemcachePool::t_delete(CStrRef key, int expire /*= 0*/) {
