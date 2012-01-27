@@ -17,7 +17,7 @@ ENDIF()
 
 add_custom_command(TARGET hphp
         POST_BUILD
-        COMMAND ln -sf ${CMAKE_SOURCE_DIR}/bin  ${CMAKE_SOURCE_DIR}/lib
+        COMMAND ln -Tsf ${CMAKE_SOURCE_DIR}/bin  ${CMAKE_SOURCE_DIR}/lib
         COMMAND hphp ARGS -t cpp -f exe --input-dir . -i hphpi.php -o gen -vEnableEval=2 --log=1
         COMMAND mv ARGS gen/program ${CMAKE_BINARY_DIR}/src/hphp/hphpi
         WORKING_DIRECTORY ${HPHP_HOME}/src/hphpi

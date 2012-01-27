@@ -66,4 +66,5 @@ cmake_install.cmake
 
 tags
 doc/www.pid
-build/
+build
+lib
