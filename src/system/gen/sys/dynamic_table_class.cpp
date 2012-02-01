@@ -46,12 +46,14 @@ extern const ObjectStaticCallbacks cw_RangeException;
 extern const ObjectStaticCallbacks cw_ReflectionException;
 extern const ObjectStaticCallbacks cw_IteratorIterator;
 extern const ObjectStaticCallbacks cw_LogicException;
+extern const ObjectStaticCallbacks cw_UserPartitionException;
 extern const ObjectStaticCallbacks cw_SoapFault;
 extern const ObjectStaticCallbacks cw_ReflectionExtension;
 extern const ObjectStaticCallbacks cw_InvalidArgumentException;
 extern const ObjectStaticCallbacks cw_AppendIterator;
 extern const ObjectStaticCallbacks cw_DomainException;
 extern const ObjectStaticCallbacks cw_FB_MySQLLexer;
+extern const ObjectStaticCallbacks cw_GmagickException;
 extern const ObjectStaticCallbacks cw_UnexpectedValueException;
 extern const ObjectStaticCallbacks cw_RuntimeException;
 extern const ObjectStaticCallbacks cw_LengthException;
@@ -61,6 +63,7 @@ extern const ObjectStaticCallbacks cw_FilterIterator;
 extern const ObjectStaticCallbacks cw_RecursiveIteratorIterator;
 extern const ObjectStaticCallbacks cw_DOMException;
 extern const ObjectStaticCallbacks cw_UnderflowException;
+extern const ObjectStaticCallbacks cw_BucketCacheException;
 extern const ObjectStaticCallbacks cw_BadFunctionCallException;
 extern const ObjectStaticCallbacks cw_ReflectionFunctionAbstract;
 extern const ObjectStaticCallbacks cw_ArrayIterator;
@@ -72,1176 +75,1170 @@ extern const ObjectStaticCallbacks cw_ReflectionFunction;
 extern const ObjectStaticCallbacks cw_ReflectionClass;
 extern const ObjectStaticCallbacks cw_XhprofFrame;
 extern const ObjectStaticCallbacks cw_SplFileObject;
-ObjectData *coo_DOMDocumentType() {
-  return NEWOBJ(c_DOMDocumentType)();
+ObjectData *coo_DOMProcessingInstruction() {
+  return NEWOBJ(c_DOMProcessingInstruction)();
 }
-IMPLEMENT_CLASS(DOMDocumentType)
-const InstanceOfInfo c_DOMDocumentType::s_instanceof_table[] = {
-  {0x70EBB2CC1FBF9761LL,1,"DOMDocumentType",&cw_DOMDocumentType},
+IMPLEMENT_CLASS(DOMProcessingInstruction)
+const InstanceOfInfo c_DOMProcessingInstruction::s_instanceof_table[] = {
+  {0x59B3EFD1CD987F80LL,1,"DOMProcessingInstruction",&cw_DOMProcessingInstruction},
   {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
 };
-const int c_DOMDocumentType::s_instanceof_index[] = {
+const int c_DOMProcessingInstruction::s_instanceof_index[] = {
   3,
-  -1,0,1,-1,
+  0,-1,1,-1,
 };
-CallInfo c_DOMDocumentType::ci___destruct((void*)&c_DOMDocumentType::i___destruct, (void*)&c_DOMDocumentType::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMDocumentType::ci___isset((void*)&c_DOMDocumentType::i___isset, (void*)&c_DOMDocumentType::ifa___isset, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMDocumentType::ci___get((void*)&c_DOMDocumentType::i___get, (void*)&c_DOMDocumentType::ifa___get, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMDocumentType::ci___construct((void*)&c_DOMDocumentType::i___construct, (void*)&c_DOMDocumentType::ifa___construct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMDocumentType::ci___set((void*)&c_DOMDocumentType::i___set, (void*)&c_DOMDocumentType::ifa___set, 2, 4, 0x0000000000000000LL);
-Variant c_DOMDocumentType::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_DOMProcessingInstruction::ci___destruct((void*)&c_DOMProcessingInstruction::i___destruct, (void*)&c_DOMProcessingInstruction::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMProcessingInstruction::ci___isset((void*)&c_DOMProcessingInstruction::i___isset, (void*)&c_DOMProcessingInstruction::ifa___isset, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMProcessingInstruction::ci___get((void*)&c_DOMProcessingInstruction::i___get, (void*)&c_DOMProcessingInstruction::ifa___get, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMProcessingInstruction::ci___construct((void*)&c_DOMProcessingInstruction::i___construct, (void*)&c_DOMProcessingInstruction::ifa___construct, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMProcessingInstruction::ci___set((void*)&c_DOMProcessingInstruction::i___set, (void*)&c_DOMProcessingInstruction::ifa___set, 2, 4, 0x0000000000000000LL);
+Variant c_DOMProcessingInstruction::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_DOMDocumentType::i___get(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMProcessingInstruction::i___get(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___get);
 }
-Variant c_DOMDocumentType::i___set(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMProcessingInstruction::i___set(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___set);
 }
-Variant c_DOMDocumentType::i___isset(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMProcessingInstruction::i___isset(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___isset);
 }
-Variant c_DOMDocumentType::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMProcessingInstruction::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_DOMDocumentType::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMProcessingInstruction::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMDocumentType);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMProcessingInstruction);
   }
-  c_DOMDocumentType *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentType*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
+  c_DOMProcessingInstruction *self ATTRIBUTE_UNUSED (static_cast<c_DOMProcessingInstruction*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("__construct", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t___construct(arg0), null);
+  CVarRef arg1(a1);
+  return (self->t___construct(arg0, arg1), null);
 }
-Variant c_DOMDocumentType::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMProcessingInstruction::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMDocumentType);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMProcessingInstruction);
   }
-  c_DOMDocumentType *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentType*>(mcp.obj));
+  c_DOMProcessingInstruction *self ATTRIBUTE_UNUSED (static_cast<c_DOMProcessingInstruction*>(mcp.obj));
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
   CVarRef arg0(a0);
   return (self->t___get(arg0));
 }
-Variant c_DOMDocumentType::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMProcessingInstruction::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMDocumentType);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMProcessingInstruction);
   }
-  c_DOMDocumentType *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentType*>(mcp.obj));
+  c_DOMProcessingInstruction *self ATTRIBUTE_UNUSED (static_cast<c_DOMProcessingInstruction*>(mcp.obj));
   if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
   CVarRef arg0(a0);
   CVarRef arg1(a1);
   return (self->t___set(arg0, arg1));
 }
-Variant c_DOMDocumentType::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMProcessingInstruction::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMDocumentType);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMProcessingInstruction);
   }
-  c_DOMDocumentType *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentType*>(mcp.obj));
+  c_DOMProcessingInstruction *self ATTRIBUTE_UNUSED (static_cast<c_DOMProcessingInstruction*>(mcp.obj));
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
   CVarRef arg0(a0);
   return (self->t___isset(arg0));
 }
-Variant c_DOMDocumentType::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMProcessingInstruction::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMDocumentType);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMProcessingInstruction);
   }
-  c_DOMDocumentType *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentType*>(mcp.obj));
+  c_DOMProcessingInstruction *self ATTRIBUTE_UNUSED (static_cast<c_DOMProcessingInstruction*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_DOMDocumentType::s_call_info_table[] = {
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMDocumentType::ci___destruct },
-  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMDocumentType::ci___set },
-  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMDocumentType::ci___isset },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMDocumentType::ci___construct },
-  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMDocumentType::ci___get },
+const MethodCallInfoTable c_DOMProcessingInstruction::s_call_info_table[] = {
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMProcessingInstruction::ci___destruct },
+  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMProcessingInstruction::ci___set },
+  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMProcessingInstruction::ci___isset },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMProcessingInstruction::ci___construct },
+  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMProcessingInstruction::ci___get },
   { 0, 1, 0, 0 }
 };
-const int c_DOMDocumentType::s_call_info_index[] = {
+const int c_DOMProcessingInstruction::s_call_info_index[] = {
   15,
   -1,-1,-1,0,-1,1,-1,-1,
   -1,-1,-1,-1,-1,-1,2,3,
 
 };
-c_DOMDocumentType *c_DOMDocumentType::create() {
+c_DOMProcessingInstruction *c_DOMProcessingInstruction::create(String a0, String a1) {
   CountableHelper h(this);
   init();
-  t___construct();
+  t___construct(a0, a1);
   return this;
 }
-const ObjectStaticCallbacks cw_DOMDocumentType = {
-  (ObjectData*(*)(ObjectData*))coo_DOMDocumentType,
-  c_DOMDocumentType::s_call_info_table,c_DOMDocumentType::s_call_info_index,
-  c_DOMDocumentType::s_instanceof_table,c_DOMDocumentType::s_instanceof_index,
-  &c_DOMDocumentType::s_class_name,
-  0,&c_DOMDocumentType::ci___construct,0,&cw_DOMNode,0x0
+const ObjectStaticCallbacks cw_DOMProcessingInstruction = {
+  (ObjectData*(*)(ObjectData*))coo_DOMProcessingInstruction,
+  c_DOMProcessingInstruction::s_call_info_table,c_DOMProcessingInstruction::s_call_info_index,
+  c_DOMProcessingInstruction::s_instanceof_table,c_DOMProcessingInstruction::s_instanceof_index,
+  &c_DOMProcessingInstruction::s_class_name,
+  0,&c_DOMProcessingInstruction::ci___construct,0,&cw_DOMNode,0x0
 };
-ObjectData *coo_DOMNodeList() {
-  return NEWOBJ(c_DOMNodeList)();
+ObjectData *coo_LibXMLError() {
+  return NEWOBJ(c_LibXMLError)();
 }
-IMPLEMENT_CLASS(DOMNodeList)
-const InstanceOfInfo c_DOMNodeList::s_instanceof_table[] = {
-  {0x6DD772FA3B20B8B1LL,0,"DOMNodeList",&cw_DOMNodeList},
-  {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},
-  {0x5C9BC112C0363017LL,1,"IteratorAggregate",(const ObjectStaticCallbacks*)2},
+IMPLEMENT_CLASS(LibXMLError)
+const InstanceOfInfo c_LibXMLError::s_instanceof_table[] = {
+  {0x253AC17234FC8CCBLL,1,"LibXMLError",&cw_LibXMLError},
 };
-const int c_DOMNodeList::s_instanceof_index[] = {
-  7,
-  -1,0,-1,-1,-1,-1,-1,2,
-
+const int c_LibXMLError::s_instanceof_index[] = {
+  1,
+  -1,0,
 };
-CallInfo c_DOMNodeList::ci___construct((void*)&c_DOMNodeList::i___construct, (void*)&c_DOMNodeList::ifa___construct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNodeList::ci___get((void*)&c_DOMNodeList::i___get, (void*)&c_DOMNodeList::ifa___get, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNodeList::ci___isset((void*)&c_DOMNodeList::i___isset, (void*)&c_DOMNodeList::ifa___isset, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNodeList::ci___destruct((void*)&c_DOMNodeList::i___destruct, (void*)&c_DOMNodeList::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNodeList::ci_item((void*)&c_DOMNodeList::i_item, (void*)&c_DOMNodeList::ifa_item, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNodeList::ci___set((void*)&c_DOMNodeList::i___set, (void*)&c_DOMNodeList::ifa___set, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMNodeList::ci_getiterator((void*)&c_DOMNodeList::i_getiterator, (void*)&c_DOMNodeList::ifa_getiterator, 0, 4, 0x0000000000000000LL);
-Variant c_DOMNodeList::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_LibXMLError::ci___destruct((void*)&c_LibXMLError::i___destruct, (void*)&c_LibXMLError::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_LibXMLError::ci___construct((void*)&c_LibXMLError::i___construct, (void*)&c_LibXMLError::ifa___construct, 0, 4, 0x0000000000000000LL);
+Variant c_LibXMLError::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_DOMNodeList::i_item(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_item);
-}
-Variant c_DOMNodeList::i___get(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___get);
-}
-Variant c_DOMNodeList::i___set(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___set);
-}
-Variant c_DOMNodeList::i___isset(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___isset);
-}
-Variant c_DOMNodeList::i_getiterator(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getiterator);
-}
-Variant c_DOMNodeList::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_LibXMLError::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_DOMNodeList::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_LibXMLError::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMNodeList);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_LibXMLError);
   }
-  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
+  c_LibXMLError *self ATTRIBUTE_UNUSED (static_cast<c_LibXMLError*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
   return (self->t___construct(), null);
 }
-Variant c_DOMNodeList::ifa_item(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_LibXMLError::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_item, coo_DOMNodeList);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_LibXMLError);
   }
-  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("item", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_item(arg0));
-}
-Variant c_DOMNodeList::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMNodeList);
-  }
-  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___get(arg0));
-}
-Variant c_DOMNodeList::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMNodeList);
-  }
-  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t___set(arg0, arg1));
-}
-Variant c_DOMNodeList::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMNodeList);
-  }
-  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___isset(arg0));
-}
-Variant c_DOMNodeList::ifa_getiterator(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getiterator, coo_DOMNodeList);
-  }
-  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getiterator", 0, 1);
-  return (self->t_getiterator());
-}
-Variant c_DOMNodeList::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMNodeList);
-  }
-  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
+  c_LibXMLError *self ATTRIBUTE_UNUSED (static_cast<c_LibXMLError*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_DOMNodeList::s_call_info_table[] = {
-  { 0x570B2E1232A12503LL, 1, 11, "getIterator", &c_DOMNodeList::ci_getiterator },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_DOMNodeList::ci___destruct },
-  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMNodeList::ci___set },
-  { 0x0A41DBE0830902C6LL, 1, 4, "item", &c_DOMNodeList::ci_item },
-  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMNodeList::ci___isset },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMNodeList::ci___construct },
-  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMNodeList::ci___get },
+const MethodCallInfoTable c_LibXMLError::s_call_info_table[] = {
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_LibXMLError::ci___construct },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_LibXMLError::ci___destruct },
   { 0, 1, 0, 0 }
 };
-const int c_DOMNodeList::s_call_info_index[] = {
-  15,
-  -1,-1,-1,0,-1,2,3,-1,
-  -1,-1,-1,-1,-1,-1,4,5,
-
+const int c_LibXMLError::s_call_info_index[] = {
+  3,
+  -1,-1,-1,0,
 };
-c_DOMNodeList *c_DOMNodeList::create() {
+c_LibXMLError *c_LibXMLError::create() {
   CountableHelper h(this);
   init();
   t___construct();
   return this;
 }
-const ObjectStaticCallbacks cw_DOMNodeList = {
-  (ObjectData*(*)(ObjectData*))coo_DOMNodeList,
-  c_DOMNodeList::s_call_info_table,c_DOMNodeList::s_call_info_index,
-  c_DOMNodeList::s_instanceof_table,c_DOMNodeList::s_instanceof_index,
-  &c_DOMNodeList::s_class_name,
-  0,&c_DOMNodeList::ci___construct,0,0,0x0
+const ObjectStaticCallbacks cw_LibXMLError = {
+  (ObjectData*(*)(ObjectData*))coo_LibXMLError,
+  c_LibXMLError::s_call_info_table,c_LibXMLError::s_call_info_index,
+  c_LibXMLError::s_instanceof_table,c_LibXMLError::s_instanceof_index,
+  &c_LibXMLError::s_class_name,
+  0,&c_LibXMLError::ci___construct,0,0,0x0
 };
-ObjectData *coo_DOMNamedNodeMap() {
-  return NEWOBJ(c_DOMNamedNodeMap)();
+ObjectData *coo_Memcache() {
+  return NEWOBJ(c_Memcache)();
 }
-IMPLEMENT_CLASS(DOMNamedNodeMap)
-const InstanceOfInfo c_DOMNamedNodeMap::s_instanceof_table[] = {
-  {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},
-  {0x196F76C9C527B946LL,1,"DOMNamedNodeMap",&cw_DOMNamedNodeMap},
-  {0x5C9BC112C0363017LL,1,"IteratorAggregate",(const ObjectStaticCallbacks*)2},
+IMPLEMENT_CLASS(Memcache)
+const InstanceOfInfo c_Memcache::s_instanceof_table[] = {
+  {0x3C122DF8859C72D0LL,1,"Memcache",&cw_Memcache},
 };
-const int c_DOMNamedNodeMap::s_instanceof_index[] = {
-  7,
-  -1,0,-1,-1,-1,-1,1,2,
-
+const int c_Memcache::s_instanceof_index[] = {
+  1,
+  0,-1,
 };
-CallInfo c_DOMNamedNodeMap::ci___construct((void*)&c_DOMNamedNodeMap::i___construct, (void*)&c_DOMNamedNodeMap::ifa___construct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNamedNodeMap::ci___get((void*)&c_DOMNamedNodeMap::i___get, (void*)&c_DOMNamedNodeMap::ifa___get, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNamedNodeMap::ci___isset((void*)&c_DOMNamedNodeMap::i___isset, (void*)&c_DOMNamedNodeMap::ifa___isset, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNamedNodeMap::ci_getnameditem((void*)&c_DOMNamedNodeMap::i_getnameditem, (void*)&c_DOMNamedNodeMap::ifa_getnameditem, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNamedNodeMap::ci___destruct((void*)&c_DOMNamedNodeMap::i___destruct, (void*)&c_DOMNamedNodeMap::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNamedNodeMap::ci_getnameditemns((void*)&c_DOMNamedNodeMap::i_getnameditemns, (void*)&c_DOMNamedNodeMap::ifa_getnameditemns, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMNamedNodeMap::ci_item((void*)&c_DOMNamedNodeMap::i_item, (void*)&c_DOMNamedNodeMap::ifa_item, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNamedNodeMap::ci___set((void*)&c_DOMNamedNodeMap::i___set, (void*)&c_DOMNamedNodeMap::ifa___set, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMNamedNodeMap::ci_getiterator((void*)&c_DOMNamedNodeMap::i_getiterator, (void*)&c_DOMNamedNodeMap::ifa_getiterator, 0, 4, 0x0000000000000000LL);
-Variant c_DOMNamedNodeMap::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_Memcache::ci_connect((void*)&c_Memcache::i_connect, (void*)&c_Memcache::ifa_connect, 4, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_close((void*)&c_Memcache::i_close, (void*)&c_Memcache::ifa_close, 0, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_setcompressthreshold((void*)&c_Memcache::i_setcompressthreshold, (void*)&c_Memcache::ifa_setcompressthreshold, 2, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_pconnect((void*)&c_Memcache::i_pconnect, (void*)&c_Memcache::ifa_pconnect, 4, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_replace((void*)&c_Memcache::i_replace, (void*)&c_Memcache::ifa_replace, 4, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_add((void*)&c_Memcache::i_add, (void*)&c_Memcache::ifa_add, 4, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_delete((void*)&c_Memcache::i_delete, (void*)&c_Memcache::ifa_delete, 2, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_increment((void*)&c_Memcache::i_increment, (void*)&c_Memcache::ifa_increment, 2, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_getextendedstats((void*)&c_Memcache::i_getextendedstats, (void*)&c_Memcache::ifa_getextendedstats, 3, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_getserverstatus((void*)&c_Memcache::i_getserverstatus, (void*)&c_Memcache::ifa_getserverstatus, 2, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_set((void*)&c_Memcache::i_set, (void*)&c_Memcache::ifa_set, 4, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_setserverparams((void*)&c_Memcache::i_setserverparams, (void*)&c_Memcache::ifa_setserverparams, 6, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_getversion((void*)&c_Memcache::i_getversion, (void*)&c_Memcache::ifa_getversion, 0, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_addserver((void*)&c_Memcache::i_addserver, (void*)&c_Memcache::ifa_addserver, 9, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_decrement((void*)&c_Memcache::i_decrement, (void*)&c_Memcache::ifa_decrement, 2, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_getstats((void*)&c_Memcache::i_getstats, (void*)&c_Memcache::ifa_getstats, 3, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_flush((void*)&c_Memcache::i_flush, (void*)&c_Memcache::ifa_flush, 1, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_get((void*)&c_Memcache::i_get, (void*)&c_Memcache::ifa_get, 2, 4, 0x0000000000000002LL);
+CallInfo c_Memcache::ci___destruct((void*)&c_Memcache::i___destruct, (void*)&c_Memcache::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci_setoptimeout((void*)&c_Memcache::i_setoptimeout, (void*)&c_Memcache::ifa_setoptimeout, 1, 4, 0x0000000000000000LL);
+CallInfo c_Memcache::ci___construct((void*)&c_Memcache::i___construct, (void*)&c_Memcache::ifa___construct, 0, 4, 0x0000000000000000LL);
+Variant c_Memcache::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_DOMNamedNodeMap::i_getnameditem(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getnameditem);
+Variant c_Memcache::i_connect(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_connect);
 }
-Variant c_DOMNamedNodeMap::i_getnameditemns(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getnameditemns);
+Variant c_Memcache::i_pconnect(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_pconnect);
 }
-Variant c_DOMNamedNodeMap::i_item(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_item);
+Variant c_Memcache::i_add(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_add);
 }
-Variant c_DOMNamedNodeMap::i___get(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___get);
+Variant c_Memcache::i_set(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_set);
 }
-Variant c_DOMNamedNodeMap::i___set(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___set);
+Variant c_Memcache::i_replace(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_replace);
 }
-Variant c_DOMNamedNodeMap::i___isset(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___isset);
+Variant c_Memcache::i_get(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_get);
 }
-Variant c_DOMNamedNodeMap::i_getiterator(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getiterator);
+Variant c_Memcache::i_delete(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_delete);
 }
-Variant c_DOMNamedNodeMap::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+Variant c_Memcache::i_increment(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_increment);
 }
-Variant c_DOMNamedNodeMap::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::i_decrement(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_decrement);
+}
+Variant c_Memcache::i_getversion(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getversion);
+}
+Variant c_Memcache::i_flush(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_flush);
+}
+Variant c_Memcache::i_setoptimeout(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setoptimeout);
+}
+Variant c_Memcache::i_close(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_close);
+}
+Variant c_Memcache::i_getserverstatus(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getserverstatus);
+}
+Variant c_Memcache::i_setcompressthreshold(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setcompressthreshold);
+}
+Variant c_Memcache::i_getstats(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getstats);
+}
+Variant c_Memcache::i_getextendedstats(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getextendedstats);
+}
+Variant c_Memcache::i_setserverparams(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setserverparams);
+}
+Variant c_Memcache::i_addserver(MethodCallPackage &mcp, CArrRef params) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMNamedNodeMap);
+    return ObjectData::i_dummy(mcp, params, i_addserver, coo_Memcache);
   }
-  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_DOMNamedNodeMap::ifa_getnameditem(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getnameditem, coo_DOMNamedNodeMap);
-  }
-  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getnameditem", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_getnameditem(arg0));
-}
-Variant c_DOMNamedNodeMap::ifa_getnameditemns(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getnameditemns, coo_DOMNamedNodeMap);
-  }
-  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("getnameditemns", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_getnameditemns(arg0, arg1));
-}
-Variant c_DOMNamedNodeMap::ifa_item(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_item, coo_DOMNamedNodeMap);
-  }
-  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("item", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_item(arg0));
-}
-Variant c_DOMNamedNodeMap::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMNamedNodeMap);
-  }
-  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___get(arg0));
-}
-Variant c_DOMNamedNodeMap::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMNamedNodeMap);
-  }
-  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t___set(arg0, arg1));
-}
-Variant c_DOMNamedNodeMap::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMNamedNodeMap);
-  }
-  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___isset(arg0));
-}
-Variant c_DOMNamedNodeMap::ifa_getiterator(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getiterator, coo_DOMNamedNodeMap);
-  }
-  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getiterator", 0, 1);
-  return (self->t_getiterator());
-}
-Variant c_DOMNamedNodeMap::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMNamedNodeMap);
-  }
-  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_DOMNamedNodeMap::s_call_info_table[] = {
-  { 0x570B2E1232A12503LL, 1, 11, "getIterator", &c_DOMNamedNodeMap::ci_getiterator },
-  { 0x0A41DBE0830902C6LL, 1, 4, "item", &c_DOMNamedNodeMap::ci_item },
-  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMNamedNodeMap::ci___isset },
-  { 0x26B6E00C74FA338FLL, 1, 5, "__get", &c_DOMNamedNodeMap::ci___get },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMNamedNodeMap::ci___destruct },
-  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMNamedNodeMap::ci___set },
-  { 0x5D3CEC627F9ADC3ALL, 1, 12, "getNamedItem", &c_DOMNamedNodeMap::ci_getnameditem },
-  { 0x53B4D840FF4F0F1BLL, 1, 14, "getNamedItemNS", &c_DOMNamedNodeMap::ci_getnameditemns },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMNamedNodeMap::ci___construct },
-  { 0, 1, 0, 0 }
-};
-const int c_DOMNamedNodeMap::s_call_info_index[] = {
-  31,
-  -1,-1,-1,0,-1,-1,1,-1,
-  -1,-1,-1,-1,-1,-1,2,3,
-  -1,-1,-1,4,-1,5,-1,-1,
-  -1,-1,6,7,-1,-1,-1,8,
-
-};
-c_DOMNamedNodeMap *c_DOMNamedNodeMap::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
-}
-const ObjectStaticCallbacks cw_DOMNamedNodeMap = {
-  (ObjectData*(*)(ObjectData*))coo_DOMNamedNodeMap,
-  c_DOMNamedNodeMap::s_call_info_table,c_DOMNamedNodeMap::s_call_info_index,
-  c_DOMNamedNodeMap::s_instanceof_table,c_DOMNamedNodeMap::s_instanceof_index,
-  &c_DOMNamedNodeMap::s_class_name,
-  0,&c_DOMNamedNodeMap::ci___construct,0,0,0x0
-};
-ObjectData *coo_PDOStatement() {
-  return NEWOBJ(c_PDOStatement)();
-}
-IMPLEMENT_CLASS(PDOStatement)
-const InstanceOfInfo c_PDOStatement::s_instanceof_table[] = {
-  {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},
-  {0x4253D8488B734244LL,1,"PDOStatement",&cw_PDOStatement},
-  {0x0636A5F84AF9D29ELL,1,"Iterator",(const ObjectStaticCallbacks*)2},
-};
-const int c_PDOStatement::s_instanceof_index[] = {
-  7,
-  -1,0,-1,-1,1,-1,2,-1,
-
-};
-CallInfo c_PDOStatement::ci_key((void*)&c_PDOStatement::i_key, (void*)&c_PDOStatement::ifa_key, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_setattribute((void*)&c_PDOStatement::i_setattribute, (void*)&c_PDOStatement::ifa_setattribute, 2, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_fetchobject((void*)&c_PDOStatement::i_fetchobject, (void*)&c_PDOStatement::ifa_fetchobject, 2, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_fetchcolumn((void*)&c_PDOStatement::i_fetchcolumn, (void*)&c_PDOStatement::ifa_fetchcolumn, 1, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_fetch((void*)&c_PDOStatement::i_fetch, (void*)&c_PDOStatement::ifa_fetch, 3, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_errorinfo((void*)&c_PDOStatement::i_errorinfo, (void*)&c_PDOStatement::ifa_errorinfo, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_getcolumnmeta((void*)&c_PDOStatement::i_getcolumnmeta, (void*)&c_PDOStatement::ifa_getcolumnmeta, 1, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_bindparam((void*)&c_PDOStatement::i_bindparam, (void*)&c_PDOStatement::ifa_bindparam, 5, 4, 0x0000000000000002LL);
-CallInfo c_PDOStatement::ci_rewind((void*)&c_PDOStatement::i_rewind, (void*)&c_PDOStatement::ifa_rewind, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_valid((void*)&c_PDOStatement::i_valid, (void*)&c_PDOStatement::ifa_valid, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_next((void*)&c_PDOStatement::i_next, (void*)&c_PDOStatement::ifa_next, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_columncount((void*)&c_PDOStatement::i_columncount, (void*)&c_PDOStatement::ifa_columncount, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_errorcode((void*)&c_PDOStatement::i_errorcode, (void*)&c_PDOStatement::ifa_errorcode, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_fetchall((void*)&c_PDOStatement::i_fetchall, (void*)&c_PDOStatement::ifa_fetchall, 3, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_setfetchmode((void*)&c_PDOStatement::i_setfetchmode, (void*)&c_PDOStatement::ifa_setfetchmode, 1, 5, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_execute((void*)&c_PDOStatement::i_execute, (void*)&c_PDOStatement::ifa_execute, 1, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_closecursor((void*)&c_PDOStatement::i_closecursor, (void*)&c_PDOStatement::ifa_closecursor, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci___sleep((void*)&c_PDOStatement::i___sleep, (void*)&c_PDOStatement::ifa___sleep, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_current((void*)&c_PDOStatement::i_current, (void*)&c_PDOStatement::ifa_current, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_bindcolumn((void*)&c_PDOStatement::i_bindcolumn, (void*)&c_PDOStatement::ifa_bindcolumn, 5, 4, 0x0000000000000002LL);
-CallInfo c_PDOStatement::ci_rowcount((void*)&c_PDOStatement::i_rowcount, (void*)&c_PDOStatement::ifa_rowcount, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_debugdumpparams((void*)&c_PDOStatement::i_debugdumpparams, (void*)&c_PDOStatement::ifa_debugdumpparams, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_nextrowset((void*)&c_PDOStatement::i_nextrowset, (void*)&c_PDOStatement::ifa_nextrowset, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_bindvalue((void*)&c_PDOStatement::i_bindvalue, (void*)&c_PDOStatement::ifa_bindvalue, 3, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci_getattribute((void*)&c_PDOStatement::i_getattribute, (void*)&c_PDOStatement::ifa_getattribute, 1, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci___construct((void*)&c_PDOStatement::i___construct, (void*)&c_PDOStatement::ifa___construct, 0, 68, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci___destruct((void*)&c_PDOStatement::i___destruct, (void*)&c_PDOStatement::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDOStatement::ci___wakeup((void*)&c_PDOStatement::i___wakeup, (void*)&c_PDOStatement::ifa___wakeup, 0, 4, 0x0000000000000000LL);
-Variant c_PDOStatement::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_PDOStatement::i_execute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_execute);
-}
-Variant c_PDOStatement::i_fetch(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_fetch);
-}
-Variant c_PDOStatement::i_fetchobject(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_fetchobject);
-}
-Variant c_PDOStatement::i_fetchcolumn(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_fetchcolumn);
-}
-Variant c_PDOStatement::i_fetchall(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_fetchall);
-}
-Variant c_PDOStatement::i_bindvalue(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_bindvalue);
-}
-Variant c_PDOStatement::i_bindparam(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_bindparam);
-}
-Variant c_PDOStatement::i_bindcolumn(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_bindcolumn);
-}
-Variant c_PDOStatement::i_rowcount(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_rowcount);
-}
-Variant c_PDOStatement::i_errorcode(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_errorcode);
-}
-Variant c_PDOStatement::i_errorinfo(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_errorinfo);
-}
-Variant c_PDOStatement::i_setattribute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setattribute);
-}
-Variant c_PDOStatement::i_getattribute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getattribute);
-}
-Variant c_PDOStatement::i_columncount(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_columncount);
-}
-Variant c_PDOStatement::i_getcolumnmeta(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getcolumnmeta);
-}
-Variant c_PDOStatement::i_setfetchmode(MethodCallPackage &mcp, CArrRef params) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::i_dummy(mcp, params, i_setfetchmode, coo_PDOStatement);
-  }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
   int count ATTRIBUTE_UNUSED = params.size();
-  if (UNLIKELY(count < 1)) return throw_missing_arguments("setfetchmode", count+1, 1);
+  if (UNLIKELY(count < 1 || count > 9)) return throw_wrong_arguments("addserver", count, 1, 9, 1);
   {
     ArrayData *ad(params.get());
     ssize_t pos = ad ? ad->iter_begin() : ArrayData::invalid_index;
     CVarRef arg0((ad->getValue(pos)));
-    const Array &p(count > 1 ? params.slice(1, count - 1, false) : Array());
-    return (self->t_setfetchmode(count, arg0, p));
+    if (count <= 1) return (self->t_addserver(arg0));
+    CVarRef arg1((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 2) return (self->t_addserver(arg0, arg1));
+    CVarRef arg2((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 3) return (self->t_addserver(arg0, arg1, arg2));
+    CVarRef arg3((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 4) return (self->t_addserver(arg0, arg1, arg2, arg3));
+    CVarRef arg4((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 5) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4));
+    CVarRef arg5((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 6) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5));
+    CVarRef arg6((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 7) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5, arg6));
+    CVarRef arg7((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 8) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
+    CVarRef arg8((ad->getValue(pos = ad->iter_advance(pos))));
+    return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8));
   }
 }
-Variant c_PDOStatement::i_nextrowset(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_nextrowset);
-}
-Variant c_PDOStatement::i_closecursor(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_closecursor);
-}
-Variant c_PDOStatement::i_debugdumpparams(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_debugdumpparams);
-}
-Variant c_PDOStatement::i_current(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_current);
-}
-Variant c_PDOStatement::i_key(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_key);
-}
-Variant c_PDOStatement::i_next(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_next);
-}
-Variant c_PDOStatement::i_rewind(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_rewind);
-}
-Variant c_PDOStatement::i_valid(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_valid);
-}
-Variant c_PDOStatement::i___wakeup(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___wakeup);
-}
-Variant c_PDOStatement::i___sleep(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___sleep);
-}
-Variant c_PDOStatement::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_Memcache::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_PDOStatement::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
   return (self->t___construct(), null);
 }
-Variant c_PDOStatement::ifa_execute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_connect(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_execute, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_connect, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("execute", 1, 1);
-  if (count <= 0) return (self->t_execute());
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 4)) return throw_wrong_arguments("connect", count, 1, 4, 1);
   CVarRef arg0(a0);
-  return (self->t_execute(arg0));
-}
-Variant c_PDOStatement::ifa_fetch(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_fetch, coo_PDOStatement);
-  }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 3)) return throw_toomany_arguments("fetch", 3, 1);
-  if (count <= 0) return (self->t_fetch());
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_fetch(arg0));
+  if (count <= 1) return (self->t_connect(arg0));
   CVarRef arg1(a1);
-  if (count <= 2) return (self->t_fetch(arg0, arg1));
+  if (count <= 2) return (self->t_connect(arg0, arg1));
   CVarRef arg2(a2);
-  return (self->t_fetch(arg0, arg1, arg2));
-}
-Variant c_PDOStatement::ifa_fetchobject(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_fetchobject, coo_PDOStatement);
-  }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 2)) return throw_toomany_arguments("fetchobject", 2, 1);
-  if (count <= 0) return (self->t_fetchobject());
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_fetchobject(arg0));
-  CVarRef arg1(a1);
-  return (self->t_fetchobject(arg0, arg1));
-}
-Variant c_PDOStatement::ifa_fetchcolumn(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_fetchcolumn, coo_PDOStatement);
-  }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("fetchcolumn", 1, 1);
-  if (count <= 0) return (self->t_fetchcolumn());
-  CVarRef arg0(a0);
-  return (self->t_fetchcolumn(arg0));
-}
-Variant c_PDOStatement::ifa_fetchall(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_fetchall, coo_PDOStatement);
-  }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 3)) return throw_toomany_arguments("fetchall", 3, 1);
-  if (count <= 0) return (self->t_fetchall());
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_fetchall(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_fetchall(arg0, arg1));
-  CVarRef arg2(a2);
-  return (self->t_fetchall(arg0, arg1, arg2));
-}
-Variant c_PDOStatement::ifa_bindvalue(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_bindvalue, coo_PDOStatement);
-  }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("bindvalue", count, 2, 3, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_bindvalue(arg0, arg1));
-  CVarRef arg2(a2);
-  return (self->t_bindvalue(arg0, arg1, arg2));
-}
-Variant c_PDOStatement::ifa_bindparam(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_bindparam, coo_PDOStatement);
-  }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 5)) return throw_wrong_arguments("bindparam", count, 2, 5, 1);
-  CVarRef arg0(a0);
-  VRefParam arg1(vref(a1));
-  if (count <= 2) return (self->t_bindparam(arg0, arg1));
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_bindparam(arg0, arg1, arg2));
+  if (count <= 3) return (self->t_connect(arg0, arg1, arg2));
   CVarRef arg3(a3);
-  if (count <= 4) return (self->t_bindparam(arg0, arg1, arg2, arg3));
-  CVarRef arg4(a4);
-  return (self->t_bindparam(arg0, arg1, arg2, arg3, arg4));
+  return (self->t_connect(arg0, arg1, arg2, arg3));
 }
-Variant c_PDOStatement::ifa_bindcolumn(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_pconnect(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_bindcolumn, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_pconnect, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 5)) return throw_wrong_arguments("bindcolumn", count, 2, 5, 1);
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 4)) return throw_wrong_arguments("pconnect", count, 1, 4, 1);
   CVarRef arg0(a0);
-  VRefParam arg1(vref(a1));
-  if (count <= 2) return (self->t_bindcolumn(arg0, arg1));
+  if (count <= 1) return (self->t_pconnect(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_pconnect(arg0, arg1));
   CVarRef arg2(a2);
-  if (count <= 3) return (self->t_bindcolumn(arg0, arg1, arg2));
+  if (count <= 3) return (self->t_pconnect(arg0, arg1, arg2));
   CVarRef arg3(a3);
-  if (count <= 4) return (self->t_bindcolumn(arg0, arg1, arg2, arg3));
-  CVarRef arg4(a4);
-  return (self->t_bindcolumn(arg0, arg1, arg2, arg3, arg4));
+  return (self->t_pconnect(arg0, arg1, arg2, arg3));
 }
-Variant c_PDOStatement::ifa_rowcount(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_add(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_rowcount, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_add, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("rowcount", 0, 1);
-  return (self->t_rowcount());
-}
-Variant c_PDOStatement::ifa_errorcode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_errorcode, coo_PDOStatement);
-  }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("errorcode", 0, 1);
-  return (self->t_errorcode());
-}
-Variant c_PDOStatement::ifa_errorinfo(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_errorinfo, coo_PDOStatement);
-  }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("errorinfo", 0, 1);
-  return (self->t_errorinfo());
-}
-Variant c_PDOStatement::ifa_setattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setattribute, coo_PDOStatement);
-  }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("setattribute", count, 2, 2, 1);
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 4)) return throw_wrong_arguments("add", count, 2, 4, 1);
   CVarRef arg0(a0);
   CVarRef arg1(a1);
-  return (self->t_setattribute(arg0, arg1));
+  if (count <= 2) return (self->t_add(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_add(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (self->t_add(arg0, arg1, arg2, arg3));
 }
-Variant c_PDOStatement::ifa_getattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattribute, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_set, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getattribute", count, 1, 1, 1);
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 4)) return throw_wrong_arguments("set", count, 2, 4, 1);
   CVarRef arg0(a0);
-  return (self->t_getattribute(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_set(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_set(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (self->t_set(arg0, arg1, arg2, arg3));
 }
-Variant c_PDOStatement::ifa_columncount(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_replace(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_columncount, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_replace, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("columncount", 0, 1);
-  return (self->t_columncount());
-}
-Variant c_PDOStatement::ifa_getcolumnmeta(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getcolumnmeta, coo_PDOStatement);
-  }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getcolumnmeta", count, 1, 1, 1);
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 4)) return throw_wrong_arguments("replace", count, 2, 4, 1);
   CVarRef arg0(a0);
-  return (self->t_getcolumnmeta(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_replace(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_replace(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (self->t_replace(arg0, arg1, arg2, arg3));
 }
-Variant c_PDOStatement::ifa_setfetchmode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setfetchmode, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_get, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count < 1)) return throw_missing_arguments("setfetchmode", count+1, 1);
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("get", count, 1, 2, 1);
   CVarRef arg0(a0);
-  Array p;
-  if (count >= 2) p.append(a1);
-  if (count >= 3) p.append(a2);
-  if (count >= 4) p.append(a3);
-  if (count >= 5) p.append(a4);
-  if (count >= 6) p.append(a5);
-  return (self->t_setfetchmode(count, arg0, p));
+  if (count <= 1) return (self->t_get(arg0));
+  VRefParam arg1(vref(a1));
+  return (self->t_get(arg0, arg1));
 }
-Variant c_PDOStatement::ifa_nextrowset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_delete(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_nextrowset, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_delete, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("nextrowset", 0, 1);
-  return (self->t_nextrowset());
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("delete", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_delete(arg0));
+  CVarRef arg1(a1);
+  return (self->t_delete(arg0, arg1));
 }
-Variant c_PDOStatement::ifa_closecursor(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_increment(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_closecursor, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_increment, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("closecursor", 0, 1);
-  return (self->t_closecursor());
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("increment", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_increment(arg0));
+  CVarRef arg1(a1);
+  return (self->t_increment(arg0, arg1));
 }
-Variant c_PDOStatement::ifa_debugdumpparams(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_decrement(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_debugdumpparams, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_decrement, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("debugdumpparams", 0, 1);
-  return (self->t_debugdumpparams());
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("decrement", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_decrement(arg0));
+  CVarRef arg1(a1);
+  return (self->t_decrement(arg0, arg1));
 }
-Variant c_PDOStatement::ifa_current(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_getversion(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_current, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getversion, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("current", 0, 1);
-  return (self->t_current());
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getversion", 0, 1);
+  return (self->t_getversion());
 }
-Variant c_PDOStatement::ifa_key(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_flush(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_key, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_flush, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("key", 0, 1);
-  return (self->t_key());
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("flush", 1, 1);
+  if (count <= 0) return (self->t_flush());
+  CVarRef arg0(a0);
+  return (self->t_flush(arg0));
 }
-Variant c_PDOStatement::ifa_next(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_setoptimeout(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_next, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setoptimeout, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("next", 0, 1);
-  return (self->t_next());
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setoptimeout", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_setoptimeout(arg0));
 }
-Variant c_PDOStatement::ifa_rewind(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_close(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_rewind, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_close, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("rewind", 0, 1);
-  return (self->t_rewind());
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("close", 0, 1);
+  return (self->t_close());
 }
-Variant c_PDOStatement::ifa_valid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_getserverstatus(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_valid, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getserverstatus, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("valid", 0, 1);
-  return (self->t_valid());
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("getserverstatus", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_getserverstatus(arg0));
+  CVarRef arg1(a1);
+  return (self->t_getserverstatus(arg0, arg1));
 }
-Variant c_PDOStatement::ifa___wakeup(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_setcompressthreshold(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___wakeup, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setcompressthreshold, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__wakeup", 0, 1);
-  return (self->t___wakeup());
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("setcompressthreshold", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_setcompressthreshold(arg0));
+  CVarRef arg1(a1);
+  return (self->t_setcompressthreshold(arg0, arg1));
 }
-Variant c_PDOStatement::ifa___sleep(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_getstats(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___sleep, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getstats, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__sleep", 0, 1);
-  return (self->t___sleep());
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count > 3)) return throw_toomany_arguments("getstats", 3, 1);
+  if (count <= 0) return (self->t_getstats());
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_getstats(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_getstats(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_getstats(arg0, arg1, arg2));
 }
-Variant c_PDOStatement::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_Memcache::ifa_getextendedstats(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_PDOStatement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getextendedstats, coo_Memcache);
   }
-  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count > 3)) return throw_toomany_arguments("getextendedstats", 3, 1);
+  if (count <= 0) return (self->t_getextendedstats());
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_getextendedstats(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_getextendedstats(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_getextendedstats(arg0, arg1, arg2));
+}
+Variant c_Memcache::ifa_setserverparams(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setserverparams, coo_Memcache);
+  }
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count < 1)) return throw_wrong_arguments("setserverparams", count, 1, 6, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_setserverparams(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_setserverparams(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_setserverparams(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t_setserverparams(arg0, arg1, arg2, arg3));
+  CVarRef arg4(a4);
+  if (count <= 5) return (self->t_setserverparams(arg0, arg1, arg2, arg3, arg4));
+  CVarRef arg5(a5);
+  return (self->t_setserverparams(arg0, arg1, arg2, arg3, arg4, arg5));
+}
+Variant c_Memcache::ifa_addserver(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addserver, coo_Memcache);
+  }
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
+  if (UNLIKELY(count < 1)) return throw_wrong_arguments("addserver", count, 1, 9, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_addserver(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_addserver(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_addserver(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t_addserver(arg0, arg1, arg2, arg3));
+  CVarRef arg4(a4);
+  if (count <= 5) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4));
+  CVarRef arg5(a5);
+  return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5));
+}
+Variant c_Memcache::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_Memcache);
+  }
+  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_PDOStatement::s_call_info_table[] = {
-  { 0x5740729B65EB8E41LL, 1, 8, "fetchall", &c_PDOStatement::ci_fetchall },
-  { 0x436E6AFC3628E403LL, 1, 9, "bindvalue", &c_PDOStatement::ci_bindvalue },
-  { 0x6413CB5154808C44LL, 1, 5, "valid", &c_PDOStatement::ci_valid },
-  { 0x75A2E23098C65C05LL, 1, 11, "closecursor", &c_PDOStatement::ci_closecursor },
-  { 0x6D0664CC2372F2C7LL, 1, 9, "errorcode", &c_PDOStatement::ci_errorcode },
-  { 0x1D5B8B8144F4AB8ALL, 1, 12, "setattribute", &c_PDOStatement::ci_setattribute },
-  { 0x187C7F43EB57714ELL, 1, 7, "execute", &c_PDOStatement::ci_execute },
-  { 0x32A381ECDC91918FLL, 1, 11, "columncount", &c_PDOStatement::ci_columncount },
-  { 0x56EDB60C824E8C51LL, 1, 3, "key", &c_PDOStatement::ci_key },
-  { 0x31A8917EC4F2A252LL, 1, 10, "nextrowset", &c_PDOStatement::ci_nextrowset },
-  { 0x77B13FCF1BA41696LL, 1, 9, "bindparam", &c_PDOStatement::ci_bindparam },
-  { 0x5C38814410C5FFD9LL, 1, 11, "fetchcolumn", &c_PDOStatement::ci_fetchcolumn },
-  { 0x0D43A7148903299ALL, 1, 8, "rowcount", &c_PDOStatement::ci_rowcount },
-  { 0x5B3A4A72846B21DCLL, 1, 7, "current", &c_PDOStatement::ci_current },
-  { 0x4389F50CAA085CDCLL, 0, 8, "__wakeup", &c_PDOStatement::ci___wakeup },
-  { 0x0E1814AA3327229DLL, 1, 11, "fetchobject", &c_PDOStatement::ci_fetchobject },
-  { 0x1C87AD14A095219DLL, 0, 10, "bindcolumn", &c_PDOStatement::ci_bindcolumn },
-  { 0x1DDD412E7F04605ELL, 1, 9, "errorinfo", &c_PDOStatement::ci_errorinfo },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_PDOStatement::ci___construct },
-  { 0x78C9BF8620136861LL, 1, 12, "setfetchmode", &c_PDOStatement::ci_setfetchmode },
-  { 0x699F5A1E3BD7B2A2LL, 1, 15, "debugdumpparams", &c_PDOStatement::ci_debugdumpparams },
-  { 0x49F89C466612FC28LL, 1, 12, "getattribute", &c_PDOStatement::ci_getattribute },
-  { 0x1670096FDE27AF6ALL, 1, 6, "rewind", &c_PDOStatement::ci_rewind },
-  { 0x61D1244DDADBC02DLL, 1, 7, "__sleep", &c_PDOStatement::ci___sleep },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_PDOStatement::ci___destruct },
-  { 0x3C6D50F3BB8102B8LL, 1, 4, "next", &c_PDOStatement::ci_next },
-  { 0x5E82B850BB90B0FBLL, 1, 5, "fetch", &c_PDOStatement::ci_fetch },
-  { 0x5B6B980006E717FBLL, 0, 13, "getcolumnmeta", &c_PDOStatement::ci_getcolumnmeta },
+const MethodCallInfoTable c_Memcache::s_call_info_table[] = {
+  { 0x78AE97BFBEBF5341LL, 1, 5, "close", &c_Memcache::ci_close },
+  { 0x42FAC655280A6146LL, 1, 7, "replace", &c_Memcache::ci_replace },
+  { 0x39099707DF7945C7LL, 1, 9, "increment", &c_Memcache::ci_increment },
+  { 0x15D34462FC79458BLL, 1, 3, "add", &c_Memcache::ci_add },
+  { 0x3BF3710A1661DE0BLL, 0, 12, "setoptimeout", &c_Memcache::ci_setoptimeout },
+  { 0x710DE893BB376C4FLL, 1, 15, "getserverstatus", &c_Memcache::ci_getserverstatus },
+  { 0x030429D528A8EA92LL, 1, 20, "setcompressthreshold", &c_Memcache::ci_setcompressthreshold },
+  { 0x1C660E5BFA6F55D3LL, 1, 6, "delete", &c_Memcache::ci_delete },
+  { 0x7521E8833BE3D316LL, 1, 10, "getversion", &c_Memcache::ci_getversion },
+  { 0x1CCDC4317CE59BD9LL, 1, 8, "getstats", &c_Memcache::ci_getstats },
+  { 0x2A733FC12BA4C1DALL, 1, 9, "decrement", &c_Memcache::ci_decrement },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_Memcache::ci___construct },
+  { 0x399A6427C2185621LL, 1, 3, "set", &c_Memcache::ci_set },
+  { 0x4770E54B86BF7765LL, 1, 16, "getextendedstats", &c_Memcache::ci_getextendedstats },
+  { 0x56CD24186237AAE6LL, 1, 9, "addserver", &c_Memcache::ci_addserver },
+  { 0x25DCCC35D69AD828LL, 1, 3, "get", &c_Memcache::ci_get },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_Memcache::ci___destruct },
+  { 0x742B441E13CD7279LL, 1, 8, "pconnect", &c_Memcache::ci_pconnect },
+  { 0x6A3D9F8EDB005E7ALL, 1, 5, "flush", &c_Memcache::ci_flush },
+  { 0x1780351E8EFF92BDLL, 1, 15, "setserverparams", &c_Memcache::ci_setserverparams },
+  { 0x7032C660AD16D7FELL, 1, 7, "connect", &c_Memcache::ci_connect },
   { 0, 1, 0, 0 }
 };
-const int c_PDOStatement::s_call_info_index[] = {
+const int c_Memcache::s_call_info_index[] = {
   63,
-  -1,0,-1,1,2,3,-1,4,
-  -1,-1,5,-1,-1,-1,6,7,
-  -1,8,9,-1,-1,-1,10,-1,
-  -1,11,12,-1,13,15,17,18,
-  -1,19,20,-1,-1,-1,-1,-1,
-  21,-1,22,-1,-1,23,-1,-1,
-  -1,-1,-1,24,-1,-1,-1,-1,
-  25,-1,-1,26,-1,-1,-1,-1,
-
-};
-c_PDOStatement *c_PDOStatement::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
-}
-const ObjectStaticCallbacks cw_PDOStatement = {
-  (ObjectData*(*)(ObjectData*))coo_PDOStatement,
-  c_PDOStatement::s_call_info_table,c_PDOStatement::s_call_info_index,
-  c_PDOStatement::s_instanceof_table,c_PDOStatement::s_instanceof_index,
-  &c_PDOStatement::s_class_name,
-  0,&c_PDOStatement::ci___construct,0,0,0x0
-};
-ObjectData *coo_DOMNodeIterator() {
-  return NEWOBJ(c_DOMNodeIterator)();
-}
-IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(DOMNodeIterator)
-const InstanceOfInfo c_DOMNodeIterator::s_instanceof_table[] = {
-  {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},
-  {0x0636A5F84AF9D29ELL,1,"Iterator",(const ObjectStaticCallbacks*)2},
-  {0x7FF7A8442616EF37LL,1,"DOMNodeIterator",&cw_DOMNodeIterator},
-};
-const int c_DOMNodeIterator::s_instanceof_index[] = {
-  7,
   -1,0,-1,-1,-1,-1,1,2,
+  -1,-1,-1,3,-1,-1,-1,5,
+  -1,-1,6,7,-1,-1,8,-1,
+  -1,9,10,-1,-1,-1,-1,11,
+  -1,12,-1,-1,-1,13,14,-1,
+  15,-1,-1,-1,-1,-1,-1,-1,
+  -1,-1,-1,16,-1,-1,-1,-1,
+  -1,17,18,-1,-1,19,20,-1,
 
 };
-CallInfo c_DOMNodeIterator::ci___construct((void*)&c_DOMNodeIterator::i___construct, (void*)&c_DOMNodeIterator::ifa___construct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNodeIterator::ci_rewind((void*)&c_DOMNodeIterator::i_rewind, (void*)&c_DOMNodeIterator::ifa_rewind, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNodeIterator::ci_next((void*)&c_DOMNodeIterator::i_next, (void*)&c_DOMNodeIterator::ifa_next, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNodeIterator::ci___destruct((void*)&c_DOMNodeIterator::i___destruct, (void*)&c_DOMNodeIterator::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNodeIterator::ci_current((void*)&c_DOMNodeIterator::i_current, (void*)&c_DOMNodeIterator::ifa_current, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNodeIterator::ci_valid((void*)&c_DOMNodeIterator::i_valid, (void*)&c_DOMNodeIterator::ifa_valid, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNodeIterator::ci_key((void*)&c_DOMNodeIterator::i_key, (void*)&c_DOMNodeIterator::ifa_key, 0, 4, 0x0000000000000000LL);
-Variant c_DOMNodeIterator::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_DOMNodeIterator::i_current(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_current);
-}
-Variant c_DOMNodeIterator::i_key(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_key);
-}
-Variant c_DOMNodeIterator::i_next(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_next);
-}
-Variant c_DOMNodeIterator::i_rewind(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_rewind);
-}
-Variant c_DOMNodeIterator::i_valid(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_valid);
-}
-Variant c_DOMNodeIterator::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_DOMNodeIterator::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMNodeIterator);
-  }
-  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_DOMNodeIterator::ifa_current(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_current, coo_DOMNodeIterator);
-  }
-  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("current", 0, 1);
-  return (self->t_current());
-}
-Variant c_DOMNodeIterator::ifa_key(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_key, coo_DOMNodeIterator);
-  }
-  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("key", 0, 1);
-  return (self->t_key());
-}
-Variant c_DOMNodeIterator::ifa_next(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_next, coo_DOMNodeIterator);
-  }
-  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("next", 0, 1);
-  return (self->t_next());
-}
-Variant c_DOMNodeIterator::ifa_rewind(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_rewind, coo_DOMNodeIterator);
-  }
-  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("rewind", 0, 1);
-  return (self->t_rewind());
-}
-Variant c_DOMNodeIterator::ifa_valid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_valid, coo_DOMNodeIterator);
-  }
-  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("valid", 0, 1);
-  return (self->t_valid());
-}
-Variant c_DOMNodeIterator::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMNodeIterator);
-  }
-  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_DOMNodeIterator::s_call_info_table[] = {
-  { 0x56EDB60C824E8C51LL, 1, 3, "key", &c_DOMNodeIterator::ci_key },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMNodeIterator::ci___destruct },
-  { 0x6413CB5154808C44LL, 1, 5, "valid", &c_DOMNodeIterator::ci_valid },
-  { 0x3C6D50F3BB8102B8LL, 1, 4, "next", &c_DOMNodeIterator::ci_next },
-  { 0x1670096FDE27AF6ALL, 1, 6, "rewind", &c_DOMNodeIterator::ci_rewind },
-  { 0x5B3A4A72846B21DCLL, 1, 7, "current", &c_DOMNodeIterator::ci_current },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMNodeIterator::ci___construct },
-  { 0, 1, 0, 0 }
-};
-const int c_DOMNodeIterator::s_call_info_index[] = {
-  15,
-  -1,0,-1,1,2,-1,-1,-1,
-  3,-1,4,-1,5,-1,-1,6,
-
-};
-c_DOMNodeIterator *c_DOMNodeIterator::create() {
+c_Memcache *c_Memcache::create() {
   CountableHelper h(this);
   init();
   t___construct();
   return this;
 }
-const ObjectStaticCallbacks cw_DOMNodeIterator = {
-  (ObjectData*(*)(ObjectData*))coo_DOMNodeIterator,
-  c_DOMNodeIterator::s_call_info_table,c_DOMNodeIterator::s_call_info_index,
-  c_DOMNodeIterator::s_instanceof_table,c_DOMNodeIterator::s_instanceof_index,
-  &c_DOMNodeIterator::s_class_name,
-  0,&c_DOMNodeIterator::ci___construct,0,0,0x0
+const ObjectStaticCallbacks cw_Memcache = {
+  (ObjectData*(*)(ObjectData*))coo_Memcache,
+  c_Memcache::s_call_info_table,c_Memcache::s_call_info_index,
+  c_Memcache::s_instanceof_table,c_Memcache::s_instanceof_index,
+  &c_Memcache::s_class_name,
+  0,&c_Memcache::ci___construct,0,0,0x0
 };
-ObjectData *coo_Locale() {
-  return NEWOBJ(c_Locale)();
+ObjectData *coo_EncodingDetector() {
+  return NEWOBJ(c_EncodingDetector)();
 }
-IMPLEMENT_CLASS(Locale)
-const InstanceOfInfo c_Locale::s_instanceof_table[] = {
-  {0x67E31D42F2DFE4AALL,1,"Locale",&cw_Locale},
+IMPLEMENT_CLASS(EncodingDetector)
+const InstanceOfInfo c_EncodingDetector::s_instanceof_table[] = {
+  {0x22500D8A3618ED87LL,1,"EncodingDetector",&cw_EncodingDetector},
 };
-const int c_Locale::s_instanceof_index[] = {
-  1,
-  0,-1,
-};
-CallInfo c_Locale::ci___destruct((void*)&c_Locale::i___destruct, (void*)&c_Locale::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_Locale::ci___construct((void*)&c_Locale::i___construct, (void*)&c_Locale::ifa___construct, 0, 4, 0x0000000000000000LL);
-Variant c_Locale::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_Locale::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_Locale::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_Locale);
-  }
-  c_Locale *self ATTRIBUTE_UNUSED (static_cast<c_Locale*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_Locale::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_Locale);
-  }
-  c_Locale *self ATTRIBUTE_UNUSED (static_cast<c_Locale*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_Locale::s_call_info_table[] = {
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_Locale::ci___construct },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_Locale::ci___destruct },
-  { 0, 1, 0, 0 }
-};
-const int c_Locale::s_call_info_index[] = {
-  3,
-  -1,-1,-1,0,
-};
-c_Locale *c_Locale::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
-}
-const ObjectStaticCallbacks cw_Locale = {
-  (ObjectData*(*)(ObjectData*))coo_Locale,
-  c_Locale::s_call_info_table,c_Locale::s_call_info_index,
-  c_Locale::s_instanceof_table,c_Locale::s_instanceof_index,
-  &c_Locale::s_class_name,
-  &c_Locale::os_prop_table,&c_Locale::ci___construct,0,0,0x0
-};
-ObjectData *coo_SpoofChecker() {
-  return NEWOBJ(c_SpoofChecker)();
-}
-IMPLEMENT_CLASS(SpoofChecker)
-const InstanceOfInfo c_SpoofChecker::s_instanceof_table[] = {
-  {0x648FB595C359F411LL,1,"SpoofChecker",&cw_SpoofChecker},
-};
-const int c_SpoofChecker::s_instanceof_index[] = {
+const int c_EncodingDetector::s_instanceof_index[] = {
   1,
   -1,0,
 };
-CallInfo c_SpoofChecker::ci_areconfusable((void*)&c_SpoofChecker::i_areconfusable, (void*)&c_SpoofChecker::ifa_areconfusable, 3, 4, 0x0000000000000004LL);
-CallInfo c_SpoofChecker::ci___construct((void*)&c_SpoofChecker::i___construct, (void*)&c_SpoofChecker::ifa___construct, 0, 4, 0x0000000000000000LL);
-CallInfo c_SpoofChecker::ci_setchecks((void*)&c_SpoofChecker::i_setchecks, (void*)&c_SpoofChecker::ifa_setchecks, 1, 4, 0x0000000000000000LL);
-CallInfo c_SpoofChecker::ci_setallowedlocales((void*)&c_SpoofChecker::i_setallowedlocales, (void*)&c_SpoofChecker::ifa_setallowedlocales, 1, 4, 0x0000000000000000LL);
-CallInfo c_SpoofChecker::ci___destruct((void*)&c_SpoofChecker::i___destruct, (void*)&c_SpoofChecker::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_SpoofChecker::ci_issuspicious((void*)&c_SpoofChecker::i_issuspicious, (void*)&c_SpoofChecker::ifa_issuspicious, 2, 4, 0x0000000000000002LL);
-Variant c_SpoofChecker::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_EncodingDetector::ci_setdeclaredencoding((void*)&c_EncodingDetector::i_setdeclaredencoding, (void*)&c_EncodingDetector::ifa_setdeclaredencoding, 1, 4, 0x0000000000000000LL);
+CallInfo c_EncodingDetector::ci___construct((void*)&c_EncodingDetector::i___construct, (void*)&c_EncodingDetector::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_EncodingDetector::ci___destruct((void*)&c_EncodingDetector::i___destruct, (void*)&c_EncodingDetector::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_EncodingDetector::ci_settext((void*)&c_EncodingDetector::i_settext, (void*)&c_EncodingDetector::ifa_settext, 1, 4, 0x0000000000000000LL);
+CallInfo c_EncodingDetector::ci_detect((void*)&c_EncodingDetector::i_detect, (void*)&c_EncodingDetector::ifa_detect, 0, 4, 0x0000000000000000LL);
+CallInfo c_EncodingDetector::ci_detectall((void*)&c_EncodingDetector::i_detectall, (void*)&c_EncodingDetector::ifa_detectall, 0, 4, 0x0000000000000000LL);
+Variant c_EncodingDetector::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_SpoofChecker::i_issuspicious(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_issuspicious);
+Variant c_EncodingDetector::i_settext(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_settext);
 }
-Variant c_SpoofChecker::i_areconfusable(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_areconfusable);
+Variant c_EncodingDetector::i_setdeclaredencoding(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setdeclaredencoding);
 }
-Variant c_SpoofChecker::i_setallowedlocales(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setallowedlocales);
+Variant c_EncodingDetector::i_detect(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_detect);
 }
-Variant c_SpoofChecker::i_setchecks(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setchecks);
+Variant c_EncodingDetector::i_detectall(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_detectall);
 }
-Variant c_SpoofChecker::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_EncodingDetector::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_SpoofChecker::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_EncodingDetector::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SpoofChecker);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_EncodingDetector);
   }
-  c_SpoofChecker *self ATTRIBUTE_UNUSED (static_cast<c_SpoofChecker*>(mcp.obj));
+  c_EncodingDetector *self ATTRIBUTE_UNUSED (static_cast<c_EncodingDetector*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
   return (self->t___construct(), null);
 }
-Variant c_SpoofChecker::ifa_issuspicious(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_EncodingDetector::ifa_settext(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_issuspicious, coo_SpoofChecker);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_settext, coo_EncodingDetector);
   }
-  c_SpoofChecker *self ATTRIBUTE_UNUSED (static_cast<c_SpoofChecker*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("issuspicious", count, 1, 2, 1);
+  c_EncodingDetector *self ATTRIBUTE_UNUSED (static_cast<c_EncodingDetector*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("settext", count, 1, 1, 1);
   CVarRef arg0(a0);
-  if (count <= 1) return (self->t_issuspicious(arg0));
-  VRefParam arg1(vref(a1));
-  return (self->t_issuspicious(arg0, arg1));
+  return (self->t_settext(arg0), null);
 }
-Variant c_SpoofChecker::ifa_areconfusable(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_EncodingDetector::ifa_setdeclaredencoding(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_areconfusable, coo_SpoofChecker);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setdeclaredencoding, coo_EncodingDetector);
   }
-  c_SpoofChecker *self ATTRIBUTE_UNUSED (static_cast<c_SpoofChecker*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("areconfusable", count, 2, 3, 1);
+  c_EncodingDetector *self ATTRIBUTE_UNUSED (static_cast<c_EncodingDetector*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setdeclaredencoding", count, 1, 1, 1);
   CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_areconfusable(arg0, arg1));
-  VRefParam arg2(vref(a2));
-  return (self->t_areconfusable(arg0, arg1, arg2));
+  return (self->t_setdeclaredencoding(arg0), null);
 }
-Variant c_SpoofChecker::ifa_setallowedlocales(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_EncodingDetector::ifa_detect(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setallowedlocales, coo_SpoofChecker);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_detect, coo_EncodingDetector);
   }
-  c_SpoofChecker *self ATTRIBUTE_UNUSED (static_cast<c_SpoofChecker*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setallowedlocales", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_setallowedlocales(arg0), null);
+  c_EncodingDetector *self ATTRIBUTE_UNUSED (static_cast<c_EncodingDetector*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("detect", 0, 1);
+  return (self->t_detect());
 }
-Variant c_SpoofChecker::ifa_setchecks(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_EncodingDetector::ifa_detectall(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setchecks, coo_SpoofChecker);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_detectall, coo_EncodingDetector);
   }
-  c_SpoofChecker *self ATTRIBUTE_UNUSED (static_cast<c_SpoofChecker*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setchecks", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_setchecks(arg0), null);
+  c_EncodingDetector *self ATTRIBUTE_UNUSED (static_cast<c_EncodingDetector*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("detectall", 0, 1);
+  return (self->t_detectall());
 }
-Variant c_SpoofChecker::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_EncodingDetector::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SpoofChecker);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_EncodingDetector);
   }
-  c_SpoofChecker *self ATTRIBUTE_UNUSED (static_cast<c_SpoofChecker*>(mcp.obj));
+  c_EncodingDetector *self ATTRIBUTE_UNUSED (static_cast<c_EncodingDetector*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_SpoofChecker::s_call_info_table[] = {
-  { 0x1C4B9989F874FF63LL, 1, 9, "setChecks", &c_SpoofChecker::ci_setchecks },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_SpoofChecker::ci___destruct },
-  { 0x62F3987BECE73BD9LL, 1, 13, "areConfusable", &c_SpoofChecker::ci_areconfusable },
-  { 0x63D87072B612B4AALL, 1, 12, "isSuspicious", &c_SpoofChecker::ci_issuspicious },
-  { 0x35C46288CF1204BDLL, 1, 17, "setAllowedLocales", &c_SpoofChecker::ci_setallowedlocales },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SpoofChecker::ci___construct },
+const MethodCallInfoTable c_EncodingDetector::s_call_info_table[] = {
+  { 0x49159EB2BC385B00LL, 1, 6, "detect", &c_EncodingDetector::ci_detect },
+  { 0x460377650F751823LL, 1, 9, "detectAll", &c_EncodingDetector::ci_detectall },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_EncodingDetector::ci___destruct },
+  { 0x5C75DB446C2096A6LL, 1, 7, "setText", &c_EncodingDetector::ci_settext },
+  { 0x25ED4E6932322946LL, 0, 19, "setDeclaredEncoding", &c_EncodingDetector::ci_setdeclaredencoding },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_EncodingDetector::ci___construct },
   { 0, 1, 0, 0 }
 };
-const int c_SpoofChecker::s_call_info_index[] = {
+const int c_EncodingDetector::s_call_info_index[] = {
   15,
-  -1,-1,-1,0,-1,-1,-1,-1,
-  -1,2,3,-1,-1,4,-1,5,
+  0,-1,-1,1,-1,-1,3,-1,
+  -1,-1,-1,-1,-1,-1,-1,5,
 
 };
-c_SpoofChecker *c_SpoofChecker::create() {
+c_EncodingDetector *c_EncodingDetector::create() {
   CountableHelper h(this);
   init();
   t___construct();
   return this;
 }
-const ObjectStaticCallbacks cw_SpoofChecker = {
-  (ObjectData*(*)(ObjectData*))coo_SpoofChecker,
-  c_SpoofChecker::s_call_info_table,c_SpoofChecker::s_call_info_index,
-  c_SpoofChecker::s_instanceof_table,c_SpoofChecker::s_instanceof_index,
-  &c_SpoofChecker::s_class_name,
-  &c_SpoofChecker::os_prop_table,&c_SpoofChecker::ci___construct,0,0,0x0
+const ObjectStaticCallbacks cw_EncodingDetector = {
+  (ObjectData*(*)(ObjectData*))coo_EncodingDetector,
+  c_EncodingDetector::s_call_info_table,c_EncodingDetector::s_call_info_index,
+  c_EncodingDetector::s_instanceof_table,c_EncodingDetector::s_instanceof_index,
+  &c_EncodingDetector::s_class_name,
+  0,&c_EncodingDetector::ci___construct,0,0,0x0
+};
+ObjectData *coo_DOMImplementation() {
+  return NEWOBJ(c_DOMImplementation)();
+}
+IMPLEMENT_CLASS(DOMImplementation)
+const InstanceOfInfo c_DOMImplementation::s_instanceof_table[] = {
+  {0x74419B70A46387FDLL,1,"DOMImplementation",&cw_DOMImplementation},
+};
+const int c_DOMImplementation::s_instanceof_index[] = {
+  1,
+  -1,0,
+};
+CallInfo c_DOMImplementation::ci_hasfeature((void*)&c_DOMImplementation::i_hasfeature, (void*)&c_DOMImplementation::ifa_hasfeature, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMImplementation::ci_createdocument((void*)&c_DOMImplementation::i_createdocument, (void*)&c_DOMImplementation::ifa_createdocument, 3, 4, 0x0000000000000000LL);
+CallInfo c_DOMImplementation::ci___destruct((void*)&c_DOMImplementation::i___destruct, (void*)&c_DOMImplementation::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMImplementation::ci_createdocumenttype((void*)&c_DOMImplementation::i_createdocumenttype, (void*)&c_DOMImplementation::ifa_createdocumenttype, 3, 4, 0x0000000000000000LL);
+CallInfo c_DOMImplementation::ci___construct((void*)&c_DOMImplementation::i___construct, (void*)&c_DOMImplementation::ifa___construct, 0, 4, 0x0000000000000000LL);
+Variant c_DOMImplementation::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_DOMImplementation::i_createdocument(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_createdocument);
+}
+Variant c_DOMImplementation::i_createdocumenttype(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_createdocumenttype);
+}
+Variant c_DOMImplementation::i_hasfeature(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_hasfeature);
+}
+Variant c_DOMImplementation::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_DOMImplementation::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMImplementation);
+  }
+  c_DOMImplementation *self ATTRIBUTE_UNUSED (static_cast<c_DOMImplementation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_DOMImplementation::ifa_createdocument(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_createdocument, coo_DOMImplementation);
+  }
+  c_DOMImplementation *self ATTRIBUTE_UNUSED (static_cast<c_DOMImplementation*>(mcp.obj));
+  if (UNLIKELY(count > 3)) return throw_toomany_arguments("createdocument", 3, 1);
+  if (count <= 0) return (self->t_createdocument());
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_createdocument(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_createdocument(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_createdocument(arg0, arg1, arg2));
+}
+Variant c_DOMImplementation::ifa_createdocumenttype(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_createdocumenttype, coo_DOMImplementation);
+  }
+  c_DOMImplementation *self ATTRIBUTE_UNUSED (static_cast<c_DOMImplementation*>(mcp.obj));
+  if (UNLIKELY(count > 3)) return throw_toomany_arguments("createdocumenttype", 3, 1);
+  if (count <= 0) return (self->t_createdocumenttype());
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_createdocumenttype(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_createdocumenttype(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_createdocumenttype(arg0, arg1, arg2));
+}
+Variant c_DOMImplementation::ifa_hasfeature(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_hasfeature, coo_DOMImplementation);
+  }
+  c_DOMImplementation *self ATTRIBUTE_UNUSED (static_cast<c_DOMImplementation*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("hasfeature", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_hasfeature(arg0, arg1));
+}
+Variant c_DOMImplementation::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMImplementation);
+  }
+  c_DOMImplementation *self ATTRIBUTE_UNUSED (static_cast<c_DOMImplementation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_DOMImplementation::s_call_info_table[] = {
+  { 0x3CB56A796F3DBAC3LL, 1, 18, "createDocumentType", &c_DOMImplementation::ci_createdocumenttype },
+  { 0x280878EAC306A6A3LL, 0, 10, "hasFeature", &c_DOMImplementation::ci_hasfeature },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_DOMImplementation::ci___destruct },
+  { 0x30855E95B37D1B4ELL, 1, 14, "createDocument", &c_DOMImplementation::ci_createdocument },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMImplementation::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_DOMImplementation::s_call_info_index[] = {
+  15,
+  -1,-1,-1,0,-1,-1,-1,-1,
+  -1,-1,-1,-1,-1,-1,3,4,
+
+};
+c_DOMImplementation *c_DOMImplementation::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_DOMImplementation = {
+  (ObjectData*(*)(ObjectData*))coo_DOMImplementation,
+  c_DOMImplementation::s_call_info_table,c_DOMImplementation::s_call_info_index,
+  c_DOMImplementation::s_instanceof_table,c_DOMImplementation::s_instanceof_index,
+  &c_DOMImplementation::s_class_name,
+  0,&c_DOMImplementation::ci___construct,0,0,0x0
+};
+ObjectData *coo_Gmagick() {
+  return NEWOBJ(c_Gmagick)();
+}
+IMPLEMENT_CLASS(Gmagick)
+const InstanceOfInfo c_Gmagick::s_instanceof_table[] = {
+  {0x5103319C12E44A2ALL,1,"Gmagick",&cw_Gmagick},
+};
+const int c_Gmagick::s_instanceof_index[] = {
+  1,
+  0,-1,
+};
+CallInfo c_Gmagick::ci_rotateimage((void*)&c_Gmagick::i_rotateimage, (void*)&c_Gmagick::ifa_rotateimage, 2, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_getimageheight((void*)&c_Gmagick::i_getimageheight, (void*)&c_Gmagick::ifa_getimageheight, 0, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_getimagewidth((void*)&c_Gmagick::i_getimagewidth, (void*)&c_Gmagick::ifa_getimagewidth, 0, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_getimageformat((void*)&c_Gmagick::i_getimageformat, (void*)&c_Gmagick::ifa_getimageformat, 0, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_getimagefilename((void*)&c_Gmagick::i_getimagefilename, (void*)&c_Gmagick::ifa_getimagefilename, 0, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_getcopyright((void*)&c_Gmagick::i_getcopyright, (void*)&c_Gmagick::ifa_getcopyright, 0, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_destroy((void*)&c_Gmagick::i_destroy, (void*)&c_Gmagick::ifa_destroy, 0, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_readimageblob((void*)&c_Gmagick::i_readimageblob, (void*)&c_Gmagick::ifa_readimageblob, 2, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_getimageprofile((void*)&c_Gmagick::i_getimageprofile, (void*)&c_Gmagick::ifa_getimageprofile, 1, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_setimageformat((void*)&c_Gmagick::i_setimageformat, (void*)&c_Gmagick::ifa_setimageformat, 1, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_getimagetype((void*)&c_Gmagick::i_getimagetype, (void*)&c_Gmagick::ifa_getimagetype, 0, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_borderimage((void*)&c_Gmagick::i_borderimage, (void*)&c_Gmagick::ifa_borderimage, 3, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_readimage((void*)&c_Gmagick::i_readimage, (void*)&c_Gmagick::ifa_readimage, 1, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_cropimage((void*)&c_Gmagick::i_cropimage, (void*)&c_Gmagick::ifa_cropimage, 4, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci___destruct((void*)&c_Gmagick::i___destruct, (void*)&c_Gmagick::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_getimagecolorspace((void*)&c_Gmagick::i_getimagecolorspace, (void*)&c_Gmagick::ifa_getimagecolorspace, 0, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_resizeimage((void*)&c_Gmagick::i_resizeimage, (void*)&c_Gmagick::ifa_resizeimage, 5, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_setcompressionquality((void*)&c_Gmagick::i_setcompressionquality, (void*)&c_Gmagick::ifa_setcompressionquality, 1, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_writeimage((void*)&c_Gmagick::i_writeimage, (void*)&c_Gmagick::ifa_writeimage, 2, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_profileimage((void*)&c_Gmagick::i_profileimage, (void*)&c_Gmagick::ifa_profileimage, 2, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_getimageblob((void*)&c_Gmagick::i_getimageblob, (void*)&c_Gmagick::ifa_getimageblob, 0, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci___construct((void*)&c_Gmagick::i___construct, (void*)&c_Gmagick::ifa___construct, 0, 4, 0x0000000000000000LL);
+Variant c_Gmagick::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_Gmagick::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_Gmagick::i_destroy(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_destroy);
+}
+Variant c_Gmagick::i_getcopyright(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getcopyright);
+}
+Variant c_Gmagick::i_readimageblob(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_readimageblob);
+}
+Variant c_Gmagick::i_getimageblob(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getimageblob);
+}
+Variant c_Gmagick::i_getimagefilename(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getimagefilename);
+}
+Variant c_Gmagick::i_getimagetype(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getimagetype);
+}
+Variant c_Gmagick::i_getimageformat(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getimageformat);
+}
+Variant c_Gmagick::i_getimagecolorspace(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getimagecolorspace);
+}
+Variant c_Gmagick::i_getimageprofile(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getimageprofile);
+}
+Variant c_Gmagick::i_profileimage(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_profileimage);
+}
+Variant c_Gmagick::i_setcompressionquality(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setcompressionquality);
+}
+Variant c_Gmagick::i_readimage(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_readimage);
+}
+Variant c_Gmagick::i_getimagewidth(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getimagewidth);
+}
+Variant c_Gmagick::i_getimageheight(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getimageheight);
+}
+Variant c_Gmagick::i_resizeimage(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_resizeimage);
+}
+Variant c_Gmagick::i_rotateimage(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_rotateimage);
+}
+Variant c_Gmagick::i_setimageformat(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setimageformat);
+}
+Variant c_Gmagick::i_cropimage(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_cropimage);
+}
+Variant c_Gmagick::i_writeimage(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_writeimage);
+}
+Variant c_Gmagick::i_borderimage(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_borderimage);
+}
+Variant c_Gmagick::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_Gmagick::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+Variant c_Gmagick::ifa_destroy(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_destroy, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("destroy", 0, 1);
+  return (self->t_destroy(), null);
+}
+Variant c_Gmagick::ifa_getcopyright(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getcopyright, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getcopyright", 0, 1);
+  return (self->t_getcopyright());
+}
+Variant c_Gmagick::ifa_readimageblob(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_readimageblob, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("readimageblob", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_readimageblob(arg0, arg1));
+}
+Variant c_Gmagick::ifa_getimageblob(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getimageblob, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getimageblob", 0, 1);
+  return (self->t_getimageblob());
+}
+Variant c_Gmagick::ifa_getimagefilename(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getimagefilename, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getimagefilename", 0, 1);
+  return (self->t_getimagefilename());
+}
+Variant c_Gmagick::ifa_getimagetype(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getimagetype, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getimagetype", 0, 1);
+  return (self->t_getimagetype());
+}
+Variant c_Gmagick::ifa_getimageformat(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getimageformat, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getimageformat", 0, 1);
+  return (self->t_getimageformat());
+}
+Variant c_Gmagick::ifa_getimagecolorspace(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getimagecolorspace, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getimagecolorspace", 0, 1);
+  return (self->t_getimagecolorspace());
+}
+Variant c_Gmagick::ifa_getimageprofile(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getimageprofile, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getimageprofile", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_getimageprofile(arg0));
+}
+Variant c_Gmagick::ifa_profileimage(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_profileimage, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("profileimage", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_profileimage(arg0, arg1));
+}
+Variant c_Gmagick::ifa_setcompressionquality(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setcompressionquality, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setcompressionquality", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_setcompressionquality(arg0));
+}
+Variant c_Gmagick::ifa_readimage(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_readimage, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("readimage", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_readimage(arg0));
+}
+Variant c_Gmagick::ifa_getimagewidth(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getimagewidth, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getimagewidth", 0, 1);
+  return (self->t_getimagewidth());
+}
+Variant c_Gmagick::ifa_getimageheight(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getimageheight, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getimageheight", 0, 1);
+  return (self->t_getimageheight());
+}
+Variant c_Gmagick::ifa_resizeimage(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_resizeimage, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count < 4 || count > 5)) return throw_wrong_arguments("resizeimage", count, 4, 5, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  CVarRef arg2(a2);
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t_resizeimage(arg0, arg1, arg2, arg3));
+  CVarRef arg4(a4);
+  return (self->t_resizeimage(arg0, arg1, arg2, arg3, arg4));
+}
+Variant c_Gmagick::ifa_rotateimage(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_rotateimage, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("rotateimage", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_rotateimage(arg0, arg1));
+}
+Variant c_Gmagick::ifa_setimageformat(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setimageformat, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setimageformat", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_setimageformat(arg0));
+}
+Variant c_Gmagick::ifa_cropimage(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_cropimage, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count != 4)) return throw_wrong_arguments("cropimage", count, 4, 4, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  CVarRef arg2(a2);
+  CVarRef arg3(a3);
+  return (self->t_cropimage(arg0, arg1, arg2, arg3));
+}
+Variant c_Gmagick::ifa_writeimage(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_writeimage, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("writeimage", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_writeimage(arg0));
+  CVarRef arg1(a1);
+  return (self->t_writeimage(arg0, arg1));
+}
+Variant c_Gmagick::ifa_borderimage(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_borderimage, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count != 3)) return throw_wrong_arguments("borderimage", count, 3, 3, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  CVarRef arg2(a2);
+  return (self->t_borderimage(arg0, arg1, arg2));
+}
+const MethodCallInfoTable c_Gmagick::s_call_info_table[] = {
+  { 0x468C75F912D25480LL, 1, 14, "getimageformat", &c_Gmagick::ci_getimageformat },
+  { 0x71FCA435F3D231C1LL, 1, 11, "rotateimage", &c_Gmagick::ci_rotateimage },
+  { 0x30771FF48CA4AF86LL, 1, 15, "getimageprofile", &c_Gmagick::ci_getimageprofile },
+  { 0x1FCA5CC1FB0DC7D2LL, 1, 18, "getimagecolorspace", &c_Gmagick::ci_getimagecolorspace },
+  { 0x24380818C1416793LL, 1, 14, "getimageheight", &c_Gmagick::ci_getimageheight },
+  { 0x464B57931289CB54LL, 1, 16, "getimagefilename", &c_Gmagick::ci_getimagefilename },
+  { 0x7C073CF8EB813915LL, 1, 9, "cropimage", &c_Gmagick::ci_cropimage },
+  { 0x00818C6938DA37DALL, 1, 12, "getimageblob", &c_Gmagick::ci_getimageblob },
+  { 0x123127E7ED0DDD1ALL, 0, 21, "setcompressionquality", &c_Gmagick::ci_setcompressionquality },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_Gmagick::ci___construct },
+  { 0x45CCFF10463AB662LL, 1, 7, "destroy", &c_Gmagick::ci_destroy },
+  { 0x0F05A03751D60622LL, 0, 13, "readimageblob", &c_Gmagick::ci_readimageblob },
+  { 0x1C17D3AD14AF6463LL, 1, 12, "getimagetype", &c_Gmagick::ci_getimagetype },
+  { 0x71ED00A561C901E8LL, 1, 11, "resizeimage", &c_Gmagick::ci_resizeimage },
+  { 0x025CEDC49276CFEELL, 1, 11, "borderimage", &c_Gmagick::ci_borderimage },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_Gmagick::ci___destruct },
+  { 0x2CB0EADA5D656733LL, 0, 12, "profileimage", &c_Gmagick::ci_profileimage },
+  { 0x68881049A5171BB6LL, 1, 14, "setimageformat", &c_Gmagick::ci_setimageformat },
+  { 0x2B28BB75ED5591B8LL, 1, 13, "getimagewidth", &c_Gmagick::ci_getimagewidth },
+  { 0x02CC4CB0D3064C3BLL, 1, 12, "getcopyright", &c_Gmagick::ci_getcopyright },
+  { 0x27C5BAD56515EFFCLL, 1, 9, "readimage", &c_Gmagick::ci_readimage },
+  { 0x29B4126E918845FDLL, 1, 10, "writeimage", &c_Gmagick::ci_writeimage },
+  { 0, 1, 0, 0 }
+};
+const int c_Gmagick::s_call_info_index[] = {
+  63,
+  0,1,-1,-1,-1,-1,2,-1,
+  -1,-1,-1,-1,-1,-1,-1,-1,
+  -1,-1,3,4,5,6,-1,-1,
+  -1,-1,7,-1,-1,-1,-1,9,
+  -1,-1,10,12,-1,-1,-1,-1,
+  13,-1,-1,-1,-1,-1,14,-1,
+  -1,-1,-1,15,-1,-1,17,-1,
+  18,-1,-1,19,20,21,-1,-1,
+
+};
+c_Gmagick *c_Gmagick::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_Gmagick = {
+  (ObjectData*(*)(ObjectData*))coo_Gmagick,
+  c_Gmagick::s_call_info_table,c_Gmagick::s_call_info_index,
+  c_Gmagick::s_instanceof_table,c_Gmagick::s_instanceof_index,
+  &c_Gmagick::s_class_name,
+  &c_Gmagick::os_prop_table,&c_Gmagick::ci___construct,0,0,0x0
 };
 ObjectData *coo_XMLWriter() {
   return NEWOBJ(c_XMLWriter)();
@@ -1934,6 +1931,1184 @@ const ObjectStaticCallbacks cw_XMLWriter = {
   &c_XMLWriter::s_class_name,
   0,&c_XMLWriter::ci___construct,0,0,0x0
 };
+ObjectData *coo_Continuation() {
+  return NEWOBJ(c_Continuation)();
+}
+IMPLEMENT_CLASS(Continuation)
+const InstanceOfInfo c_Continuation::s_instanceof_table[] = {
+  {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},
+  {0x61DD21ABF790E9E2LL,1,"Continuation",&cw_Continuation},
+  {0x0636A5F84AF9D29ELL,1,"Iterator",(const ObjectStaticCallbacks*)2},
+};
+const int c_Continuation::s_instanceof_index[] = {
+  7,
+  -1,0,1,-1,-1,-1,2,-1,
+
+};
+CallInfo c_Continuation::ci_send((void*)&c_Continuation::i_send, (void*)&c_Continuation::ifa_send, 1, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_getorigfuncname((void*)&c_Continuation::i_getorigfuncname, (void*)&c_Continuation::ifa_getorigfuncname, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_valid((void*)&c_Continuation::i_valid, (void*)&c_Continuation::ifa_valid, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_key((void*)&c_Continuation::i_key, (void*)&c_Continuation::ifa_key, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_update((void*)&c_Continuation::i_update, (void*)&c_Continuation::ifa_update, 2, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_current((void*)&c_Continuation::i_current, (void*)&c_Continuation::ifa_current, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_done((void*)&c_Continuation::i_done, (void*)&c_Continuation::ifa_done, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_rewind((void*)&c_Continuation::i_rewind, (void*)&c_Continuation::ifa_rewind, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_num_args((void*)&c_Continuation::i_num_args, (void*)&c_Continuation::ifa_num_args, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_get_arg((void*)&c_Continuation::i_get_arg, (void*)&c_Continuation::ifa_get_arg, 1, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_get_args((void*)&c_Continuation::i_get_args, (void*)&c_Continuation::ifa_get_args, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_receive((void*)&c_Continuation::i_receive, (void*)&c_Continuation::ifa_receive, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_raise((void*)&c_Continuation::i_raise, (void*)&c_Continuation::ifa_raise, 1, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci___destruct((void*)&c_Continuation::i___destruct, (void*)&c_Continuation::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_raised((void*)&c_Continuation::i_raised, (void*)&c_Continuation::ifa_raised, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_getlabel((void*)&c_Continuation::i_getlabel, (void*)&c_Continuation::ifa_getlabel, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci_next((void*)&c_Continuation::i_next, (void*)&c_Continuation::ifa_next, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci___clone((void*)&c_Continuation::i___clone, (void*)&c_Continuation::ifa___clone, 0, 4, 0x0000000000000000LL);
+CallInfo c_Continuation::ci___construct((void*)&c_Continuation::i___construct, (void*)&c_Continuation::ifa___construct, 6, 4, 0x0000000000000000LL);
+Variant c_Continuation::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_Continuation::i_update(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_update);
+}
+Variant c_Continuation::i_done(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_done);
+}
+Variant c_Continuation::i_getlabel(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getlabel);
+}
+Variant c_Continuation::i_num_args(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_num_args);
+}
+Variant c_Continuation::i_get_args(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_get_args);
+}
+Variant c_Continuation::i_get_arg(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_get_arg);
+}
+Variant c_Continuation::i_current(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_current);
+}
+Variant c_Continuation::i_key(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_key);
+}
+Variant c_Continuation::i_next(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_next);
+}
+Variant c_Continuation::i_rewind(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_rewind);
+}
+Variant c_Continuation::i_valid(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_valid);
+}
+Variant c_Continuation::i_send(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_send);
+}
+Variant c_Continuation::i_raise(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_raise);
+}
+Variant c_Continuation::i_raised(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_raised);
+}
+Variant c_Continuation::i_receive(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_receive);
+}
+Variant c_Continuation::i_getorigfuncname(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getorigfuncname);
+}
+Variant c_Continuation::i___clone(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___clone);
+}
+Variant c_Continuation::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_Continuation::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count < 4)) return throw_wrong_arguments("__construct", count, 4, 6, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  CVarRef arg2(a2);
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t___construct(arg0, arg1, arg2, arg3), null);
+  CVarRef arg4(a4);
+  if (count <= 5) return (self->t___construct(arg0, arg1, arg2, arg3, arg4), null);
+  CVarRef arg5(a5);
+  return (self->t___construct(arg0, arg1, arg2, arg3, arg4, arg5), null);
+}
+Variant c_Continuation::ifa_update(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_update, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("update", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_update(arg0, arg1), null);
+}
+Variant c_Continuation::ifa_done(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_done, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("done", 0, 1);
+  return (self->t_done(), null);
+}
+Variant c_Continuation::ifa_getlabel(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getlabel, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getlabel", 0, 1);
+  return (self->t_getlabel());
+}
+Variant c_Continuation::ifa_num_args(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_num_args, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("num_args", 0, 1);
+  return (self->t_num_args());
+}
+Variant c_Continuation::ifa_get_args(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_get_args, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("get_args", 0, 1);
+  return (self->t_get_args());
+}
+Variant c_Continuation::ifa_get_arg(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_get_arg, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("get_arg", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_get_arg(arg0));
+}
+Variant c_Continuation::ifa_current(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_current, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("current", 0, 1);
+  return (self->t_current());
+}
+Variant c_Continuation::ifa_key(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_key, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("key", 0, 1);
+  return (self->t_key());
+}
+Variant c_Continuation::ifa_next(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_next, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("next", 0, 1);
+  return (self->t_next(), null);
+}
+Variant c_Continuation::ifa_rewind(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_rewind, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("rewind", 0, 1);
+  return (self->t_rewind(), null);
+}
+Variant c_Continuation::ifa_valid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_valid, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("valid", 0, 1);
+  return (self->t_valid());
+}
+Variant c_Continuation::ifa_send(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_send, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("send", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_send(arg0), null);
+}
+Variant c_Continuation::ifa_raise(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_raise, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("raise", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_raise(arg0), null);
+}
+Variant c_Continuation::ifa_raised(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_raised, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("raised", 0, 1);
+  return (self->t_raised(), null);
+}
+Variant c_Continuation::ifa_receive(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_receive, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("receive", 0, 1);
+  return (self->t_receive());
+}
+Variant c_Continuation::ifa_getorigfuncname(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getorigfuncname, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getorigfuncname", 0, 1);
+  return (self->t_getorigfuncname());
+}
+Variant c_Continuation::ifa___clone(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___clone, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__clone", 0, 1);
+  return (self->t___clone());
+}
+Variant c_Continuation::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_Continuation);
+  }
+  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_Continuation::s_call_info_table[] = {
+  { 0x6413CB5154808C44LL, 1, 5, "valid", &c_Continuation::ci_valid },
+  { 0x3E0170A7802E3888LL, 1, 4, "send", &c_Continuation::ci_send },
+  { 0x46B58F7989D255CALL, 1, 6, "raised", &c_Continuation::ci_raised },
+  { 0x0B7AD2197102D150LL, 1, 7, "receive", &c_Continuation::ci_receive },
+  { 0x56EDB60C824E8C51LL, 1, 3, "key", &c_Continuation::ci_key },
+  { 0x0F2CA10C0004BE9BLL, 1, 7, "__clone", &c_Continuation::ci___clone },
+  { 0x5B3A4A72846B21DCLL, 1, 7, "current", &c_Continuation::ci_current },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_Continuation::ci___construct },
+  { 0x1402C6C4A8D472A0LL, 1, 6, "update", &c_Continuation::ci_update },
+  { 0x00AADC9BD6EEF867LL, 1, 5, "raise", &c_Continuation::ci_raise },
+  { 0x5B300BEBB6379169LL, 1, 4, "done", &c_Continuation::ci_done },
+  { 0x1670096FDE27AF6ALL, 1, 6, "rewind", &c_Continuation::ci_rewind },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_Continuation::ci___destruct },
+  { 0x05B742E84600B778LL, 1, 8, "getLabel", &c_Continuation::ci_getlabel },
+  { 0x3C6D50F3BB8102B8LL, 0, 4, "next", &c_Continuation::ci_next },
+  { 0x5A90056E9F9DC839LL, 1, 8, "get_args", &c_Continuation::ci_get_args },
+  { 0x2E51CF4A716D82BALL, 1, 15, "getOrigFuncName", &c_Continuation::ci_getorigfuncname },
+  { 0x59E62E16AF84FCFDLL, 1, 8, "num_args", &c_Continuation::ci_num_args },
+  { 0x45F223F256990E3DLL, 0, 7, "get_arg", &c_Continuation::ci_get_arg },
+  { 0, 1, 0, 0 }
+};
+const int c_Continuation::s_call_info_index[] = {
+  63,
+  -1,-1,-1,-1,0,-1,-1,-1,
+  1,-1,2,-1,-1,-1,-1,-1,
+  3,4,-1,-1,-1,-1,-1,-1,
+  -1,-1,-1,5,6,-1,-1,7,
+  8,-1,-1,-1,-1,-1,-1,9,
+  -1,10,11,-1,-1,-1,-1,-1,
+  -1,-1,-1,12,-1,-1,-1,-1,
+  13,15,16,-1,-1,17,-1,-1,
+
+};
+c_Continuation *c_Continuation::create(int64 a0, int64 a1, bool a2, String a3, Variant a4, Array a5) {
+  CountableHelper h(this);
+  init();
+  t___construct(a0, a1, a2, a3, a4, a5);
+  return this;
+}
+const ObjectStaticCallbacks cw_Continuation = {
+  (ObjectData*(*)(ObjectData*))coo_Continuation,
+  c_Continuation::s_call_info_table,c_Continuation::s_call_info_index,
+  c_Continuation::s_instanceof_table,c_Continuation::s_instanceof_index,
+  &c_Continuation::s_class_name,
+  &c_Continuation::os_prop_table,&c_Continuation::ci___construct,0,0,0x0
+};
+ObjectData *coo_Normalizer() {
+  return NEWOBJ(c_Normalizer)();
+}
+IMPLEMENT_CLASS(Normalizer)
+const InstanceOfInfo c_Normalizer::s_instanceof_table[] = {
+  {0x52EA111229F87A50LL,1,"Normalizer",&cw_Normalizer},
+};
+const int c_Normalizer::s_instanceof_index[] = {
+  1,
+  0,-1,
+};
+CallInfo c_Normalizer::ci_normalize((void*)&c_Normalizer::i_normalize, (void*)&c_Normalizer::ifa_normalize, 2, 12, 0x0000000000000000LL);
+CallInfo c_Normalizer::ci_isnormalized((void*)&c_Normalizer::i_isnormalized, (void*)&c_Normalizer::ifa_isnormalized, 2, 12, 0x0000000000000000LL);
+CallInfo c_Normalizer::ci___destruct((void*)&c_Normalizer::i___destruct, (void*)&c_Normalizer::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_Normalizer::ci___construct((void*)&c_Normalizer::i___construct, (void*)&c_Normalizer::ifa___construct, 0, 4, 0x0000000000000000LL);
+Variant c_Normalizer::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_Normalizer::i_isnormalized(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_isnormalized);
+}
+Variant c_Normalizer::i_normalize(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_normalize);
+}
+Variant c_Normalizer::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_Normalizer::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_Normalizer);
+  }
+  c_Normalizer *self ATTRIBUTE_UNUSED (static_cast<c_Normalizer*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_Normalizer::ifa_isnormalized(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("isnormalized", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (c_Normalizer::t_isnormalized(arg0));
+  CVarRef arg1(a1);
+  return (c_Normalizer::t_isnormalized(arg0, arg1));
+}
+Variant c_Normalizer::ifa_normalize(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("normalize", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (c_Normalizer::t_normalize(arg0));
+  CVarRef arg1(a1);
+  return (c_Normalizer::t_normalize(arg0, arg1));
+}
+Variant c_Normalizer::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_Normalizer);
+  }
+  c_Normalizer *self ATTRIBUTE_UNUSED (static_cast<c_Normalizer*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_Normalizer::s_call_info_table[] = {
+  { 0x11A2D4B742CB6C5ALL, 1, 9, "normalize", &c_Normalizer::ci_normalize },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_Normalizer::ci___destruct },
+  { 0x58CF37E15F66ED1DLL, 1, 12, "isnormalized", &c_Normalizer::ci_isnormalized },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_Normalizer::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_Normalizer::s_call_info_index[] = {
+  7,
+  -1,-1,0,1,-1,2,-1,3,
+
+};
+c_Normalizer *c_Normalizer::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_Normalizer = {
+  (ObjectData*(*)(ObjectData*))coo_Normalizer,
+  c_Normalizer::s_call_info_table,c_Normalizer::s_call_info_index,
+  c_Normalizer::s_instanceof_table,c_Normalizer::s_instanceof_index,
+  &c_Normalizer::s_class_name,
+  &c_Normalizer::os_prop_table,&c_Normalizer::ci___construct,0,0,0x0
+};
+ObjectData *coo_DOMText() {
+  return NEWOBJ(c_DOMText)();
+}
+IMPLEMENT_CLASS(DOMText)
+const InstanceOfInfo c_DOMText::s_instanceof_table[] = {
+  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
+  {0x02239AA5D64B1453LL,1,"DOMCharacterData",&cw_DOMCharacterData},
+  {0x164F490DAC49174DLL,1,"DOMText",&cw_DOMText},
+};
+const int c_DOMText::s_instanceof_index[] = {
+  7,
+  -1,-1,0,1,-1,2,-1,-1,
+
+};
+CallInfo c_DOMText::ci___construct((void*)&c_DOMText::i___construct, (void*)&c_DOMText::ifa___construct, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMText::ci___get((void*)&c_DOMText::i___get, (void*)&c_DOMText::ifa___get, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMText::ci___isset((void*)&c_DOMText::i___isset, (void*)&c_DOMText::ifa___isset, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMText::ci_splittext((void*)&c_DOMText::i_splittext, (void*)&c_DOMText::ifa_splittext, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMText::ci___destruct((void*)&c_DOMText::i___destruct, (void*)&c_DOMText::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMText::ci___set((void*)&c_DOMText::i___set, (void*)&c_DOMText::ifa___set, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMText::ci_iswhitespaceinelementcontent((void*)&c_DOMText::i_iswhitespaceinelementcontent, (void*)&c_DOMText::ifa_iswhitespaceinelementcontent, 0, 4, 0x0000000000000000LL);
+Variant c_DOMText::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_DOMText::i_iswhitespaceinelementcontent(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_iswhitespaceinelementcontent);
+}
+Variant c_DOMText::i_splittext(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_splittext);
+}
+Variant c_DOMText::i___get(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___get);
+}
+Variant c_DOMText::i___set(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___set);
+}
+Variant c_DOMText::i___isset(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___isset);
+}
+Variant c_DOMText::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_DOMText::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMText);
+  }
+  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("__construct", 1, 1);
+  if (count <= 0) return (self->t___construct(), null);
+  CVarRef arg0(a0);
+  return (self->t___construct(arg0), null);
+}
+Variant c_DOMText::ifa_iswhitespaceinelementcontent(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_iswhitespaceinelementcontent, coo_DOMText);
+  }
+  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("iswhitespaceinelementcontent", 0, 1);
+  return (self->t_iswhitespaceinelementcontent());
+}
+Variant c_DOMText::ifa_splittext(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_splittext, coo_DOMText);
+  }
+  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("splittext", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_splittext(arg0));
+}
+Variant c_DOMText::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMText);
+  }
+  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___get(arg0));
+}
+Variant c_DOMText::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMText);
+  }
+  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t___set(arg0, arg1));
+}
+Variant c_DOMText::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMText);
+  }
+  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___isset(arg0));
+}
+Variant c_DOMText::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMText);
+  }
+  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_DOMText::s_call_info_table[] = {
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMText::ci___destruct },
+  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMText::ci___set },
+  { 0x714D38308D8212B7LL, 1, 9, "splitText", &c_DOMText::ci_splittext },
+  { 0x28FBAB4F0F6C02DDLL, 1, 28, "isWhitespaceInElementContent", &c_DOMText::ci_iswhitespaceinelementcontent },
+  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMText::ci___isset },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMText::ci___construct },
+  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMText::ci___get },
+  { 0, 1, 0, 0 }
+};
+const int c_DOMText::s_call_info_index[] = {
+  15,
+  -1,-1,-1,0,-1,1,-1,2,
+  -1,-1,-1,-1,-1,3,4,5,
+
+};
+c_DOMText *c_DOMText::create(String a0) {
+  CountableHelper h(this);
+  init();
+  t___construct(a0);
+  return this;
+}
+const ObjectStaticCallbacks cw_DOMText = {
+  (ObjectData*(*)(ObjectData*))coo_DOMText,
+  c_DOMText::s_call_info_table,c_DOMText::s_call_info_index,
+  c_DOMText::s_instanceof_table,c_DOMText::s_instanceof_index,
+  &c_DOMText::s_class_name,
+  0,&c_DOMText::ci___construct,0,&cw_DOMCharacterData,0x0
+};
+ObjectData *coo_PDOStatement() {
+  return NEWOBJ(c_PDOStatement)();
+}
+IMPLEMENT_CLASS(PDOStatement)
+const InstanceOfInfo c_PDOStatement::s_instanceof_table[] = {
+  {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},
+  {0x4253D8488B734244LL,1,"PDOStatement",&cw_PDOStatement},
+  {0x0636A5F84AF9D29ELL,1,"Iterator",(const ObjectStaticCallbacks*)2},
+};
+const int c_PDOStatement::s_instanceof_index[] = {
+  7,
+  -1,0,-1,-1,1,-1,2,-1,
+
+};
+CallInfo c_PDOStatement::ci_key((void*)&c_PDOStatement::i_key, (void*)&c_PDOStatement::ifa_key, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_setattribute((void*)&c_PDOStatement::i_setattribute, (void*)&c_PDOStatement::ifa_setattribute, 2, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_fetchobject((void*)&c_PDOStatement::i_fetchobject, (void*)&c_PDOStatement::ifa_fetchobject, 2, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_fetchcolumn((void*)&c_PDOStatement::i_fetchcolumn, (void*)&c_PDOStatement::ifa_fetchcolumn, 1, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_fetch((void*)&c_PDOStatement::i_fetch, (void*)&c_PDOStatement::ifa_fetch, 3, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_errorinfo((void*)&c_PDOStatement::i_errorinfo, (void*)&c_PDOStatement::ifa_errorinfo, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_getcolumnmeta((void*)&c_PDOStatement::i_getcolumnmeta, (void*)&c_PDOStatement::ifa_getcolumnmeta, 1, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_bindparam((void*)&c_PDOStatement::i_bindparam, (void*)&c_PDOStatement::ifa_bindparam, 5, 4, 0x0000000000000002LL);
+CallInfo c_PDOStatement::ci_rewind((void*)&c_PDOStatement::i_rewind, (void*)&c_PDOStatement::ifa_rewind, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_valid((void*)&c_PDOStatement::i_valid, (void*)&c_PDOStatement::ifa_valid, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_next((void*)&c_PDOStatement::i_next, (void*)&c_PDOStatement::ifa_next, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_columncount((void*)&c_PDOStatement::i_columncount, (void*)&c_PDOStatement::ifa_columncount, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_errorcode((void*)&c_PDOStatement::i_errorcode, (void*)&c_PDOStatement::ifa_errorcode, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_fetchall((void*)&c_PDOStatement::i_fetchall, (void*)&c_PDOStatement::ifa_fetchall, 3, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_setfetchmode((void*)&c_PDOStatement::i_setfetchmode, (void*)&c_PDOStatement::ifa_setfetchmode, 1, 5, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_execute((void*)&c_PDOStatement::i_execute, (void*)&c_PDOStatement::ifa_execute, 1, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_closecursor((void*)&c_PDOStatement::i_closecursor, (void*)&c_PDOStatement::ifa_closecursor, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci___sleep((void*)&c_PDOStatement::i___sleep, (void*)&c_PDOStatement::ifa___sleep, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_current((void*)&c_PDOStatement::i_current, (void*)&c_PDOStatement::ifa_current, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_bindcolumn((void*)&c_PDOStatement::i_bindcolumn, (void*)&c_PDOStatement::ifa_bindcolumn, 5, 4, 0x0000000000000002LL);
+CallInfo c_PDOStatement::ci_rowcount((void*)&c_PDOStatement::i_rowcount, (void*)&c_PDOStatement::ifa_rowcount, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_debugdumpparams((void*)&c_PDOStatement::i_debugdumpparams, (void*)&c_PDOStatement::ifa_debugdumpparams, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_nextrowset((void*)&c_PDOStatement::i_nextrowset, (void*)&c_PDOStatement::ifa_nextrowset, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_bindvalue((void*)&c_PDOStatement::i_bindvalue, (void*)&c_PDOStatement::ifa_bindvalue, 3, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci_getattribute((void*)&c_PDOStatement::i_getattribute, (void*)&c_PDOStatement::ifa_getattribute, 1, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci___construct((void*)&c_PDOStatement::i___construct, (void*)&c_PDOStatement::ifa___construct, 0, 68, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci___destruct((void*)&c_PDOStatement::i___destruct, (void*)&c_PDOStatement::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDOStatement::ci___wakeup((void*)&c_PDOStatement::i___wakeup, (void*)&c_PDOStatement::ifa___wakeup, 0, 4, 0x0000000000000000LL);
+Variant c_PDOStatement::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_PDOStatement::i_execute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_execute);
+}
+Variant c_PDOStatement::i_fetch(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_fetch);
+}
+Variant c_PDOStatement::i_fetchobject(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_fetchobject);
+}
+Variant c_PDOStatement::i_fetchcolumn(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_fetchcolumn);
+}
+Variant c_PDOStatement::i_fetchall(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_fetchall);
+}
+Variant c_PDOStatement::i_bindvalue(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_bindvalue);
+}
+Variant c_PDOStatement::i_bindparam(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_bindparam);
+}
+Variant c_PDOStatement::i_bindcolumn(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_bindcolumn);
+}
+Variant c_PDOStatement::i_rowcount(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_rowcount);
+}
+Variant c_PDOStatement::i_errorcode(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_errorcode);
+}
+Variant c_PDOStatement::i_errorinfo(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_errorinfo);
+}
+Variant c_PDOStatement::i_setattribute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setattribute);
+}
+Variant c_PDOStatement::i_getattribute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getattribute);
+}
+Variant c_PDOStatement::i_columncount(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_columncount);
+}
+Variant c_PDOStatement::i_getcolumnmeta(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getcolumnmeta);
+}
+Variant c_PDOStatement::i_setfetchmode(MethodCallPackage &mcp, CArrRef params) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::i_dummy(mcp, params, i_setfetchmode, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
+  if (UNLIKELY(count < 1)) return throw_missing_arguments("setfetchmode", count+1, 1);
+  {
+    ArrayData *ad(params.get());
+    ssize_t pos = ad ? ad->iter_begin() : ArrayData::invalid_index;
+    CVarRef arg0((ad->getValue(pos)));
+    const Array &p(count > 1 ? params.slice(1, count - 1, false) : Array());
+    return (self->t_setfetchmode(count, arg0, p));
+  }
+}
+Variant c_PDOStatement::i_nextrowset(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_nextrowset);
+}
+Variant c_PDOStatement::i_closecursor(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_closecursor);
+}
+Variant c_PDOStatement::i_debugdumpparams(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_debugdumpparams);
+}
+Variant c_PDOStatement::i_current(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_current);
+}
+Variant c_PDOStatement::i_key(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_key);
+}
+Variant c_PDOStatement::i_next(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_next);
+}
+Variant c_PDOStatement::i_rewind(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_rewind);
+}
+Variant c_PDOStatement::i_valid(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_valid);
+}
+Variant c_PDOStatement::i___wakeup(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___wakeup);
+}
+Variant c_PDOStatement::i___sleep(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___sleep);
+}
+Variant c_PDOStatement::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_PDOStatement::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_PDOStatement::ifa_execute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_execute, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("execute", 1, 1);
+  if (count <= 0) return (self->t_execute());
+  CVarRef arg0(a0);
+  return (self->t_execute(arg0));
+}
+Variant c_PDOStatement::ifa_fetch(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_fetch, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 3)) return throw_toomany_arguments("fetch", 3, 1);
+  if (count <= 0) return (self->t_fetch());
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_fetch(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_fetch(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_fetch(arg0, arg1, arg2));
+}
+Variant c_PDOStatement::ifa_fetchobject(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_fetchobject, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 2)) return throw_toomany_arguments("fetchobject", 2, 1);
+  if (count <= 0) return (self->t_fetchobject());
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_fetchobject(arg0));
+  CVarRef arg1(a1);
+  return (self->t_fetchobject(arg0, arg1));
+}
+Variant c_PDOStatement::ifa_fetchcolumn(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_fetchcolumn, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("fetchcolumn", 1, 1);
+  if (count <= 0) return (self->t_fetchcolumn());
+  CVarRef arg0(a0);
+  return (self->t_fetchcolumn(arg0));
+}
+Variant c_PDOStatement::ifa_fetchall(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_fetchall, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 3)) return throw_toomany_arguments("fetchall", 3, 1);
+  if (count <= 0) return (self->t_fetchall());
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_fetchall(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_fetchall(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_fetchall(arg0, arg1, arg2));
+}
+Variant c_PDOStatement::ifa_bindvalue(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_bindvalue, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("bindvalue", count, 2, 3, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_bindvalue(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_bindvalue(arg0, arg1, arg2));
+}
+Variant c_PDOStatement::ifa_bindparam(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_bindparam, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 5)) return throw_wrong_arguments("bindparam", count, 2, 5, 1);
+  CVarRef arg0(a0);
+  VRefParam arg1(vref(a1));
+  if (count <= 2) return (self->t_bindparam(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_bindparam(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t_bindparam(arg0, arg1, arg2, arg3));
+  CVarRef arg4(a4);
+  return (self->t_bindparam(arg0, arg1, arg2, arg3, arg4));
+}
+Variant c_PDOStatement::ifa_bindcolumn(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_bindcolumn, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 5)) return throw_wrong_arguments("bindcolumn", count, 2, 5, 1);
+  CVarRef arg0(a0);
+  VRefParam arg1(vref(a1));
+  if (count <= 2) return (self->t_bindcolumn(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_bindcolumn(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t_bindcolumn(arg0, arg1, arg2, arg3));
+  CVarRef arg4(a4);
+  return (self->t_bindcolumn(arg0, arg1, arg2, arg3, arg4));
+}
+Variant c_PDOStatement::ifa_rowcount(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_rowcount, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("rowcount", 0, 1);
+  return (self->t_rowcount());
+}
+Variant c_PDOStatement::ifa_errorcode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_errorcode, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("errorcode", 0, 1);
+  return (self->t_errorcode());
+}
+Variant c_PDOStatement::ifa_errorinfo(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_errorinfo, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("errorinfo", 0, 1);
+  return (self->t_errorinfo());
+}
+Variant c_PDOStatement::ifa_setattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setattribute, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("setattribute", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_setattribute(arg0, arg1));
+}
+Variant c_PDOStatement::ifa_getattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattribute, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getattribute", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_getattribute(arg0));
+}
+Variant c_PDOStatement::ifa_columncount(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_columncount, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("columncount", 0, 1);
+  return (self->t_columncount());
+}
+Variant c_PDOStatement::ifa_getcolumnmeta(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getcolumnmeta, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getcolumnmeta", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_getcolumnmeta(arg0));
+}
+Variant c_PDOStatement::ifa_setfetchmode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setfetchmode, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count < 1)) return throw_missing_arguments("setfetchmode", count+1, 1);
+  CVarRef arg0(a0);
+  Array p;
+  if (count >= 2) p.append(a1);
+  if (count >= 3) p.append(a2);
+  if (count >= 4) p.append(a3);
+  if (count >= 5) p.append(a4);
+  if (count >= 6) p.append(a5);
+  return (self->t_setfetchmode(count, arg0, p));
+}
+Variant c_PDOStatement::ifa_nextrowset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_nextrowset, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("nextrowset", 0, 1);
+  return (self->t_nextrowset());
+}
+Variant c_PDOStatement::ifa_closecursor(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_closecursor, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("closecursor", 0, 1);
+  return (self->t_closecursor());
+}
+Variant c_PDOStatement::ifa_debugdumpparams(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_debugdumpparams, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("debugdumpparams", 0, 1);
+  return (self->t_debugdumpparams());
+}
+Variant c_PDOStatement::ifa_current(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_current, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("current", 0, 1);
+  return (self->t_current());
+}
+Variant c_PDOStatement::ifa_key(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_key, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("key", 0, 1);
+  return (self->t_key());
+}
+Variant c_PDOStatement::ifa_next(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_next, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("next", 0, 1);
+  return (self->t_next());
+}
+Variant c_PDOStatement::ifa_rewind(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_rewind, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("rewind", 0, 1);
+  return (self->t_rewind());
+}
+Variant c_PDOStatement::ifa_valid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_valid, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("valid", 0, 1);
+  return (self->t_valid());
+}
+Variant c_PDOStatement::ifa___wakeup(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___wakeup, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__wakeup", 0, 1);
+  return (self->t___wakeup());
+}
+Variant c_PDOStatement::ifa___sleep(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___sleep, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__sleep", 0, 1);
+  return (self->t___sleep());
+}
+Variant c_PDOStatement::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_PDOStatement);
+  }
+  c_PDOStatement *self ATTRIBUTE_UNUSED (static_cast<c_PDOStatement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_PDOStatement::s_call_info_table[] = {
+  { 0x5740729B65EB8E41LL, 1, 8, "fetchall", &c_PDOStatement::ci_fetchall },
+  { 0x436E6AFC3628E403LL, 1, 9, "bindvalue", &c_PDOStatement::ci_bindvalue },
+  { 0x6413CB5154808C44LL, 1, 5, "valid", &c_PDOStatement::ci_valid },
+  { 0x75A2E23098C65C05LL, 1, 11, "closecursor", &c_PDOStatement::ci_closecursor },
+  { 0x6D0664CC2372F2C7LL, 1, 9, "errorcode", &c_PDOStatement::ci_errorcode },
+  { 0x1D5B8B8144F4AB8ALL, 1, 12, "setattribute", &c_PDOStatement::ci_setattribute },
+  { 0x187C7F43EB57714ELL, 1, 7, "execute", &c_PDOStatement::ci_execute },
+  { 0x32A381ECDC91918FLL, 1, 11, "columncount", &c_PDOStatement::ci_columncount },
+  { 0x56EDB60C824E8C51LL, 1, 3, "key", &c_PDOStatement::ci_key },
+  { 0x31A8917EC4F2A252LL, 1, 10, "nextrowset", &c_PDOStatement::ci_nextrowset },
+  { 0x77B13FCF1BA41696LL, 1, 9, "bindparam", &c_PDOStatement::ci_bindparam },
+  { 0x5C38814410C5FFD9LL, 1, 11, "fetchcolumn", &c_PDOStatement::ci_fetchcolumn },
+  { 0x0D43A7148903299ALL, 1, 8, "rowcount", &c_PDOStatement::ci_rowcount },
+  { 0x5B3A4A72846B21DCLL, 1, 7, "current", &c_PDOStatement::ci_current },
+  { 0x4389F50CAA085CDCLL, 0, 8, "__wakeup", &c_PDOStatement::ci___wakeup },
+  { 0x0E1814AA3327229DLL, 1, 11, "fetchobject", &c_PDOStatement::ci_fetchobject },
+  { 0x1C87AD14A095219DLL, 0, 10, "bindcolumn", &c_PDOStatement::ci_bindcolumn },
+  { 0x1DDD412E7F04605ELL, 1, 9, "errorinfo", &c_PDOStatement::ci_errorinfo },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_PDOStatement::ci___construct },
+  { 0x78C9BF8620136861LL, 1, 12, "setfetchmode", &c_PDOStatement::ci_setfetchmode },
+  { 0x699F5A1E3BD7B2A2LL, 1, 15, "debugdumpparams", &c_PDOStatement::ci_debugdumpparams },
+  { 0x49F89C466612FC28LL, 1, 12, "getattribute", &c_PDOStatement::ci_getattribute },
+  { 0x1670096FDE27AF6ALL, 1, 6, "rewind", &c_PDOStatement::ci_rewind },
+  { 0x61D1244DDADBC02DLL, 1, 7, "__sleep", &c_PDOStatement::ci___sleep },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_PDOStatement::ci___destruct },
+  { 0x3C6D50F3BB8102B8LL, 1, 4, "next", &c_PDOStatement::ci_next },
+  { 0x5E82B850BB90B0FBLL, 1, 5, "fetch", &c_PDOStatement::ci_fetch },
+  { 0x5B6B980006E717FBLL, 0, 13, "getcolumnmeta", &c_PDOStatement::ci_getcolumnmeta },
+  { 0, 1, 0, 0 }
+};
+const int c_PDOStatement::s_call_info_index[] = {
+  63,
+  -1,0,-1,1,2,3,-1,4,
+  -1,-1,5,-1,-1,-1,6,7,
+  -1,8,9,-1,-1,-1,10,-1,
+  -1,11,12,-1,13,15,17,18,
+  -1,19,20,-1,-1,-1,-1,-1,
+  21,-1,22,-1,-1,23,-1,-1,
+  -1,-1,-1,24,-1,-1,-1,-1,
+  25,-1,-1,26,-1,-1,-1,-1,
+
+};
+c_PDOStatement *c_PDOStatement::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_PDOStatement = {
+  (ObjectData*(*)(ObjectData*))coo_PDOStatement,
+  c_PDOStatement::s_call_info_table,c_PDOStatement::s_call_info_index,
+  c_PDOStatement::s_instanceof_table,c_PDOStatement::s_instanceof_index,
+  &c_PDOStatement::s_class_name,
+  0,&c_PDOStatement::ci___construct,0,0,0x0
+};
+ObjectData *coo_DateTimeZone() {
+  return NEWOBJ(c_DateTimeZone)();
+}
+IMPLEMENT_CLASS(DateTimeZone)
+const InstanceOfInfo c_DateTimeZone::s_instanceof_table[] = {
+  {0x24DE53FD7D3E8383LL,1,"DateTimeZone",&cw_DateTimeZone},
+};
+const int c_DateTimeZone::s_instanceof_index[] = {
+  1,
+  -1,0,
+};
+CallInfo c_DateTimeZone::ci___construct((void*)&c_DateTimeZone::i___construct, (void*)&c_DateTimeZone::ifa___construct, 1, 4, 0x0000000000000000LL);
+CallInfo c_DateTimeZone::ci_listabbreviations((void*)&c_DateTimeZone::i_listabbreviations, (void*)&c_DateTimeZone::ifa_listabbreviations, 0, 12, 0x0000000000000000LL);
+CallInfo c_DateTimeZone::ci_getname((void*)&c_DateTimeZone::i_getname, (void*)&c_DateTimeZone::ifa_getname, 0, 4, 0x0000000000000000LL);
+CallInfo c_DateTimeZone::ci___destruct((void*)&c_DateTimeZone::i___destruct, (void*)&c_DateTimeZone::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DateTimeZone::ci_listidentifiers((void*)&c_DateTimeZone::i_listidentifiers, (void*)&c_DateTimeZone::ifa_listidentifiers, 0, 12, 0x0000000000000000LL);
+CallInfo c_DateTimeZone::ci_gettransitions((void*)&c_DateTimeZone::i_gettransitions, (void*)&c_DateTimeZone::ifa_gettransitions, 0, 4, 0x0000000000000000LL);
+CallInfo c_DateTimeZone::ci_getoffset((void*)&c_DateTimeZone::i_getoffset, (void*)&c_DateTimeZone::ifa_getoffset, 1, 4, 0x0000000000000000LL);
+Variant c_DateTimeZone::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_DateTimeZone::i_getname(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getname);
+}
+Variant c_DateTimeZone::i_getoffset(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getoffset);
+}
+Variant c_DateTimeZone::i_gettransitions(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_gettransitions);
+}
+Variant c_DateTimeZone::i_listabbreviations(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_listabbreviations);
+}
+Variant c_DateTimeZone::i_listidentifiers(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_listidentifiers);
+}
+Variant c_DateTimeZone::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_DateTimeZone::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DateTimeZone);
+  }
+  c_DateTimeZone *self ATTRIBUTE_UNUSED (static_cast<c_DateTimeZone*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__construct", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___construct(arg0), null);
+}
+Variant c_DateTimeZone::ifa_getname(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getname, coo_DateTimeZone);
+  }
+  c_DateTimeZone *self ATTRIBUTE_UNUSED (static_cast<c_DateTimeZone*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getname", 0, 1);
+  return (self->t_getname());
+}
+Variant c_DateTimeZone::ifa_getoffset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getoffset, coo_DateTimeZone);
+  }
+  c_DateTimeZone *self ATTRIBUTE_UNUSED (static_cast<c_DateTimeZone*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getoffset", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_getoffset(arg0));
+}
+Variant c_DateTimeZone::ifa_gettransitions(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_gettransitions, coo_DateTimeZone);
+  }
+  c_DateTimeZone *self ATTRIBUTE_UNUSED (static_cast<c_DateTimeZone*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("gettransitions", 0, 1);
+  return (self->t_gettransitions());
+}
+Variant c_DateTimeZone::ifa_listabbreviations(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("listabbreviations", 0, 1);
+  return (c_DateTimeZone::t_listabbreviations());
+}
+Variant c_DateTimeZone::ifa_listidentifiers(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("listidentifiers", 0, 1);
+  return (c_DateTimeZone::t_listidentifiers());
+}
+Variant c_DateTimeZone::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DateTimeZone);
+  }
+  c_DateTimeZone *self ATTRIBUTE_UNUSED (static_cast<c_DateTimeZone*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_DateTimeZone::s_call_info_table[] = {
+  { 0x6D7CD16BBA93D063LL, 1, 15, "listIdentifiers", &c_DateTimeZone::ci_listidentifiers },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_DateTimeZone::ci___destruct },
+  { 0x63D3CF3884CE93F4LL, 1, 14, "getTransitions", &c_DateTimeZone::ci_gettransitions },
+  { 0x23F51CDECC198965LL, 1, 7, "getName", &c_DateTimeZone::ci_getname },
+  { 0x2D0CCAB16C3ED068LL, 1, 17, "listAbbreviations", &c_DateTimeZone::ci_listabbreviations },
+  { 0x68DB66F60B55BD0BLL, 1, 9, "getOffset", &c_DateTimeZone::ci_getoffset },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DateTimeZone::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_DateTimeZone::s_call_info_index[] = {
+  15,
+  -1,-1,-1,0,2,3,-1,-1,
+  4,-1,-1,5,-1,-1,-1,6,
+
+};
+c_DateTimeZone *c_DateTimeZone::create(String a0) {
+  CountableHelper h(this);
+  init();
+  t___construct(a0);
+  return this;
+}
+const ObjectStaticCallbacks cw_DateTimeZone = {
+  (ObjectData*(*)(ObjectData*))coo_DateTimeZone,
+  c_DateTimeZone::s_call_info_table,c_DateTimeZone::s_call_info_index,
+  c_DateTimeZone::s_instanceof_table,c_DateTimeZone::s_instanceof_index,
+  &c_DateTimeZone::s_class_name,
+  &c_DateTimeZone::os_prop_table,&c_DateTimeZone::ci___construct,0,0,0x0
+};
+ObjectData *coo_DOMDocumentFragment() {
+  return NEWOBJ(c_DOMDocumentFragment)();
+}
+IMPLEMENT_CLASS(DOMDocumentFragment)
+const InstanceOfInfo c_DOMDocumentFragment::s_instanceof_table[] = {
+  {0x7AD161197633B87DLL,1,"DOMDocumentFragment",&cw_DOMDocumentFragment},
+  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
+};
+const int c_DOMDocumentFragment::s_instanceof_index[] = {
+  3,
+  -1,0,1,-1,
+};
+CallInfo c_DOMDocumentFragment::ci_appendxml((void*)&c_DOMDocumentFragment::i_appendxml, (void*)&c_DOMDocumentFragment::ifa_appendxml, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMDocumentFragment::ci___destruct((void*)&c_DOMDocumentFragment::i___destruct, (void*)&c_DOMDocumentFragment::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMDocumentFragment::ci___construct((void*)&c_DOMDocumentFragment::i___construct, (void*)&c_DOMDocumentFragment::ifa___construct, 0, 4, 0x0000000000000000LL);
+Variant c_DOMDocumentFragment::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_DOMDocumentFragment::i_appendxml(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_appendxml);
+}
+Variant c_DOMDocumentFragment::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_DOMDocumentFragment::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMDocumentFragment);
+  }
+  c_DOMDocumentFragment *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentFragment*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_DOMDocumentFragment::ifa_appendxml(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_appendxml, coo_DOMDocumentFragment);
+  }
+  c_DOMDocumentFragment *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentFragment*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("appendxml", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_appendxml(arg0));
+}
+Variant c_DOMDocumentFragment::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMDocumentFragment);
+  }
+  c_DOMDocumentFragment *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentFragment*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_DOMDocumentFragment::s_call_info_table[] = {
+  { 0x1E44C8E8C1920931LL, 1, 9, "appendXML", &c_DOMDocumentFragment::ci_appendxml },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMDocumentFragment::ci___destruct },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMDocumentFragment::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_DOMDocumentFragment::s_call_info_index[] = {
+  7,
+  -1,0,-1,1,-1,-1,-1,2,
+
+};
+c_DOMDocumentFragment *c_DOMDocumentFragment::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_DOMDocumentFragment = {
+  (ObjectData*(*)(ObjectData*))coo_DOMDocumentFragment,
+  c_DOMDocumentFragment::s_call_info_table,c_DOMDocumentFragment::s_call_info_index,
+  c_DOMDocumentFragment::s_instanceof_table,c_DOMDocumentFragment::s_instanceof_index,
+  &c_DOMDocumentFragment::s_class_name,
+  0,&c_DOMDocumentFragment::ci___construct,0,&cw_DOMNode,0x0
+};
 ObjectData *coo_DOMComment() {
   return NEWOBJ(c_DOMComment)();
 }
@@ -1996,592 +3171,355 @@ const ObjectStaticCallbacks cw_DOMComment = {
   &c_DOMComment::s_class_name,
   0,&c_DOMComment::ci___construct,0,&cw_DOMCharacterData,0x0
 };
-ObjectData *coo_Closure() {
-  return NEWOBJ(c_Closure)();
+ObjectData *coo_SoapParam() {
+  return NEWOBJ(c_SoapParam)();
 }
-IMPLEMENT_CLASS(Closure)
-const InstanceOfInfo c_Closure::s_instanceof_table[] = {
-  {0x3280F0C292E92A6CLL,1,"Closure",&cw_Closure},
+IMPLEMENT_CLASS(SoapParam)
+const InstanceOfInfo c_SoapParam::s_instanceof_table[] = {
+  {0x17A40D895C55D968LL,1,"SoapParam",&cw_SoapParam},
 };
-const int c_Closure::s_instanceof_index[] = {
+const int c_SoapParam::s_instanceof_index[] = {
   1,
   0,-1,
 };
-CallInfo c_Closure::ci___clone((void*)&c_Closure::i___clone, (void*)&c_Closure::ifa___clone, 0, 4, 0x0000000000000000LL);
-CallInfo c_Closure::ci___invoke((void*)&c_Closure::i___invoke, (void*)&c_Closure::ifa___invoke, 0, 5, 0x0000000000000000LL);
-CallInfo c_Closure::ci___destruct((void*)&c_Closure::i___destruct, (void*)&c_Closure::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_Closure::ci___construct((void*)&c_Closure::i___construct, (void*)&c_Closure::ifa___construct, 0, 4, 0x0000000000000000LL);
-Variant c_Closure::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_SoapParam::ci___destruct((void*)&c_SoapParam::i___destruct, (void*)&c_SoapParam::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_SoapParam::ci___construct((void*)&c_SoapParam::i___construct, (void*)&c_SoapParam::ifa___construct, 2, 4, 0x0000000000000000LL);
+Variant c_SoapParam::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_Closure::i___invoke(MethodCallPackage &mcp, CArrRef params) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::i_dummy(mcp, params, i___invoke, coo_Closure);
-  }
-  c_Closure *self ATTRIBUTE_UNUSED (static_cast<c_Closure*>(mcp.obj));
-  int count ATTRIBUTE_UNUSED = params.size();
-  const Array &p(count > 0 ? ArrayUtil::EnsureIntKeys(params) : Array());
-  return (self->t___invoke(count, p));
-}
-Variant c_Closure::i___clone(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___clone);
-}
-Variant c_Closure::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_SoapParam::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_Closure::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SoapParam::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_Closure);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SoapParam);
   }
-  c_Closure *self ATTRIBUTE_UNUSED (static_cast<c_Closure*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_Closure::ifa___invoke(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___invoke, coo_Closure);
-  }
-  c_Closure *self ATTRIBUTE_UNUSED (static_cast<c_Closure*>(mcp.obj));
-  Array p;
-  if (count >= 1) p.append(a0);
-  if (count >= 2) p.append(a1);
-  if (count >= 3) p.append(a2);
-  if (count >= 4) p.append(a3);
-  if (count >= 5) p.append(a4);
-  if (count >= 6) p.append(a5);
-  return (self->t___invoke(count, p));
-}
-Variant c_Closure::ifa___clone(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___clone, coo_Closure);
-  }
-  c_Closure *self ATTRIBUTE_UNUSED (static_cast<c_Closure*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__clone", 0, 1);
-  return (self->t___clone());
-}
-Variant c_Closure::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_Closure);
-  }
-  c_Closure *self ATTRIBUTE_UNUSED (static_cast<c_Closure*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_Closure::s_call_info_table[] = {
-  { 0x0F2CA10C0004BE9BLL, 1, 7, "__clone", &c_Closure::ci___clone },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_Closure::ci___destruct },
-  { 0x795C470F1BD81D65LL, 1, 8, "__invoke", &c_Closure::ci___invoke },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_Closure::ci___construct },
-  { 0, 1, 0, 0 }
-};
-const int c_Closure::s_call_info_index[] = {
-  7,
-  -1,-1,-1,0,-1,2,-1,3,
-
-};
-c_Closure *c_Closure::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
-}
-const ObjectStaticCallbacks cw_Closure = {
-  (ObjectData*(*)(ObjectData*))coo_Closure,
-  c_Closure::s_call_info_table,c_Closure::s_call_info_index,
-  c_Closure::s_instanceof_table,c_Closure::s_instanceof_index,
-  &c_Closure::s_class_name,
-  0,&c_Closure::ci___construct,0,0,0x0
-};
-ObjectData *coo_SQLite3() {
-  return NEWOBJ(c_SQLite3)();
-}
-IMPLEMENT_CLASS(SQLite3)
-const InstanceOfInfo c_SQLite3::s_instanceof_table[] = {
-  {0x1D35C3EFD00E11A9LL,1,"SQLite3",&cw_SQLite3},
-};
-const int c_SQLite3::s_instanceof_index[] = {
-  1,
-  -1,0,
-};
-CallInfo c_SQLite3::ci_createaggregate((void*)&c_SQLite3::i_createaggregate, (void*)&c_SQLite3::ifa_createaggregate, 4, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_loadextension((void*)&c_SQLite3::i_loadextension, (void*)&c_SQLite3::ifa_loadextension, 1, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_close((void*)&c_SQLite3::i_close, (void*)&c_SQLite3::ifa_close, 0, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_lasterrormsg((void*)&c_SQLite3::i_lasterrormsg, (void*)&c_SQLite3::ifa_lasterrormsg, 0, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_escapestring((void*)&c_SQLite3::i_escapestring, (void*)&c_SQLite3::ifa_escapestring, 1, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_lastinsertrowid((void*)&c_SQLite3::i_lastinsertrowid, (void*)&c_SQLite3::ifa_lastinsertrowid, 0, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_changes((void*)&c_SQLite3::i_changes, (void*)&c_SQLite3::ifa_changes, 0, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_createfunction((void*)&c_SQLite3::i_createfunction, (void*)&c_SQLite3::ifa_createfunction, 3, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_query((void*)&c_SQLite3::i_query, (void*)&c_SQLite3::ifa_query, 1, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_openblob((void*)&c_SQLite3::i_openblob, (void*)&c_SQLite3::ifa_openblob, 4, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_lasterrorcode((void*)&c_SQLite3::i_lasterrorcode, (void*)&c_SQLite3::ifa_lasterrorcode, 0, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_open((void*)&c_SQLite3::i_open, (void*)&c_SQLite3::ifa_open, 3, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_version((void*)&c_SQLite3::i_version, (void*)&c_SQLite3::ifa_version, 0, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci___destruct((void*)&c_SQLite3::i___destruct, (void*)&c_SQLite3::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_querysingle((void*)&c_SQLite3::i_querysingle, (void*)&c_SQLite3::ifa_querysingle, 2, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_prepare((void*)&c_SQLite3::i_prepare, (void*)&c_SQLite3::ifa_prepare, 1, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci_exec((void*)&c_SQLite3::i_exec, (void*)&c_SQLite3::ifa_exec, 1, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3::ci___construct((void*)&c_SQLite3::i___construct, (void*)&c_SQLite3::ifa___construct, 0, 4, 0x0000000000000000LL);
-Variant c_SQLite3::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_SQLite3::i_open(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_open);
-}
-Variant c_SQLite3::i_close(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_close);
-}
-Variant c_SQLite3::i_exec(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_exec);
-}
-Variant c_SQLite3::i_version(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_version);
-}
-Variant c_SQLite3::i_lastinsertrowid(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_lastinsertrowid);
-}
-Variant c_SQLite3::i_lasterrorcode(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_lasterrorcode);
-}
-Variant c_SQLite3::i_lasterrormsg(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_lasterrormsg);
-}
-Variant c_SQLite3::i_loadextension(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_loadextension);
-}
-Variant c_SQLite3::i_changes(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_changes);
-}
-Variant c_SQLite3::i_escapestring(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_escapestring);
-}
-Variant c_SQLite3::i_prepare(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_prepare);
-}
-Variant c_SQLite3::i_query(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_query);
-}
-Variant c_SQLite3::i_querysingle(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_querysingle);
-}
-Variant c_SQLite3::i_createfunction(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_createfunction);
-}
-Variant c_SQLite3::i_createaggregate(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_createaggregate);
-}
-Variant c_SQLite3::i_openblob(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_openblob);
-}
-Variant c_SQLite3::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_SQLite3::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_SQLite3::ifa_open(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_open, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("open", count, 1, 3, 1);
+  c_SoapParam *self ATTRIBUTE_UNUSED (static_cast<c_SoapParam*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__construct", count, 2, 2, 1);
   CVarRef arg0(a0);
-  if (count <= 1) return (self->t_open(arg0), null);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_open(arg0, arg1), null);
-  CVarRef arg2(a2);
-  return (self->t_open(arg0, arg1, arg2), null);
-}
-Variant c_SQLite3::ifa_close(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_close, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("close", 0, 1);
-  return (self->t_close());
-}
-Variant c_SQLite3::ifa_exec(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_exec, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("exec", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_exec(arg0));
-}
-Variant c_SQLite3::ifa_version(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_version, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("version", 0, 1);
-  return (self->t_version());
-}
-Variant c_SQLite3::ifa_lastinsertrowid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lastinsertrowid, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("lastinsertrowid", 0, 1);
-  return (self->t_lastinsertrowid());
-}
-Variant c_SQLite3::ifa_lasterrorcode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lasterrorcode, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("lasterrorcode", 0, 1);
-  return (self->t_lasterrorcode());
-}
-Variant c_SQLite3::ifa_lasterrormsg(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lasterrormsg, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("lasterrormsg", 0, 1);
-  return (self->t_lasterrormsg());
-}
-Variant c_SQLite3::ifa_loadextension(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_loadextension, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("loadextension", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_loadextension(arg0));
-}
-Variant c_SQLite3::ifa_changes(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_changes, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("changes", 0, 1);
-  return (self->t_changes());
-}
-Variant c_SQLite3::ifa_escapestring(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_escapestring, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("escapestring", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_escapestring(arg0));
-}
-Variant c_SQLite3::ifa_prepare(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_prepare, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("prepare", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_prepare(arg0));
-}
-Variant c_SQLite3::ifa_query(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_query, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("query", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_query(arg0));
-}
-Variant c_SQLite3::ifa_querysingle(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_querysingle, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("querysingle", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_querysingle(arg0));
-  CVarRef arg1(a1);
-  return (self->t_querysingle(arg0, arg1));
-}
-Variant c_SQLite3::ifa_createfunction(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_createfunction, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("createfunction", count, 2, 3, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_createfunction(arg0, arg1));
-  CVarRef arg2(a2);
-  return (self->t_createfunction(arg0, arg1, arg2));
-}
-Variant c_SQLite3::ifa_createaggregate(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_createaggregate, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count < 3 || count > 4)) return throw_wrong_arguments("createaggregate", count, 3, 4, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_createaggregate(arg0, arg1, arg2));
-  CVarRef arg3(a3);
-  return (self->t_createaggregate(arg0, arg1, arg2, arg3));
-}
-Variant c_SQLite3::ifa_openblob(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_openblob, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count < 3 || count > 4)) return throw_wrong_arguments("openblob", count, 3, 4, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_openblob(arg0, arg1, arg2));
-  CVarRef arg3(a3);
-  return (self->t_openblob(arg0, arg1, arg2, arg3));
-}
-Variant c_SQLite3::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SQLite3);
-  }
-  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_SQLite3::s_call_info_table[] = {
-  { 0x78AE97BFBEBF5341LL, 1, 5, "close", &c_SQLite3::ci_close },
-  { 0x6081F282094466C2LL, 1, 12, "lasterrormsg", &c_SQLite3::ci_lasterrormsg },
-  { 0x65BD6700742BF3C2LL, 0, 8, "openblob", &c_SQLite3::ci_openblob },
-  { 0x3AA4CCEC6BD68143LL, 1, 15, "createaggregate", &c_SQLite3::ci_createaggregate },
-  { 0x21F68C010C124BC4LL, 1, 4, "open", &c_SQLite3::ci_open },
-  { 0x632B468FC2FCAB0ALL, 1, 13, "lasterrorcode", &c_SQLite3::ci_lasterrorcode },
-  { 0x4F1D1ED7B087208CLL, 1, 4, "exec", &c_SQLite3::ci_exec },
-  { 0x7CECF508291057CDLL, 1, 14, "createfunction", &c_SQLite3::ci_createfunction },
-  { 0x64D2BDB189B02819LL, 1, 7, "changes", &c_SQLite3::ci_changes },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SQLite3::ci___construct },
-  { 0x1B3CDE890A487664LL, 1, 13, "loadextension", &c_SQLite3::ci_loadextension },
-  { 0x5024F08DB0FDCBE6LL, 1, 15, "lastinsertrowid", &c_SQLite3::ci_lastinsertrowid },
-  { 0x5AE41239FF63D86ALL, 1, 7, "version", &c_SQLite3::ci_version },
-  { 0x156B1FAE4132ABEELL, 1, 11, "querysingle", &c_SQLite3::ci_querysingle },
-  { 0x540020AE4BA591AFLL, 1, 7, "prepare", &c_SQLite3::ci_prepare },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_SQLite3::ci___destruct },
-  { 0x607C4C73BB251635LL, 1, 12, "escapestring", &c_SQLite3::ci_escapestring },
-  { 0x356758D4414DA377LL, 1, 5, "query", &c_SQLite3::ci_query },
-  { 0, 1, 0, 0 }
-};
-const int c_SQLite3::s_call_info_index[] = {
-  63,
-  -1,0,1,3,4,-1,-1,-1,
-  -1,-1,5,-1,6,7,-1,-1,
-  -1,-1,-1,-1,-1,-1,-1,-1,
-  -1,8,-1,-1,-1,-1,-1,9,
-  -1,-1,-1,-1,10,-1,11,-1,
-  -1,-1,12,-1,-1,-1,13,14,
-  -1,-1,-1,15,-1,16,-1,17,
-  -1,-1,-1,-1,-1,-1,-1,-1,
-
-};
-c_SQLite3 *c_SQLite3::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
-}
-const ObjectStaticCallbacks cw_SQLite3 = {
-  (ObjectData*(*)(ObjectData*))coo_SQLite3,
-  c_SQLite3::s_call_info_table,c_SQLite3::s_call_info_index,
-  c_SQLite3::s_instanceof_table,c_SQLite3::s_instanceof_index,
-  &c_SQLite3::s_class_name,
-  0,&c_SQLite3::ci___construct,0,0,0x0
-};
-ObjectData *coo_DOMProcessingInstruction() {
-  return NEWOBJ(c_DOMProcessingInstruction)();
-}
-IMPLEMENT_CLASS(DOMProcessingInstruction)
-const InstanceOfInfo c_DOMProcessingInstruction::s_instanceof_table[] = {
-  {0x59B3EFD1CD987F80LL,1,"DOMProcessingInstruction",&cw_DOMProcessingInstruction},
-  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
-};
-const int c_DOMProcessingInstruction::s_instanceof_index[] = {
-  3,
-  0,-1,1,-1,
-};
-CallInfo c_DOMProcessingInstruction::ci___destruct((void*)&c_DOMProcessingInstruction::i___destruct, (void*)&c_DOMProcessingInstruction::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMProcessingInstruction::ci___isset((void*)&c_DOMProcessingInstruction::i___isset, (void*)&c_DOMProcessingInstruction::ifa___isset, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMProcessingInstruction::ci___get((void*)&c_DOMProcessingInstruction::i___get, (void*)&c_DOMProcessingInstruction::ifa___get, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMProcessingInstruction::ci___construct((void*)&c_DOMProcessingInstruction::i___construct, (void*)&c_DOMProcessingInstruction::ifa___construct, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMProcessingInstruction::ci___set((void*)&c_DOMProcessingInstruction::i___set, (void*)&c_DOMProcessingInstruction::ifa___set, 2, 4, 0x0000000000000000LL);
-Variant c_DOMProcessingInstruction::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_DOMProcessingInstruction::i___get(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___get);
-}
-Variant c_DOMProcessingInstruction::i___set(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___set);
-}
-Variant c_DOMProcessingInstruction::i___isset(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___isset);
-}
-Variant c_DOMProcessingInstruction::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_DOMProcessingInstruction::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMProcessingInstruction);
-  }
-  c_DOMProcessingInstruction *self ATTRIBUTE_UNUSED (static_cast<c_DOMProcessingInstruction*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("__construct", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t___construct(arg0), null);
   CVarRef arg1(a1);
   return (self->t___construct(arg0, arg1), null);
 }
-Variant c_DOMProcessingInstruction::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SoapParam::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMProcessingInstruction);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SoapParam);
   }
-  c_DOMProcessingInstruction *self ATTRIBUTE_UNUSED (static_cast<c_DOMProcessingInstruction*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___get(arg0));
-}
-Variant c_DOMProcessingInstruction::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMProcessingInstruction);
-  }
-  c_DOMProcessingInstruction *self ATTRIBUTE_UNUSED (static_cast<c_DOMProcessingInstruction*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t___set(arg0, arg1));
-}
-Variant c_DOMProcessingInstruction::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMProcessingInstruction);
-  }
-  c_DOMProcessingInstruction *self ATTRIBUTE_UNUSED (static_cast<c_DOMProcessingInstruction*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___isset(arg0));
-}
-Variant c_DOMProcessingInstruction::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMProcessingInstruction);
-  }
-  c_DOMProcessingInstruction *self ATTRIBUTE_UNUSED (static_cast<c_DOMProcessingInstruction*>(mcp.obj));
+  c_SoapParam *self ATTRIBUTE_UNUSED (static_cast<c_SoapParam*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_DOMProcessingInstruction::s_call_info_table[] = {
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMProcessingInstruction::ci___destruct },
-  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMProcessingInstruction::ci___set },
-  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMProcessingInstruction::ci___isset },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMProcessingInstruction::ci___construct },
-  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMProcessingInstruction::ci___get },
+const MethodCallInfoTable c_SoapParam::s_call_info_table[] = {
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SoapParam::ci___construct },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_SoapParam::ci___destruct },
   { 0, 1, 0, 0 }
 };
-const int c_DOMProcessingInstruction::s_call_info_index[] = {
-  15,
-  -1,-1,-1,0,-1,1,-1,-1,
-  -1,-1,-1,-1,-1,-1,2,3,
-
+const int c_SoapParam::s_call_info_index[] = {
+  3,
+  -1,-1,-1,0,
 };
-c_DOMProcessingInstruction *c_DOMProcessingInstruction::create(String a0, String a1) {
+c_SoapParam *c_SoapParam::create(Variant a0, String a1) {
   CountableHelper h(this);
   init();
   t___construct(a0, a1);
   return this;
 }
-const ObjectStaticCallbacks cw_DOMProcessingInstruction = {
-  (ObjectData*(*)(ObjectData*))coo_DOMProcessingInstruction,
-  c_DOMProcessingInstruction::s_call_info_table,c_DOMProcessingInstruction::s_call_info_index,
-  c_DOMProcessingInstruction::s_instanceof_table,c_DOMProcessingInstruction::s_instanceof_index,
-  &c_DOMProcessingInstruction::s_class_name,
-  0,&c_DOMProcessingInstruction::ci___construct,0,&cw_DOMNode,0x0
+const ObjectStaticCallbacks cw_SoapParam = {
+  (ObjectData*(*)(ObjectData*))coo_SoapParam,
+  c_SoapParam::s_call_info_table,c_SoapParam::s_call_info_index,
+  c_SoapParam::s_instanceof_table,c_SoapParam::s_instanceof_index,
+  &c_SoapParam::s_class_name,
+  0,&c_SoapParam::ci___construct,0,0,0x0
 };
-ObjectData *coo_DebuggerProxyCmdUser() {
-  return NEWOBJ(c_DebuggerProxyCmdUser)();
+ObjectData *coo_DOMCDATASection() {
+  return NEWOBJ(c_DOMCDATASection)();
 }
-IMPLEMENT_CLASS(DebuggerProxyCmdUser)
-const InstanceOfInfo c_DebuggerProxyCmdUser::s_instanceof_table[] = {
-  {0x7B5115B086867BADLL,1,"DebuggerProxyCmdUser",&cw_DebuggerProxyCmdUser},
+IMPLEMENT_CLASS(DOMCDATASection)
+const InstanceOfInfo c_DOMCDATASection::s_instanceof_table[] = {
+  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
+  {0x02239AA5D64B1453LL,1,"DOMCharacterData",&cw_DOMCharacterData},
+  {0x6FFDF8DF15CABE94LL,1,"DOMCDATASection",&cw_DOMCDATASection},
+  {0x164F490DAC49174DLL,1,"DOMText",&cw_DOMText},
 };
-const int c_DebuggerProxyCmdUser::s_instanceof_index[] = {
-  1,
-  -1,0,
+const int c_DOMCDATASection::s_instanceof_index[] = {
+  7,
+  -1,-1,0,1,2,3,-1,-1,
+
 };
-CallInfo c_DebuggerProxyCmdUser::ci_islocal((void*)&c_DebuggerProxyCmdUser::i_islocal, (void*)&c_DebuggerProxyCmdUser::ifa_islocal, 0, 4, 0x0000000000000000LL);
-CallInfo c_DebuggerProxyCmdUser::ci___destruct((void*)&c_DebuggerProxyCmdUser::i___destruct, (void*)&c_DebuggerProxyCmdUser::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DebuggerProxyCmdUser::ci_send((void*)&c_DebuggerProxyCmdUser::i_send, (void*)&c_DebuggerProxyCmdUser::ifa_send, 1, 4, 0x0000000000000000LL);
-CallInfo c_DebuggerProxyCmdUser::ci___construct((void*)&c_DebuggerProxyCmdUser::i___construct, (void*)&c_DebuggerProxyCmdUser::ifa___construct, 0, 4, 0x0000000000000000LL);
-Variant c_DebuggerProxyCmdUser::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_DOMCDATASection::ci___destruct((void*)&c_DOMCDATASection::i___destruct, (void*)&c_DOMCDATASection::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMCDATASection::ci___construct((void*)&c_DOMCDATASection::i___construct, (void*)&c_DOMCDATASection::ifa___construct, 1, 4, 0x0000000000000000LL);
+Variant c_DOMCDATASection::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_DebuggerProxyCmdUser::i_islocal(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_islocal);
-}
-Variant c_DebuggerProxyCmdUser::i_send(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_send);
-}
-Variant c_DebuggerProxyCmdUser::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMCDATASection::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_DebuggerProxyCmdUser::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMCDATASection::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DebuggerProxyCmdUser);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMCDATASection);
   }
-  c_DebuggerProxyCmdUser *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerProxyCmdUser*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_DebuggerProxyCmdUser::ifa_islocal(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_islocal, coo_DebuggerProxyCmdUser);
-  }
-  c_DebuggerProxyCmdUser *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerProxyCmdUser*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("islocal", 0, 1);
-  return (self->t_islocal());
-}
-Variant c_DebuggerProxyCmdUser::ifa_send(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_send, coo_DebuggerProxyCmdUser);
-  }
-  c_DebuggerProxyCmdUser *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerProxyCmdUser*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("send", count, 1, 1, 1);
+  c_DOMCDATASection *self ATTRIBUTE_UNUSED (static_cast<c_DOMCDATASection*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__construct", count, 1, 1, 1);
   CVarRef arg0(a0);
-  return (self->t_send(arg0));
+  return (self->t___construct(arg0), null);
 }
-Variant c_DebuggerProxyCmdUser::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMCDATASection::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DebuggerProxyCmdUser);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMCDATASection);
   }
-  c_DebuggerProxyCmdUser *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerProxyCmdUser*>(mcp.obj));
+  c_DOMCDATASection *self ATTRIBUTE_UNUSED (static_cast<c_DOMCDATASection*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_DebuggerProxyCmdUser::s_call_info_table[] = {
-  { 0x3E0170A7802E3888LL, 1, 4, "send", &c_DebuggerProxyCmdUser::ci_send },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DebuggerProxyCmdUser::ci___destruct },
-  { 0x7B58587A529D270CLL, 1, 7, "isLocal", &c_DebuggerProxyCmdUser::ci_islocal },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DebuggerProxyCmdUser::ci___construct },
+const MethodCallInfoTable c_DOMCDATASection::s_call_info_table[] = {
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMCDATASection::ci___construct },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_DOMCDATASection::ci___destruct },
   { 0, 1, 0, 0 }
 };
-const int c_DebuggerProxyCmdUser::s_call_info_index[] = {
-  7,
-  0,-1,-1,1,2,-1,-1,3,
+const int c_DOMCDATASection::s_call_info_index[] = {
+  3,
+  -1,-1,-1,0,
+};
+c_DOMCDATASection *c_DOMCDATASection::create(String a0) {
+  CountableHelper h(this);
+  init();
+  t___construct(a0);
+  return this;
+}
+const ObjectStaticCallbacks cw_DOMCDATASection = {
+  (ObjectData*(*)(ObjectData*))coo_DOMCDATASection,
+  c_DOMCDATASection::s_call_info_table,c_DOMCDATASection::s_call_info_index,
+  c_DOMCDATASection::s_instanceof_table,c_DOMCDATASection::s_instanceof_index,
+  &c_DOMCDATASection::s_class_name,
+  0,&c_DOMCDATASection::ci___construct,0,&cw_DOMText,0x0
+};
+ObjectData *coo_DebuggerClient() {
+  return NEWOBJ(c_DebuggerClient)();
+}
+IMPLEMENT_CLASS(DebuggerClient)
+const InstanceOfInfo c_DebuggerClient::s_instanceof_table[] = {
+  {0x7D1235273F521A63LL,1,"DebuggerClient",&cw_DebuggerClient},
+};
+const int c_DebuggerClient::s_instanceof_index[] = {
+  1,
+  -1,0,
+};
+CallInfo c_DebuggerClient::ci_processcmd((void*)&c_DebuggerClient::i_processcmd, (void*)&c_DebuggerClient::ifa_processcmd, 2, 4, 0x0000000000000000LL);
+CallInfo c_DebuggerClient::ci___construct((void*)&c_DebuggerClient::i___construct, (void*)&c_DebuggerClient::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DebuggerClient::ci___destruct((void*)&c_DebuggerClient::i___destruct, (void*)&c_DebuggerClient::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DebuggerClient::ci_getstate((void*)&c_DebuggerClient::i_getstate, (void*)&c_DebuggerClient::ifa_getstate, 0, 4, 0x0000000000000000LL);
+CallInfo c_DebuggerClient::ci_interrupt((void*)&c_DebuggerClient::i_interrupt, (void*)&c_DebuggerClient::ifa_interrupt, 0, 4, 0x0000000000000000LL);
+CallInfo c_DebuggerClient::ci_init((void*)&c_DebuggerClient::i_init, (void*)&c_DebuggerClient::ifa_init, 1, 4, 0x0000000000000000LL);
+Variant c_DebuggerClient::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_DebuggerClient::i_getstate(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getstate);
+}
+Variant c_DebuggerClient::i_init(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_init);
+}
+Variant c_DebuggerClient::i_processcmd(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_processcmd);
+}
+Variant c_DebuggerClient::i_interrupt(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_interrupt);
+}
+Variant c_DebuggerClient::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_DebuggerClient::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DebuggerClient);
+  }
+  c_DebuggerClient *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerClient*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_DebuggerClient::ifa_getstate(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getstate, coo_DebuggerClient);
+  }
+  c_DebuggerClient *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerClient*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getstate", 0, 1);
+  return (self->t_getstate());
+}
+Variant c_DebuggerClient::ifa_init(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_init, coo_DebuggerClient);
+  }
+  c_DebuggerClient *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerClient*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("init", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_init(arg0));
+}
+Variant c_DebuggerClient::ifa_processcmd(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_processcmd, coo_DebuggerClient);
+  }
+  c_DebuggerClient *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerClient*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("processcmd", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_processcmd(arg0, arg1));
+}
+Variant c_DebuggerClient::ifa_interrupt(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_interrupt, coo_DebuggerClient);
+  }
+  c_DebuggerClient *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerClient*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("interrupt", 0, 1);
+  return (self->t_interrupt());
+}
+Variant c_DebuggerClient::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DebuggerClient);
+  }
+  c_DebuggerClient *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerClient*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_DebuggerClient::s_call_info_table[] = {
+  { 0x614F97E16B435A03LL, 1, 4, "init", &c_DebuggerClient::ci_init },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_DebuggerClient::ci___destruct },
+  { 0x44EE5338D48C877ALL, 1, 9, "interrupt", &c_DebuggerClient::ci_interrupt },
+  { 0x673621833E95130CLL, 1, 8, "getState", &c_DebuggerClient::ci_getstate },
+  { 0x1BA771910BD0F64ELL, 1, 10, "processCmd", &c_DebuggerClient::ci_processcmd },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DebuggerClient::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_DebuggerClient::s_call_info_index[] = {
+  15,
+  -1,-1,-1,0,-1,-1,-1,-1,
+  -1,-1,2,-1,3,-1,4,5,
 
 };
-c_DebuggerProxyCmdUser *c_DebuggerProxyCmdUser::create() {
+c_DebuggerClient *c_DebuggerClient::create() {
   CountableHelper h(this);
   init();
   t___construct();
   return this;
 }
-const ObjectStaticCallbacks cw_DebuggerProxyCmdUser = {
-  (ObjectData*(*)(ObjectData*))coo_DebuggerProxyCmdUser,
-  c_DebuggerProxyCmdUser::s_call_info_table,c_DebuggerProxyCmdUser::s_call_info_index,
-  c_DebuggerProxyCmdUser::s_instanceof_table,c_DebuggerProxyCmdUser::s_instanceof_index,
-  &c_DebuggerProxyCmdUser::s_class_name,
-  0,&c_DebuggerProxyCmdUser::ci___construct,0,0,0x0
+const ObjectStaticCallbacks cw_DebuggerClient = {
+  (ObjectData*(*)(ObjectData*))coo_DebuggerClient,
+  c_DebuggerClient::s_call_info_table,c_DebuggerClient::s_call_info_index,
+  c_DebuggerClient::s_instanceof_table,c_DebuggerClient::s_instanceof_index,
+  &c_DebuggerClient::s_class_name,
+  &c_DebuggerClient::os_prop_table,&c_DebuggerClient::ci___construct,0,0,0x0
+};
+ObjectData *coo_Locale() {
+  return NEWOBJ(c_Locale)();
+}
+IMPLEMENT_CLASS(Locale)
+const InstanceOfInfo c_Locale::s_instanceof_table[] = {
+  {0x67E31D42F2DFE4AALL,1,"Locale",&cw_Locale},
+};
+const int c_Locale::s_instanceof_index[] = {
+  1,
+  0,-1,
+};
+CallInfo c_Locale::ci___destruct((void*)&c_Locale::i___destruct, (void*)&c_Locale::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_Locale::ci___construct((void*)&c_Locale::i___construct, (void*)&c_Locale::ifa___construct, 0, 4, 0x0000000000000000LL);
+Variant c_Locale::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_Locale::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_Locale::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_Locale);
+  }
+  c_Locale *self ATTRIBUTE_UNUSED (static_cast<c_Locale*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_Locale::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_Locale);
+  }
+  c_Locale *self ATTRIBUTE_UNUSED (static_cast<c_Locale*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_Locale::s_call_info_table[] = {
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_Locale::ci___construct },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_Locale::ci___destruct },
+  { 0, 1, 0, 0 }
+};
+const int c_Locale::s_call_info_index[] = {
+  3,
+  -1,-1,-1,0,
+};
+c_Locale *c_Locale::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_Locale = {
+  (ObjectData*(*)(ObjectData*))coo_Locale,
+  c_Locale::s_call_info_table,c_Locale::s_call_info_index,
+  c_Locale::s_instanceof_table,c_Locale::s_instanceof_index,
+  &c_Locale::s_class_name,
+  &c_Locale::os_prop_table,&c_Locale::ci___construct,0,0,0x0
+};
+ObjectData *coo_GeneratorClosure() {
+  return NEWOBJ(c_GeneratorClosure)();
+}
+IMPLEMENT_CLASS(GeneratorClosure)
+const InstanceOfInfo c_GeneratorClosure::s_instanceof_table[] = {
+  {0x3280F0C292E92A6CLL,1,"Closure",&cw_Closure},
+  {0x3955263C51FB4A51LL,1,"GeneratorClosure",&cw_GeneratorClosure},
+};
+const int c_GeneratorClosure::s_instanceof_index[] = {
+  3,
+  0,1,-1,-1,
+};
+CallInfo c_GeneratorClosure::ci___destruct((void*)&c_GeneratorClosure::i___destruct, (void*)&c_GeneratorClosure::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_GeneratorClosure::ci___construct((void*)&c_GeneratorClosure::i___construct, (void*)&c_GeneratorClosure::ifa___construct, 0, 4, 0x0000000000000000LL);
+Variant c_GeneratorClosure::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_GeneratorClosure::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_GeneratorClosure::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_GeneratorClosure);
+  }
+  c_GeneratorClosure *self ATTRIBUTE_UNUSED (static_cast<c_GeneratorClosure*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_GeneratorClosure::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_GeneratorClosure);
+  }
+  c_GeneratorClosure *self ATTRIBUTE_UNUSED (static_cast<c_GeneratorClosure*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_GeneratorClosure::s_call_info_table[] = {
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_GeneratorClosure::ci___construct },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_GeneratorClosure::ci___destruct },
+  { 0, 1, 0, 0 }
+};
+const int c_GeneratorClosure::s_call_info_index[] = {
+  3,
+  -1,-1,-1,0,
+};
+c_GeneratorClosure *c_GeneratorClosure::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_GeneratorClosure = {
+  (ObjectData*(*)(ObjectData*))coo_GeneratorClosure,
+  c_GeneratorClosure::s_call_info_table,c_GeneratorClosure::s_call_info_index,
+  c_GeneratorClosure::s_instanceof_table,c_GeneratorClosure::s_instanceof_index,
+  &c_GeneratorClosure::s_class_name,
+  0,&c_GeneratorClosure::ci___construct,0,&cw_Closure,0x0
 };
 ObjectData *coo_Collator() {
   return NEWOBJ(c_Collator)();
@@ -2813,876 +3751,629 @@ const ObjectStaticCallbacks cw_Collator = {
   &c_Collator::s_class_name,
   &c_Collator::os_prop_table,&c_Collator::ci___construct,0,0,0x0
 };
-ObjectData *coo_SoapHeader() {
-  return NEWOBJ(c_SoapHeader)();
+ObjectData *coo_SoapClient() {
+  return NEWOBJ(c_SoapClient)();
 }
-IMPLEMENT_CLASS(SoapHeader)
-const InstanceOfInfo c_SoapHeader::s_instanceof_table[] = {
-  {0x308D1D59986A3D4ELL,1,"SoapHeader",&cw_SoapHeader},
+IMPLEMENT_CLASS(SoapClient)
+const InstanceOfInfo c_SoapClient::s_instanceof_table[] = {
+  {0x7A52EBE538182BDALL,1,"SoapClient",&cw_SoapClient},
 };
-const int c_SoapHeader::s_instanceof_index[] = {
+const int c_SoapClient::s_instanceof_index[] = {
   1,
   0,-1,
 };
-CallInfo c_SoapHeader::ci___destruct((void*)&c_SoapHeader::i___destruct, (void*)&c_SoapHeader::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_SoapHeader::ci___construct((void*)&c_SoapHeader::i___construct, (void*)&c_SoapHeader::ifa___construct, 5, 4, 0x0000000000000000LL);
-Variant c_SoapHeader::i___construct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_SoapClient::doCall(Variant v_name, Variant v_arguments, bool fatal) {
+  return t___call(v_name, !v_arguments.isNull() ? v_arguments : Variant(Array::Create()));
+}
+CallInfo c_SoapClient::ci___setlocation((void*)&c_SoapClient::i___setlocation, (void*)&c_SoapClient::ifa___setlocation, 1, 4, 0x0000000000000000LL);
+CallInfo c_SoapClient::ci___call((void*)&c_SoapClient::i___call, (void*)&c_SoapClient::ifa___call, 2, 4, 0x0000000000000000LL);
+CallInfo c_SoapClient::ci___setsoapheaders((void*)&c_SoapClient::i___setsoapheaders, (void*)&c_SoapClient::ifa___setsoapheaders, 1, 4, 0x0000000000000000LL);
+CallInfo c_SoapClient::ci___getlastresponse((void*)&c_SoapClient::i___getlastresponse, (void*)&c_SoapClient::ifa___getlastresponse, 0, 4, 0x0000000000000000LL);
+CallInfo c_SoapClient::ci___setcookie((void*)&c_SoapClient::i___setcookie, (void*)&c_SoapClient::ifa___setcookie, 2, 4, 0x0000000000000000LL);
+CallInfo c_SoapClient::ci___getfunctions((void*)&c_SoapClient::i___getfunctions, (void*)&c_SoapClient::ifa___getfunctions, 0, 4, 0x0000000000000000LL);
+CallInfo c_SoapClient::ci___getlastrequestheaders((void*)&c_SoapClient::i___getlastrequestheaders, (void*)&c_SoapClient::ifa___getlastrequestheaders, 0, 4, 0x0000000000000000LL);
+CallInfo c_SoapClient::ci___gettypes((void*)&c_SoapClient::i___gettypes, (void*)&c_SoapClient::ifa___gettypes, 0, 4, 0x0000000000000000LL);
+CallInfo c_SoapClient::ci___destruct((void*)&c_SoapClient::i___destruct, (void*)&c_SoapClient::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_SoapClient::ci___getlastresponseheaders((void*)&c_SoapClient::i___getlastresponseheaders, (void*)&c_SoapClient::ifa___getlastresponseheaders, 0, 4, 0x0000000000000000LL);
+CallInfo c_SoapClient::ci___dorequest((void*)&c_SoapClient::i___dorequest, (void*)&c_SoapClient::ifa___dorequest, 5, 4, 0x0000000000000000LL);
+CallInfo c_SoapClient::ci___soapcall((void*)&c_SoapClient::i___soapcall, (void*)&c_SoapClient::ifa___soapcall, 5, 4, 0x0000000000000010LL);
+CallInfo c_SoapClient::ci___getlastrequest((void*)&c_SoapClient::i___getlastrequest, (void*)&c_SoapClient::ifa___getlastrequest, 0, 4, 0x0000000000000000LL);
+CallInfo c_SoapClient::ci___construct((void*)&c_SoapClient::i___construct, (void*)&c_SoapClient::ifa___construct, 2, 4, 0x0000000000000000LL);
+Variant c_SoapClient::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_SoapHeader::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_SoapClient::i___call(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___call);
+}
+Variant c_SoapClient::i___soapcall(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___soapcall);
+}
+Variant c_SoapClient::i___getlastrequest(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___getlastrequest);
+}
+Variant c_SoapClient::i___getlastresponse(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___getlastresponse);
+}
+Variant c_SoapClient::i___getlastrequestheaders(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___getlastrequestheaders);
+}
+Variant c_SoapClient::i___getlastresponseheaders(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___getlastresponseheaders);
+}
+Variant c_SoapClient::i___getfunctions(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___getfunctions);
+}
+Variant c_SoapClient::i___gettypes(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___gettypes);
+}
+Variant c_SoapClient::i___dorequest(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___dorequest);
+}
+Variant c_SoapClient::i___setcookie(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___setcookie);
+}
+Variant c_SoapClient::i___setlocation(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___setlocation);
+}
+Variant c_SoapClient::i___setsoapheaders(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___setsoapheaders);
+}
+Variant c_SoapClient::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_SoapHeader::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SoapClient::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SoapHeader);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SoapClient);
   }
-  c_SoapHeader *self ATTRIBUTE_UNUSED (static_cast<c_SoapHeader*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 5)) return throw_wrong_arguments("__construct", count, 2, 5, 1);
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("__construct", count, 1, 2, 1);
   CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t___construct(arg0, arg1), null);
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t___construct(arg0, arg1, arg2), null);
-  CVarRef arg3(a3);
-  if (count <= 4) return (self->t___construct(arg0, arg1, arg2, arg3), null);
-  CVarRef arg4(a4);
-  return (self->t___construct(arg0, arg1, arg2, arg3, arg4), null);
-}
-Variant c_SoapHeader::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SoapHeader);
-  }
-  c_SoapHeader *self ATTRIBUTE_UNUSED (static_cast<c_SoapHeader*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_SoapHeader::s_call_info_table[] = {
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SoapHeader::ci___construct },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_SoapHeader::ci___destruct },
-  { 0, 1, 0, 0 }
-};
-const int c_SoapHeader::s_call_info_index[] = {
-  3,
-  -1,-1,-1,0,
-};
-c_SoapHeader *c_SoapHeader::create(String a0, String a1, Variant a2, bool a3, Variant a4) {
-  CountableHelper h(this);
-  init();
-  t___construct(a0, a1, a2, a3, a4);
-  return this;
-}
-const ObjectStaticCallbacks cw_SoapHeader = {
-  (ObjectData*(*)(ObjectData*))coo_SoapHeader,
-  c_SoapHeader::s_call_info_table,c_SoapHeader::s_call_info_index,
-  c_SoapHeader::s_instanceof_table,c_SoapHeader::s_instanceof_index,
-  &c_SoapHeader::s_class_name,
-  0,&c_SoapHeader::ci___construct,0,0,0x0
-};
-ObjectData *coo_GeneratorClosure() {
-  return NEWOBJ(c_GeneratorClosure)();
-}
-IMPLEMENT_CLASS(GeneratorClosure)
-const InstanceOfInfo c_GeneratorClosure::s_instanceof_table[] = {
-  {0x3280F0C292E92A6CLL,1,"Closure",&cw_Closure},
-  {0x3955263C51FB4A51LL,1,"GeneratorClosure",&cw_GeneratorClosure},
-};
-const int c_GeneratorClosure::s_instanceof_index[] = {
-  3,
-  0,1,-1,-1,
-};
-CallInfo c_GeneratorClosure::ci___destruct((void*)&c_GeneratorClosure::i___destruct, (void*)&c_GeneratorClosure::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_GeneratorClosure::ci___construct((void*)&c_GeneratorClosure::i___construct, (void*)&c_GeneratorClosure::ifa___construct, 0, 4, 0x0000000000000000LL);
-Variant c_GeneratorClosure::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_GeneratorClosure::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_GeneratorClosure::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_GeneratorClosure);
-  }
-  c_GeneratorClosure *self ATTRIBUTE_UNUSED (static_cast<c_GeneratorClosure*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_GeneratorClosure::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_GeneratorClosure);
-  }
-  c_GeneratorClosure *self ATTRIBUTE_UNUSED (static_cast<c_GeneratorClosure*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_GeneratorClosure::s_call_info_table[] = {
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_GeneratorClosure::ci___construct },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_GeneratorClosure::ci___destruct },
-  { 0, 1, 0, 0 }
-};
-const int c_GeneratorClosure::s_call_info_index[] = {
-  3,
-  -1,-1,-1,0,
-};
-c_GeneratorClosure *c_GeneratorClosure::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
-}
-const ObjectStaticCallbacks cw_GeneratorClosure = {
-  (ObjectData*(*)(ObjectData*))coo_GeneratorClosure,
-  c_GeneratorClosure::s_call_info_table,c_GeneratorClosure::s_call_info_index,
-  c_GeneratorClosure::s_instanceof_table,c_GeneratorClosure::s_instanceof_index,
-  &c_GeneratorClosure::s_class_name,
-  0,&c_GeneratorClosure::ci___construct,0,&cw_Closure,0x0
-};
-ObjectData *coo_EncodingDetector() {
-  return NEWOBJ(c_EncodingDetector)();
-}
-IMPLEMENT_CLASS(EncodingDetector)
-const InstanceOfInfo c_EncodingDetector::s_instanceof_table[] = {
-  {0x22500D8A3618ED87LL,1,"EncodingDetector",&cw_EncodingDetector},
-};
-const int c_EncodingDetector::s_instanceof_index[] = {
-  1,
-  -1,0,
-};
-CallInfo c_EncodingDetector::ci_setdeclaredencoding((void*)&c_EncodingDetector::i_setdeclaredencoding, (void*)&c_EncodingDetector::ifa_setdeclaredencoding, 1, 4, 0x0000000000000000LL);
-CallInfo c_EncodingDetector::ci___construct((void*)&c_EncodingDetector::i___construct, (void*)&c_EncodingDetector::ifa___construct, 0, 4, 0x0000000000000000LL);
-CallInfo c_EncodingDetector::ci___destruct((void*)&c_EncodingDetector::i___destruct, (void*)&c_EncodingDetector::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_EncodingDetector::ci_settext((void*)&c_EncodingDetector::i_settext, (void*)&c_EncodingDetector::ifa_settext, 1, 4, 0x0000000000000000LL);
-CallInfo c_EncodingDetector::ci_detect((void*)&c_EncodingDetector::i_detect, (void*)&c_EncodingDetector::ifa_detect, 0, 4, 0x0000000000000000LL);
-CallInfo c_EncodingDetector::ci_detectall((void*)&c_EncodingDetector::i_detectall, (void*)&c_EncodingDetector::ifa_detectall, 0, 4, 0x0000000000000000LL);
-Variant c_EncodingDetector::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_EncodingDetector::i_settext(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_settext);
-}
-Variant c_EncodingDetector::i_setdeclaredencoding(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setdeclaredencoding);
-}
-Variant c_EncodingDetector::i_detect(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_detect);
-}
-Variant c_EncodingDetector::i_detectall(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_detectall);
-}
-Variant c_EncodingDetector::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_EncodingDetector::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_EncodingDetector);
-  }
-  c_EncodingDetector *self ATTRIBUTE_UNUSED (static_cast<c_EncodingDetector*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_EncodingDetector::ifa_settext(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_settext, coo_EncodingDetector);
-  }
-  c_EncodingDetector *self ATTRIBUTE_UNUSED (static_cast<c_EncodingDetector*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("settext", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_settext(arg0), null);
-}
-Variant c_EncodingDetector::ifa_setdeclaredencoding(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setdeclaredencoding, coo_EncodingDetector);
-  }
-  c_EncodingDetector *self ATTRIBUTE_UNUSED (static_cast<c_EncodingDetector*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setdeclaredencoding", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_setdeclaredencoding(arg0), null);
-}
-Variant c_EncodingDetector::ifa_detect(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_detect, coo_EncodingDetector);
-  }
-  c_EncodingDetector *self ATTRIBUTE_UNUSED (static_cast<c_EncodingDetector*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("detect", 0, 1);
-  return (self->t_detect());
-}
-Variant c_EncodingDetector::ifa_detectall(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_detectall, coo_EncodingDetector);
-  }
-  c_EncodingDetector *self ATTRIBUTE_UNUSED (static_cast<c_EncodingDetector*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("detectall", 0, 1);
-  return (self->t_detectall());
-}
-Variant c_EncodingDetector::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_EncodingDetector);
-  }
-  c_EncodingDetector *self ATTRIBUTE_UNUSED (static_cast<c_EncodingDetector*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_EncodingDetector::s_call_info_table[] = {
-  { 0x49159EB2BC385B00LL, 1, 6, "detect", &c_EncodingDetector::ci_detect },
-  { 0x460377650F751823LL, 1, 9, "detectAll", &c_EncodingDetector::ci_detectall },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_EncodingDetector::ci___destruct },
-  { 0x5C75DB446C2096A6LL, 1, 7, "setText", &c_EncodingDetector::ci_settext },
-  { 0x25ED4E6932322946LL, 0, 19, "setDeclaredEncoding", &c_EncodingDetector::ci_setdeclaredencoding },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_EncodingDetector::ci___construct },
-  { 0, 1, 0, 0 }
-};
-const int c_EncodingDetector::s_call_info_index[] = {
-  15,
-  0,-1,-1,1,-1,-1,3,-1,
-  -1,-1,-1,-1,-1,-1,-1,5,
-
-};
-c_EncodingDetector *c_EncodingDetector::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
-}
-const ObjectStaticCallbacks cw_EncodingDetector = {
-  (ObjectData*(*)(ObjectData*))coo_EncodingDetector,
-  c_EncodingDetector::s_call_info_table,c_EncodingDetector::s_call_info_index,
-  c_EncodingDetector::s_instanceof_table,c_EncodingDetector::s_instanceof_index,
-  &c_EncodingDetector::s_class_name,
-  0,&c_EncodingDetector::ci___construct,0,0,0x0
-};
-ObjectData *coo_ImageSprite() {
-  return NEWOBJ(c_ImageSprite)();
-}
-IMPLEMENT_CLASS(ImageSprite)
-const InstanceOfInfo c_ImageSprite::s_instanceof_table[] = {
-  {0x4DA860E5647C3908LL,1,"ImageSprite",&cw_ImageSprite},
-};
-const int c_ImageSprite::s_instanceof_index[] = {
-  1,
-  0,-1,
-};
-CallInfo c_ImageSprite::ci_addstring((void*)&c_ImageSprite::i_addstring, (void*)&c_ImageSprite::ifa_addstring, 3, 4, 0x0000000000000000LL);
-CallInfo c_ImageSprite::ci_addfile((void*)&c_ImageSprite::i_addfile, (void*)&c_ImageSprite::ifa_addfile, 2, 4, 0x0000000000000000LL);
-CallInfo c_ImageSprite::ci_geterrors((void*)&c_ImageSprite::i_geterrors, (void*)&c_ImageSprite::ifa_geterrors, 0, 4, 0x0000000000000000LL);
-CallInfo c_ImageSprite::ci_mapping((void*)&c_ImageSprite::i_mapping, (void*)&c_ImageSprite::ifa_mapping, 0, 4, 0x0000000000000000LL);
-CallInfo c_ImageSprite::ci_addurl((void*)&c_ImageSprite::i_addurl, (void*)&c_ImageSprite::ifa_addurl, 3, 4, 0x0000000000000000LL);
-CallInfo c_ImageSprite::ci_css((void*)&c_ImageSprite::i_css, (void*)&c_ImageSprite::ifa_css, 4, 4, 0x0000000000000000LL);
-CallInfo c_ImageSprite::ci___destruct((void*)&c_ImageSprite::i___destruct, (void*)&c_ImageSprite::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_ImageSprite::ci_output((void*)&c_ImageSprite::i_output, (void*)&c_ImageSprite::ifa_output, 3, 4, 0x0000000000000000LL);
-CallInfo c_ImageSprite::ci_loaddims((void*)&c_ImageSprite::i_loaddims, (void*)&c_ImageSprite::ifa_loaddims, 1, 4, 0x0000000000000000LL);
-CallInfo c_ImageSprite::ci_clear((void*)&c_ImageSprite::i_clear, (void*)&c_ImageSprite::ifa_clear, 1, 4, 0x0000000000000000LL);
-CallInfo c_ImageSprite::ci_loadimages((void*)&c_ImageSprite::i_loadimages, (void*)&c_ImageSprite::ifa_loadimages, 1, 4, 0x0000000000000000LL);
-CallInfo c_ImageSprite::ci___construct((void*)&c_ImageSprite::i___construct, (void*)&c_ImageSprite::ifa___construct, 0, 4, 0x0000000000000000LL);
-Variant c_ImageSprite::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_ImageSprite::i_addfile(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_addfile);
-}
-Variant c_ImageSprite::i_addstring(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_addstring);
-}
-Variant c_ImageSprite::i_addurl(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_addurl);
-}
-Variant c_ImageSprite::i_clear(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_clear);
-}
-Variant c_ImageSprite::i_loaddims(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_loaddims);
-}
-Variant c_ImageSprite::i_loadimages(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_loadimages);
-}
-Variant c_ImageSprite::i_output(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_output);
-}
-Variant c_ImageSprite::i_css(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_css);
-}
-Variant c_ImageSprite::i_geterrors(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_geterrors);
-}
-Variant c_ImageSprite::i_mapping(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_mapping);
-}
-Variant c_ImageSprite::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_ImageSprite::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_ImageSprite);
-  }
-  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_ImageSprite::ifa_addfile(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addfile, coo_ImageSprite);
-  }
-  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("addfile", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_addfile(arg0));
-  CVarRef arg1(a1);
-  return (self->t_addfile(arg0, arg1));
-}
-Variant c_ImageSprite::ifa_addstring(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addstring, coo_ImageSprite);
-  }
-  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("addstring", count, 2, 3, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_addstring(arg0, arg1));
-  CVarRef arg2(a2);
-  return (self->t_addstring(arg0, arg1, arg2));
-}
-Variant c_ImageSprite::ifa_addurl(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addurl, coo_ImageSprite);
-  }
-  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("addurl", count, 1, 3, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_addurl(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_addurl(arg0, arg1));
-  CVarRef arg2(a2);
-  return (self->t_addurl(arg0, arg1, arg2));
-}
-Variant c_ImageSprite::ifa_clear(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_clear, coo_ImageSprite);
-  }
-  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("clear", 1, 1);
-  if (count <= 0) return (self->t_clear());
-  CVarRef arg0(a0);
-  return (self->t_clear(arg0));
-}
-Variant c_ImageSprite::ifa_loaddims(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_loaddims, coo_ImageSprite);
-  }
-  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("loaddims", 1, 1);
-  if (count <= 0) return (self->t_loaddims());
-  CVarRef arg0(a0);
-  return (self->t_loaddims(arg0));
-}
-Variant c_ImageSprite::ifa_loadimages(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_loadimages, coo_ImageSprite);
-  }
-  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("loadimages", 1, 1);
-  if (count <= 0) return (self->t_loadimages());
-  CVarRef arg0(a0);
-  return (self->t_loadimages(arg0));
-}
-Variant c_ImageSprite::ifa_output(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_output, coo_ImageSprite);
-  }
-  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
-  if (UNLIKELY(count > 3)) return throw_toomany_arguments("output", 3, 1);
-  if (count <= 0) return (self->t_output());
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_output(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_output(arg0, arg1));
-  CVarRef arg2(a2);
-  return (self->t_output(arg0, arg1, arg2));
-}
-Variant c_ImageSprite::ifa_css(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_css, coo_ImageSprite);
-  }
-  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 4)) return throw_wrong_arguments("css", count, 1, 4, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_css(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_css(arg0, arg1));
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_css(arg0, arg1, arg2));
-  CVarRef arg3(a3);
-  return (self->t_css(arg0, arg1, arg2, arg3));
-}
-Variant c_ImageSprite::ifa_geterrors(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_geterrors, coo_ImageSprite);
-  }
-  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("geterrors", 0, 1);
-  return (self->t_geterrors());
-}
-Variant c_ImageSprite::ifa_mapping(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_mapping, coo_ImageSprite);
-  }
-  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("mapping", 0, 1);
-  return (self->t_mapping());
-}
-Variant c_ImageSprite::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_ImageSprite);
-  }
-  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_ImageSprite::s_call_info_table[] = {
-  { 0x05D2634BA4310200LL, 1, 9, "getErrors", &c_ImageSprite::ci_geterrors },
-  { 0x6A37A496C57D57A2LL, 1, 8, "loadDims", &c_ImageSprite::ci_loaddims },
-  { 0x31DA235C5A226667LL, 1, 5, "clear", &c_ImageSprite::ci_clear },
-  { 0x13A96E5A21D1906FLL, 1, 7, "addFile", &c_ImageSprite::ci_addfile },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_ImageSprite::ci___destruct },
-  { 0x305D94BB2EC0B554LL, 1, 10, "loadImages", &c_ImageSprite::ci_loadimages },
-  { 0x4D8226FDFA2CA297LL, 1, 7, "mapping", &c_ImageSprite::ci_mapping },
-  { 0x386BF72B932D233ALL, 1, 9, "addString", &c_ImageSprite::ci_addstring },
-  { 0x63388F643871547CLL, 1, 3, "css", &c_ImageSprite::ci_css },
-  { 0x79CFC8610DC84A7DLL, 1, 6, "addUrl", &c_ImageSprite::ci_addurl },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_ImageSprite::ci___construct },
-  { 0x07B89E83B77C677FLL, 0, 6, "output", &c_ImageSprite::ci_output },
-  { 0, 1, 0, 0 }
-};
-const int c_ImageSprite::s_call_info_index[] = {
-  31,
-  0,-1,1,-1,-1,-1,-1,2,
-  -1,-1,-1,-1,-1,-1,-1,3,
-  -1,-1,-1,4,5,-1,-1,6,
-  -1,-1,7,-1,8,9,-1,10,
-
-};
-c_ImageSprite *c_ImageSprite::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
-}
-const ObjectStaticCallbacks cw_ImageSprite = {
-  (ObjectData*(*)(ObjectData*))coo_ImageSprite,
-  c_ImageSprite::s_call_info_table,c_ImageSprite::s_call_info_index,
-  c_ImageSprite::s_instanceof_table,c_ImageSprite::s_instanceof_index,
-  &c_ImageSprite::s_class_name,
-  0,&c_ImageSprite::ci___construct,0,0,0x0
-};
-ObjectData *coo_DOMDocumentFragment() {
-  return NEWOBJ(c_DOMDocumentFragment)();
-}
-IMPLEMENT_CLASS(DOMDocumentFragment)
-const InstanceOfInfo c_DOMDocumentFragment::s_instanceof_table[] = {
-  {0x7AD161197633B87DLL,1,"DOMDocumentFragment",&cw_DOMDocumentFragment},
-  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
-};
-const int c_DOMDocumentFragment::s_instanceof_index[] = {
-  3,
-  -1,0,1,-1,
-};
-CallInfo c_DOMDocumentFragment::ci_appendxml((void*)&c_DOMDocumentFragment::i_appendxml, (void*)&c_DOMDocumentFragment::ifa_appendxml, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMDocumentFragment::ci___destruct((void*)&c_DOMDocumentFragment::i___destruct, (void*)&c_DOMDocumentFragment::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMDocumentFragment::ci___construct((void*)&c_DOMDocumentFragment::i___construct, (void*)&c_DOMDocumentFragment::ifa___construct, 0, 4, 0x0000000000000000LL);
-Variant c_DOMDocumentFragment::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_DOMDocumentFragment::i_appendxml(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_appendxml);
-}
-Variant c_DOMDocumentFragment::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_DOMDocumentFragment::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMDocumentFragment);
-  }
-  c_DOMDocumentFragment *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentFragment*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_DOMDocumentFragment::ifa_appendxml(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_appendxml, coo_DOMDocumentFragment);
-  }
-  c_DOMDocumentFragment *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentFragment*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("appendxml", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_appendxml(arg0));
-}
-Variant c_DOMDocumentFragment::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMDocumentFragment);
-  }
-  c_DOMDocumentFragment *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentFragment*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_DOMDocumentFragment::s_call_info_table[] = {
-  { 0x1E44C8E8C1920931LL, 1, 9, "appendXML", &c_DOMDocumentFragment::ci_appendxml },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMDocumentFragment::ci___destruct },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMDocumentFragment::ci___construct },
-  { 0, 1, 0, 0 }
-};
-const int c_DOMDocumentFragment::s_call_info_index[] = {
-  7,
-  -1,0,-1,1,-1,-1,-1,2,
-
-};
-c_DOMDocumentFragment *c_DOMDocumentFragment::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
-}
-const ObjectStaticCallbacks cw_DOMDocumentFragment = {
-  (ObjectData*(*)(ObjectData*))coo_DOMDocumentFragment,
-  c_DOMDocumentFragment::s_call_info_table,c_DOMDocumentFragment::s_call_info_index,
-  c_DOMDocumentFragment::s_instanceof_table,c_DOMDocumentFragment::s_instanceof_index,
-  &c_DOMDocumentFragment::s_class_name,
-  0,&c_DOMDocumentFragment::ci___construct,0,&cw_DOMNode,0x0
-};
-ObjectData *coo_DOMXPath() {
-  return NEWOBJ(c_DOMXPath)();
-}
-IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(DOMXPath)
-const InstanceOfInfo c_DOMXPath::s_instanceof_table[] = {
-  {0x7D46DB2E09C6DBA8LL,1,"DOMXPath",&cw_DOMXPath},
-};
-const int c_DOMXPath::s_instanceof_index[] = {
-  1,
-  0,-1,
-};
-CallInfo c_DOMXPath::ci_registernamespace((void*)&c_DOMXPath::i_registernamespace, (void*)&c_DOMXPath::ifa_registernamespace, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMXPath::ci___get((void*)&c_DOMXPath::i___get, (void*)&c_DOMXPath::ifa___get, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMXPath::ci___construct((void*)&c_DOMXPath::i___construct, (void*)&c_DOMXPath::ifa___construct, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMXPath::ci___isset((void*)&c_DOMXPath::i___isset, (void*)&c_DOMXPath::ifa___isset, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMXPath::ci_evaluate((void*)&c_DOMXPath::i_evaluate, (void*)&c_DOMXPath::ifa_evaluate, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMXPath::ci_registerphpfunctions((void*)&c_DOMXPath::i_registerphpfunctions, (void*)&c_DOMXPath::ifa_registerphpfunctions, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMXPath::ci___destruct((void*)&c_DOMXPath::i___destruct, (void*)&c_DOMXPath::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMXPath::ci___set((void*)&c_DOMXPath::i___set, (void*)&c_DOMXPath::ifa___set, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMXPath::ci_query((void*)&c_DOMXPath::i_query, (void*)&c_DOMXPath::ifa_query, 2, 4, 0x0000000000000000LL);
-Variant c_DOMXPath::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_DOMXPath::i_evaluate(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_evaluate);
-}
-Variant c_DOMXPath::i_query(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_query);
-}
-Variant c_DOMXPath::i_registernamespace(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_registernamespace);
-}
-Variant c_DOMXPath::i_registerphpfunctions(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_registerphpfunctions);
-}
-Variant c_DOMXPath::i___get(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___get);
-}
-Variant c_DOMXPath::i___set(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___set);
-}
-Variant c_DOMXPath::i___isset(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___isset);
-}
-Variant c_DOMXPath::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_DOMXPath::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMXPath);
-  }
-  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__construct", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___construct(arg0), null);
-}
-Variant c_DOMXPath::ifa_evaluate(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_evaluate, coo_DOMXPath);
-  }
-  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("evaluate", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_evaluate(arg0));
-  CVarRef arg1(a1);
-  return (self->t_evaluate(arg0, arg1));
-}
-Variant c_DOMXPath::ifa_query(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_query, coo_DOMXPath);
-  }
-  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("query", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_query(arg0));
-  CVarRef arg1(a1);
-  return (self->t_query(arg0, arg1));
-}
-Variant c_DOMXPath::ifa_registernamespace(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_registernamespace, coo_DOMXPath);
-  }
-  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("registernamespace", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_registernamespace(arg0, arg1));
-}
-Variant c_DOMXPath::ifa_registerphpfunctions(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_registerphpfunctions, coo_DOMXPath);
-  }
-  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("registerphpfunctions", 1, 1);
-  if (count <= 0) return (self->t_registerphpfunctions());
-  CVarRef arg0(a0);
-  return (self->t_registerphpfunctions(arg0));
-}
-Variant c_DOMXPath::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMXPath);
-  }
-  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___get(arg0));
-}
-Variant c_DOMXPath::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMXPath);
-  }
-  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t___set(arg0, arg1));
-}
-Variant c_DOMXPath::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMXPath);
-  }
-  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___isset(arg0));
-}
-Variant c_DOMXPath::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMXPath);
-  }
-  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_DOMXPath::s_call_info_table[] = {
-  { 0x144FADF6B374AB82LL, 1, 20, "registerPHPFunctions", &c_DOMXPath::ci_registerphpfunctions },
-  { 0x47ACFB6D8681B0E8LL, 1, 17, "registerNamespace", &c_DOMXPath::ci_registernamespace },
-  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMXPath::ci___isset },
-  { 0x2443593B6F3C912FLL, 1, 8, "evaluate", &c_DOMXPath::ci_evaluate },
-  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMXPath::ci___get },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMXPath::ci___destruct },
-  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMXPath::ci___set },
-  { 0x356758D4414DA377LL, 1, 5, "query", &c_DOMXPath::ci_query },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMXPath::ci___construct },
-  { 0, 1, 0, 0 }
-};
-const int c_DOMXPath::s_call_info_index[] = {
-  31,
-  -1,-1,0,-1,-1,-1,-1,-1,
-  1,-1,-1,-1,-1,-1,2,3,
-  -1,-1,-1,5,-1,6,-1,7,
-  -1,-1,-1,-1,-1,-1,-1,8,
-
-};
-c_DOMXPath *c_DOMXPath::create(Variant a0) {
-  CountableHelper h(this);
-  init();
-  t___construct(a0);
-  return this;
-}
-const ObjectStaticCallbacks cw_DOMXPath = {
-  (ObjectData*(*)(ObjectData*))coo_DOMXPath,
-  c_DOMXPath::s_call_info_table,c_DOMXPath::s_call_info_index,
-  c_DOMXPath::s_instanceof_table,c_DOMXPath::s_instanceof_index,
-  &c_DOMXPath::s_class_name,
-  0,&c_DOMXPath::ci___construct,0,0,0x0
-};
-ObjectData *coo_DebuggerClient() {
-  return NEWOBJ(c_DebuggerClient)();
-}
-IMPLEMENT_CLASS(DebuggerClient)
-const InstanceOfInfo c_DebuggerClient::s_instanceof_table[] = {
-  {0x7D1235273F521A63LL,1,"DebuggerClient",&cw_DebuggerClient},
-};
-const int c_DebuggerClient::s_instanceof_index[] = {
-  1,
-  -1,0,
-};
-CallInfo c_DebuggerClient::ci_processcmd((void*)&c_DebuggerClient::i_processcmd, (void*)&c_DebuggerClient::ifa_processcmd, 2, 4, 0x0000000000000000LL);
-CallInfo c_DebuggerClient::ci___construct((void*)&c_DebuggerClient::i___construct, (void*)&c_DebuggerClient::ifa___construct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DebuggerClient::ci___destruct((void*)&c_DebuggerClient::i___destruct, (void*)&c_DebuggerClient::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DebuggerClient::ci_getstate((void*)&c_DebuggerClient::i_getstate, (void*)&c_DebuggerClient::ifa_getstate, 0, 4, 0x0000000000000000LL);
-CallInfo c_DebuggerClient::ci_interrupt((void*)&c_DebuggerClient::i_interrupt, (void*)&c_DebuggerClient::ifa_interrupt, 0, 4, 0x0000000000000000LL);
-CallInfo c_DebuggerClient::ci_init((void*)&c_DebuggerClient::i_init, (void*)&c_DebuggerClient::ifa_init, 1, 4, 0x0000000000000000LL);
-Variant c_DebuggerClient::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_DebuggerClient::i_getstate(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getstate);
-}
-Variant c_DebuggerClient::i_init(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_init);
-}
-Variant c_DebuggerClient::i_processcmd(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_processcmd);
-}
-Variant c_DebuggerClient::i_interrupt(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_interrupt);
-}
-Variant c_DebuggerClient::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_DebuggerClient::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DebuggerClient);
-  }
-  c_DebuggerClient *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerClient*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_DebuggerClient::ifa_getstate(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getstate, coo_DebuggerClient);
-  }
-  c_DebuggerClient *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerClient*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getstate", 0, 1);
-  return (self->t_getstate());
-}
-Variant c_DebuggerClient::ifa_init(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_init, coo_DebuggerClient);
-  }
-  c_DebuggerClient *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerClient*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("init", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_init(arg0));
-}
-Variant c_DebuggerClient::ifa_processcmd(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_processcmd, coo_DebuggerClient);
-  }
-  c_DebuggerClient *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerClient*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("processcmd", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_processcmd(arg0, arg1));
-}
-Variant c_DebuggerClient::ifa_interrupt(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_interrupt, coo_DebuggerClient);
-  }
-  c_DebuggerClient *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerClient*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("interrupt", 0, 1);
-  return (self->t_interrupt());
-}
-Variant c_DebuggerClient::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DebuggerClient);
-  }
-  c_DebuggerClient *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerClient*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_DebuggerClient::s_call_info_table[] = {
-  { 0x614F97E16B435A03LL, 1, 4, "init", &c_DebuggerClient::ci_init },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_DebuggerClient::ci___destruct },
-  { 0x44EE5338D48C877ALL, 1, 9, "interrupt", &c_DebuggerClient::ci_interrupt },
-  { 0x673621833E95130CLL, 1, 8, "getState", &c_DebuggerClient::ci_getstate },
-  { 0x1BA771910BD0F64ELL, 1, 10, "processCmd", &c_DebuggerClient::ci_processcmd },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DebuggerClient::ci___construct },
-  { 0, 1, 0, 0 }
-};
-const int c_DebuggerClient::s_call_info_index[] = {
-  15,
-  -1,-1,-1,0,-1,-1,-1,-1,
-  -1,-1,2,-1,3,-1,4,5,
-
-};
-c_DebuggerClient *c_DebuggerClient::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
-}
-const ObjectStaticCallbacks cw_DebuggerClient = {
-  (ObjectData*(*)(ObjectData*))coo_DebuggerClient,
-  c_DebuggerClient::s_call_info_table,c_DebuggerClient::s_call_info_index,
-  c_DebuggerClient::s_instanceof_table,c_DebuggerClient::s_instanceof_index,
-  &c_DebuggerClient::s_class_name,
-  &c_DebuggerClient::os_prop_table,&c_DebuggerClient::ci___construct,0,0,0x0
-};
-ObjectData *coo_SoapParam() {
-  return NEWOBJ(c_SoapParam)();
-}
-IMPLEMENT_CLASS(SoapParam)
-const InstanceOfInfo c_SoapParam::s_instanceof_table[] = {
-  {0x17A40D895C55D968LL,1,"SoapParam",&cw_SoapParam},
-};
-const int c_SoapParam::s_instanceof_index[] = {
-  1,
-  0,-1,
-};
-CallInfo c_SoapParam::ci___destruct((void*)&c_SoapParam::i___destruct, (void*)&c_SoapParam::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_SoapParam::ci___construct((void*)&c_SoapParam::i___construct, (void*)&c_SoapParam::ifa___construct, 2, 4, 0x0000000000000000LL);
-Variant c_SoapParam::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_SoapParam::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_SoapParam::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SoapParam);
-  }
-  c_SoapParam *self ATTRIBUTE_UNUSED (static_cast<c_SoapParam*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__construct", count, 2, 2, 1);
-  CVarRef arg0(a0);
+  if (count <= 1) return (self->t___construct(arg0), null);
   CVarRef arg1(a1);
   return (self->t___construct(arg0, arg1), null);
 }
-Variant c_SoapParam::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SoapClient::ifa___call(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SoapParam);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___call, coo_SoapClient);
   }
-  c_SoapParam *self ATTRIBUTE_UNUSED (static_cast<c_SoapParam*>(mcp.obj));
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__call", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t___call(arg0, arg1));
+}
+Variant c_SoapClient::ifa___soapcall(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___soapcall, coo_SoapClient);
+  }
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 5)) return throw_wrong_arguments("__soapcall", count, 2, 5, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t___soapcall(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t___soapcall(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t___soapcall(arg0, arg1, arg2, arg3));
+  VRefParam arg4(vref(a4));
+  return (self->t___soapcall(arg0, arg1, arg2, arg3, arg4));
+}
+Variant c_SoapClient::ifa___getlastrequest(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___getlastrequest, coo_SoapClient);
+  }
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__getlastrequest", 0, 1);
+  return (self->t___getlastrequest());
+}
+Variant c_SoapClient::ifa___getlastresponse(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___getlastresponse, coo_SoapClient);
+  }
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__getlastresponse", 0, 1);
+  return (self->t___getlastresponse());
+}
+Variant c_SoapClient::ifa___getlastrequestheaders(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___getlastrequestheaders, coo_SoapClient);
+  }
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__getlastrequestheaders", 0, 1);
+  return (self->t___getlastrequestheaders());
+}
+Variant c_SoapClient::ifa___getlastresponseheaders(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___getlastresponseheaders, coo_SoapClient);
+  }
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__getlastresponseheaders", 0, 1);
+  return (self->t___getlastresponseheaders());
+}
+Variant c_SoapClient::ifa___getfunctions(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___getfunctions, coo_SoapClient);
+  }
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__getfunctions", 0, 1);
+  return (self->t___getfunctions());
+}
+Variant c_SoapClient::ifa___gettypes(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___gettypes, coo_SoapClient);
+  }
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__gettypes", 0, 1);
+  return (self->t___gettypes());
+}
+Variant c_SoapClient::ifa___dorequest(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___dorequest, coo_SoapClient);
+  }
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  if (UNLIKELY(count < 4 || count > 5)) return throw_wrong_arguments("__dorequest", count, 4, 5, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  CVarRef arg2(a2);
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t___dorequest(arg0, arg1, arg2, arg3));
+  CVarRef arg4(a4);
+  return (self->t___dorequest(arg0, arg1, arg2, arg3, arg4));
+}
+Variant c_SoapClient::ifa___setcookie(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___setcookie, coo_SoapClient);
+  }
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("__setcookie", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t___setcookie(arg0));
+  CVarRef arg1(a1);
+  return (self->t___setcookie(arg0, arg1));
+}
+Variant c_SoapClient::ifa___setlocation(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___setlocation, coo_SoapClient);
+  }
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("__setlocation", 1, 1);
+  if (count <= 0) return (self->t___setlocation());
+  CVarRef arg0(a0);
+  return (self->t___setlocation(arg0));
+}
+Variant c_SoapClient::ifa___setsoapheaders(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___setsoapheaders, coo_SoapClient);
+  }
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("__setsoapheaders", 1, 1);
+  if (count <= 0) return (self->t___setsoapheaders());
+  CVarRef arg0(a0);
+  return (self->t___setsoapheaders(arg0));
+}
+Variant c_SoapClient::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SoapClient);
+  }
+  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_SoapParam::s_call_info_table[] = {
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SoapParam::ci___construct },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_SoapParam::ci___destruct },
+const MethodCallInfoTable c_SoapClient::s_call_info_table[] = {
+  { 0x5C5C1E24A140F6E4LL, 1, 16, "__getlastrequest", &c_SoapClient::ci___getlastrequest },
+  { 0x5D73364F53CEEB6CLL, 1, 6, "__call", &c_SoapClient::ci___call },
+  { 0x3648EE7D3B37DE8CLL, 0, 23, "__getlastrequestheaders", &c_SoapClient::ci___getlastrequestheaders },
+  { 0x1365B3105FC59871LL, 1, 14, "__getfunctions", &c_SoapClient::ci___getfunctions },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_SoapClient::ci___destruct },
+  { 0x3CA9145031035A54LL, 1, 17, "__getlastresponse", &c_SoapClient::ci___getlastresponse },
+  { 0x628D398E7604B9D5LL, 1, 10, "__gettypes", &c_SoapClient::ci___gettypes },
+  { 0x19A26CEC7E8AAEF5LL, 0, 11, "__dorequest", &c_SoapClient::ci___dorequest },
+  { 0x52C6ABACCBFD0C75LL, 0, 11, "__setcookie", &c_SoapClient::ci___setcookie },
+  { 0x4A2F89F662050D99LL, 1, 10, "__soapcall", &c_SoapClient::ci___soapcall },
+  { 0x0C94657A58A82CFALL, 1, 24, "__getlastresponseheaders", &c_SoapClient::ci___getlastresponseheaders },
+  { 0x14842228D5E335BBLL, 1, 16, "__setsoapheaders", &c_SoapClient::ci___setsoapheaders },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SoapClient::ci___construct },
+  { 0x232D13904DBC36FFLL, 0, 13, "__setlocation", &c_SoapClient::ci___setlocation },
   { 0, 1, 0, 0 }
 };
-const int c_SoapParam::s_call_info_index[] = {
-  3,
-  -1,-1,-1,0,
+const int c_SoapClient::s_call_info_index[] = {
+  31,
+  -1,-1,-1,-1,0,-1,-1,-1,
+  -1,-1,-1,-1,1,-1,-1,-1,
+  -1,3,-1,4,5,6,-1,-1,
+  -1,9,10,11,-1,-1,-1,12,
+
 };
-c_SoapParam *c_SoapParam::create(Variant a0, String a1) {
+c_SoapClient *c_SoapClient::create(Variant a0, Array a1) {
   CountableHelper h(this);
   init();
   t___construct(a0, a1);
   return this;
 }
-const ObjectStaticCallbacks cw_SoapParam = {
-  (ObjectData*(*)(ObjectData*))coo_SoapParam,
-  c_SoapParam::s_call_info_table,c_SoapParam::s_call_info_index,
-  c_SoapParam::s_instanceof_table,c_SoapParam::s_instanceof_index,
-  &c_SoapParam::s_class_name,
-  0,&c_SoapParam::ci___construct,0,0,0x0
+const ObjectStaticCallbacks cw_SoapClient = {
+  (ObjectData*(*)(ObjectData*))coo_SoapClient,
+  c_SoapClient::s_call_info_table,c_SoapClient::s_call_info_index,
+  c_SoapClient::s_instanceof_table,c_SoapClient::s_instanceof_index,
+  &c_SoapClient::s_class_name,
+  0,&c_SoapClient::ci___construct,0,0,0x100
+};
+ObjectData *coo_DOMElement() {
+  return NEWOBJ(c_DOMElement)();
+}
+IMPLEMENT_CLASS(DOMElement)
+const InstanceOfInfo c_DOMElement::s_instanceof_table[] = {
+  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
+  {0x40B3C44077F5DDC3LL,1,"DOMElement",&cw_DOMElement},
+};
+const int c_DOMElement::s_instanceof_index[] = {
+  3,
+  -1,-1,0,1,
+};
+CallInfo c_DOMElement::ci_removeattributenode((void*)&c_DOMElement::i_removeattributenode, (void*)&c_DOMElement::ifa_removeattributenode, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci___set((void*)&c_DOMElement::i___set, (void*)&c_DOMElement::ifa___set, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_setidattributens((void*)&c_DOMElement::i_setidattributens, (void*)&c_DOMElement::ifa_setidattributens, 3, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_setidattributenode((void*)&c_DOMElement::i_setidattributenode, (void*)&c_DOMElement::ifa_setidattributenode, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_getelementsbytagnamens((void*)&c_DOMElement::i_getelementsbytagnamens, (void*)&c_DOMElement::ifa_getelementsbytagnamens, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci___isset((void*)&c_DOMElement::i___isset, (void*)&c_DOMElement::ifa___isset, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_removeattributens((void*)&c_DOMElement::i_removeattributens, (void*)&c_DOMElement::ifa_removeattributens, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_setattributens((void*)&c_DOMElement::i_setattributens, (void*)&c_DOMElement::ifa_setattributens, 3, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_hasattributens((void*)&c_DOMElement::i_hasattributens, (void*)&c_DOMElement::ifa_hasattributens, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_getattributens((void*)&c_DOMElement::i_getattributens, (void*)&c_DOMElement::ifa_getattributens, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_getattributenode((void*)&c_DOMElement::i_getattributenode, (void*)&c_DOMElement::ifa_getattributenode, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_setattributenode((void*)&c_DOMElement::i_setattributenode, (void*)&c_DOMElement::ifa_setattributenode, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_getelementsbytagname((void*)&c_DOMElement::i_getelementsbytagname, (void*)&c_DOMElement::ifa_getelementsbytagname, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_setidattribute((void*)&c_DOMElement::i_setidattribute, (void*)&c_DOMElement::ifa_setidattribute, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_setattributenodens((void*)&c_DOMElement::i_setattributenodens, (void*)&c_DOMElement::ifa_setattributenodens, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_setattribute((void*)&c_DOMElement::i_setattribute, (void*)&c_DOMElement::ifa_setattribute, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_removeattribute((void*)&c_DOMElement::i_removeattribute, (void*)&c_DOMElement::ifa_removeattribute, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_hasattribute((void*)&c_DOMElement::i_hasattribute, (void*)&c_DOMElement::ifa_hasattribute, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_getattribute((void*)&c_DOMElement::i_getattribute, (void*)&c_DOMElement::ifa_getattribute, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci___destruct((void*)&c_DOMElement::i___destruct, (void*)&c_DOMElement::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci_getattributenodens((void*)&c_DOMElement::i_getattributenodens, (void*)&c_DOMElement::ifa_getattributenodens, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci___get((void*)&c_DOMElement::i___get, (void*)&c_DOMElement::ifa___get, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMElement::ci___construct((void*)&c_DOMElement::i___construct, (void*)&c_DOMElement::ifa___construct, 3, 4, 0x0000000000000000LL);
+Variant c_DOMElement::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_DOMElement::i_getattribute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getattribute);
+}
+Variant c_DOMElement::i_getattributenode(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getattributenode);
+}
+Variant c_DOMElement::i_getattributenodens(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getattributenodens);
+}
+Variant c_DOMElement::i_getattributens(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getattributens);
+}
+Variant c_DOMElement::i_getelementsbytagname(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getelementsbytagname);
+}
+Variant c_DOMElement::i_getelementsbytagnamens(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getelementsbytagnamens);
+}
+Variant c_DOMElement::i_hasattribute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_hasattribute);
+}
+Variant c_DOMElement::i_hasattributens(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_hasattributens);
+}
+Variant c_DOMElement::i_removeattribute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_removeattribute);
+}
+Variant c_DOMElement::i_removeattributenode(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_removeattributenode);
+}
+Variant c_DOMElement::i_removeattributens(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_removeattributens);
+}
+Variant c_DOMElement::i_setattribute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setattribute);
+}
+Variant c_DOMElement::i_setattributenode(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setattributenode);
+}
+Variant c_DOMElement::i_setattributenodens(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setattributenodens);
+}
+Variant c_DOMElement::i_setattributens(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setattributens);
+}
+Variant c_DOMElement::i_setidattribute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setidattribute);
+}
+Variant c_DOMElement::i_setidattributenode(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setidattributenode);
+}
+Variant c_DOMElement::i_setidattributens(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setidattributens);
+}
+Variant c_DOMElement::i___get(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___get);
+}
+Variant c_DOMElement::i___set(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___set);
+}
+Variant c_DOMElement::i___isset(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___isset);
+}
+Variant c_DOMElement::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_DOMElement::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("__construct", count, 1, 3, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t___construct(arg0), null);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t___construct(arg0, arg1), null);
+  CVarRef arg2(a2);
+  return (self->t___construct(arg0, arg1, arg2), null);
+}
+Variant c_DOMElement::ifa_getattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattribute, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getattribute", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_getattribute(arg0));
+}
+Variant c_DOMElement::ifa_getattributenode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattributenode, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getattributenode", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_getattributenode(arg0));
+}
+Variant c_DOMElement::ifa_getattributenodens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattributenodens, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("getattributenodens", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_getattributenodens(arg0, arg1));
+}
+Variant c_DOMElement::ifa_getattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattributens, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("getattributens", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_getattributens(arg0, arg1));
+}
+Variant c_DOMElement::ifa_getelementsbytagname(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getelementsbytagname, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getelementsbytagname", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_getelementsbytagname(arg0));
+}
+Variant c_DOMElement::ifa_getelementsbytagnamens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getelementsbytagnamens, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("getelementsbytagnamens", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_getelementsbytagnamens(arg0, arg1));
+}
+Variant c_DOMElement::ifa_hasattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_hasattribute, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("hasattribute", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_hasattribute(arg0));
+}
+Variant c_DOMElement::ifa_hasattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_hasattributens, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("hasattributens", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_hasattributens(arg0, arg1));
+}
+Variant c_DOMElement::ifa_removeattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_removeattribute, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("removeattribute", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_removeattribute(arg0));
+}
+Variant c_DOMElement::ifa_removeattributenode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_removeattributenode, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("removeattributenode", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_removeattributenode(arg0));
+}
+Variant c_DOMElement::ifa_removeattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_removeattributens, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("removeattributens", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_removeattributens(arg0, arg1));
+}
+Variant c_DOMElement::ifa_setattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setattribute, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("setattribute", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_setattribute(arg0, arg1));
+}
+Variant c_DOMElement::ifa_setattributenode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setattributenode, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setattributenode", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_setattributenode(arg0));
+}
+Variant c_DOMElement::ifa_setattributenodens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setattributenodens, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setattributenodens", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_setattributenodens(arg0));
+}
+Variant c_DOMElement::ifa_setattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setattributens, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 3)) return throw_wrong_arguments("setattributens", count, 3, 3, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  CVarRef arg2(a2);
+  return (self->t_setattributens(arg0, arg1, arg2));
+}
+Variant c_DOMElement::ifa_setidattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setidattribute, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("setidattribute", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_setidattribute(arg0, arg1));
+}
+Variant c_DOMElement::ifa_setidattributenode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setidattributenode, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("setidattributenode", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_setidattributenode(arg0, arg1));
+}
+Variant c_DOMElement::ifa_setidattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setidattributens, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 3)) return throw_wrong_arguments("setidattributens", count, 3, 3, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  CVarRef arg2(a2);
+  return (self->t_setidattributens(arg0, arg1, arg2));
+}
+Variant c_DOMElement::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___get(arg0));
+}
+Variant c_DOMElement::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t___set(arg0, arg1));
+}
+Variant c_DOMElement::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___isset(arg0));
+}
+Variant c_DOMElement::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMElement);
+  }
+  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_DOMElement::s_call_info_table[] = {
+  { 0x3FFA3F55ECAB93CALL, 1, 20, "getElementsByTagName", &c_DOMElement::ci_getelementsbytagname },
+  { 0x1A9CC561CA4817CALL, 0, 22, "getElementsByTagNameNS", &c_DOMElement::ci_getelementsbytagnamens },
+  { 0x1D5B8B8144F4AB8ALL, 0, 12, "setAttribute", &c_DOMElement::ci_setattribute },
+  { 0x29D272CBBC0CDA4ALL, 0, 18, "setIDAttributeNode", &c_DOMElement::ci_setidattributenode },
+  { 0x26B6E00C74FA338FLL, 1, 5, "__get", &c_DOMElement::ci___get },
+  { 0x710986B01E1A0890LL, 1, 17, "removeAttributeNS", &c_DOMElement::ci_removeattributens },
+  { 0x482E3873306253D1LL, 1, 18, "setAttributeNodeNS", &c_DOMElement::ci_setattributenodens },
+  { 0x31426AC6A851EE11LL, 0, 16, "setIDAttributeNS", &c_DOMElement::ci_setidattributens },
+  { 0x5EF7C3A45311D955LL, 1, 14, "hasAttributeNS", &c_DOMElement::ci_hasattributens },
+  { 0x52F3DAD783340395LL, 0, 5, "__set", &c_DOMElement::ci___set },
+  { 0x6F83EC29E110D616LL, 1, 14, "setIDAttribute", &c_DOMElement::ci_setidattribute },
+  { 0x62A40E71FAF19157LL, 1, 14, "setAttributeNS", &c_DOMElement::ci_setattributens },
+  { 0x640FA60DDC80EC18LL, 1, 18, "getAttributeNodeNS", &c_DOMElement::ci_getattributenodens },
+  { 0x34E103E06D3F0899LL, 1, 14, "getAttributeNS", &c_DOMElement::ci_getattributens },
+  { 0x606827EF5CF34C5CLL, 1, 16, "setAttributeNode", &c_DOMElement::ci_setattributenode },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMElement::ci___construct },
+  { 0x49F89C466612FC28LL, 1, 12, "getAttribute", &c_DOMElement::ci_getattribute },
+  { 0x1BFDB4272EA150EALL, 1, 19, "removeAttributeNode", &c_DOMElement::ci_removeattributenode },
+  { 0x6471DF8BB944FFECLL, 1, 12, "hasAttribute", &c_DOMElement::ci_hasattribute },
+  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMElement::ci___isset },
+  { 0x47B96C0FC62E1E2FLL, 1, 15, "removeAttribute", &c_DOMElement::ci_removeattribute },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMElement::ci___destruct },
+  { 0x343DF562BB5AB1FELL, 1, 16, "getAttributeNode", &c_DOMElement::ci_getattributenode },
+  { 0, 1, 0, 0 }
+};
+const int c_DOMElement::s_call_info_index[] = {
+  63,
+  -1,-1,-1,-1,-1,-1,-1,-1,
+  -1,-1,0,-1,-1,-1,-1,4,
+  5,6,-1,-1,-1,8,10,11,
+  12,13,-1,-1,14,-1,-1,15,
+  -1,-1,-1,-1,-1,-1,-1,-1,
+  16,-1,17,-1,18,-1,19,20,
+  -1,-1,-1,21,-1,-1,-1,-1,
+  -1,-1,-1,-1,-1,-1,22,-1,
+
+};
+c_DOMElement *c_DOMElement::create(String a0, String a1, String a2) {
+  CountableHelper h(this);
+  init();
+  t___construct(a0, a1, a2);
+  return this;
+}
+const ObjectStaticCallbacks cw_DOMElement = {
+  (ObjectData*(*)(ObjectData*))coo_DOMElement,
+  c_DOMElement::s_call_info_table,c_DOMElement::s_call_info_index,
+  c_DOMElement::s_instanceof_table,c_DOMElement::s_instanceof_index,
+  &c_DOMElement::s_class_name,
+  0,&c_DOMElement::ci___construct,0,&cw_DOMNode,0x0
 };
 ObjectData *coo_Memcached() {
   return NEWOBJ(c_Memcached)();
@@ -4352,265 +5043,408 @@ const ObjectStaticCallbacks cw_Memcached = {
   &c_Memcached::s_class_name,
   &c_Memcached::os_prop_table,&c_Memcached::ci___construct,0,0,0x0
 };
-ObjectData *coo_DOMAttr() {
-  return NEWOBJ(c_DOMAttr)();
+ObjectData *coo_DOMDocumentType() {
+  return NEWOBJ(c_DOMDocumentType)();
 }
-IMPLEMENT_CLASS(DOMAttr)
-const InstanceOfInfo c_DOMAttr::s_instanceof_table[] = {
-  {0x297174231D4912F4LL,1,"DOMAttr",&cw_DOMAttr},
+IMPLEMENT_CLASS(DOMDocumentType)
+const InstanceOfInfo c_DOMDocumentType::s_instanceof_table[] = {
+  {0x70EBB2CC1FBF9761LL,1,"DOMDocumentType",&cw_DOMDocumentType},
   {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
 };
-const int c_DOMAttr::s_instanceof_index[] = {
+const int c_DOMDocumentType::s_instanceof_index[] = {
   3,
-  0,-1,1,-1,
+  -1,0,1,-1,
 };
-CallInfo c_DOMAttr::ci___construct((void*)&c_DOMAttr::i___construct, (void*)&c_DOMAttr::ifa___construct, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMAttr::ci___get((void*)&c_DOMAttr::i___get, (void*)&c_DOMAttr::ifa___get, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMAttr::ci___isset((void*)&c_DOMAttr::i___isset, (void*)&c_DOMAttr::ifa___isset, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMAttr::ci___destruct((void*)&c_DOMAttr::i___destruct, (void*)&c_DOMAttr::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMAttr::ci___set((void*)&c_DOMAttr::i___set, (void*)&c_DOMAttr::ifa___set, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMAttr::ci_isid((void*)&c_DOMAttr::i_isid, (void*)&c_DOMAttr::ifa_isid, 0, 4, 0x0000000000000000LL);
-Variant c_DOMAttr::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_DOMDocumentType::ci___destruct((void*)&c_DOMDocumentType::i___destruct, (void*)&c_DOMDocumentType::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMDocumentType::ci___isset((void*)&c_DOMDocumentType::i___isset, (void*)&c_DOMDocumentType::ifa___isset, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMDocumentType::ci___get((void*)&c_DOMDocumentType::i___get, (void*)&c_DOMDocumentType::ifa___get, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMDocumentType::ci___construct((void*)&c_DOMDocumentType::i___construct, (void*)&c_DOMDocumentType::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMDocumentType::ci___set((void*)&c_DOMDocumentType::i___set, (void*)&c_DOMDocumentType::ifa___set, 2, 4, 0x0000000000000000LL);
+Variant c_DOMDocumentType::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_DOMAttr::i_isid(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_isid);
-}
-Variant c_DOMAttr::i___get(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMDocumentType::i___get(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___get);
 }
-Variant c_DOMAttr::i___set(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMDocumentType::i___set(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___set);
 }
-Variant c_DOMAttr::i___isset(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMDocumentType::i___isset(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___isset);
 }
-Variant c_DOMAttr::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMDocumentType::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_DOMAttr::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMDocumentType::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMAttr);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMDocumentType);
   }
-  c_DOMAttr *self ATTRIBUTE_UNUSED (static_cast<c_DOMAttr*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("__construct", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t___construct(arg0), null);
-  CVarRef arg1(a1);
-  return (self->t___construct(arg0, arg1), null);
+  c_DOMDocumentType *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentType*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
 }
-Variant c_DOMAttr::ifa_isid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMDocumentType::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_isid, coo_DOMAttr);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMDocumentType);
   }
-  c_DOMAttr *self ATTRIBUTE_UNUSED (static_cast<c_DOMAttr*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("isid", 0, 1);
-  return (self->t_isid());
-}
-Variant c_DOMAttr::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMAttr);
-  }
-  c_DOMAttr *self ATTRIBUTE_UNUSED (static_cast<c_DOMAttr*>(mcp.obj));
+  c_DOMDocumentType *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentType*>(mcp.obj));
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
   CVarRef arg0(a0);
   return (self->t___get(arg0));
 }
-Variant c_DOMAttr::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMDocumentType::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMAttr);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMDocumentType);
   }
-  c_DOMAttr *self ATTRIBUTE_UNUSED (static_cast<c_DOMAttr*>(mcp.obj));
+  c_DOMDocumentType *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentType*>(mcp.obj));
   if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
   CVarRef arg0(a0);
   CVarRef arg1(a1);
   return (self->t___set(arg0, arg1));
 }
-Variant c_DOMAttr::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMDocumentType::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMAttr);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMDocumentType);
   }
-  c_DOMAttr *self ATTRIBUTE_UNUSED (static_cast<c_DOMAttr*>(mcp.obj));
+  c_DOMDocumentType *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentType*>(mcp.obj));
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
   CVarRef arg0(a0);
   return (self->t___isset(arg0));
 }
-Variant c_DOMAttr::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMDocumentType::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMAttr);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMDocumentType);
   }
-  c_DOMAttr *self ATTRIBUTE_UNUSED (static_cast<c_DOMAttr*>(mcp.obj));
+  c_DOMDocumentType *self ATTRIBUTE_UNUSED (static_cast<c_DOMDocumentType*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_DOMAttr::s_call_info_table[] = {
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMAttr::ci___destruct },
-  { 0x30A9329415D17F24LL, 1, 4, "isId", &c_DOMAttr::ci_isid },
-  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMAttr::ci___set },
-  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMAttr::ci___isset },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMAttr::ci___construct },
-  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMAttr::ci___get },
+const MethodCallInfoTable c_DOMDocumentType::s_call_info_table[] = {
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMDocumentType::ci___destruct },
+  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMDocumentType::ci___set },
+  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMDocumentType::ci___isset },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMDocumentType::ci___construct },
+  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMDocumentType::ci___get },
   { 0, 1, 0, 0 }
 };
-const int c_DOMAttr::s_call_info_index[] = {
+const int c_DOMDocumentType::s_call_info_index[] = {
   15,
-  -1,-1,-1,0,1,2,-1,-1,
-  -1,-1,-1,-1,-1,-1,3,4,
+  -1,-1,-1,0,-1,1,-1,-1,
+  -1,-1,-1,-1,-1,-1,2,3,
 
 };
-c_DOMAttr *c_DOMAttr::create(String a0, String a1) {
-  CountableHelper h(this);
-  init();
-  t___construct(a0, a1);
-  return this;
-}
-const ObjectStaticCallbacks cw_DOMAttr = {
-  (ObjectData*(*)(ObjectData*))coo_DOMAttr,
-  c_DOMAttr::s_call_info_table,c_DOMAttr::s_call_info_index,
-  c_DOMAttr::s_instanceof_table,c_DOMAttr::s_instanceof_index,
-  &c_DOMAttr::s_class_name,
-  0,&c_DOMAttr::ci___construct,0,&cw_DOMNode,0x0
-};
-ObjectData *coo_SQLite3Result() {
-  return NEWOBJ(c_SQLite3Result)();
-}
-IMPLEMENT_CLASS(SQLite3Result)
-const InstanceOfInfo c_SQLite3Result::s_instanceof_table[] = {
-  {0x2E899D2A2572EF7DLL,1,"SQLite3Result",&cw_SQLite3Result},
-};
-const int c_SQLite3Result::s_instanceof_index[] = {
-  1,
-  -1,0,
-};
-CallInfo c_SQLite3Result::ci___construct((void*)&c_SQLite3Result::i___construct, (void*)&c_SQLite3Result::ifa___construct, 0, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3Result::ci_fetcharray((void*)&c_SQLite3Result::i_fetcharray, (void*)&c_SQLite3Result::ifa_fetcharray, 1, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3Result::ci_finalize((void*)&c_SQLite3Result::i_finalize, (void*)&c_SQLite3Result::ifa_finalize, 0, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3Result::ci_reset((void*)&c_SQLite3Result::i_reset, (void*)&c_SQLite3Result::ifa_reset, 0, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3Result::ci___destruct((void*)&c_SQLite3Result::i___destruct, (void*)&c_SQLite3Result::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3Result::ci_numcolumns((void*)&c_SQLite3Result::i_numcolumns, (void*)&c_SQLite3Result::ifa_numcolumns, 0, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3Result::ci_columnname((void*)&c_SQLite3Result::i_columnname, (void*)&c_SQLite3Result::ifa_columnname, 1, 4, 0x0000000000000000LL);
-CallInfo c_SQLite3Result::ci_columntype((void*)&c_SQLite3Result::i_columntype, (void*)&c_SQLite3Result::ifa_columntype, 1, 4, 0x0000000000000000LL);
-Variant c_SQLite3Result::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_SQLite3Result::i_numcolumns(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_numcolumns);
-}
-Variant c_SQLite3Result::i_columnname(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_columnname);
-}
-Variant c_SQLite3Result::i_columntype(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_columntype);
-}
-Variant c_SQLite3Result::i_fetcharray(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_fetcharray);
-}
-Variant c_SQLite3Result::i_reset(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_reset);
-}
-Variant c_SQLite3Result::i_finalize(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_finalize);
-}
-Variant c_SQLite3Result::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_SQLite3Result::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SQLite3Result);
-  }
-  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_SQLite3Result::ifa_numcolumns(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_numcolumns, coo_SQLite3Result);
-  }
-  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("numcolumns", 0, 1);
-  return (self->t_numcolumns());
-}
-Variant c_SQLite3Result::ifa_columnname(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_columnname, coo_SQLite3Result);
-  }
-  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("columnname", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_columnname(arg0));
-}
-Variant c_SQLite3Result::ifa_columntype(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_columntype, coo_SQLite3Result);
-  }
-  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("columntype", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_columntype(arg0));
-}
-Variant c_SQLite3Result::ifa_fetcharray(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_fetcharray, coo_SQLite3Result);
-  }
-  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("fetcharray", 1, 1);
-  if (count <= 0) return (self->t_fetcharray());
-  CVarRef arg0(a0);
-  return (self->t_fetcharray(arg0));
-}
-Variant c_SQLite3Result::ifa_reset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_reset, coo_SQLite3Result);
-  }
-  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("reset", 0, 1);
-  return (self->t_reset());
-}
-Variant c_SQLite3Result::ifa_finalize(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_finalize, coo_SQLite3Result);
-  }
-  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("finalize", 0, 1);
-  return (self->t_finalize());
-}
-Variant c_SQLite3Result::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SQLite3Result);
-  }
-  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_SQLite3Result::s_call_info_table[] = {
-  { 0x340A51AE22A924E0LL, 1, 5, "reset", &c_SQLite3Result::ci_reset },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_SQLite3Result::ci___destruct },
-  { 0x4C7702FC22784996LL, 1, 10, "numcolumns", &c_SQLite3Result::ci_numcolumns },
-  { 0x696EFC04EE7E47F8LL, 1, 10, "columnname", &c_SQLite3Result::ci_columnname },
-  { 0x59F73C4DEF1C3A6BLL, 1, 10, "fetcharray", &c_SQLite3Result::ci_fetcharray },
-  { 0x32A58B0CE493957CLL, 1, 8, "finalize", &c_SQLite3Result::ci_finalize },
-  { 0x42EDB5CA009D8C6DLL, 1, 10, "columntype", &c_SQLite3Result::ci_columntype },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SQLite3Result::ci___construct },
-  { 0, 1, 0, 0 }
-};
-const int c_SQLite3Result::s_call_info_index[] = {
-  15,
-  0,-1,-1,1,-1,-1,2,-1,
-  3,-1,-1,4,5,6,-1,7,
-
-};
-c_SQLite3Result *c_SQLite3Result::create() {
+c_DOMDocumentType *c_DOMDocumentType::create() {
   CountableHelper h(this);
   init();
   t___construct();
   return this;
 }
-const ObjectStaticCallbacks cw_SQLite3Result = {
-  (ObjectData*(*)(ObjectData*))coo_SQLite3Result,
-  c_SQLite3Result::s_call_info_table,c_SQLite3Result::s_call_info_index,
-  c_SQLite3Result::s_instanceof_table,c_SQLite3Result::s_instanceof_index,
-  &c_SQLite3Result::s_class_name,
-  0,&c_SQLite3Result::ci___construct,0,0,0x0
+const ObjectStaticCallbacks cw_DOMDocumentType = {
+  (ObjectData*(*)(ObjectData*))coo_DOMDocumentType,
+  c_DOMDocumentType::s_call_info_table,c_DOMDocumentType::s_call_info_index,
+  c_DOMDocumentType::s_instanceof_table,c_DOMDocumentType::s_instanceof_index,
+  &c_DOMDocumentType::s_class_name,
+  0,&c_DOMDocumentType::ci___construct,0,&cw_DOMNode,0x0
+};
+ObjectData *coo_SQLite3() {
+  return NEWOBJ(c_SQLite3)();
+}
+IMPLEMENT_CLASS(SQLite3)
+const InstanceOfInfo c_SQLite3::s_instanceof_table[] = {
+  {0x1D35C3EFD00E11A9LL,1,"SQLite3",&cw_SQLite3},
+};
+const int c_SQLite3::s_instanceof_index[] = {
+  1,
+  -1,0,
+};
+CallInfo c_SQLite3::ci_createaggregate((void*)&c_SQLite3::i_createaggregate, (void*)&c_SQLite3::ifa_createaggregate, 4, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_loadextension((void*)&c_SQLite3::i_loadextension, (void*)&c_SQLite3::ifa_loadextension, 1, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_close((void*)&c_SQLite3::i_close, (void*)&c_SQLite3::ifa_close, 0, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_lasterrormsg((void*)&c_SQLite3::i_lasterrormsg, (void*)&c_SQLite3::ifa_lasterrormsg, 0, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_escapestring((void*)&c_SQLite3::i_escapestring, (void*)&c_SQLite3::ifa_escapestring, 1, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_lastinsertrowid((void*)&c_SQLite3::i_lastinsertrowid, (void*)&c_SQLite3::ifa_lastinsertrowid, 0, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_changes((void*)&c_SQLite3::i_changes, (void*)&c_SQLite3::ifa_changes, 0, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_createfunction((void*)&c_SQLite3::i_createfunction, (void*)&c_SQLite3::ifa_createfunction, 3, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_query((void*)&c_SQLite3::i_query, (void*)&c_SQLite3::ifa_query, 1, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_openblob((void*)&c_SQLite3::i_openblob, (void*)&c_SQLite3::ifa_openblob, 4, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_lasterrorcode((void*)&c_SQLite3::i_lasterrorcode, (void*)&c_SQLite3::ifa_lasterrorcode, 0, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_open((void*)&c_SQLite3::i_open, (void*)&c_SQLite3::ifa_open, 3, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_version((void*)&c_SQLite3::i_version, (void*)&c_SQLite3::ifa_version, 0, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci___destruct((void*)&c_SQLite3::i___destruct, (void*)&c_SQLite3::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_querysingle((void*)&c_SQLite3::i_querysingle, (void*)&c_SQLite3::ifa_querysingle, 2, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_prepare((void*)&c_SQLite3::i_prepare, (void*)&c_SQLite3::ifa_prepare, 1, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci_exec((void*)&c_SQLite3::i_exec, (void*)&c_SQLite3::ifa_exec, 1, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3::ci___construct((void*)&c_SQLite3::i___construct, (void*)&c_SQLite3::ifa___construct, 0, 4, 0x0000000000000000LL);
+Variant c_SQLite3::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_SQLite3::i_open(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_open);
+}
+Variant c_SQLite3::i_close(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_close);
+}
+Variant c_SQLite3::i_exec(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_exec);
+}
+Variant c_SQLite3::i_version(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_version);
+}
+Variant c_SQLite3::i_lastinsertrowid(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_lastinsertrowid);
+}
+Variant c_SQLite3::i_lasterrorcode(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_lasterrorcode);
+}
+Variant c_SQLite3::i_lasterrormsg(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_lasterrormsg);
+}
+Variant c_SQLite3::i_loadextension(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_loadextension);
+}
+Variant c_SQLite3::i_changes(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_changes);
+}
+Variant c_SQLite3::i_escapestring(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_escapestring);
+}
+Variant c_SQLite3::i_prepare(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_prepare);
+}
+Variant c_SQLite3::i_query(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_query);
+}
+Variant c_SQLite3::i_querysingle(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_querysingle);
+}
+Variant c_SQLite3::i_createfunction(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_createfunction);
+}
+Variant c_SQLite3::i_createaggregate(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_createaggregate);
+}
+Variant c_SQLite3::i_openblob(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_openblob);
+}
+Variant c_SQLite3::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_SQLite3::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_SQLite3::ifa_open(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_open, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("open", count, 1, 3, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_open(arg0), null);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_open(arg0, arg1), null);
+  CVarRef arg2(a2);
+  return (self->t_open(arg0, arg1, arg2), null);
+}
+Variant c_SQLite3::ifa_close(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_close, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("close", 0, 1);
+  return (self->t_close());
+}
+Variant c_SQLite3::ifa_exec(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_exec, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("exec", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_exec(arg0));
+}
+Variant c_SQLite3::ifa_version(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_version, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("version", 0, 1);
+  return (self->t_version());
+}
+Variant c_SQLite3::ifa_lastinsertrowid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lastinsertrowid, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("lastinsertrowid", 0, 1);
+  return (self->t_lastinsertrowid());
+}
+Variant c_SQLite3::ifa_lasterrorcode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lasterrorcode, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("lasterrorcode", 0, 1);
+  return (self->t_lasterrorcode());
+}
+Variant c_SQLite3::ifa_lasterrormsg(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lasterrormsg, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("lasterrormsg", 0, 1);
+  return (self->t_lasterrormsg());
+}
+Variant c_SQLite3::ifa_loadextension(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_loadextension, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("loadextension", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_loadextension(arg0));
+}
+Variant c_SQLite3::ifa_changes(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_changes, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("changes", 0, 1);
+  return (self->t_changes());
+}
+Variant c_SQLite3::ifa_escapestring(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_escapestring, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("escapestring", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_escapestring(arg0));
+}
+Variant c_SQLite3::ifa_prepare(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_prepare, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("prepare", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_prepare(arg0));
+}
+Variant c_SQLite3::ifa_query(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_query, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("query", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_query(arg0));
+}
+Variant c_SQLite3::ifa_querysingle(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_querysingle, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("querysingle", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_querysingle(arg0));
+  CVarRef arg1(a1);
+  return (self->t_querysingle(arg0, arg1));
+}
+Variant c_SQLite3::ifa_createfunction(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_createfunction, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("createfunction", count, 2, 3, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_createfunction(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_createfunction(arg0, arg1, arg2));
+}
+Variant c_SQLite3::ifa_createaggregate(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_createaggregate, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count < 3 || count > 4)) return throw_wrong_arguments("createaggregate", count, 3, 4, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_createaggregate(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (self->t_createaggregate(arg0, arg1, arg2, arg3));
+}
+Variant c_SQLite3::ifa_openblob(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_openblob, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count < 3 || count > 4)) return throw_wrong_arguments("openblob", count, 3, 4, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_openblob(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (self->t_openblob(arg0, arg1, arg2, arg3));
+}
+Variant c_SQLite3::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SQLite3);
+  }
+  c_SQLite3 *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_SQLite3::s_call_info_table[] = {
+  { 0x78AE97BFBEBF5341LL, 1, 5, "close", &c_SQLite3::ci_close },
+  { 0x6081F282094466C2LL, 1, 12, "lasterrormsg", &c_SQLite3::ci_lasterrormsg },
+  { 0x65BD6700742BF3C2LL, 0, 8, "openblob", &c_SQLite3::ci_openblob },
+  { 0x3AA4CCEC6BD68143LL, 1, 15, "createaggregate", &c_SQLite3::ci_createaggregate },
+  { 0x21F68C010C124BC4LL, 1, 4, "open", &c_SQLite3::ci_open },
+  { 0x632B468FC2FCAB0ALL, 1, 13, "lasterrorcode", &c_SQLite3::ci_lasterrorcode },
+  { 0x4F1D1ED7B087208CLL, 1, 4, "exec", &c_SQLite3::ci_exec },
+  { 0x7CECF508291057CDLL, 1, 14, "createfunction", &c_SQLite3::ci_createfunction },
+  { 0x64D2BDB189B02819LL, 1, 7, "changes", &c_SQLite3::ci_changes },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SQLite3::ci___construct },
+  { 0x1B3CDE890A487664LL, 1, 13, "loadextension", &c_SQLite3::ci_loadextension },
+  { 0x5024F08DB0FDCBE6LL, 1, 15, "lastinsertrowid", &c_SQLite3::ci_lastinsertrowid },
+  { 0x5AE41239FF63D86ALL, 1, 7, "version", &c_SQLite3::ci_version },
+  { 0x156B1FAE4132ABEELL, 1, 11, "querysingle", &c_SQLite3::ci_querysingle },
+  { 0x540020AE4BA591AFLL, 1, 7, "prepare", &c_SQLite3::ci_prepare },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_SQLite3::ci___destruct },
+  { 0x607C4C73BB251635LL, 1, 12, "escapestring", &c_SQLite3::ci_escapestring },
+  { 0x356758D4414DA377LL, 1, 5, "query", &c_SQLite3::ci_query },
+  { 0, 1, 0, 0 }
+};
+const int c_SQLite3::s_call_info_index[] = {
+  63,
+  -1,0,1,3,4,-1,-1,-1,
+  -1,-1,5,-1,6,7,-1,-1,
+  -1,-1,-1,-1,-1,-1,-1,-1,
+  -1,8,-1,-1,-1,-1,-1,9,
+  -1,-1,-1,-1,10,-1,11,-1,
+  -1,-1,12,-1,-1,-1,13,14,
+  -1,-1,-1,15,-1,16,-1,17,
+  -1,-1,-1,-1,-1,-1,-1,-1,
+
+};
+c_SQLite3 *c_SQLite3::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_SQLite3 = {
+  (ObjectData*(*)(ObjectData*))coo_SQLite3,
+  c_SQLite3::s_call_info_table,c_SQLite3::s_call_info_index,
+  c_SQLite3::s_instanceof_table,c_SQLite3::s_instanceof_index,
+  &c_SQLite3::s_class_name,
+  0,&c_SQLite3::ci___construct,0,0,0x0
 };
 ObjectData *coo_DOMDocument() {
   return NEWOBJ(c_DOMDocument)();
@@ -5171,777 +6005,348 @@ const ObjectStaticCallbacks cw_DOMDocument = {
   &c_DOMDocument::s_class_name,
   0,&c_DOMDocument::ci___construct,0,&cw_DOMNode,0x0
 };
-ObjectData *coo_SoapVar() {
-  return NEWOBJ(c_SoapVar)();
+ObjectData *coo_SpoofChecker() {
+  return NEWOBJ(c_SpoofChecker)();
 }
-IMPLEMENT_CLASS(SoapVar)
-const InstanceOfInfo c_SoapVar::s_instanceof_table[] = {
-  {0x7909270014376235LL,1,"SoapVar",&cw_SoapVar},
+IMPLEMENT_CLASS(SpoofChecker)
+const InstanceOfInfo c_SpoofChecker::s_instanceof_table[] = {
+  {0x648FB595C359F411LL,1,"SpoofChecker",&cw_SpoofChecker},
 };
-const int c_SoapVar::s_instanceof_index[] = {
+const int c_SpoofChecker::s_instanceof_index[] = {
   1,
   -1,0,
 };
-CallInfo c_SoapVar::ci___destruct((void*)&c_SoapVar::i___destruct, (void*)&c_SoapVar::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_SoapVar::ci___construct((void*)&c_SoapVar::i___construct, (void*)&c_SoapVar::ifa___construct, 6, 4, 0x0000000000000000LL);
-Variant c_SoapVar::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_SpoofChecker::ci_areconfusable((void*)&c_SpoofChecker::i_areconfusable, (void*)&c_SpoofChecker::ifa_areconfusable, 3, 4, 0x0000000000000004LL);
+CallInfo c_SpoofChecker::ci___construct((void*)&c_SpoofChecker::i___construct, (void*)&c_SpoofChecker::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_SpoofChecker::ci_setchecks((void*)&c_SpoofChecker::i_setchecks, (void*)&c_SpoofChecker::ifa_setchecks, 1, 4, 0x0000000000000000LL);
+CallInfo c_SpoofChecker::ci_setallowedlocales((void*)&c_SpoofChecker::i_setallowedlocales, (void*)&c_SpoofChecker::ifa_setallowedlocales, 1, 4, 0x0000000000000000LL);
+CallInfo c_SpoofChecker::ci___destruct((void*)&c_SpoofChecker::i___destruct, (void*)&c_SpoofChecker::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_SpoofChecker::ci_issuspicious((void*)&c_SpoofChecker::i_issuspicious, (void*)&c_SpoofChecker::ifa_issuspicious, 2, 4, 0x0000000000000002LL);
+Variant c_SpoofChecker::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_SoapVar::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_SpoofChecker::i_issuspicious(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_issuspicious);
+}
+Variant c_SpoofChecker::i_areconfusable(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_areconfusable);
+}
+Variant c_SpoofChecker::i_setallowedlocales(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setallowedlocales);
+}
+Variant c_SpoofChecker::i_setchecks(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setchecks);
+}
+Variant c_SpoofChecker::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_SoapVar::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SpoofChecker::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SoapVar);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SpoofChecker);
   }
-  c_SoapVar *self ATTRIBUTE_UNUSED (static_cast<c_SoapVar*>(mcp.obj));
-  if (UNLIKELY(count < 2)) return throw_wrong_arguments("__construct", count, 2, 6, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t___construct(arg0, arg1), null);
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t___construct(arg0, arg1, arg2), null);
-  CVarRef arg3(a3);
-  if (count <= 4) return (self->t___construct(arg0, arg1, arg2, arg3), null);
-  CVarRef arg4(a4);
-  if (count <= 5) return (self->t___construct(arg0, arg1, arg2, arg3, arg4), null);
-  CVarRef arg5(a5);
-  return (self->t___construct(arg0, arg1, arg2, arg3, arg4, arg5), null);
-}
-Variant c_SoapVar::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SoapVar);
-  }
-  c_SoapVar *self ATTRIBUTE_UNUSED (static_cast<c_SoapVar*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_SoapVar::s_call_info_table[] = {
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SoapVar::ci___construct },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_SoapVar::ci___destruct },
-  { 0, 1, 0, 0 }
-};
-const int c_SoapVar::s_call_info_index[] = {
-  3,
-  -1,-1,-1,0,
-};
-c_SoapVar *c_SoapVar::create(Variant a0, Variant a1, String a2, String a3, String a4, String a5) {
-  CountableHelper h(this);
-  init();
-  t___construct(a0, a1, a2, a3, a4, a5);
-  return this;
-}
-const ObjectStaticCallbacks cw_SoapVar = {
-  (ObjectData*(*)(ObjectData*))coo_SoapVar,
-  c_SoapVar::s_call_info_table,c_SoapVar::s_call_info_index,
-  c_SoapVar::s_instanceof_table,c_SoapVar::s_instanceof_index,
-  &c_SoapVar::s_class_name,
-  0,&c_SoapVar::ci___construct,0,0,0x0
-};
-ObjectData *coo_SimpleXMLElementIterator() {
-  return NEWOBJ(c_SimpleXMLElementIterator)();
-}
-IMPLEMENT_CLASS(SimpleXMLElementIterator)
-const InstanceOfInfo c_SimpleXMLElementIterator::s_instanceof_table[] = {
-  {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},
-  {0x7E66D362EAB5BF2BLL,1,"SimpleXMLElementIterator",&cw_SimpleXMLElementIterator},
-  {0x0636A5F84AF9D29ELL,1,"Iterator",(const ObjectStaticCallbacks*)2},
-};
-const int c_SimpleXMLElementIterator::s_instanceof_index[] = {
-  7,
-  -1,0,-1,1,-1,-1,2,-1,
-
-};
-CallInfo c_SimpleXMLElementIterator::ci___construct((void*)&c_SimpleXMLElementIterator::i___construct, (void*)&c_SimpleXMLElementIterator::ifa___construct, 0, 4, 0x0000000000000000LL);
-CallInfo c_SimpleXMLElementIterator::ci_rewind((void*)&c_SimpleXMLElementIterator::i_rewind, (void*)&c_SimpleXMLElementIterator::ifa_rewind, 0, 4, 0x0000000000000000LL);
-CallInfo c_SimpleXMLElementIterator::ci_next((void*)&c_SimpleXMLElementIterator::i_next, (void*)&c_SimpleXMLElementIterator::ifa_next, 0, 4, 0x0000000000000000LL);
-CallInfo c_SimpleXMLElementIterator::ci___destruct((void*)&c_SimpleXMLElementIterator::i___destruct, (void*)&c_SimpleXMLElementIterator::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_SimpleXMLElementIterator::ci_current((void*)&c_SimpleXMLElementIterator::i_current, (void*)&c_SimpleXMLElementIterator::ifa_current, 0, 4, 0x0000000000000000LL);
-CallInfo c_SimpleXMLElementIterator::ci_valid((void*)&c_SimpleXMLElementIterator::i_valid, (void*)&c_SimpleXMLElementIterator::ifa_valid, 0, 4, 0x0000000000000000LL);
-CallInfo c_SimpleXMLElementIterator::ci_key((void*)&c_SimpleXMLElementIterator::i_key, (void*)&c_SimpleXMLElementIterator::ifa_key, 0, 4, 0x0000000000000000LL);
-Variant c_SimpleXMLElementIterator::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_SimpleXMLElementIterator::i_current(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_current);
-}
-Variant c_SimpleXMLElementIterator::i_key(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_key);
-}
-Variant c_SimpleXMLElementIterator::i_next(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_next);
-}
-Variant c_SimpleXMLElementIterator::i_rewind(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_rewind);
-}
-Variant c_SimpleXMLElementIterator::i_valid(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_valid);
-}
-Variant c_SimpleXMLElementIterator::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_SimpleXMLElementIterator::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SimpleXMLElementIterator);
-  }
-  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
+  c_SpoofChecker *self ATTRIBUTE_UNUSED (static_cast<c_SpoofChecker*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
   return (self->t___construct(), null);
 }
-Variant c_SimpleXMLElementIterator::ifa_current(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SpoofChecker::ifa_issuspicious(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_current, coo_SimpleXMLElementIterator);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_issuspicious, coo_SpoofChecker);
   }
-  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("current", 0, 1);
-  return (self->t_current());
+  c_SpoofChecker *self ATTRIBUTE_UNUSED (static_cast<c_SpoofChecker*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("issuspicious", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_issuspicious(arg0));
+  VRefParam arg1(vref(a1));
+  return (self->t_issuspicious(arg0, arg1));
 }
-Variant c_SimpleXMLElementIterator::ifa_key(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SpoofChecker::ifa_areconfusable(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_key, coo_SimpleXMLElementIterator);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_areconfusable, coo_SpoofChecker);
   }
-  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("key", 0, 1);
-  return (self->t_key());
+  c_SpoofChecker *self ATTRIBUTE_UNUSED (static_cast<c_SpoofChecker*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("areconfusable", count, 2, 3, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_areconfusable(arg0, arg1));
+  VRefParam arg2(vref(a2));
+  return (self->t_areconfusable(arg0, arg1, arg2));
 }
-Variant c_SimpleXMLElementIterator::ifa_next(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SpoofChecker::ifa_setallowedlocales(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_next, coo_SimpleXMLElementIterator);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setallowedlocales, coo_SpoofChecker);
   }
-  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("next", 0, 1);
-  return (self->t_next());
+  c_SpoofChecker *self ATTRIBUTE_UNUSED (static_cast<c_SpoofChecker*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setallowedlocales", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_setallowedlocales(arg0), null);
 }
-Variant c_SimpleXMLElementIterator::ifa_rewind(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SpoofChecker::ifa_setchecks(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_rewind, coo_SimpleXMLElementIterator);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setchecks, coo_SpoofChecker);
   }
-  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("rewind", 0, 1);
-  return (self->t_rewind());
+  c_SpoofChecker *self ATTRIBUTE_UNUSED (static_cast<c_SpoofChecker*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setchecks", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_setchecks(arg0), null);
 }
-Variant c_SimpleXMLElementIterator::ifa_valid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SpoofChecker::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_valid, coo_SimpleXMLElementIterator);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SpoofChecker);
   }
-  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("valid", 0, 1);
-  return (self->t_valid());
-}
-Variant c_SimpleXMLElementIterator::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SimpleXMLElementIterator);
-  }
-  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
+  c_SpoofChecker *self ATTRIBUTE_UNUSED (static_cast<c_SpoofChecker*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_SimpleXMLElementIterator::s_call_info_table[] = {
-  { 0x56EDB60C824E8C51LL, 1, 3, "key", &c_SimpleXMLElementIterator::ci_key },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_SimpleXMLElementIterator::ci___destruct },
-  { 0x6413CB5154808C44LL, 1, 5, "valid", &c_SimpleXMLElementIterator::ci_valid },
-  { 0x3C6D50F3BB8102B8LL, 1, 4, "next", &c_SimpleXMLElementIterator::ci_next },
-  { 0x1670096FDE27AF6ALL, 1, 6, "rewind", &c_SimpleXMLElementIterator::ci_rewind },
-  { 0x5B3A4A72846B21DCLL, 1, 7, "current", &c_SimpleXMLElementIterator::ci_current },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SimpleXMLElementIterator::ci___construct },
+const MethodCallInfoTable c_SpoofChecker::s_call_info_table[] = {
+  { 0x1C4B9989F874FF63LL, 1, 9, "setChecks", &c_SpoofChecker::ci_setchecks },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_SpoofChecker::ci___destruct },
+  { 0x62F3987BECE73BD9LL, 1, 13, "areConfusable", &c_SpoofChecker::ci_areconfusable },
+  { 0x63D87072B612B4AALL, 1, 12, "isSuspicious", &c_SpoofChecker::ci_issuspicious },
+  { 0x35C46288CF1204BDLL, 1, 17, "setAllowedLocales", &c_SpoofChecker::ci_setallowedlocales },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SpoofChecker::ci___construct },
   { 0, 1, 0, 0 }
 };
-const int c_SimpleXMLElementIterator::s_call_info_index[] = {
+const int c_SpoofChecker::s_call_info_index[] = {
   15,
-  -1,0,-1,1,2,-1,-1,-1,
-  3,-1,4,-1,5,-1,-1,6,
+  -1,-1,-1,0,-1,-1,-1,-1,
+  -1,2,3,-1,-1,4,-1,5,
 
 };
-c_SimpleXMLElementIterator *c_SimpleXMLElementIterator::create() {
+c_SpoofChecker *c_SpoofChecker::create() {
   CountableHelper h(this);
   init();
   t___construct();
   return this;
 }
-const ObjectStaticCallbacks cw_SimpleXMLElementIterator = {
-  (ObjectData*(*)(ObjectData*))coo_SimpleXMLElementIterator,
-  c_SimpleXMLElementIterator::s_call_info_table,c_SimpleXMLElementIterator::s_call_info_index,
-  c_SimpleXMLElementIterator::s_instanceof_table,c_SimpleXMLElementIterator::s_instanceof_index,
-  &c_SimpleXMLElementIterator::s_class_name,
-  0,&c_SimpleXMLElementIterator::ci___construct,0,0,0x0
+const ObjectStaticCallbacks cw_SpoofChecker = {
+  (ObjectData*(*)(ObjectData*))coo_SpoofChecker,
+  c_SpoofChecker::s_call_info_table,c_SpoofChecker::s_call_info_index,
+  c_SpoofChecker::s_instanceof_table,c_SpoofChecker::s_instanceof_index,
+  &c_SpoofChecker::s_class_name,
+  &c_SpoofChecker::os_prop_table,&c_SpoofChecker::ci___construct,0,0,0x0
 };
-ObjectData *coo_PDO() {
-  return NEWOBJ(c_PDO)();
+ObjectData *coo_DOMNodeIterator() {
+  return NEWOBJ(c_DOMNodeIterator)();
 }
-IMPLEMENT_CLASS(PDO)
-const InstanceOfInfo c_PDO::s_instanceof_table[] = {
-  {0x0A34015F67C804ADLL,1,"PDO",&cw_PDO},
-};
-const int c_PDO::s_instanceof_index[] = {
-  1,
-  -1,0,
-};
-CallInfo c_PDO::ci_lastinsertid((void*)&c_PDO::i_lastinsertid, (void*)&c_PDO::ifa_lastinsertid, 1, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci_commit((void*)&c_PDO::i_commit, (void*)&c_PDO::ifa_commit, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci_getavailabledrivers((void*)&c_PDO::i_getavailabledrivers, (void*)&c_PDO::ifa_getavailabledrivers, 0, 12, 0x0000000000000000LL);
-CallInfo c_PDO::ci_begintransaction((void*)&c_PDO::i_begintransaction, (void*)&c_PDO::ifa_begintransaction, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci_quote((void*)&c_PDO::i_quote, (void*)&c_PDO::ifa_quote, 2, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci_errorinfo((void*)&c_PDO::i_errorinfo, (void*)&c_PDO::ifa_errorinfo, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci___sleep((void*)&c_PDO::i___sleep, (void*)&c_PDO::ifa___sleep, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci___wakeup((void*)&c_PDO::i___wakeup, (void*)&c_PDO::ifa___wakeup, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci_query((void*)&c_PDO::i_query, (void*)&c_PDO::ifa_query, 1, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci_setattribute((void*)&c_PDO::i_setattribute, (void*)&c_PDO::ifa_setattribute, 2, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci_getattribute((void*)&c_PDO::i_getattribute, (void*)&c_PDO::ifa_getattribute, 1, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci_errorcode((void*)&c_PDO::i_errorcode, (void*)&c_PDO::ifa_errorcode, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci___destruct((void*)&c_PDO::i___destruct, (void*)&c_PDO::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci_prepare((void*)&c_PDO::i_prepare, (void*)&c_PDO::ifa_prepare, 2, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci_exec((void*)&c_PDO::i_exec, (void*)&c_PDO::ifa_exec, 1, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci_rollback((void*)&c_PDO::i_rollback, (void*)&c_PDO::ifa_rollback, 0, 4, 0x0000000000000000LL);
-CallInfo c_PDO::ci___construct((void*)&c_PDO::i___construct, (void*)&c_PDO::ifa___construct, 4, 4, 0x0000000000000000LL);
-Variant c_PDO::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_PDO::i_prepare(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_prepare);
-}
-Variant c_PDO::i_begintransaction(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_begintransaction);
-}
-Variant c_PDO::i_commit(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_commit);
-}
-Variant c_PDO::i_rollback(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_rollback);
-}
-Variant c_PDO::i_setattribute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setattribute);
-}
-Variant c_PDO::i_getattribute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getattribute);
-}
-Variant c_PDO::i_exec(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_exec);
-}
-Variant c_PDO::i_lastinsertid(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_lastinsertid);
-}
-Variant c_PDO::i_errorcode(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_errorcode);
-}
-Variant c_PDO::i_errorinfo(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_errorinfo);
-}
-Variant c_PDO::i_query(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_query);
-}
-Variant c_PDO::i_quote(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_quote);
-}
-Variant c_PDO::i___wakeup(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___wakeup);
-}
-Variant c_PDO::i___sleep(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___sleep);
-}
-Variant c_PDO::i_getavailabledrivers(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getavailabledrivers);
-}
-Variant c_PDO::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_PDO::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 4)) return throw_wrong_arguments("__construct", count, 1, 4, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t___construct(arg0), null);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t___construct(arg0, arg1), null);
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t___construct(arg0, arg1, arg2), null);
-  CVarRef arg3(a3);
-  return (self->t___construct(arg0, arg1, arg2, arg3), null);
-}
-Variant c_PDO::ifa_prepare(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_prepare, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("prepare", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_prepare(arg0));
-  CVarRef arg1(a1);
-  return (self->t_prepare(arg0, arg1));
-}
-Variant c_PDO::ifa_begintransaction(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_begintransaction, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("begintransaction", 0, 1);
-  return (self->t_begintransaction());
-}
-Variant c_PDO::ifa_commit(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_commit, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("commit", 0, 1);
-  return (self->t_commit());
-}
-Variant c_PDO::ifa_rollback(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_rollback, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("rollback", 0, 1);
-  return (self->t_rollback());
-}
-Variant c_PDO::ifa_setattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setattribute, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("setattribute", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_setattribute(arg0, arg1));
-}
-Variant c_PDO::ifa_getattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattribute, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getattribute", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_getattribute(arg0));
-}
-Variant c_PDO::ifa_exec(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_exec, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("exec", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_exec(arg0));
-}
-Variant c_PDO::ifa_lastinsertid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lastinsertid, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("lastinsertid", 1, 1);
-  if (count <= 0) return (self->t_lastinsertid());
-  CVarRef arg0(a0);
-  return (self->t_lastinsertid(arg0));
-}
-Variant c_PDO::ifa_errorcode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_errorcode, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("errorcode", 0, 1);
-  return (self->t_errorcode());
-}
-Variant c_PDO::ifa_errorinfo(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_errorinfo, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("errorinfo", 0, 1);
-  return (self->t_errorinfo());
-}
-Variant c_PDO::ifa_query(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_query, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("query", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_query(arg0));
-}
-Variant c_PDO::ifa_quote(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_quote, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("quote", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_quote(arg0));
-  CVarRef arg1(a1);
-  return (self->t_quote(arg0, arg1));
-}
-Variant c_PDO::ifa___wakeup(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___wakeup, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__wakeup", 0, 1);
-  return (self->t___wakeup());
-}
-Variant c_PDO::ifa___sleep(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___sleep, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__sleep", 0, 1);
-  return (self->t___sleep());
-}
-Variant c_PDO::ifa_getavailabledrivers(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getavailabledrivers", 0, 1);
-  return (c_PDO::t_getavailabledrivers());
-}
-Variant c_PDO::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_PDO);
-  }
-  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_PDO::s_call_info_table[] = {
-  { 0x6D0664CC2372F2C7LL, 1, 9, "errorcode", &c_PDO::ci_errorcode },
-  { 0x1D5B8B8144F4AB8ALL, 1, 12, "setattribute", &c_PDO::ci_setattribute },
-  { 0x4F1D1ED7B087208CLL, 1, 4, "exec", &c_PDO::ci_exec },
-  { 0x7FF4D594AC38340ELL, 1, 19, "getavailabledrivers", &c_PDO::ci_getavailabledrivers },
-  { 0x25466EABBA2D7C12LL, 1, 12, "lastinsertid", &c_PDO::ci_lastinsertid },
-  { 0x4389F50CAA085CDCLL, 1, 8, "__wakeup", &c_PDO::ci___wakeup },
-  { 0x1DDD412E7F04605ELL, 1, 9, "errorinfo", &c_PDO::ci_errorinfo },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_PDO::ci___construct },
-  { 0x24D23BE465E3F324LL, 1, 6, "commit", &c_PDO::ci_commit },
-  { 0x49F89C466612FC28LL, 1, 12, "getattribute", &c_PDO::ci_getattribute },
-  { 0x61D1244DDADBC02DLL, 1, 7, "__sleep", &c_PDO::ci___sleep },
-  { 0x1740B14E849464EELL, 1, 5, "quote", &c_PDO::ci_quote },
-  { 0x540020AE4BA591AFLL, 1, 7, "prepare", &c_PDO::ci_prepare },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_PDO::ci___destruct },
-  { 0x374B46BC6D79EC36LL, 1, 8, "rollback", &c_PDO::ci_rollback },
-  { 0x356758D4414DA377LL, 1, 5, "query", &c_PDO::ci_query },
-  { 0x0DE392135C33E23BLL, 1, 16, "begintransaction", &c_PDO::ci_begintransaction },
-  { 0, 1, 0, 0 }
-};
-const int c_PDO::s_call_info_index[] = {
-  63,
-  -1,-1,-1,-1,-1,-1,-1,0,
-  -1,-1,1,-1,2,-1,3,-1,
-  -1,-1,4,-1,-1,-1,-1,-1,
-  -1,-1,-1,-1,5,-1,6,7,
-  -1,-1,-1,-1,8,-1,-1,-1,
-  9,-1,-1,-1,-1,10,11,12,
-  -1,-1,-1,13,-1,-1,14,15,
-  -1,-1,-1,16,-1,-1,-1,-1,
-
-};
-c_PDO *c_PDO::create(String a0, String a1, String a2, Array a3) {
-  CountableHelper h(this);
-  init();
-  t___construct(a0, a1, a2, a3);
-  return this;
-}
-const ObjectStaticCallbacks cw_PDO = {
-  (ObjectData*(*)(ObjectData*))coo_PDO,
-  c_PDO::s_call_info_table,c_PDO::s_call_info_index,
-  c_PDO::s_instanceof_table,c_PDO::s_instanceof_index,
-  &c_PDO::s_class_name,
-  &c_PDO::os_prop_table,&c_PDO::ci___construct,0,0,0x0
-};
-ObjectData *coo_Continuation() {
-  return NEWOBJ(c_Continuation)();
-}
-IMPLEMENT_CLASS(Continuation)
-const InstanceOfInfo c_Continuation::s_instanceof_table[] = {
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(DOMNodeIterator)
+const InstanceOfInfo c_DOMNodeIterator::s_instanceof_table[] = {
   {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},
-  {0x61DD21ABF790E9E2LL,1,"Continuation",&cw_Continuation},
   {0x0636A5F84AF9D29ELL,1,"Iterator",(const ObjectStaticCallbacks*)2},
+  {0x7FF7A8442616EF37LL,1,"DOMNodeIterator",&cw_DOMNodeIterator},
 };
-const int c_Continuation::s_instanceof_index[] = {
+const int c_DOMNodeIterator::s_instanceof_index[] = {
   7,
-  -1,0,1,-1,-1,-1,2,-1,
+  -1,0,-1,-1,-1,-1,1,2,
 
 };
-CallInfo c_Continuation::ci_send((void*)&c_Continuation::i_send, (void*)&c_Continuation::ifa_send, 1, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_getorigfuncname((void*)&c_Continuation::i_getorigfuncname, (void*)&c_Continuation::ifa_getorigfuncname, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_valid((void*)&c_Continuation::i_valid, (void*)&c_Continuation::ifa_valid, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_key((void*)&c_Continuation::i_key, (void*)&c_Continuation::ifa_key, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_update((void*)&c_Continuation::i_update, (void*)&c_Continuation::ifa_update, 2, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_current((void*)&c_Continuation::i_current, (void*)&c_Continuation::ifa_current, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_done((void*)&c_Continuation::i_done, (void*)&c_Continuation::ifa_done, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_rewind((void*)&c_Continuation::i_rewind, (void*)&c_Continuation::ifa_rewind, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_num_args((void*)&c_Continuation::i_num_args, (void*)&c_Continuation::ifa_num_args, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_get_arg((void*)&c_Continuation::i_get_arg, (void*)&c_Continuation::ifa_get_arg, 1, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_get_args((void*)&c_Continuation::i_get_args, (void*)&c_Continuation::ifa_get_args, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_receive((void*)&c_Continuation::i_receive, (void*)&c_Continuation::ifa_receive, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_raise((void*)&c_Continuation::i_raise, (void*)&c_Continuation::ifa_raise, 1, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci___destruct((void*)&c_Continuation::i___destruct, (void*)&c_Continuation::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_raised((void*)&c_Continuation::i_raised, (void*)&c_Continuation::ifa_raised, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_getlabel((void*)&c_Continuation::i_getlabel, (void*)&c_Continuation::ifa_getlabel, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci_next((void*)&c_Continuation::i_next, (void*)&c_Continuation::ifa_next, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci___clone((void*)&c_Continuation::i___clone, (void*)&c_Continuation::ifa___clone, 0, 4, 0x0000000000000000LL);
-CallInfo c_Continuation::ci___construct((void*)&c_Continuation::i___construct, (void*)&c_Continuation::ifa___construct, 6, 4, 0x0000000000000000LL);
-Variant c_Continuation::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_DOMNodeIterator::ci___construct((void*)&c_DOMNodeIterator::i___construct, (void*)&c_DOMNodeIterator::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNodeIterator::ci_rewind((void*)&c_DOMNodeIterator::i_rewind, (void*)&c_DOMNodeIterator::ifa_rewind, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNodeIterator::ci_next((void*)&c_DOMNodeIterator::i_next, (void*)&c_DOMNodeIterator::ifa_next, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNodeIterator::ci___destruct((void*)&c_DOMNodeIterator::i___destruct, (void*)&c_DOMNodeIterator::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNodeIterator::ci_current((void*)&c_DOMNodeIterator::i_current, (void*)&c_DOMNodeIterator::ifa_current, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNodeIterator::ci_valid((void*)&c_DOMNodeIterator::i_valid, (void*)&c_DOMNodeIterator::ifa_valid, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNodeIterator::ci_key((void*)&c_DOMNodeIterator::i_key, (void*)&c_DOMNodeIterator::ifa_key, 0, 4, 0x0000000000000000LL);
+Variant c_DOMNodeIterator::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_Continuation::i_update(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_update);
-}
-Variant c_Continuation::i_done(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_done);
-}
-Variant c_Continuation::i_getlabel(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getlabel);
-}
-Variant c_Continuation::i_num_args(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_num_args);
-}
-Variant c_Continuation::i_get_args(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_get_args);
-}
-Variant c_Continuation::i_get_arg(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_get_arg);
-}
-Variant c_Continuation::i_current(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMNodeIterator::i_current(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa_current);
 }
-Variant c_Continuation::i_key(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMNodeIterator::i_key(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa_key);
 }
-Variant c_Continuation::i_next(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMNodeIterator::i_next(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa_next);
 }
-Variant c_Continuation::i_rewind(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMNodeIterator::i_rewind(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa_rewind);
 }
-Variant c_Continuation::i_valid(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMNodeIterator::i_valid(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa_valid);
 }
-Variant c_Continuation::i_send(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_send);
-}
-Variant c_Continuation::i_raise(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_raise);
-}
-Variant c_Continuation::i_raised(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_raised);
-}
-Variant c_Continuation::i_receive(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_receive);
-}
-Variant c_Continuation::i_getorigfuncname(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getorigfuncname);
-}
-Variant c_Continuation::i___clone(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___clone);
-}
-Variant c_Continuation::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMNodeIterator::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_Continuation::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMNodeIterator::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_Continuation);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMNodeIterator);
   }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
-  if (UNLIKELY(count < 4)) return throw_wrong_arguments("__construct", count, 4, 6, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  CVarRef arg2(a2);
-  CVarRef arg3(a3);
-  if (count <= 4) return (self->t___construct(arg0, arg1, arg2, arg3), null);
-  CVarRef arg4(a4);
-  if (count <= 5) return (self->t___construct(arg0, arg1, arg2, arg3, arg4), null);
-  CVarRef arg5(a5);
-  return (self->t___construct(arg0, arg1, arg2, arg3, arg4, arg5), null);
+  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
 }
-Variant c_Continuation::ifa_update(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMNodeIterator::ifa_current(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_update, coo_Continuation);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_current, coo_DOMNodeIterator);
   }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("update", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_update(arg0, arg1), null);
-}
-Variant c_Continuation::ifa_done(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_done, coo_Continuation);
-  }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("done", 0, 1);
-  return (self->t_done(), null);
-}
-Variant c_Continuation::ifa_getlabel(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getlabel, coo_Continuation);
-  }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getlabel", 0, 1);
-  return (self->t_getlabel());
-}
-Variant c_Continuation::ifa_num_args(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_num_args, coo_Continuation);
-  }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("num_args", 0, 1);
-  return (self->t_num_args());
-}
-Variant c_Continuation::ifa_get_args(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_get_args, coo_Continuation);
-  }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("get_args", 0, 1);
-  return (self->t_get_args());
-}
-Variant c_Continuation::ifa_get_arg(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_get_arg, coo_Continuation);
-  }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("get_arg", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_get_arg(arg0));
-}
-Variant c_Continuation::ifa_current(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_current, coo_Continuation);
-  }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("current", 0, 1);
   return (self->t_current());
 }
-Variant c_Continuation::ifa_key(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMNodeIterator::ifa_key(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_key, coo_Continuation);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_key, coo_DOMNodeIterator);
   }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("key", 0, 1);
   return (self->t_key());
 }
-Variant c_Continuation::ifa_next(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMNodeIterator::ifa_next(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_next, coo_Continuation);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_next, coo_DOMNodeIterator);
   }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("next", 0, 1);
-  return (self->t_next(), null);
+  return (self->t_next());
 }
-Variant c_Continuation::ifa_rewind(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMNodeIterator::ifa_rewind(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_rewind, coo_Continuation);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_rewind, coo_DOMNodeIterator);
   }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("rewind", 0, 1);
-  return (self->t_rewind(), null);
+  return (self->t_rewind());
 }
-Variant c_Continuation::ifa_valid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMNodeIterator::ifa_valid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_valid, coo_Continuation);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_valid, coo_DOMNodeIterator);
   }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("valid", 0, 1);
   return (self->t_valid());
 }
-Variant c_Continuation::ifa_send(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMNodeIterator::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_send, coo_Continuation);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMNodeIterator);
   }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("send", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_send(arg0), null);
-}
-Variant c_Continuation::ifa_raise(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_raise, coo_Continuation);
-  }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("raise", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_raise(arg0), null);
-}
-Variant c_Continuation::ifa_raised(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_raised, coo_Continuation);
-  }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("raised", 0, 1);
-  return (self->t_raised(), null);
-}
-Variant c_Continuation::ifa_receive(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_receive, coo_Continuation);
-  }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("receive", 0, 1);
-  return (self->t_receive());
-}
-Variant c_Continuation::ifa_getorigfuncname(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getorigfuncname, coo_Continuation);
-  }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getorigfuncname", 0, 1);
-  return (self->t_getorigfuncname());
-}
-Variant c_Continuation::ifa___clone(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___clone, coo_Continuation);
-  }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__clone", 0, 1);
-  return (self->t___clone());
-}
-Variant c_Continuation::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_Continuation);
-  }
-  c_Continuation *self ATTRIBUTE_UNUSED (static_cast<c_Continuation*>(mcp.obj));
+  c_DOMNodeIterator *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeIterator*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_Continuation::s_call_info_table[] = {
-  { 0x6413CB5154808C44LL, 1, 5, "valid", &c_Continuation::ci_valid },
-  { 0x3E0170A7802E3888LL, 1, 4, "send", &c_Continuation::ci_send },
-  { 0x46B58F7989D255CALL, 1, 6, "raised", &c_Continuation::ci_raised },
-  { 0x0B7AD2197102D150LL, 1, 7, "receive", &c_Continuation::ci_receive },
-  { 0x56EDB60C824E8C51LL, 1, 3, "key", &c_Continuation::ci_key },
-  { 0x0F2CA10C0004BE9BLL, 1, 7, "__clone", &c_Continuation::ci___clone },
-  { 0x5B3A4A72846B21DCLL, 1, 7, "current", &c_Continuation::ci_current },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_Continuation::ci___construct },
-  { 0x1402C6C4A8D472A0LL, 1, 6, "update", &c_Continuation::ci_update },
-  { 0x00AADC9BD6EEF867LL, 1, 5, "raise", &c_Continuation::ci_raise },
-  { 0x5B300BEBB6379169LL, 1, 4, "done", &c_Continuation::ci_done },
-  { 0x1670096FDE27AF6ALL, 1, 6, "rewind", &c_Continuation::ci_rewind },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_Continuation::ci___destruct },
-  { 0x05B742E84600B778LL, 1, 8, "getLabel", &c_Continuation::ci_getlabel },
-  { 0x3C6D50F3BB8102B8LL, 0, 4, "next", &c_Continuation::ci_next },
-  { 0x5A90056E9F9DC839LL, 1, 8, "get_args", &c_Continuation::ci_get_args },
-  { 0x2E51CF4A716D82BALL, 1, 15, "getOrigFuncName", &c_Continuation::ci_getorigfuncname },
-  { 0x59E62E16AF84FCFDLL, 1, 8, "num_args", &c_Continuation::ci_num_args },
-  { 0x45F223F256990E3DLL, 0, 7, "get_arg", &c_Continuation::ci_get_arg },
+const MethodCallInfoTable c_DOMNodeIterator::s_call_info_table[] = {
+  { 0x56EDB60C824E8C51LL, 1, 3, "key", &c_DOMNodeIterator::ci_key },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMNodeIterator::ci___destruct },
+  { 0x6413CB5154808C44LL, 1, 5, "valid", &c_DOMNodeIterator::ci_valid },
+  { 0x3C6D50F3BB8102B8LL, 1, 4, "next", &c_DOMNodeIterator::ci_next },
+  { 0x1670096FDE27AF6ALL, 1, 6, "rewind", &c_DOMNodeIterator::ci_rewind },
+  { 0x5B3A4A72846B21DCLL, 1, 7, "current", &c_DOMNodeIterator::ci_current },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMNodeIterator::ci___construct },
   { 0, 1, 0, 0 }
 };
-const int c_Continuation::s_call_info_index[] = {
-  63,
-  -1,-1,-1,-1,0,-1,-1,-1,
-  1,-1,2,-1,-1,-1,-1,-1,
-  3,4,-1,-1,-1,-1,-1,-1,
-  -1,-1,-1,5,6,-1,-1,7,
-  8,-1,-1,-1,-1,-1,-1,9,
-  -1,10,11,-1,-1,-1,-1,-1,
-  -1,-1,-1,12,-1,-1,-1,-1,
-  13,15,16,-1,-1,17,-1,-1,
+const int c_DOMNodeIterator::s_call_info_index[] = {
+  15,
+  -1,0,-1,1,2,-1,-1,-1,
+  3,-1,4,-1,5,-1,-1,6,
 
 };
-c_Continuation *c_Continuation::create(int64 a0, int64 a1, bool a2, String a3, Variant a4, Array a5) {
+c_DOMNodeIterator *c_DOMNodeIterator::create() {
   CountableHelper h(this);
   init();
-  t___construct(a0, a1, a2, a3, a4, a5);
+  t___construct();
   return this;
 }
-const ObjectStaticCallbacks cw_Continuation = {
-  (ObjectData*(*)(ObjectData*))coo_Continuation,
-  c_Continuation::s_call_info_table,c_Continuation::s_call_info_index,
-  c_Continuation::s_instanceof_table,c_Continuation::s_instanceof_index,
-  &c_Continuation::s_class_name,
-  &c_Continuation::os_prop_table,&c_Continuation::ci___construct,0,0,0x0
+const ObjectStaticCallbacks cw_DOMNodeIterator = {
+  (ObjectData*(*)(ObjectData*))coo_DOMNodeIterator,
+  c_DOMNodeIterator::s_call_info_table,c_DOMNodeIterator::s_call_info_index,
+  c_DOMNodeIterator::s_instanceof_table,c_DOMNodeIterator::s_instanceof_index,
+  &c_DOMNodeIterator::s_class_name,
+  0,&c_DOMNodeIterator::ci___construct,0,0,0x0
+};
+ObjectData *coo_Closure() {
+  return NEWOBJ(c_Closure)();
+}
+IMPLEMENT_CLASS(Closure)
+const InstanceOfInfo c_Closure::s_instanceof_table[] = {
+  {0x3280F0C292E92A6CLL,1,"Closure",&cw_Closure},
+};
+const int c_Closure::s_instanceof_index[] = {
+  1,
+  0,-1,
+};
+CallInfo c_Closure::ci___clone((void*)&c_Closure::i___clone, (void*)&c_Closure::ifa___clone, 0, 4, 0x0000000000000000LL);
+CallInfo c_Closure::ci___invoke((void*)&c_Closure::i___invoke, (void*)&c_Closure::ifa___invoke, 0, 5, 0x0000000000000000LL);
+CallInfo c_Closure::ci___destruct((void*)&c_Closure::i___destruct, (void*)&c_Closure::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_Closure::ci___construct((void*)&c_Closure::i___construct, (void*)&c_Closure::ifa___construct, 0, 4, 0x0000000000000000LL);
+Variant c_Closure::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_Closure::i___invoke(MethodCallPackage &mcp, CArrRef params) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::i_dummy(mcp, params, i___invoke, coo_Closure);
+  }
+  c_Closure *self ATTRIBUTE_UNUSED (static_cast<c_Closure*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
+  const Array &p(count > 0 ? ArrayUtil::EnsureIntKeys(params) : Array());
+  return (self->t___invoke(count, p));
+}
+Variant c_Closure::i___clone(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___clone);
+}
+Variant c_Closure::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_Closure::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_Closure);
+  }
+  c_Closure *self ATTRIBUTE_UNUSED (static_cast<c_Closure*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_Closure::ifa___invoke(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___invoke, coo_Closure);
+  }
+  c_Closure *self ATTRIBUTE_UNUSED (static_cast<c_Closure*>(mcp.obj));
+  Array p;
+  if (count >= 1) p.append(a0);
+  if (count >= 2) p.append(a1);
+  if (count >= 3) p.append(a2);
+  if (count >= 4) p.append(a3);
+  if (count >= 5) p.append(a4);
+  if (count >= 6) p.append(a5);
+  return (self->t___invoke(count, p));
+}
+Variant c_Closure::ifa___clone(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___clone, coo_Closure);
+  }
+  c_Closure *self ATTRIBUTE_UNUSED (static_cast<c_Closure*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__clone", 0, 1);
+  return (self->t___clone());
+}
+Variant c_Closure::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_Closure);
+  }
+  c_Closure *self ATTRIBUTE_UNUSED (static_cast<c_Closure*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_Closure::s_call_info_table[] = {
+  { 0x0F2CA10C0004BE9BLL, 1, 7, "__clone", &c_Closure::ci___clone },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_Closure::ci___destruct },
+  { 0x795C470F1BD81D65LL, 1, 8, "__invoke", &c_Closure::ci___invoke },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_Closure::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_Closure::s_call_info_index[] = {
+  7,
+  -1,-1,-1,0,-1,2,-1,3,
+
+};
+c_Closure *c_Closure::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_Closure = {
+  (ObjectData*(*)(ObjectData*))coo_Closure,
+  c_Closure::s_call_info_table,c_Closure::s_call_info_index,
+  c_Closure::s_instanceof_table,c_Closure::s_instanceof_index,
+  &c_Closure::s_class_name,
+  0,&c_Closure::ci___construct,0,0,0x0
 };
 ObjectData *coo_SimpleXMLElement() {
   return NEWOBJ(c_SimpleXMLElement)();
@@ -6333,763 +6738,368 @@ const ObjectStaticCallbacks cw_SimpleXMLElement = {
   &c_SimpleXMLElement::s_class_name,
   0,&c_SimpleXMLElement::ci___construct,0,0,0x0
 };
-ObjectData *coo_DOMText() {
-  return NEWOBJ(c_DOMText)();
+ObjectData *coo_DOMNotation() {
+  return NEWOBJ(c_DOMNotation)();
 }
-IMPLEMENT_CLASS(DOMText)
-const InstanceOfInfo c_DOMText::s_instanceof_table[] = {
+IMPLEMENT_CLASS(DOMNotation)
+const InstanceOfInfo c_DOMNotation::s_instanceof_table[] = {
   {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
-  {0x02239AA5D64B1453LL,1,"DOMCharacterData",&cw_DOMCharacterData},
-  {0x164F490DAC49174DLL,1,"DOMText",&cw_DOMText},
+  {0x4365BE9E5A85E60BLL,1,"DOMNotation",&cw_DOMNotation},
 };
-const int c_DOMText::s_instanceof_index[] = {
-  7,
-  -1,-1,0,1,-1,2,-1,-1,
-
+const int c_DOMNotation::s_instanceof_index[] = {
+  3,
+  -1,-1,0,1,
 };
-CallInfo c_DOMText::ci___construct((void*)&c_DOMText::i___construct, (void*)&c_DOMText::ifa___construct, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMText::ci___get((void*)&c_DOMText::i___get, (void*)&c_DOMText::ifa___get, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMText::ci___isset((void*)&c_DOMText::i___isset, (void*)&c_DOMText::ifa___isset, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMText::ci_splittext((void*)&c_DOMText::i_splittext, (void*)&c_DOMText::ifa_splittext, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMText::ci___destruct((void*)&c_DOMText::i___destruct, (void*)&c_DOMText::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMText::ci___set((void*)&c_DOMText::i___set, (void*)&c_DOMText::ifa___set, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMText::ci_iswhitespaceinelementcontent((void*)&c_DOMText::i_iswhitespaceinelementcontent, (void*)&c_DOMText::ifa_iswhitespaceinelementcontent, 0, 4, 0x0000000000000000LL);
-Variant c_DOMText::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_DOMNotation::ci___destruct((void*)&c_DOMNotation::i___destruct, (void*)&c_DOMNotation::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNotation::ci___isset((void*)&c_DOMNotation::i___isset, (void*)&c_DOMNotation::ifa___isset, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNotation::ci___get((void*)&c_DOMNotation::i___get, (void*)&c_DOMNotation::ifa___get, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNotation::ci___construct((void*)&c_DOMNotation::i___construct, (void*)&c_DOMNotation::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNotation::ci___set((void*)&c_DOMNotation::i___set, (void*)&c_DOMNotation::ifa___set, 2, 4, 0x0000000000000000LL);
+Variant c_DOMNotation::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_DOMText::i_iswhitespaceinelementcontent(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_iswhitespaceinelementcontent);
-}
-Variant c_DOMText::i_splittext(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_splittext);
-}
-Variant c_DOMText::i___get(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMNotation::i___get(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___get);
 }
-Variant c_DOMText::i___set(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMNotation::i___set(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___set);
 }
-Variant c_DOMText::i___isset(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMNotation::i___isset(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___isset);
 }
-Variant c_DOMText::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMNotation::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_DOMText::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMNotation::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMText);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMNotation);
   }
-  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("__construct", 1, 1);
-  if (count <= 0) return (self->t___construct(), null);
-  CVarRef arg0(a0);
-  return (self->t___construct(arg0), null);
+  c_DOMNotation *self ATTRIBUTE_UNUSED (static_cast<c_DOMNotation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
 }
-Variant c_DOMText::ifa_iswhitespaceinelementcontent(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMNotation::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_iswhitespaceinelementcontent, coo_DOMText);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMNotation);
   }
-  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("iswhitespaceinelementcontent", 0, 1);
-  return (self->t_iswhitespaceinelementcontent());
-}
-Variant c_DOMText::ifa_splittext(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_splittext, coo_DOMText);
-  }
-  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("splittext", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_splittext(arg0));
-}
-Variant c_DOMText::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMText);
-  }
-  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
+  c_DOMNotation *self ATTRIBUTE_UNUSED (static_cast<c_DOMNotation*>(mcp.obj));
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
   CVarRef arg0(a0);
   return (self->t___get(arg0));
 }
-Variant c_DOMText::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMNotation::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMText);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMNotation);
   }
-  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
+  c_DOMNotation *self ATTRIBUTE_UNUSED (static_cast<c_DOMNotation*>(mcp.obj));
   if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
   CVarRef arg0(a0);
   CVarRef arg1(a1);
   return (self->t___set(arg0, arg1));
 }
-Variant c_DOMText::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMNotation::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMText);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMNotation);
   }
-  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
+  c_DOMNotation *self ATTRIBUTE_UNUSED (static_cast<c_DOMNotation*>(mcp.obj));
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
   CVarRef arg0(a0);
   return (self->t___isset(arg0));
 }
-Variant c_DOMText::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMNotation::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMText);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMNotation);
   }
-  c_DOMText *self ATTRIBUTE_UNUSED (static_cast<c_DOMText*>(mcp.obj));
+  c_DOMNotation *self ATTRIBUTE_UNUSED (static_cast<c_DOMNotation*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_DOMText::s_call_info_table[] = {
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMText::ci___destruct },
-  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMText::ci___set },
-  { 0x714D38308D8212B7LL, 1, 9, "splitText", &c_DOMText::ci_splittext },
-  { 0x28FBAB4F0F6C02DDLL, 1, 28, "isWhitespaceInElementContent", &c_DOMText::ci_iswhitespaceinelementcontent },
-  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMText::ci___isset },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMText::ci___construct },
-  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMText::ci___get },
+const MethodCallInfoTable c_DOMNotation::s_call_info_table[] = {
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMNotation::ci___destruct },
+  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMNotation::ci___set },
+  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMNotation::ci___isset },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMNotation::ci___construct },
+  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMNotation::ci___get },
   { 0, 1, 0, 0 }
 };
-const int c_DOMText::s_call_info_index[] = {
+const int c_DOMNotation::s_call_info_index[] = {
   15,
-  -1,-1,-1,0,-1,1,-1,2,
-  -1,-1,-1,-1,-1,3,4,5,
+  -1,-1,-1,0,-1,1,-1,-1,
+  -1,-1,-1,-1,-1,-1,2,3,
 
 };
-c_DOMText *c_DOMText::create(String a0) {
+c_DOMNotation *c_DOMNotation::create() {
   CountableHelper h(this);
   init();
-  t___construct(a0);
+  t___construct();
   return this;
 }
-const ObjectStaticCallbacks cw_DOMText = {
-  (ObjectData*(*)(ObjectData*))coo_DOMText,
-  c_DOMText::s_call_info_table,c_DOMText::s_call_info_index,
-  c_DOMText::s_instanceof_table,c_DOMText::s_instanceof_index,
-  &c_DOMText::s_class_name,
-  0,&c_DOMText::ci___construct,0,&cw_DOMCharacterData,0x0
+const ObjectStaticCallbacks cw_DOMNotation = {
+  (ObjectData*(*)(ObjectData*))coo_DOMNotation,
+  c_DOMNotation::s_call_info_table,c_DOMNotation::s_call_info_index,
+  c_DOMNotation::s_instanceof_table,c_DOMNotation::s_instanceof_index,
+  &c_DOMNotation::s_class_name,
+  0,&c_DOMNotation::ci___construct,0,&cw_DOMNode,0x0
 };
-ObjectData *coo_SoapServer() {
-  return NEWOBJ(c_SoapServer)();
+ObjectData *coo_DOMAttr() {
+  return NEWOBJ(c_DOMAttr)();
 }
-IMPLEMENT_CLASS(SoapServer)
-const InstanceOfInfo c_SoapServer::s_instanceof_table[] = {
-  {0x49FC1A1F7B878C3ELL,1,"SoapServer",&cw_SoapServer},
+IMPLEMENT_CLASS(DOMAttr)
+const InstanceOfInfo c_DOMAttr::s_instanceof_table[] = {
+  {0x297174231D4912F4LL,1,"DOMAttr",&cw_DOMAttr},
+  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
 };
-const int c_SoapServer::s_instanceof_index[] = {
-  1,
-  0,-1,
+const int c_DOMAttr::s_instanceof_index[] = {
+  3,
+  0,-1,1,-1,
 };
-CallInfo c_SoapServer::ci_addsoapheader((void*)&c_SoapServer::i_addsoapheader, (void*)&c_SoapServer::ifa_addsoapheader, 1, 4, 0x0000000000000000LL);
-CallInfo c_SoapServer::ci___construct((void*)&c_SoapServer::i___construct, (void*)&c_SoapServer::ifa___construct, 2, 4, 0x0000000000000000LL);
-CallInfo c_SoapServer::ci_handle((void*)&c_SoapServer::i_handle, (void*)&c_SoapServer::ifa_handle, 1, 4, 0x0000000000000000LL);
-CallInfo c_SoapServer::ci_setobject((void*)&c_SoapServer::i_setobject, (void*)&c_SoapServer::ifa_setobject, 1, 4, 0x0000000000000000LL);
-CallInfo c_SoapServer::ci_addfunction((void*)&c_SoapServer::i_addfunction, (void*)&c_SoapServer::ifa_addfunction, 1, 4, 0x0000000000000000LL);
-CallInfo c_SoapServer::ci___destruct((void*)&c_SoapServer::i___destruct, (void*)&c_SoapServer::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_SoapServer::ci_setpersistence((void*)&c_SoapServer::i_setpersistence, (void*)&c_SoapServer::ifa_setpersistence, 1, 4, 0x0000000000000000LL);
-CallInfo c_SoapServer::ci_setclass((void*)&c_SoapServer::i_setclass, (void*)&c_SoapServer::ifa_setclass, 1, 5, 0x0000000000000000LL);
-CallInfo c_SoapServer::ci_fault((void*)&c_SoapServer::i_fault, (void*)&c_SoapServer::ifa_fault, 5, 4, 0x0000000000000000LL);
-CallInfo c_SoapServer::ci_getfunctions((void*)&c_SoapServer::i_getfunctions, (void*)&c_SoapServer::ifa_getfunctions, 0, 4, 0x0000000000000000LL);
-Variant c_SoapServer::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_DOMAttr::ci___construct((void*)&c_DOMAttr::i___construct, (void*)&c_DOMAttr::ifa___construct, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMAttr::ci___get((void*)&c_DOMAttr::i___get, (void*)&c_DOMAttr::ifa___get, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMAttr::ci___isset((void*)&c_DOMAttr::i___isset, (void*)&c_DOMAttr::ifa___isset, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMAttr::ci___destruct((void*)&c_DOMAttr::i___destruct, (void*)&c_DOMAttr::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMAttr::ci___set((void*)&c_DOMAttr::i___set, (void*)&c_DOMAttr::ifa___set, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMAttr::ci_isid((void*)&c_DOMAttr::i_isid, (void*)&c_DOMAttr::ifa_isid, 0, 4, 0x0000000000000000LL);
+Variant c_DOMAttr::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_SoapServer::i_setclass(MethodCallPackage &mcp, CArrRef params) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::i_dummy(mcp, params, i_setclass, coo_SoapServer);
-  }
-  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
-  int count ATTRIBUTE_UNUSED = params.size();
-  if (UNLIKELY(count < 1)) return throw_missing_arguments("setclass", count+1, 1);
-  {
-    ArrayData *ad(params.get());
-    ssize_t pos = ad ? ad->iter_begin() : ArrayData::invalid_index;
-    CVarRef arg0((ad->getValue(pos)));
-    const Array &p(count > 1 ? params.slice(1, count - 1, false) : Array());
-    return (self->t_setclass(count, arg0, p), null);
-  }
+Variant c_DOMAttr::i_isid(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_isid);
 }
-Variant c_SoapServer::i_setobject(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setobject);
+Variant c_DOMAttr::i___get(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___get);
 }
-Variant c_SoapServer::i_addfunction(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_addfunction);
+Variant c_DOMAttr::i___set(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___set);
 }
-Variant c_SoapServer::i_getfunctions(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getfunctions);
+Variant c_DOMAttr::i___isset(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___isset);
 }
-Variant c_SoapServer::i_handle(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_handle);
-}
-Variant c_SoapServer::i_setpersistence(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setpersistence);
-}
-Variant c_SoapServer::i_fault(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_fault);
-}
-Variant c_SoapServer::i_addsoapheader(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_addsoapheader);
-}
-Variant c_SoapServer::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMAttr::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_SoapServer::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMAttr::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SoapServer);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMAttr);
   }
-  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
+  c_DOMAttr *self ATTRIBUTE_UNUSED (static_cast<c_DOMAttr*>(mcp.obj));
   if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("__construct", count, 1, 2, 1);
   CVarRef arg0(a0);
   if (count <= 1) return (self->t___construct(arg0), null);
   CVarRef arg1(a1);
   return (self->t___construct(arg0, arg1), null);
 }
-Variant c_SoapServer::ifa_setclass(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMAttr::ifa_isid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setclass, coo_SoapServer);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_isid, coo_DOMAttr);
   }
-  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
-  if (UNLIKELY(count < 1)) return throw_missing_arguments("setclass", count+1, 1);
-  CVarRef arg0(a0);
-  Array p;
-  if (count >= 2) p.append(a1);
-  if (count >= 3) p.append(a2);
-  if (count >= 4) p.append(a3);
-  if (count >= 5) p.append(a4);
-  if (count >= 6) p.append(a5);
-  return (self->t_setclass(count, arg0, p), null);
+  c_DOMAttr *self ATTRIBUTE_UNUSED (static_cast<c_DOMAttr*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("isid", 0, 1);
+  return (self->t_isid());
 }
-Variant c_SoapServer::ifa_setobject(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMAttr::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setobject, coo_SoapServer);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMAttr);
   }
-  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setobject", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_setobject(arg0), null);
-}
-Variant c_SoapServer::ifa_addfunction(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addfunction, coo_SoapServer);
-  }
-  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("addfunction", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_addfunction(arg0), null);
-}
-Variant c_SoapServer::ifa_getfunctions(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getfunctions, coo_SoapServer);
-  }
-  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getfunctions", 0, 1);
-  return (self->t_getfunctions());
-}
-Variant c_SoapServer::ifa_handle(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_handle, coo_SoapServer);
-  }
-  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("handle", 1, 1);
-  if (count <= 0) return (self->t_handle(), null);
-  CVarRef arg0(a0);
-  return (self->t_handle(arg0), null);
-}
-Variant c_SoapServer::ifa_setpersistence(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setpersistence, coo_SoapServer);
-  }
-  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setpersistence", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_setpersistence(arg0), null);
-}
-Variant c_SoapServer::ifa_fault(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_fault, coo_SoapServer);
-  }
-  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 5)) return throw_wrong_arguments("fault", count, 2, 5, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_fault(arg0, arg1), null);
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_fault(arg0, arg1, arg2), null);
-  CVarRef arg3(a3);
-  if (count <= 4) return (self->t_fault(arg0, arg1, arg2, arg3), null);
-  CVarRef arg4(a4);
-  return (self->t_fault(arg0, arg1, arg2, arg3, arg4), null);
-}
-Variant c_SoapServer::ifa_addsoapheader(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addsoapheader, coo_SoapServer);
-  }
-  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("addsoapheader", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_addsoapheader(arg0), null);
-}
-Variant c_SoapServer::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SoapServer);
-  }
-  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_SoapServer::s_call_info_table[] = {
-  { 0x758A4E04590FE203LL, 1, 5, "fault", &c_SoapServer::ci_fault },
-  { 0x5E77DD94E0A69328LL, 1, 14, "setpersistence", &c_SoapServer::ci_setpersistence },
-  { 0x652BDFA6E22F17AFLL, 1, 12, "getfunctions", &c_SoapServer::ci_getfunctions },
-  { 0x5C4CA333F4541532LL, 1, 6, "handle", &c_SoapServer::ci_handle },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_SoapServer::ci___destruct },
-  { 0x597B151CC4F70834LL, 1, 8, "setclass", &c_SoapServer::ci_setclass },
-  { 0x559622F84FE626B9LL, 1, 9, "setobject", &c_SoapServer::ci_setobject },
-  { 0x278B0E6CCA74963ELL, 1, 13, "addsoapheader", &c_SoapServer::ci_addsoapheader },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SoapServer::ci___construct },
-  { 0x48B5852A397D2D9FLL, 0, 11, "addfunction", &c_SoapServer::ci_addfunction },
-  { 0, 1, 0, 0 }
-};
-const int c_SoapServer::s_call_info_index[] = {
-  31,
-  -1,-1,-1,0,-1,-1,-1,-1,
-  1,-1,-1,-1,-1,-1,-1,2,
-  -1,-1,3,4,5,-1,-1,-1,
-  -1,6,-1,-1,-1,-1,7,8,
-
-};
-c_SoapServer *c_SoapServer::create(Variant a0, Array a1) {
-  CountableHelper h(this);
-  init();
-  t___construct(a0, a1);
-  return this;
-}
-const ObjectStaticCallbacks cw_SoapServer = {
-  (ObjectData*(*)(ObjectData*))coo_SoapServer,
-  c_SoapServer::s_call_info_table,c_SoapServer::s_call_info_index,
-  c_SoapServer::s_instanceof_table,c_SoapServer::s_instanceof_index,
-  &c_SoapServer::s_class_name,
-  0,&c_SoapServer::ci___construct,0,0,0x0
-};
-ObjectData *coo_DOMCDATASection() {
-  return NEWOBJ(c_DOMCDATASection)();
-}
-IMPLEMENT_CLASS(DOMCDATASection)
-const InstanceOfInfo c_DOMCDATASection::s_instanceof_table[] = {
-  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
-  {0x02239AA5D64B1453LL,1,"DOMCharacterData",&cw_DOMCharacterData},
-  {0x6FFDF8DF15CABE94LL,1,"DOMCDATASection",&cw_DOMCDATASection},
-  {0x164F490DAC49174DLL,1,"DOMText",&cw_DOMText},
-};
-const int c_DOMCDATASection::s_instanceof_index[] = {
-  7,
-  -1,-1,0,1,2,3,-1,-1,
-
-};
-CallInfo c_DOMCDATASection::ci___destruct((void*)&c_DOMCDATASection::i___destruct, (void*)&c_DOMCDATASection::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMCDATASection::ci___construct((void*)&c_DOMCDATASection::i___construct, (void*)&c_DOMCDATASection::ifa___construct, 1, 4, 0x0000000000000000LL);
-Variant c_DOMCDATASection::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_DOMCDATASection::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_DOMCDATASection::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMCDATASection);
-  }
-  c_DOMCDATASection *self ATTRIBUTE_UNUSED (static_cast<c_DOMCDATASection*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__construct", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___construct(arg0), null);
-}
-Variant c_DOMCDATASection::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMCDATASection);
-  }
-  c_DOMCDATASection *self ATTRIBUTE_UNUSED (static_cast<c_DOMCDATASection*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_DOMCDATASection::s_call_info_table[] = {
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMCDATASection::ci___construct },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_DOMCDATASection::ci___destruct },
-  { 0, 1, 0, 0 }
-};
-const int c_DOMCDATASection::s_call_info_index[] = {
-  3,
-  -1,-1,-1,0,
-};
-c_DOMCDATASection *c_DOMCDATASection::create(String a0) {
-  CountableHelper h(this);
-  init();
-  t___construct(a0);
-  return this;
-}
-const ObjectStaticCallbacks cw_DOMCDATASection = {
-  (ObjectData*(*)(ObjectData*))coo_DOMCDATASection,
-  c_DOMCDATASection::s_call_info_table,c_DOMCDATASection::s_call_info_index,
-  c_DOMCDATASection::s_instanceof_table,c_DOMCDATASection::s_instanceof_index,
-  &c_DOMCDATASection::s_class_name,
-  0,&c_DOMCDATASection::ci___construct,0,&cw_DOMText,0x0
-};
-ObjectData *coo_DOMNode() {
-  return NEWOBJ(c_DOMNode)();
-}
-IMPLEMENT_CLASS(DOMNode)
-const InstanceOfInfo c_DOMNode::s_instanceof_table[] = {
-  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
-};
-const int c_DOMNode::s_instanceof_index[] = {
-  1,
-  0,-1,
-};
-CallInfo c_DOMNode::ci___set((void*)&c_DOMNode::i___set, (void*)&c_DOMNode::ifa___set, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_replacechild((void*)&c_DOMNode::i_replacechild, (void*)&c_DOMNode::ifa_replacechild, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci___isset((void*)&c_DOMNode::i___isset, (void*)&c_DOMNode::ifa___isset, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_c14nfile((void*)&c_DOMNode::i_c14nfile, (void*)&c_DOMNode::ifa_c14nfile, 5, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_appendchild((void*)&c_DOMNode::i_appendchild, (void*)&c_DOMNode::ifa_appendchild, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_removechild((void*)&c_DOMNode::i_removechild, (void*)&c_DOMNode::ifa_removechild, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_issupported((void*)&c_DOMNode::i_issupported, (void*)&c_DOMNode::ifa_issupported, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_clonenode((void*)&c_DOMNode::i_clonenode, (void*)&c_DOMNode::ifa_clonenode, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_getnodepath((void*)&c_DOMNode::i_getnodepath, (void*)&c_DOMNode::ifa_getnodepath, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_hasattributes((void*)&c_DOMNode::i_hasattributes, (void*)&c_DOMNode::ifa_hasattributes, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_getlineno((void*)&c_DOMNode::i_getlineno, (void*)&c_DOMNode::ifa_getlineno, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_haschildnodes((void*)&c_DOMNode::i_haschildnodes, (void*)&c_DOMNode::ifa_haschildnodes, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_c14n((void*)&c_DOMNode::i_c14n, (void*)&c_DOMNode::ifa_c14n, 4, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_lookupnamespaceuri((void*)&c_DOMNode::i_lookupnamespaceuri, (void*)&c_DOMNode::ifa_lookupnamespaceuri, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_insertbefore((void*)&c_DOMNode::i_insertbefore, (void*)&c_DOMNode::ifa_insertbefore, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_isdefaultnamespace((void*)&c_DOMNode::i_isdefaultnamespace, (void*)&c_DOMNode::ifa_isdefaultnamespace, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_lookupprefix((void*)&c_DOMNode::i_lookupprefix, (void*)&c_DOMNode::ifa_lookupprefix, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci___destruct((void*)&c_DOMNode::i___destruct, (void*)&c_DOMNode::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_normalize((void*)&c_DOMNode::i_normalize, (void*)&c_DOMNode::ifa_normalize, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci___get((void*)&c_DOMNode::i___get, (void*)&c_DOMNode::ifa___get, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci___construct((void*)&c_DOMNode::i___construct, (void*)&c_DOMNode::ifa___construct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNode::ci_issamenode((void*)&c_DOMNode::i_issamenode, (void*)&c_DOMNode::ifa_issamenode, 1, 4, 0x0000000000000000LL);
-Variant c_DOMNode::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_DOMNode::i_appendchild(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_appendchild);
-}
-Variant c_DOMNode::i_clonenode(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_clonenode);
-}
-Variant c_DOMNode::i_getlineno(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getlineno);
-}
-Variant c_DOMNode::i_hasattributes(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_hasattributes);
-}
-Variant c_DOMNode::i_haschildnodes(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_haschildnodes);
-}
-Variant c_DOMNode::i_insertbefore(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_insertbefore);
-}
-Variant c_DOMNode::i_isdefaultnamespace(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_isdefaultnamespace);
-}
-Variant c_DOMNode::i_issamenode(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_issamenode);
-}
-Variant c_DOMNode::i_issupported(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_issupported);
-}
-Variant c_DOMNode::i_lookupnamespaceuri(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_lookupnamespaceuri);
-}
-Variant c_DOMNode::i_lookupprefix(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_lookupprefix);
-}
-Variant c_DOMNode::i_normalize(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_normalize);
-}
-Variant c_DOMNode::i_removechild(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_removechild);
-}
-Variant c_DOMNode::i_replacechild(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_replacechild);
-}
-Variant c_DOMNode::i_c14n(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_c14n);
-}
-Variant c_DOMNode::i_c14nfile(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_c14nfile);
-}
-Variant c_DOMNode::i_getnodepath(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getnodepath);
-}
-Variant c_DOMNode::i___get(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___get);
-}
-Variant c_DOMNode::i___set(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___set);
-}
-Variant c_DOMNode::i___isset(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___isset);
-}
-Variant c_DOMNode::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_DOMNode::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_DOMNode::ifa_appendchild(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_appendchild, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("appendchild", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_appendchild(arg0));
-}
-Variant c_DOMNode::ifa_clonenode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_clonenode, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("clonenode", 1, 1);
-  if (count <= 0) return (self->t_clonenode());
-  CVarRef arg0(a0);
-  return (self->t_clonenode(arg0));
-}
-Variant c_DOMNode::ifa_getlineno(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getlineno, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getlineno", 0, 1);
-  return (self->t_getlineno());
-}
-Variant c_DOMNode::ifa_hasattributes(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_hasattributes, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("hasattributes", 0, 1);
-  return (self->t_hasattributes());
-}
-Variant c_DOMNode::ifa_haschildnodes(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_haschildnodes, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("haschildnodes", 0, 1);
-  return (self->t_haschildnodes());
-}
-Variant c_DOMNode::ifa_insertbefore(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_insertbefore, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("insertbefore", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_insertbefore(arg0));
-  CVarRef arg1(a1);
-  return (self->t_insertbefore(arg0, arg1));
-}
-Variant c_DOMNode::ifa_isdefaultnamespace(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_isdefaultnamespace, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("isdefaultnamespace", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_isdefaultnamespace(arg0));
-}
-Variant c_DOMNode::ifa_issamenode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_issamenode, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("issamenode", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_issamenode(arg0));
-}
-Variant c_DOMNode::ifa_issupported(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_issupported, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("issupported", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_issupported(arg0, arg1));
-}
-Variant c_DOMNode::ifa_lookupnamespaceuri(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lookupnamespaceuri, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("lookupnamespaceuri", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_lookupnamespaceuri(arg0));
-}
-Variant c_DOMNode::ifa_lookupprefix(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lookupprefix, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("lookupprefix", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_lookupprefix(arg0));
-}
-Variant c_DOMNode::ifa_normalize(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_normalize, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("normalize", 0, 1);
-  return (self->t_normalize(), null);
-}
-Variant c_DOMNode::ifa_removechild(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_removechild, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("removechild", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_removechild(arg0));
-}
-Variant c_DOMNode::ifa_replacechild(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_replacechild, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("replacechild", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_replacechild(arg0, arg1));
-}
-Variant c_DOMNode::ifa_c14n(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_c14n, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count > 4)) return throw_toomany_arguments("c14n", 4, 1);
-  if (count <= 0) return (self->t_c14n());
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_c14n(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_c14n(arg0, arg1));
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_c14n(arg0, arg1, arg2));
-  CVarRef arg3(a3);
-  return (self->t_c14n(arg0, arg1, arg2, arg3));
-}
-Variant c_DOMNode::ifa_c14nfile(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_c14nfile, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 5)) return throw_wrong_arguments("c14nfile", count, 1, 5, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_c14nfile(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_c14nfile(arg0, arg1));
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_c14nfile(arg0, arg1, arg2));
-  CVarRef arg3(a3);
-  if (count <= 4) return (self->t_c14nfile(arg0, arg1, arg2, arg3));
-  CVarRef arg4(a4);
-  return (self->t_c14nfile(arg0, arg1, arg2, arg3, arg4));
-}
-Variant c_DOMNode::ifa_getnodepath(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getnodepath, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getnodepath", 0, 1);
-  return (self->t_getnodepath());
-}
-Variant c_DOMNode::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMNode);
-  }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  c_DOMAttr *self ATTRIBUTE_UNUSED (static_cast<c_DOMAttr*>(mcp.obj));
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
   CVarRef arg0(a0);
   return (self->t___get(arg0));
 }
-Variant c_DOMNode::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMAttr::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMNode);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMAttr);
   }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  c_DOMAttr *self ATTRIBUTE_UNUSED (static_cast<c_DOMAttr*>(mcp.obj));
   if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
   CVarRef arg0(a0);
   CVarRef arg1(a1);
   return (self->t___set(arg0, arg1));
 }
-Variant c_DOMNode::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMAttr::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMNode);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMAttr);
   }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  c_DOMAttr *self ATTRIBUTE_UNUSED (static_cast<c_DOMAttr*>(mcp.obj));
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
   CVarRef arg0(a0);
   return (self->t___isset(arg0));
 }
-Variant c_DOMNode::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMAttr::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMNode);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMAttr);
   }
-  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  c_DOMAttr *self ATTRIBUTE_UNUSED (static_cast<c_DOMAttr*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_DOMNode::s_call_info_table[] = {
-  { 0x69797649716AE343LL, 1, 11, "getNodePath", &c_DOMNode::ci_getnodepath },
-  { 0x77570221C582ED8ALL, 1, 4, "c14n", &c_DOMNode::ci_c14n },
-  { 0x1C51CE3C2356D08ELL, 1, 12, "replaceChild", &c_DOMNode::ci_replacechild },
-  { 0x0B44A59A023E75CFLL, 1, 11, "appendChild", &c_DOMNode::ci_appendchild },
-  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMNode::ci___get },
-  { 0x4F615934A04E3092LL, 1, 9, "cloneNode", &c_DOMNode::ci_clonenode },
-  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMNode::ci___set },
-  { 0x58F8D846AF9E5D18LL, 1, 9, "getLineNo", &c_DOMNode::ci_getlineno },
-  { 0x11A2D4B742CB6C5ALL, 1, 9, "normalize", &c_DOMNode::ci_normalize },
-  { 0x28D1E151A83B8F5DLL, 1, 18, "lookupNamespaceUri", &c_DOMNode::ci_lookupnamespaceuri },
-  { 0x72044C28B65364DDLL, 0, 11, "removeChild", &c_DOMNode::ci_removechild },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMNode::ci___construct },
-  { 0x599DE23996CB7D61LL, 1, 12, "lookupPrefix", &c_DOMNode::ci_lookupprefix },
-  { 0x643EFC8E9378F664LL, 1, 18, "isDefaultNamespace", &c_DOMNode::ci_isdefaultnamespace },
-  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMNode::ci___isset },
-  { 0x102549E9CA2EC6EFLL, 1, 10, "isSameNode", &c_DOMNode::ci_issamenode },
-  { 0x3CFA6EECF6F5AEB1LL, 1, 13, "hasAttributes", &c_DOMNode::ci_hasattributes },
-  { 0x076FF0CF9185C433LL, 1, 12, "insertBefore", &c_DOMNode::ci_insertbefore },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_DOMNode::ci___destruct },
-  { 0x1D1768A6CF365A75LL, 1, 8, "c14nfile", &c_DOMNode::ci_c14nfile },
-  { 0x5F63574EA50595FALL, 1, 13, "hasChildNodes", &c_DOMNode::ci_haschildnodes },
-  { 0x279AA1B214B7677ALL, 0, 11, "isSupported", &c_DOMNode::ci_issupported },
+const MethodCallInfoTable c_DOMAttr::s_call_info_table[] = {
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMAttr::ci___destruct },
+  { 0x30A9329415D17F24LL, 1, 4, "isId", &c_DOMAttr::ci_isid },
+  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMAttr::ci___set },
+  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMAttr::ci___isset },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMAttr::ci___construct },
+  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMAttr::ci___get },
   { 0, 1, 0, 0 }
 };
-const int c_DOMNode::s_call_info_index[] = {
-  63,
-  -1,-1,-1,0,-1,-1,-1,-1,
-  -1,-1,1,-1,-1,-1,2,3,
-  -1,-1,5,-1,-1,6,-1,-1,
-  7,-1,8,-1,-1,9,-1,11,
-  -1,12,-1,-1,13,-1,-1,-1,
-  -1,-1,-1,-1,-1,-1,14,15,
-  -1,16,-1,17,-1,19,-1,-1,
-  -1,-1,20,-1,-1,-1,-1,-1,
+const int c_DOMAttr::s_call_info_index[] = {
+  15,
+  -1,-1,-1,0,1,2,-1,-1,
+  -1,-1,-1,-1,-1,-1,3,4,
 
 };
-c_DOMNode *c_DOMNode::create() {
+c_DOMAttr *c_DOMAttr::create(String a0, String a1) {
+  CountableHelper h(this);
+  init();
+  t___construct(a0, a1);
+  return this;
+}
+const ObjectStaticCallbacks cw_DOMAttr = {
+  (ObjectData*(*)(ObjectData*))coo_DOMAttr,
+  c_DOMAttr::s_call_info_table,c_DOMAttr::s_call_info_index,
+  c_DOMAttr::s_instanceof_table,c_DOMAttr::s_instanceof_index,
+  &c_DOMAttr::s_class_name,
+  0,&c_DOMAttr::ci___construct,0,&cw_DOMNode,0x0
+};
+ObjectData *coo_SQLite3Result() {
+  return NEWOBJ(c_SQLite3Result)();
+}
+IMPLEMENT_CLASS(SQLite3Result)
+const InstanceOfInfo c_SQLite3Result::s_instanceof_table[] = {
+  {0x2E899D2A2572EF7DLL,1,"SQLite3Result",&cw_SQLite3Result},
+};
+const int c_SQLite3Result::s_instanceof_index[] = {
+  1,
+  -1,0,
+};
+CallInfo c_SQLite3Result::ci___construct((void*)&c_SQLite3Result::i___construct, (void*)&c_SQLite3Result::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3Result::ci_fetcharray((void*)&c_SQLite3Result::i_fetcharray, (void*)&c_SQLite3Result::ifa_fetcharray, 1, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3Result::ci_finalize((void*)&c_SQLite3Result::i_finalize, (void*)&c_SQLite3Result::ifa_finalize, 0, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3Result::ci_reset((void*)&c_SQLite3Result::i_reset, (void*)&c_SQLite3Result::ifa_reset, 0, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3Result::ci___destruct((void*)&c_SQLite3Result::i___destruct, (void*)&c_SQLite3Result::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3Result::ci_numcolumns((void*)&c_SQLite3Result::i_numcolumns, (void*)&c_SQLite3Result::ifa_numcolumns, 0, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3Result::ci_columnname((void*)&c_SQLite3Result::i_columnname, (void*)&c_SQLite3Result::ifa_columnname, 1, 4, 0x0000000000000000LL);
+CallInfo c_SQLite3Result::ci_columntype((void*)&c_SQLite3Result::i_columntype, (void*)&c_SQLite3Result::ifa_columntype, 1, 4, 0x0000000000000000LL);
+Variant c_SQLite3Result::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_SQLite3Result::i_numcolumns(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_numcolumns);
+}
+Variant c_SQLite3Result::i_columnname(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_columnname);
+}
+Variant c_SQLite3Result::i_columntype(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_columntype);
+}
+Variant c_SQLite3Result::i_fetcharray(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_fetcharray);
+}
+Variant c_SQLite3Result::i_reset(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_reset);
+}
+Variant c_SQLite3Result::i_finalize(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_finalize);
+}
+Variant c_SQLite3Result::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_SQLite3Result::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SQLite3Result);
+  }
+  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_SQLite3Result::ifa_numcolumns(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_numcolumns, coo_SQLite3Result);
+  }
+  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("numcolumns", 0, 1);
+  return (self->t_numcolumns());
+}
+Variant c_SQLite3Result::ifa_columnname(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_columnname, coo_SQLite3Result);
+  }
+  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("columnname", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_columnname(arg0));
+}
+Variant c_SQLite3Result::ifa_columntype(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_columntype, coo_SQLite3Result);
+  }
+  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("columntype", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_columntype(arg0));
+}
+Variant c_SQLite3Result::ifa_fetcharray(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_fetcharray, coo_SQLite3Result);
+  }
+  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("fetcharray", 1, 1);
+  if (count <= 0) return (self->t_fetcharray());
+  CVarRef arg0(a0);
+  return (self->t_fetcharray(arg0));
+}
+Variant c_SQLite3Result::ifa_reset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_reset, coo_SQLite3Result);
+  }
+  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("reset", 0, 1);
+  return (self->t_reset());
+}
+Variant c_SQLite3Result::ifa_finalize(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_finalize, coo_SQLite3Result);
+  }
+  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("finalize", 0, 1);
+  return (self->t_finalize());
+}
+Variant c_SQLite3Result::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SQLite3Result);
+  }
+  c_SQLite3Result *self ATTRIBUTE_UNUSED (static_cast<c_SQLite3Result*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_SQLite3Result::s_call_info_table[] = {
+  { 0x340A51AE22A924E0LL, 1, 5, "reset", &c_SQLite3Result::ci_reset },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_SQLite3Result::ci___destruct },
+  { 0x4C7702FC22784996LL, 1, 10, "numcolumns", &c_SQLite3Result::ci_numcolumns },
+  { 0x696EFC04EE7E47F8LL, 1, 10, "columnname", &c_SQLite3Result::ci_columnname },
+  { 0x59F73C4DEF1C3A6BLL, 1, 10, "fetcharray", &c_SQLite3Result::ci_fetcharray },
+  { 0x32A58B0CE493957CLL, 1, 8, "finalize", &c_SQLite3Result::ci_finalize },
+  { 0x42EDB5CA009D8C6DLL, 1, 10, "columntype", &c_SQLite3Result::ci_columntype },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SQLite3Result::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_SQLite3Result::s_call_info_index[] = {
+  15,
+  0,-1,-1,1,-1,-1,2,-1,
+  3,-1,-1,4,5,6,-1,7,
+
+};
+c_SQLite3Result *c_SQLite3Result::create() {
   CountableHelper h(this);
   init();
   t___construct();
   return this;
 }
-const ObjectStaticCallbacks cw_DOMNode = {
-  (ObjectData*(*)(ObjectData*))coo_DOMNode,
-  c_DOMNode::s_call_info_table,c_DOMNode::s_call_info_index,
-  c_DOMNode::s_instanceof_table,c_DOMNode::s_instanceof_index,
-  &c_DOMNode::s_class_name,
-  0,&c_DOMNode::ci___construct,0,0,0x0
+const ObjectStaticCallbacks cw_SQLite3Result = {
+  (ObjectData*(*)(ObjectData*))coo_SQLite3Result,
+  c_SQLite3Result::s_call_info_table,c_SQLite3Result::s_call_info_index,
+  c_SQLite3Result::s_instanceof_table,c_SQLite3Result::s_instanceof_index,
+  &c_SQLite3Result::s_class_name,
+  0,&c_SQLite3Result::ci___construct,0,0,0x0
 };
 ObjectData *coo_SQLite3Stmt() {
   return NEWOBJ(c_SQLite3Stmt)();
@@ -7356,809 +7366,72 @@ const ObjectStaticCallbacks cw_DOMEntity = {
   &c_DOMEntity::s_class_name,
   0,&c_DOMEntity::ci___construct,0,&cw_DOMNode,0x0
 };
-ObjectData *coo_DOMElement() {
-  return NEWOBJ(c_DOMElement)();
+ObjectData *coo_SoapVar() {
+  return NEWOBJ(c_SoapVar)();
 }
-IMPLEMENT_CLASS(DOMElement)
-const InstanceOfInfo c_DOMElement::s_instanceof_table[] = {
-  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
-  {0x40B3C44077F5DDC3LL,1,"DOMElement",&cw_DOMElement},
+IMPLEMENT_CLASS(SoapVar)
+const InstanceOfInfo c_SoapVar::s_instanceof_table[] = {
+  {0x7909270014376235LL,1,"SoapVar",&cw_SoapVar},
 };
-const int c_DOMElement::s_instanceof_index[] = {
-  3,
-  -1,-1,0,1,
+const int c_SoapVar::s_instanceof_index[] = {
+  1,
+  -1,0,
 };
-CallInfo c_DOMElement::ci_removeattributenode((void*)&c_DOMElement::i_removeattributenode, (void*)&c_DOMElement::ifa_removeattributenode, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci___set((void*)&c_DOMElement::i___set, (void*)&c_DOMElement::ifa___set, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_setidattributens((void*)&c_DOMElement::i_setidattributens, (void*)&c_DOMElement::ifa_setidattributens, 3, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_setidattributenode((void*)&c_DOMElement::i_setidattributenode, (void*)&c_DOMElement::ifa_setidattributenode, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_getelementsbytagnamens((void*)&c_DOMElement::i_getelementsbytagnamens, (void*)&c_DOMElement::ifa_getelementsbytagnamens, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci___isset((void*)&c_DOMElement::i___isset, (void*)&c_DOMElement::ifa___isset, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_removeattributens((void*)&c_DOMElement::i_removeattributens, (void*)&c_DOMElement::ifa_removeattributens, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_setattributens((void*)&c_DOMElement::i_setattributens, (void*)&c_DOMElement::ifa_setattributens, 3, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_hasattributens((void*)&c_DOMElement::i_hasattributens, (void*)&c_DOMElement::ifa_hasattributens, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_getattributens((void*)&c_DOMElement::i_getattributens, (void*)&c_DOMElement::ifa_getattributens, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_getattributenode((void*)&c_DOMElement::i_getattributenode, (void*)&c_DOMElement::ifa_getattributenode, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_setattributenode((void*)&c_DOMElement::i_setattributenode, (void*)&c_DOMElement::ifa_setattributenode, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_getelementsbytagname((void*)&c_DOMElement::i_getelementsbytagname, (void*)&c_DOMElement::ifa_getelementsbytagname, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_setidattribute((void*)&c_DOMElement::i_setidattribute, (void*)&c_DOMElement::ifa_setidattribute, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_setattributenodens((void*)&c_DOMElement::i_setattributenodens, (void*)&c_DOMElement::ifa_setattributenodens, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_setattribute((void*)&c_DOMElement::i_setattribute, (void*)&c_DOMElement::ifa_setattribute, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_removeattribute((void*)&c_DOMElement::i_removeattribute, (void*)&c_DOMElement::ifa_removeattribute, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_hasattribute((void*)&c_DOMElement::i_hasattribute, (void*)&c_DOMElement::ifa_hasattribute, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_getattribute((void*)&c_DOMElement::i_getattribute, (void*)&c_DOMElement::ifa_getattribute, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci___destruct((void*)&c_DOMElement::i___destruct, (void*)&c_DOMElement::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci_getattributenodens((void*)&c_DOMElement::i_getattributenodens, (void*)&c_DOMElement::ifa_getattributenodens, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci___get((void*)&c_DOMElement::i___get, (void*)&c_DOMElement::ifa___get, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMElement::ci___construct((void*)&c_DOMElement::i___construct, (void*)&c_DOMElement::ifa___construct, 3, 4, 0x0000000000000000LL);
-Variant c_DOMElement::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_SoapVar::ci___destruct((void*)&c_SoapVar::i___destruct, (void*)&c_SoapVar::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_SoapVar::ci___construct((void*)&c_SoapVar::i___construct, (void*)&c_SoapVar::ifa___construct, 6, 4, 0x0000000000000000LL);
+Variant c_SoapVar::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_DOMElement::i_getattribute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getattribute);
-}
-Variant c_DOMElement::i_getattributenode(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getattributenode);
-}
-Variant c_DOMElement::i_getattributenodens(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getattributenodens);
-}
-Variant c_DOMElement::i_getattributens(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getattributens);
-}
-Variant c_DOMElement::i_getelementsbytagname(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getelementsbytagname);
-}
-Variant c_DOMElement::i_getelementsbytagnamens(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getelementsbytagnamens);
-}
-Variant c_DOMElement::i_hasattribute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_hasattribute);
-}
-Variant c_DOMElement::i_hasattributens(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_hasattributens);
-}
-Variant c_DOMElement::i_removeattribute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_removeattribute);
-}
-Variant c_DOMElement::i_removeattributenode(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_removeattributenode);
-}
-Variant c_DOMElement::i_removeattributens(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_removeattributens);
-}
-Variant c_DOMElement::i_setattribute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setattribute);
-}
-Variant c_DOMElement::i_setattributenode(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setattributenode);
-}
-Variant c_DOMElement::i_setattributenodens(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setattributenodens);
-}
-Variant c_DOMElement::i_setattributens(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setattributens);
-}
-Variant c_DOMElement::i_setidattribute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setidattribute);
-}
-Variant c_DOMElement::i_setidattributenode(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setidattributenode);
-}
-Variant c_DOMElement::i_setidattributens(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setidattributens);
-}
-Variant c_DOMElement::i___get(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___get);
-}
-Variant c_DOMElement::i___set(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___set);
-}
-Variant c_DOMElement::i___isset(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___isset);
-}
-Variant c_DOMElement::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_SoapVar::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_DOMElement::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SoapVar::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMElement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SoapVar);
   }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("__construct", count, 1, 3, 1);
+  c_SoapVar *self ATTRIBUTE_UNUSED (static_cast<c_SoapVar*>(mcp.obj));
+  if (UNLIKELY(count < 2)) return throw_wrong_arguments("__construct", count, 2, 6, 1);
   CVarRef arg0(a0);
-  if (count <= 1) return (self->t___construct(arg0), null);
   CVarRef arg1(a1);
   if (count <= 2) return (self->t___construct(arg0, arg1), null);
   CVarRef arg2(a2);
-  return (self->t___construct(arg0, arg1, arg2), null);
+  if (count <= 3) return (self->t___construct(arg0, arg1, arg2), null);
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t___construct(arg0, arg1, arg2, arg3), null);
+  CVarRef arg4(a4);
+  if (count <= 5) return (self->t___construct(arg0, arg1, arg2, arg3, arg4), null);
+  CVarRef arg5(a5);
+  return (self->t___construct(arg0, arg1, arg2, arg3, arg4, arg5), null);
 }
-Variant c_DOMElement::ifa_getattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SoapVar::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattribute, coo_DOMElement);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SoapVar);
   }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getattribute", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_getattribute(arg0));
-}
-Variant c_DOMElement::ifa_getattributenode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattributenode, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getattributenode", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_getattributenode(arg0));
-}
-Variant c_DOMElement::ifa_getattributenodens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattributenodens, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("getattributenodens", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_getattributenodens(arg0, arg1));
-}
-Variant c_DOMElement::ifa_getattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattributens, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("getattributens", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_getattributens(arg0, arg1));
-}
-Variant c_DOMElement::ifa_getelementsbytagname(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getelementsbytagname, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getelementsbytagname", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_getelementsbytagname(arg0));
-}
-Variant c_DOMElement::ifa_getelementsbytagnamens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getelementsbytagnamens, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("getelementsbytagnamens", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_getelementsbytagnamens(arg0, arg1));
-}
-Variant c_DOMElement::ifa_hasattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_hasattribute, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("hasattribute", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_hasattribute(arg0));
-}
-Variant c_DOMElement::ifa_hasattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_hasattributens, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("hasattributens", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_hasattributens(arg0, arg1));
-}
-Variant c_DOMElement::ifa_removeattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_removeattribute, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("removeattribute", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_removeattribute(arg0));
-}
-Variant c_DOMElement::ifa_removeattributenode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_removeattributenode, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("removeattributenode", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_removeattributenode(arg0));
-}
-Variant c_DOMElement::ifa_removeattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_removeattributens, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("removeattributens", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_removeattributens(arg0, arg1));
-}
-Variant c_DOMElement::ifa_setattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setattribute, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("setattribute", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_setattribute(arg0, arg1));
-}
-Variant c_DOMElement::ifa_setattributenode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setattributenode, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setattributenode", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_setattributenode(arg0));
-}
-Variant c_DOMElement::ifa_setattributenodens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setattributenodens, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setattributenodens", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_setattributenodens(arg0));
-}
-Variant c_DOMElement::ifa_setattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setattributens, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 3)) return throw_wrong_arguments("setattributens", count, 3, 3, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  CVarRef arg2(a2);
-  return (self->t_setattributens(arg0, arg1, arg2));
-}
-Variant c_DOMElement::ifa_setidattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setidattribute, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("setidattribute", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_setidattribute(arg0, arg1));
-}
-Variant c_DOMElement::ifa_setidattributenode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setidattributenode, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("setidattributenode", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_setidattributenode(arg0, arg1));
-}
-Variant c_DOMElement::ifa_setidattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setidattributens, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 3)) return throw_wrong_arguments("setidattributens", count, 3, 3, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  CVarRef arg2(a2);
-  return (self->t_setidattributens(arg0, arg1, arg2));
-}
-Variant c_DOMElement::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___get(arg0));
-}
-Variant c_DOMElement::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t___set(arg0, arg1));
-}
-Variant c_DOMElement::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___isset(arg0));
-}
-Variant c_DOMElement::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMElement);
-  }
-  c_DOMElement *self ATTRIBUTE_UNUSED (static_cast<c_DOMElement*>(mcp.obj));
+  c_SoapVar *self ATTRIBUTE_UNUSED (static_cast<c_SoapVar*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_DOMElement::s_call_info_table[] = {
-  { 0x3FFA3F55ECAB93CALL, 1, 20, "getElementsByTagName", &c_DOMElement::ci_getelementsbytagname },
-  { 0x1A9CC561CA4817CALL, 0, 22, "getElementsByTagNameNS", &c_DOMElement::ci_getelementsbytagnamens },
-  { 0x1D5B8B8144F4AB8ALL, 0, 12, "setAttribute", &c_DOMElement::ci_setattribute },
-  { 0x29D272CBBC0CDA4ALL, 0, 18, "setIDAttributeNode", &c_DOMElement::ci_setidattributenode },
-  { 0x26B6E00C74FA338FLL, 1, 5, "__get", &c_DOMElement::ci___get },
-  { 0x710986B01E1A0890LL, 1, 17, "removeAttributeNS", &c_DOMElement::ci_removeattributens },
-  { 0x482E3873306253D1LL, 1, 18, "setAttributeNodeNS", &c_DOMElement::ci_setattributenodens },
-  { 0x31426AC6A851EE11LL, 0, 16, "setIDAttributeNS", &c_DOMElement::ci_setidattributens },
-  { 0x5EF7C3A45311D955LL, 1, 14, "hasAttributeNS", &c_DOMElement::ci_hasattributens },
-  { 0x52F3DAD783340395LL, 0, 5, "__set", &c_DOMElement::ci___set },
-  { 0x6F83EC29E110D616LL, 1, 14, "setIDAttribute", &c_DOMElement::ci_setidattribute },
-  { 0x62A40E71FAF19157LL, 1, 14, "setAttributeNS", &c_DOMElement::ci_setattributens },
-  { 0x640FA60DDC80EC18LL, 1, 18, "getAttributeNodeNS", &c_DOMElement::ci_getattributenodens },
-  { 0x34E103E06D3F0899LL, 1, 14, "getAttributeNS", &c_DOMElement::ci_getattributens },
-  { 0x606827EF5CF34C5CLL, 1, 16, "setAttributeNode", &c_DOMElement::ci_setattributenode },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMElement::ci___construct },
-  { 0x49F89C466612FC28LL, 1, 12, "getAttribute", &c_DOMElement::ci_getattribute },
-  { 0x1BFDB4272EA150EALL, 1, 19, "removeAttributeNode", &c_DOMElement::ci_removeattributenode },
-  { 0x6471DF8BB944FFECLL, 1, 12, "hasAttribute", &c_DOMElement::ci_hasattribute },
-  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMElement::ci___isset },
-  { 0x47B96C0FC62E1E2FLL, 1, 15, "removeAttribute", &c_DOMElement::ci_removeattribute },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMElement::ci___destruct },
-  { 0x343DF562BB5AB1FELL, 1, 16, "getAttributeNode", &c_DOMElement::ci_getattributenode },
+const MethodCallInfoTable c_SoapVar::s_call_info_table[] = {
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SoapVar::ci___construct },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_SoapVar::ci___destruct },
   { 0, 1, 0, 0 }
 };
-const int c_DOMElement::s_call_info_index[] = {
-  63,
-  -1,-1,-1,-1,-1,-1,-1,-1,
-  -1,-1,0,-1,-1,-1,-1,4,
-  5,6,-1,-1,-1,8,10,11,
-  12,13,-1,-1,14,-1,-1,15,
-  -1,-1,-1,-1,-1,-1,-1,-1,
-  16,-1,17,-1,18,-1,19,20,
-  -1,-1,-1,21,-1,-1,-1,-1,
-  -1,-1,-1,-1,-1,-1,22,-1,
-
+const int c_SoapVar::s_call_info_index[] = {
+  3,
+  -1,-1,-1,0,
 };
-c_DOMElement *c_DOMElement::create(String a0, String a1, String a2) {
+c_SoapVar *c_SoapVar::create(Variant a0, Variant a1, String a2, String a3, String a4, String a5) {
   CountableHelper h(this);
   init();
-  t___construct(a0, a1, a2);
+  t___construct(a0, a1, a2, a3, a4, a5);
   return this;
 }
-const ObjectStaticCallbacks cw_DOMElement = {
-  (ObjectData*(*)(ObjectData*))coo_DOMElement,
-  c_DOMElement::s_call_info_table,c_DOMElement::s_call_info_index,
-  c_DOMElement::s_instanceof_table,c_DOMElement::s_instanceof_index,
-  &c_DOMElement::s_class_name,
-  0,&c_DOMElement::ci___construct,0,&cw_DOMNode,0x0
-};
-ObjectData *coo_Memcache() {
-  return NEWOBJ(c_Memcache)();
-}
-IMPLEMENT_CLASS(Memcache)
-const InstanceOfInfo c_Memcache::s_instanceof_table[] = {
-  {0x3C122DF8859C72D0LL,1,"Memcache",&cw_Memcache},
-};
-const int c_Memcache::s_instanceof_index[] = {
-  1,
-  0,-1,
-};
-CallInfo c_Memcache::ci_connect((void*)&c_Memcache::i_connect, (void*)&c_Memcache::ifa_connect, 4, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_close((void*)&c_Memcache::i_close, (void*)&c_Memcache::ifa_close, 0, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_setcompressthreshold((void*)&c_Memcache::i_setcompressthreshold, (void*)&c_Memcache::ifa_setcompressthreshold, 2, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_pconnect((void*)&c_Memcache::i_pconnect, (void*)&c_Memcache::ifa_pconnect, 4, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_replace((void*)&c_Memcache::i_replace, (void*)&c_Memcache::ifa_replace, 4, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_add((void*)&c_Memcache::i_add, (void*)&c_Memcache::ifa_add, 4, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_delete((void*)&c_Memcache::i_delete, (void*)&c_Memcache::ifa_delete, 2, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_increment((void*)&c_Memcache::i_increment, (void*)&c_Memcache::ifa_increment, 2, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_getextendedstats((void*)&c_Memcache::i_getextendedstats, (void*)&c_Memcache::ifa_getextendedstats, 3, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_getserverstatus((void*)&c_Memcache::i_getserverstatus, (void*)&c_Memcache::ifa_getserverstatus, 2, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_set((void*)&c_Memcache::i_set, (void*)&c_Memcache::ifa_set, 4, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_setserverparams((void*)&c_Memcache::i_setserverparams, (void*)&c_Memcache::ifa_setserverparams, 6, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_getversion((void*)&c_Memcache::i_getversion, (void*)&c_Memcache::ifa_getversion, 0, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_addserver((void*)&c_Memcache::i_addserver, (void*)&c_Memcache::ifa_addserver, 9, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_decrement((void*)&c_Memcache::i_decrement, (void*)&c_Memcache::ifa_decrement, 2, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_getstats((void*)&c_Memcache::i_getstats, (void*)&c_Memcache::ifa_getstats, 3, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_flush((void*)&c_Memcache::i_flush, (void*)&c_Memcache::ifa_flush, 1, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_get((void*)&c_Memcache::i_get, (void*)&c_Memcache::ifa_get, 2, 4, 0x0000000000000002LL);
-CallInfo c_Memcache::ci___destruct((void*)&c_Memcache::i___destruct, (void*)&c_Memcache::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci_setoptimeout((void*)&c_Memcache::i_setoptimeout, (void*)&c_Memcache::ifa_setoptimeout, 1, 4, 0x0000000000000000LL);
-CallInfo c_Memcache::ci___construct((void*)&c_Memcache::i___construct, (void*)&c_Memcache::ifa___construct, 0, 4, 0x0000000000000000LL);
-Variant c_Memcache::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_Memcache::i_connect(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_connect);
-}
-Variant c_Memcache::i_pconnect(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_pconnect);
-}
-Variant c_Memcache::i_add(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_add);
-}
-Variant c_Memcache::i_set(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_set);
-}
-Variant c_Memcache::i_replace(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_replace);
-}
-Variant c_Memcache::i_get(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_get);
-}
-Variant c_Memcache::i_delete(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_delete);
-}
-Variant c_Memcache::i_increment(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_increment);
-}
-Variant c_Memcache::i_decrement(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_decrement);
-}
-Variant c_Memcache::i_getversion(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getversion);
-}
-Variant c_Memcache::i_flush(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_flush);
-}
-Variant c_Memcache::i_setoptimeout(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setoptimeout);
-}
-Variant c_Memcache::i_close(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_close);
-}
-Variant c_Memcache::i_getserverstatus(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getserverstatus);
-}
-Variant c_Memcache::i_setcompressthreshold(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setcompressthreshold);
-}
-Variant c_Memcache::i_getstats(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getstats);
-}
-Variant c_Memcache::i_getextendedstats(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getextendedstats);
-}
-Variant c_Memcache::i_setserverparams(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setserverparams);
-}
-Variant c_Memcache::i_addserver(MethodCallPackage &mcp, CArrRef params) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::i_dummy(mcp, params, i_addserver, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  int count ATTRIBUTE_UNUSED = params.size();
-  if (UNLIKELY(count < 1 || count > 9)) return throw_wrong_arguments("addserver", count, 1, 9, 1);
-  {
-    ArrayData *ad(params.get());
-    ssize_t pos = ad ? ad->iter_begin() : ArrayData::invalid_index;
-    CVarRef arg0((ad->getValue(pos)));
-    if (count <= 1) return (self->t_addserver(arg0));
-    CVarRef arg1((ad->getValue(pos = ad->iter_advance(pos))));
-    if (count <= 2) return (self->t_addserver(arg0, arg1));
-    CVarRef arg2((ad->getValue(pos = ad->iter_advance(pos))));
-    if (count <= 3) return (self->t_addserver(arg0, arg1, arg2));
-    CVarRef arg3((ad->getValue(pos = ad->iter_advance(pos))));
-    if (count <= 4) return (self->t_addserver(arg0, arg1, arg2, arg3));
-    CVarRef arg4((ad->getValue(pos = ad->iter_advance(pos))));
-    if (count <= 5) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4));
-    CVarRef arg5((ad->getValue(pos = ad->iter_advance(pos))));
-    if (count <= 6) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5));
-    CVarRef arg6((ad->getValue(pos = ad->iter_advance(pos))));
-    if (count <= 7) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5, arg6));
-    CVarRef arg7((ad->getValue(pos = ad->iter_advance(pos))));
-    if (count <= 8) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
-    CVarRef arg8((ad->getValue(pos = ad->iter_advance(pos))));
-    return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8));
-  }
-}
-Variant c_Memcache::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_Memcache::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_Memcache::ifa_connect(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_connect, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 4)) return throw_wrong_arguments("connect", count, 1, 4, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_connect(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_connect(arg0, arg1));
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_connect(arg0, arg1, arg2));
-  CVarRef arg3(a3);
-  return (self->t_connect(arg0, arg1, arg2, arg3));
-}
-Variant c_Memcache::ifa_pconnect(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_pconnect, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 4)) return throw_wrong_arguments("pconnect", count, 1, 4, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_pconnect(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_pconnect(arg0, arg1));
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_pconnect(arg0, arg1, arg2));
-  CVarRef arg3(a3);
-  return (self->t_pconnect(arg0, arg1, arg2, arg3));
-}
-Variant c_Memcache::ifa_add(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_add, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 4)) return throw_wrong_arguments("add", count, 2, 4, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_add(arg0, arg1));
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_add(arg0, arg1, arg2));
-  CVarRef arg3(a3);
-  return (self->t_add(arg0, arg1, arg2, arg3));
-}
-Variant c_Memcache::ifa_set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_set, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 4)) return throw_wrong_arguments("set", count, 2, 4, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_set(arg0, arg1));
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_set(arg0, arg1, arg2));
-  CVarRef arg3(a3);
-  return (self->t_set(arg0, arg1, arg2, arg3));
-}
-Variant c_Memcache::ifa_replace(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_replace, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 4)) return throw_wrong_arguments("replace", count, 2, 4, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_replace(arg0, arg1));
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_replace(arg0, arg1, arg2));
-  CVarRef arg3(a3);
-  return (self->t_replace(arg0, arg1, arg2, arg3));
-}
-Variant c_Memcache::ifa_get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_get, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("get", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_get(arg0));
-  VRefParam arg1(vref(a1));
-  return (self->t_get(arg0, arg1));
-}
-Variant c_Memcache::ifa_delete(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_delete, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("delete", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_delete(arg0));
-  CVarRef arg1(a1);
-  return (self->t_delete(arg0, arg1));
-}
-Variant c_Memcache::ifa_increment(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_increment, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("increment", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_increment(arg0));
-  CVarRef arg1(a1);
-  return (self->t_increment(arg0, arg1));
-}
-Variant c_Memcache::ifa_decrement(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_decrement, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("decrement", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_decrement(arg0));
-  CVarRef arg1(a1);
-  return (self->t_decrement(arg0, arg1));
-}
-Variant c_Memcache::ifa_getversion(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getversion, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getversion", 0, 1);
-  return (self->t_getversion());
-}
-Variant c_Memcache::ifa_flush(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_flush, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("flush", 1, 1);
-  if (count <= 0) return (self->t_flush());
-  CVarRef arg0(a0);
-  return (self->t_flush(arg0));
-}
-Variant c_Memcache::ifa_setoptimeout(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setoptimeout, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setoptimeout", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_setoptimeout(arg0));
-}
-Variant c_Memcache::ifa_close(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_close, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("close", 0, 1);
-  return (self->t_close());
-}
-Variant c_Memcache::ifa_getserverstatus(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getserverstatus, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("getserverstatus", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_getserverstatus(arg0));
-  CVarRef arg1(a1);
-  return (self->t_getserverstatus(arg0, arg1));
-}
-Variant c_Memcache::ifa_setcompressthreshold(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setcompressthreshold, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("setcompressthreshold", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_setcompressthreshold(arg0));
-  CVarRef arg1(a1);
-  return (self->t_setcompressthreshold(arg0, arg1));
-}
-Variant c_Memcache::ifa_getstats(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getstats, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count > 3)) return throw_toomany_arguments("getstats", 3, 1);
-  if (count <= 0) return (self->t_getstats());
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_getstats(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_getstats(arg0, arg1));
-  CVarRef arg2(a2);
-  return (self->t_getstats(arg0, arg1, arg2));
-}
-Variant c_Memcache::ifa_getextendedstats(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getextendedstats, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count > 3)) return throw_toomany_arguments("getextendedstats", 3, 1);
-  if (count <= 0) return (self->t_getextendedstats());
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_getextendedstats(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_getextendedstats(arg0, arg1));
-  CVarRef arg2(a2);
-  return (self->t_getextendedstats(arg0, arg1, arg2));
-}
-Variant c_Memcache::ifa_setserverparams(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setserverparams, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count < 1)) return throw_wrong_arguments("setserverparams", count, 1, 6, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_setserverparams(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_setserverparams(arg0, arg1));
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_setserverparams(arg0, arg1, arg2));
-  CVarRef arg3(a3);
-  if (count <= 4) return (self->t_setserverparams(arg0, arg1, arg2, arg3));
-  CVarRef arg4(a4);
-  if (count <= 5) return (self->t_setserverparams(arg0, arg1, arg2, arg3, arg4));
-  CVarRef arg5(a5);
-  return (self->t_setserverparams(arg0, arg1, arg2, arg3, arg4, arg5));
-}
-Variant c_Memcache::ifa_addserver(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addserver, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count < 1)) return throw_wrong_arguments("addserver", count, 1, 9, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_addserver(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_addserver(arg0, arg1));
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t_addserver(arg0, arg1, arg2));
-  CVarRef arg3(a3);
-  if (count <= 4) return (self->t_addserver(arg0, arg1, arg2, arg3));
-  CVarRef arg4(a4);
-  if (count <= 5) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4));
-  CVarRef arg5(a5);
-  return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5));
-}
-Variant c_Memcache::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_Memcache);
-  }
-  c_Memcache *self ATTRIBUTE_UNUSED (static_cast<c_Memcache*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_Memcache::s_call_info_table[] = {
-  { 0x78AE97BFBEBF5341LL, 1, 5, "close", &c_Memcache::ci_close },
-  { 0x42FAC655280A6146LL, 1, 7, "replace", &c_Memcache::ci_replace },
-  { 0x39099707DF7945C7LL, 1, 9, "increment", &c_Memcache::ci_increment },
-  { 0x15D34462FC79458BLL, 1, 3, "add", &c_Memcache::ci_add },
-  { 0x3BF3710A1661DE0BLL, 0, 12, "setoptimeout", &c_Memcache::ci_setoptimeout },
-  { 0x710DE893BB376C4FLL, 1, 15, "getserverstatus", &c_Memcache::ci_getserverstatus },
-  { 0x030429D528A8EA92LL, 1, 20, "setcompressthreshold", &c_Memcache::ci_setcompressthreshold },
-  { 0x1C660E5BFA6F55D3LL, 1, 6, "delete", &c_Memcache::ci_delete },
-  { 0x7521E8833BE3D316LL, 1, 10, "getversion", &c_Memcache::ci_getversion },
-  { 0x1CCDC4317CE59BD9LL, 1, 8, "getstats", &c_Memcache::ci_getstats },
-  { 0x2A733FC12BA4C1DALL, 1, 9, "decrement", &c_Memcache::ci_decrement },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_Memcache::ci___construct },
-  { 0x399A6427C2185621LL, 1, 3, "set", &c_Memcache::ci_set },
-  { 0x4770E54B86BF7765LL, 1, 16, "getextendedstats", &c_Memcache::ci_getextendedstats },
-  { 0x56CD24186237AAE6LL, 1, 9, "addserver", &c_Memcache::ci_addserver },
-  { 0x25DCCC35D69AD828LL, 1, 3, "get", &c_Memcache::ci_get },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_Memcache::ci___destruct },
-  { 0x742B441E13CD7279LL, 1, 8, "pconnect", &c_Memcache::ci_pconnect },
-  { 0x6A3D9F8EDB005E7ALL, 1, 5, "flush", &c_Memcache::ci_flush },
-  { 0x1780351E8EFF92BDLL, 1, 15, "setserverparams", &c_Memcache::ci_setserverparams },
-  { 0x7032C660AD16D7FELL, 1, 7, "connect", &c_Memcache::ci_connect },
-  { 0, 1, 0, 0 }
-};
-const int c_Memcache::s_call_info_index[] = {
-  63,
-  -1,0,-1,-1,-1,-1,1,2,
-  -1,-1,-1,3,-1,-1,-1,5,
-  -1,-1,6,7,-1,-1,8,-1,
-  -1,9,10,-1,-1,-1,-1,11,
-  -1,12,-1,-1,-1,13,14,-1,
-  15,-1,-1,-1,-1,-1,-1,-1,
-  -1,-1,-1,16,-1,-1,-1,-1,
-  -1,17,18,-1,-1,19,20,-1,
-
-};
-c_Memcache *c_Memcache::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
-}
-const ObjectStaticCallbacks cw_Memcache = {
-  (ObjectData*(*)(ObjectData*))coo_Memcache,
-  c_Memcache::s_call_info_table,c_Memcache::s_call_info_index,
-  c_Memcache::s_instanceof_table,c_Memcache::s_instanceof_index,
-  &c_Memcache::s_class_name,
-  0,&c_Memcache::ci___construct,0,0,0x0
+const ObjectStaticCallbacks cw_SoapVar = {
+  (ObjectData*(*)(ObjectData*))coo_SoapVar,
+  c_SoapVar::s_call_info_table,c_SoapVar::s_call_info_index,
+  c_SoapVar::s_instanceof_table,c_SoapVar::s_instanceof_index,
+  &c_SoapVar::s_class_name,
+  0,&c_SoapVar::ci___construct,0,0,0x0
 };
 ObjectData *coo_DOMEntityReference() {
   return NEWOBJ(c_DOMEntityReference)();
@@ -8219,204 +7492,738 @@ const ObjectStaticCallbacks cw_DOMEntityReference = {
   &c_DOMEntityReference::s_class_name,
   0,&c_DOMEntityReference::ci___construct,0,&cw_DOMNode,0x0
 };
-ObjectData *coo_GenericContinuation() {
-  return NEWOBJ(c_GenericContinuation)();
+ObjectData *coo_SimpleXMLElementIterator() {
+  return NEWOBJ(c_SimpleXMLElementIterator)();
 }
-IMPLEMENT_CLASS(GenericContinuation)
-const InstanceOfInfo c_GenericContinuation::s_instanceof_table[] = {
+IMPLEMENT_CLASS(SimpleXMLElementIterator)
+const InstanceOfInfo c_SimpleXMLElementIterator::s_instanceof_table[] = {
   {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},
-  {0x61DD21ABF790E9E2LL,1,"Continuation",&cw_Continuation},
-  {0x05DE30099B58533DLL,1,"GenericContinuation",&cw_GenericContinuation},
+  {0x7E66D362EAB5BF2BLL,1,"SimpleXMLElementIterator",&cw_SimpleXMLElementIterator},
   {0x0636A5F84AF9D29ELL,1,"Iterator",(const ObjectStaticCallbacks*)2},
 };
-const int c_GenericContinuation::s_instanceof_index[] = {
+const int c_SimpleXMLElementIterator::s_instanceof_index[] = {
   7,
-  -1,0,1,-1,-1,2,3,-1,
+  -1,0,-1,1,-1,-1,2,-1,
 
 };
-CallInfo c_GenericContinuation::ci_update((void*)&c_GenericContinuation::i_update, (void*)&c_GenericContinuation::ifa_update, 3, 4, 0x0000000000000000LL);
-CallInfo c_GenericContinuation::ci___destruct((void*)&c_GenericContinuation::i___destruct, (void*)&c_GenericContinuation::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_GenericContinuation::ci___construct((void*)&c_GenericContinuation::i___construct, (void*)&c_GenericContinuation::ifa___construct, 7, 4, 0x0000000000000000LL);
-CallInfo c_GenericContinuation::ci_getvars((void*)&c_GenericContinuation::i_getvars, (void*)&c_GenericContinuation::ifa_getvars, 0, 4, 0x0000000000000000LL);
-Variant c_GenericContinuation::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::i_dummy(mcp, params, i___construct, coo_GenericContinuation);
-  }
-  c_GenericContinuation *self ATTRIBUTE_UNUSED (static_cast<c_GenericContinuation*>(mcp.obj));
-  int count ATTRIBUTE_UNUSED = params.size();
-  if (UNLIKELY(count < 5 || count > 7)) return throw_wrong_arguments("__construct", count, 5, 7, 1);
-  {
-    ArrayData *ad(params.get());
-    ssize_t pos = ad ? ad->iter_begin() : ArrayData::invalid_index;
-    CVarRef arg0((ad->getValue(pos)));
-    CVarRef arg1((ad->getValue(pos = ad->iter_advance(pos))));
-    CVarRef arg2((ad->getValue(pos = ad->iter_advance(pos))));
-    CVarRef arg3((ad->getValue(pos = ad->iter_advance(pos))));
-    CVarRef arg4((ad->getValue(pos = ad->iter_advance(pos))));
-    if (count <= 5) return (self->t___construct(arg0, arg1, arg2, arg3, arg4), null);
-    CVarRef arg5((ad->getValue(pos = ad->iter_advance(pos))));
-    if (count <= 6) return (self->t___construct(arg0, arg1, arg2, arg3, arg4, arg5), null);
-    CVarRef arg6((ad->getValue(pos = ad->iter_advance(pos))));
-    return (self->t___construct(arg0, arg1, arg2, arg3, arg4, arg5, arg6), null);
-  }
-}
-Variant c_GenericContinuation::i_update(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_update);
-}
-Variant c_GenericContinuation::i_getvars(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getvars);
-}
-Variant c_GenericContinuation::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_GenericContinuation::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_GenericContinuation);
-  }
-  c_GenericContinuation *self ATTRIBUTE_UNUSED (static_cast<c_GenericContinuation*>(mcp.obj));
-  if (UNLIKELY(count < 5)) return throw_wrong_arguments("__construct", count, 5, 7, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  CVarRef arg2(a2);
-  CVarRef arg3(a3);
-  CVarRef arg4(a4);
-  if (count <= 5) return (self->t___construct(arg0, arg1, arg2, arg3, arg4), null);
-  CVarRef arg5(a5);
-  return (self->t___construct(arg0, arg1, arg2, arg3, arg4, arg5), null);
-}
-Variant c_GenericContinuation::ifa_update(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_update, coo_GenericContinuation);
-  }
-  c_GenericContinuation *self ATTRIBUTE_UNUSED (static_cast<c_GenericContinuation*>(mcp.obj));
-  if (UNLIKELY(count != 3)) return throw_wrong_arguments("update", count, 3, 3, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  CVarRef arg2(a2);
-  return (self->t_update(arg0, arg1, arg2), null);
-}
-Variant c_GenericContinuation::ifa_getvars(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getvars, coo_GenericContinuation);
-  }
-  c_GenericContinuation *self ATTRIBUTE_UNUSED (static_cast<c_GenericContinuation*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getvars", 0, 1);
-  return (self->t_getvars());
-}
-Variant c_GenericContinuation::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_GenericContinuation);
-  }
-  c_GenericContinuation *self ATTRIBUTE_UNUSED (static_cast<c_GenericContinuation*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_GenericContinuation::s_call_info_table[] = {
-  { 0x1402C6C4A8D472A0LL, 1, 6, "update", &c_GenericContinuation::ci_update },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_GenericContinuation::ci___destruct },
-  { 0x72BA7745837A2236LL, 1, 7, "getVars", &c_GenericContinuation::ci_getvars },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_GenericContinuation::ci___construct },
-  { 0, 1, 0, 0 }
-};
-const int c_GenericContinuation::s_call_info_index[] = {
-  7,
-  0,-1,-1,1,-1,-1,2,3,
-
-};
-c_GenericContinuation *c_GenericContinuation::create(int64 a0, int64 a1, bool a2, String a3, Array a4, Variant a5, Array a6) {
-  CountableHelper h(this);
-  init();
-  t___construct(a0, a1, a2, a3, a4, a5, a6);
-  return this;
-}
-const ObjectStaticCallbacks cw_GenericContinuation = {
-  (ObjectData*(*)(ObjectData*))coo_GenericContinuation,
-  c_GenericContinuation::s_call_info_table,c_GenericContinuation::s_call_info_index,
-  c_GenericContinuation::s_instanceof_table,c_GenericContinuation::s_instanceof_index,
-  &c_GenericContinuation::s_class_name,
-  &c_GenericContinuation::os_prop_table,&c_GenericContinuation::ci___construct,0,&cw_Continuation,0x0
-};
-ObjectData *coo_Normalizer() {
-  return NEWOBJ(c_Normalizer)();
-}
-IMPLEMENT_CLASS(Normalizer)
-const InstanceOfInfo c_Normalizer::s_instanceof_table[] = {
-  {0x52EA111229F87A50LL,1,"Normalizer",&cw_Normalizer},
-};
-const int c_Normalizer::s_instanceof_index[] = {
-  1,
-  0,-1,
-};
-CallInfo c_Normalizer::ci_normalize((void*)&c_Normalizer::i_normalize, (void*)&c_Normalizer::ifa_normalize, 2, 12, 0x0000000000000000LL);
-CallInfo c_Normalizer::ci_isnormalized((void*)&c_Normalizer::i_isnormalized, (void*)&c_Normalizer::ifa_isnormalized, 2, 12, 0x0000000000000000LL);
-CallInfo c_Normalizer::ci___destruct((void*)&c_Normalizer::i___destruct, (void*)&c_Normalizer::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_Normalizer::ci___construct((void*)&c_Normalizer::i___construct, (void*)&c_Normalizer::ifa___construct, 0, 4, 0x0000000000000000LL);
-Variant c_Normalizer::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_SimpleXMLElementIterator::ci___construct((void*)&c_SimpleXMLElementIterator::i___construct, (void*)&c_SimpleXMLElementIterator::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_SimpleXMLElementIterator::ci_rewind((void*)&c_SimpleXMLElementIterator::i_rewind, (void*)&c_SimpleXMLElementIterator::ifa_rewind, 0, 4, 0x0000000000000000LL);
+CallInfo c_SimpleXMLElementIterator::ci_next((void*)&c_SimpleXMLElementIterator::i_next, (void*)&c_SimpleXMLElementIterator::ifa_next, 0, 4, 0x0000000000000000LL);
+CallInfo c_SimpleXMLElementIterator::ci___destruct((void*)&c_SimpleXMLElementIterator::i___destruct, (void*)&c_SimpleXMLElementIterator::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_SimpleXMLElementIterator::ci_current((void*)&c_SimpleXMLElementIterator::i_current, (void*)&c_SimpleXMLElementIterator::ifa_current, 0, 4, 0x0000000000000000LL);
+CallInfo c_SimpleXMLElementIterator::ci_valid((void*)&c_SimpleXMLElementIterator::i_valid, (void*)&c_SimpleXMLElementIterator::ifa_valid, 0, 4, 0x0000000000000000LL);
+CallInfo c_SimpleXMLElementIterator::ci_key((void*)&c_SimpleXMLElementIterator::i_key, (void*)&c_SimpleXMLElementIterator::ifa_key, 0, 4, 0x0000000000000000LL);
+Variant c_SimpleXMLElementIterator::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_Normalizer::i_isnormalized(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_isnormalized);
+Variant c_SimpleXMLElementIterator::i_current(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_current);
 }
-Variant c_Normalizer::i_normalize(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_normalize);
+Variant c_SimpleXMLElementIterator::i_key(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_key);
 }
-Variant c_Normalizer::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_SimpleXMLElementIterator::i_next(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_next);
+}
+Variant c_SimpleXMLElementIterator::i_rewind(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_rewind);
+}
+Variant c_SimpleXMLElementIterator::i_valid(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_valid);
+}
+Variant c_SimpleXMLElementIterator::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_Normalizer::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SimpleXMLElementIterator::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_Normalizer);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SimpleXMLElementIterator);
   }
-  c_Normalizer *self ATTRIBUTE_UNUSED (static_cast<c_Normalizer*>(mcp.obj));
+  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
   return (self->t___construct(), null);
 }
-Variant c_Normalizer::ifa_isnormalized(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("isnormalized", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (c_Normalizer::t_isnormalized(arg0));
-  CVarRef arg1(a1);
-  return (c_Normalizer::t_isnormalized(arg0, arg1));
-}
-Variant c_Normalizer::ifa_normalize(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("normalize", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (c_Normalizer::t_normalize(arg0));
-  CVarRef arg1(a1);
-  return (c_Normalizer::t_normalize(arg0, arg1));
-}
-Variant c_Normalizer::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_SimpleXMLElementIterator::ifa_current(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_Normalizer);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_current, coo_SimpleXMLElementIterator);
   }
-  c_Normalizer *self ATTRIBUTE_UNUSED (static_cast<c_Normalizer*>(mcp.obj));
+  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("current", 0, 1);
+  return (self->t_current());
+}
+Variant c_SimpleXMLElementIterator::ifa_key(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_key, coo_SimpleXMLElementIterator);
+  }
+  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("key", 0, 1);
+  return (self->t_key());
+}
+Variant c_SimpleXMLElementIterator::ifa_next(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_next, coo_SimpleXMLElementIterator);
+  }
+  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("next", 0, 1);
+  return (self->t_next());
+}
+Variant c_SimpleXMLElementIterator::ifa_rewind(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_rewind, coo_SimpleXMLElementIterator);
+  }
+  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("rewind", 0, 1);
+  return (self->t_rewind());
+}
+Variant c_SimpleXMLElementIterator::ifa_valid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_valid, coo_SimpleXMLElementIterator);
+  }
+  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("valid", 0, 1);
+  return (self->t_valid());
+}
+Variant c_SimpleXMLElementIterator::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SimpleXMLElementIterator);
+  }
+  c_SimpleXMLElementIterator *self ATTRIBUTE_UNUSED (static_cast<c_SimpleXMLElementIterator*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_Normalizer::s_call_info_table[] = {
-  { 0x11A2D4B742CB6C5ALL, 1, 9, "normalize", &c_Normalizer::ci_normalize },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_Normalizer::ci___destruct },
-  { 0x58CF37E15F66ED1DLL, 1, 12, "isnormalized", &c_Normalizer::ci_isnormalized },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_Normalizer::ci___construct },
+const MethodCallInfoTable c_SimpleXMLElementIterator::s_call_info_table[] = {
+  { 0x56EDB60C824E8C51LL, 1, 3, "key", &c_SimpleXMLElementIterator::ci_key },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_SimpleXMLElementIterator::ci___destruct },
+  { 0x6413CB5154808C44LL, 1, 5, "valid", &c_SimpleXMLElementIterator::ci_valid },
+  { 0x3C6D50F3BB8102B8LL, 1, 4, "next", &c_SimpleXMLElementIterator::ci_next },
+  { 0x1670096FDE27AF6ALL, 1, 6, "rewind", &c_SimpleXMLElementIterator::ci_rewind },
+  { 0x5B3A4A72846B21DCLL, 1, 7, "current", &c_SimpleXMLElementIterator::ci_current },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SimpleXMLElementIterator::ci___construct },
   { 0, 1, 0, 0 }
 };
-const int c_Normalizer::s_call_info_index[] = {
-  7,
-  -1,-1,0,1,-1,2,-1,3,
+const int c_SimpleXMLElementIterator::s_call_info_index[] = {
+  15,
+  -1,0,-1,1,2,-1,-1,-1,
+  3,-1,4,-1,5,-1,-1,6,
 
 };
-c_Normalizer *c_Normalizer::create() {
+c_SimpleXMLElementIterator *c_SimpleXMLElementIterator::create() {
   CountableHelper h(this);
   init();
   t___construct();
   return this;
 }
-const ObjectStaticCallbacks cw_Normalizer = {
-  (ObjectData*(*)(ObjectData*))coo_Normalizer,
-  c_Normalizer::s_call_info_table,c_Normalizer::s_call_info_index,
-  c_Normalizer::s_instanceof_table,c_Normalizer::s_instanceof_index,
-  &c_Normalizer::s_class_name,
-  &c_Normalizer::os_prop_table,&c_Normalizer::ci___construct,0,0,0x0
+const ObjectStaticCallbacks cw_SimpleXMLElementIterator = {
+  (ObjectData*(*)(ObjectData*))coo_SimpleXMLElementIterator,
+  c_SimpleXMLElementIterator::s_call_info_table,c_SimpleXMLElementIterator::s_call_info_index,
+  c_SimpleXMLElementIterator::s_instanceof_table,c_SimpleXMLElementIterator::s_instanceof_index,
+  &c_SimpleXMLElementIterator::s_class_name,
+  0,&c_SimpleXMLElementIterator::ci___construct,0,0,0x0
+};
+ObjectData *coo_SoapServer() {
+  return NEWOBJ(c_SoapServer)();
+}
+IMPLEMENT_CLASS(SoapServer)
+const InstanceOfInfo c_SoapServer::s_instanceof_table[] = {
+  {0x49FC1A1F7B878C3ELL,1,"SoapServer",&cw_SoapServer},
+};
+const int c_SoapServer::s_instanceof_index[] = {
+  1,
+  0,-1,
+};
+CallInfo c_SoapServer::ci_addsoapheader((void*)&c_SoapServer::i_addsoapheader, (void*)&c_SoapServer::ifa_addsoapheader, 1, 4, 0x0000000000000000LL);
+CallInfo c_SoapServer::ci___construct((void*)&c_SoapServer::i___construct, (void*)&c_SoapServer::ifa___construct, 2, 4, 0x0000000000000000LL);
+CallInfo c_SoapServer::ci_handle((void*)&c_SoapServer::i_handle, (void*)&c_SoapServer::ifa_handle, 1, 4, 0x0000000000000000LL);
+CallInfo c_SoapServer::ci_setobject((void*)&c_SoapServer::i_setobject, (void*)&c_SoapServer::ifa_setobject, 1, 4, 0x0000000000000000LL);
+CallInfo c_SoapServer::ci_addfunction((void*)&c_SoapServer::i_addfunction, (void*)&c_SoapServer::ifa_addfunction, 1, 4, 0x0000000000000000LL);
+CallInfo c_SoapServer::ci___destruct((void*)&c_SoapServer::i___destruct, (void*)&c_SoapServer::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_SoapServer::ci_setpersistence((void*)&c_SoapServer::i_setpersistence, (void*)&c_SoapServer::ifa_setpersistence, 1, 4, 0x0000000000000000LL);
+CallInfo c_SoapServer::ci_setclass((void*)&c_SoapServer::i_setclass, (void*)&c_SoapServer::ifa_setclass, 1, 5, 0x0000000000000000LL);
+CallInfo c_SoapServer::ci_fault((void*)&c_SoapServer::i_fault, (void*)&c_SoapServer::ifa_fault, 5, 4, 0x0000000000000000LL);
+CallInfo c_SoapServer::ci_getfunctions((void*)&c_SoapServer::i_getfunctions, (void*)&c_SoapServer::ifa_getfunctions, 0, 4, 0x0000000000000000LL);
+Variant c_SoapServer::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_SoapServer::i_setclass(MethodCallPackage &mcp, CArrRef params) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::i_dummy(mcp, params, i_setclass, coo_SoapServer);
+  }
+  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
+  if (UNLIKELY(count < 1)) return throw_missing_arguments("setclass", count+1, 1);
+  {
+    ArrayData *ad(params.get());
+    ssize_t pos = ad ? ad->iter_begin() : ArrayData::invalid_index;
+    CVarRef arg0((ad->getValue(pos)));
+    const Array &p(count > 1 ? params.slice(1, count - 1, false) : Array());
+    return (self->t_setclass(count, arg0, p), null);
+  }
+}
+Variant c_SoapServer::i_setobject(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setobject);
+}
+Variant c_SoapServer::i_addfunction(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_addfunction);
+}
+Variant c_SoapServer::i_getfunctions(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getfunctions);
+}
+Variant c_SoapServer::i_handle(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_handle);
+}
+Variant c_SoapServer::i_setpersistence(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setpersistence);
+}
+Variant c_SoapServer::i_fault(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_fault);
+}
+Variant c_SoapServer::i_addsoapheader(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_addsoapheader);
+}
+Variant c_SoapServer::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_SoapServer::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SoapServer);
+  }
+  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("__construct", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t___construct(arg0), null);
+  CVarRef arg1(a1);
+  return (self->t___construct(arg0, arg1), null);
+}
+Variant c_SoapServer::ifa_setclass(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setclass, coo_SoapServer);
+  }
+  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
+  if (UNLIKELY(count < 1)) return throw_missing_arguments("setclass", count+1, 1);
+  CVarRef arg0(a0);
+  Array p;
+  if (count >= 2) p.append(a1);
+  if (count >= 3) p.append(a2);
+  if (count >= 4) p.append(a3);
+  if (count >= 5) p.append(a4);
+  if (count >= 6) p.append(a5);
+  return (self->t_setclass(count, arg0, p), null);
+}
+Variant c_SoapServer::ifa_setobject(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setobject, coo_SoapServer);
+  }
+  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setobject", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_setobject(arg0), null);
+}
+Variant c_SoapServer::ifa_addfunction(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addfunction, coo_SoapServer);
+  }
+  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("addfunction", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_addfunction(arg0), null);
+}
+Variant c_SoapServer::ifa_getfunctions(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getfunctions, coo_SoapServer);
+  }
+  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getfunctions", 0, 1);
+  return (self->t_getfunctions());
+}
+Variant c_SoapServer::ifa_handle(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_handle, coo_SoapServer);
+  }
+  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("handle", 1, 1);
+  if (count <= 0) return (self->t_handle(), null);
+  CVarRef arg0(a0);
+  return (self->t_handle(arg0), null);
+}
+Variant c_SoapServer::ifa_setpersistence(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setpersistence, coo_SoapServer);
+  }
+  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setpersistence", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_setpersistence(arg0), null);
+}
+Variant c_SoapServer::ifa_fault(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_fault, coo_SoapServer);
+  }
+  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 5)) return throw_wrong_arguments("fault", count, 2, 5, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_fault(arg0, arg1), null);
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_fault(arg0, arg1, arg2), null);
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t_fault(arg0, arg1, arg2, arg3), null);
+  CVarRef arg4(a4);
+  return (self->t_fault(arg0, arg1, arg2, arg3, arg4), null);
+}
+Variant c_SoapServer::ifa_addsoapheader(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addsoapheader, coo_SoapServer);
+  }
+  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("addsoapheader", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_addsoapheader(arg0), null);
+}
+Variant c_SoapServer::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SoapServer);
+  }
+  c_SoapServer *self ATTRIBUTE_UNUSED (static_cast<c_SoapServer*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_SoapServer::s_call_info_table[] = {
+  { 0x758A4E04590FE203LL, 1, 5, "fault", &c_SoapServer::ci_fault },
+  { 0x5E77DD94E0A69328LL, 1, 14, "setpersistence", &c_SoapServer::ci_setpersistence },
+  { 0x652BDFA6E22F17AFLL, 1, 12, "getfunctions", &c_SoapServer::ci_getfunctions },
+  { 0x5C4CA333F4541532LL, 1, 6, "handle", &c_SoapServer::ci_handle },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_SoapServer::ci___destruct },
+  { 0x597B151CC4F70834LL, 1, 8, "setclass", &c_SoapServer::ci_setclass },
+  { 0x559622F84FE626B9LL, 1, 9, "setobject", &c_SoapServer::ci_setobject },
+  { 0x278B0E6CCA74963ELL, 1, 13, "addsoapheader", &c_SoapServer::ci_addsoapheader },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SoapServer::ci___construct },
+  { 0x48B5852A397D2D9FLL, 0, 11, "addfunction", &c_SoapServer::ci_addfunction },
+  { 0, 1, 0, 0 }
+};
+const int c_SoapServer::s_call_info_index[] = {
+  31,
+  -1,-1,-1,0,-1,-1,-1,-1,
+  1,-1,-1,-1,-1,-1,-1,2,
+  -1,-1,3,4,5,-1,-1,-1,
+  -1,6,-1,-1,-1,-1,7,8,
+
+};
+c_SoapServer *c_SoapServer::create(Variant a0, Array a1) {
+  CountableHelper h(this);
+  init();
+  t___construct(a0, a1);
+  return this;
+}
+const ObjectStaticCallbacks cw_SoapServer = {
+  (ObjectData*(*)(ObjectData*))coo_SoapServer,
+  c_SoapServer::s_call_info_table,c_SoapServer::s_call_info_index,
+  c_SoapServer::s_instanceof_table,c_SoapServer::s_instanceof_index,
+  &c_SoapServer::s_class_name,
+  0,&c_SoapServer::ci___construct,0,0,0x0
+};
+ObjectData *coo_ImageSprite() {
+  return NEWOBJ(c_ImageSprite)();
+}
+IMPLEMENT_CLASS(ImageSprite)
+const InstanceOfInfo c_ImageSprite::s_instanceof_table[] = {
+  {0x4DA860E5647C3908LL,1,"ImageSprite",&cw_ImageSprite},
+};
+const int c_ImageSprite::s_instanceof_index[] = {
+  1,
+  0,-1,
+};
+CallInfo c_ImageSprite::ci_addstring((void*)&c_ImageSprite::i_addstring, (void*)&c_ImageSprite::ifa_addstring, 3, 4, 0x0000000000000000LL);
+CallInfo c_ImageSprite::ci_addfile((void*)&c_ImageSprite::i_addfile, (void*)&c_ImageSprite::ifa_addfile, 2, 4, 0x0000000000000000LL);
+CallInfo c_ImageSprite::ci_geterrors((void*)&c_ImageSprite::i_geterrors, (void*)&c_ImageSprite::ifa_geterrors, 0, 4, 0x0000000000000000LL);
+CallInfo c_ImageSprite::ci_mapping((void*)&c_ImageSprite::i_mapping, (void*)&c_ImageSprite::ifa_mapping, 0, 4, 0x0000000000000000LL);
+CallInfo c_ImageSprite::ci_addurl((void*)&c_ImageSprite::i_addurl, (void*)&c_ImageSprite::ifa_addurl, 3, 4, 0x0000000000000000LL);
+CallInfo c_ImageSprite::ci_css((void*)&c_ImageSprite::i_css, (void*)&c_ImageSprite::ifa_css, 4, 4, 0x0000000000000000LL);
+CallInfo c_ImageSprite::ci___destruct((void*)&c_ImageSprite::i___destruct, (void*)&c_ImageSprite::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_ImageSprite::ci_output((void*)&c_ImageSprite::i_output, (void*)&c_ImageSprite::ifa_output, 3, 4, 0x0000000000000000LL);
+CallInfo c_ImageSprite::ci_loaddims((void*)&c_ImageSprite::i_loaddims, (void*)&c_ImageSprite::ifa_loaddims, 1, 4, 0x0000000000000000LL);
+CallInfo c_ImageSprite::ci_clear((void*)&c_ImageSprite::i_clear, (void*)&c_ImageSprite::ifa_clear, 1, 4, 0x0000000000000000LL);
+CallInfo c_ImageSprite::ci_loadimages((void*)&c_ImageSprite::i_loadimages, (void*)&c_ImageSprite::ifa_loadimages, 1, 4, 0x0000000000000000LL);
+CallInfo c_ImageSprite::ci___construct((void*)&c_ImageSprite::i___construct, (void*)&c_ImageSprite::ifa___construct, 0, 4, 0x0000000000000000LL);
+Variant c_ImageSprite::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_ImageSprite::i_addfile(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_addfile);
+}
+Variant c_ImageSprite::i_addstring(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_addstring);
+}
+Variant c_ImageSprite::i_addurl(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_addurl);
+}
+Variant c_ImageSprite::i_clear(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_clear);
+}
+Variant c_ImageSprite::i_loaddims(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_loaddims);
+}
+Variant c_ImageSprite::i_loadimages(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_loadimages);
+}
+Variant c_ImageSprite::i_output(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_output);
+}
+Variant c_ImageSprite::i_css(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_css);
+}
+Variant c_ImageSprite::i_geterrors(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_geterrors);
+}
+Variant c_ImageSprite::i_mapping(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_mapping);
+}
+Variant c_ImageSprite::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_ImageSprite::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_ImageSprite);
+  }
+  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_ImageSprite::ifa_addfile(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addfile, coo_ImageSprite);
+  }
+  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("addfile", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_addfile(arg0));
+  CVarRef arg1(a1);
+  return (self->t_addfile(arg0, arg1));
+}
+Variant c_ImageSprite::ifa_addstring(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addstring, coo_ImageSprite);
+  }
+  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("addstring", count, 2, 3, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_addstring(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_addstring(arg0, arg1, arg2));
+}
+Variant c_ImageSprite::ifa_addurl(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addurl, coo_ImageSprite);
+  }
+  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("addurl", count, 1, 3, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_addurl(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_addurl(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_addurl(arg0, arg1, arg2));
+}
+Variant c_ImageSprite::ifa_clear(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_clear, coo_ImageSprite);
+  }
+  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("clear", 1, 1);
+  if (count <= 0) return (self->t_clear());
+  CVarRef arg0(a0);
+  return (self->t_clear(arg0));
+}
+Variant c_ImageSprite::ifa_loaddims(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_loaddims, coo_ImageSprite);
+  }
+  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("loaddims", 1, 1);
+  if (count <= 0) return (self->t_loaddims());
+  CVarRef arg0(a0);
+  return (self->t_loaddims(arg0));
+}
+Variant c_ImageSprite::ifa_loadimages(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_loadimages, coo_ImageSprite);
+  }
+  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("loadimages", 1, 1);
+  if (count <= 0) return (self->t_loadimages());
+  CVarRef arg0(a0);
+  return (self->t_loadimages(arg0));
+}
+Variant c_ImageSprite::ifa_output(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_output, coo_ImageSprite);
+  }
+  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
+  if (UNLIKELY(count > 3)) return throw_toomany_arguments("output", 3, 1);
+  if (count <= 0) return (self->t_output());
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_output(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_output(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_output(arg0, arg1, arg2));
+}
+Variant c_ImageSprite::ifa_css(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_css, coo_ImageSprite);
+  }
+  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 4)) return throw_wrong_arguments("css", count, 1, 4, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_css(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_css(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_css(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (self->t_css(arg0, arg1, arg2, arg3));
+}
+Variant c_ImageSprite::ifa_geterrors(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_geterrors, coo_ImageSprite);
+  }
+  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("geterrors", 0, 1);
+  return (self->t_geterrors());
+}
+Variant c_ImageSprite::ifa_mapping(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_mapping, coo_ImageSprite);
+  }
+  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("mapping", 0, 1);
+  return (self->t_mapping());
+}
+Variant c_ImageSprite::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_ImageSprite);
+  }
+  c_ImageSprite *self ATTRIBUTE_UNUSED (static_cast<c_ImageSprite*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_ImageSprite::s_call_info_table[] = {
+  { 0x05D2634BA4310200LL, 1, 9, "getErrors", &c_ImageSprite::ci_geterrors },
+  { 0x6A37A496C57D57A2LL, 1, 8, "loadDims", &c_ImageSprite::ci_loaddims },
+  { 0x31DA235C5A226667LL, 1, 5, "clear", &c_ImageSprite::ci_clear },
+  { 0x13A96E5A21D1906FLL, 1, 7, "addFile", &c_ImageSprite::ci_addfile },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_ImageSprite::ci___destruct },
+  { 0x305D94BB2EC0B554LL, 1, 10, "loadImages", &c_ImageSprite::ci_loadimages },
+  { 0x4D8226FDFA2CA297LL, 1, 7, "mapping", &c_ImageSprite::ci_mapping },
+  { 0x386BF72B932D233ALL, 1, 9, "addString", &c_ImageSprite::ci_addstring },
+  { 0x63388F643871547CLL, 1, 3, "css", &c_ImageSprite::ci_css },
+  { 0x79CFC8610DC84A7DLL, 1, 6, "addUrl", &c_ImageSprite::ci_addurl },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_ImageSprite::ci___construct },
+  { 0x07B89E83B77C677FLL, 0, 6, "output", &c_ImageSprite::ci_output },
+  { 0, 1, 0, 0 }
+};
+const int c_ImageSprite::s_call_info_index[] = {
+  31,
+  0,-1,1,-1,-1,-1,-1,2,
+  -1,-1,-1,-1,-1,-1,-1,3,
+  -1,-1,-1,4,5,-1,-1,6,
+  -1,-1,7,-1,8,9,-1,10,
+
+};
+c_ImageSprite *c_ImageSprite::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_ImageSprite = {
+  (ObjectData*(*)(ObjectData*))coo_ImageSprite,
+  c_ImageSprite::s_call_info_table,c_ImageSprite::s_call_info_index,
+  c_ImageSprite::s_instanceof_table,c_ImageSprite::s_instanceof_index,
+  &c_ImageSprite::s_class_name,
+  0,&c_ImageSprite::ci___construct,0,0,0x0
+};
+ObjectData *coo_DateTime() {
+  return NEWOBJ(c_DateTime)();
+}
+IMPLEMENT_CLASS(DateTime)
+const InstanceOfInfo c_DateTime::s_instanceof_table[] = {
+  {0x3DB8FB455A602A1ELL,1,"DateTime",&cw_DateTime},
+};
+const int c_DateTime::s_instanceof_index[] = {
+  1,
+  0,-1,
+};
+CallInfo c_DateTime::ci_setisodate((void*)&c_DateTime::i_setisodate, (void*)&c_DateTime::ifa_setisodate, 3, 4, 0x0000000000000000LL);
+CallInfo c_DateTime::ci___construct((void*)&c_DateTime::i___construct, (void*)&c_DateTime::ifa___construct, 2, 4, 0x0000000000000000LL);
+CallInfo c_DateTime::ci_settimezone((void*)&c_DateTime::i_settimezone, (void*)&c_DateTime::ifa_settimezone, 1, 4, 0x0000000000000000LL);
+CallInfo c_DateTime::ci_settime((void*)&c_DateTime::i_settime, (void*)&c_DateTime::ifa_settime, 3, 4, 0x0000000000000000LL);
+CallInfo c_DateTime::ci_setdate((void*)&c_DateTime::i_setdate, (void*)&c_DateTime::ifa_setdate, 3, 4, 0x0000000000000000LL);
+CallInfo c_DateTime::ci___destruct((void*)&c_DateTime::i___destruct, (void*)&c_DateTime::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DateTime::ci_modify((void*)&c_DateTime::i_modify, (void*)&c_DateTime::ifa_modify, 1, 4, 0x0000000000000000LL);
+CallInfo c_DateTime::ci_getoffset((void*)&c_DateTime::i_getoffset, (void*)&c_DateTime::ifa_getoffset, 0, 4, 0x0000000000000000LL);
+CallInfo c_DateTime::ci_format((void*)&c_DateTime::i_format, (void*)&c_DateTime::ifa_format, 1, 4, 0x0000000000000000LL);
+CallInfo c_DateTime::ci_gettimezone((void*)&c_DateTime::i_gettimezone, (void*)&c_DateTime::ifa_gettimezone, 0, 4, 0x0000000000000000LL);
+Variant c_DateTime::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_DateTime::i_format(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_format);
+}
+Variant c_DateTime::i_getoffset(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getoffset);
+}
+Variant c_DateTime::i_gettimezone(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_gettimezone);
+}
+Variant c_DateTime::i_modify(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_modify);
+}
+Variant c_DateTime::i_setdate(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setdate);
+}
+Variant c_DateTime::i_setisodate(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setisodate);
+}
+Variant c_DateTime::i_settime(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_settime);
+}
+Variant c_DateTime::i_settimezone(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_settimezone);
+}
+Variant c_DateTime::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_DateTime::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DateTime);
+  }
+  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
+  if (UNLIKELY(count > 2)) return throw_toomany_arguments("__construct", 2, 1);
+  if (count <= 0) return (self->t___construct(), null);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t___construct(arg0), null);
+  CVarRef arg1(a1);
+  return (self->t___construct(arg0, arg1), null);
+}
+Variant c_DateTime::ifa_format(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_format, coo_DateTime);
+  }
+  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("format", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_format(arg0));
+}
+Variant c_DateTime::ifa_getoffset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getoffset, coo_DateTime);
+  }
+  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getoffset", 0, 1);
+  return (self->t_getoffset());
+}
+Variant c_DateTime::ifa_gettimezone(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_gettimezone, coo_DateTime);
+  }
+  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("gettimezone", 0, 1);
+  return (self->t_gettimezone());
+}
+Variant c_DateTime::ifa_modify(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_modify, coo_DateTime);
+  }
+  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("modify", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_modify(arg0));
+}
+Variant c_DateTime::ifa_setdate(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setdate, coo_DateTime);
+  }
+  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
+  if (UNLIKELY(count != 3)) return throw_wrong_arguments("setdate", count, 3, 3, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  CVarRef arg2(a2);
+  return (self->t_setdate(arg0, arg1, arg2));
+}
+Variant c_DateTime::ifa_setisodate(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setisodate, coo_DateTime);
+  }
+  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("setisodate", count, 2, 3, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_setisodate(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_setisodate(arg0, arg1, arg2));
+}
+Variant c_DateTime::ifa_settime(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_settime, coo_DateTime);
+  }
+  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("settime", count, 2, 3, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_settime(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_settime(arg0, arg1, arg2));
+}
+Variant c_DateTime::ifa_settimezone(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_settimezone, coo_DateTime);
+  }
+  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("settimezone", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_settimezone(arg0));
+}
+Variant c_DateTime::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DateTime);
+  }
+  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_DateTime::s_call_info_table[] = {
+  { 0x65A9B2950F080587LL, 1, 6, "modify", &c_DateTime::ci_modify },
+  { 0x68DB66F60B55BD0BLL, 1, 9, "getOffset", &c_DateTime::ci_getoffset },
+  { 0x67314943DC9D120BLL, 0, 7, "setDate", &c_DateTime::ci_setdate },
+  { 0x688601F33BE7716CLL, 1, 11, "getTimezone", &c_DateTime::ci_gettimezone },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DateTime::ci___destruct },
+  { 0x16D6DBFD6EE55A74LL, 1, 10, "setISODate", &c_DateTime::ci_setisodate },
+  { 0x07CB96AB34F4C258LL, 1, 7, "setTime", &c_DateTime::ci_settime },
+  { 0x3B576E558B957CB8LL, 0, 11, "setTimezone", &c_DateTime::ci_settimezone },
+  { 0x1B6DDAF6AAF8CA9BLL, 1, 6, "format", &c_DateTime::ci_format },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DateTime::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_DateTime::s_call_info_index[] = {
+  31,
+  -1,-1,-1,-1,-1,-1,-1,0,
+  -1,-1,-1,1,3,-1,-1,-1,
+  -1,-1,-1,4,5,-1,-1,-1,
+  6,-1,-1,8,-1,-1,-1,9,
+
+};
+c_DateTime *c_DateTime::create(String a0, Object a1) {
+  CountableHelper h(this);
+  init();
+  t___construct(a0, a1);
+  return this;
+}
+const ObjectStaticCallbacks cw_DateTime = {
+  (ObjectData*(*)(ObjectData*))coo_DateTime,
+  c_DateTime::s_call_info_table,c_DateTime::s_call_info_index,
+  c_DateTime::s_instanceof_table,c_DateTime::s_instanceof_index,
+  &c_DateTime::s_class_name,
+  &c_DateTime::os_prop_table,&c_DateTime::ci___construct,0,0,0x0
 };
 ObjectData *coo_EncodingMatch() {
   return NEWOBJ(c_EncodingMatch)();
@@ -8542,436 +8349,1032 @@ const ObjectStaticCallbacks cw_EncodingMatch = {
   &c_EncodingMatch::s_class_name,
   0,&c_EncodingMatch::ci___construct,0,0,0x0
 };
-ObjectData *coo_XMLReader() {
-  return NEWOBJ(c_XMLReader)();
+ObjectData *coo_DOMCharacterData() {
+  return NEWOBJ(c_DOMCharacterData)();
 }
-IMPLEMENT_CLASS(XMLReader)
-const InstanceOfInfo c_XMLReader::s_instanceof_table[] = {
-  {0x1C85D092180A6325LL,1,"XMLReader",&cw_XMLReader},
+IMPLEMENT_CLASS(DOMCharacterData)
+const InstanceOfInfo c_DOMCharacterData::s_instanceof_table[] = {
+  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
+  {0x02239AA5D64B1453LL,1,"DOMCharacterData",&cw_DOMCharacterData},
 };
-const int c_XMLReader::s_instanceof_index[] = {
-  1,
-  -1,0,
+const int c_DOMCharacterData::s_instanceof_index[] = {
+  3,
+  -1,-1,0,1,
 };
-CallInfo c_XMLReader::ci___get((void*)&c_XMLReader::i___get, (void*)&c_XMLReader::ifa___get, 1, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_setrelaxngschemasource((void*)&c_XMLReader::i_setrelaxngschemasource, (void*)&c_XMLReader::ifa_setrelaxngschemasource, 1, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_read((void*)&c_XMLReader::i_read, (void*)&c_XMLReader::ifa_read, 0, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_getattributens((void*)&c_XMLReader::i_getattributens, (void*)&c_XMLReader::ifa_getattributens, 2, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_close((void*)&c_XMLReader::i_close, (void*)&c_XMLReader::ifa_close, 0, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_xml((void*)&c_XMLReader::i_xml, (void*)&c_XMLReader::ifa_xml, 3, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_expand((void*)&c_XMLReader::i_expand, (void*)&c_XMLReader::ifa_expand, 0, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_movetoattributeno((void*)&c_XMLReader::i_movetoattributeno, (void*)&c_XMLReader::ifa_movetoattributeno, 1, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_next((void*)&c_XMLReader::i_next, (void*)&c_XMLReader::ifa_next, 1, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_readinnerxml((void*)&c_XMLReader::i_readinnerxml, (void*)&c_XMLReader::ifa_readinnerxml, 0, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_readouterxml((void*)&c_XMLReader::i_readouterxml, (void*)&c_XMLReader::ifa_readouterxml, 0, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_setschema((void*)&c_XMLReader::i_setschema, (void*)&c_XMLReader::ifa_setschema, 1, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_setrelaxngschema((void*)&c_XMLReader::i_setrelaxngschema, (void*)&c_XMLReader::ifa_setrelaxngschema, 1, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_isvalid((void*)&c_XMLReader::i_isvalid, (void*)&c_XMLReader::ifa_isvalid, 0, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_readstring((void*)&c_XMLReader::i_readstring, (void*)&c_XMLReader::ifa_readstring, 0, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_movetonextattribute((void*)&c_XMLReader::i_movetonextattribute, (void*)&c_XMLReader::ifa_movetonextattribute, 0, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_movetofirstattribute((void*)&c_XMLReader::i_movetofirstattribute, (void*)&c_XMLReader::ifa_movetofirstattribute, 0, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_lookupnamespace((void*)&c_XMLReader::i_lookupnamespace, (void*)&c_XMLReader::ifa_lookupnamespace, 1, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_movetoattribute((void*)&c_XMLReader::i_movetoattribute, (void*)&c_XMLReader::ifa_movetoattribute, 1, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_getparserproperty((void*)&c_XMLReader::i_getparserproperty, (void*)&c_XMLReader::ifa_getparserproperty, 1, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_open((void*)&c_XMLReader::i_open, (void*)&c_XMLReader::ifa_open, 3, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_getattributeno((void*)&c_XMLReader::i_getattributeno, (void*)&c_XMLReader::ifa_getattributeno, 1, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_movetoelement((void*)&c_XMLReader::i_movetoelement, (void*)&c_XMLReader::ifa_movetoelement, 0, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_setparserproperty((void*)&c_XMLReader::i_setparserproperty, (void*)&c_XMLReader::ifa_setparserproperty, 2, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_movetoattributens((void*)&c_XMLReader::i_movetoattributens, (void*)&c_XMLReader::ifa_movetoattributens, 2, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci_getattribute((void*)&c_XMLReader::i_getattribute, (void*)&c_XMLReader::ifa_getattribute, 1, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci___construct((void*)&c_XMLReader::i___construct, (void*)&c_XMLReader::ifa___construct, 0, 4, 0x0000000000000000LL);
-CallInfo c_XMLReader::ci___destruct((void*)&c_XMLReader::i___destruct, (void*)&c_XMLReader::ifa___destruct, 0, 4, 0x0000000000000000LL);
-Variant c_XMLReader::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_DOMCharacterData::ci___get((void*)&c_DOMCharacterData::i___get, (void*)&c_DOMCharacterData::ifa___get, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMCharacterData::ci___construct((void*)&c_DOMCharacterData::i___construct, (void*)&c_DOMCharacterData::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMCharacterData::ci_substringdata((void*)&c_DOMCharacterData::i_substringdata, (void*)&c_DOMCharacterData::ifa_substringdata, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMCharacterData::ci_insertdata((void*)&c_DOMCharacterData::i_insertdata, (void*)&c_DOMCharacterData::ifa_insertdata, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMCharacterData::ci___isset((void*)&c_DOMCharacterData::i___isset, (void*)&c_DOMCharacterData::ifa___isset, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMCharacterData::ci_deletedata((void*)&c_DOMCharacterData::i_deletedata, (void*)&c_DOMCharacterData::ifa_deletedata, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMCharacterData::ci___destruct((void*)&c_DOMCharacterData::i___destruct, (void*)&c_DOMCharacterData::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMCharacterData::ci___set((void*)&c_DOMCharacterData::i___set, (void*)&c_DOMCharacterData::ifa___set, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMCharacterData::ci_appenddata((void*)&c_DOMCharacterData::i_appenddata, (void*)&c_DOMCharacterData::ifa_appenddata, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMCharacterData::ci_replacedata((void*)&c_DOMCharacterData::i_replacedata, (void*)&c_DOMCharacterData::ifa_replacedata, 3, 4, 0x0000000000000000LL);
+Variant c_DOMCharacterData::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_XMLReader::i_open(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_open);
+Variant c_DOMCharacterData::i_appenddata(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_appenddata);
 }
-Variant c_XMLReader::i_xml(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_xml);
+Variant c_DOMCharacterData::i_deletedata(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_deletedata);
 }
-Variant c_XMLReader::i_close(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_close);
+Variant c_DOMCharacterData::i_insertdata(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_insertdata);
 }
-Variant c_XMLReader::i_read(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_read);
+Variant c_DOMCharacterData::i_replacedata(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_replacedata);
 }
-Variant c_XMLReader::i_next(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_next);
+Variant c_DOMCharacterData::i_substringdata(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_substringdata);
 }
-Variant c_XMLReader::i_readstring(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_readstring);
-}
-Variant c_XMLReader::i_readinnerxml(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_readinnerxml);
-}
-Variant c_XMLReader::i_readouterxml(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_readouterxml);
-}
-Variant c_XMLReader::i_movetonextattribute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_movetonextattribute);
-}
-Variant c_XMLReader::i_getattribute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getattribute);
-}
-Variant c_XMLReader::i_getattributeno(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getattributeno);
-}
-Variant c_XMLReader::i_getattributens(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getattributens);
-}
-Variant c_XMLReader::i_movetoattribute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_movetoattribute);
-}
-Variant c_XMLReader::i_movetoattributeno(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_movetoattributeno);
-}
-Variant c_XMLReader::i_movetoattributens(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_movetoattributens);
-}
-Variant c_XMLReader::i_movetoelement(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_movetoelement);
-}
-Variant c_XMLReader::i_movetofirstattribute(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_movetofirstattribute);
-}
-Variant c_XMLReader::i_isvalid(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_isvalid);
-}
-Variant c_XMLReader::i_expand(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_expand);
-}
-Variant c_XMLReader::i___get(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMCharacterData::i___get(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___get);
 }
-Variant c_XMLReader::i_getparserproperty(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getparserproperty);
+Variant c_DOMCharacterData::i___set(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___set);
 }
-Variant c_XMLReader::i_lookupnamespace(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_lookupnamespace);
+Variant c_DOMCharacterData::i___isset(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___isset);
 }
-Variant c_XMLReader::i_setschema(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setschema);
-}
-Variant c_XMLReader::i_setparserproperty(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setparserproperty);
-}
-Variant c_XMLReader::i_setrelaxngschema(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setrelaxngschema);
-}
-Variant c_XMLReader::i_setrelaxngschemasource(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setrelaxngschemasource);
-}
-Variant c_XMLReader::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_DOMCharacterData::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_XMLReader::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMCharacterData::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_XMLReader);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMCharacterData);
   }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
   return (self->t___construct(), null);
 }
-Variant c_XMLReader::ifa_open(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMCharacterData::ifa_appenddata(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_open, coo_XMLReader);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_appenddata, coo_DOMCharacterData);
   }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("open", count, 1, 3, 1);
+  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("appenddata", count, 1, 1, 1);
   CVarRef arg0(a0);
-  if (count <= 1) return (self->t_open(arg0));
+  return (self->t_appenddata(arg0));
+}
+Variant c_DOMCharacterData::ifa_deletedata(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_deletedata, coo_DOMCharacterData);
+  }
+  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("deletedata", count, 2, 2, 1);
+  CVarRef arg0(a0);
   CVarRef arg1(a1);
-  if (count <= 2) return (self->t_open(arg0, arg1));
+  return (self->t_deletedata(arg0, arg1));
+}
+Variant c_DOMCharacterData::ifa_insertdata(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_insertdata, coo_DOMCharacterData);
+  }
+  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("insertdata", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_insertdata(arg0, arg1));
+}
+Variant c_DOMCharacterData::ifa_replacedata(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_replacedata, coo_DOMCharacterData);
+  }
+  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
+  if (UNLIKELY(count != 3)) return throw_wrong_arguments("replacedata", count, 3, 3, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
   CVarRef arg2(a2);
-  return (self->t_open(arg0, arg1, arg2));
+  return (self->t_replacedata(arg0, arg1, arg2));
 }
-Variant c_XMLReader::ifa_xml(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMCharacterData::ifa_substringdata(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_xml, coo_XMLReader);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_substringdata, coo_DOMCharacterData);
   }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("xml", count, 1, 3, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_xml(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_xml(arg0, arg1));
-  CVarRef arg2(a2);
-  return (self->t_xml(arg0, arg1, arg2));
-}
-Variant c_XMLReader::ifa_close(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_close, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("close", 0, 1);
-  return (self->t_close());
-}
-Variant c_XMLReader::ifa_read(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_read, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("read", 0, 1);
-  return (self->t_read());
-}
-Variant c_XMLReader::ifa_next(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_next, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("next", 1, 1);
-  if (count <= 0) return (self->t_next());
-  CVarRef arg0(a0);
-  return (self->t_next(arg0));
-}
-Variant c_XMLReader::ifa_readstring(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_readstring, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("readstring", 0, 1);
-  return (self->t_readstring());
-}
-Variant c_XMLReader::ifa_readinnerxml(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_readinnerxml, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("readinnerxml", 0, 1);
-  return (self->t_readinnerxml());
-}
-Variant c_XMLReader::ifa_readouterxml(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_readouterxml, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("readouterxml", 0, 1);
-  return (self->t_readouterxml());
-}
-Variant c_XMLReader::ifa_movetonextattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_movetonextattribute, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("movetonextattribute", 0, 1);
-  return (self->t_movetonextattribute());
-}
-Variant c_XMLReader::ifa_getattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattribute, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getattribute", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_getattribute(arg0));
-}
-Variant c_XMLReader::ifa_getattributeno(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattributeno, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getattributeno", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_getattributeno(arg0));
-}
-Variant c_XMLReader::ifa_getattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattributens, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("getattributens", count, 2, 2, 1);
+  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("substringdata", count, 2, 2, 1);
   CVarRef arg0(a0);
   CVarRef arg1(a1);
-  return (self->t_getattributens(arg0, arg1));
+  return (self->t_substringdata(arg0, arg1));
 }
-Variant c_XMLReader::ifa_movetoattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMCharacterData::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_movetoattribute, coo_XMLReader);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMCharacterData);
   }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("movetoattribute", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_movetoattribute(arg0));
-}
-Variant c_XMLReader::ifa_movetoattributeno(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_movetoattributeno, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("movetoattributeno", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_movetoattributeno(arg0));
-}
-Variant c_XMLReader::ifa_movetoattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_movetoattributens, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("movetoattributens", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_movetoattributens(arg0, arg1));
-}
-Variant c_XMLReader::ifa_movetoelement(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_movetoelement, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("movetoelement", 0, 1);
-  return (self->t_movetoelement());
-}
-Variant c_XMLReader::ifa_movetofirstattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_movetofirstattribute, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("movetofirstattribute", 0, 1);
-  return (self->t_movetofirstattribute());
-}
-Variant c_XMLReader::ifa_isvalid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_isvalid, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("isvalid", 0, 1);
-  return (self->t_isvalid());
-}
-Variant c_XMLReader::ifa_expand(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_expand, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("expand", 0, 1);
-  return (self->t_expand());
-}
-Variant c_XMLReader::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
   CVarRef arg0(a0);
   return (self->t___get(arg0));
 }
-Variant c_XMLReader::ifa_getparserproperty(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMCharacterData::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getparserproperty, coo_XMLReader);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMCharacterData);
   }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getparserproperty", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_getparserproperty(arg0));
-}
-Variant c_XMLReader::ifa_lookupnamespace(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lookupnamespace, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("lookupnamespace", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_lookupnamespace(arg0));
-}
-Variant c_XMLReader::ifa_setschema(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setschema, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setschema", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_setschema(arg0));
-}
-Variant c_XMLReader::ifa_setparserproperty(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setparserproperty, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("setparserproperty", count, 2, 2, 1);
+  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
   CVarRef arg0(a0);
   CVarRef arg1(a1);
-  return (self->t_setparserproperty(arg0, arg1));
+  return (self->t___set(arg0, arg1));
 }
-Variant c_XMLReader::ifa_setrelaxngschema(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMCharacterData::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setrelaxngschema, coo_XMLReader);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMCharacterData);
   }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setrelaxngschema", count, 1, 1, 1);
+  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
   CVarRef arg0(a0);
-  return (self->t_setrelaxngschema(arg0));
+  return (self->t___isset(arg0));
 }
-Variant c_XMLReader::ifa_setrelaxngschemasource(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_DOMCharacterData::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setrelaxngschemasource, coo_XMLReader);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMCharacterData);
   }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setrelaxngschemasource", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_setrelaxngschemasource(arg0));
-}
-Variant c_XMLReader::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_XMLReader);
-  }
-  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_XMLReader::s_call_info_table[] = {
-  { 0x78AE97BFBEBF5341LL, 1, 5, "close", &c_XMLReader::ci_close },
-  { 0x1F479267E49EF301LL, 0, 4, "read", &c_XMLReader::ci_read },
-  { 0x21F68C010C124BC4LL, 1, 4, "open", &c_XMLReader::ci_open },
-  { 0x0C1F965FD1079AC6LL, 1, 20, "moveToFirstAttribute", &c_XMLReader::ci_movetofirstattribute },
-  { 0x0D2003842AF83A07LL, 1, 17, "getParserProperty", &c_XMLReader::ci_getparserproperty },
-  { 0x39B7BB05F05A37CDLL, 1, 6, "expand", &c_XMLReader::ci_expand },
-  { 0x797E2A56E560520ELL, 1, 12, "readInnerXML", &c_XMLReader::ci_readinnerxml },
-  { 0x26B6E00C74FA338FLL, 1, 5, "__get", &c_XMLReader::ci___get },
-  { 0x7BA9DD90E7AE3A13LL, 1, 17, "setParserProperty", &c_XMLReader::ci_setparserproperty },
-  { 0x1986122197FD4B14LL, 1, 3, "XML", &c_XMLReader::ci_xml },
-  { 0x33982845A5250499LL, 1, 14, "getAttributeNo", &c_XMLReader::ci_getattributeno },
-  { 0x34E103E06D3F0899LL, 0, 14, "getAttributeNs", &c_XMLReader::ci_getattributens },
-  { 0x06697B31313080DBLL, 1, 12, "readOuterXML", &c_XMLReader::ci_readouterxml },
-  { 0x182BF31CCB09E11DLL, 1, 15, "lookupNamespace", &c_XMLReader::ci_lookupnamespace },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_XMLReader::ci___construct },
-  { 0x72A8D1997F7E0F67LL, 1, 19, "moveToNextAttribute", &c_XMLReader::ci_movetonextattribute },
-  { 0x49F89C466612FC28LL, 1, 12, "getAttribute", &c_XMLReader::ci_getattribute },
-  { 0x71E1A6F1ACA9872BLL, 1, 7, "isValid", &c_XMLReader::ci_isvalid },
-  { 0x76ED78B4A392C36BLL, 0, 16, "setRelaxNGSchema", &c_XMLReader::ci_setrelaxngschema },
-  { 0x0CFE207982641D6FLL, 1, 13, "moveToElement", &c_XMLReader::ci_movetoelement },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_XMLReader::ci___destruct },
-  { 0x062D7D5B55654634LL, 1, 10, "readString", &c_XMLReader::ci_readstring },
-  { 0x4E53414CB3A073B4LL, 0, 17, "moveToAttributeNo", &c_XMLReader::ci_movetoattributeno },
-  { 0x7DA2728AC230DFF6LL, 1, 15, "moveToAttribute", &c_XMLReader::ci_movetoattribute },
-  { 0x3C6D50F3BB8102B8LL, 1, 4, "next", &c_XMLReader::ci_next },
-  { 0x21A405E8B21F8838LL, 0, 9, "setSchema", &c_XMLReader::ci_setschema },
-  { 0x0661BC19E05663FDLL, 1, 17, "moveToAttributeNs", &c_XMLReader::ci_movetoattributens },
-  { 0x4789E6BFAAC164FFLL, 1, 22, "setRelaxNGSchemaSource", &c_XMLReader::ci_setrelaxngschemasource },
+const MethodCallInfoTable c_DOMCharacterData::s_call_info_table[] = {
+  { 0x3DAC04A51FD2D92DLL, 1, 10, "appendData", &c_DOMCharacterData::ci_appenddata },
+  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMCharacterData::ci___isset },
+  { 0x26B6E00C74FA338FLL, 1, 5, "__get", &c_DOMCharacterData::ci___get },
+  { 0x2D8D2253C2149972LL, 1, 13, "substringData", &c_DOMCharacterData::ci_substringdata },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMCharacterData::ci___destruct },
+  { 0x470F2F0EA1F3D4B4LL, 1, 11, "replaceData", &c_DOMCharacterData::ci_replacedata },
+  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMCharacterData::ci___set },
+  { 0x7543EC746714D118LL, 1, 10, "deleteData", &c_DOMCharacterData::ci_deletedata },
+  { 0x0E19CE7886BCEF3DLL, 1, 10, "insertData", &c_DOMCharacterData::ci_insertdata },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMCharacterData::ci___construct },
   { 0, 1, 0, 0 }
 };
-const int c_XMLReader::s_call_info_index[] = {
-  63,
-  -1,0,-1,-1,2,-1,3,4,
-  -1,-1,-1,-1,-1,5,6,7,
-  -1,-1,-1,8,9,-1,-1,-1,
-  -1,10,-1,12,-1,13,-1,14,
-  -1,-1,-1,-1,-1,-1,-1,15,
-  16,-1,-1,17,-1,-1,-1,19,
-  -1,-1,-1,20,21,-1,23,-1,
-  24,-1,-1,-1,-1,26,-1,27,
+const int c_DOMCharacterData::s_call_info_index[] = {
+  31,
+  -1,-1,-1,-1,-1,-1,-1,-1,
+  -1,-1,-1,-1,-1,0,1,2,
+  -1,-1,3,4,5,6,-1,-1,
+  7,-1,-1,-1,-1,8,-1,9,
 
 };
-c_XMLReader *c_XMLReader::create() {
+c_DOMCharacterData *c_DOMCharacterData::create() {
   CountableHelper h(this);
   init();
   t___construct();
   return this;
 }
-const ObjectStaticCallbacks cw_XMLReader = {
-  (ObjectData*(*)(ObjectData*))coo_XMLReader,
-  c_XMLReader::s_call_info_table,c_XMLReader::s_call_info_index,
-  c_XMLReader::s_instanceof_table,c_XMLReader::s_instanceof_index,
-  &c_XMLReader::s_class_name,
-  &c_XMLReader::os_prop_table,&c_XMLReader::ci___construct,0,0,0x0
+const ObjectStaticCallbacks cw_DOMCharacterData = {
+  (ObjectData*(*)(ObjectData*))coo_DOMCharacterData,
+  c_DOMCharacterData::s_call_info_table,c_DOMCharacterData::s_call_info_index,
+  c_DOMCharacterData::s_instanceof_table,c_DOMCharacterData::s_instanceof_index,
+  &c_DOMCharacterData::s_class_name,
+  0,&c_DOMCharacterData::ci___construct,0,&cw_DOMNode,0x0
+};
+ObjectData *coo_DOMXPath() {
+  return NEWOBJ(c_DOMXPath)();
+}
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(DOMXPath)
+const InstanceOfInfo c_DOMXPath::s_instanceof_table[] = {
+  {0x7D46DB2E09C6DBA8LL,1,"DOMXPath",&cw_DOMXPath},
+};
+const int c_DOMXPath::s_instanceof_index[] = {
+  1,
+  0,-1,
+};
+CallInfo c_DOMXPath::ci_registernamespace((void*)&c_DOMXPath::i_registernamespace, (void*)&c_DOMXPath::ifa_registernamespace, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMXPath::ci___get((void*)&c_DOMXPath::i___get, (void*)&c_DOMXPath::ifa___get, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMXPath::ci___construct((void*)&c_DOMXPath::i___construct, (void*)&c_DOMXPath::ifa___construct, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMXPath::ci___isset((void*)&c_DOMXPath::i___isset, (void*)&c_DOMXPath::ifa___isset, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMXPath::ci_evaluate((void*)&c_DOMXPath::i_evaluate, (void*)&c_DOMXPath::ifa_evaluate, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMXPath::ci_registerphpfunctions((void*)&c_DOMXPath::i_registerphpfunctions, (void*)&c_DOMXPath::ifa_registerphpfunctions, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMXPath::ci___destruct((void*)&c_DOMXPath::i___destruct, (void*)&c_DOMXPath::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMXPath::ci___set((void*)&c_DOMXPath::i___set, (void*)&c_DOMXPath::ifa___set, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMXPath::ci_query((void*)&c_DOMXPath::i_query, (void*)&c_DOMXPath::ifa_query, 2, 4, 0x0000000000000000LL);
+Variant c_DOMXPath::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_DOMXPath::i_evaluate(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_evaluate);
+}
+Variant c_DOMXPath::i_query(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_query);
+}
+Variant c_DOMXPath::i_registernamespace(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_registernamespace);
+}
+Variant c_DOMXPath::i_registerphpfunctions(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_registerphpfunctions);
+}
+Variant c_DOMXPath::i___get(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___get);
+}
+Variant c_DOMXPath::i___set(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___set);
+}
+Variant c_DOMXPath::i___isset(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___isset);
+}
+Variant c_DOMXPath::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_DOMXPath::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMXPath);
+  }
+  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__construct", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___construct(arg0), null);
+}
+Variant c_DOMXPath::ifa_evaluate(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_evaluate, coo_DOMXPath);
+  }
+  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("evaluate", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_evaluate(arg0));
+  CVarRef arg1(a1);
+  return (self->t_evaluate(arg0, arg1));
+}
+Variant c_DOMXPath::ifa_query(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_query, coo_DOMXPath);
+  }
+  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("query", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_query(arg0));
+  CVarRef arg1(a1);
+  return (self->t_query(arg0, arg1));
+}
+Variant c_DOMXPath::ifa_registernamespace(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_registernamespace, coo_DOMXPath);
+  }
+  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("registernamespace", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_registernamespace(arg0, arg1));
+}
+Variant c_DOMXPath::ifa_registerphpfunctions(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_registerphpfunctions, coo_DOMXPath);
+  }
+  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("registerphpfunctions", 1, 1);
+  if (count <= 0) return (self->t_registerphpfunctions());
+  CVarRef arg0(a0);
+  return (self->t_registerphpfunctions(arg0));
+}
+Variant c_DOMXPath::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMXPath);
+  }
+  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___get(arg0));
+}
+Variant c_DOMXPath::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMXPath);
+  }
+  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t___set(arg0, arg1));
+}
+Variant c_DOMXPath::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMXPath);
+  }
+  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___isset(arg0));
+}
+Variant c_DOMXPath::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMXPath);
+  }
+  c_DOMXPath *self ATTRIBUTE_UNUSED (static_cast<c_DOMXPath*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_DOMXPath::s_call_info_table[] = {
+  { 0x144FADF6B374AB82LL, 1, 20, "registerPHPFunctions", &c_DOMXPath::ci_registerphpfunctions },
+  { 0x47ACFB6D8681B0E8LL, 1, 17, "registerNamespace", &c_DOMXPath::ci_registernamespace },
+  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMXPath::ci___isset },
+  { 0x2443593B6F3C912FLL, 1, 8, "evaluate", &c_DOMXPath::ci_evaluate },
+  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMXPath::ci___get },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMXPath::ci___destruct },
+  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMXPath::ci___set },
+  { 0x356758D4414DA377LL, 1, 5, "query", &c_DOMXPath::ci_query },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMXPath::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_DOMXPath::s_call_info_index[] = {
+  31,
+  -1,-1,0,-1,-1,-1,-1,-1,
+  1,-1,-1,-1,-1,-1,2,3,
+  -1,-1,-1,5,-1,6,-1,7,
+  -1,-1,-1,-1,-1,-1,-1,8,
+
+};
+c_DOMXPath *c_DOMXPath::create(Variant a0) {
+  CountableHelper h(this);
+  init();
+  t___construct(a0);
+  return this;
+}
+const ObjectStaticCallbacks cw_DOMXPath = {
+  (ObjectData*(*)(ObjectData*))coo_DOMXPath,
+  c_DOMXPath::s_call_info_table,c_DOMXPath::s_call_info_index,
+  c_DOMXPath::s_instanceof_table,c_DOMXPath::s_instanceof_index,
+  &c_DOMXPath::s_class_name,
+  0,&c_DOMXPath::ci___construct,0,0,0x0
+};
+ObjectData *coo_DebuggerProxyCmdUser() {
+  return NEWOBJ(c_DebuggerProxyCmdUser)();
+}
+IMPLEMENT_CLASS(DebuggerProxyCmdUser)
+const InstanceOfInfo c_DebuggerProxyCmdUser::s_instanceof_table[] = {
+  {0x7B5115B086867BADLL,1,"DebuggerProxyCmdUser",&cw_DebuggerProxyCmdUser},
+};
+const int c_DebuggerProxyCmdUser::s_instanceof_index[] = {
+  1,
+  -1,0,
+};
+CallInfo c_DebuggerProxyCmdUser::ci_islocal((void*)&c_DebuggerProxyCmdUser::i_islocal, (void*)&c_DebuggerProxyCmdUser::ifa_islocal, 0, 4, 0x0000000000000000LL);
+CallInfo c_DebuggerProxyCmdUser::ci___destruct((void*)&c_DebuggerProxyCmdUser::i___destruct, (void*)&c_DebuggerProxyCmdUser::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DebuggerProxyCmdUser::ci_send((void*)&c_DebuggerProxyCmdUser::i_send, (void*)&c_DebuggerProxyCmdUser::ifa_send, 1, 4, 0x0000000000000000LL);
+CallInfo c_DebuggerProxyCmdUser::ci___construct((void*)&c_DebuggerProxyCmdUser::i___construct, (void*)&c_DebuggerProxyCmdUser::ifa___construct, 0, 4, 0x0000000000000000LL);
+Variant c_DebuggerProxyCmdUser::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_DebuggerProxyCmdUser::i_islocal(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_islocal);
+}
+Variant c_DebuggerProxyCmdUser::i_send(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_send);
+}
+Variant c_DebuggerProxyCmdUser::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_DebuggerProxyCmdUser::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DebuggerProxyCmdUser);
+  }
+  c_DebuggerProxyCmdUser *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerProxyCmdUser*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_DebuggerProxyCmdUser::ifa_islocal(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_islocal, coo_DebuggerProxyCmdUser);
+  }
+  c_DebuggerProxyCmdUser *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerProxyCmdUser*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("islocal", 0, 1);
+  return (self->t_islocal());
+}
+Variant c_DebuggerProxyCmdUser::ifa_send(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_send, coo_DebuggerProxyCmdUser);
+  }
+  c_DebuggerProxyCmdUser *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerProxyCmdUser*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("send", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_send(arg0));
+}
+Variant c_DebuggerProxyCmdUser::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DebuggerProxyCmdUser);
+  }
+  c_DebuggerProxyCmdUser *self ATTRIBUTE_UNUSED (static_cast<c_DebuggerProxyCmdUser*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_DebuggerProxyCmdUser::s_call_info_table[] = {
+  { 0x3E0170A7802E3888LL, 1, 4, "send", &c_DebuggerProxyCmdUser::ci_send },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DebuggerProxyCmdUser::ci___destruct },
+  { 0x7B58587A529D270CLL, 1, 7, "isLocal", &c_DebuggerProxyCmdUser::ci_islocal },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DebuggerProxyCmdUser::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_DebuggerProxyCmdUser::s_call_info_index[] = {
+  7,
+  0,-1,-1,1,2,-1,-1,3,
+
+};
+c_DebuggerProxyCmdUser *c_DebuggerProxyCmdUser::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_DebuggerProxyCmdUser = {
+  (ObjectData*(*)(ObjectData*))coo_DebuggerProxyCmdUser,
+  c_DebuggerProxyCmdUser::s_call_info_table,c_DebuggerProxyCmdUser::s_call_info_index,
+  c_DebuggerProxyCmdUser::s_instanceof_table,c_DebuggerProxyCmdUser::s_instanceof_index,
+  &c_DebuggerProxyCmdUser::s_class_name,
+  0,&c_DebuggerProxyCmdUser::ci___construct,0,0,0x0
+};
+ObjectData *coo_SoapHeader() {
+  return NEWOBJ(c_SoapHeader)();
+}
+IMPLEMENT_CLASS(SoapHeader)
+const InstanceOfInfo c_SoapHeader::s_instanceof_table[] = {
+  {0x308D1D59986A3D4ELL,1,"SoapHeader",&cw_SoapHeader},
+};
+const int c_SoapHeader::s_instanceof_index[] = {
+  1,
+  0,-1,
+};
+CallInfo c_SoapHeader::ci___destruct((void*)&c_SoapHeader::i___destruct, (void*)&c_SoapHeader::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_SoapHeader::ci___construct((void*)&c_SoapHeader::i___construct, (void*)&c_SoapHeader::ifa___construct, 5, 4, 0x0000000000000000LL);
+Variant c_SoapHeader::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_SoapHeader::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_SoapHeader::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SoapHeader);
+  }
+  c_SoapHeader *self ATTRIBUTE_UNUSED (static_cast<c_SoapHeader*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 5)) return throw_wrong_arguments("__construct", count, 2, 5, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t___construct(arg0, arg1), null);
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t___construct(arg0, arg1, arg2), null);
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t___construct(arg0, arg1, arg2, arg3), null);
+  CVarRef arg4(a4);
+  return (self->t___construct(arg0, arg1, arg2, arg3, arg4), null);
+}
+Variant c_SoapHeader::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SoapHeader);
+  }
+  c_SoapHeader *self ATTRIBUTE_UNUSED (static_cast<c_SoapHeader*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_SoapHeader::s_call_info_table[] = {
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SoapHeader::ci___construct },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_SoapHeader::ci___destruct },
+  { 0, 1, 0, 0 }
+};
+const int c_SoapHeader::s_call_info_index[] = {
+  3,
+  -1,-1,-1,0,
+};
+c_SoapHeader *c_SoapHeader::create(String a0, String a1, Variant a2, bool a3, Variant a4) {
+  CountableHelper h(this);
+  init();
+  t___construct(a0, a1, a2, a3, a4);
+  return this;
+}
+const ObjectStaticCallbacks cw_SoapHeader = {
+  (ObjectData*(*)(ObjectData*))coo_SoapHeader,
+  c_SoapHeader::s_call_info_table,c_SoapHeader::s_call_info_index,
+  c_SoapHeader::s_instanceof_table,c_SoapHeader::s_instanceof_index,
+  &c_SoapHeader::s_class_name,
+  0,&c_SoapHeader::ci___construct,0,0,0x0
+};
+ObjectData *coo_GmagickPixel() {
+  return NEWOBJ(c_GmagickPixel)();
+}
+IMPLEMENT_CLASS(GmagickPixel)
+const InstanceOfInfo c_GmagickPixel::s_instanceof_table[] = {
+  {0x4ED1613E65CBA4C3LL,1,"GmagickPixel",&cw_GmagickPixel},
+};
+const int c_GmagickPixel::s_instanceof_index[] = {
+  1,
+  -1,0,
+};
+CallInfo c_GmagickPixel::ci___destruct((void*)&c_GmagickPixel::i___destruct, (void*)&c_GmagickPixel::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_GmagickPixel::ci___construct((void*)&c_GmagickPixel::i___construct, (void*)&c_GmagickPixel::ifa___construct, 1, 4, 0x0000000000000000LL);
+Variant c_GmagickPixel::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_GmagickPixel::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_GmagickPixel::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_GmagickPixel);
+  }
+  c_GmagickPixel *self ATTRIBUTE_UNUSED (static_cast<c_GmagickPixel*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("__construct", 1, 1);
+  if (count <= 0) return (self->t___construct(), null);
+  CVarRef arg0(a0);
+  return (self->t___construct(arg0), null);
+}
+Variant c_GmagickPixel::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_GmagickPixel);
+  }
+  c_GmagickPixel *self ATTRIBUTE_UNUSED (static_cast<c_GmagickPixel*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_GmagickPixel::s_call_info_table[] = {
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_GmagickPixel::ci___construct },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_GmagickPixel::ci___destruct },
+  { 0, 1, 0, 0 }
+};
+const int c_GmagickPixel::s_call_info_index[] = {
+  3,
+  -1,-1,-1,0,
+};
+c_GmagickPixel *c_GmagickPixel::create(String a0) {
+  CountableHelper h(this);
+  init();
+  t___construct(a0);
+  return this;
+}
+const ObjectStaticCallbacks cw_GmagickPixel = {
+  (ObjectData*(*)(ObjectData*))coo_GmagickPixel,
+  c_GmagickPixel::s_call_info_table,c_GmagickPixel::s_call_info_index,
+  c_GmagickPixel::s_instanceof_table,c_GmagickPixel::s_instanceof_index,
+  &c_GmagickPixel::s_class_name,
+  0,&c_GmagickPixel::ci___construct,0,0,0x0
+};
+ObjectData *coo_MemcachePool() {
+  return NEWOBJ(c_MemcachePool)();
+}
+IMPLEMENT_CLASS(MemcachePool)
+const InstanceOfInfo c_MemcachePool::s_instanceof_table[] = {
+  {0x328095EA5D7D479BLL,1,"MemcachePool",&cw_MemcachePool},
+};
+const int c_MemcachePool::s_instanceof_index[] = {
+  1,
+  -1,0,
+};
+CallInfo c_MemcachePool::ci_getstoragememcache((void*)&c_MemcachePool::i_getstoragememcache, (void*)&c_MemcachePool::ifa_getstoragememcache, 4, 12, 0x0000000000000004LL);
+CallInfo c_MemcachePool::ci_increment((void*)&c_MemcachePool::i_increment, (void*)&c_MemcachePool::ifa_increment, 2, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_close((void*)&c_MemcachePool::i_close, (void*)&c_MemcachePool::ifa_close, 0, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_getstats((void*)&c_MemcachePool::i_getstats, (void*)&c_MemcachePool::ifa_getstats, 3, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_set((void*)&c_MemcachePool::i_set, (void*)&c_MemcachePool::ifa_set, 4, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_pconnect((void*)&c_MemcachePool::i_pconnect, (void*)&c_MemcachePool::ifa_pconnect, 4, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_getversion((void*)&c_MemcachePool::i_getversion, (void*)&c_MemcachePool::ifa_getversion, 0, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_connect((void*)&c_MemcachePool::i_connect, (void*)&c_MemcachePool::ifa_connect, 4, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_setserverparams((void*)&c_MemcachePool::i_setserverparams, (void*)&c_MemcachePool::ifa_setserverparams, 5, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_replace((void*)&c_MemcachePool::i_replace, (void*)&c_MemcachePool::ifa_replace, 4, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_decrement((void*)&c_MemcachePool::i_decrement, (void*)&c_MemcachePool::ifa_decrement, 2, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_delete((void*)&c_MemcachePool::i_delete, (void*)&c_MemcachePool::ifa_delete, 2, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_get((void*)&c_MemcachePool::i_get, (void*)&c_MemcachePool::ifa_get, 3, 4, 0x0000000000000006LL);
+CallInfo c_MemcachePool::ci_setoptimeout((void*)&c_MemcachePool::i_setoptimeout, (void*)&c_MemcachePool::ifa_setoptimeout, 1, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_addserver((void*)&c_MemcachePool::i_addserver, (void*)&c_MemcachePool::ifa_addserver, 8, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_setcompressthreshold((void*)&c_MemcachePool::i_setcompressthreshold, (void*)&c_MemcachePool::ifa_setcompressthreshold, 2, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_setfailurecallback((void*)&c_MemcachePool::i_setfailurecallback, (void*)&c_MemcachePool::ifa_setfailurecallback, 1, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_getextendedstats((void*)&c_MemcachePool::i_getextendedstats, (void*)&c_MemcachePool::ifa_getextendedstats, 3, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_add((void*)&c_MemcachePool::i_add, (void*)&c_MemcachePool::ifa_add, 4, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_cas((void*)&c_MemcachePool::i_cas, (void*)&c_MemcachePool::ifa_cas, 5, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_flush((void*)&c_MemcachePool::i_flush, (void*)&c_MemcachePool::ifa_flush, 1, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_getserverstatus((void*)&c_MemcachePool::i_getserverstatus, (void*)&c_MemcachePool::ifa_getserverstatus, 2, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci___construct((void*)&c_MemcachePool::i___construct, (void*)&c_MemcachePool::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci___destruct((void*)&c_MemcachePool::i___destruct, (void*)&c_MemcachePool::ifa___destruct, 0, 4, 0x0000000000000000LL);
+Variant c_MemcachePool::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_MemcachePool::i_getstoragememcache(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getstoragememcache);
+}
+Variant c_MemcachePool::i_connect(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_connect);
+}
+Variant c_MemcachePool::i_pconnect(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_pconnect);
+}
+Variant c_MemcachePool::i_add(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_add);
+}
+Variant c_MemcachePool::i_cas(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_cas);
+}
+Variant c_MemcachePool::i_set(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_set);
+}
+Variant c_MemcachePool::i_replace(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_replace);
+}
+Variant c_MemcachePool::i_get(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_get);
+}
+Variant c_MemcachePool::i_delete(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_delete);
+}
+Variant c_MemcachePool::i_increment(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_increment);
+}
+Variant c_MemcachePool::i_decrement(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_decrement);
+}
+Variant c_MemcachePool::i_getversion(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getversion);
+}
+Variant c_MemcachePool::i_flush(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_flush);
+}
+Variant c_MemcachePool::i_setoptimeout(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setoptimeout);
+}
+Variant c_MemcachePool::i_close(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_close);
+}
+Variant c_MemcachePool::i_getserverstatus(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getserverstatus);
+}
+Variant c_MemcachePool::i_setcompressthreshold(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setcompressthreshold);
+}
+Variant c_MemcachePool::i_getstats(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getstats);
+}
+Variant c_MemcachePool::i_getextendedstats(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getextendedstats);
+}
+Variant c_MemcachePool::i_setserverparams(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setserverparams);
+}
+Variant c_MemcachePool::i_setfailurecallback(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setfailurecallback);
+}
+Variant c_MemcachePool::i_addserver(MethodCallPackage &mcp, CArrRef params) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::i_dummy(mcp, params, i_addserver, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
+  if (UNLIKELY(count < 1 || count > 8)) return throw_wrong_arguments("addserver", count, 1, 8, 1);
+  {
+    ArrayData *ad(params.get());
+    ssize_t pos = ad ? ad->iter_begin() : ArrayData::invalid_index;
+    CVarRef arg0((ad->getValue(pos)));
+    if (count <= 1) return (self->t_addserver(arg0));
+    CVarRef arg1((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 2) return (self->t_addserver(arg0, arg1));
+    CVarRef arg2((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 3) return (self->t_addserver(arg0, arg1, arg2));
+    CVarRef arg3((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 4) return (self->t_addserver(arg0, arg1, arg2, arg3));
+    CVarRef arg4((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 5) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4));
+    CVarRef arg5((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 6) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5));
+    CVarRef arg6((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 7) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5, arg6));
+    CVarRef arg7((ad->getValue(pos = ad->iter_advance(pos))));
+    return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
+  }
+}
+Variant c_MemcachePool::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_MemcachePool::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_MemcachePool::ifa_getstoragememcache(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 3 || count > 4)) return throw_wrong_arguments("getstoragememcache", count, 3, 4, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  VRefParam arg2(vref(a2));
+  if (count <= 3) return (c_MemcachePool::t_getstoragememcache(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (c_MemcachePool::t_getstoragememcache(arg0, arg1, arg2, arg3));
+}
+Variant c_MemcachePool::ifa_connect(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_connect, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 4)) return throw_wrong_arguments("connect", count, 1, 4, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_connect(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_connect(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_connect(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (self->t_connect(arg0, arg1, arg2, arg3));
+}
+Variant c_MemcachePool::ifa_pconnect(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_pconnect, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 4)) return throw_wrong_arguments("pconnect", count, 1, 4, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_pconnect(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_pconnect(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_pconnect(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (self->t_pconnect(arg0, arg1, arg2, arg3));
+}
+Variant c_MemcachePool::ifa_add(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_add, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 4)) return throw_wrong_arguments("add", count, 2, 4, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_add(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_add(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (self->t_add(arg0, arg1, arg2, arg3));
+}
+Variant c_MemcachePool::ifa_cas(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_cas, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count != 5)) return throw_wrong_arguments("cas", count, 5, 5, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  CVarRef arg2(a2);
+  CVarRef arg3(a3);
+  CVarRef arg4(a4);
+  return (self->t_cas(arg0, arg1, arg2, arg3, arg4));
+}
+Variant c_MemcachePool::ifa_set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_set, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 4)) return throw_wrong_arguments("set", count, 2, 4, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_set(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_set(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (self->t_set(arg0, arg1, arg2, arg3));
+}
+Variant c_MemcachePool::ifa_replace(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_replace, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count < 2 || count > 4)) return throw_wrong_arguments("replace", count, 2, 4, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_replace(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_replace(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (self->t_replace(arg0, arg1, arg2, arg3));
+}
+Variant c_MemcachePool::ifa_get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_get, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("get", count, 1, 3, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_get(arg0));
+  VRefParam arg1(vref(a1));
+  if (count <= 2) return (self->t_get(arg0, arg1));
+  VRefParam arg2(vref(a2));
+  return (self->t_get(arg0, arg1, arg2));
+}
+Variant c_MemcachePool::ifa_delete(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_delete, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("delete", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_delete(arg0));
+  CVarRef arg1(a1);
+  return (self->t_delete(arg0, arg1));
+}
+Variant c_MemcachePool::ifa_increment(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_increment, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("increment", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_increment(arg0));
+  CVarRef arg1(a1);
+  return (self->t_increment(arg0, arg1));
+}
+Variant c_MemcachePool::ifa_decrement(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_decrement, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("decrement", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_decrement(arg0));
+  CVarRef arg1(a1);
+  return (self->t_decrement(arg0, arg1));
+}
+Variant c_MemcachePool::ifa_getversion(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getversion, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getversion", 0, 1);
+  return (self->t_getversion());
+}
+Variant c_MemcachePool::ifa_flush(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_flush, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("flush", 1, 1);
+  if (count <= 0) return (self->t_flush());
+  CVarRef arg0(a0);
+  return (self->t_flush(arg0));
+}
+Variant c_MemcachePool::ifa_setoptimeout(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setoptimeout, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setoptimeout", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_setoptimeout(arg0));
+}
+Variant c_MemcachePool::ifa_close(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_close, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("close", 0, 1);
+  return (self->t_close());
+}
+Variant c_MemcachePool::ifa_getserverstatus(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getserverstatus, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("getserverstatus", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_getserverstatus(arg0));
+  CVarRef arg1(a1);
+  return (self->t_getserverstatus(arg0, arg1));
+}
+Variant c_MemcachePool::ifa_setcompressthreshold(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setcompressthreshold, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("setcompressthreshold", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_setcompressthreshold(arg0));
+  CVarRef arg1(a1);
+  return (self->t_setcompressthreshold(arg0, arg1));
+}
+Variant c_MemcachePool::ifa_getstats(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getstats, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count > 3)) return throw_toomany_arguments("getstats", 3, 1);
+  if (count <= 0) return (self->t_getstats());
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_getstats(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_getstats(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_getstats(arg0, arg1, arg2));
+}
+Variant c_MemcachePool::ifa_getextendedstats(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getextendedstats, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count > 3)) return throw_toomany_arguments("getextendedstats", 3, 1);
+  if (count <= 0) return (self->t_getextendedstats());
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_getextendedstats(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_getextendedstats(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_getextendedstats(arg0, arg1, arg2));
+}
+Variant c_MemcachePool::ifa_setserverparams(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setserverparams, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 5)) return throw_wrong_arguments("setserverparams", count, 1, 5, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_setserverparams(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_setserverparams(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_setserverparams(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t_setserverparams(arg0, arg1, arg2, arg3));
+  CVarRef arg4(a4);
+  return (self->t_setserverparams(arg0, arg1, arg2, arg3, arg4));
+}
+Variant c_MemcachePool::ifa_setfailurecallback(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setfailurecallback, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("setfailurecallback", 1, 1);
+  if (count <= 0) return (self->t_setfailurecallback());
+  CVarRef arg0(a0);
+  return (self->t_setfailurecallback(arg0));
+}
+Variant c_MemcachePool::ifa_addserver(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addserver, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count < 1)) return throw_wrong_arguments("addserver", count, 1, 8, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_addserver(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_addserver(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_addserver(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t_addserver(arg0, arg1, arg2, arg3));
+  CVarRef arg4(a4);
+  if (count <= 5) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4));
+  CVarRef arg5(a5);
+  return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5));
+}
+Variant c_MemcachePool::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_MemcachePool::s_call_info_table[] = {
+  { 0x78AE97BFBEBF5341LL, 1, 5, "close", &c_MemcachePool::ci_close },
+  { 0x42FAC655280A6146LL, 1, 7, "replace", &c_MemcachePool::ci_replace },
+  { 0x39099707DF7945C7LL, 1, 9, "increment", &c_MemcachePool::ci_increment },
+  { 0x15D34462FC79458BLL, 1, 3, "add", &c_MemcachePool::ci_add },
+  { 0x3BF3710A1661DE0BLL, 0, 12, "setoptimeout", &c_MemcachePool::ci_setoptimeout },
+  { 0x710DE893BB376C4FLL, 1, 15, "getserverstatus", &c_MemcachePool::ci_getserverstatus },
+  { 0x030429D528A8EA92LL, 1, 20, "setcompressthreshold", &c_MemcachePool::ci_setcompressthreshold },
+  { 0x1C660E5BFA6F55D3LL, 1, 6, "delete", &c_MemcachePool::ci_delete },
+  { 0x7521E8833BE3D316LL, 1, 10, "getversion", &c_MemcachePool::ci_getversion },
+  { 0x1CCDC4317CE59BD9LL, 1, 8, "getstats", &c_MemcachePool::ci_getstats },
+  { 0x2A733FC12BA4C1DALL, 1, 9, "decrement", &c_MemcachePool::ci_decrement },
+  { 0x5A305DD54A93315ELL, 1, 18, "getstoragememcache", &c_MemcachePool::ci_getstoragememcache },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_MemcachePool::ci___construct },
+  { 0x573E46DE52BFF8A1LL, 1, 3, "cas", &c_MemcachePool::ci_cas },
+  { 0x399A6427C2185621LL, 0, 3, "set", &c_MemcachePool::ci_set },
+  { 0x4770E54B86BF7765LL, 1, 16, "getextendedstats", &c_MemcachePool::ci_getextendedstats },
+  { 0x56CD24186237AAE6LL, 1, 9, "addserver", &c_MemcachePool::ci_addserver },
+  { 0x25DCCC35D69AD828LL, 1, 3, "get", &c_MemcachePool::ci_get },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_MemcachePool::ci___destruct },
+  { 0x29D0817AA3023DB6LL, 1, 18, "setfailurecallback", &c_MemcachePool::ci_setfailurecallback },
+  { 0x742B441E13CD7279LL, 1, 8, "pconnect", &c_MemcachePool::ci_pconnect },
+  { 0x6A3D9F8EDB005E7ALL, 1, 5, "flush", &c_MemcachePool::ci_flush },
+  { 0x1780351E8EFF92BDLL, 1, 15, "setserverparams", &c_MemcachePool::ci_setserverparams },
+  { 0x7032C660AD16D7FELL, 1, 7, "connect", &c_MemcachePool::ci_connect },
+  { 0, 1, 0, 0 }
+};
+const int c_MemcachePool::s_call_info_index[] = {
+  63,
+  -1,0,-1,-1,-1,-1,1,2,
+  -1,-1,-1,3,-1,-1,-1,5,
+  -1,-1,6,7,-1,-1,8,-1,
+  -1,9,10,-1,-1,-1,11,12,
+  -1,13,-1,-1,-1,15,16,-1,
+  17,-1,-1,-1,-1,-1,-1,-1,
+  -1,-1,-1,18,-1,-1,19,-1,
+  -1,20,21,-1,-1,22,23,-1,
+
+};
+c_MemcachePool *c_MemcachePool::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_MemcachePool = {
+  (ObjectData*(*)(ObjectData*))coo_MemcachePool,
+  c_MemcachePool::s_call_info_table,c_MemcachePool::s_call_info_index,
+  c_MemcachePool::s_instanceof_table,c_MemcachePool::s_instanceof_index,
+  &c_MemcachePool::s_class_name,
+  0,&c_MemcachePool::ci___construct,0,0,0x0
 };
 ObjectData *coo_DebuggerClientCmdUser() {
   return NEWOBJ(c_DebuggerClientCmdUser)();
@@ -9556,1004 +9959,1485 @@ const ObjectStaticCallbacks cw_DebuggerClientCmdUser = {
   &c_DebuggerClientCmdUser::s_class_name,
   &c_DebuggerClientCmdUser::os_prop_table,&c_DebuggerClientCmdUser::ci___construct,0,0,0x0
 };
-ObjectData *coo_DateTime() {
-  return NEWOBJ(c_DateTime)();
+ObjectData *coo_XMLReader() {
+  return NEWOBJ(c_XMLReader)();
 }
-IMPLEMENT_CLASS(DateTime)
-const InstanceOfInfo c_DateTime::s_instanceof_table[] = {
-  {0x3DB8FB455A602A1ELL,1,"DateTime",&cw_DateTime},
+IMPLEMENT_CLASS(XMLReader)
+const InstanceOfInfo c_XMLReader::s_instanceof_table[] = {
+  {0x1C85D092180A6325LL,1,"XMLReader",&cw_XMLReader},
 };
-const int c_DateTime::s_instanceof_index[] = {
+const int c_XMLReader::s_instanceof_index[] = {
   1,
-  0,-1,
+  -1,0,
 };
-CallInfo c_DateTime::ci_setisodate((void*)&c_DateTime::i_setisodate, (void*)&c_DateTime::ifa_setisodate, 3, 4, 0x0000000000000000LL);
-CallInfo c_DateTime::ci___construct((void*)&c_DateTime::i___construct, (void*)&c_DateTime::ifa___construct, 2, 4, 0x0000000000000000LL);
-CallInfo c_DateTime::ci_settimezone((void*)&c_DateTime::i_settimezone, (void*)&c_DateTime::ifa_settimezone, 1, 4, 0x0000000000000000LL);
-CallInfo c_DateTime::ci_settime((void*)&c_DateTime::i_settime, (void*)&c_DateTime::ifa_settime, 3, 4, 0x0000000000000000LL);
-CallInfo c_DateTime::ci_setdate((void*)&c_DateTime::i_setdate, (void*)&c_DateTime::ifa_setdate, 3, 4, 0x0000000000000000LL);
-CallInfo c_DateTime::ci___destruct((void*)&c_DateTime::i___destruct, (void*)&c_DateTime::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DateTime::ci_modify((void*)&c_DateTime::i_modify, (void*)&c_DateTime::ifa_modify, 1, 4, 0x0000000000000000LL);
-CallInfo c_DateTime::ci_getoffset((void*)&c_DateTime::i_getoffset, (void*)&c_DateTime::ifa_getoffset, 0, 4, 0x0000000000000000LL);
-CallInfo c_DateTime::ci_format((void*)&c_DateTime::i_format, (void*)&c_DateTime::ifa_format, 1, 4, 0x0000000000000000LL);
-CallInfo c_DateTime::ci_gettimezone((void*)&c_DateTime::i_gettimezone, (void*)&c_DateTime::ifa_gettimezone, 0, 4, 0x0000000000000000LL);
-Variant c_DateTime::i___construct(MethodCallPackage &mcp, CArrRef params) {
+CallInfo c_XMLReader::ci___get((void*)&c_XMLReader::i___get, (void*)&c_XMLReader::ifa___get, 1, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_setrelaxngschemasource((void*)&c_XMLReader::i_setrelaxngschemasource, (void*)&c_XMLReader::ifa_setrelaxngschemasource, 1, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_read((void*)&c_XMLReader::i_read, (void*)&c_XMLReader::ifa_read, 0, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_getattributens((void*)&c_XMLReader::i_getattributens, (void*)&c_XMLReader::ifa_getattributens, 2, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_close((void*)&c_XMLReader::i_close, (void*)&c_XMLReader::ifa_close, 0, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_xml((void*)&c_XMLReader::i_xml, (void*)&c_XMLReader::ifa_xml, 3, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_expand((void*)&c_XMLReader::i_expand, (void*)&c_XMLReader::ifa_expand, 0, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_movetoattributeno((void*)&c_XMLReader::i_movetoattributeno, (void*)&c_XMLReader::ifa_movetoattributeno, 1, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_next((void*)&c_XMLReader::i_next, (void*)&c_XMLReader::ifa_next, 1, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_readinnerxml((void*)&c_XMLReader::i_readinnerxml, (void*)&c_XMLReader::ifa_readinnerxml, 0, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_readouterxml((void*)&c_XMLReader::i_readouterxml, (void*)&c_XMLReader::ifa_readouterxml, 0, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_setschema((void*)&c_XMLReader::i_setschema, (void*)&c_XMLReader::ifa_setschema, 1, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_setrelaxngschema((void*)&c_XMLReader::i_setrelaxngschema, (void*)&c_XMLReader::ifa_setrelaxngschema, 1, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_isvalid((void*)&c_XMLReader::i_isvalid, (void*)&c_XMLReader::ifa_isvalid, 0, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_readstring((void*)&c_XMLReader::i_readstring, (void*)&c_XMLReader::ifa_readstring, 0, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_movetonextattribute((void*)&c_XMLReader::i_movetonextattribute, (void*)&c_XMLReader::ifa_movetonextattribute, 0, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_movetofirstattribute((void*)&c_XMLReader::i_movetofirstattribute, (void*)&c_XMLReader::ifa_movetofirstattribute, 0, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_lookupnamespace((void*)&c_XMLReader::i_lookupnamespace, (void*)&c_XMLReader::ifa_lookupnamespace, 1, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_movetoattribute((void*)&c_XMLReader::i_movetoattribute, (void*)&c_XMLReader::ifa_movetoattribute, 1, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_getparserproperty((void*)&c_XMLReader::i_getparserproperty, (void*)&c_XMLReader::ifa_getparserproperty, 1, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_open((void*)&c_XMLReader::i_open, (void*)&c_XMLReader::ifa_open, 3, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_getattributeno((void*)&c_XMLReader::i_getattributeno, (void*)&c_XMLReader::ifa_getattributeno, 1, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_movetoelement((void*)&c_XMLReader::i_movetoelement, (void*)&c_XMLReader::ifa_movetoelement, 0, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_setparserproperty((void*)&c_XMLReader::i_setparserproperty, (void*)&c_XMLReader::ifa_setparserproperty, 2, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_movetoattributens((void*)&c_XMLReader::i_movetoattributens, (void*)&c_XMLReader::ifa_movetoattributens, 2, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci_getattribute((void*)&c_XMLReader::i_getattribute, (void*)&c_XMLReader::ifa_getattribute, 1, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci___construct((void*)&c_XMLReader::i___construct, (void*)&c_XMLReader::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_XMLReader::ci___destruct((void*)&c_XMLReader::i___destruct, (void*)&c_XMLReader::ifa___destruct, 0, 4, 0x0000000000000000LL);
+Variant c_XMLReader::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
-Variant c_DateTime::i_format(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_format);
+Variant c_XMLReader::i_open(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_open);
 }
-Variant c_DateTime::i_getoffset(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getoffset);
+Variant c_XMLReader::i_xml(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_xml);
 }
-Variant c_DateTime::i_gettimezone(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_gettimezone);
+Variant c_XMLReader::i_close(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_close);
 }
-Variant c_DateTime::i_modify(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_modify);
+Variant c_XMLReader::i_read(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_read);
 }
-Variant c_DateTime::i_setdate(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setdate);
+Variant c_XMLReader::i_next(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_next);
 }
-Variant c_DateTime::i_setisodate(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_setisodate);
+Variant c_XMLReader::i_readstring(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_readstring);
 }
-Variant c_DateTime::i_settime(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_settime);
+Variant c_XMLReader::i_readinnerxml(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_readinnerxml);
 }
-Variant c_DateTime::i_settimezone(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_settimezone);
+Variant c_XMLReader::i_readouterxml(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_readouterxml);
 }
-Variant c_DateTime::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+Variant c_XMLReader::i_movetonextattribute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_movetonextattribute);
 }
-Variant c_DateTime::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DateTime);
-  }
-  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
-  if (UNLIKELY(count > 2)) return throw_toomany_arguments("__construct", 2, 1);
-  if (count <= 0) return (self->t___construct(), null);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t___construct(arg0), null);
-  CVarRef arg1(a1);
-  return (self->t___construct(arg0, arg1), null);
+Variant c_XMLReader::i_getattribute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getattribute);
 }
-Variant c_DateTime::ifa_format(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_format, coo_DateTime);
-  }
-  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("format", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_format(arg0));
+Variant c_XMLReader::i_getattributeno(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getattributeno);
 }
-Variant c_DateTime::ifa_getoffset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getoffset, coo_DateTime);
-  }
-  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getoffset", 0, 1);
-  return (self->t_getoffset());
+Variant c_XMLReader::i_getattributens(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getattributens);
 }
-Variant c_DateTime::ifa_gettimezone(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_gettimezone, coo_DateTime);
-  }
-  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("gettimezone", 0, 1);
-  return (self->t_gettimezone());
+Variant c_XMLReader::i_movetoattribute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_movetoattribute);
 }
-Variant c_DateTime::ifa_modify(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_modify, coo_DateTime);
-  }
-  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("modify", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_modify(arg0));
+Variant c_XMLReader::i_movetoattributeno(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_movetoattributeno);
 }
-Variant c_DateTime::ifa_setdate(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setdate, coo_DateTime);
-  }
-  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
-  if (UNLIKELY(count != 3)) return throw_wrong_arguments("setdate", count, 3, 3, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  CVarRef arg2(a2);
-  return (self->t_setdate(arg0, arg1, arg2));
+Variant c_XMLReader::i_movetoattributens(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_movetoattributens);
 }
-Variant c_DateTime::ifa_setisodate(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setisodate, coo_DateTime);
-  }
-  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("setisodate", count, 2, 3, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_setisodate(arg0, arg1));
-  CVarRef arg2(a2);
-  return (self->t_setisodate(arg0, arg1, arg2));
+Variant c_XMLReader::i_movetoelement(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_movetoelement);
 }
-Variant c_DateTime::ifa_settime(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_settime, coo_DateTime);
-  }
-  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("settime", count, 2, 3, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_settime(arg0, arg1));
-  CVarRef arg2(a2);
-  return (self->t_settime(arg0, arg1, arg2));
+Variant c_XMLReader::i_movetofirstattribute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_movetofirstattribute);
 }
-Variant c_DateTime::ifa_settimezone(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_settimezone, coo_DateTime);
-  }
-  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("settimezone", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_settimezone(arg0));
+Variant c_XMLReader::i_isvalid(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_isvalid);
 }
-Variant c_DateTime::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DateTime);
-  }
-  c_DateTime *self ATTRIBUTE_UNUSED (static_cast<c_DateTime*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
+Variant c_XMLReader::i_expand(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_expand);
 }
-const MethodCallInfoTable c_DateTime::s_call_info_table[] = {
-  { 0x65A9B2950F080587LL, 1, 6, "modify", &c_DateTime::ci_modify },
-  { 0x68DB66F60B55BD0BLL, 1, 9, "getOffset", &c_DateTime::ci_getoffset },
-  { 0x67314943DC9D120BLL, 0, 7, "setDate", &c_DateTime::ci_setdate },
-  { 0x688601F33BE7716CLL, 1, 11, "getTimezone", &c_DateTime::ci_gettimezone },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DateTime::ci___destruct },
-  { 0x16D6DBFD6EE55A74LL, 1, 10, "setISODate", &c_DateTime::ci_setisodate },
-  { 0x07CB96AB34F4C258LL, 1, 7, "setTime", &c_DateTime::ci_settime },
-  { 0x3B576E558B957CB8LL, 0, 11, "setTimezone", &c_DateTime::ci_settimezone },
-  { 0x1B6DDAF6AAF8CA9BLL, 1, 6, "format", &c_DateTime::ci_format },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DateTime::ci___construct },
-  { 0, 1, 0, 0 }
-};
-const int c_DateTime::s_call_info_index[] = {
-  31,
-  -1,-1,-1,-1,-1,-1,-1,0,
-  -1,-1,-1,1,3,-1,-1,-1,
-  -1,-1,-1,4,5,-1,-1,-1,
-  6,-1,-1,8,-1,-1,-1,9,
-
-};
-c_DateTime *c_DateTime::create(String a0, Object a1) {
-  CountableHelper h(this);
-  init();
-  t___construct(a0, a1);
-  return this;
-}
-const ObjectStaticCallbacks cw_DateTime = {
-  (ObjectData*(*)(ObjectData*))coo_DateTime,
-  c_DateTime::s_call_info_table,c_DateTime::s_call_info_index,
-  c_DateTime::s_instanceof_table,c_DateTime::s_instanceof_index,
-  &c_DateTime::s_class_name,
-  &c_DateTime::os_prop_table,&c_DateTime::ci___construct,0,0,0x0
-};
-ObjectData *coo_DOMNotation() {
-  return NEWOBJ(c_DOMNotation)();
-}
-IMPLEMENT_CLASS(DOMNotation)
-const InstanceOfInfo c_DOMNotation::s_instanceof_table[] = {
-  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
-  {0x4365BE9E5A85E60BLL,1,"DOMNotation",&cw_DOMNotation},
-};
-const int c_DOMNotation::s_instanceof_index[] = {
-  3,
-  -1,-1,0,1,
-};
-CallInfo c_DOMNotation::ci___destruct((void*)&c_DOMNotation::i___destruct, (void*)&c_DOMNotation::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNotation::ci___isset((void*)&c_DOMNotation::i___isset, (void*)&c_DOMNotation::ifa___isset, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNotation::ci___get((void*)&c_DOMNotation::i___get, (void*)&c_DOMNotation::ifa___get, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMNotation::ci___construct((void*)&c_DOMNotation::i___construct, (void*)&c_DOMNotation::ifa___construct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMNotation::ci___set((void*)&c_DOMNotation::i___set, (void*)&c_DOMNotation::ifa___set, 2, 4, 0x0000000000000000LL);
-Variant c_DOMNotation::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_DOMNotation::i___get(MethodCallPackage &mcp, CArrRef params) {
+Variant c_XMLReader::i___get(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___get);
 }
-Variant c_DOMNotation::i___set(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___set);
+Variant c_XMLReader::i_getparserproperty(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getparserproperty);
 }
-Variant c_DOMNotation::i___isset(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___isset);
+Variant c_XMLReader::i_lookupnamespace(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_lookupnamespace);
 }
-Variant c_DOMNotation::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_XMLReader::i_setschema(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setschema);
+}
+Variant c_XMLReader::i_setparserproperty(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setparserproperty);
+}
+Variant c_XMLReader::i_setrelaxngschema(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setrelaxngschema);
+}
+Variant c_XMLReader::i_setrelaxngschemasource(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setrelaxngschemasource);
+}
+Variant c_XMLReader::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_DOMNotation::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_XMLReader::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMNotation);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_XMLReader);
   }
-  c_DOMNotation *self ATTRIBUTE_UNUSED (static_cast<c_DOMNotation*>(mcp.obj));
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
   return (self->t___construct(), null);
 }
-Variant c_DOMNotation::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_XMLReader::ifa_open(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMNotation);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_open, coo_XMLReader);
   }
-  c_DOMNotation *self ATTRIBUTE_UNUSED (static_cast<c_DOMNotation*>(mcp.obj));
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("open", count, 1, 3, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_open(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_open(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_open(arg0, arg1, arg2));
+}
+Variant c_XMLReader::ifa_xml(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_xml, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("xml", count, 1, 3, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_xml(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_xml(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_xml(arg0, arg1, arg2));
+}
+Variant c_XMLReader::ifa_close(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_close, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("close", 0, 1);
+  return (self->t_close());
+}
+Variant c_XMLReader::ifa_read(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_read, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("read", 0, 1);
+  return (self->t_read());
+}
+Variant c_XMLReader::ifa_next(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_next, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("next", 1, 1);
+  if (count <= 0) return (self->t_next());
+  CVarRef arg0(a0);
+  return (self->t_next(arg0));
+}
+Variant c_XMLReader::ifa_readstring(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_readstring, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("readstring", 0, 1);
+  return (self->t_readstring());
+}
+Variant c_XMLReader::ifa_readinnerxml(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_readinnerxml, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("readinnerxml", 0, 1);
+  return (self->t_readinnerxml());
+}
+Variant c_XMLReader::ifa_readouterxml(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_readouterxml, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("readouterxml", 0, 1);
+  return (self->t_readouterxml());
+}
+Variant c_XMLReader::ifa_movetonextattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_movetonextattribute, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("movetonextattribute", 0, 1);
+  return (self->t_movetonextattribute());
+}
+Variant c_XMLReader::ifa_getattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattribute, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getattribute", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_getattribute(arg0));
+}
+Variant c_XMLReader::ifa_getattributeno(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattributeno, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getattributeno", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_getattributeno(arg0));
+}
+Variant c_XMLReader::ifa_getattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattributens, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("getattributens", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_getattributens(arg0, arg1));
+}
+Variant c_XMLReader::ifa_movetoattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_movetoattribute, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("movetoattribute", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_movetoattribute(arg0));
+}
+Variant c_XMLReader::ifa_movetoattributeno(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_movetoattributeno, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("movetoattributeno", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_movetoattributeno(arg0));
+}
+Variant c_XMLReader::ifa_movetoattributens(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_movetoattributens, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("movetoattributens", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_movetoattributens(arg0, arg1));
+}
+Variant c_XMLReader::ifa_movetoelement(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_movetoelement, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("movetoelement", 0, 1);
+  return (self->t_movetoelement());
+}
+Variant c_XMLReader::ifa_movetofirstattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_movetofirstattribute, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("movetofirstattribute", 0, 1);
+  return (self->t_movetofirstattribute());
+}
+Variant c_XMLReader::ifa_isvalid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_isvalid, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("isvalid", 0, 1);
+  return (self->t_isvalid());
+}
+Variant c_XMLReader::ifa_expand(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_expand, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("expand", 0, 1);
+  return (self->t_expand());
+}
+Variant c_XMLReader::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
   CVarRef arg0(a0);
   return (self->t___get(arg0));
 }
-Variant c_DOMNotation::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_XMLReader::ifa_getparserproperty(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMNotation);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getparserproperty, coo_XMLReader);
   }
-  c_DOMNotation *self ATTRIBUTE_UNUSED (static_cast<c_DOMNotation*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getparserproperty", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_getparserproperty(arg0));
+}
+Variant c_XMLReader::ifa_lookupnamespace(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lookupnamespace, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("lookupnamespace", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_lookupnamespace(arg0));
+}
+Variant c_XMLReader::ifa_setschema(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setschema, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setschema", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_setschema(arg0));
+}
+Variant c_XMLReader::ifa_setparserproperty(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setparserproperty, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("setparserproperty", count, 2, 2, 1);
   CVarRef arg0(a0);
   CVarRef arg1(a1);
-  return (self->t___set(arg0, arg1));
+  return (self->t_setparserproperty(arg0, arg1));
 }
-Variant c_DOMNotation::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_XMLReader::ifa_setrelaxngschema(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMNotation);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setrelaxngschema, coo_XMLReader);
   }
-  c_DOMNotation *self ATTRIBUTE_UNUSED (static_cast<c_DOMNotation*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setrelaxngschema", count, 1, 1, 1);
   CVarRef arg0(a0);
-  return (self->t___isset(arg0));
+  return (self->t_setrelaxngschema(arg0));
 }
-Variant c_DOMNotation::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_XMLReader::ifa_setrelaxngschemasource(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMNotation);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setrelaxngschemasource, coo_XMLReader);
   }
-  c_DOMNotation *self ATTRIBUTE_UNUSED (static_cast<c_DOMNotation*>(mcp.obj));
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setrelaxngschemasource", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_setrelaxngschemasource(arg0));
+}
+Variant c_XMLReader::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_XMLReader);
+  }
+  c_XMLReader *self ATTRIBUTE_UNUSED (static_cast<c_XMLReader*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_DOMNotation::s_call_info_table[] = {
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMNotation::ci___destruct },
-  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMNotation::ci___set },
-  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMNotation::ci___isset },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMNotation::ci___construct },
-  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMNotation::ci___get },
+const MethodCallInfoTable c_XMLReader::s_call_info_table[] = {
+  { 0x78AE97BFBEBF5341LL, 1, 5, "close", &c_XMLReader::ci_close },
+  { 0x1F479267E49EF301LL, 0, 4, "read", &c_XMLReader::ci_read },
+  { 0x21F68C010C124BC4LL, 1, 4, "open", &c_XMLReader::ci_open },
+  { 0x0C1F965FD1079AC6LL, 1, 20, "moveToFirstAttribute", &c_XMLReader::ci_movetofirstattribute },
+  { 0x0D2003842AF83A07LL, 1, 17, "getParserProperty", &c_XMLReader::ci_getparserproperty },
+  { 0x39B7BB05F05A37CDLL, 1, 6, "expand", &c_XMLReader::ci_expand },
+  { 0x797E2A56E560520ELL, 1, 12, "readInnerXML", &c_XMLReader::ci_readinnerxml },
+  { 0x26B6E00C74FA338FLL, 1, 5, "__get", &c_XMLReader::ci___get },
+  { 0x7BA9DD90E7AE3A13LL, 1, 17, "setParserProperty", &c_XMLReader::ci_setparserproperty },
+  { 0x1986122197FD4B14LL, 1, 3, "XML", &c_XMLReader::ci_xml },
+  { 0x33982845A5250499LL, 1, 14, "getAttributeNo", &c_XMLReader::ci_getattributeno },
+  { 0x34E103E06D3F0899LL, 0, 14, "getAttributeNs", &c_XMLReader::ci_getattributens },
+  { 0x06697B31313080DBLL, 1, 12, "readOuterXML", &c_XMLReader::ci_readouterxml },
+  { 0x182BF31CCB09E11DLL, 1, 15, "lookupNamespace", &c_XMLReader::ci_lookupnamespace },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_XMLReader::ci___construct },
+  { 0x72A8D1997F7E0F67LL, 1, 19, "moveToNextAttribute", &c_XMLReader::ci_movetonextattribute },
+  { 0x49F89C466612FC28LL, 1, 12, "getAttribute", &c_XMLReader::ci_getattribute },
+  { 0x71E1A6F1ACA9872BLL, 1, 7, "isValid", &c_XMLReader::ci_isvalid },
+  { 0x76ED78B4A392C36BLL, 0, 16, "setRelaxNGSchema", &c_XMLReader::ci_setrelaxngschema },
+  { 0x0CFE207982641D6FLL, 1, 13, "moveToElement", &c_XMLReader::ci_movetoelement },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_XMLReader::ci___destruct },
+  { 0x062D7D5B55654634LL, 1, 10, "readString", &c_XMLReader::ci_readstring },
+  { 0x4E53414CB3A073B4LL, 0, 17, "moveToAttributeNo", &c_XMLReader::ci_movetoattributeno },
+  { 0x7DA2728AC230DFF6LL, 1, 15, "moveToAttribute", &c_XMLReader::ci_movetoattribute },
+  { 0x3C6D50F3BB8102B8LL, 1, 4, "next", &c_XMLReader::ci_next },
+  { 0x21A405E8B21F8838LL, 0, 9, "setSchema", &c_XMLReader::ci_setschema },
+  { 0x0661BC19E05663FDLL, 1, 17, "moveToAttributeNs", &c_XMLReader::ci_movetoattributens },
+  { 0x4789E6BFAAC164FFLL, 1, 22, "setRelaxNGSchemaSource", &c_XMLReader::ci_setrelaxngschemasource },
   { 0, 1, 0, 0 }
 };
-const int c_DOMNotation::s_call_info_index[] = {
-  15,
-  -1,-1,-1,0,-1,1,-1,-1,
-  -1,-1,-1,-1,-1,-1,2,3,
+const int c_XMLReader::s_call_info_index[] = {
+  63,
+  -1,0,-1,-1,2,-1,3,4,
+  -1,-1,-1,-1,-1,5,6,7,
+  -1,-1,-1,8,9,-1,-1,-1,
+  -1,10,-1,12,-1,13,-1,14,
+  -1,-1,-1,-1,-1,-1,-1,15,
+  16,-1,-1,17,-1,-1,-1,19,
+  -1,-1,-1,20,21,-1,23,-1,
+  24,-1,-1,-1,-1,26,-1,27,
 
 };
-c_DOMNotation *c_DOMNotation::create() {
+c_XMLReader *c_XMLReader::create() {
   CountableHelper h(this);
   init();
   t___construct();
   return this;
 }
-const ObjectStaticCallbacks cw_DOMNotation = {
-  (ObjectData*(*)(ObjectData*))coo_DOMNotation,
-  c_DOMNotation::s_call_info_table,c_DOMNotation::s_call_info_index,
-  c_DOMNotation::s_instanceof_table,c_DOMNotation::s_instanceof_index,
-  &c_DOMNotation::s_class_name,
-  0,&c_DOMNotation::ci___construct,0,&cw_DOMNode,0x0
+const ObjectStaticCallbacks cw_XMLReader = {
+  (ObjectData*(*)(ObjectData*))coo_XMLReader,
+  c_XMLReader::s_call_info_table,c_XMLReader::s_call_info_index,
+  c_XMLReader::s_instanceof_table,c_XMLReader::s_instanceof_index,
+  &c_XMLReader::s_class_name,
+  &c_XMLReader::os_prop_table,&c_XMLReader::ci___construct,0,0,0x0
 };
-ObjectData *coo_DOMCharacterData() {
-  return NEWOBJ(c_DOMCharacterData)();
+ObjectData *coo_GenericContinuation() {
+  return NEWOBJ(c_GenericContinuation)();
 }
-IMPLEMENT_CLASS(DOMCharacterData)
-const InstanceOfInfo c_DOMCharacterData::s_instanceof_table[] = {
-  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
-  {0x02239AA5D64B1453LL,1,"DOMCharacterData",&cw_DOMCharacterData},
+IMPLEMENT_CLASS(GenericContinuation)
+const InstanceOfInfo c_GenericContinuation::s_instanceof_table[] = {
+  {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},
+  {0x61DD21ABF790E9E2LL,1,"Continuation",&cw_Continuation},
+  {0x05DE30099B58533DLL,1,"GenericContinuation",&cw_GenericContinuation},
+  {0x0636A5F84AF9D29ELL,1,"Iterator",(const ObjectStaticCallbacks*)2},
 };
-const int c_DOMCharacterData::s_instanceof_index[] = {
-  3,
-  -1,-1,0,1,
-};
-CallInfo c_DOMCharacterData::ci___get((void*)&c_DOMCharacterData::i___get, (void*)&c_DOMCharacterData::ifa___get, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMCharacterData::ci___construct((void*)&c_DOMCharacterData::i___construct, (void*)&c_DOMCharacterData::ifa___construct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMCharacterData::ci_substringdata((void*)&c_DOMCharacterData::i_substringdata, (void*)&c_DOMCharacterData::ifa_substringdata, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMCharacterData::ci_insertdata((void*)&c_DOMCharacterData::i_insertdata, (void*)&c_DOMCharacterData::ifa_insertdata, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMCharacterData::ci___isset((void*)&c_DOMCharacterData::i___isset, (void*)&c_DOMCharacterData::ifa___isset, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMCharacterData::ci_deletedata((void*)&c_DOMCharacterData::i_deletedata, (void*)&c_DOMCharacterData::ifa_deletedata, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMCharacterData::ci___destruct((void*)&c_DOMCharacterData::i___destruct, (void*)&c_DOMCharacterData::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMCharacterData::ci___set((void*)&c_DOMCharacterData::i___set, (void*)&c_DOMCharacterData::ifa___set, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMCharacterData::ci_appenddata((void*)&c_DOMCharacterData::i_appenddata, (void*)&c_DOMCharacterData::ifa_appenddata, 1, 4, 0x0000000000000000LL);
-CallInfo c_DOMCharacterData::ci_replacedata((void*)&c_DOMCharacterData::i_replacedata, (void*)&c_DOMCharacterData::ifa_replacedata, 3, 4, 0x0000000000000000LL);
-Variant c_DOMCharacterData::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_DOMCharacterData::i_appenddata(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_appenddata);
-}
-Variant c_DOMCharacterData::i_deletedata(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_deletedata);
-}
-Variant c_DOMCharacterData::i_insertdata(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_insertdata);
-}
-Variant c_DOMCharacterData::i_replacedata(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_replacedata);
-}
-Variant c_DOMCharacterData::i_substringdata(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_substringdata);
-}
-Variant c_DOMCharacterData::i___get(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___get);
-}
-Variant c_DOMCharacterData::i___set(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___set);
-}
-Variant c_DOMCharacterData::i___isset(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___isset);
-}
-Variant c_DOMCharacterData::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_DOMCharacterData::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMCharacterData);
-  }
-  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_DOMCharacterData::ifa_appenddata(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_appenddata, coo_DOMCharacterData);
-  }
-  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("appenddata", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_appenddata(arg0));
-}
-Variant c_DOMCharacterData::ifa_deletedata(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_deletedata, coo_DOMCharacterData);
-  }
-  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("deletedata", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_deletedata(arg0, arg1));
-}
-Variant c_DOMCharacterData::ifa_insertdata(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_insertdata, coo_DOMCharacterData);
-  }
-  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("insertdata", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_insertdata(arg0, arg1));
-}
-Variant c_DOMCharacterData::ifa_replacedata(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_replacedata, coo_DOMCharacterData);
-  }
-  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
-  if (UNLIKELY(count != 3)) return throw_wrong_arguments("replacedata", count, 3, 3, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  CVarRef arg2(a2);
-  return (self->t_replacedata(arg0, arg1, arg2));
-}
-Variant c_DOMCharacterData::ifa_substringdata(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_substringdata, coo_DOMCharacterData);
-  }
-  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("substringdata", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_substringdata(arg0, arg1));
-}
-Variant c_DOMCharacterData::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMCharacterData);
-  }
-  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___get(arg0));
-}
-Variant c_DOMCharacterData::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMCharacterData);
-  }
-  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t___set(arg0, arg1));
-}
-Variant c_DOMCharacterData::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMCharacterData);
-  }
-  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___isset(arg0));
-}
-Variant c_DOMCharacterData::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMCharacterData);
-  }
-  c_DOMCharacterData *self ATTRIBUTE_UNUSED (static_cast<c_DOMCharacterData*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_DOMCharacterData::s_call_info_table[] = {
-  { 0x3DAC04A51FD2D92DLL, 1, 10, "appendData", &c_DOMCharacterData::ci_appenddata },
-  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMCharacterData::ci___isset },
-  { 0x26B6E00C74FA338FLL, 1, 5, "__get", &c_DOMCharacterData::ci___get },
-  { 0x2D8D2253C2149972LL, 1, 13, "substringData", &c_DOMCharacterData::ci_substringdata },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMCharacterData::ci___destruct },
-  { 0x470F2F0EA1F3D4B4LL, 1, 11, "replaceData", &c_DOMCharacterData::ci_replacedata },
-  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMCharacterData::ci___set },
-  { 0x7543EC746714D118LL, 1, 10, "deleteData", &c_DOMCharacterData::ci_deletedata },
-  { 0x0E19CE7886BCEF3DLL, 1, 10, "insertData", &c_DOMCharacterData::ci_insertdata },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMCharacterData::ci___construct },
-  { 0, 1, 0, 0 }
-};
-const int c_DOMCharacterData::s_call_info_index[] = {
-  31,
-  -1,-1,-1,-1,-1,-1,-1,-1,
-  -1,-1,-1,-1,-1,0,1,2,
-  -1,-1,3,4,5,6,-1,-1,
-  7,-1,-1,-1,-1,8,-1,9,
+const int c_GenericContinuation::s_instanceof_index[] = {
+  7,
+  -1,0,1,-1,-1,2,3,-1,
 
 };
-c_DOMCharacterData *c_DOMCharacterData::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
+CallInfo c_GenericContinuation::ci_update((void*)&c_GenericContinuation::i_update, (void*)&c_GenericContinuation::ifa_update, 3, 4, 0x0000000000000000LL);
+CallInfo c_GenericContinuation::ci___destruct((void*)&c_GenericContinuation::i___destruct, (void*)&c_GenericContinuation::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_GenericContinuation::ci___construct((void*)&c_GenericContinuation::i___construct, (void*)&c_GenericContinuation::ifa___construct, 7, 4, 0x0000000000000000LL);
+CallInfo c_GenericContinuation::ci_getvars((void*)&c_GenericContinuation::i_getvars, (void*)&c_GenericContinuation::ifa_getvars, 0, 4, 0x0000000000000000LL);
+Variant c_GenericContinuation::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::i_dummy(mcp, params, i___construct, coo_GenericContinuation);
+  }
+  c_GenericContinuation *self ATTRIBUTE_UNUSED (static_cast<c_GenericContinuation*>(mcp.obj));
+  int count ATTRIBUTE_UNUSED = params.size();
+  if (UNLIKELY(count < 5 || count > 7)) return throw_wrong_arguments("__construct", count, 5, 7, 1);
+  {
+    ArrayData *ad(params.get());
+    ssize_t pos = ad ? ad->iter_begin() : ArrayData::invalid_index;
+    CVarRef arg0((ad->getValue(pos)));
+    CVarRef arg1((ad->getValue(pos = ad->iter_advance(pos))));
+    CVarRef arg2((ad->getValue(pos = ad->iter_advance(pos))));
+    CVarRef arg3((ad->getValue(pos = ad->iter_advance(pos))));
+    CVarRef arg4((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 5) return (self->t___construct(arg0, arg1, arg2, arg3, arg4), null);
+    CVarRef arg5((ad->getValue(pos = ad->iter_advance(pos))));
+    if (count <= 6) return (self->t___construct(arg0, arg1, arg2, arg3, arg4, arg5), null);
+    CVarRef arg6((ad->getValue(pos = ad->iter_advance(pos))));
+    return (self->t___construct(arg0, arg1, arg2, arg3, arg4, arg5, arg6), null);
+  }
 }
-const ObjectStaticCallbacks cw_DOMCharacterData = {
-  (ObjectData*(*)(ObjectData*))coo_DOMCharacterData,
-  c_DOMCharacterData::s_call_info_table,c_DOMCharacterData::s_call_info_index,
-  c_DOMCharacterData::s_instanceof_table,c_DOMCharacterData::s_instanceof_index,
-  &c_DOMCharacterData::s_class_name,
-  0,&c_DOMCharacterData::ci___construct,0,&cw_DOMNode,0x0
-};
-ObjectData *coo_LibXMLError() {
-  return NEWOBJ(c_LibXMLError)();
+Variant c_GenericContinuation::i_update(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_update);
 }
-IMPLEMENT_CLASS(LibXMLError)
-const InstanceOfInfo c_LibXMLError::s_instanceof_table[] = {
-  {0x253AC17234FC8CCBLL,1,"LibXMLError",&cw_LibXMLError},
-};
-const int c_LibXMLError::s_instanceof_index[] = {
-  1,
-  -1,0,
-};
-CallInfo c_LibXMLError::ci___destruct((void*)&c_LibXMLError::i___destruct, (void*)&c_LibXMLError::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_LibXMLError::ci___construct((void*)&c_LibXMLError::i___construct, (void*)&c_LibXMLError::ifa___construct, 0, 4, 0x0000000000000000LL);
-Variant c_LibXMLError::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+Variant c_GenericContinuation::i_getvars(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getvars);
 }
-Variant c_LibXMLError::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+Variant c_GenericContinuation::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
 }
-Variant c_LibXMLError::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_GenericContinuation::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_LibXMLError);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_GenericContinuation);
   }
-  c_LibXMLError *self ATTRIBUTE_UNUSED (static_cast<c_LibXMLError*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_LibXMLError::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_LibXMLError);
-  }
-  c_LibXMLError *self ATTRIBUTE_UNUSED (static_cast<c_LibXMLError*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_LibXMLError::s_call_info_table[] = {
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_LibXMLError::ci___construct },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_LibXMLError::ci___destruct },
-  { 0, 1, 0, 0 }
-};
-const int c_LibXMLError::s_call_info_index[] = {
-  3,
-  -1,-1,-1,0,
-};
-c_LibXMLError *c_LibXMLError::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
-}
-const ObjectStaticCallbacks cw_LibXMLError = {
-  (ObjectData*(*)(ObjectData*))coo_LibXMLError,
-  c_LibXMLError::s_call_info_table,c_LibXMLError::s_call_info_index,
-  c_LibXMLError::s_instanceof_table,c_LibXMLError::s_instanceof_index,
-  &c_LibXMLError::s_class_name,
-  0,&c_LibXMLError::ci___construct,0,0,0x0
-};
-ObjectData *coo_DateTimeZone() {
-  return NEWOBJ(c_DateTimeZone)();
-}
-IMPLEMENT_CLASS(DateTimeZone)
-const InstanceOfInfo c_DateTimeZone::s_instanceof_table[] = {
-  {0x24DE53FD7D3E8383LL,1,"DateTimeZone",&cw_DateTimeZone},
-};
-const int c_DateTimeZone::s_instanceof_index[] = {
-  1,
-  -1,0,
-};
-CallInfo c_DateTimeZone::ci___construct((void*)&c_DateTimeZone::i___construct, (void*)&c_DateTimeZone::ifa___construct, 1, 4, 0x0000000000000000LL);
-CallInfo c_DateTimeZone::ci_listabbreviations((void*)&c_DateTimeZone::i_listabbreviations, (void*)&c_DateTimeZone::ifa_listabbreviations, 0, 12, 0x0000000000000000LL);
-CallInfo c_DateTimeZone::ci_getname((void*)&c_DateTimeZone::i_getname, (void*)&c_DateTimeZone::ifa_getname, 0, 4, 0x0000000000000000LL);
-CallInfo c_DateTimeZone::ci___destruct((void*)&c_DateTimeZone::i___destruct, (void*)&c_DateTimeZone::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DateTimeZone::ci_listidentifiers((void*)&c_DateTimeZone::i_listidentifiers, (void*)&c_DateTimeZone::ifa_listidentifiers, 0, 12, 0x0000000000000000LL);
-CallInfo c_DateTimeZone::ci_gettransitions((void*)&c_DateTimeZone::i_gettransitions, (void*)&c_DateTimeZone::ifa_gettransitions, 0, 4, 0x0000000000000000LL);
-CallInfo c_DateTimeZone::ci_getoffset((void*)&c_DateTimeZone::i_getoffset, (void*)&c_DateTimeZone::ifa_getoffset, 1, 4, 0x0000000000000000LL);
-Variant c_DateTimeZone::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_DateTimeZone::i_getname(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getname);
-}
-Variant c_DateTimeZone::i_getoffset(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_getoffset);
-}
-Variant c_DateTimeZone::i_gettransitions(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_gettransitions);
-}
-Variant c_DateTimeZone::i_listabbreviations(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_listabbreviations);
-}
-Variant c_DateTimeZone::i_listidentifiers(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_listidentifiers);
-}
-Variant c_DateTimeZone::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_DateTimeZone::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DateTimeZone);
-  }
-  c_DateTimeZone *self ATTRIBUTE_UNUSED (static_cast<c_DateTimeZone*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__construct", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t___construct(arg0), null);
-}
-Variant c_DateTimeZone::ifa_getname(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getname, coo_DateTimeZone);
-  }
-  c_DateTimeZone *self ATTRIBUTE_UNUSED (static_cast<c_DateTimeZone*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getname", 0, 1);
-  return (self->t_getname());
-}
-Variant c_DateTimeZone::ifa_getoffset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getoffset, coo_DateTimeZone);
-  }
-  c_DateTimeZone *self ATTRIBUTE_UNUSED (static_cast<c_DateTimeZone*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getoffset", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (self->t_getoffset(arg0));
-}
-Variant c_DateTimeZone::ifa_gettransitions(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_gettransitions, coo_DateTimeZone);
-  }
-  c_DateTimeZone *self ATTRIBUTE_UNUSED (static_cast<c_DateTimeZone*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("gettransitions", 0, 1);
-  return (self->t_gettransitions());
-}
-Variant c_DateTimeZone::ifa_listabbreviations(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("listabbreviations", 0, 1);
-  return (c_DateTimeZone::t_listabbreviations());
-}
-Variant c_DateTimeZone::ifa_listidentifiers(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("listidentifiers", 0, 1);
-  return (c_DateTimeZone::t_listidentifiers());
-}
-Variant c_DateTimeZone::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DateTimeZone);
-  }
-  c_DateTimeZone *self ATTRIBUTE_UNUSED (static_cast<c_DateTimeZone*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_DateTimeZone::s_call_info_table[] = {
-  { 0x6D7CD16BBA93D063LL, 1, 15, "listIdentifiers", &c_DateTimeZone::ci_listidentifiers },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_DateTimeZone::ci___destruct },
-  { 0x63D3CF3884CE93F4LL, 1, 14, "getTransitions", &c_DateTimeZone::ci_gettransitions },
-  { 0x23F51CDECC198965LL, 1, 7, "getName", &c_DateTimeZone::ci_getname },
-  { 0x2D0CCAB16C3ED068LL, 1, 17, "listAbbreviations", &c_DateTimeZone::ci_listabbreviations },
-  { 0x68DB66F60B55BD0BLL, 1, 9, "getOffset", &c_DateTimeZone::ci_getoffset },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DateTimeZone::ci___construct },
-  { 0, 1, 0, 0 }
-};
-const int c_DateTimeZone::s_call_info_index[] = {
-  15,
-  -1,-1,-1,0,2,3,-1,-1,
-  4,-1,-1,5,-1,-1,-1,6,
-
-};
-c_DateTimeZone *c_DateTimeZone::create(String a0) {
-  CountableHelper h(this);
-  init();
-  t___construct(a0);
-  return this;
-}
-const ObjectStaticCallbacks cw_DateTimeZone = {
-  (ObjectData*(*)(ObjectData*))coo_DateTimeZone,
-  c_DateTimeZone::s_call_info_table,c_DateTimeZone::s_call_info_index,
-  c_DateTimeZone::s_instanceof_table,c_DateTimeZone::s_instanceof_index,
-  &c_DateTimeZone::s_class_name,
-  &c_DateTimeZone::os_prop_table,&c_DateTimeZone::ci___construct,0,0,0x0
-};
-ObjectData *coo_DOMImplementation() {
-  return NEWOBJ(c_DOMImplementation)();
-}
-IMPLEMENT_CLASS(DOMImplementation)
-const InstanceOfInfo c_DOMImplementation::s_instanceof_table[] = {
-  {0x74419B70A46387FDLL,1,"DOMImplementation",&cw_DOMImplementation},
-};
-const int c_DOMImplementation::s_instanceof_index[] = {
-  1,
-  -1,0,
-};
-CallInfo c_DOMImplementation::ci_hasfeature((void*)&c_DOMImplementation::i_hasfeature, (void*)&c_DOMImplementation::ifa_hasfeature, 2, 4, 0x0000000000000000LL);
-CallInfo c_DOMImplementation::ci_createdocument((void*)&c_DOMImplementation::i_createdocument, (void*)&c_DOMImplementation::ifa_createdocument, 3, 4, 0x0000000000000000LL);
-CallInfo c_DOMImplementation::ci___destruct((void*)&c_DOMImplementation::i___destruct, (void*)&c_DOMImplementation::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_DOMImplementation::ci_createdocumenttype((void*)&c_DOMImplementation::i_createdocumenttype, (void*)&c_DOMImplementation::ifa_createdocumenttype, 3, 4, 0x0000000000000000LL);
-CallInfo c_DOMImplementation::ci___construct((void*)&c_DOMImplementation::i___construct, (void*)&c_DOMImplementation::ifa___construct, 0, 4, 0x0000000000000000LL);
-Variant c_DOMImplementation::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_DOMImplementation::i_createdocument(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_createdocument);
-}
-Variant c_DOMImplementation::i_createdocumenttype(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_createdocumenttype);
-}
-Variant c_DOMImplementation::i_hasfeature(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa_hasfeature);
-}
-Variant c_DOMImplementation::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_DOMImplementation::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMImplementation);
-  }
-  c_DOMImplementation *self ATTRIBUTE_UNUSED (static_cast<c_DOMImplementation*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
-  return (self->t___construct(), null);
-}
-Variant c_DOMImplementation::ifa_createdocument(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_createdocument, coo_DOMImplementation);
-  }
-  c_DOMImplementation *self ATTRIBUTE_UNUSED (static_cast<c_DOMImplementation*>(mcp.obj));
-  if (UNLIKELY(count > 3)) return throw_toomany_arguments("createdocument", 3, 1);
-  if (count <= 0) return (self->t_createdocument());
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_createdocument(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_createdocument(arg0, arg1));
-  CVarRef arg2(a2);
-  return (self->t_createdocument(arg0, arg1, arg2));
-}
-Variant c_DOMImplementation::ifa_createdocumenttype(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_createdocumenttype, coo_DOMImplementation);
-  }
-  c_DOMImplementation *self ATTRIBUTE_UNUSED (static_cast<c_DOMImplementation*>(mcp.obj));
-  if (UNLIKELY(count > 3)) return throw_toomany_arguments("createdocumenttype", 3, 1);
-  if (count <= 0) return (self->t_createdocumenttype());
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t_createdocumenttype(arg0));
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t_createdocumenttype(arg0, arg1));
-  CVarRef arg2(a2);
-  return (self->t_createdocumenttype(arg0, arg1, arg2));
-}
-Variant c_DOMImplementation::ifa_hasfeature(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_hasfeature, coo_DOMImplementation);
-  }
-  c_DOMImplementation *self ATTRIBUTE_UNUSED (static_cast<c_DOMImplementation*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("hasfeature", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t_hasfeature(arg0, arg1));
-}
-Variant c_DOMImplementation::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMImplementation);
-  }
-  c_DOMImplementation *self ATTRIBUTE_UNUSED (static_cast<c_DOMImplementation*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
-  return (self->t___destruct());
-}
-const MethodCallInfoTable c_DOMImplementation::s_call_info_table[] = {
-  { 0x3CB56A796F3DBAC3LL, 1, 18, "createDocumentType", &c_DOMImplementation::ci_createdocumenttype },
-  { 0x280878EAC306A6A3LL, 0, 10, "hasFeature", &c_DOMImplementation::ci_hasfeature },
-  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_DOMImplementation::ci___destruct },
-  { 0x30855E95B37D1B4ELL, 1, 14, "createDocument", &c_DOMImplementation::ci_createdocument },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMImplementation::ci___construct },
-  { 0, 1, 0, 0 }
-};
-const int c_DOMImplementation::s_call_info_index[] = {
-  15,
-  -1,-1,-1,0,-1,-1,-1,-1,
-  -1,-1,-1,-1,-1,-1,3,4,
-
-};
-c_DOMImplementation *c_DOMImplementation::create() {
-  CountableHelper h(this);
-  init();
-  t___construct();
-  return this;
-}
-const ObjectStaticCallbacks cw_DOMImplementation = {
-  (ObjectData*(*)(ObjectData*))coo_DOMImplementation,
-  c_DOMImplementation::s_call_info_table,c_DOMImplementation::s_call_info_index,
-  c_DOMImplementation::s_instanceof_table,c_DOMImplementation::s_instanceof_index,
-  &c_DOMImplementation::s_class_name,
-  0,&c_DOMImplementation::ci___construct,0,0,0x0
-};
-ObjectData *coo_SoapClient() {
-  return NEWOBJ(c_SoapClient)();
-}
-IMPLEMENT_CLASS(SoapClient)
-const InstanceOfInfo c_SoapClient::s_instanceof_table[] = {
-  {0x7A52EBE538182BDALL,1,"SoapClient",&cw_SoapClient},
-};
-const int c_SoapClient::s_instanceof_index[] = {
-  1,
-  0,-1,
-};
-Variant c_SoapClient::doCall(Variant v_name, Variant v_arguments, bool fatal) {
-  return t___call(v_name, !v_arguments.isNull() ? v_arguments : Variant(Array::Create()));
-}
-CallInfo c_SoapClient::ci___setlocation((void*)&c_SoapClient::i___setlocation, (void*)&c_SoapClient::ifa___setlocation, 1, 4, 0x0000000000000000LL);
-CallInfo c_SoapClient::ci___call((void*)&c_SoapClient::i___call, (void*)&c_SoapClient::ifa___call, 2, 4, 0x0000000000000000LL);
-CallInfo c_SoapClient::ci___setsoapheaders((void*)&c_SoapClient::i___setsoapheaders, (void*)&c_SoapClient::ifa___setsoapheaders, 1, 4, 0x0000000000000000LL);
-CallInfo c_SoapClient::ci___getlastresponse((void*)&c_SoapClient::i___getlastresponse, (void*)&c_SoapClient::ifa___getlastresponse, 0, 4, 0x0000000000000000LL);
-CallInfo c_SoapClient::ci___setcookie((void*)&c_SoapClient::i___setcookie, (void*)&c_SoapClient::ifa___setcookie, 2, 4, 0x0000000000000000LL);
-CallInfo c_SoapClient::ci___getfunctions((void*)&c_SoapClient::i___getfunctions, (void*)&c_SoapClient::ifa___getfunctions, 0, 4, 0x0000000000000000LL);
-CallInfo c_SoapClient::ci___getlastrequestheaders((void*)&c_SoapClient::i___getlastrequestheaders, (void*)&c_SoapClient::ifa___getlastrequestheaders, 0, 4, 0x0000000000000000LL);
-CallInfo c_SoapClient::ci___gettypes((void*)&c_SoapClient::i___gettypes, (void*)&c_SoapClient::ifa___gettypes, 0, 4, 0x0000000000000000LL);
-CallInfo c_SoapClient::ci___destruct((void*)&c_SoapClient::i___destruct, (void*)&c_SoapClient::ifa___destruct, 0, 4, 0x0000000000000000LL);
-CallInfo c_SoapClient::ci___getlastresponseheaders((void*)&c_SoapClient::i___getlastresponseheaders, (void*)&c_SoapClient::ifa___getlastresponseheaders, 0, 4, 0x0000000000000000LL);
-CallInfo c_SoapClient::ci___dorequest((void*)&c_SoapClient::i___dorequest, (void*)&c_SoapClient::ifa___dorequest, 5, 4, 0x0000000000000000LL);
-CallInfo c_SoapClient::ci___soapcall((void*)&c_SoapClient::i___soapcall, (void*)&c_SoapClient::ifa___soapcall, 5, 4, 0x0000000000000010LL);
-CallInfo c_SoapClient::ci___getlastrequest((void*)&c_SoapClient::i___getlastrequest, (void*)&c_SoapClient::ifa___getlastrequest, 0, 4, 0x0000000000000000LL);
-CallInfo c_SoapClient::ci___construct((void*)&c_SoapClient::i___construct, (void*)&c_SoapClient::ifa___construct, 2, 4, 0x0000000000000000LL);
-Variant c_SoapClient::i___construct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___construct);
-}
-Variant c_SoapClient::i___call(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___call);
-}
-Variant c_SoapClient::i___soapcall(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___soapcall);
-}
-Variant c_SoapClient::i___getlastrequest(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___getlastrequest);
-}
-Variant c_SoapClient::i___getlastresponse(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___getlastresponse);
-}
-Variant c_SoapClient::i___getlastrequestheaders(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___getlastrequestheaders);
-}
-Variant c_SoapClient::i___getlastresponseheaders(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___getlastresponseheaders);
-}
-Variant c_SoapClient::i___getfunctions(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___getfunctions);
-}
-Variant c_SoapClient::i___gettypes(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___gettypes);
-}
-Variant c_SoapClient::i___dorequest(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___dorequest);
-}
-Variant c_SoapClient::i___setcookie(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___setcookie);
-}
-Variant c_SoapClient::i___setlocation(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___setlocation);
-}
-Variant c_SoapClient::i___setsoapheaders(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___setsoapheaders);
-}
-Variant c_SoapClient::i___destruct(MethodCallPackage &mcp, CArrRef params) {
-  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
-}
-Variant c_SoapClient::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_SoapClient);
-  }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("__construct", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (self->t___construct(arg0), null);
-  CVarRef arg1(a1);
-  return (self->t___construct(arg0, arg1), null);
-}
-Variant c_SoapClient::ifa___call(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___call, coo_SoapClient);
-  }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__call", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (self->t___call(arg0, arg1));
-}
-Variant c_SoapClient::ifa___soapcall(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___soapcall, coo_SoapClient);
-  }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
-  if (UNLIKELY(count < 2 || count > 5)) return throw_wrong_arguments("__soapcall", count, 2, 5, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  if (count <= 2) return (self->t___soapcall(arg0, arg1));
-  CVarRef arg2(a2);
-  if (count <= 3) return (self->t___soapcall(arg0, arg1, arg2));
-  CVarRef arg3(a3);
-  if (count <= 4) return (self->t___soapcall(arg0, arg1, arg2, arg3));
-  VRefParam arg4(vref(a4));
-  return (self->t___soapcall(arg0, arg1, arg2, arg3, arg4));
-}
-Variant c_SoapClient::ifa___getlastrequest(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___getlastrequest, coo_SoapClient);
-  }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__getlastrequest", 0, 1);
-  return (self->t___getlastrequest());
-}
-Variant c_SoapClient::ifa___getlastresponse(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___getlastresponse, coo_SoapClient);
-  }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__getlastresponse", 0, 1);
-  return (self->t___getlastresponse());
-}
-Variant c_SoapClient::ifa___getlastrequestheaders(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___getlastrequestheaders, coo_SoapClient);
-  }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__getlastrequestheaders", 0, 1);
-  return (self->t___getlastrequestheaders());
-}
-Variant c_SoapClient::ifa___getlastresponseheaders(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___getlastresponseheaders, coo_SoapClient);
-  }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__getlastresponseheaders", 0, 1);
-  return (self->t___getlastresponseheaders());
-}
-Variant c_SoapClient::ifa___getfunctions(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___getfunctions, coo_SoapClient);
-  }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__getfunctions", 0, 1);
-  return (self->t___getfunctions());
-}
-Variant c_SoapClient::ifa___gettypes(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___gettypes, coo_SoapClient);
-  }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__gettypes", 0, 1);
-  return (self->t___gettypes());
-}
-Variant c_SoapClient::ifa___dorequest(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___dorequest, coo_SoapClient);
-  }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
-  if (UNLIKELY(count < 4 || count > 5)) return throw_wrong_arguments("__dorequest", count, 4, 5, 1);
+  c_GenericContinuation *self ATTRIBUTE_UNUSED (static_cast<c_GenericContinuation*>(mcp.obj));
+  if (UNLIKELY(count < 5)) return throw_wrong_arguments("__construct", count, 5, 7, 1);
   CVarRef arg0(a0);
   CVarRef arg1(a1);
   CVarRef arg2(a2);
   CVarRef arg3(a3);
-  if (count <= 4) return (self->t___dorequest(arg0, arg1, arg2, arg3));
   CVarRef arg4(a4);
-  return (self->t___dorequest(arg0, arg1, arg2, arg3, arg4));
+  if (count <= 5) return (self->t___construct(arg0, arg1, arg2, arg3, arg4), null);
+  CVarRef arg5(a5);
+  return (self->t___construct(arg0, arg1, arg2, arg3, arg4, arg5), null);
 }
-Variant c_SoapClient::ifa___setcookie(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_GenericContinuation::ifa_update(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___setcookie, coo_SoapClient);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_update, coo_GenericContinuation);
   }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("__setcookie", count, 1, 2, 1);
+  c_GenericContinuation *self ATTRIBUTE_UNUSED (static_cast<c_GenericContinuation*>(mcp.obj));
+  if (UNLIKELY(count != 3)) return throw_wrong_arguments("update", count, 3, 3, 1);
   CVarRef arg0(a0);
-  if (count <= 1) return (self->t___setcookie(arg0));
   CVarRef arg1(a1);
-  return (self->t___setcookie(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_update(arg0, arg1, arg2), null);
 }
-Variant c_SoapClient::ifa___setlocation(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_GenericContinuation::ifa_getvars(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___setlocation, coo_SoapClient);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getvars, coo_GenericContinuation);
   }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("__setlocation", 1, 1);
-  if (count <= 0) return (self->t___setlocation());
-  CVarRef arg0(a0);
-  return (self->t___setlocation(arg0));
+  c_GenericContinuation *self ATTRIBUTE_UNUSED (static_cast<c_GenericContinuation*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getvars", 0, 1);
+  return (self->t_getvars());
 }
-Variant c_SoapClient::ifa___setsoapheaders(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+Variant c_GenericContinuation::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___setsoapheaders, coo_SoapClient);
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_GenericContinuation);
   }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
-  if (UNLIKELY(count > 1)) return throw_toomany_arguments("__setsoapheaders", 1, 1);
-  if (count <= 0) return (self->t___setsoapheaders());
-  CVarRef arg0(a0);
-  return (self->t___setsoapheaders(arg0));
-}
-Variant c_SoapClient::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(mcp.obj == 0)) {
-    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_SoapClient);
-  }
-  c_SoapClient *self ATTRIBUTE_UNUSED (static_cast<c_SoapClient*>(mcp.obj));
+  c_GenericContinuation *self ATTRIBUTE_UNUSED (static_cast<c_GenericContinuation*>(mcp.obj));
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
   return (self->t___destruct());
 }
-const MethodCallInfoTable c_SoapClient::s_call_info_table[] = {
-  { 0x5C5C1E24A140F6E4LL, 1, 16, "__getlastrequest", &c_SoapClient::ci___getlastrequest },
-  { 0x5D73364F53CEEB6CLL, 1, 6, "__call", &c_SoapClient::ci___call },
-  { 0x3648EE7D3B37DE8CLL, 0, 23, "__getlastrequestheaders", &c_SoapClient::ci___getlastrequestheaders },
-  { 0x1365B3105FC59871LL, 1, 14, "__getfunctions", &c_SoapClient::ci___getfunctions },
-  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_SoapClient::ci___destruct },
-  { 0x3CA9145031035A54LL, 1, 17, "__getlastresponse", &c_SoapClient::ci___getlastresponse },
-  { 0x628D398E7604B9D5LL, 1, 10, "__gettypes", &c_SoapClient::ci___gettypes },
-  { 0x19A26CEC7E8AAEF5LL, 0, 11, "__dorequest", &c_SoapClient::ci___dorequest },
-  { 0x52C6ABACCBFD0C75LL, 0, 11, "__setcookie", &c_SoapClient::ci___setcookie },
-  { 0x4A2F89F662050D99LL, 1, 10, "__soapcall", &c_SoapClient::ci___soapcall },
-  { 0x0C94657A58A82CFALL, 1, 24, "__getlastresponseheaders", &c_SoapClient::ci___getlastresponseheaders },
-  { 0x14842228D5E335BBLL, 1, 16, "__setsoapheaders", &c_SoapClient::ci___setsoapheaders },
-  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_SoapClient::ci___construct },
-  { 0x232D13904DBC36FFLL, 0, 13, "__setlocation", &c_SoapClient::ci___setlocation },
+const MethodCallInfoTable c_GenericContinuation::s_call_info_table[] = {
+  { 0x1402C6C4A8D472A0LL, 1, 6, "update", &c_GenericContinuation::ci_update },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_GenericContinuation::ci___destruct },
+  { 0x72BA7745837A2236LL, 1, 7, "getVars", &c_GenericContinuation::ci_getvars },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_GenericContinuation::ci___construct },
   { 0, 1, 0, 0 }
 };
-const int c_SoapClient::s_call_info_index[] = {
-  31,
-  -1,-1,-1,-1,0,-1,-1,-1,
-  -1,-1,-1,-1,1,-1,-1,-1,
-  -1,3,-1,4,5,6,-1,-1,
-  -1,9,10,11,-1,-1,-1,12,
+const int c_GenericContinuation::s_call_info_index[] = {
+  7,
+  0,-1,-1,1,-1,-1,2,3,
 
 };
-c_SoapClient *c_SoapClient::create(Variant a0, Array a1) {
+c_GenericContinuation *c_GenericContinuation::create(int64 a0, int64 a1, bool a2, String a3, Array a4, Variant a5, Array a6) {
   CountableHelper h(this);
   init();
-  t___construct(a0, a1);
+  t___construct(a0, a1, a2, a3, a4, a5, a6);
   return this;
 }
-const ObjectStaticCallbacks cw_SoapClient = {
-  (ObjectData*(*)(ObjectData*))coo_SoapClient,
-  c_SoapClient::s_call_info_table,c_SoapClient::s_call_info_index,
-  c_SoapClient::s_instanceof_table,c_SoapClient::s_instanceof_index,
-  &c_SoapClient::s_class_name,
-  0,&c_SoapClient::ci___construct,0,0,0x100
+const ObjectStaticCallbacks cw_GenericContinuation = {
+  (ObjectData*(*)(ObjectData*))coo_GenericContinuation,
+  c_GenericContinuation::s_call_info_table,c_GenericContinuation::s_call_info_index,
+  c_GenericContinuation::s_instanceof_table,c_GenericContinuation::s_instanceof_index,
+  &c_GenericContinuation::s_class_name,
+  &c_GenericContinuation::os_prop_table,&c_GenericContinuation::ci___construct,0,&cw_Continuation,0x0
+};
+ObjectData *coo_DOMNamedNodeMap() {
+  return NEWOBJ(c_DOMNamedNodeMap)();
+}
+IMPLEMENT_CLASS(DOMNamedNodeMap)
+const InstanceOfInfo c_DOMNamedNodeMap::s_instanceof_table[] = {
+  {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},
+  {0x196F76C9C527B946LL,1,"DOMNamedNodeMap",&cw_DOMNamedNodeMap},
+  {0x5C9BC112C0363017LL,1,"IteratorAggregate",(const ObjectStaticCallbacks*)2},
+};
+const int c_DOMNamedNodeMap::s_instanceof_index[] = {
+  7,
+  -1,0,-1,-1,-1,-1,1,2,
+
+};
+CallInfo c_DOMNamedNodeMap::ci___construct((void*)&c_DOMNamedNodeMap::i___construct, (void*)&c_DOMNamedNodeMap::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNamedNodeMap::ci___get((void*)&c_DOMNamedNodeMap::i___get, (void*)&c_DOMNamedNodeMap::ifa___get, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNamedNodeMap::ci___isset((void*)&c_DOMNamedNodeMap::i___isset, (void*)&c_DOMNamedNodeMap::ifa___isset, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNamedNodeMap::ci_getnameditem((void*)&c_DOMNamedNodeMap::i_getnameditem, (void*)&c_DOMNamedNodeMap::ifa_getnameditem, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNamedNodeMap::ci___destruct((void*)&c_DOMNamedNodeMap::i___destruct, (void*)&c_DOMNamedNodeMap::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNamedNodeMap::ci_getnameditemns((void*)&c_DOMNamedNodeMap::i_getnameditemns, (void*)&c_DOMNamedNodeMap::ifa_getnameditemns, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMNamedNodeMap::ci_item((void*)&c_DOMNamedNodeMap::i_item, (void*)&c_DOMNamedNodeMap::ifa_item, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNamedNodeMap::ci___set((void*)&c_DOMNamedNodeMap::i___set, (void*)&c_DOMNamedNodeMap::ifa___set, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMNamedNodeMap::ci_getiterator((void*)&c_DOMNamedNodeMap::i_getiterator, (void*)&c_DOMNamedNodeMap::ifa_getiterator, 0, 4, 0x0000000000000000LL);
+Variant c_DOMNamedNodeMap::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_DOMNamedNodeMap::i_getnameditem(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getnameditem);
+}
+Variant c_DOMNamedNodeMap::i_getnameditemns(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getnameditemns);
+}
+Variant c_DOMNamedNodeMap::i_item(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_item);
+}
+Variant c_DOMNamedNodeMap::i___get(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___get);
+}
+Variant c_DOMNamedNodeMap::i___set(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___set);
+}
+Variant c_DOMNamedNodeMap::i___isset(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___isset);
+}
+Variant c_DOMNamedNodeMap::i_getiterator(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getiterator);
+}
+Variant c_DOMNamedNodeMap::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_DOMNamedNodeMap::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMNamedNodeMap);
+  }
+  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_DOMNamedNodeMap::ifa_getnameditem(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getnameditem, coo_DOMNamedNodeMap);
+  }
+  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getnameditem", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_getnameditem(arg0));
+}
+Variant c_DOMNamedNodeMap::ifa_getnameditemns(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getnameditemns, coo_DOMNamedNodeMap);
+  }
+  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("getnameditemns", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_getnameditemns(arg0, arg1));
+}
+Variant c_DOMNamedNodeMap::ifa_item(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_item, coo_DOMNamedNodeMap);
+  }
+  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("item", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_item(arg0));
+}
+Variant c_DOMNamedNodeMap::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMNamedNodeMap);
+  }
+  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___get(arg0));
+}
+Variant c_DOMNamedNodeMap::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMNamedNodeMap);
+  }
+  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t___set(arg0, arg1));
+}
+Variant c_DOMNamedNodeMap::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMNamedNodeMap);
+  }
+  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___isset(arg0));
+}
+Variant c_DOMNamedNodeMap::ifa_getiterator(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getiterator, coo_DOMNamedNodeMap);
+  }
+  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getiterator", 0, 1);
+  return (self->t_getiterator());
+}
+Variant c_DOMNamedNodeMap::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMNamedNodeMap);
+  }
+  c_DOMNamedNodeMap *self ATTRIBUTE_UNUSED (static_cast<c_DOMNamedNodeMap*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_DOMNamedNodeMap::s_call_info_table[] = {
+  { 0x570B2E1232A12503LL, 1, 11, "getIterator", &c_DOMNamedNodeMap::ci_getiterator },
+  { 0x0A41DBE0830902C6LL, 1, 4, "item", &c_DOMNamedNodeMap::ci_item },
+  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMNamedNodeMap::ci___isset },
+  { 0x26B6E00C74FA338FLL, 1, 5, "__get", &c_DOMNamedNodeMap::ci___get },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_DOMNamedNodeMap::ci___destruct },
+  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMNamedNodeMap::ci___set },
+  { 0x5D3CEC627F9ADC3ALL, 1, 12, "getNamedItem", &c_DOMNamedNodeMap::ci_getnameditem },
+  { 0x53B4D840FF4F0F1BLL, 1, 14, "getNamedItemNS", &c_DOMNamedNodeMap::ci_getnameditemns },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMNamedNodeMap::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_DOMNamedNodeMap::s_call_info_index[] = {
+  31,
+  -1,-1,-1,0,-1,-1,1,-1,
+  -1,-1,-1,-1,-1,-1,2,3,
+  -1,-1,-1,4,-1,5,-1,-1,
+  -1,-1,6,7,-1,-1,-1,8,
+
+};
+c_DOMNamedNodeMap *c_DOMNamedNodeMap::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_DOMNamedNodeMap = {
+  (ObjectData*(*)(ObjectData*))coo_DOMNamedNodeMap,
+  c_DOMNamedNodeMap::s_call_info_table,c_DOMNamedNodeMap::s_call_info_index,
+  c_DOMNamedNodeMap::s_instanceof_table,c_DOMNamedNodeMap::s_instanceof_index,
+  &c_DOMNamedNodeMap::s_class_name,
+  0,&c_DOMNamedNodeMap::ci___construct,0,0,0x0
+};
+ObjectData *coo_PDO() {
+  return NEWOBJ(c_PDO)();
+}
+IMPLEMENT_CLASS(PDO)
+const InstanceOfInfo c_PDO::s_instanceof_table[] = {
+  {0x0A34015F67C804ADLL,1,"PDO",&cw_PDO},
+};
+const int c_PDO::s_instanceof_index[] = {
+  1,
+  -1,0,
+};
+CallInfo c_PDO::ci_lastinsertid((void*)&c_PDO::i_lastinsertid, (void*)&c_PDO::ifa_lastinsertid, 1, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci_commit((void*)&c_PDO::i_commit, (void*)&c_PDO::ifa_commit, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci_getavailabledrivers((void*)&c_PDO::i_getavailabledrivers, (void*)&c_PDO::ifa_getavailabledrivers, 0, 12, 0x0000000000000000LL);
+CallInfo c_PDO::ci_begintransaction((void*)&c_PDO::i_begintransaction, (void*)&c_PDO::ifa_begintransaction, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci_quote((void*)&c_PDO::i_quote, (void*)&c_PDO::ifa_quote, 2, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci_errorinfo((void*)&c_PDO::i_errorinfo, (void*)&c_PDO::ifa_errorinfo, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci___sleep((void*)&c_PDO::i___sleep, (void*)&c_PDO::ifa___sleep, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci___wakeup((void*)&c_PDO::i___wakeup, (void*)&c_PDO::ifa___wakeup, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci_query((void*)&c_PDO::i_query, (void*)&c_PDO::ifa_query, 1, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci_setattribute((void*)&c_PDO::i_setattribute, (void*)&c_PDO::ifa_setattribute, 2, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci_getattribute((void*)&c_PDO::i_getattribute, (void*)&c_PDO::ifa_getattribute, 1, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci_errorcode((void*)&c_PDO::i_errorcode, (void*)&c_PDO::ifa_errorcode, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci___destruct((void*)&c_PDO::i___destruct, (void*)&c_PDO::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci_prepare((void*)&c_PDO::i_prepare, (void*)&c_PDO::ifa_prepare, 2, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci_exec((void*)&c_PDO::i_exec, (void*)&c_PDO::ifa_exec, 1, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci_rollback((void*)&c_PDO::i_rollback, (void*)&c_PDO::ifa_rollback, 0, 4, 0x0000000000000000LL);
+CallInfo c_PDO::ci___construct((void*)&c_PDO::i___construct, (void*)&c_PDO::ifa___construct, 4, 4, 0x0000000000000000LL);
+Variant c_PDO::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_PDO::i_prepare(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_prepare);
+}
+Variant c_PDO::i_begintransaction(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_begintransaction);
+}
+Variant c_PDO::i_commit(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_commit);
+}
+Variant c_PDO::i_rollback(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_rollback);
+}
+Variant c_PDO::i_setattribute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_setattribute);
+}
+Variant c_PDO::i_getattribute(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getattribute);
+}
+Variant c_PDO::i_exec(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_exec);
+}
+Variant c_PDO::i_lastinsertid(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_lastinsertid);
+}
+Variant c_PDO::i_errorcode(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_errorcode);
+}
+Variant c_PDO::i_errorinfo(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_errorinfo);
+}
+Variant c_PDO::i_query(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_query);
+}
+Variant c_PDO::i_quote(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_quote);
+}
+Variant c_PDO::i___wakeup(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___wakeup);
+}
+Variant c_PDO::i___sleep(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___sleep);
+}
+Variant c_PDO::i_getavailabledrivers(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getavailabledrivers);
+}
+Variant c_PDO::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_PDO::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 4)) return throw_wrong_arguments("__construct", count, 1, 4, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t___construct(arg0), null);
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t___construct(arg0, arg1), null);
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t___construct(arg0, arg1, arg2), null);
+  CVarRef arg3(a3);
+  return (self->t___construct(arg0, arg1, arg2, arg3), null);
+}
+Variant c_PDO::ifa_prepare(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_prepare, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("prepare", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_prepare(arg0));
+  CVarRef arg1(a1);
+  return (self->t_prepare(arg0, arg1));
+}
+Variant c_PDO::ifa_begintransaction(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_begintransaction, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("begintransaction", 0, 1);
+  return (self->t_begintransaction());
+}
+Variant c_PDO::ifa_commit(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_commit, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("commit", 0, 1);
+  return (self->t_commit());
+}
+Variant c_PDO::ifa_rollback(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_rollback, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("rollback", 0, 1);
+  return (self->t_rollback());
+}
+Variant c_PDO::ifa_setattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setattribute, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("setattribute", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_setattribute(arg0, arg1));
+}
+Variant c_PDO::ifa_getattribute(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getattribute, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("getattribute", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_getattribute(arg0));
+}
+Variant c_PDO::ifa_exec(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_exec, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("exec", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_exec(arg0));
+}
+Variant c_PDO::ifa_lastinsertid(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lastinsertid, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("lastinsertid", 1, 1);
+  if (count <= 0) return (self->t_lastinsertid());
+  CVarRef arg0(a0);
+  return (self->t_lastinsertid(arg0));
+}
+Variant c_PDO::ifa_errorcode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_errorcode, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("errorcode", 0, 1);
+  return (self->t_errorcode());
+}
+Variant c_PDO::ifa_errorinfo(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_errorinfo, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("errorinfo", 0, 1);
+  return (self->t_errorinfo());
+}
+Variant c_PDO::ifa_query(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_query, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("query", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_query(arg0));
+}
+Variant c_PDO::ifa_quote(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_quote, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("quote", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_quote(arg0));
+  CVarRef arg1(a1);
+  return (self->t_quote(arg0, arg1));
+}
+Variant c_PDO::ifa___wakeup(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___wakeup, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__wakeup", 0, 1);
+  return (self->t___wakeup());
+}
+Variant c_PDO::ifa___sleep(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___sleep, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__sleep", 0, 1);
+  return (self->t___sleep());
+}
+Variant c_PDO::ifa_getavailabledrivers(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getavailabledrivers", 0, 1);
+  return (c_PDO::t_getavailabledrivers());
+}
+Variant c_PDO::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_PDO);
+  }
+  c_PDO *self ATTRIBUTE_UNUSED (static_cast<c_PDO*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_PDO::s_call_info_table[] = {
+  { 0x6D0664CC2372F2C7LL, 1, 9, "errorcode", &c_PDO::ci_errorcode },
+  { 0x1D5B8B8144F4AB8ALL, 1, 12, "setattribute", &c_PDO::ci_setattribute },
+  { 0x4F1D1ED7B087208CLL, 1, 4, "exec", &c_PDO::ci_exec },
+  { 0x7FF4D594AC38340ELL, 1, 19, "getavailabledrivers", &c_PDO::ci_getavailabledrivers },
+  { 0x25466EABBA2D7C12LL, 1, 12, "lastinsertid", &c_PDO::ci_lastinsertid },
+  { 0x4389F50CAA085CDCLL, 1, 8, "__wakeup", &c_PDO::ci___wakeup },
+  { 0x1DDD412E7F04605ELL, 1, 9, "errorinfo", &c_PDO::ci_errorinfo },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_PDO::ci___construct },
+  { 0x24D23BE465E3F324LL, 1, 6, "commit", &c_PDO::ci_commit },
+  { 0x49F89C466612FC28LL, 1, 12, "getattribute", &c_PDO::ci_getattribute },
+  { 0x61D1244DDADBC02DLL, 1, 7, "__sleep", &c_PDO::ci___sleep },
+  { 0x1740B14E849464EELL, 1, 5, "quote", &c_PDO::ci_quote },
+  { 0x540020AE4BA591AFLL, 1, 7, "prepare", &c_PDO::ci_prepare },
+  { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_PDO::ci___destruct },
+  { 0x374B46BC6D79EC36LL, 1, 8, "rollback", &c_PDO::ci_rollback },
+  { 0x356758D4414DA377LL, 1, 5, "query", &c_PDO::ci_query },
+  { 0x0DE392135C33E23BLL, 1, 16, "begintransaction", &c_PDO::ci_begintransaction },
+  { 0, 1, 0, 0 }
+};
+const int c_PDO::s_call_info_index[] = {
+  63,
+  -1,-1,-1,-1,-1,-1,-1,0,
+  -1,-1,1,-1,2,-1,3,-1,
+  -1,-1,4,-1,-1,-1,-1,-1,
+  -1,-1,-1,-1,5,-1,6,7,
+  -1,-1,-1,-1,8,-1,-1,-1,
+  9,-1,-1,-1,-1,10,11,12,
+  -1,-1,-1,13,-1,-1,14,15,
+  -1,-1,-1,16,-1,-1,-1,-1,
+
+};
+c_PDO *c_PDO::create(String a0, String a1, String a2, Array a3) {
+  CountableHelper h(this);
+  init();
+  t___construct(a0, a1, a2, a3);
+  return this;
+}
+const ObjectStaticCallbacks cw_PDO = {
+  (ObjectData*(*)(ObjectData*))coo_PDO,
+  c_PDO::s_call_info_table,c_PDO::s_call_info_index,
+  c_PDO::s_instanceof_table,c_PDO::s_instanceof_index,
+  &c_PDO::s_class_name,
+  &c_PDO::os_prop_table,&c_PDO::ci___construct,0,0,0x0
+};
+ObjectData *coo_DOMNode() {
+  return NEWOBJ(c_DOMNode)();
+}
+IMPLEMENT_CLASS(DOMNode)
+const InstanceOfInfo c_DOMNode::s_instanceof_table[] = {
+  {0x70747A09B3523662LL,1,"DOMNode",&cw_DOMNode},
+};
+const int c_DOMNode::s_instanceof_index[] = {
+  1,
+  0,-1,
+};
+CallInfo c_DOMNode::ci___set((void*)&c_DOMNode::i___set, (void*)&c_DOMNode::ifa___set, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_replacechild((void*)&c_DOMNode::i_replacechild, (void*)&c_DOMNode::ifa_replacechild, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci___isset((void*)&c_DOMNode::i___isset, (void*)&c_DOMNode::ifa___isset, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_c14nfile((void*)&c_DOMNode::i_c14nfile, (void*)&c_DOMNode::ifa_c14nfile, 5, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_appendchild((void*)&c_DOMNode::i_appendchild, (void*)&c_DOMNode::ifa_appendchild, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_removechild((void*)&c_DOMNode::i_removechild, (void*)&c_DOMNode::ifa_removechild, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_issupported((void*)&c_DOMNode::i_issupported, (void*)&c_DOMNode::ifa_issupported, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_clonenode((void*)&c_DOMNode::i_clonenode, (void*)&c_DOMNode::ifa_clonenode, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_getnodepath((void*)&c_DOMNode::i_getnodepath, (void*)&c_DOMNode::ifa_getnodepath, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_hasattributes((void*)&c_DOMNode::i_hasattributes, (void*)&c_DOMNode::ifa_hasattributes, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_getlineno((void*)&c_DOMNode::i_getlineno, (void*)&c_DOMNode::ifa_getlineno, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_haschildnodes((void*)&c_DOMNode::i_haschildnodes, (void*)&c_DOMNode::ifa_haschildnodes, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_c14n((void*)&c_DOMNode::i_c14n, (void*)&c_DOMNode::ifa_c14n, 4, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_lookupnamespaceuri((void*)&c_DOMNode::i_lookupnamespaceuri, (void*)&c_DOMNode::ifa_lookupnamespaceuri, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_insertbefore((void*)&c_DOMNode::i_insertbefore, (void*)&c_DOMNode::ifa_insertbefore, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_isdefaultnamespace((void*)&c_DOMNode::i_isdefaultnamespace, (void*)&c_DOMNode::ifa_isdefaultnamespace, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_lookupprefix((void*)&c_DOMNode::i_lookupprefix, (void*)&c_DOMNode::ifa_lookupprefix, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci___destruct((void*)&c_DOMNode::i___destruct, (void*)&c_DOMNode::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_normalize((void*)&c_DOMNode::i_normalize, (void*)&c_DOMNode::ifa_normalize, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci___get((void*)&c_DOMNode::i___get, (void*)&c_DOMNode::ifa___get, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci___construct((void*)&c_DOMNode::i___construct, (void*)&c_DOMNode::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNode::ci_issamenode((void*)&c_DOMNode::i_issamenode, (void*)&c_DOMNode::ifa_issamenode, 1, 4, 0x0000000000000000LL);
+Variant c_DOMNode::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_DOMNode::i_appendchild(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_appendchild);
+}
+Variant c_DOMNode::i_clonenode(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_clonenode);
+}
+Variant c_DOMNode::i_getlineno(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getlineno);
+}
+Variant c_DOMNode::i_hasattributes(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_hasattributes);
+}
+Variant c_DOMNode::i_haschildnodes(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_haschildnodes);
+}
+Variant c_DOMNode::i_insertbefore(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_insertbefore);
+}
+Variant c_DOMNode::i_isdefaultnamespace(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_isdefaultnamespace);
+}
+Variant c_DOMNode::i_issamenode(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_issamenode);
+}
+Variant c_DOMNode::i_issupported(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_issupported);
+}
+Variant c_DOMNode::i_lookupnamespaceuri(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_lookupnamespaceuri);
+}
+Variant c_DOMNode::i_lookupprefix(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_lookupprefix);
+}
+Variant c_DOMNode::i_normalize(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_normalize);
+}
+Variant c_DOMNode::i_removechild(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_removechild);
+}
+Variant c_DOMNode::i_replacechild(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_replacechild);
+}
+Variant c_DOMNode::i_c14n(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_c14n);
+}
+Variant c_DOMNode::i_c14nfile(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_c14nfile);
+}
+Variant c_DOMNode::i_getnodepath(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getnodepath);
+}
+Variant c_DOMNode::i___get(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___get);
+}
+Variant c_DOMNode::i___set(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___set);
+}
+Variant c_DOMNode::i___isset(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___isset);
+}
+Variant c_DOMNode::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_DOMNode::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_DOMNode::ifa_appendchild(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_appendchild, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("appendchild", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_appendchild(arg0));
+}
+Variant c_DOMNode::ifa_clonenode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_clonenode, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("clonenode", 1, 1);
+  if (count <= 0) return (self->t_clonenode());
+  CVarRef arg0(a0);
+  return (self->t_clonenode(arg0));
+}
+Variant c_DOMNode::ifa_getlineno(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getlineno, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getlineno", 0, 1);
+  return (self->t_getlineno());
+}
+Variant c_DOMNode::ifa_hasattributes(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_hasattributes, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("hasattributes", 0, 1);
+  return (self->t_hasattributes());
+}
+Variant c_DOMNode::ifa_haschildnodes(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_haschildnodes, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("haschildnodes", 0, 1);
+  return (self->t_haschildnodes());
+}
+Variant c_DOMNode::ifa_insertbefore(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_insertbefore, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("insertbefore", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_insertbefore(arg0));
+  CVarRef arg1(a1);
+  return (self->t_insertbefore(arg0, arg1));
+}
+Variant c_DOMNode::ifa_isdefaultnamespace(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_isdefaultnamespace, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("isdefaultnamespace", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_isdefaultnamespace(arg0));
+}
+Variant c_DOMNode::ifa_issamenode(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_issamenode, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("issamenode", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_issamenode(arg0));
+}
+Variant c_DOMNode::ifa_issupported(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_issupported, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("issupported", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_issupported(arg0, arg1));
+}
+Variant c_DOMNode::ifa_lookupnamespaceuri(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lookupnamespaceuri, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("lookupnamespaceuri", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_lookupnamespaceuri(arg0));
+}
+Variant c_DOMNode::ifa_lookupprefix(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_lookupprefix, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("lookupprefix", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_lookupprefix(arg0));
+}
+Variant c_DOMNode::ifa_normalize(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_normalize, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("normalize", 0, 1);
+  return (self->t_normalize(), null);
+}
+Variant c_DOMNode::ifa_removechild(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_removechild, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("removechild", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_removechild(arg0));
+}
+Variant c_DOMNode::ifa_replacechild(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_replacechild, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("replacechild", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t_replacechild(arg0, arg1));
+}
+Variant c_DOMNode::ifa_c14n(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_c14n, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count > 4)) return throw_toomany_arguments("c14n", 4, 1);
+  if (count <= 0) return (self->t_c14n());
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_c14n(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_c14n(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_c14n(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (self->t_c14n(arg0, arg1, arg2, arg3));
+}
+Variant c_DOMNode::ifa_c14nfile(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_c14nfile, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count < 1 || count > 5)) return throw_wrong_arguments("c14nfile", count, 1, 5, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (self->t_c14nfile(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_c14nfile(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (self->t_c14nfile(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  if (count <= 4) return (self->t_c14nfile(arg0, arg1, arg2, arg3));
+  CVarRef arg4(a4);
+  return (self->t_c14nfile(arg0, arg1, arg2, arg3, arg4));
+}
+Variant c_DOMNode::ifa_getnodepath(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getnodepath, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getnodepath", 0, 1);
+  return (self->t_getnodepath());
+}
+Variant c_DOMNode::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___get(arg0));
+}
+Variant c_DOMNode::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t___set(arg0, arg1));
+}
+Variant c_DOMNode::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___isset(arg0));
+}
+Variant c_DOMNode::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMNode);
+  }
+  c_DOMNode *self ATTRIBUTE_UNUSED (static_cast<c_DOMNode*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_DOMNode::s_call_info_table[] = {
+  { 0x69797649716AE343LL, 1, 11, "getNodePath", &c_DOMNode::ci_getnodepath },
+  { 0x77570221C582ED8ALL, 1, 4, "c14n", &c_DOMNode::ci_c14n },
+  { 0x1C51CE3C2356D08ELL, 1, 12, "replaceChild", &c_DOMNode::ci_replacechild },
+  { 0x0B44A59A023E75CFLL, 1, 11, "appendChild", &c_DOMNode::ci_appendchild },
+  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMNode::ci___get },
+  { 0x4F615934A04E3092LL, 1, 9, "cloneNode", &c_DOMNode::ci_clonenode },
+  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMNode::ci___set },
+  { 0x58F8D846AF9E5D18LL, 1, 9, "getLineNo", &c_DOMNode::ci_getlineno },
+  { 0x11A2D4B742CB6C5ALL, 1, 9, "normalize", &c_DOMNode::ci_normalize },
+  { 0x28D1E151A83B8F5DLL, 1, 18, "lookupNamespaceUri", &c_DOMNode::ci_lookupnamespaceuri },
+  { 0x72044C28B65364DDLL, 0, 11, "removeChild", &c_DOMNode::ci_removechild },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMNode::ci___construct },
+  { 0x599DE23996CB7D61LL, 1, 12, "lookupPrefix", &c_DOMNode::ci_lookupprefix },
+  { 0x643EFC8E9378F664LL, 1, 18, "isDefaultNamespace", &c_DOMNode::ci_isdefaultnamespace },
+  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMNode::ci___isset },
+  { 0x102549E9CA2EC6EFLL, 1, 10, "isSameNode", &c_DOMNode::ci_issamenode },
+  { 0x3CFA6EECF6F5AEB1LL, 1, 13, "hasAttributes", &c_DOMNode::ci_hasattributes },
+  { 0x076FF0CF9185C433LL, 1, 12, "insertBefore", &c_DOMNode::ci_insertbefore },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_DOMNode::ci___destruct },
+  { 0x1D1768A6CF365A75LL, 1, 8, "c14nfile", &c_DOMNode::ci_c14nfile },
+  { 0x5F63574EA50595FALL, 1, 13, "hasChildNodes", &c_DOMNode::ci_haschildnodes },
+  { 0x279AA1B214B7677ALL, 0, 11, "isSupported", &c_DOMNode::ci_issupported },
+  { 0, 1, 0, 0 }
+};
+const int c_DOMNode::s_call_info_index[] = {
+  63,
+  -1,-1,-1,0,-1,-1,-1,-1,
+  -1,-1,1,-1,-1,-1,2,3,
+  -1,-1,5,-1,-1,6,-1,-1,
+  7,-1,8,-1,-1,9,-1,11,
+  -1,12,-1,-1,13,-1,-1,-1,
+  -1,-1,-1,-1,-1,-1,14,15,
+  -1,16,-1,17,-1,19,-1,-1,
+  -1,-1,20,-1,-1,-1,-1,-1,
+
+};
+c_DOMNode *c_DOMNode::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_DOMNode = {
+  (ObjectData*(*)(ObjectData*))coo_DOMNode,
+  c_DOMNode::s_call_info_table,c_DOMNode::s_call_info_index,
+  c_DOMNode::s_instanceof_table,c_DOMNode::s_instanceof_index,
+  &c_DOMNode::s_class_name,
+  0,&c_DOMNode::ci___construct,0,0,0x0
+};
+ObjectData *coo_DOMNodeList() {
+  return NEWOBJ(c_DOMNodeList)();
+}
+IMPLEMENT_CLASS(DOMNodeList)
+const InstanceOfInfo c_DOMNodeList::s_instanceof_table[] = {
+  {0x6DD772FA3B20B8B1LL,0,"DOMNodeList",&cw_DOMNodeList},
+  {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},
+  {0x5C9BC112C0363017LL,1,"IteratorAggregate",(const ObjectStaticCallbacks*)2},
+};
+const int c_DOMNodeList::s_instanceof_index[] = {
+  7,
+  -1,0,-1,-1,-1,-1,-1,2,
+
+};
+CallInfo c_DOMNodeList::ci___construct((void*)&c_DOMNodeList::i___construct, (void*)&c_DOMNodeList::ifa___construct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNodeList::ci___get((void*)&c_DOMNodeList::i___get, (void*)&c_DOMNodeList::ifa___get, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNodeList::ci___isset((void*)&c_DOMNodeList::i___isset, (void*)&c_DOMNodeList::ifa___isset, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNodeList::ci___destruct((void*)&c_DOMNodeList::i___destruct, (void*)&c_DOMNodeList::ifa___destruct, 0, 4, 0x0000000000000000LL);
+CallInfo c_DOMNodeList::ci_item((void*)&c_DOMNodeList::i_item, (void*)&c_DOMNodeList::ifa_item, 1, 4, 0x0000000000000000LL);
+CallInfo c_DOMNodeList::ci___set((void*)&c_DOMNodeList::i___set, (void*)&c_DOMNodeList::ifa___set, 2, 4, 0x0000000000000000LL);
+CallInfo c_DOMNodeList::ci_getiterator((void*)&c_DOMNodeList::i_getiterator, (void*)&c_DOMNodeList::ifa_getiterator, 0, 4, 0x0000000000000000LL);
+Variant c_DOMNodeList::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_DOMNodeList::i_item(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_item);
+}
+Variant c_DOMNodeList::i___get(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___get);
+}
+Variant c_DOMNodeList::i___set(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___set);
+}
+Variant c_DOMNodeList::i___isset(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___isset);
+}
+Variant c_DOMNodeList::i_getiterator(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getiterator);
+}
+Variant c_DOMNodeList::i___destruct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___destruct);
+}
+Variant c_DOMNodeList::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_DOMNodeList);
+  }
+  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__construct", 0, 1);
+  return (self->t___construct(), null);
+}
+Variant c_DOMNodeList::ifa_item(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_item, coo_DOMNodeList);
+  }
+  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("item", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_item(arg0));
+}
+Variant c_DOMNodeList::ifa___get(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___get, coo_DOMNodeList);
+  }
+  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__get", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___get(arg0));
+}
+Variant c_DOMNodeList::ifa___set(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___set, coo_DOMNodeList);
+  }
+  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("__set", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t___set(arg0, arg1));
+}
+Variant c_DOMNodeList::ifa___isset(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___isset, coo_DOMNodeList);
+  }
+  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("__isset", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t___isset(arg0));
+}
+Variant c_DOMNodeList::ifa_getiterator(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getiterator, coo_DOMNodeList);
+  }
+  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getiterator", 0, 1);
+  return (self->t_getiterator());
+}
+Variant c_DOMNodeList::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_DOMNodeList);
+  }
+  c_DOMNodeList *self ATTRIBUTE_UNUSED (static_cast<c_DOMNodeList*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("__destruct", 0, 1);
+  return (self->t___destruct());
+}
+const MethodCallInfoTable c_DOMNodeList::s_call_info_table[] = {
+  { 0x570B2E1232A12503LL, 1, 11, "getIterator", &c_DOMNodeList::ci_getiterator },
+  { 0x7F974836AACC1EF3LL, 0, 10, "__destruct", &c_DOMNodeList::ci___destruct },
+  { 0x52F3DAD783340395LL, 1, 5, "__set", &c_DOMNodeList::ci___set },
+  { 0x0A41DBE0830902C6LL, 1, 4, "item", &c_DOMNodeList::ci_item },
+  { 0x4FE08FDDAE2178EELL, 1, 7, "__isset", &c_DOMNodeList::ci___isset },
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_DOMNodeList::ci___construct },
+  { 0x26B6E00C74FA338FLL, 0, 5, "__get", &c_DOMNodeList::ci___get },
+  { 0, 1, 0, 0 }
+};
+const int c_DOMNodeList::s_call_info_index[] = {
+  15,
+  -1,-1,-1,0,-1,2,3,-1,
+  -1,-1,-1,-1,-1,-1,4,5,
+
+};
+c_DOMNodeList *c_DOMNodeList::create() {
+  CountableHelper h(this);
+  init();
+  t___construct();
+  return this;
+}
+const ObjectStaticCallbacks cw_DOMNodeList = {
+  (ObjectData*(*)(ObjectData*))coo_DOMNodeList,
+  c_DOMNodeList::s_call_info_table,c_DOMNodeList::s_call_info_index,
+  c_DOMNodeList::s_instanceof_table,c_DOMNodeList::s_instanceof_index,
+  &c_DOMNodeList::s_class_name,
+  0,&c_DOMNodeList::ci___construct,0,0,0x0
 };
 struct hashNodeCTD {
   int64 hash;
@@ -10569,11 +11453,13 @@ static const hashNodeCTD ctdBuckets[] = {
   {0x69EDCA1CC29CFE0BLL,1,0,"ErrorException",(int64)&cw_ErrorException },
   {0x648FB595C359F411LL,1,0,"SpoofChecker",(int64)&cw_SpoofChecker },
   {0x6A76B9AABB7CC713LL,1,0,"SimpleXMLElement",(int64)&cw_SimpleXMLElement },
-  {0x32E5C767255D2515LL,1,0,"SoapFault",(int64)&cw_SoapFault },
+  {0x32E5C767255D2515LL,0,0,"SoapFault",(int64)&cw_SoapFault },
+  {0x690B18AA61FFAA15LL,1,0,"BucketCacheException",(int64)&cw_BucketCacheException },
   {0x5CBA5B52C68B501ALL,1,0,"DOMEntityReference",(int64)&cw_DOMEntityReference },
   {0x35A44A5E6AE2E71DLL,1,0,"ReflectionClass",(int64)&cw_ReflectionClass },
   {0x3DB8FB455A602A1ELL,1,0,"DateTime",(int64)&cw_DateTime },
   {0x1C85D092180A6325LL,1,0,"XMLReader",(int64)&cw_XMLReader },
+  {0x5103319C12E44A2ALL,1,0,"Gmagick",(int64)&cw_Gmagick },
   {0x7E66D362EAB5BF2BLL,1,0,"SimpleXMLElementIterator",(int64)&cw_SimpleXMLElementIterator },
   {0x5A1D16E68CA95F2FLL,1,0,"MutableArrayIterator",(int64)&cw_MutableArrayIterator },
   {0x7A394042E7488231LL,1,0,"FilterIterator",(int64)&cw_FilterIterator },
@@ -10608,6 +11494,7 @@ static const hashNodeCTD ctdBuckets[] = {
   {0x2FF1EF6EBB3DA065LL,1,0,"XMLWriter",(int64)&cw_XMLWriter },
   {0x7E07B9C27FE59D68LL,0,0,"DOMComment",(int64)&cw_DOMComment },
   {0x17A40D895C55D968LL,1,0,"SoapParam",(int64)&cw_SoapParam },
+  {0x7F62EC0591E6E26ALL,0,0,"UserPartitionException",(int64)&cw_UserPartitionException },
   {0x6A5B99D5B1A4566ALL,1,0,"DOMException",(int64)&cw_DOMException },
   {0x3CAE91CFA2AAD16BLL,1,0,"LengthException",(int64)&cw_LengthException },
   {0x3280F0C292E92A6CLL,1,0,"Closure",(int64)&cw_Closure },
@@ -10628,6 +11515,7 @@ static const hashNodeCTD ctdBuckets[] = {
   {0x6FFDF8DF15CABE94LL,0,0,"DOMCDATASection",(int64)&cw_DOMCDATASection },
   {0x6576EACCCE24D694LL,0,0,"__PHP_Incomplete_Class",(int64)&cw___PHP_Incomplete_Class },
   {0x47D93E6F80B66A94LL,1,0,"Exception",(int64)&cw_Exception },
+  {0x328095EA5D7D479BLL,1,0,"MemcachePool",(int64)&cw_MemcachePool },
   {0x71089C29FE923FA7LL,1,0,"SplFileInfo",(int64)&cw_SplFileInfo },
   {0x7D46DB2E09C6DBA8LL,1,0,"DOMXPath",(int64)&cw_DOMXPath },
   {0x1D35C3EFD00E11A9LL,1,0,"SQLite3",(int64)&cw_SQLite3 },
@@ -10639,7 +11527,8 @@ static const hashNodeCTD ctdBuckets[] = {
   {0x6DD772FA3B20B8B1LL,1,0,"DOMNodeList",(int64)&cw_DOMNodeList },
   {0x286D5ADE799762BALL,1,0,"FB_MySQLLexer",(int64)&cw_FB_MySQLLexer },
   {0x5D8785ACD19F77BDLL,1,0,"PDOException",(int64)&cw_PDOException },
-  {0x40B3C44077F5DDC3LL,1,0,"DOMElement",(int64)&cw_DOMElement },
+  {0x40B3C44077F5DDC3LL,0,0,"DOMElement",(int64)&cw_DOMElement },
+  {0x4ED1613E65CBA4C3LL,1,0,"GmagickPixel",(int64)&cw_GmagickPixel },
   {0x2E363D51549781C8LL,1,0,"AppendIterator",(int64)&cw_AppendIterator },
   {0x253AC17234FC8CCBLL,1,0,"LibXMLError",(int64)&cw_LibXMLError },
   {0x3C122DF8859C72D0LL,1,0,"Memcache",(int64)&cw_Memcache },
@@ -10652,6 +11541,7 @@ static const hashNodeCTD ctdBuckets[] = {
   {0x1078CB3118A8B3DCLL,1,0,"RuntimeException",(int64)&cw_RuntimeException },
   {0x61DD21ABF790E9E2LL,1,0,"Continuation",(int64)&cw_Continuation },
   {0x75AA2571BDB659E4LL,1,0,"ReflectionProperty",(int64)&cw_ReflectionProperty },
+  {0x5E96B7C8DC5EEAE9LL,1,0,"GmagickException",(int64)&cw_GmagickException },
   {0x297174231D4912F4LL,1,0,"DOMAttr",(int64)&cw_DOMAttr },
   {0x3D69936178BA13F7LL,1,0,"stdClass",(int64)&cw_stdClass },
   {0x622D4DF07E2A01FCLL,1,0,"OutOfRangeException",(int64)&cw_OutOfRangeException },
@@ -10663,35 +11553,35 @@ static const int ctdMapTable[] = {
   -1,-1,-1,-1,-1,-1,-1,-1,
   0,1,-1,2,-1,-1,-1,-1,
   -1,4,-1,5,-1,6,-1,-1,
-  -1,-1,7,-1,-1,8,9,-1,
-  -1,-1,-1,-1,-1,10,-1,-1,
-  -1,-1,-1,11,-1,-1,-1,12,
-  -1,13,14,-1,15,16,-1,17,
-  18,-1,-1,-1,-1,19,21,-1,
-  -1,22,-1,-1,23,-1,25,-1,
-  -1,27,28,30,-1,31,32,33,
-  34,35,-1,36,-1,-1,-1,-1,
-  -1,-1,-1,-1,-1,-1,38,-1,
-  -1,39,40,41,-1,42,-1,-1,
-  43,-1,45,46,47,-1,-1,-1,
-  -1,-1,-1,48,-1,50,-1,-1,
-  -1,-1,51,-1,-1,52,-1,-1,
-  54,-1,55,56,57,-1,-1,58,
-  -1,-1,-1,-1,-1,-1,-1,59,
-  60,-1,-1,61,62,-1,-1,-1,
-  -1,-1,-1,-1,-1,-1,-1,-1,
-  -1,-1,-1,-1,-1,-1,-1,65,
-  66,67,68,-1,-1,69,-1,71,
-  72,73,-1,-1,-1,-1,-1,-1,
-  -1,-1,74,-1,-1,75,-1,-1,
-  -1,-1,-1,76,-1,-1,-1,-1,
-  77,-1,-1,78,-1,-1,-1,-1,
-  79,-1,80,-1,82,-1,-1,-1,
-  83,84,85,-1,86,-1,-1,-1,
-  -1,-1,87,-1,88,-1,-1,-1,
-  -1,-1,-1,-1,-1,-1,-1,-1,
-  -1,-1,-1,-1,89,-1,-1,90,
-  -1,-1,-1,-1,91,92,-1,94,
+  -1,-1,8,-1,-1,9,10,-1,
+  -1,-1,-1,-1,-1,11,-1,-1,
+  -1,-1,12,13,-1,-1,-1,14,
+  -1,15,16,-1,17,18,-1,19,
+  20,-1,-1,-1,-1,21,23,-1,
+  -1,24,-1,-1,25,-1,27,-1,
+  -1,29,30,32,-1,33,34,35,
+  36,37,-1,38,-1,-1,-1,-1,
+  -1,-1,-1,-1,-1,-1,40,-1,
+  -1,41,42,43,-1,44,-1,-1,
+  45,-1,47,49,50,-1,-1,-1,
+  -1,-1,-1,51,-1,53,-1,-1,
+  -1,-1,54,-1,-1,55,-1,-1,
+  57,-1,58,59,60,-1,-1,61,
+  -1,-1,-1,-1,-1,-1,-1,62,
+  63,-1,-1,64,65,-1,-1,-1,
+  -1,-1,-1,68,-1,-1,-1,-1,
+  -1,-1,-1,-1,-1,-1,-1,69,
+  70,71,72,-1,-1,73,-1,75,
+  76,77,-1,-1,-1,-1,-1,-1,
+  -1,-1,78,-1,-1,79,-1,-1,
+  -1,-1,-1,80,-1,-1,-1,-1,
+  82,-1,-1,83,-1,-1,-1,-1,
+  84,-1,85,-1,87,-1,-1,-1,
+  88,89,90,-1,91,-1,-1,-1,
+  -1,-1,92,-1,93,-1,-1,-1,
+  -1,94,-1,-1,-1,-1,-1,-1,
+  -1,-1,-1,-1,95,-1,-1,96,
+  -1,-1,-1,-1,97,98,-1,100,
 
 };
 
@@ -10858,362 +11748,826 @@ static const int64 cpt_static_inits[] = {
   0x0000007d00000047,
   (int64)&q_DebuggerClientCmdUser$$AUTO_COMPLETE_FUNCTIONS,
   0x0000007f00000047,
-  (int64)&q_Locale$$VALID_LOCALE,
-  0x0000008100000047,
-  (int64)&q_Locale$$ACTUAL_LOCALE,
-  0x0000008300000047,
-  (int64)&q_Memcached$$RES_ERRNO,
+  (int64)&q_Gmagick$$GRAVITY_SOUTHWEST,
+  0x0000008100000037,
+  (int64)&q_Gmagick$$RENDERINGINTENT_PERCEPTUAL,
+  0x0000008300000037,
+  (int64)&q_Gmagick$$IMGTYPE_TRUECOLORMATTE,
   0x0000008500000037,
-  (int64)&q_Memcached$$OPT_TCP_NODELAY,
+  (int64)&q_Gmagick$$LINEJOIN_UNDEFINED,
   0x0000008700000037,
-  (int64)&q_Memcached$$RES_BUFFERED,
+  (int64)&q_Gmagick$$STRETCH_EXTRAEXPANDED,
   0x0000008900000037,
-  (int64)&q_Memcached$$OPT_SERVER_FAILURE_LIMIT,
+  (int64)&q_Gmagick$$IMGTYPE_GRAYSCALE,
   0x0000008b00000037,
-  (int64)&q_Memcached$$RES_NO_SERVERS,
+  (int64)&q_Gmagick$$COMPOSITE_COPYGREEN,
   0x0000008d00000037,
-  (int64)&q_Memcached$$OPT_LIBKETAMA_COMPATIBLE,
+  (int64)&q_Gmagick$$RESOURCETYPE_MEMORY,
   0x0000008f00000037,
-  (int64)&q_Memcached$$RES_SUCCESS,
+  (int64)&q_Gmagick$$METRIC_ROOTMEANSQUAREDERROR,
   0x0000009100000037,
-  (int64)&q_Memcached$$OPT_PREFIX_KEY,
+  (int64)&q_Gmagick$$COMPOSITE_PLUS,
   0x0000009300000037,
-  (int64)&q_Memcached$$OPT_HASH,
+  (int64)&q_Gmagick$$IMGTYPE_GRAYSCALEMATTE,
   0x0000009500000037,
-  (int64)&q_Memcached$$DISTRIBUTION_CONSISTENT,
+  (int64)&q_Gmagick$$PIXEL_SHORT,
   0x0000009700000037,
-  (int64)&q_Memcached$$HASH_HSIEH,
+  (int64)&q_Gmagick$$COMPOSITE_NO,
   0x0000009900000037,
-  (int64)&q_Memcached$$OPT_BINARY_PROTOCOL,
+  (int64)&q_Gmagick$$CHANNEL_MATTE,
   0x0000009b00000037,
-  (int64)&q_Memcached$$RES_UNKNOWN_READ_FAILURE,
+  (int64)&q_Gmagick$$INTERLACE_NO,
   0x0000009d00000037,
-  (int64)&q_Memcached$$RES_NOTFOUND,
+  (int64)&q_Gmagick$$RESOURCETYPE_AREA,
   0x0000009f00000037,
-  (int64)&q_Memcached$$RES_PROTOCOL_ERROR,
+  (int64)&q_Gmagick$$COMPOSITE_COLORIZE,
   0x000000a100000037,
-  (int64)&q_Memcached$$RES_CLIENT_ERROR,
+  (int64)&q_Gmagick$$COMPOSITE_MODULATE,
   0x000000a300000037,
-  (int64)&q_Memcached$$RES_SERVER_ERROR,
+  (int64)&q_Gmagick$$PREVIEW_SPIFF,
   0x000000a500000037,
-  (int64)&q_Memcached$$HASH_FNV1A_64,
+  (int64)&q_Gmagick$$COMPRESSION_NO,
   0x000000a700000037,
-  (int64)&q_Memcached$$OPT_CACHE_LOOKUPS,
+  (int64)&q_Gmagick$$PREVIEW_ADDNOISE,
   0x000000a900000037,
-  (int64)&q_Memcached$$HASH_FNV1_64,
+  (int64)&q_Gmagick$$COMPRESSION_RLE,
   0x000000ab00000037,
-  (int64)&q_Memcached$$OPT_SEND_TIMEOUT,
+  (int64)&q_Gmagick$$PAINT_RESET,
   0x000000ad00000037,
-  (int64)&q_Memcached$$RES_TIMEOUT,
+  (int64)&q_Gmagick$$COLORSPACE_RGB,
   0x000000af00000037,
-  (int64)&q_Memcached$$RES_BAD_KEY_PROVIDED,
+  (int64)&q_Gmagick$$CHANNEL_RED,
   0x000000b100000037,
-  (int64)&q_Memcached$$RES_SOME_ERRORS,
+  (int64)&q_Gmagick$$COLORSPACE_CMYK,
   0x000000b300000037,
-  (int64)&q_Memcached$$OPT_SOCKET_SEND_SIZE,
+  (int64)&q_Gmagick$$COMPOSITE_DISSOLVE,
   0x000000b500000037,
-  (int64)&q_Memcached$$OPT_COMPRESSION,
+  (int64)&q_Gmagick$$PIXEL_LONG,
   0x000000b700000037,
-  (int64)&q_Memcached$$SERIALIZER_PHP,
+  (int64)&q_Gmagick$$PIXEL_DOUBLE,
   0x000000b900000037,
-  (int64)&q_Memcached$$OPT_RETRY_TIMEOUT,
+  (int64)&q_Gmagick$$RESOLUTION_UNDEFINED,
   0x000000bb00000037,
-  (int64)&q_Memcached$$HAVE_JSON,
-  0x000000bd00000027,
-  (int64)&q_Memcached$$SERIALIZER_JSON,
+  (int64)&q_Gmagick$$PIXEL_FLOAT,
+  0x000000bd00000037,
+  (int64)&q_Gmagick$$DISPOSE_NONE,
   0x000000bf00000037,
-  (int64)&q_Memcached$$SERIALIZER_IGBINARY,
+  (int64)&q_Gmagick$$NOISE_MULTIPLICATIVEGAUSSIAN,
   0x000000c100000037,
-  (int64)&q_Memcached$$OPT_NO_BLOCK,
+  (int64)&q_Gmagick$$RESOLUTION_PIXELSPERCENTIMETER,
   0x000000c300000037,
-  (int64)&q_Memcached$$DISTRIBUTION_MODULA,
+  (int64)&q_Gmagick$$COLORSPACE_YCBCR,
   0x000000c500000037,
-  (int64)&q_Memcached$$HASH_CRC,
+  (int64)&q_Gmagick$$FILTER_BLACKMAN,
   0x000000c700000037,
-  (int64)&q_Memcached$$RES_WRITE_FAILURE,
+  (int64)&q_Gmagick$$CHANNEL_INDEX,
   0x000000c900000037,
-  (int64)&q_Memcached$$HASH_FNV1_32,
+  (int64)&q_Gmagick$$STRETCH_SEMIEXPANDED,
   0x000000cb00000037,
-  (int64)&q_Memcached$$OPT_SOCKET_RECV_SIZE,
+  (int64)&q_Gmagick$$METRIC_MEANABSOLUTEERROR,
   0x000000cd00000037,
-  (int64)&q_Memcached$$OPT_POLL_TIMEOUT,
+  (int64)&q_Gmagick$$PREVIEW_SPREAD,
   0x000000cf00000037,
-  (int64)&q_Memcached$$OPT_DISTRIBUTION,
+  (int64)&q_Gmagick$$COMPOSITE_THRESHOLD,
   0x000000d100000037,
-  (int64)&q_Memcached$$RES_CONNECTION_SOCKET_CREATE_FAILURE,
+  (int64)&q_Gmagick$$COLORSPACE_YUV,
   0x000000d300000037,
-  (int64)&q_Memcached$$OPT_RECV_TIMEOUT,
+  (int64)&q_Gmagick$$STRETCH_ANY,
   0x000000d500000037,
-  (int64)&q_Memcached$$GET_PRESERVE_ORDER,
+  (int64)&q_Gmagick$$COMPOSITE_COPY,
   0x000000d700000037,
-  (int64)&q_Memcached$$HASH_DEFAULT,
+  (int64)&q_Gmagick$$STYLE_OBLIQUE,
   0x000000d900000037,
-  (int64)&q_Memcached$$OPT_BUFFER_WRITES,
+  (int64)&q_Gmagick$$IMGTYPE_TRUECOLOR,
   0x000000db00000037,
-  (int64)&q_Memcached$$HASH_FNV1A_32,
+  (int64)&q_Gmagick$$PREVIEW_SOLARIZE,
   0x000000dd00000037,
-  (int64)&q_Memcached$$RES_HOST_LOOKUP_FAILURE,
+  (int64)&q_Gmagick$$FILTER_HERMITE,
   0x000000df00000037,
-  (int64)&q_Memcached$$RES_DATA_EXISTS,
+  (int64)&q_Gmagick$$COMPOSITE_SATURATE,
   0x000000e100000037,
-  (int64)&q_Memcached$$RES_NOTSTORED,
+  (int64)&q_Gmagick$$COLORSPACE_OHTA,
   0x000000e300000037,
-  (int64)&q_Memcached$$HASH_MD5,
+  (int64)&q_Gmagick$$COMPOSITE_CLEAR,
   0x000000e500000037,
-  (int64)&q_Memcached$$RES_END,
+  (int64)&q_Gmagick$$FILTER_TRIANGLE,
   0x000000e700000037,
-  (int64)&q_Memcached$$OPT_SERIALIZER,
+  (int64)&q_Gmagick$$COLORSPACE_GRAY,
   0x000000e900000037,
-  (int64)&q_Memcached$$RES_FAILURE,
+  (int64)&q_Gmagick$$LINEJOIN_BEVEL,
   0x000000eb00000037,
-  (int64)&q_Memcached$$HAVE_IGBINARY,
-  0x000000ed00000027,
-  (int64)&q_Memcached$$OPT_CONNECT_TIMEOUT,
+  (int64)&q_Gmagick$$NOISE_LAPLACIAN,
+  0x000000ed00000037,
+  (int64)&q_Gmagick$$FILTER_CATROM,
   0x000000ef00000037,
-  (int64)&q_Memcached$$RES_PARTIAL_READ,
+  (int64)&q_Gmagick$$GRAVITY_SOUTH,
   0x000000f100000037,
-  (int64)&q_Memcached$$HASH_MURMUR,
+  (int64)&q_Gmagick$$LINECAP_UNDEFINED,
   0x000000f300000037,
-  (int64)&q_Memcached$$RES_PAYLOAD_FAILURE,
+  (int64)&q_Gmagick$$PIXEL_CHAR,
   0x000000f500000037,
-  (int64)&q_Normalizer$$FORM_KD,
-  0x000000f700000047,
-  (int64)&q_Normalizer$$FORM_KC,
-  0x000000f900000047,
-  (int64)&q_Normalizer$$NFKC,
-  0x000000fb00000047,
-  (int64)&q_Normalizer$$FORM_D,
-  0x000000fd00000047,
-  (int64)&q_Normalizer$$NFC,
-  0x000000ff00000047,
-  (int64)&q_Normalizer$$NFD,
-  0x0000010100000047,
-  (int64)&q_Normalizer$$NFKD,
-  0x0000010300000047,
-  (int64)&q_Normalizer$$NONE,
-  0x0000010500000047,
-  (int64)&q_Normalizer$$FORM_C,
-  0x0000010700000047,
-  (int64)&q_PDO$$ATTR_CASE,
-  0x0000010900000047,
-  (int64)&q_PDO$$ATTR_STATEMENT_CLASS,
-  0x0000010b00000047,
-  (int64)&q_PDO$$ERRMODE_EXCEPTION,
-  0x0000010d00000047,
-  (int64)&q_PDO$$CASE_NATURAL,
-  0x0000010f00000047,
-  (int64)&q_PDO$$FETCH_OBJ,
-  0x0000011100000047,
-  (int64)&q_PDO$$FETCH_INTO,
-  0x0000011300000047,
-  (int64)&q_PDO$$FETCH_BOUND,
-  0x0000011500000047,
-  (int64)&q_PDO$$MYSQL_ATTR_INIT_COMMAND,
-  0x0000011700000047,
-  (int64)&q_PDO$$ATTR_CLIENT_VERSION,
-  0x0000011900000047,
-  (int64)&q_PDO$$ATTR_FETCH_CATALOG_NAMES,
-  0x0000011b00000047,
-  (int64)&q_PDO$$CASE_LOWER,
-  0x0000011d00000047,
-  (int64)&q_PDO$$FETCH_GROUP,
-  0x0000011f00000047,
-  (int64)&q_PDO$$CASE_UPPER,
-  0x0000012100000047,
-  (int64)&q_PDO$$PARAM_EVT_FETCH_POST,
-  0x0000012300000047,
-  (int64)&q_PDO$$ATTR_TIMEOUT,
-  0x0000012500000047,
-  (int64)&q_PDO$$PARAM_EVT_EXEC_PRE,
-  0x0000012700000047,
-  (int64)&q_PDO$$ATTR_ERRMODE,
-  0x0000012900000047,
-  (int64)&q_PDO$$ATTR_DEFAULT_FETCH_MODE,
-  0x0000012b00000047,
-  (int64)&q_PDO$$ATTR_EMULATE_PREPARES,
-  0x0000012d00000047,
-  (int64)&q_PDO$$ATTR_PREFETCH,
-  0x0000012f00000047,
-  (int64)&q_PDO$$FETCH_UNIQUE,
-  0x0000013100000047,
-  (int64)&q_PDO$$MYSQL_ATTR_READ_DEFAULT_GROUP,
-  0x0000013300000047,
-  (int64)&q_PDO$$ATTR_SERVER_INFO,
-  0x0000013500000047,
-  (int64)&q_PDO$$PARAM_EVT_NORMALIZE,
-  0x0000013700000047,
-  (int64)&q_PDO$$ATTR_CONNECTION_STATUS,
-  0x0000013900000047,
-  (int64)&q_PDO$$ATTR_ORACLE_NULLS,
-  0x0000013b00000047,
-  (int64)&q_PDO$$MYSQL_ATTR_FOUND_ROWS,
-  0x0000013d00000047,
-  (int64)&q_PDO$$FETCH_ORI_NEXT,
-  0x0000013f00000047,
-  (int64)&q_PDO$$ATTR_FETCH_TABLE_NAMES,
-  0x0000014100000047,
-  (int64)&q_PDO$$FETCH_ORI_REL,
-  0x0000014300000047,
-  (int64)&q_PDO$$FETCH_ASSOC,
-  0x0000014500000047,
-  (int64)&q_PDO$$ATTR_CURSOR_NAME,
-  0x0000014700000047,
-  (int64)&q_PDO$$ATTR_MAX_COLUMN_LEN,
-  0x0000014900000047,
-  (int64)&q_PDO$$ATTR_AUTOCOMMIT,
-  0x0000014b00000047,
-  (int64)&q_PDO$$PARAM_NULL,
-  0x0000014d00000047,
-  (int64)&q_PDO$$PARAM_EVT_ALLOC,
-  0x0000014f00000047,
-  (int64)&q_PDO$$PARAM_BOOL,
-  0x0000015100000047,
-  (int64)&q_PDO$$NULL_NATURAL,
-  0x0000015300000047,
-  (int64)&q_PDO$$PARAM_INT,
-  0x0000015500000047,
-  (int64)&q_PDO$$FETCH_NUM,
-  0x0000015700000047,
-  (int64)&q_PDO$$FETCH_ORI_PRIOR,
-  0x0000015900000047,
-  (int64)&q_PDO$$PARAM_EVT_EXEC_POST,
-  0x0000015b00000047,
-  (int64)&q_PDO$$MYSQL_ATTR_USE_BUFFERED_QUERY,
-  0x0000015d00000047,
-  (int64)&q_PDO$$PARAM_STR,
-  0x0000015f00000047,
-  (int64)&q_PDO$$ATTR_CURSOR,
-  0x0000016100000047,
-  (int64)&q_PDO$$ATTR_DRIVER_NAME,
-  0x0000016300000047,
-  (int64)&q_PDO$$FETCH_USE_DEFAULT,
-  0x0000016500000047,
-  (int64)&q_PDO$$ATTR_SERVER_VERSION,
-  0x0000016700000047,
-  (int64)&q_PDO$$MYSQL_ATTR_DIRECT_QUERY,
-  0x0000016900000047,
-  (int64)&q_PDO$$FETCH_PROPS_LATE,
-  0x0000016b00000047,
-  (int64)&q_PDO$$FETCH_COLUMN,
-  0x0000016d00000047,
-  (int64)&q_PDO$$FETCH_CLASSTYPE,
-  0x0000016f00000047,
-  (int64)&q_PDO$$FETCH_SERIALIZE,
-  0x0000017100000047,
-  (int64)&q_PDO$$MYSQL_ATTR_LOCAL_INFILE,
-  0x0000017300000047,
-  (int64)&q_PDO$$FETCH_BOTH,
-  0x0000017500000047,
-  (int64)&q_PDO$$FETCH_KEY_PAIR,
-  0x0000017700000047,
-  (int64)&q_PDO$$PARAM_EVT_FETCH_PRE,
-  0x0000017900000047,
-  (int64)&q_PDO$$CURSOR_FWDONLY,
-  0x0000017b00000047,
-  (int64)&q_PDO$$FETCH_ORI_FIRST,
-  0x0000017d00000047,
-  (int64)&q_PDO$$CURSOR_SCROLL,
-  0x0000017f00000047,
-  (int64)&q_PDO$$FETCH_ORI_LAST,
-  0x0000018100000047,
-  (int64)&q_PDO$$ATTR_PERSISTENT,
-  0x0000018300000047,
-  (int64)&q_PDO$$NULL_EMPTY_STRING,
-  0x0000018500000047,
-  (int64)&q_PDO$$ATTR_STRINGIFY_FETCHES,
-  0x0000018700000047,
-  (int64)&q_PDO$$MYSQL_ATTR_READ_DEFAULT_FILE,
-  0x0000018900000047,
-  (int64)&q_PDO$$FETCH_FUNC,
-  0x0000018b00000047,
-  (int64)&q_PDO$$FETCH_ORI_ABS,
-  0x0000018d00000047,
-  (int64)&q_PDO$$NULL_TO_STRING,
-  0x0000018f00000047,
-  (int64)&q_PDO$$MYSQL_ATTR_MAX_BUFFER_SIZE,
-  0x0000019100000047,
-  (int64)&q_PDO$$FETCH_CLASS,
-  0x0000019300000047,
-  (int64)&q_PDO$$FETCH_LAZY,
-  0x0000019500000047,
-  (int64)&q_PDO$$MYSQL_ATTR_COMPRESS,
-  0x0000019700000047,
-  (int64)&q_PDO$$ERRMODE_WARNING,
-  0x0000019900000047,
-  (int64)&q_PDO$$ERRMODE_SILENT,
-  0x0000019b00000047,
-  (int64)&q_PDO$$ERR_NONE,
-  0x0000019d00000077,
-  (int64)&q_PDO$$PARAM_LOB,
-  0x0000019f00000047,
-  (int64)&q_PDO$$FETCH_NAMED,
-  0x000001a100000047,
-  (int64)&q_PDO$$PARAM_INPUT_OUTPUT,
-  0x000001a300000047,
-  (int64)&q_PDO$$MYSQL_ATTR_IGNORE_SPACE,
-  0x000001a500000047,
-  (int64)&q_PDO$$PARAM_STMT,
-  0x000001a700000047,
-  (int64)&q_PDO$$PARAM_EVT_FREE,
-  0x000001a900000047,
-  (int64)&q_SpoofChecker$$SINGLE_SCRIPT_CONFUSABLE,
+  (int64)&q_Gmagick$$STYLE_NORMAL,
+  0x000000f700000037,
+  (int64)&q_Gmagick$$COMPOSITE_HUE,
+  0x000000f900000037,
+  (int64)&q_Gmagick$$PIXEL_INTEGER,
+  0x000000fb00000037,
+  (int64)&q_Gmagick$$COMPOSITE_REPLACE,
+  0x000000fd00000037,
+  (int64)&q_Gmagick$$COMPOSITE_OVER,
+  0x000000ff00000037,
+  (int64)&q_Gmagick$$FILTER_BESSEL,
+  0x0000010100000037,
+  (int64)&q_Gmagick$$FILTER_BOX,
+  0x0000010300000037,
+  (int64)&q_Gmagick$$PREVIEW_BLUR,
+  0x0000010500000037,
+  (int64)&q_Gmagick$$PREVIEW_WAVE,
+  0x0000010700000037,
+  (int64)&q_Gmagick$$GRAVITY_NORTHEAST,
+  0x0000010900000037,
+  (int64)&q_Gmagick$$STRETCH_SEMICONDENSED,
+  0x0000010b00000037,
+  (int64)&q_Gmagick$$FILTER_CUBIC,
+  0x0000010d00000037,
+  (int64)&q_Gmagick$$IMGTYPE_PALETTEMATTE,
+  0x0000010f00000037,
+  (int64)&q_Gmagick$$COMPRESSION_GROUP4,
+  0x0000011100000037,
+  (int64)&q_Gmagick$$LINECAP_BUTT,
+  0x0000011300000037,
+  (int64)&q_Gmagick$$IMGTYPE_BILEVEL,
+  0x0000011500000037,
+  (int64)&q_Gmagick$$RESOURCETYPE_DISK,
+  0x0000011700000037,
+  (int64)&q_Gmagick$$COMPRESSION_BZIP,
+  0x0000011900000037,
+  (int64)&q_Gmagick$$PREVIEW_SWIRL,
+  0x0000011b00000037,
+  (int64)&q_Gmagick$$COLORSPACE_UNDEFINED,
+  0x0000011d00000037,
+  (int64)&q_Gmagick$$GRAVITY_WEST,
+  0x0000011f00000037,
+  (int64)&q_Gmagick$$METRIC_UNDEFINED,
+  0x0000012100000037,
+  (int64)&q_Gmagick$$NOISE_POISSON,
+  0x0000012300000037,
+  (int64)&q_Gmagick$$GRAVITY_NORTH,
+  0x0000012500000037,
+  (int64)&q_Gmagick$$FILTER_MITCHELL,
+  0x0000012700000037,
+  (int64)&q_Gmagick$$PREVIEW_SHARPEN,
+  0x0000012900000037,
+  (int64)&q_Gmagick$$COMPOSITE_MINUS,
+  0x0000012b00000037,
+  (int64)&q_Gmagick$$COMPOSITE_BUMPMAP,
+  0x0000012d00000037,
+  (int64)&q_Gmagick$$FILTER_HANNING,
+  0x0000012f00000037,
+  (int64)&q_Gmagick$$CHANNEL_MAGENTA,
+  0x0000013100000037,
+  (int64)&q_Gmagick$$RESOURCETYPE_FILE,
+  0x0000013300000037,
+  (int64)&q_Gmagick$$MONTAGEMODE_UNFRAME,
+  0x0000013500000037,
+  (int64)&q_Gmagick$$COMPOSITE_COPYYELLOW,
+  0x0000013700000037,
+  (int64)&q_Gmagick$$COMPRESSION_JPEG,
+  0x0000013900000037,
+  (int64)&q_Gmagick$$METRIC_MEANSQUAREERROR,
+  0x0000013b00000037,
+  (int64)&q_Gmagick$$COMPOSITE_COPYBLACK,
+  0x0000013d00000037,
+  (int64)&q_Gmagick$$PREVIEW_OILPAINT,
+  0x0000013f00000037,
+  (int64)&q_Gmagick$$DECORATION_UNDERLINE,
+  0x0000014100000037,
+  (int64)&q_Gmagick$$CHANNEL_GREEN,
+  0x0000014300000037,
+  (int64)&q_Gmagick$$COLORSPACE_HWB,
+  0x0000014500000037,
+  (int64)&q_Gmagick$$INTERLACE_LINE,
+  0x0000014700000037,
+  (int64)&q_Gmagick$$PAINT_FILLTOBORDER,
+  0x0000014900000037,
+  (int64)&q_Gmagick$$PREVIEW_HUE,
+  0x0000014b00000037,
+  (int64)&q_Gmagick$$CHANNEL_BLACK,
+  0x0000014d00000037,
+  (int64)&q_Gmagick$$MONTAGEMODE_FRAME,
+  0x0000014f00000037,
+  (int64)&q_Gmagick$$COMPRESSION_UNDEFINED,
+  0x0000015100000037,
+  (int64)&q_Gmagick$$CHANNEL_UNDEFINED,
+  0x0000015300000037,
+  (int64)&q_Gmagick$$RESOURCETYPE_UNDEFINED,
+  0x0000015500000037,
+  (int64)&q_Gmagick$$ALIGN_RIGHT,
+  0x0000015700000037,
+  (int64)&q_Gmagick$$IMGTYPE_COLORSEPARATIONMATTE,
+  0x0000015900000037,
+  (int64)&q_Gmagick$$PREVIEW_GRAYSCALE,
+  0x0000015b00000037,
+  (int64)&q_Gmagick$$INTERLACE_PARTITION,
+  0x0000015d00000037,
+  (int64)&q_Gmagick$$LINEJOIN_ROUND,
+  0x0000015f00000037,
+  (int64)&q_Gmagick$$CHANNEL_BLUE,
+  0x0000016100000037,
+  (int64)&q_Gmagick$$STRETCH_EXPANDED,
+  0x0000016300000037,
+  (int64)&q_Gmagick$$LINEJOIN_MITER,
+  0x0000016500000037,
+  (int64)&q_Gmagick$$COLORSPACE_YIQ,
+  0x0000016700000037,
+  (int64)&q_Gmagick$$PREVIEW_DESPECKLE,
+  0x0000016900000037,
+  (int64)&q_Gmagick$$COMPRESSION_FAX,
+  0x0000016b00000037,
+  (int64)&q_Gmagick$$METRIC_PEAKSIGNALTONOISERATIO,
+  0x0000016d00000037,
+  (int64)&q_Gmagick$$DISPOSE_BACKGROUND,
+  0x0000016f00000037,
+  (int64)&q_Gmagick$$PREVIEW_GAMMA,
+  0x0000017100000037,
+  (int64)&q_Gmagick$$PREVIEW_CHARCOALDRAWING,
+  0x0000017300000037,
+  (int64)&q_Gmagick$$COMPOSITE_UNDEFINED,
+  0x0000017500000037,
+  (int64)&q_Gmagick$$COMPOSITE_DIFFERENCE,
+  0x0000017700000037,
+  (int64)&q_Gmagick$$PREVIEW_SEGMENT,
+  0x0000017900000037,
+  (int64)&q_Gmagick$$COMPRESSION_ZIP,
+  0x0000017b00000037,
+  (int64)&q_Gmagick$$FILTER_GAUSSIAN,
+  0x0000017d00000037,
+  (int64)&q_Gmagick$$PAINT_REPLACE,
+  0x0000017f00000037,
+  (int64)&q_Gmagick$$PREVIEW_RAISE,
+  0x0000018100000037,
+  (int64)&q_Gmagick$$STRETCH_ULTRAEXPANDED,
+  0x0000018300000037,
+  (int64)&q_Gmagick$$FILLRULE_NONZERO,
+  0x0000018500000037,
+  (int64)&q_Gmagick$$PREVIEW_BRIGHTNESS,
+  0x0000018700000037,
+  (int64)&q_Gmagick$$PREVIEW_REDUCENOISE,
+  0x0000018900000037,
+  (int64)&q_Gmagick$$ALIGN_UNDEFINED,
+  0x0000018b00000037,
+  (int64)&q_Gmagick$$COMPOSITE_DEFAULT,
+  0x0000018d00000037,
+  (int64)&q_Gmagick$$DECORATION_OVERLINE,
+  0x0000018f00000037,
+  (int64)&q_Gmagick$$CHANNEL_OPACITY,
+  0x0000019100000037,
+  (int64)&q_Gmagick$$COMPOSITE_OVERLAY,
+  0x0000019300000037,
+  (int64)&q_Gmagick$$DECORATION_NO,
+  0x0000019500000037,
+  (int64)&q_Gmagick$$CHANNEL_YELLOW,
+  0x0000019700000037,
+  (int64)&q_Gmagick$$NOISE_IMPULSE,
+  0x0000019900000037,
+  (int64)&q_Gmagick$$COMPOSITE_COPYMAGENTA,
+  0x0000019b00000037,
+  (int64)&q_Gmagick$$INTERLACE_PLANE,
+  0x0000019d00000037,
+  (int64)&q_Gmagick$$FILTER_HAMMING,
+  0x0000019f00000037,
+  (int64)&q_Gmagick$$ALIGN_CENTER,
+  0x000001a100000037,
+  (int64)&q_Gmagick$$LINECAP_ROUND,
+  0x000001a300000037,
+  (int64)&q_Gmagick$$COMPOSITE_LIGHTEN,
+  0x000001a500000037,
+  (int64)&q_Gmagick$$COMPOSITE_LUMINIZE,
+  0x000001a700000037,
+  (int64)&q_Gmagick$$FILTER_LANCZOS,
+  0x000001a900000037,
+  (int64)&q_Gmagick$$CHANNEL_GRAY,
   0x000001ab00000037,
-  (int64)&q_SpoofChecker$$WHOLE_SCRIPT_CONFUSABLE,
+  (int64)&q_Gmagick$$PREVIEW_EDGEDETECT,
   0x000001ad00000037,
-  (int64)&q_SpoofChecker$$CHAR_LIMIT,
+  (int64)&q_Gmagick$$RESOURCETYPE_MAP,
   0x000001af00000037,
-  (int64)&q_SpoofChecker$$INVISIBLE,
+  (int64)&q_Gmagick$$COMPOSITE_COPYRED,
   0x000001b100000037,
-  (int64)&q_SpoofChecker$$SINGLE_SCRIPT,
+  (int64)&q_Gmagick$$IMGTYPE_PALETTE,
   0x000001b300000037,
-  (int64)&q_SpoofChecker$$ANY_CASE,
+  (int64)&q_Gmagick$$PAINT_FLOODFILL,
   0x000001b500000037,
-  (int64)&q_SpoofChecker$$MIXED_SCRIPT_CONFUSABLE,
+  (int64)&q_Gmagick$$PREVIEW_ROTATE,
   0x000001b700000037,
+  (int64)&q_Gmagick$$GRAVITY_SOUTHEAST,
+  0x000001b900000037,
+  (int64)&q_Gmagick$$RENDERINGINTENT_SATURATION,
+  0x000001bb00000037,
+  (int64)&q_Gmagick$$PREVIEW_QUANTIZE,
+  0x000001bd00000037,
+  (int64)&q_Gmagick$$COMPOSITE_COPYOPACITY,
+  0x000001bf00000037,
+  (int64)&q_Gmagick$$GRAVITY_NORTHWEST,
+  0x000001c100000037,
+  (int64)&q_Gmagick$$FILTER_QUADRATIC,
+  0x000001c300000037,
+  (int64)&q_Gmagick$$DISPOSE_UNDEFINED,
+  0x000001c500000037,
+  (int64)&q_Gmagick$$COLORSPACE_HSL,
+  0x000001c700000037,
+  (int64)&q_Gmagick$$DISPOSE_PREVIOUS,
+  0x000001c900000037,
+  (int64)&q_Gmagick$$FILTER_SINC,
+  0x000001cb00000037,
+  (int64)&q_Gmagick$$COMPOSITE_COPYCYAN,
+  0x000001cd00000037,
+  (int64)&q_Gmagick$$FILTER_POINT,
+  0x000001cf00000037,
+  (int64)&q_Gmagick$$PATHUNITS_USERSPACEONUSE,
+  0x000001d100000037,
+  (int64)&q_Gmagick$$VIRTUALPIXELMETHOD_CONSTANT,
+  0x000001d300000037,
+  (int64)&q_Gmagick$$GRAVITY_CENTER,
+  0x000001d500000037,
+  (int64)&q_Gmagick$$IMGTYPE_UNDEFINED,
+  0x000001d700000037,
+  (int64)&q_Gmagick$$VIRTUALPIXELMETHOD_UNDEFINED,
+  0x000001d900000037,
+  (int64)&q_Gmagick$$COLORSPACE_SRGB,
+  0x000001db00000037,
+  (int64)&q_Gmagick$$STRETCH_ULTRACONDENSED,
+  0x000001dd00000037,
+  (int64)&q_Gmagick$$PREVIEW_SHEAR,
+  0x000001df00000037,
+  (int64)&q_Gmagick$$STRETCH_CONDENSED,
+  0x000001e100000037,
+  (int64)&q_Gmagick$$PREVIEW_JPEG,
+  0x000001e300000037,
+  (int64)&q_Gmagick$$NOISE_GAUSSIAN,
+  0x000001e500000037,
+  (int64)&q_Gmagick$$RENDERINGINTENT_RELATIVE,
+  0x000001e700000037,
+  (int64)&q_Gmagick$$COMPOSITE_ADD,
+  0x000001e900000037,
+  (int64)&q_Gmagick$$COMPOSITE_DARKEN,
+  0x000001eb00000037,
+  (int64)&q_Gmagick$$PAINT_POINT,
+  0x000001ed00000037,
+  (int64)&q_Gmagick$$PREVIEW_SHADE,
+  0x000001ef00000037,
+  (int64)&q_Gmagick$$PREVIEW_ROLL,
+  0x000001f100000037,
+  (int64)&q_Gmagick$$FILLRULE_EVENODD,
+  0x000001f300000037,
+  (int64)&q_Gmagick$$PREVIEW_IMPLODE,
+  0x000001f500000037,
+  (int64)&q_Gmagick$$METRIC_PEAKABSOLUTEERROR,
+  0x000001f700000037,
+  (int64)&q_Gmagick$$FILLRULE_UNDEFINED,
+  0x000001f900000037,
+  (int64)&q_Gmagick$$COMPOSITE_ATOP,
+  0x000001fb00000037,
+  (int64)&q_Gmagick$$COLORSPACE_YCC,
+  0x000001fd00000037,
+  (int64)&q_Gmagick$$LINECAP_SQUARE,
+  0x000001ff00000037,
+  (int64)&q_Gmagick$$FILTER_UNDEFINED,
+  0x0000020100000037,
+  (int64)&q_Gmagick$$COMPOSITE_OUT,
+  0x0000020300000037,
+  (int64)&q_Gmagick$$CHANNEL_CYAN,
+  0x0000020500000037,
+  (int64)&q_Gmagick$$PREVIEW_THRESHOLD,
+  0x0000020700000037,
+  (int64)&q_Gmagick$$GRAVITY_EAST,
+  0x0000020900000037,
+  (int64)&q_Gmagick$$MONTAGEMODE_CONCATENATE,
+  0x0000020b00000037,
+  (int64)&q_Gmagick$$RESOLUTION_PIXELSPERINCH,
+  0x0000020d00000037,
+  (int64)&q_Gmagick$$COLORSPACE_LAB,
+  0x0000020f00000037,
+  (int64)&q_Gmagick$$COMPOSITE_DISPLACE,
+  0x0000021100000037,
+  (int64)&q_Gmagick$$PREVIEW_DULL,
+  0x0000021300000037,
+  (int64)&q_Gmagick$$COMPRESSION_LZW,
+  0x0000021500000037,
+  (int64)&q_Gmagick$$ALIGN_LEFT,
+  0x0000021700000037,
+  (int64)&q_Gmagick$$CHANNEL_ALL,
+  0x0000021900000037,
+  (int64)&q_Gmagick$$RENDERINGINTENT_UNDEFINED,
+  0x0000021b00000037,
+  (int64)&q_Gmagick$$DECORATION_LINETROUGH,
+  0x0000021d00000037,
+  (int64)&q_Gmagick$$COLORSPACE_TRANSPARENT,
+  0x0000021f00000037,
+  (int64)&q_Gmagick$$COLORSPACE_XYZ,
+  0x0000022100000037,
+  (int64)&q_Gmagick$$VIRTUALPIXELMETHOD_TILE,
+  0x0000022300000037,
+  (int64)&q_Gmagick$$PREVIEW_UNDEFINED,
+  0x0000022500000037,
+  (int64)&q_Gmagick$$STRETCH_NORMAL,
+  0x0000022700000037,
+  (int64)&q_Gmagick$$COMPOSITE_XOR,
+  0x0000022900000037,
+  (int64)&q_Gmagick$$IMGTYPE_COLORSEPARATION,
+  0x0000022b00000037,
+  (int64)&q_Gmagick$$RENDERINGINTENT_ABSOLUTE,
+  0x0000022d00000037,
+  (int64)&q_Gmagick$$COMPOSITE_COPYBLUE,
+  0x0000022f00000037,
+  (int64)&q_Gmagick$$COMPOSITE_IN,
+  0x0000023100000037,
+  (int64)&q_Gmagick$$COMPOSITE_SUBTRACT,
+  0x0000023300000037,
+  (int64)&q_Gmagick$$COMPRESSION_LOSSLESSJPEG,
+  0x0000023500000037,
+  (int64)&q_Gmagick$$PATHUNITS_USERSPACE,
+  0x0000023700000037,
+  (int64)&q_Gmagick$$INTERLACE_UNDEFINED,
+  0x0000023900000037,
+  (int64)&q_Gmagick$$NOISE_UNIFORM,
+  0x0000023b00000037,
+  (int64)&q_Gmagick$$COMPOSITE_MULTIPLY,
+  0x0000023d00000037,
+  (int64)&q_Gmagick$$COLORSPACE_YPBPR,
+  0x0000023f00000037,
+  (int64)&q_Gmagick$$PREVIEW_SATURATION,
+  0x0000024100000037,
+  (int64)&q_Gmagick$$COMPOSITE_SCREEN,
+  0x0000024300000037,
+  (int64)&q_Gmagick$$IMGTYPE_OPTIMIZE,
+  0x0000024500000037,
+  (int64)&q_Gmagick$$VIRTUALPIXELMETHOD_EDGE,
+  0x0000024700000037,
+  (int64)&q_Gmagick$$STYLE_ITALIC,
+  0x0000024900000037,
+  (int64)&q_Gmagick$$VIRTUALPIXELMETHOD_MIRROR,
+  0x0000024b00000037,
+  (int64)&q_Gmagick$$STYLE_ANY,
+  0x0000024d00000037,
+  (int64)&q_Gmagick$$PATHUNITS_OBJECTBOUNDINGBOX,
+  0x0000024f00000037,
+  (int64)&q_Locale$$VALID_LOCALE,
+  0x0000025100000047,
+  (int64)&q_Locale$$ACTUAL_LOCALE,
+  0x0000025300000047,
+  (int64)&q_Memcached$$RES_ERRNO,
+  0x0000025500000037,
+  (int64)&q_Memcached$$OPT_TCP_NODELAY,
+  0x0000025700000037,
+  (int64)&q_Memcached$$RES_BUFFERED,
+  0x0000025900000037,
+  (int64)&q_Memcached$$OPT_SERVER_FAILURE_LIMIT,
+  0x0000025b00000037,
+  (int64)&q_Memcached$$RES_NO_SERVERS,
+  0x0000025d00000037,
+  (int64)&q_Memcached$$OPT_LIBKETAMA_COMPATIBLE,
+  0x0000025f00000037,
+  (int64)&q_Memcached$$RES_SUCCESS,
+  0x0000026100000037,
+  (int64)&q_Memcached$$OPT_PREFIX_KEY,
+  0x0000026300000037,
+  (int64)&q_Memcached$$OPT_HASH,
+  0x0000026500000037,
+  (int64)&q_Memcached$$DISTRIBUTION_CONSISTENT,
+  0x0000026700000037,
+  (int64)&q_Memcached$$HASH_HSIEH,
+  0x0000026900000037,
+  (int64)&q_Memcached$$OPT_BINARY_PROTOCOL,
+  0x0000026b00000037,
+  (int64)&q_Memcached$$RES_UNKNOWN_READ_FAILURE,
+  0x0000026d00000037,
+  (int64)&q_Memcached$$RES_NOTFOUND,
+  0x0000026f00000037,
+  (int64)&q_Memcached$$RES_PROTOCOL_ERROR,
+  0x0000027100000037,
+  (int64)&q_Memcached$$RES_CLIENT_ERROR,
+  0x0000027300000037,
+  (int64)&q_Memcached$$RES_SERVER_ERROR,
+  0x0000027500000037,
+  (int64)&q_Memcached$$HASH_FNV1A_64,
+  0x0000027700000037,
+  (int64)&q_Memcached$$OPT_CACHE_LOOKUPS,
+  0x0000027900000037,
+  (int64)&q_Memcached$$HASH_FNV1_64,
+  0x0000027b00000037,
+  (int64)&q_Memcached$$OPT_SEND_TIMEOUT,
+  0x0000027d00000037,
+  (int64)&q_Memcached$$RES_TIMEOUT,
+  0x0000027f00000037,
+  (int64)&q_Memcached$$RES_BAD_KEY_PROVIDED,
+  0x0000028100000037,
+  (int64)&q_Memcached$$RES_SOME_ERRORS,
+  0x0000028300000037,
+  (int64)&q_Memcached$$OPT_SOCKET_SEND_SIZE,
+  0x0000028500000037,
+  (int64)&q_Memcached$$OPT_COMPRESSION,
+  0x0000028700000037,
+  (int64)&q_Memcached$$SERIALIZER_PHP,
+  0x0000028900000037,
+  (int64)&q_Memcached$$OPT_RETRY_TIMEOUT,
+  0x0000028b00000037,
+  (int64)&q_Memcached$$HAVE_JSON,
+  0x0000028d00000027,
+  (int64)&q_Memcached$$SERIALIZER_JSON,
+  0x0000028f00000037,
+  (int64)&q_Memcached$$SERIALIZER_IGBINARY,
+  0x0000029100000037,
+  (int64)&q_Memcached$$OPT_NO_BLOCK,
+  0x0000029300000037,
+  (int64)&q_Memcached$$DISTRIBUTION_MODULA,
+  0x0000029500000037,
+  (int64)&q_Memcached$$HASH_CRC,
+  0x0000029700000037,
+  (int64)&q_Memcached$$RES_WRITE_FAILURE,
+  0x0000029900000037,
+  (int64)&q_Memcached$$HASH_FNV1_32,
+  0x0000029b00000037,
+  (int64)&q_Memcached$$OPT_SOCKET_RECV_SIZE,
+  0x0000029d00000037,
+  (int64)&q_Memcached$$OPT_POLL_TIMEOUT,
+  0x0000029f00000037,
+  (int64)&q_Memcached$$OPT_DISTRIBUTION,
+  0x000002a100000037,
+  (int64)&q_Memcached$$RES_CONNECTION_SOCKET_CREATE_FAILURE,
+  0x000002a300000037,
+  (int64)&q_Memcached$$OPT_RECV_TIMEOUT,
+  0x000002a500000037,
+  (int64)&q_Memcached$$GET_PRESERVE_ORDER,
+  0x000002a700000037,
+  (int64)&q_Memcached$$HASH_DEFAULT,
+  0x000002a900000037,
+  (int64)&q_Memcached$$OPT_BUFFER_WRITES,
+  0x000002ab00000037,
+  (int64)&q_Memcached$$HASH_FNV1A_32,
+  0x000002ad00000037,
+  (int64)&q_Memcached$$RES_HOST_LOOKUP_FAILURE,
+  0x000002af00000037,
+  (int64)&q_Memcached$$RES_DATA_EXISTS,
+  0x000002b100000037,
+  (int64)&q_Memcached$$RES_NOTSTORED,
+  0x000002b300000037,
+  (int64)&q_Memcached$$HASH_MD5,
+  0x000002b500000037,
+  (int64)&q_Memcached$$RES_END,
+  0x000002b700000037,
+  (int64)&q_Memcached$$OPT_SERIALIZER,
+  0x000002b900000037,
+  (int64)&q_Memcached$$RES_FAILURE,
+  0x000002bb00000037,
+  (int64)&q_Memcached$$HAVE_IGBINARY,
+  0x000002bd00000027,
+  (int64)&q_Memcached$$OPT_CONNECT_TIMEOUT,
+  0x000002bf00000037,
+  (int64)&q_Memcached$$RES_PARTIAL_READ,
+  0x000002c100000037,
+  (int64)&q_Memcached$$HASH_MURMUR,
+  0x000002c300000037,
+  (int64)&q_Memcached$$RES_PAYLOAD_FAILURE,
+  0x000002c500000037,
+  (int64)&q_Normalizer$$FORM_KD,
+  0x000002c700000047,
+  (int64)&q_Normalizer$$FORM_KC,
+  0x000002c900000047,
+  (int64)&q_Normalizer$$NFKC,
+  0x000002cb00000047,
+  (int64)&q_Normalizer$$FORM_D,
+  0x000002cd00000047,
+  (int64)&q_Normalizer$$NFC,
+  0x000002cf00000047,
+  (int64)&q_Normalizer$$NFD,
+  0x000002d100000047,
+  (int64)&q_Normalizer$$NFKD,
+  0x000002d300000047,
+  (int64)&q_Normalizer$$NONE,
+  0x000002d500000047,
+  (int64)&q_Normalizer$$FORM_C,
+  0x000002d700000047,
+  (int64)&q_PDO$$ATTR_CASE,
+  0x000002d900000047,
+  (int64)&q_PDO$$ATTR_STATEMENT_CLASS,
+  0x000002db00000047,
+  (int64)&q_PDO$$ERRMODE_EXCEPTION,
+  0x000002dd00000047,
+  (int64)&q_PDO$$CASE_NATURAL,
+  0x000002df00000047,
+  (int64)&q_PDO$$FETCH_OBJ,
+  0x000002e100000047,
+  (int64)&q_PDO$$FETCH_INTO,
+  0x000002e300000047,
+  (int64)&q_PDO$$FETCH_BOUND,
+  0x000002e500000047,
+  (int64)&q_PDO$$MYSQL_ATTR_INIT_COMMAND,
+  0x000002e700000047,
+  (int64)&q_PDO$$ATTR_CLIENT_VERSION,
+  0x000002e900000047,
+  (int64)&q_PDO$$ATTR_FETCH_CATALOG_NAMES,
+  0x000002eb00000047,
+  (int64)&q_PDO$$CASE_LOWER,
+  0x000002ed00000047,
+  (int64)&q_PDO$$FETCH_GROUP,
+  0x000002ef00000047,
+  (int64)&q_PDO$$CASE_UPPER,
+  0x000002f100000047,
+  (int64)&q_PDO$$PARAM_EVT_FETCH_POST,
+  0x000002f300000047,
+  (int64)&q_PDO$$ATTR_TIMEOUT,
+  0x000002f500000047,
+  (int64)&q_PDO$$PARAM_EVT_EXEC_PRE,
+  0x000002f700000047,
+  (int64)&q_PDO$$ATTR_ERRMODE,
+  0x000002f900000047,
+  (int64)&q_PDO$$ATTR_DEFAULT_FETCH_MODE,
+  0x000002fb00000047,
+  (int64)&q_PDO$$ATTR_EMULATE_PREPARES,
+  0x000002fd00000047,
+  (int64)&q_PDO$$ATTR_PREFETCH,
+  0x000002ff00000047,
+  (int64)&q_PDO$$FETCH_UNIQUE,
+  0x0000030100000047,
+  (int64)&q_PDO$$MYSQL_ATTR_READ_DEFAULT_GROUP,
+  0x0000030300000047,
+  (int64)&q_PDO$$ATTR_SERVER_INFO,
+  0x0000030500000047,
+  (int64)&q_PDO$$PARAM_EVT_NORMALIZE,
+  0x0000030700000047,
+  (int64)&q_PDO$$ATTR_CONNECTION_STATUS,
+  0x0000030900000047,
+  (int64)&q_PDO$$ATTR_ORACLE_NULLS,
+  0x0000030b00000047,
+  (int64)&q_PDO$$MYSQL_ATTR_FOUND_ROWS,
+  0x0000030d00000047,
+  (int64)&q_PDO$$FETCH_ORI_NEXT,
+  0x0000030f00000047,
+  (int64)&q_PDO$$ATTR_FETCH_TABLE_NAMES,
+  0x0000031100000047,
+  (int64)&q_PDO$$FETCH_ORI_REL,
+  0x0000031300000047,
+  (int64)&q_PDO$$FETCH_ASSOC,
+  0x0000031500000047,
+  (int64)&q_PDO$$ATTR_CURSOR_NAME,
+  0x0000031700000047,
+  (int64)&q_PDO$$ATTR_MAX_COLUMN_LEN,
+  0x0000031900000047,
+  (int64)&q_PDO$$ATTR_AUTOCOMMIT,
+  0x0000031b00000047,
+  (int64)&q_PDO$$PARAM_NULL,
+  0x0000031d00000047,
+  (int64)&q_PDO$$PARAM_EVT_ALLOC,
+  0x0000031f00000047,
+  (int64)&q_PDO$$PARAM_BOOL,
+  0x0000032100000047,
+  (int64)&q_PDO$$NULL_NATURAL,
+  0x0000032300000047,
+  (int64)&q_PDO$$PARAM_INT,
+  0x0000032500000047,
+  (int64)&q_PDO$$FETCH_NUM,
+  0x0000032700000047,
+  (int64)&q_PDO$$FETCH_ORI_PRIOR,
+  0x0000032900000047,
+  (int64)&q_PDO$$PARAM_EVT_EXEC_POST,
+  0x0000032b00000047,
+  (int64)&q_PDO$$MYSQL_ATTR_USE_BUFFERED_QUERY,
+  0x0000032d00000047,
+  (int64)&q_PDO$$PARAM_STR,
+  0x0000032f00000047,
+  (int64)&q_PDO$$ATTR_CURSOR,
+  0x0000033100000047,
+  (int64)&q_PDO$$ATTR_DRIVER_NAME,
+  0x0000033300000047,
+  (int64)&q_PDO$$FETCH_USE_DEFAULT,
+  0x0000033500000047,
+  (int64)&q_PDO$$ATTR_SERVER_VERSION,
+  0x0000033700000047,
+  (int64)&q_PDO$$MYSQL_ATTR_DIRECT_QUERY,
+  0x0000033900000047,
+  (int64)&q_PDO$$FETCH_PROPS_LATE,
+  0x0000033b00000047,
+  (int64)&q_PDO$$FETCH_COLUMN,
+  0x0000033d00000047,
+  (int64)&q_PDO$$FETCH_CLASSTYPE,
+  0x0000033f00000047,
+  (int64)&q_PDO$$FETCH_SERIALIZE,
+  0x0000034100000047,
+  (int64)&q_PDO$$MYSQL_ATTR_LOCAL_INFILE,
+  0x0000034300000047,
+  (int64)&q_PDO$$FETCH_BOTH,
+  0x0000034500000047,
+  (int64)&q_PDO$$FETCH_KEY_PAIR,
+  0x0000034700000047,
+  (int64)&q_PDO$$PARAM_EVT_FETCH_PRE,
+  0x0000034900000047,
+  (int64)&q_PDO$$CURSOR_FWDONLY,
+  0x0000034b00000047,
+  (int64)&q_PDO$$FETCH_ORI_FIRST,
+  0x0000034d00000047,
+  (int64)&q_PDO$$CURSOR_SCROLL,
+  0x0000034f00000047,
+  (int64)&q_PDO$$FETCH_ORI_LAST,
+  0x0000035100000047,
+  (int64)&q_PDO$$ATTR_PERSISTENT,
+  0x0000035300000047,
+  (int64)&q_PDO$$NULL_EMPTY_STRING,
+  0x0000035500000047,
+  (int64)&q_PDO$$ATTR_STRINGIFY_FETCHES,
+  0x0000035700000047,
+  (int64)&q_PDO$$MYSQL_ATTR_READ_DEFAULT_FILE,
+  0x0000035900000047,
+  (int64)&q_PDO$$FETCH_FUNC,
+  0x0000035b00000047,
+  (int64)&q_PDO$$FETCH_ORI_ABS,
+  0x0000035d00000047,
+  (int64)&q_PDO$$NULL_TO_STRING,
+  0x0000035f00000047,
+  (int64)&q_PDO$$MYSQL_ATTR_MAX_BUFFER_SIZE,
+  0x0000036100000047,
+  (int64)&q_PDO$$FETCH_CLASS,
+  0x0000036300000047,
+  (int64)&q_PDO$$FETCH_LAZY,
+  0x0000036500000047,
+  (int64)&q_PDO$$MYSQL_ATTR_COMPRESS,
+  0x0000036700000047,
+  (int64)&q_PDO$$ERRMODE_WARNING,
+  0x0000036900000047,
+  (int64)&q_PDO$$ERRMODE_SILENT,
+  0x0000036b00000047,
+  (int64)&q_PDO$$ERR_NONE,
+  0x0000036d00000077,
+  (int64)&q_PDO$$PARAM_LOB,
+  0x0000036f00000047,
+  (int64)&q_PDO$$FETCH_NAMED,
+  0x0000037100000047,
+  (int64)&q_PDO$$PARAM_INPUT_OUTPUT,
+  0x0000037300000047,
+  (int64)&q_PDO$$MYSQL_ATTR_IGNORE_SPACE,
+  0x0000037500000047,
+  (int64)&q_PDO$$PARAM_STMT,
+  0x0000037700000047,
+  (int64)&q_PDO$$PARAM_EVT_FREE,
+  0x0000037900000047,
+  (int64)&q_SpoofChecker$$SINGLE_SCRIPT_CONFUSABLE,
+  0x0000037b00000037,
+  (int64)&q_SpoofChecker$$WHOLE_SCRIPT_CONFUSABLE,
+  0x0000037d00000037,
+  (int64)&q_SpoofChecker$$CHAR_LIMIT,
+  0x0000037f00000037,
+  (int64)&q_SpoofChecker$$INVISIBLE,
+  0x0000038100000037,
+  (int64)&q_SpoofChecker$$SINGLE_SCRIPT,
+  0x0000038300000037,
+  (int64)&q_SpoofChecker$$ANY_CASE,
+  0x0000038500000037,
+  (int64)&q_SpoofChecker$$MIXED_SCRIPT_CONFUSABLE,
+  0x0000038700000037,
   (int64)&q_XMLReader$$DOC_FRAGMENT,
-  0x000001b900000047,
+  0x0000038900000047,
   (int64)&q_XMLReader$$NOTATION,
-  0x000001bb00000047,
+  0x0000038b00000047,
   (int64)&q_XMLReader$$COMMENT,
-  0x000001bd00000047,
+  0x0000038d00000047,
   (int64)&q_XMLReader$$ELEMENT,
-  0x000001bf00000047,
+  0x0000038f00000047,
   (int64)&q_XMLReader$$SUBST_ENTITIES,
-  0x000001c100000047,
+  0x0000039100000047,
   (int64)&q_XMLReader$$DEFAULTATTRS,
-  0x000001c300000047,
+  0x0000039300000047,
   (int64)&q_XMLReader$$CDATA,
-  0x000001c500000047,
+  0x0000039500000047,
   (int64)&q_XMLReader$$LOADDTD,
-  0x000001c700000047,
+  0x0000039700000047,
   (int64)&q_XMLReader$$TEXT,
-  0x000001c900000047,
+  0x0000039900000047,
   (int64)&q_XMLReader$$WHITESPACE,
-  0x000001cb00000047,
+  0x0000039b00000047,
   (int64)&q_XMLReader$$DOC_TYPE,
-  0x000001cd00000047,
+  0x0000039d00000047,
   (int64)&q_XMLReader$$SIGNIFICANT_WHITESPACE,
-  0x000001cf00000047,
+  0x0000039f00000047,
   (int64)&q_XMLReader$$PI,
-  0x000001d100000047,
+  0x000003a100000047,
   (int64)&q_XMLReader$$DOC,
-  0x000001d300000047,
+  0x000003a300000047,
   (int64)&q_XMLReader$$ENTITY,
-  0x000001d500000047,
+  0x000003a500000047,
   (int64)&q_XMLReader$$END_ELEMENT,
-  0x000001d700000047,
+  0x000003a700000047,
   (int64)&q_XMLReader$$XML_DECLARATION,
-  0x000001d900000047,
+  0x000003a900000047,
   (int64)&q_XMLReader$$NONE,
-  0x000001db00000047,
+  0x000003ab00000047,
   (int64)&q_XMLReader$$END_ENTITY,
-  0x000001dd00000047,
+  0x000003ad00000047,
   (int64)&q_XMLReader$$ATTRIBUTE,
-  0x000001df00000047,
+  0x000003af00000047,
   (int64)&q_XMLReader$$VALIDATE,
-  0x000001e100000047,
+  0x000003b100000047,
   (int64)&q_XMLReader$$ENTITY_REF,
-  0x000001e300000047,
+  0x000003b300000047,
 };
 static const ClassPropTableEntry cpt_table_entries[] = {
   {0x44D1DA387595A403LL,5,1,0,36,4,0,&NAMSTR(s_sys_ss7595a403, "SORT_REGULAR") },
@@ -11298,189 +12652,422 @@ static const ClassPropTableEntry cpt_table_entries[] = {
 
   {0x44CC7F6BF50518ECLL,0,48,21,65,8,GET_PROPERTY_OFFSET(c_GenericContinuation, m_vars),&NAMSTR(s_sys_ss020cf65e, "\000GenericContinuation\000vars") },
 
-  {0x35B10383BBF3BAE1LL,0,130,0,100,4,0,&NAMSTR(s_sys_ssbbf3bae1, "VALID_LOCALE") },
-  {0x78695696B47AF8CDLL,-1,132,0,100,4,0,&NAMSTR(s_sys_ssb47af8cd, "ACTUAL_LOCALE") },
+  {0x04F44E1E0FF20400LL,56,130,0,100,3,0,&NAMSTR(s_sys_ss0ff20400, "GRAVITY_SOUTHWEST") },
+  {0x10768FFBE6733E04LL,213,132,0,100,3,0,&NAMSTR(s_sys_sse6733e04, "RENDERINGINTENT_PERCEPTUAL") },
+  {0x38EC6DD65456E606LL,211,134,0,100,3,0,&NAMSTR(s_sys_ss5456e606, "IMGTYPE_TRUECOLORMATTE") },
+  {0x5EB3D347E890BA08LL,111,136,0,100,3,0,&NAMSTR(s_sys_sse890ba08, "LINEJOIN_UNDEFINED") },
+  {0x43D488E8E94CAE0BLL,125,138,0,100,3,0,&NAMSTR(s_sys_sse94cae0b, "STRETCH_EXTRAEXPANDED") },
+  {0x78430044DEF7120FLL,5,140,0,100,3,0,&NAMSTR(s_sys_ssdef7120f, "IMGTYPE_GRAYSCALE") },
+  {0x2F233056274FDE16LL,135,142,0,100,3,0,&NAMSTR(s_sys_ss274fde16, "COMPOSITE_COPYGREEN") },
+  {0x01FD4BA2C611D619LL,155,144,0,100,3,0,&NAMSTR(s_sys_ssc611d619, "RESOURCETYPE_MEMORY") },
+  {0x3DB97A34B1A7A01BLL,50,146,0,100,3,0,&NAMSTR(s_sys_ssb1a7a01b, "METRIC_ROOTMEANSQUAREDERROR") },
+  {0x619D91541075B424LL,53,148,0,100,3,0,&NAMSTR(s_sys_ss1075b424, "COMPOSITE_PLUS") },
+  {0x6F42592BA4F0BE25LL,143,150,0,100,3,0,&NAMSTR(s_sys_ssa4f0be25, "IMGTYPE_GRAYSCALEMATTE") },
+  {0x2480CCF47AFC8626LL,67,152,0,100,3,0,&NAMSTR(s_sys_ss7afc8626, "PIXEL_SHORT") },
+  {0x72A6A473CD6BBE2ALL,168,154,0,100,3,0,&NAMSTR(s_sys_sscd6bbe2a, "COMPOSITE_NO") },
+  {0x17F01A7EA4A6142DLL,89,156,0,36,3,0,&NAMSTR(s_sys_ssa4a6142d, "CHANNEL_MATTE") },
+  {0x419E61EBF6BB8E2DLL,85,158,0,100,3,0,&NAMSTR(s_sys_ssf6bb8e2d, "INTERLACE_NO") },
+  {0x2E466D7D942AFA30LL,60,160,0,100,3,0,&NAMSTR(s_sys_ss942afa30, "RESOURCETYPE_AREA") },
+  {0x1CBEA8E5CA2DA031LL,78,162,0,36,3,0,&NAMSTR(s_sys_ssca2da031, "COMPOSITE_COLORIZE") },
+  {0x4D91985B9575B231LL,205,164,0,100,3,0,&NAMSTR(s_sys_ss9575b231, "COMPOSITE_MODULATE") },
+  {0x774366DF29A08832LL,183,166,0,100,3,0,&NAMSTR(s_sys_ss29a08832, "PREVIEW_SPIFF") },
+  {0x6ACAF2A310310C34LL,57,168,0,100,3,0,&NAMSTR(s_sys_ss10310c34, "COMPRESSION_NO") },
+  {0x7DFFCB97BABFB035LL,64,170,0,100,3,0,&NAMSTR(s_sys_ssbabfb035, "PREVIEW_ADDNOISE") },
+  {0x7B5F1ACF79571038LL,104,172,0,36,3,0,&NAMSTR(s_sys_ss79571038, "COMPRESSION_RLE") },
+  {0x2D1BDD26337CDC38LL,138,174,0,36,3,0,&NAMSTR(s_sys_ss337cdc38, "PAINT_RESET") },
+  {0x3F70FD52E79C1C38LL,29,176,0,100,3,0,&NAMSTR(s_sys_sse79c1c38, "COLORSPACE_RGB") },
+  {0x61DC50C7558D9C39LL,125,178,0,100,3,0,&NAMSTR(s_sys_ss558d9c39, "CHANNEL_RED") },
+  {0x45E3C99FEF6A023DLL,148,180,0,100,3,0,&NAMSTR(s_sys_ssef6a023d, "COLORSPACE_CMYK") },
+  {0x403C59AA2514AE3FLL,34,182,0,100,3,0,&NAMSTR(s_sys_ss2514ae3f, "COMPOSITE_DISSOLVE") },
+  {0x365511B43A3C7840LL,-16,184,0,100,3,0,&NAMSTR(s_sys_ss3a3c7840, "PIXEL_LONG") },
+  {0x0B29C7E635C9F642LL,2,186,0,100,3,0,&NAMSTR(s_sys_ss35c9f642, "PIXEL_DOUBLE") },
+  {0x41CD400D4BC35A49LL,169,188,0,100,3,0,&NAMSTR(s_sys_ss4bc35a49, "RESOLUTION_UNDEFINED") },
+  {0x063B5E32E33E1A4BLL,31,190,0,100,3,0,&NAMSTR(s_sys_sse33e1a4b, "PIXEL_FLOAT") },
+  {0x66A60C00BC81184ELL,88,192,0,100,3,0,&NAMSTR(s_sys_ssbc81184e, "DISPOSE_NONE") },
+  {0x5F745B323D07924FLL,108,194,0,100,3,0,&NAMSTR(s_sys_ss3d07924f, "NOISE_MULTIPLICATIVEGAUSSIAN") },
+  {0x3B63D842229B8051LL,71,196,0,100,3,0,&NAMSTR(s_sys_ss229b8051, "RESOLUTION_PIXELSPERCENTIMETER") },
+  {0x2E617753B9F35852LL,156,198,0,100,3,0,&NAMSTR(s_sys_ssb9f35852, "COLORSPACE_YCBCR") },
+  {0x0BBF51606114CE53LL,91,200,0,36,3,0,&NAMSTR(s_sys_ss6114ce53, "FILTER_BLACKMAN") },
+  {0x6596CD845FC06E53LL,168,202,0,100,3,0,&NAMSTR(s_sys_ss5fc06e53, "CHANNEL_INDEX") },
+  {0x0C9A897BF6EB5454LL,76,204,0,36,3,0,&NAMSTR(s_sys_ssf6eb5454, "STRETCH_SEMIEXPANDED") },
+  {0x54176D7691461E54LL,55,206,0,100,3,0,&NAMSTR(s_sys_ss91461e54, "METRIC_MEANABSOLUTEERROR") },
+  {0x4887477BCADBFC56LL,7,208,0,100,3,0,&NAMSTR(s_sys_sscadbfc56, "PREVIEW_SPREAD") },
+  {0x3598BE466DED545DLL,172,210,0,100,3,0,&NAMSTR(s_sys_ss6ded545d, "COMPOSITE_THRESHOLD") },
+  {0x5294CD42C712205ELL,-16,212,0,100,3,0,&NAMSTR(s_sys_ssc712205e, "COLORSPACE_YUV") },
+  {0x7F6778483D5F4260LL,91,214,0,100,3,0,&NAMSTR(s_sys_ss3d5f4260, "STRETCH_ANY") },
+  {0x642C56F7C1D3F264LL,123,216,0,36,3,0,&NAMSTR(s_sys_ssc1d3f264, "COMPOSITE_COPY") },
+  {0x62A5E49150875864LL,186,218,0,36,3,0,&NAMSTR(s_sys_ss50875864, "STYLE_OBLIQUE") },
+  {0x2B625BAA99260864LL,-43,220,0,100,3,0,&NAMSTR(s_sys_ss99260864, "IMGTYPE_TRUECOLOR") },
+  {0x43CA2C019EF78A65LL,137,222,0,100,3,0,&NAMSTR(s_sys_ss9ef78a65, "PREVIEW_SOLARIZE") },
+  {0x68514E5689B83467LL,40,224,0,100,3,0,&NAMSTR(s_sys_ss89b83467, "FILTER_HERMITE") },
+  {0x13FB9DB2C07C8668LL,177,226,0,36,3,0,&NAMSTR(s_sys_ssc07c8668, "COMPOSITE_SATURATE") },
+  {0x3C15A5AD2E829668LL,150,228,0,100,3,0,&NAMSTR(s_sys_ss2e829668, "COLORSPACE_OHTA") },
+  {0x1DFFB583207DF66CLL,-34,230,0,100,3,0,&NAMSTR(s_sys_ss207df66c, "COMPOSITE_CLEAR") },
+  {0x4FF0C52AE88B6A6DLL,-4,232,0,100,3,0,&NAMSTR(s_sys_sse88b6a6d, "FILTER_TRIANGLE") },
+  {0x7D8D18F9C5433470LL,155,234,0,36,3,0,&NAMSTR(s_sys_ssc5433470, "COLORSPACE_GRAY") },
+  {0x6DCBCF234D72B670LL,53,236,0,100,3,0,&NAMSTR(s_sys_ss4d72b670, "LINEJOIN_BEVEL") },
+  {0x3EF249BB61F7FE71LL,27,238,0,100,3,0,&NAMSTR(s_sys_ss61f7fe71, "NOISE_LAPLACIAN") },
+  {0x1BBE23D6ADA89A72LL,28,240,0,100,3,0,&NAMSTR(s_sys_ssada89a72, "FILTER_CATROM") },
+  {0x3FC90953DA99CA76LL,100,242,0,100,3,0,&NAMSTR(s_sys_ssda99ca76, "GRAVITY_SOUTH") },
+  {0x4305384E62EE3E77LL,16,244,0,100,3,0,&NAMSTR(s_sys_ss62ee3e77, "LINECAP_UNDEFINED") },
+  {0x133136BCB170EC79LL,-30,246,0,100,3,0,&NAMSTR(s_sys_ssb170ec79, "PIXEL_CHAR") },
+  {0x3409ECC579A58E7ALL,169,248,0,100,3,0,&NAMSTR(s_sys_ss79a58e7a, "STYLE_NORMAL") },
+  {0x61BB51080818E47DLL,156,250,0,100,3,0,&NAMSTR(s_sys_ss0818e47d, "COMPOSITE_HUE") },
+  {0x363598D662D6FA82LL,-34,252,0,100,3,0,&NAMSTR(s_sys_ss62d6fa82, "PIXEL_INTEGER") },
+  {0x7CEC2BAE1ECE6085LL,-14,254,0,100,3,0,&NAMSTR(s_sys_ss1ece6085, "COMPOSITE_REPLACE") },
+  {0x5EEF85CC03DE4C89LL,74,256,0,36,3,0,&NAMSTR(s_sys_ss03de4c89, "COMPOSITE_OVER") },
+  {0x441DAF3EA2A35E89LL,101,258,0,100,3,0,&NAMSTR(s_sys_ssa2a35e89, "FILTER_BESSEL") },
+  {0x20AD4CE4F6E2CE8ALL,-14,260,0,36,3,0,&NAMSTR(s_sys_ssf6e2ce8a, "FILTER_BOX") },
+  {0x49DF842A2E8C4E8ALL,129,262,0,36,3,0,&NAMSTR(s_sys_ss2e8c4e8a, "PREVIEW_BLUR") },
+  {0x28AC26C21E38228ALL,28,264,0,100,3,0,&NAMSTR(s_sys_ss1e38228a, "PREVIEW_WAVE") },
+  {0x05A1C8D75E38908BLL,11,266,0,100,3,0,&NAMSTR(s_sys_ss5e38908b, "GRAVITY_NORTHEAST") },
+  {0x2E09349DA3E9FA90LL,-32,268,0,100,3,0,&NAMSTR(s_sys_ssa3e9fa90, "STRETCH_SEMICONDENSED") },
+  {0x78915693B4F81095LL,-15,270,0,36,3,0,&NAMSTR(s_sys_ssb4f81095, "FILTER_CUBIC") },
+  {0x115BB9C33E22AE95LL,-26,272,0,100,3,0,&NAMSTR(s_sys_ss3e22ae95, "IMGTYPE_PALETTEMATTE") },
+  {0x5F0B00946FEEC698LL,20,274,0,36,3,0,&NAMSTR(s_sys_ssb5329475, "COMPRESSION_GROUP4") },
+  {0x316538472510BE98LL,72,276,0,100,3,0,&NAMSTR(s_sys_ss2510be98, "LINECAP_BUTT") },
+  {0x672BBC9A53AB189ALL,-69,278,0,100,3,0,&NAMSTR(s_sys_ss53ab189a, "IMGTYPE_BILEVEL") },
+  {0x34C6CB13A3B74E9DLL,14,280,0,100,3,0,&NAMSTR(s_sys_ssa3b74e9d, "RESOURCETYPE_DISK") },
+  {0x26F903BD8A0AB49ELL,41,282,0,100,3,0,&NAMSTR(s_sys_ss8a0ab49e, "COMPRESSION_BZIP") },
+  {0x5947BE49C6DB3AA2LL,109,284,0,100,3,0,&NAMSTR(s_sys_ssc6db3aa2, "PREVIEW_SWIRL") },
+  {0x44D8A680622FA8A3LL,-55,286,0,100,3,0,&NAMSTR(s_sys_ss622fa8a3, "COLORSPACE_UNDEFINED") },
+  {0x645EBFCF33FDB8A5LL,91,288,0,36,3,0,&NAMSTR(s_sys_ss33fdb8a5, "GRAVITY_WEST") },
+  {0x64C99600F960C6A5LL,-42,290,0,100,3,0,&NAMSTR(s_sys_ssf960c6a5, "METRIC_UNDEFINED") },
+  {0x0C15945072A3CEA6LL,24,292,0,100,3,0,&NAMSTR(s_sys_ss72a3cea6, "NOISE_POISSON") },
+  {0x3FCF2209516A88A7LL,-14,294,0,100,3,0,&NAMSTR(s_sys_ss516a88a7, "GRAVITY_NORTH") },
+  {0x4CA0BE552854D6A9LL,65,296,0,100,3,0,&NAMSTR(s_sys_ss2854d6a9, "FILTER_MITCHELL") },
+  {0x1AE2C157E0444CAALL,-18,298,0,100,3,0,&NAMSTR(s_sys_sse0444caa, "PREVIEW_SHARPEN") },
+  {0x08AE2D85353940ABLL,-68,300,0,100,3,0,&NAMSTR(s_sys_ss353940ab, "COMPOSITE_MINUS") },
+  {0x2507E215CE43E4B1LL,-36,302,0,100,3,0,&NAMSTR(s_sys_ssce43e4b1, "COMPOSITE_BUMPMAP") },
+  {0x62E246E296E566B6LL,56,304,0,100,3,0,&NAMSTR(s_sys_ss96e566b6, "FILTER_HANNING") },
+  {0x32CE1F87CB15CABCLL,24,306,0,100,3,0,&NAMSTR(s_sys_sscb15cabc, "CHANNEL_MAGENTA") },
+  {0x676CDBE101F370BDLL,62,308,0,100,3,0,&NAMSTR(s_sys_ss01f370bd, "RESOURCETYPE_FILE") },
+  {0x3AB1AED0084176BELL,107,310,0,100,3,0,&NAMSTR(s_sys_ss084176be, "MONTAGEMODE_UNFRAME") },
+  {0x790FA8DA8D303CBFLL,90,312,0,36,3,0,&NAMSTR(s_sys_ss8d303cbf, "COMPOSITE_COPYYELLOW") },
+  {0x669084FA54636ABFLL,126,314,0,36,3,0,&NAMSTR(s_sys_ss54636abf, "COMPRESSION_JPEG") },
+  {0x65678880B166ACBFLL,94,316,0,100,3,0,&NAMSTR(s_sys_ssb166acbf, "METRIC_MEANSQUAREERROR") },
+  {0x4263E5A4879552C2LL,121,318,0,100,3,0,&NAMSTR(s_sys_ss879552c2, "COMPOSITE_COPYBLACK") },
+  {0x5EA65DCE95D0BCC3LL,26,320,0,100,3,0,&NAMSTR(s_sys_ss95d0bcc3, "PREVIEW_OILPAINT") },
+  {0x647218E63BE564C5LL,39,322,0,100,3,0,&NAMSTR(s_sys_ss3be564c5, "DECORATION_UNDERLINE") },
+  {0x6F81A7AD6AEE72C8LL,-9,324,0,100,3,0,&NAMSTR(s_sys_ss6aee72c8, "CHANNEL_GREEN") },
+  {0x0900FA1147AFD2CALL,74,326,0,36,3,0,&NAMSTR(s_sys_ss47afd2ca, "COLORSPACE_HWB") },
+  {0x1B820AE0D133AACALL,43,328,0,100,3,0,&NAMSTR(s_sys_ssd133aaca, "INTERLACE_LINE") },
+  {0x33A5ADFD957EB0CBLL,-78,330,0,36,3,0,&NAMSTR(s_sys_ss957eb0cb, "PAINT_FILLTOBORDER") },
+  {0x0D806770A2329ECBLL,123,332,0,100,3,0,&NAMSTR(s_sys_ssa2329ecb, "PREVIEW_HUE") },
+  {0x79EC3E7CB2350CCCLL,-66,334,0,100,3,0,&NAMSTR(s_sys_ssb2350ccc, "CHANNEL_BLACK") },
+  {0x50A2242402E684CELL,-13,336,0,100,3,0,&NAMSTR(s_sys_ss02e684ce, "MONTAGEMODE_FRAME") },
+  {0x0839C4BD8916AED0LL,-85,338,0,100,3,0,&NAMSTR(s_sys_ss8916aed0, "COMPRESSION_UNDEFINED") },
+  {0x13821809DC1D64D2LL,-81,340,0,36,3,0,&NAMSTR(s_sys_ssdc1d64d2, "CHANNEL_UNDEFINED") },
+  {0x006D418B9AE9E4D2LL,-91,342,0,100,3,0,&NAMSTR(s_sys_ss9ae9e4d2, "RESOURCETYPE_UNDEFINED") },
+  {0x0B8E797F7EC408D5LL,31,344,0,100,3,0,&NAMSTR(s_sys_ss7ec408d5, "ALIGN_RIGHT") },
+  {0x4946909604CE70D7LL,118,346,0,100,3,0,&NAMSTR(s_sys_ss04ce70d7, "IMGTYPE_COLORSEPARATIONMATTE") },
+  {0x17E5ADE48BE0C0DCLL,49,348,0,100,3,0,&NAMSTR(s_sys_ss8be0c0dc, "PREVIEW_GRAYSCALE") },
+  {0x11749EED7272C6E0LL,78,350,0,100,3,0,&NAMSTR(s_sys_ss7272c6e0, "INTERLACE_PARTITION") },
+  {0x506EA54E7ADD5CE1LL,-58,352,0,100,3,0,&NAMSTR(s_sys_ss7add5ce1, "LINEJOIN_ROUND") },
+  {0x30EE1EFBF963CEE2LL,27,354,0,100,3,0,&NAMSTR(s_sys_ssf963cee2, "CHANNEL_BLUE") },
+  {0x335C305914C272E4LL,-109,356,0,100,3,0,&NAMSTR(s_sys_ss14c272e4, "STRETCH_EXPANDED") },
+  {0x298D8E60EED63AEBLL,-3,358,0,100,3,0,&NAMSTR(s_sys_sseed63aeb, "LINEJOIN_MITER") },
+  {0x0E770871B4E2ACECLL,108,360,0,36,3,0,&NAMSTR(s_sys_ssb4e2acec, "COLORSPACE_YIQ") },
+  {0x698209EA5DE1B0ECLL,16,362,0,100,3,0,&NAMSTR(s_sys_ss5de1b0ec, "PREVIEW_DESPECKLE") },
+  {0x7BDD7D767C8704F1LL,-45,364,0,36,3,0,&NAMSTR(s_sys_ss7c8704f1, "COMPRESSION_FAX") },
+  {0x2F5CC50F82BCDAF1LL,-110,366,0,100,3,0,&NAMSTR(s_sys_ss82bcdaf1, "METRIC_PEAKSIGNALTONOISERATIO") },
+  {0x5B3685DF69432EF2LL,45,368,0,100,3,0,&NAMSTR(s_sys_ss69432ef2, "DISPOSE_BACKGROUND") },
+  {0x1C2B37A13E427CF8LL,-102,370,0,36,3,0,&NAMSTR(s_sys_ss3e427cf8, "PREVIEW_GAMMA") },
+  {0x282EEFA0253E0CF8LL,56,372,0,100,3,0,&NAMSTR(s_sys_ss253e0cf8, "PREVIEW_CHARCOALDRAWING") },
+  {0x257EB330B41B26FALL,-110,374,0,36,3,0,&NAMSTR(s_sys_ssb41b26fa, "COMPOSITE_UNDEFINED") },
+  {0x5AA992D459E8CEFALL,77,376,0,100,3,0,&NAMSTR(s_sys_ss59e8cefa, "COMPOSITE_DIFFERENCE") },
+  {0x54C694030CDF3EFDLL,-47,378,0,100,3,0,&NAMSTR(s_sys_ss0cdf3efd, "PREVIEW_SEGMENT") },
+  {0x43C07162B36BE100LL,57,380,0,100,3,0,&NAMSTR(s_sys_ssb36be100, "COMPRESSION_ZIP") },
+  {0x7F4789EB73163B01LL,35,382,0,100,3,0,&NAMSTR(s_sys_ss73163b01, "FILTER_GAUSSIAN") },
+  {0x0C0A31C6732A5F04LL,27,384,0,100,3,0,&NAMSTR(s_sys_ss732a5f04, "PAINT_REPLACE") },
+  {0x43FC3759FE84BF07LL,-4,386,0,100,3,0,&NAMSTR(s_sys_ssfe84bf07, "PREVIEW_RAISE") },
+  {0x7F4A09ECF435BB0BLL,-87,388,0,100,3,0,&NAMSTR(s_sys_ssf435bb0b, "STRETCH_ULTRAEXPANDED") },
+  {0x2E6ED275ECDC3F0DLL,89,390,0,100,3,0,&NAMSTR(s_sys_ssecdc3f0d, "FILLRULE_NONZERO") },
+  {0x1AC4FE9C330D4F0FLL,-11,392,0,100,3,0,&NAMSTR(s_sys_ss330d4f0f, "PREVIEW_BRIGHTNESS") },
+  {0x3AA0AB83B4789D12LL,-112,394,0,100,3,0,&NAMSTR(s_sys_ssb4789d12, "PREVIEW_REDUCENOISE") },
+  {0x5244D6BADA880B17LL,70,396,0,100,3,0,&NAMSTR(s_sys_ssda880b17, "ALIGN_UNDEFINED") },
+  {0x38D871AE0040071DLL,-12,398,0,100,3,0,&NAMSTR(s_sys_ss0040071d, "COMPOSITE_DEFAULT") },
+  {0x1AFB075332DB8B23LL,71,400,0,100,3,0,&NAMSTR(s_sys_ss32db8b23, "DECORATION_OVERLINE") },
+  {0x4A5E623886E7DF25LL,-123,402,0,100,3,0,&NAMSTR(s_sys_ss86e7df25, "CHANNEL_OPACITY") },
+  {0x06210BFEB658672CLL,-128,404,0,100,3,0,&NAMSTR(s_sys_ssb658672c, "COMPOSITE_OVERLAY") },
+  {0x0FA83B40897F0D2DLL,-42,406,0,100,3,0,&NAMSTR(s_sys_ss897f0d2d, "DECORATION_NO") },
+  {0x5EF570AA85BDD52FLL,-3,408,0,100,3,0,&NAMSTR(s_sys_ss85bdd52f, "CHANNEL_YELLOW") },
+  {0x1F4464B6EF721330LL,-86,410,0,100,3,0,&NAMSTR(s_sys_ssef721330, "NOISE_IMPULSE") },
+  {0x0CAA5DC9E2589734LL,18,412,0,100,3,0,&NAMSTR(s_sys_sse2589734, "COMPOSITE_COPYMAGENTA") },
+  {0x214E098A186A8F36LL,-32,414,0,100,3,0,&NAMSTR(s_sys_ss186a8f36, "INTERLACE_PLANE") },
+  {0x2AA4D776F8CAB937LL,-108,416,0,36,3,0,&NAMSTR(s_sys_ssf8cab937, "FILTER_HAMMING") },
+  {0x3FDBE243D6FA5D37LL,-37,418,0,100,3,0,&NAMSTR(s_sys_ssd6fa5d37, "ALIGN_CENTER") },
+  {0x0F5594EB88ED5938LL,46,420,0,100,3,0,&NAMSTR(s_sys_ss88ed5938, "LINECAP_ROUND") },
+  {0x39AA8BDB48EB0B39LL,1,422,0,36,3,0,&NAMSTR(s_sys_ss48eb0b39, "COMPOSITE_LIGHTEN") },
+  {0x40B97B2028F77339LL,-62,424,0,100,3,0,&NAMSTR(s_sys_ss28f77339, "COMPOSITE_LUMINIZE") },
+  {0x385E7D249402213ALL,-84,426,0,36,3,0,&NAMSTR(s_sys_ss9402213a, "FILTER_LANCZOS") },
+  {0x534F7543D24A4F3ALL,45,428,0,36,3,0,&NAMSTR(s_sys_ssd24a4f3a, "CHANNEL_GRAY") },
+  {0x65AF7876B6BD433ALL,-111,430,0,36,3,0,&NAMSTR(s_sys_ssb6bd433a, "PREVIEW_EDGEDETECT") },
+  {0x5EB490ED0A79E33ALL,-144,432,0,100,3,0,&NAMSTR(s_sys_ss0a79e33a, "RESOURCETYPE_MAP") },
+  {0x5D3910AA8E20BF40LL,-61,434,0,100,3,0,&NAMSTR(s_sys_ss8e20bf40, "COMPOSITE_COPYRED") },
+  {0x645D3DCA04E49B45LL,-82,436,0,36,3,0,&NAMSTR(s_sys_ss04e49b45, "IMGTYPE_PALETTE") },
+  {0x712BFBB90D578945LL,-54,438,0,100,3,0,&NAMSTR(s_sys_ss0d578945, "PAINT_FLOODFILL") },
+  {0x4943CC6420BDE347LL,20,440,0,100,3,0,&NAMSTR(s_sys_ss20bde347, "PREVIEW_ROTATE") },
+  {0x76681A9DD9847349LL,55,442,0,36,3,0,&NAMSTR(s_sys_ssd9847349, "GRAVITY_SOUTHEAST") },
+  {0x5DCFE02E1A9FA149LL,-156,444,0,100,3,0,&NAMSTR(s_sys_ss1a9fa149, "RENDERINGINTENT_SATURATION") },
+  {0x09CAB32F3CE3BB4CLL,-42,446,0,100,3,0,&NAMSTR(s_sys_ss3ce3bb4c, "PREVIEW_QUANTIZE") },
+  {0x6DC745036F48E94FLL,-7,448,0,100,3,0,&NAMSTR(s_sys_ss6f48e94f, "COMPOSITE_COPYOPACITY") },
+  {0x3E8FA89D98559551LL,-78,450,0,100,3,0,&NAMSTR(s_sys_ss98559551, "GRAVITY_NORTHWEST") },
+  {0x368D314E8343EF53LL,-91,452,0,36,3,0,&NAMSTR(s_sys_ss8343ef53, "FILTER_QUADRATIC") },
+  {0x26C0BDF6289CF753LL,-131,454,0,100,3,0,&NAMSTR(s_sys_ss289cf753, "DISPOSE_UNDEFINED") },
+  {0x453D97CD69F3ED54LL,-65,456,0,36,3,0,&NAMSTR(s_sys_ss69f3ed54, "COLORSPACE_HSL") },
+  {0x32EDD1067FCCBD54LL,0,458,0,100,3,0,&NAMSTR(s_sys_ss7fccbd54, "DISPOSE_PREVIOUS") },
+  {0x3390AE9F2446F157LL,6,460,0,100,3,0,&NAMSTR(s_sys_ss2446f157, "FILTER_SINC") },
+  {0x154019354044DF58LL,-160,462,0,100,3,0,&NAMSTR(s_sys_ss4044df58, "COMPOSITE_COPYCYAN") },
+  {0x5919D4F318E85B59LL,-102,464,0,100,3,0,&NAMSTR(s_sys_ss18e85b59, "FILTER_POINT") },
+  {0x3BA09E778C98AD5ALL,63,466,0,100,3,0,&NAMSTR(s_sys_ss8c98ad5a, "PATHUNITS_USERSPACEONUSE") },
+  {0x78C9148A3A5BE75ELL,58,468,0,100,3,0,&NAMSTR(s_sys_ss3a5be75e, "VIRTUALPIXELMETHOD_CONSTANT") },
+  {0x6E622AA12DF2A966LL,26,470,0,100,3,0,&NAMSTR(s_sys_ss2df2a966, "GRAVITY_CENTER") },
+  {0x538FE8BCD3C4BF68LL,-97,472,0,36,3,0,&NAMSTR(s_sys_ssd3c4bf68, "IMGTYPE_UNDEFINED") },
+  {0x6583D4102E9D8D68LL,-3,474,0,100,3,0,&NAMSTR(s_sys_ss2e9d8d68, "VIRTUALPIXELMETHOD_UNDEFINED") },
+  {0x231C4E873751F36DLL,-10,476,0,100,3,0,&NAMSTR(s_sys_ss3751f36d, "COLORSPACE_SRGB") },
+  {0x526AEE9B5BA7A36ELL,2,478,0,100,3,0,&NAMSTR(s_sys_ss5ba7a36e, "STRETCH_ULTRACONDENSED") },
+  {0x02E679304D4CF771LL,9,480,0,100,3,0,&NAMSTR(s_sys_ss4d4cf771, "PREVIEW_SHEAR") },
+  {0x44BF9915B7C57373LL,-107,482,0,100,3,0,&NAMSTR(s_sys_ssb7c57373, "STRETCH_CONDENSED") },
+  {0x276815C15873C176LL,28,484,0,100,3,0,&NAMSTR(s_sys_ss5873c176, "PREVIEW_JPEG") },
+  {0x672A4AE930CE0377LL,-146,486,0,100,3,0,&NAMSTR(s_sys_ss30ce0377, "NOISE_GAUSSIAN") },
+  {0x05DCEDD194FC097CLL,41,488,0,100,3,0,&NAMSTR(s_sys_ss94fc097c, "RENDERINGINTENT_RELATIVE") },
+  {0x04C4D55061E6877FLL,9,490,0,36,3,0,&NAMSTR(s_sys_ss61e6877f, "COMPOSITE_ADD") },
+  {0x323B5B2879F7857FLL,-58,492,0,100,3,0,&NAMSTR(s_sys_ss79f7857f, "COMPOSITE_DARKEN") },
+  {0x6C14DC997FD64B80LL,-55,494,0,100,3,0,&NAMSTR(s_sys_ss7fd64b80, "PAINT_POINT") },
+  {0x1212C3C73B1B3183LL,-55,496,0,100,3,0,&NAMSTR(s_sys_ss3b1b3183, "PREVIEW_SHADE") },
+  {0x122D703B0A897587LL,-83,498,0,36,3,0,&NAMSTR(s_sys_ss0a897587, "PREVIEW_ROLL") },
+  {0x6111EC8891DE7F87LL,-55,500,0,100,3,0,&NAMSTR(s_sys_ss91de7f87, "FILLRULE_EVENODD") },
+  {0x791E337EBB7C1B8ALL,-119,502,0,100,3,0,&NAMSTR(s_sys_ssbb7c1b8a, "PREVIEW_IMPLODE") },
+  {0x02DD680F5DAE298ELL,-69,504,0,36,3,0,&NAMSTR(s_sys_ss5dae298e, "METRIC_PEAKABSOLUTEERROR") },
+  {0x78A812B951FBC78ELL,-3,506,0,100,3,0,&NAMSTR(s_sys_ss51fbc78e, "FILLRULE_UNDEFINED") },
+  {0x5692BC6762D8778FLL,-103,508,0,100,3,0,&NAMSTR(s_sys_ss62d8778f, "COMPOSITE_ATOP") },
+  {0x3D24DD9F362B9B91LL,-75,510,0,100,3,0,&NAMSTR(s_sys_ss362b9b91, "COLORSPACE_YCC") },
+  {0x7A2E3F1D21313D94LL,-188,512,0,100,3,0,&NAMSTR(s_sys_ss21313d94, "LINECAP_SQUARE") },
+  {0x37811A39CDE42396LL,-58,514,0,100,3,0,&NAMSTR(s_sys_sscde42396, "FILTER_UNDEFINED") },
+  {0x2BF1B960A9BFCB97LL,-130,516,0,36,3,0,&NAMSTR(s_sys_ssa9bfcb97, "COMPOSITE_OUT") },
+  {0x347982065866E197LL,-97,518,0,36,3,0,&NAMSTR(s_sys_ss5866e197, "CHANNEL_CYAN") },
+  {0x4549C387EFFE6F97LL,-45,520,0,100,3,0,&NAMSTR(s_sys_sseffe6f97, "PREVIEW_THRESHOLD") },
+  {0x7332A040FF081198LL,-196,522,0,100,3,0,&NAMSTR(s_sys_ssff081198, "GRAVITY_EAST") },
+  {0x37230090A014019DLL,-138,524,0,100,3,0,&NAMSTR(s_sys_ssa014019d, "MONTAGEMODE_CONCATENATE") },
+  {0x3BC2F6C1FC8129A0LL,-165,526,0,100,3,0,&NAMSTR(s_sys_ssfc8129a0, "RESOLUTION_PIXELSPERINCH") },
+  {0x5BF89AD8A9F7B9A1LL,9,528,0,100,3,0,&NAMSTR(s_sys_ssa9f7b9a1, "COLORSPACE_LAB") },
+  {0x6AD154B5BF4645A2LL,-174,530,0,100,3,0,&NAMSTR(s_sys_ssbf4645a2, "COMPOSITE_DISPLACE") },
+  {0x0E4B2BB29BFA17A4LL,-92,532,0,100,3,0,&NAMSTR(s_sys_ss9bfa17a4, "PREVIEW_DULL") },
+  {0x56231054EA8F07ACLL,-181,534,0,100,3,0,&NAMSTR(s_sys_ssea8f07ac, "COMPRESSION_LZW") },
+  {0x5D7DD26EBC6BAFADLL,-59,536,0,36,3,0,&NAMSTR(s_sys_ssbc6bafad, "ALIGN_LEFT") },
+  {0x6B126F395981C1ADLL,-124,538,0,100,3,0,&NAMSTR(s_sys_ss5981c1ad, "CHANNEL_ALL") },
+  {0x2417BF7B18B8A9AFLL,-48,540,0,100,3,0,&NAMSTR(s_sys_ss18b8a9af, "RENDERINGINTENT_UNDEFINED") },
+  {0x0DC154BE787351B1LL,15,542,0,100,3,0,&NAMSTR(s_sys_ss787351b1, "DECORATION_LINETROUGH") },
+  {0x689F117A39435BB7LL,-158,544,0,36,3,0,&NAMSTR(s_sys_ss39435bb7, "COLORSPACE_TRANSPARENT") },
+  {0x5FF10A8EDBCBC9B7LL,-174,546,0,100,3,0,&NAMSTR(s_sys_ssdbcbc9b7, "COLORSPACE_XYZ") },
+  {0x6DEF9C9C521707B9LL,1,548,0,100,3,0,&NAMSTR(s_sys_ss521707b9, "VIRTUALPIXELMETHOD_TILE") },
+  {0x27C7665F86E679BALL,-55,550,0,100,3,0,&NAMSTR(s_sys_ss86e679ba, "PREVIEW_UNDEFINED") },
+  {0x3A1AB257472E7BC0LL,-37,552,0,100,3,0,&NAMSTR(s_sys_ss472e7bc0, "STRETCH_NORMAL") },
+  {0x5BF384C6995CB7C3LL,-109,554,0,100,3,0,&NAMSTR(s_sys_ss995cb7c3, "COMPOSITE_XOR") },
+  {0x0BB4F06041115DC5LL,-105,556,0,100,3,0,&NAMSTR(s_sys_ss41115dc5, "IMGTYPE_COLORSEPARATION") },
+  {0x487F8F6BA34331C6LL,-35,558,0,100,3,0,&NAMSTR(s_sys_ssa34331c6, "RENDERINGINTENT_ABSOLUTE") },
+  {0x46911F1DA10DCFC9LL,-172,560,0,100,3,0,&NAMSTR(s_sys_ssa10dcfc9, "COMPOSITE_COPYBLUE") },
+  {0x0995C682A857C3CALL,-70,562,0,36,3,0,&NAMSTR(s_sys_ssa857c3ca, "COMPOSITE_IN") },
+  {0x6896E717289495CALL,-177,564,0,36,3,0,&NAMSTR(s_sys_ss289495ca, "COMPOSITE_SUBTRACT") },
+  {0x30174CF5186723CALL,-16,566,0,100,3,0,&NAMSTR(s_sys_ss186723ca, "COMPRESSION_LOSSLESSJPEG") },
+  {0x07A7780D186155CELL,-51,568,0,100,3,0,&NAMSTR(s_sys_ss186155ce, "PATHUNITS_USERSPACE") },
+  {0x72972BEB66913BD5LL,-206,570,0,100,3,0,&NAMSTR(s_sys_ss66913bd5, "INTERLACE_UNDEFINED") },
+  {0x445B157E53C61DD9LL,-43,572,0,100,3,0,&NAMSTR(s_sys_ss53c61dd9, "NOISE_UNIFORM") },
+  {0x043E98C216F23BDBLL,-29,574,0,100,3,0,&NAMSTR(s_sys_ss16f23bdb, "COMPOSITE_MULTIPLY") },
+  {0x31720F15DECA6FDDLL,-182,576,0,36,3,0,&NAMSTR(s_sys_ssdeca6fdd, "COLORSPACE_YPBPR") },
+  {0x4B3CEDF12E9D7DDDLL,-93,578,0,100,3,0,&NAMSTR(s_sys_ss2e9d7ddd, "PREVIEW_SATURATION") },
+  {0x6C081B955CB88DDELL,-8,580,0,100,3,0,&NAMSTR(s_sys_ss5cb88dde, "COMPOSITE_SCREEN") },
+  {0x2ABA01ACFB3541E0LL,-197,582,0,100,3,0,&NAMSTR(s_sys_ssfb3541e0, "IMGTYPE_OPTIMIZE") },
+  {0x03924D1B343933E4LL,2,584,0,100,3,0,&NAMSTR(s_sys_ss343933e4, "VIRTUALPIXELMETHOD_EDGE") },
+  {0x004D5ED7CFF957EDLL,-184,586,0,100,3,0,&NAMSTR(s_sys_sscff957ed, "STYLE_ITALIC") },
+  {0x73E05846D41FA1F0LL,-20,588,0,100,3,0,&NAMSTR(s_sys_ssd41fa1f0, "VIRTUALPIXELMETHOD_MIRROR") },
+  {0x5A54D63224E467F4LL,-63,590,0,100,3,0,&NAMSTR(s_sys_ss24e467f4, "STYLE_ANY") },
+  {0x116CA5E5C54EB7F9LL,-174,592,0,100,3,0,&NAMSTR(s_sys_ssc54eb7f9, "PATHUNITS_OBJECTBOUNDINGBOX") },
 
-  {0x2CCABB2638D29583LL,2,134,0,100,3,0,&NAMSTR(s_sys_ss38d29583, "RES_ERRNO") },
-  {0x6AF4D4CD7B6B9E85LL,23,136,0,100,3,0,&NAMSTR(s_sys_ss7b6b9e85, "OPT_TCP_NODELAY") },
-  {0x1FBB5AC58A77E707LL,19,138,0,100,3,0,&NAMSTR(s_sys_ss8a77e707, "RES_BUFFERED") },
-  {0x261AB88649B2E58ALL,49,140,0,36,3,0,&NAMSTR(s_sys_ss49b2e58a, "OPT_SERVER_FAILURE_LIMIT") },
-  {0x2072FB05B0D6540ALL,45,142,0,100,3,0,&NAMSTR(s_sys_ssb0d6540a, "RES_NO_SERVERS") },
-  {0x5EC3EFCB1563B68DLL,38,144,0,36,3,0,&NAMSTR(s_sys_ss1563b68d, "OPT_LIBKETAMA_COMPATIBLE") },
-  {0x0C53D08ECD9ACC0DLL,45,146,0,100,3,0,&NAMSTR(s_sys_sscd9acc0d, "RES_SUCCESS") },
-  {0x7071566611A71D96LL,1,148,0,36,3,0,&NAMSTR(s_sys_ss11a71d96, "OPT_PREFIX_KEY") },
-  {0x425EDC08E649F716LL,34,150,0,100,3,0,&NAMSTR(s_sys_sse649f716, "OPT_HASH") },
-  {0x64B6C925C7A41498LL,-4,152,0,100,3,0,&NAMSTR(s_sys_ssc7a41498, "DISTRIBUTION_CONSISTENT") },
-  {0x200711C7E62DFB1CLL,45,154,0,36,3,0,&NAMSTR(s_sys_sse62dfb1c, "HASH_HSIEH") },
-  {0x6B8DE2AA09E1749CLL,20,156,0,36,3,0,&NAMSTR(s_sys_ss09e1749c, "OPT_BINARY_PROTOCOL") },
-  {0x47FC6D6596D2411CLL,2,158,0,100,3,0,&NAMSTR(s_sys_ss96d2411c, "RES_UNKNOWN_READ_FAILURE") },
-  {0x6364909F8AA5869DLL,41,160,0,100,3,0,&NAMSTR(s_sys_ss8aa5869d, "RES_NOTFOUND") },
-  {0x56E8EF0A2966E7A2LL,1,162,0,36,3,0,&NAMSTR(s_sys_ss2966e7a2, "RES_PROTOCOL_ERROR") },
-  {0x4A25210D326D0922LL,1,164,0,100,3,0,&NAMSTR(s_sys_ss326d0922, "RES_CLIENT_ERROR") },
-  {0x2B230612FB5D80A3LL,18,166,0,100,3,0,&NAMSTR(s_sys_ssfb5d80a3, "RES_SERVER_ERROR") },
-  {0x49D8D4184B78B3A5LL,18,168,0,100,3,0,&NAMSTR(s_sys_ssbe91a4e3, "HASH_FNV1A_64") },
-  {0x6808EBB81DDE422FLL,-15,170,0,100,3,0,&NAMSTR(s_sys_ss1dde422f, "OPT_CACHE_LOOKUPS") },
-  {0x3A7E842A627341B2LL,-2,172,0,100,3,0,&NAMSTR(s_sys_ss5769d4fd, "HASH_FNV1_64") },
-  {0x56895500D1F05334LL,20,174,0,100,3,0,&NAMSTR(s_sys_ssd1f05334, "OPT_SEND_TIMEOUT") },
-  {0x6BC90BF53C6E7CC3LL,1,176,0,36,3,0,&NAMSTR(s_sys_ss3c6e7cc3, "RES_TIMEOUT") },
-  {0x4155BF3DCFA655C3LL,17,178,0,100,3,0,&NAMSTR(s_sys_sscfa655c3, "RES_BAD_KEY_PROVIDED") },
-  {0x490A114712BBA544LL,-19,180,0,100,3,0,&NAMSTR(s_sys_ss12bba544, "RES_SOME_ERRORS") },
-  {0x68724938D592E4C6LL,12,182,0,100,3,0,&NAMSTR(s_sys_ssd592e4c6, "OPT_SOCKET_SEND_SIZE") },
-  {0x073E4D38138A7DC7LL,25,184,0,100,3,0,&NAMSTR(s_sys_ss138a7dc7, "OPT_COMPRESSION") },
-  {0x7B91B2E2CC4DE648LL,4,186,0,100,3,0,&NAMSTR(s_sys_sscc4de648, "SERIALIZER_PHP") },
-  {0x138CD297B9FD244BLL,-7,188,0,100,3,0,&NAMSTR(s_sys_ssb9fd244b, "OPT_RETRY_TIMEOUT") },
-  {0x74824687F4C8D7CELL,13,190,0,100,2,0,&NAMSTR(s_sys_ssf4c8d7ce, "HAVE_JSON") },
-  {0x7AC058297870C1D0LL,-22,192,0,100,3,0,&NAMSTR(s_sys_ss7870c1d0, "SERIALIZER_JSON") },
-  {0x2B4E411F0C7596D1LL,-1,194,0,36,3,0,&NAMSTR(s_sys_ss0c7596d1, "SERIALIZER_IGBINARY") },
-  {0x1E8ABFABE00D2651LL,-30,196,0,100,3,0,&NAMSTR(s_sys_sse00d2651, "OPT_NO_BLOCK") },
-  {0x49856B6165627AD4LL,-23,198,0,100,3,0,&NAMSTR(s_sys_ss65627ad4, "DISTRIBUTION_MODULA") },
-  {0x02FAAD1AB87BA2D5LL,-14,200,0,36,3,0,&NAMSTR(s_sys_ssb87ba2d5, "HASH_CRC") },
-  {0x1045EAC17F112855LL,12,202,0,100,3,0,&NAMSTR(s_sys_ss7f112855, "RES_WRITE_FAILURE") },
-  {0x3A3731492FB1B557LL,9,204,0,36,3,0,&NAMSTR(s_sys_ss2bfdc708, "HASH_FNV1_32") },
-  {0x345B7B934684B3D7LL,17,206,0,100,3,0,&NAMSTR(s_sys_ss4684b3d7, "OPT_SOCKET_RECV_SIZE") },
-  {0x296424A39A9F1AD8LL,-19,208,0,100,3,0,&NAMSTR(s_sys_ss9a9f1ad8, "OPT_POLL_TIMEOUT") },
-  {0x3DD14F50C65BCDDBLL,-6,210,0,36,3,0,&NAMSTR(s_sys_ssc65bcddb, "OPT_DISTRIBUTION") },
-  {0x0224412EA957C9DBLL,17,212,0,100,3,0,&NAMSTR(s_sys_ssa957c9db, "RES_CONNECTION_SOCKET_CREATE_FAILURE") },
-  {0x6460D48B93209DDELL,-3,214,0,100,3,0,&NAMSTR(s_sys_ss93209dde, "OPT_RECV_TIMEOUT") },
-  {0x68D025242664C361LL,-35,216,0,100,3,0,&NAMSTR(s_sys_ss2664c361, "GET_PRESERVE_ORDER") },
-  {0x53A1149CE01E8C64LL,6,218,0,100,3,0,&NAMSTR(s_sys_sse01e8c64, "HASH_DEFAULT") },
-  {0x76B0604A2B4408EBLL,-32,220,0,100,3,0,&NAMSTR(s_sys_ss2b4408eb, "OPT_BUFFER_WRITES") },
-  {0x3C4C4E1BC9DFDCECLL,-34,222,0,36,3,0,&NAMSTR(s_sys_ss08c5e518, "HASH_FNV1A_32") },
-  {0x4197FC89C9F88DECLL,-33,224,0,100,3,0,&NAMSTR(s_sys_ssc9f88dec, "RES_HOST_LOOKUP_FAILURE") },
-  {0x56C85759C5701DEDLL,1,226,0,100,3,0,&NAMSTR(s_sys_ssc5701ded, "RES_DATA_EXISTS") },
-  {0x153143A96D687E6ELL,-34,228,0,100,3,0,&NAMSTR(s_sys_ss6d687e6e, "RES_NOTSTORED") },
-  {0x2BB4CFA54A5085F0LL,-15,230,0,100,3,0,&NAMSTR(s_sys_ssfe91db32, "HASH_MD5") },
-  {0x74109B06DAD2F9F1LL,-49,232,0,100,3,0,&NAMSTR(s_sys_ssdad2f9f1, "RES_END") },
-  {0x73ABA23A4A0C5D74LL,-24,234,0,100,3,0,&NAMSTR(s_sys_ss4a0c5d74, "OPT_SERIALIZER") },
-  {0x460A66958F0524F8LL,-6,236,0,100,3,0,&NAMSTR(s_sys_ss8f0524f8, "RES_FAILURE") },
-  {0x1C014F2A2E707EF9LL,-24,238,0,100,2,0,&NAMSTR(s_sys_ss2e707ef9, "HAVE_IGBINARY") },
-  {0x0443DA24DAD42EFBLL,-26,240,0,36,3,0,&NAMSTR(s_sys_ssdad42efb, "OPT_CONNECT_TIMEOUT") },
-  {0x35B252ECC21E5F7BLL,-31,242,0,100,3,0,&NAMSTR(s_sys_ssc21e5f7b, "RES_PARTIAL_READ") },
-  {0x7A68C36A2F5D27FELL,-17,244,0,100,3,0,&NAMSTR(s_sys_ss2f5d27fe, "HASH_MURMUR") },
-  {0x6948F797B210F37FLL,0,246,0,100,3,0,&NAMSTR(s_sys_ssb210f37f, "RES_PAYLOAD_FAILURE") },
+  {0x35B10383BBF3BAE1LL,0,594,0,100,4,0,&NAMSTR(s_sys_ssbbf3bae1, "VALID_LOCALE") },
+  {0x78695696B47AF8CDLL,-1,596,0,100,4,0,&NAMSTR(s_sys_ssb47af8cd, "ACTUAL_LOCALE") },
 
-  {0x2C9DA0E379A28381LL,6,248,0,36,4,0,&NAMSTR(s_sys_ss79a28381, "FORM_KD") },
-  {0x1C369D0E14B76C41LL,1,250,0,36,4,0,&NAMSTR(s_sys_ss14b76c41, "FORM_KC") },
-  {0x3E3AA0A97BD09921LL,0,252,0,100,4,0,&NAMSTR(s_sys_ss7bd09921, "NFKC") },
-  {0x07512AA38ADD1AE2LL,2,254,0,100,4,0,&NAMSTR(s_sys_ss8add1ae2, "FORM_D") },
-  {0x51422F059BEFCD86LL,-3,256,0,100,4,0,&NAMSTR(s_sys_ss9befcd86, "NFC") },
-  {0x58B301790FA834EFLL,-5,258,0,36,4,0,&NAMSTR(s_sys_ss0fa834ef, "NFD") },
-  {0x3CF19F2D23C185CFLL,2,260,0,100,4,0,&NAMSTR(s_sys_ss23c185cf, "NFKD") },
-  {0x2EFDCA1922BFB273LL,-4,262,0,100,4,0,&NAMSTR(s_sys_ss22bfb273, "NONE") },
-  {0x3BE3511FDA9A9E7FLL,-4,264,0,100,4,0,&NAMSTR(s_sys_ssda9a9e7f, "FORM_C") },
+  {0x2CCABB2638D29583LL,2,598,0,100,3,0,&NAMSTR(s_sys_ss38d29583, "RES_ERRNO") },
+  {0x6AF4D4CD7B6B9E85LL,23,600,0,100,3,0,&NAMSTR(s_sys_ss7b6b9e85, "OPT_TCP_NODELAY") },
+  {0x1FBB5AC58A77E707LL,19,602,0,100,3,0,&NAMSTR(s_sys_ss8a77e707, "RES_BUFFERED") },
+  {0x261AB88649B2E58ALL,49,604,0,36,3,0,&NAMSTR(s_sys_ss49b2e58a, "OPT_SERVER_FAILURE_LIMIT") },
+  {0x2072FB05B0D6540ALL,45,606,0,100,3,0,&NAMSTR(s_sys_ssb0d6540a, "RES_NO_SERVERS") },
+  {0x5EC3EFCB1563B68DLL,38,608,0,36,3,0,&NAMSTR(s_sys_ss1563b68d, "OPT_LIBKETAMA_COMPATIBLE") },
+  {0x0C53D08ECD9ACC0DLL,45,610,0,100,3,0,&NAMSTR(s_sys_sscd9acc0d, "RES_SUCCESS") },
+  {0x7071566611A71D96LL,1,612,0,36,3,0,&NAMSTR(s_sys_ss11a71d96, "OPT_PREFIX_KEY") },
+  {0x425EDC08E649F716LL,34,614,0,100,3,0,&NAMSTR(s_sys_sse649f716, "OPT_HASH") },
+  {0x64B6C925C7A41498LL,-4,616,0,100,3,0,&NAMSTR(s_sys_ssc7a41498, "DISTRIBUTION_CONSISTENT") },
+  {0x200711C7E62DFB1CLL,45,618,0,36,3,0,&NAMSTR(s_sys_sse62dfb1c, "HASH_HSIEH") },
+  {0x6B8DE2AA09E1749CLL,20,620,0,36,3,0,&NAMSTR(s_sys_ss09e1749c, "OPT_BINARY_PROTOCOL") },
+  {0x47FC6D6596D2411CLL,2,622,0,100,3,0,&NAMSTR(s_sys_ss96d2411c, "RES_UNKNOWN_READ_FAILURE") },
+  {0x6364909F8AA5869DLL,41,624,0,100,3,0,&NAMSTR(s_sys_ss8aa5869d, "RES_NOTFOUND") },
+  {0x56E8EF0A2966E7A2LL,1,626,0,36,3,0,&NAMSTR(s_sys_ss2966e7a2, "RES_PROTOCOL_ERROR") },
+  {0x4A25210D326D0922LL,1,628,0,100,3,0,&NAMSTR(s_sys_ss326d0922, "RES_CLIENT_ERROR") },
+  {0x2B230612FB5D80A3LL,18,630,0,100,3,0,&NAMSTR(s_sys_ssfb5d80a3, "RES_SERVER_ERROR") },
+  {0x49D8D4184B78B3A5LL,18,632,0,100,3,0,&NAMSTR(s_sys_ssbe91a4e3, "HASH_FNV1A_64") },
+  {0x6808EBB81DDE422FLL,-15,634,0,100,3,0,&NAMSTR(s_sys_ss1dde422f, "OPT_CACHE_LOOKUPS") },
+  {0x3A7E842A627341B2LL,-2,636,0,100,3,0,&NAMSTR(s_sys_ss5769d4fd, "HASH_FNV1_64") },
+  {0x56895500D1F05334LL,20,638,0,100,3,0,&NAMSTR(s_sys_ssd1f05334, "OPT_SEND_TIMEOUT") },
+  {0x6BC90BF53C6E7CC3LL,1,640,0,36,3,0,&NAMSTR(s_sys_ss3c6e7cc3, "RES_TIMEOUT") },
+  {0x4155BF3DCFA655C3LL,17,642,0,100,3,0,&NAMSTR(s_sys_sscfa655c3, "RES_BAD_KEY_PROVIDED") },
+  {0x490A114712BBA544LL,-19,644,0,100,3,0,&NAMSTR(s_sys_ss12bba544, "RES_SOME_ERRORS") },
+  {0x68724938D592E4C6LL,12,646,0,100,3,0,&NAMSTR(s_sys_ssd592e4c6, "OPT_SOCKET_SEND_SIZE") },
+  {0x073E4D38138A7DC7LL,25,648,0,100,3,0,&NAMSTR(s_sys_ss138a7dc7, "OPT_COMPRESSION") },
+  {0x7B91B2E2CC4DE648LL,4,650,0,100,3,0,&NAMSTR(s_sys_sscc4de648, "SERIALIZER_PHP") },
+  {0x138CD297B9FD244BLL,-7,652,0,100,3,0,&NAMSTR(s_sys_ssb9fd244b, "OPT_RETRY_TIMEOUT") },
+  {0x74824687F4C8D7CELL,13,654,0,100,2,0,&NAMSTR(s_sys_ssf4c8d7ce, "HAVE_JSON") },
+  {0x7AC058297870C1D0LL,-22,656,0,100,3,0,&NAMSTR(s_sys_ss7870c1d0, "SERIALIZER_JSON") },
+  {0x2B4E411F0C7596D1LL,-1,658,0,36,3,0,&NAMSTR(s_sys_ss0c7596d1, "SERIALIZER_IGBINARY") },
+  {0x1E8ABFABE00D2651LL,-30,660,0,100,3,0,&NAMSTR(s_sys_sse00d2651, "OPT_NO_BLOCK") },
+  {0x49856B6165627AD4LL,-23,662,0,100,3,0,&NAMSTR(s_sys_ss65627ad4, "DISTRIBUTION_MODULA") },
+  {0x02FAAD1AB87BA2D5LL,-14,664,0,36,3,0,&NAMSTR(s_sys_ssb87ba2d5, "HASH_CRC") },
+  {0x1045EAC17F112855LL,12,666,0,100,3,0,&NAMSTR(s_sys_ss7f112855, "RES_WRITE_FAILURE") },
+  {0x3A3731492FB1B557LL,9,668,0,36,3,0,&NAMSTR(s_sys_ss2bfdc708, "HASH_FNV1_32") },
+  {0x345B7B934684B3D7LL,17,670,0,100,3,0,&NAMSTR(s_sys_ss4684b3d7, "OPT_SOCKET_RECV_SIZE") },
+  {0x296424A39A9F1AD8LL,-19,672,0,100,3,0,&NAMSTR(s_sys_ss9a9f1ad8, "OPT_POLL_TIMEOUT") },
+  {0x3DD14F50C65BCDDBLL,-6,674,0,36,3,0,&NAMSTR(s_sys_ssc65bcddb, "OPT_DISTRIBUTION") },
+  {0x0224412EA957C9DBLL,17,676,0,100,3,0,&NAMSTR(s_sys_ssa957c9db, "RES_CONNECTION_SOCKET_CREATE_FAILURE") },
+  {0x6460D48B93209DDELL,-3,678,0,100,3,0,&NAMSTR(s_sys_ss93209dde, "OPT_RECV_TIMEOUT") },
+  {0x68D025242664C361LL,-35,680,0,100,3,0,&NAMSTR(s_sys_ss2664c361, "GET_PRESERVE_ORDER") },
+  {0x53A1149CE01E8C64LL,6,682,0,100,3,0,&NAMSTR(s_sys_sse01e8c64, "HASH_DEFAULT") },
+  {0x76B0604A2B4408EBLL,-32,684,0,100,3,0,&NAMSTR(s_sys_ss2b4408eb, "OPT_BUFFER_WRITES") },
+  {0x3C4C4E1BC9DFDCECLL,-34,686,0,36,3,0,&NAMSTR(s_sys_ss08c5e518, "HASH_FNV1A_32") },
+  {0x4197FC89C9F88DECLL,-33,688,0,100,3,0,&NAMSTR(s_sys_ssc9f88dec, "RES_HOST_LOOKUP_FAILURE") },
+  {0x56C85759C5701DEDLL,1,690,0,100,3,0,&NAMSTR(s_sys_ssc5701ded, "RES_DATA_EXISTS") },
+  {0x153143A96D687E6ELL,-34,692,0,100,3,0,&NAMSTR(s_sys_ss6d687e6e, "RES_NOTSTORED") },
+  {0x2BB4CFA54A5085F0LL,-15,694,0,100,3,0,&NAMSTR(s_sys_ssfe91db32, "HASH_MD5") },
+  {0x74109B06DAD2F9F1LL,-49,696,0,100,3,0,&NAMSTR(s_sys_ssdad2f9f1, "RES_END") },
+  {0x73ABA23A4A0C5D74LL,-24,698,0,100,3,0,&NAMSTR(s_sys_ss4a0c5d74, "OPT_SERIALIZER") },
+  {0x460A66958F0524F8LL,-6,700,0,100,3,0,&NAMSTR(s_sys_ss8f0524f8, "RES_FAILURE") },
+  {0x1C014F2A2E707EF9LL,-24,702,0,100,2,0,&NAMSTR(s_sys_ss2e707ef9, "HAVE_IGBINARY") },
+  {0x0443DA24DAD42EFBLL,-26,704,0,36,3,0,&NAMSTR(s_sys_ssdad42efb, "OPT_CONNECT_TIMEOUT") },
+  {0x35B252ECC21E5F7BLL,-31,706,0,100,3,0,&NAMSTR(s_sys_ssc21e5f7b, "RES_PARTIAL_READ") },
+  {0x7A68C36A2F5D27FELL,-17,708,0,100,3,0,&NAMSTR(s_sys_ss2f5d27fe, "HASH_MURMUR") },
+  {0x6948F797B210F37FLL,0,710,0,100,3,0,&NAMSTR(s_sys_ssb210f37f, "RES_PAYLOAD_FAILURE") },
 
-  {0x1800ED92A8884D00LL,31,266,0,100,4,0,&NAMSTR(s_sys_ssa8884d00, "ATTR_CASE") },
-  {0x07BAFBAE5A431902LL,27,268,0,100,4,0,&NAMSTR(s_sys_ss5a431902, "ATTR_STATEMENT_CLASS") },
-  {0x0229D662F91D9C04LL,1,270,0,100,4,0,&NAMSTR(s_sys_ssf91d9c04, "ERRMODE_EXCEPTION") },
-  {0x3BE7A02FD980AA08LL,7,272,0,100,4,0,&NAMSTR(s_sys_ssd980aa08, "CASE_NATURAL") },
-  {0x099B533427CCC20DLL,2,274,0,100,4,0,&NAMSTR(s_sys_ss27ccc20d, "FETCH_OBJ") },
-  {0x5FAD218776C6E511LL,60,276,0,100,4,0,&NAMSTR(s_sys_ss76c6e511, "FETCH_INTO") },
-  {0x78CB81320C710019LL,44,278,0,100,4,0,&NAMSTR(s_sys_ss0c710019, "FETCH_BOUND") },
-  {0x3158D52C3627FE1BLL,57,280,0,100,4,0,&NAMSTR(s_sys_ss3627fe1b, "MYSQL_ATTR_INIT_COMMAND") },
-  {0x03CF598D3CCCD01CLL,14,282,0,100,4,0,&NAMSTR(s_sys_ss3cccd01c, "ATTR_CLIENT_VERSION") },
-  {0x2BE16C4111A7B41DLL,36,284,0,100,4,0,&NAMSTR(s_sys_ss11a7b41d, "ATTR_FETCH_CATALOG_NAMES") },
-  {0x2A5BA04D0218F11ELL,2,286,0,100,4,0,&NAMSTR(s_sys_ss0218f11e, "CASE_LOWER") },
-  {0x16B15CF4B0DD7E23LL,9,288,0,100,4,0,&NAMSTR(s_sys_ssb0dd7e23, "FETCH_GROUP") },
-  {0x37F650C462FB6A25LL,25,290,0,100,4,0,&NAMSTR(s_sys_ss62fb6a25, "CASE_UPPER") },
-  {0x262D9BE84029992ALL,10,292,0,100,4,0,&NAMSTR(s_sys_ss4029992a, "PARAM_EVT_FETCH_POST") },
-  {0x15D2BCCED7726933LL,2,294,0,100,4,0,&NAMSTR(s_sys_ssd7726933, "ATTR_TIMEOUT") },
-  {0x01B17428BEE0243BLL,26,296,0,100,4,0,&NAMSTR(s_sys_ssbee0243b, "PARAM_EVT_EXEC_PRE") },
-  {0x2739A1D49673D43CLL,31,298,0,36,4,0,&NAMSTR(s_sys_ss9673d43c, "ATTR_ERRMODE") },
-  {0x6AC5C285F4DD863CLL,56,300,0,100,4,0,&NAMSTR(s_sys_ssf4dd863c, "ATTR_DEFAULT_FETCH_MODE") },
-  {0x3E11051E4101D73DLL,-1,302,0,100,4,0,&NAMSTR(s_sys_ss4101d73d, "ATTR_EMULATE_PREPARES") },
-  {0x2189354E22363544LL,-5,304,0,100,4,0,&NAMSTR(s_sys_ss22363544, "ATTR_PREFETCH") },
-  {0x428D5CA64BB99E48LL,35,306,0,100,4,0,&NAMSTR(s_sys_ss4bb99e48, "FETCH_UNIQUE") },
-  {0x39B4E90F36E93B4ELL,50,308,0,100,4,0,&NAMSTR(s_sys_ss36e93b4e, "MYSQL_ATTR_READ_DEFAULT_GROUP") },
-  {0x58A833E2336C6152LL,2,310,0,100,4,0,&NAMSTR(s_sys_ss336c6152, "ATTR_SERVER_INFO") },
-  {0x57B75F4773C81556LL,23,312,0,100,4,0,&NAMSTR(s_sys_ss73c81556, "PARAM_EVT_NORMALIZE") },
-  {0x5495020CF262F15BLL,-24,314,0,36,4,0,&NAMSTR(s_sys_ssf262f15b, "ATTR_CONNECTION_STATUS") },
-  {0x37888F551D85275BLL,36,316,0,100,4,0,&NAMSTR(s_sys_ss1d85275b, "ATTR_ORACLE_NULLS") },
-  {0x416A0550A8F12E61LL,52,318,0,100,4,0,&NAMSTR(s_sys_ssa8f12e61, "MYSQL_ATTR_FOUND_ROWS") },
-  {0x15A3522970275465LL,13,320,0,100,4,0,&NAMSTR(s_sys_ss70275465, "FETCH_ORI_NEXT") },
-  {0x162EAA2134F1C068LL,-19,322,0,100,4,0,&NAMSTR(s_sys_ss34f1c068, "ATTR_FETCH_TABLE_NAMES") },
-  {0x350E9275757FD66FLL,28,324,0,100,4,0,&NAMSTR(s_sys_ss757fd66f, "FETCH_ORI_REL") },
-  {0x6870D9DE66F43D70LL,9,326,0,100,4,0,&NAMSTR(s_sys_ss66f43d70, "FETCH_ASSOC") },
-  {0x713C8339790FC071LL,13,328,0,100,4,0,&NAMSTR(s_sys_ss790fc071, "ATTR_CURSOR_NAME") },
-  {0x1FB97A35B6711374LL,-14,330,0,100,4,0,&NAMSTR(s_sys_ssb6711374, "ATTR_MAX_COLUMN_LEN") },
-  {0x0E51487F9370EE75LL,-14,332,0,100,4,0,&NAMSTR(s_sys_ss9370ee75, "ATTR_AUTOCOMMIT") },
-  {0x630122BA9EC73379LL,4,334,0,36,4,0,&NAMSTR(s_sys_ss9ec73379, "PARAM_NULL") },
-  {0x05B00276031D7D79LL,45,336,0,100,4,0,&NAMSTR(s_sys_ss031d7d79, "PARAM_EVT_ALLOC") },
-  {0x500C039681520C7DLL,-2,338,0,100,4,0,&NAMSTR(s_sys_ss81520c7d, "PARAM_BOOL") },
-  {0x5CF4F38A0D7D087ELL,25,340,0,100,4,0,&NAMSTR(s_sys_ss0d7d087e, "NULL_NATURAL") },
-  {0x3F414F2735132983LL,5,342,0,100,4,0,&NAMSTR(s_sys_ss35132983, "PARAM_INT") },
-  {0x2011B5A528057784LL,15,344,0,100,4,0,&NAMSTR(s_sys_ss28057784, "FETCH_NUM") },
-  {0x5451E44C627DD885LL,18,346,0,100,4,0,&NAMSTR(s_sys_ss627dd885, "FETCH_ORI_PRIOR") },
-  {0x1B8BA5EEAABCB786LL,15,348,0,36,4,0,&NAMSTR(s_sys_ssaabcb786, "PARAM_EVT_EXEC_POST") },
-  {0x1B51C692B91D7486LL,11,350,0,100,4,0,&NAMSTR(s_sys_ssb91d7486, "MYSQL_ATTR_USE_BUFFERED_QUERY") },
-  {0x7E64209D5A925F88LL,32,352,0,100,4,0,&NAMSTR(s_sys_ss5a925f88, "PARAM_STR") },
-  {0x45AB9806DE21EA8ALL,-19,354,0,100,4,0,&NAMSTR(s_sys_ssde21ea8a, "ATTR_CURSOR") },
-  {0x0EDB017494A81E8DLL,18,356,0,100,4,0,&NAMSTR(s_sys_ss94a81e8d, "ATTR_DRIVER_NAME") },
-  {0x126B3038F3355A8ELL,24,358,0,100,4,0,&NAMSTR(s_sys_ssf3355a8e, "FETCH_USE_DEFAULT") },
-  {0x1F200B094608BE8FLL,-39,360,0,36,4,0,&NAMSTR(s_sys_ss4608be8f, "ATTR_SERVER_VERSION") },
-  {0x1175C5F56147488FLL,-22,362,0,100,4,0,&NAMSTR(s_sys_ss6147488f, "MYSQL_ATTR_DIRECT_QUERY") },
-  {0x25BE9238386C2796LL,27,364,0,100,4,0,&NAMSTR(s_sys_ss386c2796, "FETCH_PROPS_LATE") },
-  {0x657BEA5F741C4999LL,19,366,0,36,4,0,&NAMSTR(s_sys_ss741c4999, "FETCH_COLUMN") },
-  {0x18B801DE8D8C9099LL,1,368,0,100,4,0,&NAMSTR(s_sys_ss8d8c9099, "FETCH_CLASSTYPE") },
-  {0x1EC178DF86F4FD9CLL,-3,370,0,100,4,0,&NAMSTR(s_sys_ss86f4fd9c, "FETCH_SERIALIZE") },
-  {0x052245CE02FBF4A0LL,15,372,0,100,4,0,&NAMSTR(s_sys_ss02fbf4a0, "MYSQL_ATTR_LOCAL_INFILE") },
-  {0x28D5B850B76FEEA2LL,-50,374,0,36,4,0,&NAMSTR(s_sys_ssb76feea2, "FETCH_BOTH") },
-  {0x0D0BCCC6768A88A2LL,-4,376,0,100,4,0,&NAMSTR(s_sys_ss768a88a2, "FETCH_KEY_PAIR") },
-  {0x6851B7545234FCA4LL,-43,378,0,100,4,0,&NAMSTR(s_sys_ss5234fca4, "PARAM_EVT_FETCH_PRE") },
-  {0x167DD614E842FAA8LL,2,380,0,100,4,0,&NAMSTR(s_sys_sse842faa8, "CURSOR_FWDONLY") },
-  {0x6AEB66DE7A454FA9LL,2,382,0,100,4,0,&NAMSTR(s_sys_ss7a454fa9, "FETCH_ORI_FIRST") },
-  {0x392400A66B305EAALL,-17,384,0,100,4,0,&NAMSTR(s_sys_ss6b305eaa, "CURSOR_SCROLL") },
-  {0x2F6AE87AF5701AABLL,6,386,0,100,4,0,&NAMSTR(s_sys_ssf5701aab, "FETCH_ORI_LAST") },
-  {0x56D59339A0F5D8B4LL,-60,388,0,100,4,0,&NAMSTR(s_sys_ssa0f5d8b4, "ATTR_PERSISTENT") },
-  {0x08657D6005DD08B8LL,5,390,0,100,4,0,&NAMSTR(s_sys_ss05dd08b8, "NULL_EMPTY_STRING") },
-  {0x60CE39F6493319C5LL,-31,392,0,100,4,0,&NAMSTR(s_sys_ss493319c5, "ATTR_STRINGIFY_FETCHES") },
-  {0x61BD1667BB46C9C6LL,-43,394,0,100,4,0,&NAMSTR(s_sys_ssbb46c9c6, "MYSQL_ATTR_READ_DEFAULT_FILE") },
-  {0x30D00303975C98C8LL,-54,396,0,36,4,0,&NAMSTR(s_sys_ss975c98c8, "FETCH_FUNC") },
-  {0x47D4494BE4FA26C8LL,-37,398,0,100,4,0,&NAMSTR(s_sys_sse4fa26c8, "FETCH_ORI_ABS") },
-  {0x29B68A596E0615CALL,7,400,0,100,4,0,&NAMSTR(s_sys_ss6e0615ca, "NULL_TO_STRING") },
-  {0x73FAA1AA068D19CBLL,-61,402,0,100,4,0,&NAMSTR(s_sys_ss068d19cb, "MYSQL_ATTR_MAX_BUFFER_SIZE") },
-  {0x439351C7C64634D0LL,-64,404,0,100,4,0,&NAMSTR(s_sys_ssc64634d0, "FETCH_CLASS") },
-  {0x5C75BB222F23C4D1LL,-40,406,0,100,4,0,&NAMSTR(s_sys_ss2f23c4d1, "FETCH_LAZY") },
-  {0x57F9152D7EC3A5D3LL,-23,408,0,100,4,0,&NAMSTR(s_sys_ss7ec3a5d3, "MYSQL_ATTR_COMPRESS") },
-  {0x4D1DDF7F772C54DCLL,-70,410,0,100,4,0,&NAMSTR(s_sys_ss772c54dc, "ERRMODE_WARNING") },
-  {0x2E4175EAAB1F75EBLL,-1,412,0,100,4,0,&NAMSTR(s_sys_ssab1f75eb, "ERRMODE_SILENT") },
-  {0x16017F3F58821EF5LL,-47,414,0,100,7,0,&NAMSTR(s_sys_ss58821ef5, "ERR_NONE") },
-  {0x674F9B0D2030C3F6LL,4,416,0,100,4,0,&NAMSTR(s_sys_ss2030c3f6, "PARAM_LOB") },
-  {0x16EC9F213D7F57F7LL,-43,418,0,100,4,0,&NAMSTR(s_sys_ss3d7f57f7, "FETCH_NAMED") },
-  {0x6C0021FD5D20A1F8LL,-42,420,0,100,4,0,&NAMSTR(s_sys_ss5d20a1f8, "PARAM_INPUT_OUTPUT") },
-  {0x13EC16B8F7B7B1FBLL,0,422,0,100,4,0,&NAMSTR(s_sys_ssf7b7b1fb, "MYSQL_ATTR_IGNORE_SPACE") },
-  {0x51938FCA0AE827FDLL,-2,424,0,100,4,0,&NAMSTR(s_sys_ss0ae827fd, "PARAM_STMT") },
-  {0x56335EC3392D8EFELL,-65,426,0,100,4,0,&NAMSTR(s_sys_ss392d8efe, "PARAM_EVT_FREE") },
+  {0x2C9DA0E379A28381LL,6,712,0,36,4,0,&NAMSTR(s_sys_ss79a28381, "FORM_KD") },
+  {0x1C369D0E14B76C41LL,1,714,0,36,4,0,&NAMSTR(s_sys_ss14b76c41, "FORM_KC") },
+  {0x3E3AA0A97BD09921LL,0,716,0,100,4,0,&NAMSTR(s_sys_ss7bd09921, "NFKC") },
+  {0x07512AA38ADD1AE2LL,2,718,0,100,4,0,&NAMSTR(s_sys_ss8add1ae2, "FORM_D") },
+  {0x51422F059BEFCD86LL,-3,720,0,100,4,0,&NAMSTR(s_sys_ss9befcd86, "NFC") },
+  {0x58B301790FA834EFLL,-5,722,0,36,4,0,&NAMSTR(s_sys_ss0fa834ef, "NFD") },
+  {0x3CF19F2D23C185CFLL,2,724,0,100,4,0,&NAMSTR(s_sys_ss23c185cf, "NFKD") },
+  {0x2EFDCA1922BFB273LL,-4,726,0,100,4,0,&NAMSTR(s_sys_ss22bfb273, "NONE") },
+  {0x3BE3511FDA9A9E7FLL,-4,728,0,100,4,0,&NAMSTR(s_sys_ssda9a9e7f, "FORM_C") },
 
-  {0x76DAF4F4BD608481LL,6,428,0,100,3,0,&NAMSTR(s_sys_ssbd608481, "SINGLE_SCRIPT_CONFUSABLE") },
-  {0x330C21B4435FDA12LL,4,430,0,100,3,0,&NAMSTR(s_sys_ss435fda12, "WHOLE_SCRIPT_CONFUSABLE") },
-  {0x33D91DB93B53D955LL,0,432,0,100,3,0,&NAMSTR(s_sys_ss3b53d955, "CHAR_LIMIT") },
-  {0x727F3BA1A7798546LL,-1,434,0,100,3,0,&NAMSTR(s_sys_ssa7798546, "INVISIBLE") },
-  {0x7244AE82909D364ALL,-1,436,0,100,3,0,&NAMSTR(s_sys_ss909d364a, "SINGLE_SCRIPT") },
-  {0x5A4E3956DA2E533CLL,-1,438,0,100,3,0,&NAMSTR(s_sys_ssda2e533c, "ANY_CASE") },
-  {0x3189877F80D9ABBFLL,-5,440,0,100,3,0,&NAMSTR(s_sys_ss80d9abbf, "MIXED_SCRIPT_CONFUSABLE") },
+  {0x1800ED92A8884D00LL,31,730,0,100,4,0,&NAMSTR(s_sys_ssa8884d00, "ATTR_CASE") },
+  {0x07BAFBAE5A431902LL,27,732,0,100,4,0,&NAMSTR(s_sys_ss5a431902, "ATTR_STATEMENT_CLASS") },
+  {0x0229D662F91D9C04LL,1,734,0,100,4,0,&NAMSTR(s_sys_ssf91d9c04, "ERRMODE_EXCEPTION") },
+  {0x3BE7A02FD980AA08LL,7,736,0,100,4,0,&NAMSTR(s_sys_ssd980aa08, "CASE_NATURAL") },
+  {0x099B533427CCC20DLL,2,738,0,100,4,0,&NAMSTR(s_sys_ss27ccc20d, "FETCH_OBJ") },
+  {0x5FAD218776C6E511LL,60,740,0,100,4,0,&NAMSTR(s_sys_ss76c6e511, "FETCH_INTO") },
+  {0x78CB81320C710019LL,44,742,0,100,4,0,&NAMSTR(s_sys_ss0c710019, "FETCH_BOUND") },
+  {0x3158D52C3627FE1BLL,57,744,0,100,4,0,&NAMSTR(s_sys_ss3627fe1b, "MYSQL_ATTR_INIT_COMMAND") },
+  {0x03CF598D3CCCD01CLL,14,746,0,100,4,0,&NAMSTR(s_sys_ss3cccd01c, "ATTR_CLIENT_VERSION") },
+  {0x2BE16C4111A7B41DLL,36,748,0,100,4,0,&NAMSTR(s_sys_ss11a7b41d, "ATTR_FETCH_CATALOG_NAMES") },
+  {0x2A5BA04D0218F11ELL,2,750,0,100,4,0,&NAMSTR(s_sys_ss0218f11e, "CASE_LOWER") },
+  {0x16B15CF4B0DD7E23LL,9,752,0,100,4,0,&NAMSTR(s_sys_ssb0dd7e23, "FETCH_GROUP") },
+  {0x37F650C462FB6A25LL,25,754,0,100,4,0,&NAMSTR(s_sys_ss62fb6a25, "CASE_UPPER") },
+  {0x262D9BE84029992ALL,10,756,0,100,4,0,&NAMSTR(s_sys_ss4029992a, "PARAM_EVT_FETCH_POST") },
+  {0x15D2BCCED7726933LL,2,758,0,100,4,0,&NAMSTR(s_sys_ssd7726933, "ATTR_TIMEOUT") },
+  {0x01B17428BEE0243BLL,26,760,0,100,4,0,&NAMSTR(s_sys_ssbee0243b, "PARAM_EVT_EXEC_PRE") },
+  {0x2739A1D49673D43CLL,31,762,0,36,4,0,&NAMSTR(s_sys_ss9673d43c, "ATTR_ERRMODE") },
+  {0x6AC5C285F4DD863CLL,56,764,0,100,4,0,&NAMSTR(s_sys_ssf4dd863c, "ATTR_DEFAULT_FETCH_MODE") },
+  {0x3E11051E4101D73DLL,-1,766,0,100,4,0,&NAMSTR(s_sys_ss4101d73d, "ATTR_EMULATE_PREPARES") },
+  {0x2189354E22363544LL,-5,768,0,100,4,0,&NAMSTR(s_sys_ss22363544, "ATTR_PREFETCH") },
+  {0x428D5CA64BB99E48LL,35,770,0,100,4,0,&NAMSTR(s_sys_ss4bb99e48, "FETCH_UNIQUE") },
+  {0x39B4E90F36E93B4ELL,50,772,0,100,4,0,&NAMSTR(s_sys_ss36e93b4e, "MYSQL_ATTR_READ_DEFAULT_GROUP") },
+  {0x58A833E2336C6152LL,2,774,0,100,4,0,&NAMSTR(s_sys_ss336c6152, "ATTR_SERVER_INFO") },
+  {0x57B75F4773C81556LL,23,776,0,100,4,0,&NAMSTR(s_sys_ss73c81556, "PARAM_EVT_NORMALIZE") },
+  {0x5495020CF262F15BLL,-24,778,0,36,4,0,&NAMSTR(s_sys_ssf262f15b, "ATTR_CONNECTION_STATUS") },
+  {0x37888F551D85275BLL,36,780,0,100,4,0,&NAMSTR(s_sys_ss1d85275b, "ATTR_ORACLE_NULLS") },
+  {0x416A0550A8F12E61LL,52,782,0,100,4,0,&NAMSTR(s_sys_ssa8f12e61, "MYSQL_ATTR_FOUND_ROWS") },
+  {0x15A3522970275465LL,13,784,0,100,4,0,&NAMSTR(s_sys_ss70275465, "FETCH_ORI_NEXT") },
+  {0x162EAA2134F1C068LL,-19,786,0,100,4,0,&NAMSTR(s_sys_ss34f1c068, "ATTR_FETCH_TABLE_NAMES") },
+  {0x350E9275757FD66FLL,28,788,0,100,4,0,&NAMSTR(s_sys_ss757fd66f, "FETCH_ORI_REL") },
+  {0x6870D9DE66F43D70LL,9,790,0,100,4,0,&NAMSTR(s_sys_ss66f43d70, "FETCH_ASSOC") },
+  {0x713C8339790FC071LL,13,792,0,100,4,0,&NAMSTR(s_sys_ss790fc071, "ATTR_CURSOR_NAME") },
+  {0x1FB97A35B6711374LL,-14,794,0,100,4,0,&NAMSTR(s_sys_ssb6711374, "ATTR_MAX_COLUMN_LEN") },
+  {0x0E51487F9370EE75LL,-14,796,0,100,4,0,&NAMSTR(s_sys_ss9370ee75, "ATTR_AUTOCOMMIT") },
+  {0x630122BA9EC73379LL,4,798,0,36,4,0,&NAMSTR(s_sys_ss9ec73379, "PARAM_NULL") },
+  {0x05B00276031D7D79LL,45,800,0,100,4,0,&NAMSTR(s_sys_ss031d7d79, "PARAM_EVT_ALLOC") },
+  {0x500C039681520C7DLL,-2,802,0,100,4,0,&NAMSTR(s_sys_ss81520c7d, "PARAM_BOOL") },
+  {0x5CF4F38A0D7D087ELL,25,804,0,100,4,0,&NAMSTR(s_sys_ss0d7d087e, "NULL_NATURAL") },
+  {0x3F414F2735132983LL,5,806,0,100,4,0,&NAMSTR(s_sys_ss35132983, "PARAM_INT") },
+  {0x2011B5A528057784LL,15,808,0,100,4,0,&NAMSTR(s_sys_ss28057784, "FETCH_NUM") },
+  {0x5451E44C627DD885LL,18,810,0,100,4,0,&NAMSTR(s_sys_ss627dd885, "FETCH_ORI_PRIOR") },
+  {0x1B8BA5EEAABCB786LL,15,812,0,36,4,0,&NAMSTR(s_sys_ssaabcb786, "PARAM_EVT_EXEC_POST") },
+  {0x1B51C692B91D7486LL,11,814,0,100,4,0,&NAMSTR(s_sys_ssb91d7486, "MYSQL_ATTR_USE_BUFFERED_QUERY") },
+  {0x7E64209D5A925F88LL,32,816,0,100,4,0,&NAMSTR(s_sys_ss5a925f88, "PARAM_STR") },
+  {0x45AB9806DE21EA8ALL,-19,818,0,100,4,0,&NAMSTR(s_sys_ssde21ea8a, "ATTR_CURSOR") },
+  {0x0EDB017494A81E8DLL,18,820,0,100,4,0,&NAMSTR(s_sys_ss94a81e8d, "ATTR_DRIVER_NAME") },
+  {0x126B3038F3355A8ELL,24,822,0,100,4,0,&NAMSTR(s_sys_ssf3355a8e, "FETCH_USE_DEFAULT") },
+  {0x1F200B094608BE8FLL,-39,824,0,36,4,0,&NAMSTR(s_sys_ss4608be8f, "ATTR_SERVER_VERSION") },
+  {0x1175C5F56147488FLL,-22,826,0,100,4,0,&NAMSTR(s_sys_ss6147488f, "MYSQL_ATTR_DIRECT_QUERY") },
+  {0x25BE9238386C2796LL,27,828,0,100,4,0,&NAMSTR(s_sys_ss386c2796, "FETCH_PROPS_LATE") },
+  {0x657BEA5F741C4999LL,19,830,0,36,4,0,&NAMSTR(s_sys_ss741c4999, "FETCH_COLUMN") },
+  {0x18B801DE8D8C9099LL,1,832,0,100,4,0,&NAMSTR(s_sys_ss8d8c9099, "FETCH_CLASSTYPE") },
+  {0x1EC178DF86F4FD9CLL,-3,834,0,100,4,0,&NAMSTR(s_sys_ss86f4fd9c, "FETCH_SERIALIZE") },
+  {0x052245CE02FBF4A0LL,15,836,0,100,4,0,&NAMSTR(s_sys_ss02fbf4a0, "MYSQL_ATTR_LOCAL_INFILE") },
+  {0x28D5B850B76FEEA2LL,-50,838,0,36,4,0,&NAMSTR(s_sys_ssb76feea2, "FETCH_BOTH") },
+  {0x0D0BCCC6768A88A2LL,-4,840,0,100,4,0,&NAMSTR(s_sys_ss768a88a2, "FETCH_KEY_PAIR") },
+  {0x6851B7545234FCA4LL,-43,842,0,100,4,0,&NAMSTR(s_sys_ss5234fca4, "PARAM_EVT_FETCH_PRE") },
+  {0x167DD614E842FAA8LL,2,844,0,100,4,0,&NAMSTR(s_sys_sse842faa8, "CURSOR_FWDONLY") },
+  {0x6AEB66DE7A454FA9LL,2,846,0,100,4,0,&NAMSTR(s_sys_ss7a454fa9, "FETCH_ORI_FIRST") },
+  {0x392400A66B305EAALL,-17,848,0,100,4,0,&NAMSTR(s_sys_ss6b305eaa, "CURSOR_SCROLL") },
+  {0x2F6AE87AF5701AABLL,6,850,0,100,4,0,&NAMSTR(s_sys_ssf5701aab, "FETCH_ORI_LAST") },
+  {0x56D59339A0F5D8B4LL,-60,852,0,100,4,0,&NAMSTR(s_sys_ssa0f5d8b4, "ATTR_PERSISTENT") },
+  {0x08657D6005DD08B8LL,5,854,0,100,4,0,&NAMSTR(s_sys_ss05dd08b8, "NULL_EMPTY_STRING") },
+  {0x60CE39F6493319C5LL,-31,856,0,100,4,0,&NAMSTR(s_sys_ss493319c5, "ATTR_STRINGIFY_FETCHES") },
+  {0x61BD1667BB46C9C6LL,-43,858,0,100,4,0,&NAMSTR(s_sys_ssbb46c9c6, "MYSQL_ATTR_READ_DEFAULT_FILE") },
+  {0x30D00303975C98C8LL,-54,860,0,36,4,0,&NAMSTR(s_sys_ss975c98c8, "FETCH_FUNC") },
+  {0x47D4494BE4FA26C8LL,-37,862,0,100,4,0,&NAMSTR(s_sys_sse4fa26c8, "FETCH_ORI_ABS") },
+  {0x29B68A596E0615CALL,7,864,0,100,4,0,&NAMSTR(s_sys_ss6e0615ca, "NULL_TO_STRING") },
+  {0x73FAA1AA068D19CBLL,-61,866,0,100,4,0,&NAMSTR(s_sys_ss068d19cb, "MYSQL_ATTR_MAX_BUFFER_SIZE") },
+  {0x439351C7C64634D0LL,-64,868,0,100,4,0,&NAMSTR(s_sys_ssc64634d0, "FETCH_CLASS") },
+  {0x5C75BB222F23C4D1LL,-40,870,0,100,4,0,&NAMSTR(s_sys_ss2f23c4d1, "FETCH_LAZY") },
+  {0x57F9152D7EC3A5D3LL,-23,872,0,100,4,0,&NAMSTR(s_sys_ss7ec3a5d3, "MYSQL_ATTR_COMPRESS") },
+  {0x4D1DDF7F772C54DCLL,-70,874,0,100,4,0,&NAMSTR(s_sys_ss772c54dc, "ERRMODE_WARNING") },
+  {0x2E4175EAAB1F75EBLL,-1,876,0,100,4,0,&NAMSTR(s_sys_ssab1f75eb, "ERRMODE_SILENT") },
+  {0x16017F3F58821EF5LL,-47,878,0,100,7,0,&NAMSTR(s_sys_ss58821ef5, "ERR_NONE") },
+  {0x674F9B0D2030C3F6LL,4,880,0,100,4,0,&NAMSTR(s_sys_ss2030c3f6, "PARAM_LOB") },
+  {0x16EC9F213D7F57F7LL,-43,882,0,100,4,0,&NAMSTR(s_sys_ss3d7f57f7, "FETCH_NAMED") },
+  {0x6C0021FD5D20A1F8LL,-42,884,0,100,4,0,&NAMSTR(s_sys_ss5d20a1f8, "PARAM_INPUT_OUTPUT") },
+  {0x13EC16B8F7B7B1FBLL,0,886,0,100,4,0,&NAMSTR(s_sys_ssf7b7b1fb, "MYSQL_ATTR_IGNORE_SPACE") },
+  {0x51938FCA0AE827FDLL,-2,888,0,100,4,0,&NAMSTR(s_sys_ss0ae827fd, "PARAM_STMT") },
+  {0x56335EC3392D8EFELL,-65,890,0,100,4,0,&NAMSTR(s_sys_ss392d8efe, "PARAM_EVT_FREE") },
 
-  {0x13B3121CBF212DC1LL,1,442,0,100,4,0,&NAMSTR(s_sys_ssbf212dc1, "DOC_FRAGMENT") },
-  {0x6071F0A4D7F152C9LL,8,444,0,100,4,0,&NAMSTR(s_sys_ssd7f152c9, "NOTATION") },
-  {0x16AD79F9AF3ECC0DLL,11,446,0,100,4,0,&NAMSTR(s_sys_ssaf3ecc0d, "COMMENT") },
-  {0x5BB72110C0F94F8FLL,16,448,0,36,4,0,&NAMSTR(s_sys_ssc0f94f8f, "ELEMENT") },
-  {0x4431B68F8476210FLL,0,450,0,100,4,0,&NAMSTR(s_sys_ss8476210f, "SUBST_ENTITIES") },
-  {0x66710CEFCACCEAD4LL,15,452,0,100,4,0,&NAMSTR(s_sys_sscaccead4, "DEFAULTATTRS") },
-  {0x0A70D397C0570F56LL,15,454,0,100,4,0,&NAMSTR(s_sys_ssc0570f56, "CDATA") },
-  {0x69070452A320C4D8LL,-2,456,0,100,4,0,&NAMSTR(s_sys_ssa320c4d8, "LOADDTD") },
-  {0x4D26D167066BB11DLL,-2,458,0,36,4,0,&NAMSTR(s_sys_ss066bb11d, "TEXT") },
-  {0x507641F239996F9DLL,2,460,0,100,4,0,&NAMSTR(s_sys_ss39996f9d, "WHITESPACE") },
-  {0x7EB865DC91D7AC1FLL,-10,462,0,100,4,0,&NAMSTR(s_sys_ss91d7ac1f, "DOC_TYPE") },
-  {0x4A21896B12C338E5LL,4,464,0,100,4,0,&NAMSTR(s_sys_ss12c338e5, "SIGNIFICANT_WHITESPACE") },
-  {0x18CF3E4A60E4AAACLL,-10,466,0,100,4,0,&NAMSTR(s_sys_ss60e4aaac, "PI") },
-  {0x5C1091C88F8EB6EDLL,-3,468,0,100,4,0,&NAMSTR(s_sys_ss8f8eb6ed, "DOC") },
-  {0x18FB7BF5786BF72FLL,-2,470,0,100,4,0,&NAMSTR(s_sys_ss786bf72f, "ENTITY") },
-  {0x3EBBF7FE181568B0LL,3,472,0,36,4,0,&NAMSTR(s_sys_ss181568b0, "END_ELEMENT") },
-  {0x2907A7E1425D0970LL,-9,474,0,100,4,0,&NAMSTR(s_sys_ss425d0970, "XML_DECLARATION") },
-  {0x2EFDCA1922BFB273LL,-14,476,0,36,4,0,&NAMSTR(s_sys_ss22bfb273, "NONE") },
-  {0x66785D8330DBC573LL,-2,478,0,100,4,0,&NAMSTR(s_sys_ss30dbc573, "END_ENTITY") },
-  {0x21A6FB97A47EB4F5LL,-11,480,0,100,4,0,&NAMSTR(s_sys_ssa47eb4f5, "ATTRIBUTE") },
-  {0x1CA408E02262F737LL,-16,482,0,100,4,0,&NAMSTR(s_sys_ss2262f737, "VALIDATE") },
-  {0x631C49B1B9F742FCLL,-7,484,0,100,4,0,&NAMSTR(s_sys_ssb9f742fc, "ENTITY_REF") },
+  {0x76DAF4F4BD608481LL,6,892,0,100,3,0,&NAMSTR(s_sys_ssbd608481, "SINGLE_SCRIPT_CONFUSABLE") },
+  {0x330C21B4435FDA12LL,4,894,0,100,3,0,&NAMSTR(s_sys_ss435fda12, "WHOLE_SCRIPT_CONFUSABLE") },
+  {0x33D91DB93B53D955LL,0,896,0,100,3,0,&NAMSTR(s_sys_ss3b53d955, "CHAR_LIMIT") },
+  {0x727F3BA1A7798546LL,-1,898,0,100,3,0,&NAMSTR(s_sys_ssa7798546, "INVISIBLE") },
+  {0x7244AE82909D364ALL,-1,900,0,100,3,0,&NAMSTR(s_sys_ss909d364a, "SINGLE_SCRIPT") },
+  {0x5A4E3956DA2E533CLL,-1,902,0,100,3,0,&NAMSTR(s_sys_ssda2e533c, "ANY_CASE") },
+  {0x3189877F80D9ABBFLL,-5,904,0,100,3,0,&NAMSTR(s_sys_ss80d9abbf, "MIXED_SCRIPT_CONFUSABLE") },
+
+  {0x13B3121CBF212DC1LL,1,906,0,100,4,0,&NAMSTR(s_sys_ssbf212dc1, "DOC_FRAGMENT") },
+  {0x6071F0A4D7F152C9LL,8,908,0,100,4,0,&NAMSTR(s_sys_ssd7f152c9, "NOTATION") },
+  {0x16AD79F9AF3ECC0DLL,11,910,0,100,4,0,&NAMSTR(s_sys_ssaf3ecc0d, "COMMENT") },
+  {0x5BB72110C0F94F8FLL,16,912,0,36,4,0,&NAMSTR(s_sys_ssc0f94f8f, "ELEMENT") },
+  {0x4431B68F8476210FLL,0,914,0,100,4,0,&NAMSTR(s_sys_ss8476210f, "SUBST_ENTITIES") },
+  {0x66710CEFCACCEAD4LL,15,916,0,100,4,0,&NAMSTR(s_sys_sscaccead4, "DEFAULTATTRS") },
+  {0x0A70D397C0570F56LL,15,918,0,100,4,0,&NAMSTR(s_sys_ssc0570f56, "CDATA") },
+  {0x69070452A320C4D8LL,-2,920,0,100,4,0,&NAMSTR(s_sys_ssa320c4d8, "LOADDTD") },
+  {0x4D26D167066BB11DLL,-2,922,0,36,4,0,&NAMSTR(s_sys_ss066bb11d, "TEXT") },
+  {0x507641F239996F9DLL,2,924,0,100,4,0,&NAMSTR(s_sys_ss39996f9d, "WHITESPACE") },
+  {0x7EB865DC91D7AC1FLL,-10,926,0,100,4,0,&NAMSTR(s_sys_ss91d7ac1f, "DOC_TYPE") },
+  {0x4A21896B12C338E5LL,4,928,0,100,4,0,&NAMSTR(s_sys_ss12c338e5, "SIGNIFICANT_WHITESPACE") },
+  {0x18CF3E4A60E4AAACLL,-10,930,0,100,4,0,&NAMSTR(s_sys_ss60e4aaac, "PI") },
+  {0x5C1091C88F8EB6EDLL,-3,932,0,100,4,0,&NAMSTR(s_sys_ss8f8eb6ed, "DOC") },
+  {0x18FB7BF5786BF72FLL,-2,934,0,100,4,0,&NAMSTR(s_sys_ss786bf72f, "ENTITY") },
+  {0x3EBBF7FE181568B0LL,3,936,0,36,4,0,&NAMSTR(s_sys_ss181568b0, "END_ELEMENT") },
+  {0x2907A7E1425D0970LL,-9,938,0,100,4,0,&NAMSTR(s_sys_ss425d0970, "XML_DECLARATION") },
+  {0x2EFDCA1922BFB273LL,-14,940,0,36,4,0,&NAMSTR(s_sys_ss22bfb273, "NONE") },
+  {0x66785D8330DBC573LL,-2,942,0,100,4,0,&NAMSTR(s_sys_ss30dbc573, "END_ENTITY") },
+  {0x21A6FB97A47EB4F5LL,-11,944,0,100,4,0,&NAMSTR(s_sys_ssa47eb4f5, "ATTRIBUTE") },
+  {0x1CA408E02262F737LL,-16,946,0,100,4,0,&NAMSTR(s_sys_ss2262f737, "VALIDATE") },
+  {0x631C49B1B9F742FCLL,-7,948,0,100,4,0,&NAMSTR(s_sys_ssb9f742fc, "ENTITY_REF") },
 
 };
 static const int cpt_hash_entries[] = {
@@ -11524,6 +13111,12 @@ static const int cpt_hash_entries[] = {
   -1,-1,-1,-1,0,-1,-1,-1,
   // GenericContinuation lists
   0,-1,
+  -1,
+  -1,
+  // Gmagick hash
+  -1,-1,-1,-1,-1,-1,231,-1,-1,-1,-1,230,-1,-1,-1,229,-1,-1,228,-1,-1,-1,-1,-1,-1,-1,-1,227,-1,-1,-1,226,-1,225,223,-1,222,-1,221,-1,-1,-1,220,-1,-1,-1,-1,-1,-1,219,-1,-1,-1,216,215,-1,-1,214,213,-1,212,-1,-1,211,-1,-1,-1,-1,-1,210,209,-1,207,-1,-1,-1,-1,-1,206,-1,205,-1,203,202,-1,-1,-1,-1,-1,-1,-1,201,-1,200,199,198,-1,-1,197,-1,-1,-1,-1,196,193,192,-1,191,-1,-1,190,-1,189,187,-1,-1,-1,186,-1,-1,184,-1,-1,-1,183,-1,-1,182,180,-1,-1,179,-1,-1,-1,-1,178,177,-1,-1,176,-1,175,-1,-1,174,173,-1,-1,-1,-1,171,-1,170,-1,-1,-1,-1,-1,-1,-1,169,-1,-1,-1,168,167,166,165,-1,-1,163,161,-1,160,-1,159,-1,-1,158,-1,-1,156,-1,155,-1,153,-1,-1,-1,-1,152,-1,-1,-1,-1,-1,148,146,145,143,142,-1,141,-1,-1,-1,140,139,-1,138,137,-1,-1,-1,-1,-1,-1,136,-1,135,-1,-1,-1,-1,-1,134,-1,-1,-1,-1,-1,133,-1,-1,-1,-1,132,-1,-1,131,-1,130,-1,129,-1,-1,-1,128,-1,-1,127,-1,-1,126,125,-1,-1,124,-1,-1,122,-1,120,-1,-1,-1,-1,-1,119,117,-1,-1,-1,-1,115,114,-1,-1,-1,-1,-1,-1,113,-1,112,111,110,-1,-1,-1,109,-1,-1,-1,-1,108,-1,107,-1,-1,105,-1,104,-1,103,-1,102,100,98,-1,97,-1,-1,96,-1,95,94,-1,-1,91,90,89,88,-1,-1,-1,-1,-1,87,-1,-1,-1,-1,86,-1,-1,-1,-1,-1,85,84,83,-1,82,81,79,-1,78,77,-1,-1,-1,76,75,-1,-1,74,-1,72,-1,-1,70,-1,-1,-1,-1,69,-1,-1,-1,-1,68,65,63,-1,-1,-1,62,-1,-1,61,-1,-1,-1,-1,60,-1,-1,59,58,-1,57,56,-1,-1,-1,55,54,52,-1,-1,51,50,-1,-1,-1,48,47,-1,46,43,-1,-1,-1,42,-1,41,40,-1,-1,-1,-1,-1,-1,39,-1,37,35,34,33,-1,32,31,-1,-1,30,-1,29,-1,-1,-1,-1,-1,-1,28,-1,27,26,-1,25,-1,-1,-1,24,21,-1,-1,20,19,-1,18,16,15,-1,-1,13,-1,-1,12,-1,-1,-1,11,10,9,-1,-1,-1,-1,-1,-1,-1,-1,8,-1,7,-1,-1,6,-1,-1,-1,-1,-1,-1,5,-1,-1,-1,4,-1,-1,3,-1,2,-1,1,-1,-1,-1,0,
+  // Gmagick lists
+  -1,
   -1,
   -1,
   // Locale hash
@@ -11591,29 +13184,33 @@ const ClassPropTable c_GenericContinuation::os_prop_table = {
   7,0,-1,-1,-1,-1,10,0,
   cpt_hash_entries+236,&c_Continuation::os_prop_table,cpt_table_entries+74,cpt_static_inits
 };
+const ClassPropTable c_Gmagick::os_prop_table = {
+  -1,-1,-1,-1,511,192,1,0,
+  cpt_hash_entries+760,0,cpt_table_entries+75,cpt_static_inits
+};
 const ClassPropTable c_Locale::os_prop_table = {
   -1,-1,-1,-1,7,1,1,0,
-  cpt_hash_entries+256,0,cpt_table_entries+75,cpt_static_inits
+  cpt_hash_entries+771,0,cpt_table_entries+307,cpt_static_inits
 };
 const ClassPropTable c_Memcached::os_prop_table = {
   -1,-1,-1,-1,127,25,1,0,
-  cpt_hash_entries+387,0,cpt_table_entries+77,cpt_static_inits
+  cpt_hash_entries+902,0,cpt_table_entries+309,cpt_static_inits
 };
 const ClassPropTable c_Normalizer::os_prop_table = {
   -1,-1,-1,-1,31,7,1,0,
-  cpt_hash_entries+422,0,cpt_table_entries+134,cpt_static_inits
+  cpt_hash_entries+937,0,cpt_table_entries+366,cpt_static_inits
 };
 const ClassPropTable c_PDO::os_prop_table = {
   -1,-1,-1,-1,255,36,1,0,
-  cpt_hash_entries+681,0,cpt_table_entries+143,cpt_static_inits
+  cpt_hash_entries+1196,0,cpt_table_entries+375,cpt_static_inits
 };
 const ClassPropTable c_SpoofChecker::os_prop_table = {
   -1,-1,-1,-1,15,0,1,0,
-  cpt_hash_entries+700,0,cpt_table_entries+224,cpt_static_inits
+  cpt_hash_entries+1215,0,cpt_table_entries+456,cpt_static_inits
 };
 const ClassPropTable c_XMLReader::os_prop_table = {
   -1,-1,-1,-1,63,17,1,0,
-  cpt_hash_entries+767,0,cpt_table_entries+231,cpt_static_inits
+  cpt_hash_entries+1282,0,cpt_table_entries+463,cpt_static_inits
 };
 
 ///////////////////////////////////////////////////////////////////////////////

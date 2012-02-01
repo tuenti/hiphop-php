@@ -71,3 +71,22 @@ Before changes can be accepted a [Contributors Licensing Agreement](http://devel
 ## Running HipHop
 
 Please see [the wiki page](http://wiki.github.com/facebook/hiphop-php/running-hiphop)
+
+## Generated files
+
+When updating your modificated branch with github version, you will enter in a
+eternal pain because of the automatically generated source code files. You will
+have also problem with the merge.
+
+Your best bet will be to revert automatically generated files to the github
+version to do the first compilation. This is the list of the files you probably
+will need to revert:
+
+src/system/gen/php/classes/exception.cpp
+src/system/gen/php/classes/exception.h
+src/system/gen/sys/dynamic_table_class.cpp
+src/system/gen/sys/dynamic_table_constant.cpp
+src/system/gen/sys/dynamic_table_func.no.cpp
+src/system/gen/sys/literal_strings.h
+src/system/gen/sys/literal_strings_0.no.cpp
+src/system/gen/sys/system_globals.h

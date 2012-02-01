@@ -32,6 +32,59 @@ namespace HPHP {
 /* preface starts */
 extern CallInfo ci_;
 /* preface finishes */
+/* SRC: classes/exception.php line 322 */
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(GmagickException)
+const InstanceOfInfo c_GmagickException::s_instanceof_table[] = {
+  {0x47D93E6F80B66A94LL,1,"Exception",&cw_Exception},
+  {0x5E96B7C8DC5EEAE9LL,1,"GmagickException",&cw_GmagickException},
+};
+const int c_GmagickException::s_instanceof_index[] = {
+  3,
+  0,1,-1,-1,
+};
+CallInfo c_GmagickException::ci___construct((void*)&c_GmagickException::i___construct, (void*)&c_GmagickException::ifa___construct, 2, 4, 0x0000000000000000LL);
+Variant c_GmagickException::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_GmagickException::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_GmagickException);
+  }
+  c_GmagickException *self ATTRIBUTE_UNUSED (static_cast<c_GmagickException*>(mcp.obj));
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("GmagickException::__construct", count, 2, 2, 2);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (self->t___construct(arg0, arg1), null);
+}
+const MethodCallInfoTable c_GmagickException::s_call_info_table[] = {
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_GmagickException::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_GmagickException::s_call_info_index[] = {
+  1,
+  -1,0,
+};
+c_GmagickException *c_GmagickException::create(CVarRef v_message, CVarRef v_code) {
+  CountableHelper h(this);
+  init();
+  t___construct(v_message, v_code);
+  return this;
+}
+const ObjectStaticCallbacks cw_GmagickException = {
+  (ObjectData*(*)(ObjectData*))coo_GmagickException,
+  c_GmagickException::s_call_info_table,c_GmagickException::s_call_info_index,
+  c_GmagickException::s_instanceof_table,c_GmagickException::s_instanceof_index,
+  &c_GmagickException::s_class_name,
+  &c_Exception::os_prop_table,&c_GmagickException::ci___construct,0,&cw_Exception,0x0
+};
+/* SRC: classes/exception.php line 323 */
+void c_GmagickException::t___construct(Variant v_message, Variant v_code) {
+  INSTANCE_METHOD_INJECTION_BUILTIN(GmagickException, GmagickException::__construct);
+  bool oldInCtor = gasInCtor(true);
+  c_Exception::t___construct(v_message, v_code);
+  gasInCtor(oldInCtor);
+}
+namespace hphp_impl_splitter {}
 /* SRC: classes/exception.php line 227 */
 IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(OutOfRangeException)
 const InstanceOfInfo c_OutOfRangeException::s_instanceof_table[] = {
@@ -295,6 +348,58 @@ const ObjectStaticCallbacks cw_RangeException = {
   &c_RangeException::s_class_name,
   &c_Exception::os_prop_table,&c_Exception::ci___construct,0,&cw_RuntimeException,0x0
 };
+/* SRC: classes/exception.php line 328 */
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(UserPartitionException)
+const InstanceOfInfo c_UserPartitionException::s_instanceof_table[] = {
+  {0x47D93E6F80B66A94LL,1,"Exception",&cw_Exception},
+  {0x7F62EC0591E6E26ALL,1,"UserPartitionException",&cw_UserPartitionException},
+};
+const int c_UserPartitionException::s_instanceof_index[] = {
+  3,
+  0,-1,1,-1,
+};
+CallInfo c_UserPartitionException::ci___construct((void*)&c_UserPartitionException::i___construct, (void*)&c_UserPartitionException::ifa___construct, 1, 4, 0x0000000000000000LL);
+Variant c_UserPartitionException::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_UserPartitionException::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_UserPartitionException);
+  }
+  c_UserPartitionException *self ATTRIBUTE_UNUSED (static_cast<c_UserPartitionException*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("UserPartitionException::__construct", count, 1, 1, 2);
+  CVarRef arg0(a0);
+  return (self->t___construct(arg0), null);
+}
+const MethodCallInfoTable c_UserPartitionException::s_call_info_table[] = {
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_UserPartitionException::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_UserPartitionException::s_call_info_index[] = {
+  1,
+  -1,0,
+};
+c_UserPartitionException *c_UserPartitionException::create(CVarRef v_message) {
+  CountableHelper h(this);
+  init();
+  t___construct(v_message);
+  return this;
+}
+const ObjectStaticCallbacks cw_UserPartitionException = {
+  (ObjectData*(*)(ObjectData*))coo_UserPartitionException,
+  c_UserPartitionException::s_call_info_table,c_UserPartitionException::s_call_info_index,
+  c_UserPartitionException::s_instanceof_table,c_UserPartitionException::s_instanceof_index,
+  &c_UserPartitionException::s_class_name,
+  &c_Exception::os_prop_table,&c_UserPartitionException::ci___construct,0,&cw_Exception,0x0
+};
+/* SRC: classes/exception.php line 329 */
+void c_UserPartitionException::t___construct(Variant v_message) {
+  INSTANCE_METHOD_INJECTION_BUILTIN(UserPartitionException, UserPartitionException::__construct);
+  bool oldInCtor = gasInCtor(true);
+  c_Exception::t___construct(v_message);
+  gasInCtor(oldInCtor);
+}
+namespace hphp_impl_splitter {}
 /* SRC: classes/exception.php line 277 */
 IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(UnexpectedValueException)
 const InstanceOfInfo c_UnexpectedValueException::s_instanceof_table[] = {
@@ -333,6 +438,58 @@ const ObjectStaticCallbacks cw_UnderflowException = {
   &c_UnderflowException::s_class_name,
   &c_Exception::os_prop_table,&c_Exception::ci___construct,0,&cw_RuntimeException,0x0
 };
+/* SRC: classes/exception.php line 334 */
+IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(BucketCacheException)
+const InstanceOfInfo c_BucketCacheException::s_instanceof_table[] = {
+  {0x47D93E6F80B66A94LL,1,"Exception",&cw_Exception},
+  {0x690B18AA61FFAA15LL,1,"BucketCacheException",&cw_BucketCacheException},
+};
+const int c_BucketCacheException::s_instanceof_index[] = {
+  3,
+  0,1,-1,-1,
+};
+CallInfo c_BucketCacheException::ci___construct((void*)&c_BucketCacheException::i___construct, (void*)&c_BucketCacheException::ifa___construct, 1, 4, 0x0000000000000000LL);
+Variant c_BucketCacheException::i___construct(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_BucketCacheException::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_BucketCacheException);
+  }
+  c_BucketCacheException *self ATTRIBUTE_UNUSED (static_cast<c_BucketCacheException*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("BucketCacheException::__construct", count, 1, 1, 2);
+  CVarRef arg0(a0);
+  return (self->t___construct(arg0), null);
+}
+const MethodCallInfoTable c_BucketCacheException::s_call_info_table[] = {
+  { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_BucketCacheException::ci___construct },
+  { 0, 1, 0, 0 }
+};
+const int c_BucketCacheException::s_call_info_index[] = {
+  1,
+  -1,0,
+};
+c_BucketCacheException *c_BucketCacheException::create(CVarRef v_message) {
+  CountableHelper h(this);
+  init();
+  t___construct(v_message);
+  return this;
+}
+const ObjectStaticCallbacks cw_BucketCacheException = {
+  (ObjectData*(*)(ObjectData*))coo_BucketCacheException,
+  c_BucketCacheException::s_call_info_table,c_BucketCacheException::s_call_info_index,
+  c_BucketCacheException::s_instanceof_table,c_BucketCacheException::s_instanceof_index,
+  &c_BucketCacheException::s_class_name,
+  &c_Exception::os_prop_table,&c_BucketCacheException::ci___construct,0,&cw_Exception,0x0
+};
+/* SRC: classes/exception.php line 335 */
+void c_BucketCacheException::t___construct(Variant v_message) {
+  INSTANCE_METHOD_INJECTION_BUILTIN(BucketCacheException, BucketCacheException::__construct);
+  bool oldInCtor = gasInCtor(true);
+  c_Exception::t___construct(v_message);
+  gasInCtor(oldInCtor);
+}
+namespace hphp_impl_splitter {}
 /* SRC: classes/exception.php line 10 */
 IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(Exception)
 const InstanceOfInfo c_Exception::s_instanceof_table[] = {
@@ -858,6 +1015,9 @@ const ObjectStaticCallbacks cw_OutOfBoundsException = {
   &c_OutOfBoundsException::s_class_name,
   &c_Exception::os_prop_table,&c_Exception::ci___construct,0,&cw_RuntimeException,0x0
 };
+ObjectData *coo_GmagickException() {
+  return NEWOBJ(c_GmagickException)();
+}
 ObjectData *coo_OutOfRangeException() {
   return NEWOBJ(c_OutOfRangeException)();
 }
@@ -882,11 +1042,17 @@ ObjectData *coo_PDOException() {
 ObjectData *coo_RangeException() {
   return NEWOBJ(c_RangeException)();
 }
+ObjectData *coo_UserPartitionException() {
+  return NEWOBJ(c_UserPartitionException)();
+}
 ObjectData *coo_UnexpectedValueException() {
   return NEWOBJ(c_UnexpectedValueException)();
 }
 ObjectData *coo_UnderflowException() {
   return NEWOBJ(c_UnderflowException)();
+}
+ObjectData *coo_BucketCacheException() {
+  return NEWOBJ(c_BucketCacheException)();
 }
 ObjectData *coo_Exception() {
   return NEWOBJ(c_Exception)();

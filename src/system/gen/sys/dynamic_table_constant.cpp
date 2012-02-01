@@ -2089,7 +2089,7 @@ public:
   hashNodeCon *next;
 };
 static hashNodeCon *conMapTable[8192];
-static hashNodeCon conBuckets[2110];
+static hashNodeCon conBuckets[2119];
 
 void init_builtin_constant_table() {
   const char *conMapData[] = {
@@ -2123,6 +2123,13 @@ void init_builtin_constant_table() {
       (const char *)"ASSERT_CALLBACK", (const char *)-1, (const char *)32, (const char *)&k_ASSERT_CALLBACK,
       (const char *)"ASSERT_QUIET_EVAL", (const char *)-1, (const char *)32, (const char *)&k_ASSERT_QUIET_EVAL,
       (const char *)"ASSERT_WARNING", (const char *)-1, (const char *)32, (const char *)&k_ASSERT_WARNING,
+      (const char *)"BUCKET_INFO_ALT_SERVER", (const char *)-1, (const char *)32, (const char *)&k_BUCKET_INFO_ALT_SERVER,
+      (const char *)"BUCKET_INFO_ALT_VOLUME", (const char *)-1, (const char *)32, (const char *)&k_BUCKET_INFO_ALT_VOLUME,
+      (const char *)"BUCKET_INFO_CLUSTER", (const char *)-1, (const char *)32, (const char *)&k_BUCKET_INFO_CLUSTER,
+      (const char *)"BUCKET_INFO_ID", (const char *)-1, (const char *)32, (const char *)&k_BUCKET_INFO_ID,
+      (const char *)"BUCKET_INFO_SERVER", (const char *)-1, (const char *)32, (const char *)&k_BUCKET_INFO_SERVER,
+      (const char *)"BUCKET_INFO_STATE", (const char *)-1, (const char *)32, (const char *)&k_BUCKET_INFO_STATE,
+      (const char *)"BUCKET_INFO_VOLUME", (const char *)-1, (const char *)32, (const char *)&k_BUCKET_INFO_VOLUME,
       (const char *)"CASE_LOWER", (const char *)-1, (const char *)32, (const char *)&k_CASE_LOWER,
       (const char *)"CASE_UPPER", (const char *)-1, (const char *)32, (const char *)&k_CASE_UPPER,
       (const char *)"CHAR_MAX", (const char *)-1, (const char *)32, (const char *)&k_CHAR_MAX,
@@ -2837,6 +2844,8 @@ void init_builtin_constant_table() {
       (const char *)"MCRYPT_TWOFISH", (const char *)-1, (const char *)128, (const char *)&k_MCRYPT_TWOFISH,
       (const char *)"MCRYPT_WAKE", (const char *)-1, (const char *)128, (const char *)&k_MCRYPT_WAKE,
       (const char *)"MCRYPT_XTEA", (const char *)-1, (const char *)128, (const char *)&k_MCRYPT_XTEA,
+      (const char *)"MEMCACHE_COMPRESSED", (const char *)-1, (const char *)32, (const char *)&k_MEMCACHE_COMPRESSED,
+      (const char *)"MEMCACHE_SERIALIZED", (const char *)-1, (const char *)32, (const char *)&k_MEMCACHE_SERIALIZED,
       (const char *)"MON_1", (const char *)-1, (const char *)32, (const char *)&k_MON_1,
       (const char *)"MON_10", (const char *)-1, (const char *)32, (const char *)&k_MON_10,
       (const char *)"MON_11", (const char *)-1, (const char *)32, (const char *)&k_MON_11,

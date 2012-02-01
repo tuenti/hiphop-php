@@ -78,6 +78,13 @@ public:
   static StaticArray ssa_[1];
 };
 
+extern const int64 k_BUCKET_INFO_ALT_SERVER;
+extern const int64 k_BUCKET_INFO_ALT_VOLUME;
+extern const int64 k_BUCKET_INFO_CLUSTER;
+extern const int64 k_BUCKET_INFO_ID;
+extern const int64 k_BUCKET_INFO_SERVER;
+extern const int64 k_BUCKET_INFO_STATE;
+extern const int64 k_BUCKET_INFO_VOLUME;
 extern const int64 k_CURLINFO_LOCAL_PORT;
 extern const int64 k_CURLOPT_CONNECTTIMEOUT_MS;
 extern const int64 k_CURLOPT_TIMEOUT_MS;
@@ -94,6 +101,8 @@ extern const int64 k_JSON_HEX_QUOT;
 extern const int64 k_JSON_HEX_TAG;
 extern const int64 k_JSON_NUMERIC_CHECK;
 extern const int64 k_JSON_UNESCAPED_SLASHES;
+extern const int64 k_MEMCACHE_COMPRESSED;
+extern const int64 k_MEMCACHE_SERIALIZED;
 extern const double k_NAN;
 extern const int64 k_OPENSSL_RAW_DATA;
 extern const int64 k_OPENSSL_ZERO_PADDING;
