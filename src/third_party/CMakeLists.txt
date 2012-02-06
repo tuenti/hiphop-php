@@ -11,8 +11,8 @@ ExternalProject_Add(
 
 ExternalProject_Add(
     libevent
-    URL https://github.com/downloads/libevent/libevent/libevent-2.0.15-stable.tar.gz
-    PATCH_COMMAND patch -p1 <  ${CMAKE_SOURCE_DIR}/src/third_party/libevent-2.0.15-changes.diff
+    URL http://cloud.github.com/downloads/libevent/libevent/libevent-2.0.16-stable.tar.gz
+    PATCH_COMMAND patch -p1 <  ${CMAKE_SOURCE_DIR}/src/third_party/libevent-2.0.16-changes.diff
     INSTALL_DIR ${CMAKE_BINARY_DIR}/external_build/
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR> --prefix=<INSTALL_DIR>
 )

@@ -1,18 +1,6 @@
-diff -Nuar libevent-2.0.15-stable-orig/evhttp.h libevent-2.0.15-stable/evhttp.h
---- libevent-2.0.15-stable-orig/evhttp.h	2012-01-18 19:03:40.892575924 +0100
-+++ libevent-2.0.15-stable/evhttp.h	2012-01-18 19:05:47.172575977 +0100
-@@ -33,7 +33,7 @@
- 
-   The <evhttp.h> header is deprecated in Libevent 2.0 and later; please
-   use <event2/http.h> instead.  Depending on what functionality you
--  need, you may also want to include more of the other event2/*.h
-+  need, you may also want to include more of the other event2*.h
-   headers.
-  */
- 
-diff -Nuar libevent-2.0.15-stable-orig/http.c libevent-2.0.15-stable/http.c
---- libevent-2.0.15-stable-orig/http.c	2012-01-18 19:03:40.892575924 +0100
-+++ libevent-2.0.15-stable/http.c	2012-01-18 19:04:10.742575937 +0100
+diff -Nuar libevent-2.0.16-stable-orig/http.c libevent-2.0.16-stable/http.c
+--- libevent-2.0.16-stable-orig/http.c	2011-10-26 16:16:09.000000000 +0200
++++ libevent-2.0.16-stable/http.c	2012-02-06 15:03:02.303238835 +0100
 @@ -198,6 +198,11 @@
  static int evhttp_find_vhost(struct evhttp *http, struct evhttp **outhttp,
  		  const char *hostname);
@@ -204,7 +192,17 @@ diff -Nuar libevent-2.0.15-stable-orig/http.c libevent-2.0.15-stable/http.c
  evhttp_accept_socket(struct evhttp *http, evutil_socket_t fd)
  {
  	struct evhttp_bound_socket *bound =
-@@ -3750,13 +3832,71 @@
+@@ -3169,8 +3251,7 @@
+ evhttp_del_accept_socket(struct evhttp *http, struct evhttp_bound_socket *bound)
+ {
+ 	TAILQ_REMOVE(&http->sockets, bound, next);
+-	evconnlistener_free(bound->listener);
+-	mm_free(bound);
++	evconnlistener_disable(bound->listener);
+ }
+ 
+ static struct evhttp*
+@@ -3750,13 +3831,71 @@
  	 * if we want to accept more than one request on a connection,
  	 * we need to know which http server it belongs to.
  	 */
@@ -278,9 +276,9 @@ diff -Nuar libevent-2.0.15-stable-orig/http.c libevent-2.0.15-stable/http.c
  
  /*
   * Network helper functions that we do not want to export to the rest of
-diff -Nuar libevent-2.0.15-stable-orig/http-internal.h libevent-2.0.15-stable/http-internal.h
---- libevent-2.0.15-stable-orig/http-internal.h	2012-01-18 19:03:40.892575924 +0100
-+++ libevent-2.0.15-stable/http-internal.h	2012-01-18 19:04:10.752575937 +0100
+diff -Nuar libevent-2.0.16-stable-orig/http-internal.h libevent-2.0.16-stable/http-internal.h
+--- libevent-2.0.16-stable-orig/http-internal.h	2011-10-26 16:16:09.000000000 +0200
++++ libevent-2.0.16-stable/http-internal.h	2012-02-06 11:09:54.213233137 +0100
 @@ -154,6 +154,9 @@
  
  	int timeout;
@@ -291,9 +289,9 @@ diff -Nuar libevent-2.0.15-stable-orig/http-internal.h libevent-2.0.15-stable/ht
  	size_t default_max_headers_size;
  	ev_uint64_t default_max_body_size;
  
-diff -Nuar libevent-2.0.15-stable-orig/include/event2/http.h libevent-2.0.15-stable/include/event2/http.h
---- libevent-2.0.15-stable-orig/include/event2/http.h	2012-01-18 19:03:40.892575924 +0100
-+++ libevent-2.0.15-stable/include/event2/http.h	2012-01-18 19:04:10.752575937 +0100
+diff -Nuar libevent-2.0.16-stable-orig/include/event2/http.h libevent-2.0.16-stable/include/event2/http.h
+--- libevent-2.0.16-stable-orig/include/event2/http.h	2011-10-26 16:16:09.000000000 +0200
++++ libevent-2.0.16-stable/include/event2/http.h	2012-02-06 11:09:54.213233137 +0100
 @@ -104,7 +104,36 @@
   * @return Handle for the socket on success, NULL on failure.
   * @see evhttp_bind_socket(), evhttp_del_accept_socket()
@@ -374,9 +372,9 @@ diff -Nuar libevent-2.0.15-stable-orig/include/event2/http.h libevent-2.0.15-sta
  /* Low-level response interface, for streaming/chunked replies */
  
  /**
-diff -Nuar libevent-2.0.15-stable-orig/include/event2/http_struct.h libevent-2.0.15-stable/include/event2/http_struct.h
---- libevent-2.0.15-stable-orig/include/event2/http_struct.h	2012-01-18 19:03:40.892575924 +0100
-+++ libevent-2.0.15-stable/include/event2/http_struct.h	2012-01-18 19:04:10.752575937 +0100
+diff -Nuar libevent-2.0.16-stable-orig/include/event2/http_struct.h libevent-2.0.16-stable/include/event2/http_struct.h
+--- libevent-2.0.16-stable-orig/include/event2/http_struct.h	2011-10-26 16:16:09.000000000 +0200
++++ libevent-2.0.16-stable/include/event2/http_struct.h	2012-02-06 11:09:54.213233137 +0100
 @@ -90,6 +90,7 @@
  
  	enum evhttp_request_kind kind;

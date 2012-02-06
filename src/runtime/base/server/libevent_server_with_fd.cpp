@@ -44,8 +44,8 @@ int LibEventServerWithFd::getAcceptSocket() {
     return -1;
   }
 
-  ret = evhttp_accept_socket(m_server, m_accept_sock);
-  if (ret < 0) {
+  evhttp_sock = evhttp_accept_socket_with_handle(m_server, m_accept_sock);
+  if (!evhttp_sock) {
     Logger::Error("evhttp_accept_socket: %s",
         Util::safe_strerror(errno).c_str());
     int errno_save = errno;
@@ -73,8 +73,8 @@ int LibEventServerWithFd::getAcceptSocketSSL() {
     return -1;
   }
 
-  ret = evhttp_accept_socket(m_server_ssl, m_accept_sock_ssl);
-  if (ret < 0) {
+  evhttp_sock_ssl = evhttp_accept_socket_with_handle(m_server, m_accept_sock);
+  if (!evhttp_sock_ssl) {
     Logger::Error("evhttp_accept_socket: (ssl) %s",
         Util::safe_strerror(errno).c_str());
     int errno_save = errno;

@@ -232,8 +232,8 @@ int LibEventServerWithTakeover::getAcceptSocket() {
   Logger::Info("takeover: acquired listen socket");
   m_took_over = true;
 
-  ret = evhttp_accept_socket(m_server, m_accept_sock);
-  if (ret < 0) {
+  evhttp_sock = evhttp_accept_socket_with_handle(m_server, m_accept_sock);
+  if (!evhttp_sock) {
     Logger::Error("evhttp_accept_socket: %s",
         Util::safe_strerror(errno).c_str());
     int errno_save = errno;
