@@ -20,6 +20,7 @@
 #include "fb.inc"
 #include "file.inc"
 #include "function.inc"
+#include "gettext.inc"
 #include "gmagick.inc"
 #include "hash.inc"
 #include "iconv.inc"

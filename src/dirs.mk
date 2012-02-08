@@ -156,8 +156,8 @@ ifneq ($(HPHP_LIB),$(HPHP_ROOT)/bin)
 LIB_DIR := $(HPHP_LIB)
 endif
 endif
-HPHP := $(PROJECT_ROOT)/src/hphp/hphp
-HPHPI := $(PROJECT_ROOT)/src/hphpi/hphpi
+HPHP := $(PROJECT_ROOT)/build/src/hphp/hphp
+HPHPI := $(PROJECT_ROOT)/build/src/hphpi/hphpi
 
 endif
 

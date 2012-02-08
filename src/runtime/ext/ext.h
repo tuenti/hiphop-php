@@ -37,6 +37,7 @@
 #include <runtime/ext/profile/extprofile_fb.h>
 #include <runtime/ext/profile/extprofile_file.h>
 #include <runtime/ext/profile/extprofile_function.h>
+#include <runtime/ext/profile/extprofile_gettext.h>
 #include <runtime/ext/profile/extprofile_gmagick.h>
 #include <runtime/ext/profile/extprofile_hash.h>
 #include <runtime/ext/profile/extprofile_iconv.h>

@@ -35,6 +35,7 @@
 #include <test/test_ext_fb.h>
 #include <test/test_ext_file.h>
 #include <test/test_ext_function.h>
+#include <test/test_ext_gettext.h>
 #include <test/test_ext_gmagick.h>
 #include <test/test_ext_hash.h>
 #include <test/test_ext_iconv.h>
