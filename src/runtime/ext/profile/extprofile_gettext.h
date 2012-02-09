@@ -35,6 +35,11 @@ inline Variant x_gettext(CStrRef msgid) {
   return f_gettext(msgid);
 }
 
+inline Variant x__(CStrRef msgid) {
+  FUNCTION_INJECTION_BUILTIN(_);
+  return f__(msgid);
+}
+
 inline Variant x_dgettext(CStrRef domain_name, CStrRef msgid) {
   FUNCTION_INJECTION_BUILTIN(dgettext);
   return f_dgettext(domain_name, msgid);

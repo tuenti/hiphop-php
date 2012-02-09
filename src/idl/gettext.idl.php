@@ -90,6 +90,25 @@ DefineFunction(
 
 DefineFunction(
   array(
+    'name'   => "_",
+    'desc'   => "Alias for gettext.",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Variant,
+      'desc'   => "Returns the msgid translated or false on error.",
+    ),
+    'args'   => array(
+      array(
+        'name'   => "msgid",
+        'type'   => String,
+        'desc'   => "String to translate.",
+      ),
+    ),
+    'taint_observer' => false,
+  ));
+
+DefineFunction(
+  array(
     'name'   => "dgettext",
     'desc'   => "Return the translation of msgid for domain_name, or msgid
 	unaltered if a translation does not exist.",

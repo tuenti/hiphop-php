@@ -27,6 +27,7 @@ namespace HPHP {
 
 Variant f_textdomain(CStrRef domain);
 Variant f_gettext(CStrRef msgid);
+Variant f__(CStrRef msgid);
 Variant f_dgettext(CStrRef domain_name, CStrRef msgid);
 Variant f_dcgettext(CStrRef domain_name, CStrRef msgid, int64 category);
 Variant f_bindtextdomain(CStrRef domain_name, CStrRef dir);

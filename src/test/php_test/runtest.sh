@@ -5,6 +5,8 @@ function abort {
 	exit
 }
 
+export HPHPI=/opt/hiphop/bin/hphpi
+
 BAD_CACHE="/aaaa/user_cache"
 
 rm -f /tmp/custom.userpartition.cache

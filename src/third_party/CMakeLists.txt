@@ -25,12 +25,12 @@ ExternalProject_Add(
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR> --disable-openmp --enable-static=no --enable-shared=yes
 )
 
-ExternalProject_Add(
-    libmemcached
-    GIT_REPOSITORY git://github.com/dpaneda/libmemcached.git
-    INSTALL_DIR ${CMAKE_BINARY_DIR}/external_build/
-    CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR>
-)
+#ExternalProject_Add(
+#    libmemcached
+#    GIT_REPOSITORY git://github.com/dpaneda/libmemcached.git
+#    INSTALL_DIR ${CMAKE_BINARY_DIR}/external_build/
+#    CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR>
+#)
 
 if (NOT SKIP_BUNDLED_XHP)
     add_subdirectory(xhp/xhp)

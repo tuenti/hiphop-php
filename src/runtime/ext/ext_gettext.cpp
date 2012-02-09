@@ -54,6 +54,10 @@ Variant f_gettext(CStrRef msgid) {
     return String(gettext(c_msgid));
 }
 
+Variant f__(CStrRef msgid) {
+    return f_gettext(msgid);
+}
+
 Variant f_dgettext(CStrRef domain_name, CStrRef msgid) {
     const char *c_domain = domain_name.c_str();
     const char *c_msgid = msgid.c_str();
@@ -162,6 +166,7 @@ Variant f_bind_textdomain_codeset(CStrRef domain, CStrRef codeset) {
         return false;
 
     return String(curr_codeset);
+    return String();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
