@@ -24,7 +24,7 @@
 #include <runtime/base/zend/zend_collator.h>
 #include <unicode/ucol.h> // icu
 namespace HPHP {
-extern const int64 q_Collator$$SORT_REGULAR;
+extern const int64 q_Collator___SORT_REGULAR;
 }
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
@@ -33,7 +33,7 @@ int64 f_intl_get_error_code();
 String f_intl_get_error_message();
 String f_intl_error_name(int64 error_code);
 bool f_intl_is_failure(int64 error_code);
-Variant f_collator_asort(CVarRef obj, VRefParam arr, int64 sort_flag = q_Collator$$SORT_REGULAR);
+Variant f_collator_asort(CVarRef obj, VRefParam arr, int64 sort_flag = q_Collator___SORT_REGULAR);
 Variant f_collator_compare(CVarRef obj, CStrRef str1, CStrRef str2);
 Variant f_collator_create(CStrRef locale);
 Variant f_collator_get_attribute(CVarRef obj, int64 attr);
@@ -44,34 +44,34 @@ Variant f_collator_get_strength(CVarRef obj);
 Variant f_collator_set_attribute(CVarRef obj, int64 attr, int64 val);
 Variant f_collator_set_strength(CVarRef obj, int64 strength);
 Variant f_collator_sort_with_sort_keys(CVarRef obj, VRefParam arr);
-Variant f_collator_sort(CVarRef obj, VRefParam arr, int64 sort_flag = q_Collator$$SORT_REGULAR);
+Variant f_collator_sort(CVarRef obj, VRefParam arr, int64 sort_flag = q_Collator___SORT_REGULAR);
 Variant f_idn_to_ascii(CStrRef domain, VRefParam errorcode = null);
 Variant f_idn_to_unicode(CStrRef domain, VRefParam errorcode = null);
 Variant f_idn_to_utf8(CStrRef domain, VRefParam errorcode = null);
-extern const int64 q_Collator$$SORT_REGULAR;
-extern const int64 q_Collator$$SORT_NUMERIC;
-extern const int64 q_Collator$$SORT_STRING;
-extern const int64 q_Collator$$FRENCH_COLLATION;
-extern const int64 q_Collator$$ALTERNATE_HANDLING;
-extern const int64 q_Collator$$CASE_FIRST;
-extern const int64 q_Collator$$CASE_LEVEL;
-extern const int64 q_Collator$$NORMALIZATION_MODE;
-extern const int64 q_Collator$$STRENGTH;
-extern const int64 q_Collator$$HIRAGANA_QUATERNARY_MODE;
-extern const int64 q_Collator$$NUMERIC_COLLATION;
-extern const int64 q_Collator$$DEFAULT_VALUE;
-extern const int64 q_Collator$$PRIMARY;
-extern const int64 q_Collator$$SECONDARY;
-extern const int64 q_Collator$$TERTIARY;
-extern const int64 q_Collator$$DEFAULT_STRENGTH;
-extern const int64 q_Collator$$QUATERNARY;
-extern const int64 q_Collator$$IDENTICAL;
-extern const int64 q_Collator$$OFF;
-extern const int64 q_Collator$$ON;
-extern const int64 q_Collator$$SHIFTED;
-extern const int64 q_Collator$$NON_IGNORABLE;
-extern const int64 q_Collator$$LOWER_FIRST;
-extern const int64 q_Collator$$UPPER_FIRST;
+extern const int64 q_Collator___SORT_REGULAR;
+extern const int64 q_Collator___SORT_NUMERIC;
+extern const int64 q_Collator___SORT_STRING;
+extern const int64 q_Collator___FRENCH_COLLATION;
+extern const int64 q_Collator___ALTERNATE_HANDLING;
+extern const int64 q_Collator___CASE_FIRST;
+extern const int64 q_Collator___CASE_LEVEL;
+extern const int64 q_Collator___NORMALIZATION_MODE;
+extern const int64 q_Collator___STRENGTH;
+extern const int64 q_Collator___HIRAGANA_QUATERNARY_MODE;
+extern const int64 q_Collator___NUMERIC_COLLATION;
+extern const int64 q_Collator___DEFAULT_VALUE;
+extern const int64 q_Collator___PRIMARY;
+extern const int64 q_Collator___SECONDARY;
+extern const int64 q_Collator___TERTIARY;
+extern const int64 q_Collator___DEFAULT_STRENGTH;
+extern const int64 q_Collator___QUATERNARY;
+extern const int64 q_Collator___IDENTICAL;
+extern const int64 q_Collator___OFF;
+extern const int64 q_Collator___ON;
+extern const int64 q_Collator___SHIFTED;
+extern const int64 q_Collator___NON_IGNORABLE;
+extern const int64 q_Collator___LOWER_FIRST;
+extern const int64 q_Collator___UPPER_FIRST;
 
 ///////////////////////////////////////////////////////////////////////////////
 // class Collator
@@ -86,7 +86,7 @@ class c_Collator : public ExtObjectData, public Sweepable {
   public: ~c_Collator();
   public: void t___construct(CStrRef locale);
   DECLARE_METHOD_INVOKE_HELPERS(__construct);
-  public: bool t_asort(VRefParam arr, int64 sort_flag = q_Collator$$SORT_REGULAR);
+  public: bool t_asort(VRefParam arr, int64 sort_flag = q_Collator___SORT_REGULAR);
   DECLARE_METHOD_INVOKE_HELPERS(asort);
   public: Variant t_compare(CStrRef str1, CStrRef str2);
   DECLARE_METHOD_INVOKE_HELPERS(compare);
@@ -111,7 +111,7 @@ class c_Collator : public ExtObjectData, public Sweepable {
   DECLARE_METHOD_INVOKE_HELPERS(setstrength);
   public: bool t_sortwithsortkeys(VRefParam arr);
   DECLARE_METHOD_INVOKE_HELPERS(sortwithsortkeys);
-  public: bool t_sort(VRefParam arr, int64 sort_flag = q_Collator$$SORT_REGULAR);
+  public: bool t_sort(VRefParam arr, int64 sort_flag = q_Collator___SORT_REGULAR);
   DECLARE_METHOD_INVOKE_HELPERS(sort);
   public: Variant t___destruct();
   DECLARE_METHOD_INVOKE_HELPERS(__destruct);
@@ -125,8 +125,8 @@ class c_Collator : public ExtObjectData, public Sweepable {
   UCollator *m_ucoll;
   intl_error m_errcode;
 };
-extern const int64 q_Locale$$ACTUAL_LOCALE;
-extern const int64 q_Locale$$VALID_LOCALE;
+extern const int64 q_Locale___ACTUAL_LOCALE;
+extern const int64 q_Locale___VALID_LOCALE;
 
 ///////////////////////////////////////////////////////////////////////////////
 // class Locale
@@ -150,15 +150,15 @@ class c_Locale : public ExtObjectData {
 
 
 };
-extern const int64 q_Normalizer$$NONE;
-extern const int64 q_Normalizer$$FORM_D;
-extern const int64 q_Normalizer$$NFD;
-extern const int64 q_Normalizer$$FORM_KD;
-extern const int64 q_Normalizer$$NFKD;
-extern const int64 q_Normalizer$$FORM_C;
-extern const int64 q_Normalizer$$NFC;
-extern const int64 q_Normalizer$$FORM_KC;
-extern const int64 q_Normalizer$$NFKC;
+extern const int64 q_Normalizer___NONE;
+extern const int64 q_Normalizer___FORM_D;
+extern const int64 q_Normalizer___NFD;
+extern const int64 q_Normalizer___FORM_KD;
+extern const int64 q_Normalizer___NFKD;
+extern const int64 q_Normalizer___FORM_C;
+extern const int64 q_Normalizer___NFC;
+extern const int64 q_Normalizer___FORM_KC;
+extern const int64 q_Normalizer___NFKC;
 
 ///////////////////////////////////////////////////////////////////////////////
 // class Normalizer
@@ -173,13 +173,13 @@ class c_Normalizer : public ExtObjectData, public Sweepable {
   public: ~c_Normalizer();
   public: void t___construct();
   DECLARE_METHOD_INVOKE_HELPERS(__construct);
-  public: static Variant ti_isnormalized(const char* cls , CStrRef input, int64 form = q_Normalizer$$FORM_C);
-  public: static Variant t_isnormalized(CStrRef input, int64 form = q_Normalizer$$FORM_C) {
+  public: static Variant ti_isnormalized(const char* cls , CStrRef input, int64 form = q_Normalizer___FORM_C);
+  public: static Variant t_isnormalized(CStrRef input, int64 form = q_Normalizer___FORM_C) {
     return ti_isnormalized("normalizer", input, form);
   }
   DECLARE_METHOD_INVOKE_HELPERS(isnormalized);
-  public: static Variant ti_normalize(const char* cls , CStrRef input, int64 form = q_Normalizer$$FORM_C);
-  public: static Variant t_normalize(CStrRef input, int64 form = q_Normalizer$$FORM_C) {
+  public: static Variant ti_normalize(const char* cls , CStrRef input, int64 form = q_Normalizer___FORM_C);
+  public: static Variant t_normalize(CStrRef input, int64 form = q_Normalizer___FORM_C) {
     return ti_normalize("normalizer", input, form);
   }
   DECLARE_METHOD_INVOKE_HELPERS(normalize);

@@ -34,10 +34,10 @@ namespace HPHP {
 extern CallInfo ci_;
 /* preface finishes */
 /* SRC: classes/splfile.php line 384 */
-const int64 q_SplFileObject$$DROP_NEW_LINE = 1LL;
-const int64 q_SplFileObject$$READ_AHEAD = 2LL;
-const int64 q_SplFileObject$$SKIP_EMPTY = 6LL;
-const int64 q_SplFileObject$$READ_CSV = 8LL;
+const int64 q_SplFileObject___DROP_NEW_LINE = 1LL;
+const int64 q_SplFileObject___READ_AHEAD = 2LL;
+const int64 q_SplFileObject___SKIP_EMPTY = 6LL;
+const int64 q_SplFileObject___READ_CSV = 8LL;
 IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(SplFileObject)
 const InstanceOfInfo c_SplFileObject::s_instanceof_table[] = {
   {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},

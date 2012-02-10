@@ -74,10 +74,10 @@ class c_ReflectionProperty : public ExtObjectData {
   DECLARE_METHOD_INVOKE_HELPERS(getdoccomment);
 };
 ObjectData *coo_ReflectionProperty() NEVER_INLINE;
-extern const int64 q_ReflectionProperty$$IS_STATIC;
-extern const int64 q_ReflectionProperty$$IS_PUBLIC;
-extern const int64 q_ReflectionProperty$$IS_PROTECTED;
-extern const int64 q_ReflectionProperty$$IS_PRIVATE;
+extern const int64 q_ReflectionProperty___IS_STATIC;
+extern const int64 q_ReflectionProperty___IS_PUBLIC;
+extern const int64 q_ReflectionProperty___IS_PROTECTED;
+extern const int64 q_ReflectionProperty___IS_PRIVATE;
 
 ///////////////////////////////////////////////////////////////////////////////
 }

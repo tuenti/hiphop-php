@@ -74,8 +74,8 @@ set<string> Option::VolatileClasses;
 
 map<string, string> Option::FunctionSections;
 
-string Option::IdPrefix = "$$";
-string Option::LabelEscape = "$";
+string Option::IdPrefix = "___";
+string Option::LabelEscape = "___";
 
 string Option::LambdaPrefix = "df_";
 string Option::Tab = "  ";
@@ -514,6 +514,7 @@ std::string Option::MangleFilename(const std::string &name, bool id) {
     Util::replaceAll(ret, "/", "$");
     Util::replaceAll(ret, "-", "_");
     Util::replaceAll(ret, ".", "_");
+    Util::replaceAll(ret, "%", "_");
   }
   return ret;
 }

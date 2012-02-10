@@ -393,12 +393,12 @@ Variant c_ReflectionParameter::t_getposition() {
 }
 namespace hphp_impl_splitter {}
 /* SRC: classes/reflection.php line 1607 */
-const int64 q_ReflectionMethod$$IS_STATIC = 1LL;
-const int64 q_ReflectionMethod$$IS_PUBLIC = 256LL;
-const int64 q_ReflectionMethod$$IS_PROTECTED = 512LL;
-const int64 q_ReflectionMethod$$IS_PRIVATE = 1024LL;
-const int64 q_ReflectionMethod$$IS_ABSTRACT = 2LL;
-const int64 q_ReflectionMethod$$IS_FINAL = 4LL;
+const int64 q_ReflectionMethod___IS_STATIC = 1LL;
+const int64 q_ReflectionMethod___IS_PUBLIC = 256LL;
+const int64 q_ReflectionMethod___IS_PROTECTED = 512LL;
+const int64 q_ReflectionMethod___IS_PRIVATE = 1024LL;
+const int64 q_ReflectionMethod___IS_ABSTRACT = 2LL;
+const int64 q_ReflectionMethod___IS_FINAL = 4LL;
 IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(ReflectionMethod)
 const InstanceOfInfo c_ReflectionMethod::s_instanceof_table[] = {
   {0x43BBC8F6F28E44B0LL,1,"ReflectionMethod",&cw_ReflectionMethod},
@@ -1202,7 +1202,7 @@ Variant c_ReflectionExtension::t_info() {
 }
 namespace hphp_impl_splitter {}
 /* SRC: classes/reflection.php line 461 */
-const int64 q_ReflectionFunction$$IS_DEPRECATED = 262144LL;
+const int64 q_ReflectionFunction___IS_DEPRECATED = 262144LL;
 IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(ReflectionFunction)
 const InstanceOfInfo c_ReflectionFunction::s_instanceof_table[] = {
   {0x21EF70351574EC09LL,1,"ReflectionFunction",&cw_ReflectionFunction},
@@ -1385,10 +1385,10 @@ Variant c_ReflectionFunction::t_invokeargs(CVarRef v_args) {
 }
 namespace hphp_impl_splitter {}
 /* SRC: classes/reflection.php line 1355 */
-const int64 q_ReflectionProperty$$IS_STATIC = 1LL;
-const int64 q_ReflectionProperty$$IS_PUBLIC = 256LL;
-const int64 q_ReflectionProperty$$IS_PROTECTED = 512LL;
-const int64 q_ReflectionProperty$$IS_PRIVATE = 1024LL;
+const int64 q_ReflectionProperty___IS_STATIC = 1LL;
+const int64 q_ReflectionProperty___IS_PUBLIC = 256LL;
+const int64 q_ReflectionProperty___IS_PROTECTED = 512LL;
+const int64 q_ReflectionProperty___IS_PRIVATE = 1024LL;
 IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(ReflectionProperty)
 const InstanceOfInfo c_ReflectionProperty::s_instanceof_table[] = {
   {0x75AA2571BDB659E4LL,1,"ReflectionProperty",&cw_ReflectionProperty},
@@ -2267,9 +2267,9 @@ Variant c_ReflectionObject::t_export(Variant v_obj, CVarRef v_ret) {
 }
 namespace hphp_impl_splitter {}
 /* SRC: classes/reflection.php line 538 */
-const int64 q_ReflectionClass$$IS_IMPLICIT_ABSTRACT = 16LL;
-const int64 q_ReflectionClass$$IS_EXPLICIT_ABSTRACT = 32LL;
-const int64 q_ReflectionClass$$IS_FINAL = 64LL;
+const int64 q_ReflectionClass___IS_IMPLICIT_ABSTRACT = 16LL;
+const int64 q_ReflectionClass___IS_EXPLICIT_ABSTRACT = 32LL;
+const int64 q_ReflectionClass___IS_FINAL = 64LL;
 IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(ReflectionClass)
 const InstanceOfInfo c_ReflectionClass::s_instanceof_table[] = {
   {0x35A44A5E6AE2E71DLL,0,"ReflectionClass",&cw_ReflectionClass},

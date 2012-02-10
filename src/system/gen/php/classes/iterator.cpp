@@ -35,10 +35,10 @@ namespace HPHP {
 extern CallInfo ci_;
 /* preface finishes */
 /* SRC: classes/iterator.php line 228 */
-const int64 q_RecursiveIteratorIterator$$LEAVES_ONLY = 0LL;
-const int64 q_RecursiveIteratorIterator$$SELF_FIRST = 1LL;
-const int64 q_RecursiveIteratorIterator$$CHILD_FIRST = 2LL;
-const int64 q_RecursiveIteratorIterator$$CATCH_GET_CHILD = 16LL;
+const int64 q_RecursiveIteratorIterator___LEAVES_ONLY = 0LL;
+const int64 q_RecursiveIteratorIterator___SELF_FIRST = 1LL;
+const int64 q_RecursiveIteratorIterator___CHILD_FIRST = 2LL;
+const int64 q_RecursiveIteratorIterator___CATCH_GET_CHILD = 16LL;
 IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(RecursiveIteratorIterator)
 const InstanceOfInfo c_RecursiveIteratorIterator::s_instanceof_table[] = {
   {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},
@@ -864,8 +864,8 @@ Variant c_IteratorIterator::t___call(Variant v_func, Variant v_params) {
 }
 namespace hphp_impl_splitter {}
 /* SRC: classes/iterator.php line 329 */
-const int64 q_ArrayIterator$$STD_PROP_LIST = 1LL;
-const int64 q_ArrayIterator$$ARRAY_AS_PROPS = 2LL;
+const int64 q_ArrayIterator___STD_PROP_LIST = 1LL;
+const int64 q_ArrayIterator___ARRAY_AS_PROPS = 2LL;
 IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(ArrayIterator)
 const InstanceOfInfo c_ArrayIterator::s_instanceof_table[] = {
   {0x795F86375EE263D1LL,0,"Countable",(const ObjectStaticCallbacks*)2},

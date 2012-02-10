@@ -57,16 +57,16 @@ class c_DebuggerProxyCmdUser : public ExtObjectData {
  public:
   Eval::DebuggerProxy *m_proxy;
 };
-extern const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_FILENAMES;
-extern const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_VARIABLES;
-extern const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_CONSTANTS;
-extern const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_CLASSES;
-extern const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_FUNCTIONS;
-extern const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_CLASS_METHODS;
-extern const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_CLASS_PROPERTIES;
-extern const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_CLASS_CONSTANTS;
-extern const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_KEYWORDS;
-extern const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_CODE;
+extern const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_FILENAMES;
+extern const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_VARIABLES;
+extern const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_CONSTANTS;
+extern const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_CLASSES;
+extern const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_FUNCTIONS;
+extern const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_CLASS_METHODS;
+extern const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_CLASS_PROPERTIES;
+extern const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_CLASS_CONSTANTS;
+extern const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_KEYWORDS;
+extern const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_CODE;
 
 ///////////////////////////////////////////////////////////////////////////////
 // class DebuggerClientCmdUser
@@ -151,11 +151,11 @@ class c_DebuggerClientCmdUser : public ExtObjectData {
 ///////////////////////////////////////////////////////////////////////////////
 // class DebuggerClient
 
-extern const int64 q_DebuggerClient$$STATE_INVALID;
-extern const int64 q_DebuggerClient$$STATE_UNINIT;
-extern const int64 q_DebuggerClient$$STATE_INITIALIZING;
-extern const int64 q_DebuggerClient$$STATE_READY_FOR_COMMAND;
-extern const int64 q_DebuggerClient$$STATE_BUSY;
+extern const int64 q_DebuggerClient___STATE_INVALID;
+extern const int64 q_DebuggerClient___STATE_UNINIT;
+extern const int64 q_DebuggerClient___STATE_INITIALIZING;
+extern const int64 q_DebuggerClient___STATE_READY_FOR_COMMAND;
+extern const int64 q_DebuggerClient___STATE_BUSY;
 
 FORWARD_DECLARE_CLASS_BUILTIN(DebuggerClient);
 class c_DebuggerClient : public ExtObjectData {

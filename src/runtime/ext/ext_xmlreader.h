@@ -33,28 +33,28 @@ typedef unsigned char *(*xmlreader_read_one_char_t)(xmlTextReaderPtr reader, con
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
 
-extern const int64 q_XMLReader$$NONE;
-extern const int64 q_XMLReader$$ELEMENT;
-extern const int64 q_XMLReader$$ATTRIBUTE;
-extern const int64 q_XMLReader$$TEXT;
-extern const int64 q_XMLReader$$CDATA;
-extern const int64 q_XMLReader$$ENTITY_REF;
-extern const int64 q_XMLReader$$ENTITY;
-extern const int64 q_XMLReader$$PI;
-extern const int64 q_XMLReader$$COMMENT;
-extern const int64 q_XMLReader$$DOC;
-extern const int64 q_XMLReader$$DOC_TYPE;
-extern const int64 q_XMLReader$$DOC_FRAGMENT;
-extern const int64 q_XMLReader$$NOTATION;
-extern const int64 q_XMLReader$$WHITESPACE;
-extern const int64 q_XMLReader$$SIGNIFICANT_WHITESPACE;
-extern const int64 q_XMLReader$$END_ELEMENT;
-extern const int64 q_XMLReader$$END_ENTITY;
-extern const int64 q_XMLReader$$XML_DECLARATION;
-extern const int64 q_XMLReader$$LOADDTD;
-extern const int64 q_XMLReader$$DEFAULTATTRS;
-extern const int64 q_XMLReader$$VALIDATE;
-extern const int64 q_XMLReader$$SUBST_ENTITIES;
+extern const int64 q_XMLReader___NONE;
+extern const int64 q_XMLReader___ELEMENT;
+extern const int64 q_XMLReader___ATTRIBUTE;
+extern const int64 q_XMLReader___TEXT;
+extern const int64 q_XMLReader___CDATA;
+extern const int64 q_XMLReader___ENTITY_REF;
+extern const int64 q_XMLReader___ENTITY;
+extern const int64 q_XMLReader___PI;
+extern const int64 q_XMLReader___COMMENT;
+extern const int64 q_XMLReader___DOC;
+extern const int64 q_XMLReader___DOC_TYPE;
+extern const int64 q_XMLReader___DOC_FRAGMENT;
+extern const int64 q_XMLReader___NOTATION;
+extern const int64 q_XMLReader___WHITESPACE;
+extern const int64 q_XMLReader___SIGNIFICANT_WHITESPACE;
+extern const int64 q_XMLReader___END_ELEMENT;
+extern const int64 q_XMLReader___END_ENTITY;
+extern const int64 q_XMLReader___XML_DECLARATION;
+extern const int64 q_XMLReader___LOADDTD;
+extern const int64 q_XMLReader___DEFAULTATTRS;
+extern const int64 q_XMLReader___VALIDATE;
+extern const int64 q_XMLReader___SUBST_ENTITIES;
 
 ///////////////////////////////////////////////////////////////////////////////
 // class XMLReader

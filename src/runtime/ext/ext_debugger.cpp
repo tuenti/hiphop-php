@@ -28,25 +28,25 @@ namespace HPHP {
 using namespace Eval;
 using namespace boost;
 
-const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_FILENAMES =
+const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_FILENAMES =
   DebuggerClient::AutoCompleteFileNames;
-const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_VARIABLES =
+const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_VARIABLES =
   DebuggerClient::AutoCompleteVariables;
-const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_CONSTANTS =
+const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_CONSTANTS =
   DebuggerClient::AutoCompleteConstants;
-const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_CLASSES   =
+const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_CLASSES   =
   DebuggerClient::AutoCompleteClasses;
-const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_FUNCTIONS =
+const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_FUNCTIONS =
   DebuggerClient::AutoCompleteFunctions;
-const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_CLASS_METHODS =
+const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_CLASS_METHODS =
   DebuggerClient::AutoCompleteClassMethods;
-const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_CLASS_PROPERTIES =
+const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_CLASS_PROPERTIES =
   DebuggerClient::AutoCompleteClassProperties;
-const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_CLASS_CONSTANTS =
+const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_CLASS_CONSTANTS =
   DebuggerClient::AutoCompleteClassConstants;
-const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_KEYWORDS =
+const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_KEYWORDS =
   DebuggerClient::AutoCompleteKeyword;
-const int64 q_DebuggerClientCmdUser$$AUTO_COMPLETE_CODE =
+const int64 q_DebuggerClientCmdUser___AUTO_COMPLETE_CODE =
   DebuggerClient::AutoCompleteCode;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -340,14 +340,14 @@ Variant c_DebuggerClientCmdUser::t___destruct() {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-const int64 q_DebuggerClient$$STATE_INVALID = -1;
-const int64 q_DebuggerClient$$STATE_UNINIT
+const int64 q_DebuggerClient___STATE_INVALID = -1;
+const int64 q_DebuggerClient___STATE_UNINIT
   = DebuggerClient::StateUninit;
-const int64 q_DebuggerClient$$STATE_INITIALIZING
+const int64 q_DebuggerClient___STATE_INITIALIZING
   = DebuggerClient::StateInitializing;
-const int64 q_DebuggerClient$$STATE_READY_FOR_COMMAND
+const int64 q_DebuggerClient___STATE_READY_FOR_COMMAND
   = DebuggerClient::StateReadyForCommand;
-const int64 q_DebuggerClient$$STATE_BUSY
+const int64 q_DebuggerClient___STATE_BUSY
   = DebuggerClient::StateBusy;
 
 c_DebuggerClient::c_DebuggerClient(const ObjectStaticCallbacks *cb) : ExtObjectData(cb) {
@@ -363,7 +363,7 @@ void c_DebuggerClient::t___construct() {
 int64 c_DebuggerClient::t_getstate() {
   INSTANCE_METHOD_INJECTION_BUILTIN(DebuggerClient, DebuggerClient::getstate);
   if (!m_client) {
-    return q_DebuggerClient$$STATE_INVALID;
+    return q_DebuggerClient___STATE_INVALID;
   }
   return m_client->getClientState();
 }

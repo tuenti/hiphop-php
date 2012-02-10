@@ -2627,7 +2627,7 @@ bool TestCodeRun::TestArrayIterator() {
       "  print \"$a: $b\n\";"
       "}"
       "$itp = \"it\";"
-      "foreach ($$itp as $a => $b) {"
+      "foreach (___itp as $a => $b) {"
       "  print \"$a: $b\n\";"
       "}"
       "function getIter() {"
@@ -4319,7 +4319,7 @@ bool TestCodeRun::TestObject() {
       "$obj1 = new A(); $obj2 = new A(); $obj1->a = $obj2; $obj2->a = $obj1;"
       "var_dump($obj1);");
 
-  MVCR("<?php $a = 1; class A { public function t() { global $a; $b = 'a'; var_dump($$b);}} $obj = new A(); $obj->t();");
+  MVCR("<?php $a = 1; class A { public function t() { global $a; $b = 'a'; var_dump(___b);}} $obj = new A(); $obj->t();");
 
   MVCR("<?php "
       "class g {"
@@ -5096,7 +5096,7 @@ bool TestCodeRun::TestObjectMethod() {
        "  function x() {"
        "    var_dump($this);"
        "    $t = 'this';"
-       "    var_dump($$t);"
+       "    var_dump(___t);"
        "  }"
        "}"
        "$x = new c;"
@@ -6903,7 +6903,7 @@ bool TestCodeRun::TestObjectPropertyExpression() {
        "class X {"
        "public $a = 3;"
        "function foo($t) {"
-       "$$t = 5;"
+       "___t = 5;"
        "var_dump($this->a);"
        "var_dump($this);"
        "}"
@@ -7548,7 +7548,7 @@ bool TestCodeRun::TestReference() {
        "function g(&$arg0, $arg1) { var_dump($arg0, $arg1); }\n"
        "class A {\n"
        "  function f($f, $var) {\n"
-       "    $f($this, $$var = 5);\n"
+       "    $f($this, ___var = 5);\n"
        "  }\n"
        "  function g($f, $var) {\n"
        "    $f($this, $var++);\n"
@@ -7669,19 +7669,19 @@ bool TestCodeRun::TestDynamicConstants() {
 
 bool TestCodeRun::TestDynamicVariables() {
   // r-value
-  MVCR("<?php $a = 1; function t() { global $a;$b = 'a'; var_dump($$b);} t();");
-  MVCR("<?php $a = 1; function t() { $b = 'a'; var_dump($$b);} t();");
-  MVCR("<?php function t() { $a = 'test'; $b = 'a'; var_dump($$b);} t();");
-  MVCR("<?php $a = 'test'; $b = 'a'; var_dump($$b);");
-  MVCR("<?php $a = 1; class A { public function t() { global $a; $b = 'a'; var_dump($$b);}} $obj = new A(); $obj->t();");
+  MVCR("<?php $a = 1; function t() { global $a;$b = 'a'; var_dump(___b);} t();");
+  MVCR("<?php $a = 1; function t() { $b = 'a'; var_dump(___b);} t();");
+  MVCR("<?php function t() { $a = 'test'; $b = 'a'; var_dump(___b);} t();");
+  MVCR("<?php $a = 'test'; $b = 'a'; var_dump(___b);");
+  MVCR("<?php $a = 1; class A { public function t() { global $a; $b = 'a'; var_dump(___b);}} $obj = new A(); $obj->t();");
 
   // l-value
-  MVCR("<?php $a = 'test'; $b = 'a'; $$b = 'ok'; var_dump($a);");
-  MVCR("<?php $a = 'test'; $b = 'a'; $$b = 10; var_dump($a);");
-  MVCR("<?php $a = 'd'; var_dump($$a); $$a = 10; var_dump($$a); var_dump($d);");
+  MVCR("<?php $a = 'test'; $b = 'a'; ___b = 'ok'; var_dump($a);");
+  MVCR("<?php $a = 'test'; $b = 'a'; ___b = 10; var_dump($a);");
+  MVCR("<?php $a = 'd'; var_dump(___a); ___a = 10; var_dump(___a); var_dump($d);");
 
   // ref-value
-  MVCR("<?php $a = 'test'; $b = 'a'; $c = &$$b; $c = 10; var_dump($a);");
+  MVCR("<?php $a = 'test'; $b = 'a'; $c = &___b; $c = 10; var_dump($a);");
 
   // extract
   MVCR("<?php extract(array('a' => 'aval')); var_dump($a);");
@@ -7776,7 +7776,7 @@ bool TestCodeRun::TestDynamicVariables() {
       "  global $d;"
       "  $a = 10;"
       "  $b = 'c';"
-      "  $$b = 20;"
+      "  ___b = 20;"
       "  $gdv = get_defined_vars();"
       "  var_dump(isset($gdv['a']) && $gdv['a'] === 10);"
       "  var_dump(isset($gdv['b']) && $gdv['b'] === 'c');"
@@ -7798,8 +7798,8 @@ bool TestCodeRun::TestDynamicVariables() {
   MVCR("<?php "
        "function foo(array $test) {"
        "  foreach ($test AS $var) {"
-       "    global $$var;"
-       "    $$var = $var . 'foo';"
+       "    global ___var;"
+       "    ___var = $var . 'foo';"
        "  }"
        "}"
        "foo(array('a', 'b'));"
@@ -7808,7 +7808,7 @@ bool TestCodeRun::TestDynamicVariables() {
   MVCR("<?php "
        "function test($a) {"
        "  $b = 5;"
-       "  global $$a;"
+       "  global ___a;"
        "  var_dump($b);"
        "}"
        "test('b');");
@@ -7823,15 +7823,15 @@ bool TestCodeRun::TestDynamicVariables() {
        "$j = 2;"
        "$k = 3;"
        "$v = 'i';"
-       "var_dump($$v);"
+       "var_dump(___v);"
        "$v = 'j';"
-       "var_dump($$v);"
+       "var_dump(___v);"
        "$v = 'k';"
-       "var_dump($$v);"
+       "var_dump(___v);"
        "$v = '_FILES';"
-       "var_dump($$v);"
+       "var_dump(___v);"
        "$v = 'l';"
-       "var_dump($$v);"
+       "var_dump(___v);"
        "if (true) {"
        "  class A{"
        "    const C = 1;"
@@ -8811,7 +8811,7 @@ bool TestCodeRun::TestProgramFunctions() {
 
 bool TestCodeRun::TestCompilation() {
   MVCR("<?php class A { public static $foo = 123;} $a = foo(); "
-       "function foo() { return 'foo';} var_dump(A::$$a);");
+       "function foo() { return 'foo';} var_dump(A::___a);");
 
   // testing re-declared classes with missing parents, HPHPi raises error
   // but the compiled code does not.
@@ -16493,8 +16493,8 @@ bool TestCodeRun::TestSwitchStatement() {
        "  }"
        "  $a = 'b';"
        "  $b = 2;"
-       "  switch ($$a) {"
-       "    case ++$$a: var_dump('broken'); break;"
+       "  switch (___a) {"
+       "    case ++___a: var_dump('broken'); break;"
        "    case 2: var_dump('ok'); break;"
        "    case 3: var_dump('really broken'); break;"
        "    default: var_dump('fail'); break;"
@@ -16509,8 +16509,8 @@ bool TestCodeRun::TestSwitchStatement() {
        "}"
        "$a = 'b';"
        "$b = 2;"
-       "switch ($$a) {"
-       "  case ++$$a: var_dump('broken'); break;"
+       "switch (___a) {"
+       "  case ++___a: var_dump('broken'); break;"
        "  case 2: var_dump('ok'); break;"
        "  case 3: var_dump('really broken'); break;"
        "  default: var_dump('fail'); break;"
@@ -18139,11 +18139,11 @@ bool TestCodeRun::TestFiber() {
 
   // test dynamic globals
   MVCRO("<?php "
-        "function fiber() { $a = 'foo'; global $$a; $$a = 456;}"
-        "$a = 'foo'; $$a = 123;"
+        "function fiber() { $a = 'foo'; global ___a; ___a = 456;}"
+        "$a = 'foo'; ___a = 123;"
         "end_user_func_async(call_user_func_async('fiber'),"
         " GLOBAL_STATE_OVERWRITE);"
-        "var_dump($$a);",
+        "var_dump(___a);",
 
         "int(456)\n"
        );
@@ -20728,7 +20728,7 @@ bool TestCodeRun::TestYield() {
   MVCRO("<?php\n"
         "function f($x, $y) {\n"
         "  yield $x; \n"
-        "  yield $$y;\n"
+        "  yield ___y;\n"
         "}\n"
         "foreach (f(10, 'x') as $x) { var_dump($x); }\n"
         "function g() {\n"
@@ -20854,7 +20854,7 @@ bool TestCodeRun::TestYield() {
   MVCRO("<?php\n"
         "class X {\n"
         "  function foo($t) {\n"
-        "    $$t = 5;\n"
+        "    ___t = 5;\n"
         "    yield $this;\n"
         "  }\n"
         "}\n"
@@ -21805,10 +21805,10 @@ bool TestCodeRun::TestTaint() {
         "}\n"
         "unset($tmp);\n"
         "fb_set_taint($badtok, TAINT_ALL);\n"
-        "$$goodtok = 'goodval';\n"
+        "___goodtok = 'goodval';\n"
         "$vars = array_keys(get_defined_vars(), 'goodval');\n"
         "var_dump(fb_get_taint($vars[0], TAINT_ALL));\n"
-        "$$badtok = 'badval';\n"
+        "___badtok = 'badval';\n"
         "$vars = array_keys(get_defined_vars(), 'badval');\n"
         "var_dump(fb_get_taint($vars[0], TAINT_ALL));\n"
         "function foostr() {\n"

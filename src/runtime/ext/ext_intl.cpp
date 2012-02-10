@@ -55,30 +55,30 @@ bool f_intl_is_failure(int64 error_code) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-const int64 q_Collator$$SORT_REGULAR = 0;
-const int64 q_Collator$$SORT_STRING = 1;
-const int64 q_Collator$$SORT_NUMERIC = 2;
-const int64 q_Collator$$FRENCH_COLLATION = UCOL_FRENCH_COLLATION;
-const int64 q_Collator$$ALTERNATE_HANDLING = UCOL_ALTERNATE_HANDLING;
-const int64 q_Collator$$CASE_FIRST = UCOL_CASE_FIRST;
-const int64 q_Collator$$CASE_LEVEL = UCOL_CASE_LEVEL;
-const int64 q_Collator$$NORMALIZATION_MODE = UCOL_NORMALIZATION_MODE;
-const int64 q_Collator$$STRENGTH = UCOL_STRENGTH;
-const int64 q_Collator$$HIRAGANA_QUATERNARY_MODE = UCOL_HIRAGANA_QUATERNARY_MODE;
-const int64 q_Collator$$NUMERIC_COLLATION = UCOL_NUMERIC_COLLATION;
-const int64 q_Collator$$DEFAULT_VALUE = UCOL_DEFAULT;
-const int64 q_Collator$$PRIMARY = UCOL_PRIMARY;
-const int64 q_Collator$$SECONDARY = UCOL_SECONDARY;
-const int64 q_Collator$$TERTIARY = UCOL_TERTIARY;
-const int64 q_Collator$$DEFAULT_STRENGTH = UCOL_DEFAULT_STRENGTH;
-const int64 q_Collator$$QUATERNARY = UCOL_QUATERNARY;
-const int64 q_Collator$$IDENTICAL = UCOL_IDENTICAL;
-const int64 q_Collator$$OFF = UCOL_OFF;
-const int64 q_Collator$$ON = UCOL_ON;
-const int64 q_Collator$$SHIFTED = UCOL_SHIFTED;
-const int64 q_Collator$$NON_IGNORABLE = UCOL_NON_IGNORABLE;
-const int64 q_Collator$$LOWER_FIRST = UCOL_LOWER_FIRST;
-const int64 q_Collator$$UPPER_FIRST = UCOL_UPPER_FIRST;
+const int64 q_Collator___SORT_REGULAR = 0;
+const int64 q_Collator___SORT_STRING = 1;
+const int64 q_Collator___SORT_NUMERIC = 2;
+const int64 q_Collator___FRENCH_COLLATION = UCOL_FRENCH_COLLATION;
+const int64 q_Collator___ALTERNATE_HANDLING = UCOL_ALTERNATE_HANDLING;
+const int64 q_Collator___CASE_FIRST = UCOL_CASE_FIRST;
+const int64 q_Collator___CASE_LEVEL = UCOL_CASE_LEVEL;
+const int64 q_Collator___NORMALIZATION_MODE = UCOL_NORMALIZATION_MODE;
+const int64 q_Collator___STRENGTH = UCOL_STRENGTH;
+const int64 q_Collator___HIRAGANA_QUATERNARY_MODE = UCOL_HIRAGANA_QUATERNARY_MODE;
+const int64 q_Collator___NUMERIC_COLLATION = UCOL_NUMERIC_COLLATION;
+const int64 q_Collator___DEFAULT_VALUE = UCOL_DEFAULT;
+const int64 q_Collator___PRIMARY = UCOL_PRIMARY;
+const int64 q_Collator___SECONDARY = UCOL_SECONDARY;
+const int64 q_Collator___TERTIARY = UCOL_TERTIARY;
+const int64 q_Collator___DEFAULT_STRENGTH = UCOL_DEFAULT_STRENGTH;
+const int64 q_Collator___QUATERNARY = UCOL_QUATERNARY;
+const int64 q_Collator___IDENTICAL = UCOL_IDENTICAL;
+const int64 q_Collator___OFF = UCOL_OFF;
+const int64 q_Collator___ON = UCOL_ON;
+const int64 q_Collator___SHIFTED = UCOL_SHIFTED;
+const int64 q_Collator___NON_IGNORABLE = UCOL_NON_IGNORABLE;
+const int64 q_Collator___LOWER_FIRST = UCOL_LOWER_FIRST;
+const int64 q_Collator___UPPER_FIRST = UCOL_UPPER_FIRST;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -137,7 +137,7 @@ void c_Collator::t___construct(CStrRef locale) {
 }
 
 bool c_Collator::t_asort(VRefParam arr,
-                         int64 sort_flag /* = q_Collator$$SORT_REGULAR */) {
+                         int64 sort_flag /* = q_Collator___SORT_REGULAR */) {
   INSTANCE_METHOD_INJECTION_BUILTIN(Collator, Collator::asort);
   if (!arr.isArray()) {
     throw_bad_array_exception();
@@ -444,7 +444,7 @@ bool c_Collator::t_sortwithsortkeys(VRefParam arr) {
 }
 
 bool c_Collator::t_sort(VRefParam arr,
-                        int64 sort_flag /* = q_Collator$$SORT_REGULAR */) {
+                        int64 sort_flag /* = q_Collator___SORT_REGULAR */) {
   INSTANCE_METHOD_INJECTION_BUILTIN(Collator, Collator::sort);
   if (!arr.isArray()) {
     throw_bad_array_exception();
@@ -483,7 +483,7 @@ Variant c_Collator::t___destruct() {
   }                                                        \
 
 Variant f_collator_asort(CVarRef obj, VRefParam arr,
-                         int64 sort_flag /* = q_Collator$$SORT_REGULAR */) {
+                         int64 sort_flag /* = q_Collator___SORT_REGULAR */) {
   CHECK_COLL(obj);
   return coll->t_asort(ref(arr), sort_flag);
 }
@@ -538,15 +538,15 @@ Variant f_collator_sort_with_sort_keys(CVarRef obj, VRefParam arr) {
 }
 
 Variant f_collator_sort(CVarRef obj, VRefParam arr,
-                        int64 sort_flag /* = q_Collator$$SORT_REGULAR */) {
+                        int64 sort_flag /* = q_Collator___SORT_REGULAR */) {
   CHECK_COLL(obj);
   return coll->t_sort(ref(arr), sort_flag);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
-const int64 q_Locale$$ACTUAL_LOCALE = 0;
-const int64 q_Locale$$VALID_LOCALE = 1;
+const int64 q_Locale___ACTUAL_LOCALE = 0;
+const int64 q_Locale___VALID_LOCALE = 1;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -566,15 +566,15 @@ Variant c_Locale::t___destruct() {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-const int64 q_Normalizer$$NONE     = UNORM_NONE;
-const int64 q_Normalizer$$FORM_D   = UNORM_NFD;
-const int64 q_Normalizer$$NFD      = UNORM_NFD;
-const int64 q_Normalizer$$FORM_KD  = UNORM_NFKD;
-const int64 q_Normalizer$$NFKD     = UNORM_NFKD;
-const int64 q_Normalizer$$FORM_C   = UNORM_NFC;
-const int64 q_Normalizer$$NFC      = UNORM_NFC;
-const int64 q_Normalizer$$FORM_KC  = UNORM_NFKC;
-const int64 q_Normalizer$$NFKC     = UNORM_NFKC;
+const int64 q_Normalizer___NONE     = UNORM_NONE;
+const int64 q_Normalizer___FORM_D   = UNORM_NFD;
+const int64 q_Normalizer___NFD      = UNORM_NFD;
+const int64 q_Normalizer___FORM_KD  = UNORM_NFKD;
+const int64 q_Normalizer___NFKD     = UNORM_NFKD;
+const int64 q_Normalizer___FORM_C   = UNORM_NFC;
+const int64 q_Normalizer___NFC      = UNORM_NFC;
+const int64 q_Normalizer___FORM_KC  = UNORM_NFKC;
+const int64 q_Normalizer___NFKC     = UNORM_NFKC;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -595,7 +595,7 @@ Variant c_Normalizer::t___destruct() {
 ///////////////////////////////////////////////////////////////////////////////
 
 Variant c_Normalizer::ti_isnormalized(const char* cls , CStrRef input,
-                                      int64 form /* = q_Normalizer$$FORM_C */) {
+                                      int64 form /* = q_Normalizer___FORM_C */) {
   STATIC_METHOD_INJECTION_BUILTIN(Normalizer, Normalizer::isnormalized);
   s_intl_error->m_error.clear();
 
@@ -643,7 +643,7 @@ Variant c_Normalizer::ti_isnormalized(const char* cls , CStrRef input,
 }
 
 Variant c_Normalizer::ti_normalize(const char* cls , CStrRef input,
-                                   int64 form /* = q_Normalizer$$FORM_C */) {
+                                   int64 form /* = q_Normalizer___FORM_C */) {
   STATIC_METHOD_INJECTION_BUILTIN(Normalizer, Normalizer::normalize);
   s_intl_error->m_error.clear();
 

@@ -27,17 +27,17 @@ namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
 // class DateTime
 
-extern const StaticString q_DateTime$$ATOM;
-extern const StaticString q_DateTime$$COOKIE;
-extern const StaticString q_DateTime$$ISO8601;
-extern const StaticString q_DateTime$$RFC822;
-extern const StaticString q_DateTime$$RFC850;
-extern const StaticString q_DateTime$$RFC1036;
-extern const StaticString q_DateTime$$RFC1123;
-extern const StaticString q_DateTime$$RFC2822;
-extern const StaticString q_DateTime$$RFC3339;
-extern const StaticString q_DateTime$$RSS;
-extern const StaticString q_DateTime$$W3C;
+extern const StaticString q_DateTime___ATOM;
+extern const StaticString q_DateTime___COOKIE;
+extern const StaticString q_DateTime___ISO8601;
+extern const StaticString q_DateTime___RFC822;
+extern const StaticString q_DateTime___RFC850;
+extern const StaticString q_DateTime___RFC1036;
+extern const StaticString q_DateTime___RFC1123;
+extern const StaticString q_DateTime___RFC2822;
+extern const StaticString q_DateTime___RFC3339;
+extern const StaticString q_DateTime___RSS;
+extern const StaticString q_DateTime___W3C;
 
 FORWARD_DECLARE_CLASS_BUILTIN(DateTime);
 class c_DateTime : public ExtObjectData {
@@ -100,20 +100,20 @@ class c_DateTime : public ExtObjectData {
 ///////////////////////////////////////////////////////////////////////////////
 // class DateTimeZone
 
-extern const int64 q_DateTimeZone$$AFRICA;
-extern const int64 q_DateTimeZone$$AMERICA;
-extern const int64 q_DateTimeZone$$ANTARCTICA;
-extern const int64 q_DateTimeZone$$ARCTIC;
-extern const int64 q_DateTimeZone$$ASIA;
-extern const int64 q_DateTimeZone$$ATLANTIC;
-extern const int64 q_DateTimeZone$$AUSTRALIA;
-extern const int64 q_DateTimeZone$$EUROPE;
-extern const int64 q_DateTimeZone$$INDIAN;
-extern const int64 q_DateTimeZone$$PACIFIC;
-extern const int64 q_DateTimeZone$$UTC;
-extern const int64 q_DateTimeZone$$ALL;
-extern const int64 q_DateTimeZone$$ALL_WITH_BC;
-extern const int64 q_DateTimeZone$$PER_COUNTRY;
+extern const int64 q_DateTimeZone___AFRICA;
+extern const int64 q_DateTimeZone___AMERICA;
+extern const int64 q_DateTimeZone___ANTARCTICA;
+extern const int64 q_DateTimeZone___ARCTIC;
+extern const int64 q_DateTimeZone___ASIA;
+extern const int64 q_DateTimeZone___ATLANTIC;
+extern const int64 q_DateTimeZone___AUSTRALIA;
+extern const int64 q_DateTimeZone___EUROPE;
+extern const int64 q_DateTimeZone___INDIAN;
+extern const int64 q_DateTimeZone___PACIFIC;
+extern const int64 q_DateTimeZone___UTC;
+extern const int64 q_DateTimeZone___ALL;
+extern const int64 q_DateTimeZone___ALL_WITH_BC;
+extern const int64 q_DateTimeZone___PER_COUNTRY;
 
 FORWARD_DECLARE_CLASS_BUILTIN(DateTimeZone);
 class c_DateTimeZone : public ExtObjectData {

@@ -80,12 +80,12 @@ class c_ReflectionMethod : public c_ReflectionFunctionAbstract {
   DECLARE_METHOD_INVOKE_HELPERS(getdeclaringclass);
 };
 ObjectData *coo_ReflectionMethod() NEVER_INLINE;
-extern const int64 q_ReflectionMethod$$IS_STATIC;
-extern const int64 q_ReflectionMethod$$IS_PUBLIC;
-extern const int64 q_ReflectionMethod$$IS_PROTECTED;
-extern const int64 q_ReflectionMethod$$IS_PRIVATE;
-extern const int64 q_ReflectionMethod$$IS_ABSTRACT;
-extern const int64 q_ReflectionMethod$$IS_FINAL;
+extern const int64 q_ReflectionMethod___IS_STATIC;
+extern const int64 q_ReflectionMethod___IS_PUBLIC;
+extern const int64 q_ReflectionMethod___IS_PROTECTED;
+extern const int64 q_ReflectionMethod___IS_PRIVATE;
+extern const int64 q_ReflectionMethod___IS_ABSTRACT;
+extern const int64 q_ReflectionMethod___IS_FINAL;
 
 ///////////////////////////////////////////////////////////////////////////////
 }

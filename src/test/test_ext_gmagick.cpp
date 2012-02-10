@@ -70,8 +70,8 @@ bool TestExtGmagick::test_Gmagick() {
   VS(gm->t_getimageformat(), "PNG");
   unlink("images/test2.png");
 
-  VS(gm->t_getimagetype(), q_Gmagick$$IMGTYPE_TRUECOLOR);
-  VS(gm->t_getimagecolorspace(), q_Gmagick$$COLORSPACE_RGB);
+  VS(gm->t_getimagetype(), q_Gmagick___IMGTYPE_TRUECOLOR);
+  VS(gm->t_getimagecolorspace(), q_Gmagick___COLORSPACE_RGB);
   gm->t_setcompressionquality(20);
   gm->t_setimageformat("JPG");
   gm->t_writeimage("images/mala.jpg");

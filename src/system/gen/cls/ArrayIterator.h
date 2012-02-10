@@ -92,8 +92,8 @@ class c_ArrayIterator : public ExtObjectData {
   DECLARE_METHOD_INVOKE_HELPERS(valid);
 };
 ObjectData *coo_ArrayIterator() NEVER_INLINE;
-extern const int64 q_ArrayIterator$$STD_PROP_LIST;
-extern const int64 q_ArrayIterator$$ARRAY_AS_PROPS;
+extern const int64 q_ArrayIterator___STD_PROP_LIST;
+extern const int64 q_ArrayIterator___ARRAY_AS_PROPS;
 
 ///////////////////////////////////////////////////////////////////////////////
 }

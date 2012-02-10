@@ -36,12 +36,12 @@ namespace HPHP {
 extern CallInfo ci_;
 /* preface finishes */
 /* SRC: classes/directoryiterator.php line 122 */
-const int64 q_RecursiveDirectoryIterator$$CURRENT_AS_SELF = 0LL;
-const int64 q_RecursiveDirectoryIterator$$CURRENT_AS_FILEINFO = 16LL;
-const int64 q_RecursiveDirectoryIterator$$CURRENT_AS_PATHNAME = 32LL;
-const int64 q_RecursiveDirectoryIterator$$KEY_AS_PATHNAME = 0LL;
-const int64 q_RecursiveDirectoryIterator$$KEY_AS_FILENAME = 256LL;
-const int64 q_RecursiveDirectoryIterator$$NEW_CURRENT_AND_KEY = 272LL;
+const int64 q_RecursiveDirectoryIterator___CURRENT_AS_SELF = 0LL;
+const int64 q_RecursiveDirectoryIterator___CURRENT_AS_FILEINFO = 16LL;
+const int64 q_RecursiveDirectoryIterator___CURRENT_AS_PATHNAME = 32LL;
+const int64 q_RecursiveDirectoryIterator___KEY_AS_PATHNAME = 0LL;
+const int64 q_RecursiveDirectoryIterator___KEY_AS_FILENAME = 256LL;
+const int64 q_RecursiveDirectoryIterator___NEW_CURRENT_AND_KEY = 272LL;
 IMPLEMENT_CLASS_NO_DEFAULT_SWEEP(RecursiveDirectoryIterator)
 const InstanceOfInfo c_RecursiveDirectoryIterator::s_instanceof_table[] = {
   {0x66679538C5E6F0A1LL,1,"Traversable",(const ObjectStaticCallbacks*)2},

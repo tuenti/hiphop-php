@@ -511,13 +511,13 @@ bool TestParserStmt::TestGlobalStatement() {
   V("<?php global $a;",
     "global $a;\n");
 
-  V("<?php global $$b;",
+  V("<?php global ___b;",
     "global ${$b};\n");
 
   V("<?php global ${$a};",
     "global ${$a};\n");
 
-  V("<?php global $a, $$b, ${$a};",
+  V("<?php global $a, ___b, ${$a};",
     "global $a, ${$b}, ${$a};\n");
 
   return true;

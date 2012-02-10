@@ -59,10 +59,10 @@ class c_RecursiveIteratorIterator : public ExtObjectData {
   DECLARE_METHOD_INVOKE_HELPERS(valid);
 };
 ObjectData *coo_RecursiveIteratorIterator() NEVER_INLINE;
-extern const int64 q_RecursiveIteratorIterator$$LEAVES_ONLY;
-extern const int64 q_RecursiveIteratorIterator$$SELF_FIRST;
-extern const int64 q_RecursiveIteratorIterator$$CHILD_FIRST;
-extern const int64 q_RecursiveIteratorIterator$$CATCH_GET_CHILD;
+extern const int64 q_RecursiveIteratorIterator___LEAVES_ONLY;
+extern const int64 q_RecursiveIteratorIterator___SELF_FIRST;
+extern const int64 q_RecursiveIteratorIterator___CHILD_FIRST;
+extern const int64 q_RecursiveIteratorIterator___CATCH_GET_CHILD;
 
 ///////////////////////////////////////////////////////////////////////////////
 }

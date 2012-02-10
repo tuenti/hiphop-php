@@ -112,10 +112,10 @@ class c_SplFileObject : public c_SplFileInfo {
   DECLARE_METHOD_INVOKE_HELPERS(valid);
 };
 ObjectData *coo_SplFileObject() NEVER_INLINE;
-extern const int64 q_SplFileObject$$DROP_NEW_LINE;
-extern const int64 q_SplFileObject$$READ_AHEAD;
-extern const int64 q_SplFileObject$$SKIP_EMPTY;
-extern const int64 q_SplFileObject$$READ_CSV;
+extern const int64 q_SplFileObject___DROP_NEW_LINE;
+extern const int64 q_SplFileObject___READ_AHEAD;
+extern const int64 q_SplFileObject___SKIP_EMPTY;
+extern const int64 q_SplFileObject___READ_CSV;
 
 ///////////////////////////////////////////////////////////////////////////////
 }
