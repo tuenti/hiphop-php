@@ -84,6 +84,8 @@ class MemcacheObjectData {
     memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_HASH, RuntimeOption::MemcachePoolHashFunction);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_HASH, RuntimeOption::MemcachePoolHashFunction);
 
+    memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 1);
+
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_USE_UDP, 1);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 1);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 1);
@@ -400,7 +402,7 @@ bool c_MemcachePool::t_delete(CStrRef key, int expire /*= 0*/) {
   return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
 }
 
-int64 c_MemcachePool::t_increment(CStrRef key, int offset /*= 1*/) {
+Variant c_MemcachePool::t_increment(CStrRef key, int offset /*= 1*/) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::increment);
   if (key.empty()) {
     raise_warning("Key cannot be empty");
@@ -415,10 +417,14 @@ int64 c_MemcachePool::t_increment(CStrRef key, int offset /*= 1*/) {
     return (int64)value;
   }
 
+  if (ret == MEMCACHED_NOTFOUND) {
+    return false;
+  }
+
   return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
 }
 
-int64 c_MemcachePool::t_decrement(CStrRef key, int offset /*= 1*/) {
+Variant c_MemcachePool::t_decrement(CStrRef key, int offset /*= 1*/) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::decrement);
   if (key.empty()) {
     raise_warning("Key cannot be empty");
@@ -430,6 +436,10 @@ int64 c_MemcachePool::t_decrement(CStrRef key, int offset /*= 1*/) {
                                               key.length(), offset, &value);
   if (ret == MEMCACHED_SUCCESS) {
     return (int64)value;
+  }
+
+  if (ret == MEMCACHED_NOTFOUND) {
+    return false;
   }
 
   return check_memcache_return(MEMCACHEL(tcp_st), ret, key);

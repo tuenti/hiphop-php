@@ -501,8 +501,8 @@ DefineFunction(
 		can use memcache_increment() function.",
     'flags'  =>  HasDocComment,
     'return' => array(
-      'type'   => Int64,
-			'desc'   => "Returns new items value on success or FALSE on failure.",
+      'type'   => Variant,
+      'desc'   => "Returns new items value on success or FALSE on failure.",
     ),
     'args'   => array(
       array(
@@ -531,7 +531,7 @@ DefineFunction(
 		it didn't exist. Also you can use memcache_decrement() function.",
     'flags'  =>  HasDocComment,
     'return' => array(
-      'type'   => Int64,
+      'type'   => Variant,
       'desc'   => "Returns item's new value on success or FALSE on failure.",
     ),
     'args'   => array(

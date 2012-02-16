@@ -62,9 +62,9 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
   DECLARE_METHOD_INVOKE_HELPERS(get);
   public: bool t_delete(CStrRef key, int expire = 0);
   DECLARE_METHOD_INVOKE_HELPERS(delete);
-  public: int64 t_increment(CStrRef key, int offset = 1);
+  public: Variant t_increment(CStrRef key, int offset = 1);
   DECLARE_METHOD_INVOKE_HELPERS(increment);
-  public: int64 t_decrement(CStrRef key, int offset = 1);
+  public: Variant t_decrement(CStrRef key, int offset = 1);
   DECLARE_METHOD_INVOKE_HELPERS(decrement);
   public: Variant t_getversion();
   DECLARE_METHOD_INVOKE_HELPERS(getversion);
