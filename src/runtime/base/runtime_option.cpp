@@ -385,6 +385,7 @@ int RuntimeOption::BucketCacheTTLForPrimingStaleData = 12;
 int RuntimeOption::JsonCacheRefreshTime = 1;
 int RuntimeOption::MemcachePoolHashStrategy = 0;
 int RuntimeOption::MemcachePoolHashFunction = 11;
+int RuntimeOption::MemcachePoolCompressThreshold = 1000;
 
 ///////////////////////////////////////////////////////////////////////////////
 // keep this block after all the above static variables, or we will have
@@ -1117,6 +1118,7 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
      Hdf memcachepool_config = config["MemcachePool"];
      MemcachePoolHashStrategy = memcachepool_config["HashStrategy"].getInt32(0);
      MemcachePoolHashFunction = memcachepool_config["HashFunction"].getInt32(11);
+     MemcachePoolCompressThreshold = memcachepool_config["CompressThreshold"].getInt32(1000);
   }
 
   Extension::LoadModules(config);

@@ -21,6 +21,7 @@
 #include <runtime/ext/ext_function.h>
 #include <runtime/ext/ext_error.h>
 #include <util/logger.h>
+#include <runtime/ext/ext_zlib.h>
 
 namespace HPHP {
 IMPLEMENT_DEFAULT_EXTENSION(memcachepool);
@@ -75,10 +76,10 @@ class MemcacheObjectData {
   MemcacheObjectData() {
     tcp_st = memcached_create(NULL);
     udp_st = memcached_create(NULL);
-    compress_threshold = 0;
     min_compress_savings = 0.2;
     failure_callback.setNull();
 
+    compress_threshold = RuntimeOption::MemcachePoolCompressThreshold;
     memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION, RuntimeOption::MemcachePoolHashStrategy);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION, RuntimeOption::MemcachePoolHashStrategy);
     memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_HASH, RuntimeOption::MemcachePoolHashFunction);
@@ -184,15 +185,28 @@ bool c_MemcachePool::t_pconnect(CStrRef host, int port /*= 0*/,
   return t_connect(host, port, timeout, timeoutms);
 }
 
-String static memcache_prepare_for_storage(CVarRef var, int &flag) {
+String static memcache_prepare_for_storage(CVarRef var, int &flag, int threshold) {
+  String serialized;
+
   if (var.isString()) {
-    return var.toString();
+    serialized = var.toString();
   } else if (var.isNumeric() || var.isBoolean()) {
-    return var.toString();
+    serialized = var.toString();
   } else {
     flag |= k_MEMCACHE_SERIALIZED;
-    return f_serialize(var);
+    serialized = f_serialize(var);
   }
+
+  if (serialized.length() >= threshold) {
+    Variant compressed = f_gzcompress(serialized);
+
+    if (compressed) {
+        flag |= k_MEMCACHE_COMPRESSED;
+        serialized = compressed.toString();
+    }
+  }
+
+  return serialized;
 }
 
 Variant static memcache_fetch_from_storage(const char *payload,
@@ -201,15 +215,13 @@ Variant static memcache_fetch_from_storage(const char *payload,
   Variant ret = null;
 
   if (flags & k_MEMCACHE_COMPRESSED) {
-    raise_warning("Unable to handle compressed values yet");
-    return null;
+    ret = f_gzuncompress(String(payload, payload_len, AttachString));
+  } else {
+    ret = String(payload, payload_len, CopyString);
   }
 
   if (flags & k_MEMCACHE_SERIALIZED) {
-    ret = f_unserialize(String(payload, payload_len, CopyString));
-    // raise_notice("unable to unserialize data");
-  } else {
-    ret = String(payload, payload_len, CopyString);
+    ret = f_unserialize(ret);
   }
 
   return ret;
@@ -223,7 +235,7 @@ bool c_MemcachePool::t_add(CStrRef key, CVarRef var, int flag /*= 0*/,
     return false;
   }
 
-  String serialized = memcache_prepare_for_storage(var, flag);
+  String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
 
   memcached_return_t ret = memcached_add(MEMCACHEL(tcp_st),
                                         key.c_str(), key.length(),
@@ -242,7 +254,7 @@ bool c_MemcachePool::t_set(CStrRef key, CVarRef var, int flag /*= 0*/,
     return false;
   }
 
-  String serialized = memcache_prepare_for_storage(var, flag);
+  String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
 
   memcached_return_t ret = memcached_set(MEMCACHEL(tcp_st),
                                         key.c_str(), key.length(),
@@ -261,7 +273,7 @@ bool c_MemcachePool::t_cas(CStrRef key, CVarRef var, int flag,
     return false;
   }
 
-  String serialized = memcache_prepare_for_storage(var, flag);
+  String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
 
   memcached_return_t ret = memcached_cas(MEMCACHEL(tcp_st),
                                         key.c_str(), key.length(),
@@ -280,7 +292,7 @@ bool c_MemcachePool::t_replace(CStrRef key, CVarRef var, int flag /*= 0*/,
     return false;
   }
 
-  String serialized = memcache_prepare_for_storage(var, flag);
+  String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
 
   memcached_return_t ret = memcached_replace(MEMCACHEL(tcp_st),
                                              key.c_str(), key.length(),

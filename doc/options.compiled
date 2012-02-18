@@ -849,6 +849,7 @@ This setting allow to change the default refresh value for cached Jsons. This is
   MemcachePool {
     HashStrategy = 0;
     HashFunction = 11;
+    CompressThreshold = 1000;
   }
 
  - HashStrategy
@@ -873,3 +874,7 @@ Sets the hashing algorithm for host mapping on continuum. Values are used direct
   - 9  JENKINS
   - 10 CUSTOM
   - 11 FNV1A_COMPAT (Use this to match the fnv PHP memcache extension hash)
+
+ - CompressThreshold
+
+Compression is enabled by default, the threshold which control the minimum string length which triggers compresssion.
