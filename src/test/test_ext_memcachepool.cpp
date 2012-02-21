@@ -18,6 +18,7 @@
 #include <test/test_ext_memcachepool.h>
 #include <runtime/ext/ext_memcachepool.h>
 #include <runtime/ext/ext_options.h>
+#include <runtime/ext/ext_json.h>
 #include <test/test_memcached_info.inc>
 
 IMPLEMENT_SEP_EXTENSION_TEST(Memcachepool);
@@ -107,10 +108,14 @@ bool TestExtMemcachepool::test_MemcachePool_flush() {
 bool TestExtMemcachepool::test_MemcachePool_get_set() {
   CREATE_MEMCACHED();
   Array list;
-  list.add("array_empty", Array());
+  list.add("array_empty", Array::Create());
+  list.add("array_small", CREATE_VECTOR1(1));
   list.add("loooooooooooooooonger_stringgggggg", "with a loooooooooooooooonnnnnnnnnger payloadddddddddddd");
   list.add("string", "just a string");
   list.add("array", CREATE_VECTOR4(1, 2, 3, "foo"));
+  list.add("map", CREATE_MAP1("fbid", 101501853510151001LL));
+  Object obj = f_json_decode("{\"a\":1,\"b\":2.3,\"3\":\"test\"}", true);
+  list.add("object", obj.toArray());
 
   // Set & check for all elements individually
   for (ArrayIter iter(list); iter; ++iter) {
@@ -186,8 +191,10 @@ bool TestExtMemcachepool::test_MemcachePool_incdec() {
   CREATE_MEMCACHED();
   const char *key = "incdec_key";
 
+  VERIFY(! memc->t_increment(key, 1));
+  VERIFY(! memc->t_decrement(key, 1));
   VERIFY(memc->t_add(key, "0"));
-  VS(memc->t_get(key), "0");
+  VS(memc->t_get(key), "0"); // Memcachepool extension does not store type
   VERIFY(memc->t_increment(key, 1));
   VS(memc->t_get(key), "1");
   VERIFY(memc->t_increment(key, 10));
@@ -197,8 +204,10 @@ bool TestExtMemcachepool::test_MemcachePool_incdec() {
   VERIFY(memc->t_decrement(key, 2));
   VS(memc->t_get(key), "11");
   VERIFY(memc->t_decrement(key, 10));
-  VS(memc->t_get(key), "1 "); // Funny.. but not an extension problem
+  VS(memc->t_get(key), "1 ");
   VERIFY(memc->t_delete(key));
+  VERIFY(! memc->t_increment(key, 1));
+  VERIFY(! memc->t_decrement(key, 1));
 
   return Count(true);
 }
