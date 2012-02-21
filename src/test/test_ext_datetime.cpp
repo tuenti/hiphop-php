@@ -26,7 +26,6 @@ bool TestExtDatetime::RunTests(const std::string &which) {
   RUN_TEST(test_checkdate);
   RUN_TEST(test_date_create);
   RUN_TEST(test_date_date_set);
-  RUN_TEST(test_date_default_timezone_get);
   RUN_TEST(test_date_default_timezone_set);
   RUN_TEST(test_date_format);
   RUN_TEST(test_date_isodate_set);
@@ -84,11 +83,6 @@ bool TestExtDatetime::test_date_date_set() {
   Object dt = f_date_create("2006-12-12 12:34:56");
   f_date_date_set(dt, 2007, 11, 23);
   VDT(dt, "2007-11-23 12:34:56");
-  return Count(true);
-}
-
-bool TestExtDatetime::test_date_default_timezone_get() {
-  VS(f_date_default_timezone_get(), "America/Los_Angeles");
   return Count(true);
 }
 
