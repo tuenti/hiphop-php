@@ -49,7 +49,7 @@ bool TestExtGettext::RunTests(const std::string &which) {
 
 bool TestExtGettext::test_textdomain() {
     setlocale(LC_ALL, "en_US.UTF-8");
-    f_bindtextdomain ("messages", "./locale");
+    f_bindtextdomain ("messages", "test/locale");
     VS("test", f_textdomain("test"));
     VS("test", f_textdomain(""));
     VS("foo", f_textdomain("foo"));
@@ -58,7 +58,7 @@ bool TestExtGettext::test_textdomain() {
 }
 
 bool TestExtGettext::test_gettext() {
-    bindtextdomain ("messages", "./locale");
+    bindtextdomain ("messages", "test/locale");
     textdomain ("messages");
 
     setlocale(LC_ALL, "en_US.UTF-8");
@@ -80,8 +80,8 @@ bool TestExtGettext::test_gettext() {
 bool TestExtGettext::test_dgettext() {
     setlocale(LC_MESSAGES, "en_US.UTF-8");
     setlocale(LC_ALL, "en_US.UTF-8");
-    f_bindtextdomain("dgettextTest", "./locale");
-    f_bindtextdomain("dgettextTest_switch", "./locale");
+    f_bindtextdomain("dgettextTest", "test/locale");
+    f_bindtextdomain("dgettextTest_switch", "test/locale");
     f_textdomain("dgettextTest");
     
     VS("Produkt", f_gettext("item"));
@@ -99,7 +99,7 @@ bool TestExtGettext::test_bindtextdomain() {
     f_textdomain("messages");
     f_bindtextdomain("messages", "");
     VS("Basic test", f_gettext("Basic test"));
-    f_bindtextdomain("messages", "./locale");
+    f_bindtextdomain("messages", "test/locale");
     VS("A basic test", f_gettext("Basic test"));
     VS(false, f_bindtextdomain("example.org", "foobar"));
 
@@ -111,7 +111,7 @@ bool TestExtGettext::test_bindtextdomain() {
 
 bool TestExtGettext::test_ngettext() {
     setlocale(LC_ALL, "en_US.UTF-8");
-    f_bindtextdomain("dngettextTest", "./locale");
+    f_bindtextdomain("dngettextTest", "test/locale");
     f_textdomain("dngettextTest");
     VS("Produkt", f_ngettext("item", "items", 1));
     VS("Produkte", f_ngettext("item", "items", 2));
@@ -121,7 +121,7 @@ bool TestExtGettext::test_ngettext() {
 
 bool TestExtGettext::test_dngettext() {
     setlocale(LC_ALL, "en_US.UTF-8");
-    f_bindtextdomain("dngettextTest", "./locale");
+    f_bindtextdomain("dngettextTest", "test/locale");
 
     VS("Produkt", f_dngettext("dngettextTest", "item", "items", 1));
     VS("Produkte", f_dngettext("dngettextTest", "item", "items", 2));
@@ -139,7 +139,7 @@ bool TestExtGettext::test_dcngettext() {
 
     setlocale(LC_MESSAGES, "en_US.UTF-8");
     setlocale(LC_ALL, "en_US.UTF-8");
-    f_bindtextdomain("dngettextTest", "./locale");
+    f_bindtextdomain("dngettextTest", "test/locale");
 
     VS("cProdukt", f_dcgettext("dngettextTest", "item", LC_CTYPE));
     VS("Produkt", f_dcgettext("dngettextTest", "item", LC_MESSAGES));
