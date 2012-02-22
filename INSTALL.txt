@@ -1,0 +1,53 @@
+#############################
+# Install packages for compilation
+#############################
+
+#apt-get update
+# for i in `cat dev_pkg.txt `; do echo $i; apt-get install -y --force-yes $i;done
+
+g++
+libboost-dev
+libmysqlclient-dev
+libxml2-dev
+libmcrypt-dev
+libicu-dev
+openssl
+build-essential
+binutils-dev
+libcap-dev
+libgd2-xpm-dev
+zlib1g-dev
+libtbb-dev
+libonig-dev
+libpcre3-dev
+libboost-system-dev
+libboost-program-options-dev
+libboost-filesystem-dev
+wget
+libreadline-dev
+libncurses-dev
+libicu-dev
+libbz2-dev
+libcurl4-openssl-dev
+libgraphicsmagick1-dev
+libc-client2007e-dev
+php5-mcrypt
+php5-imagick
+libgoogle-perftools-dev
+memcached
+
+
+dpkg -i cmake_2.8.5-1~bpo60+1_amd64.deb cmake-data_2.8.5-1~bpo60+1_amd64.deb + apt-get -f install
+
+
+
+#############################
+# Compile
+#############################
+
+hg clone ssh://code.tuenti.com//srv/hg/backend/hiphop-php
+cd hiphop-php
+export HPHP_HOME=`pwd`
+mkdir build; cd build
+cmake ..
+make -j 4 package
