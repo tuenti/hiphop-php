@@ -39,7 +39,7 @@ bool TestExtTuenti_jsonloader::test_cached_json_decode() {
                           "non-existing-file",
                           ""};
 
-  VS(0, chdir("json_files"));
+  VS(0, chdir("test/json_files"));
 
   // First time will be uncached, subsequent ones will be cached, no special
   // reason to iterate 10 times... just to maybe catch some rare bug
@@ -72,5 +72,6 @@ bool TestExtTuenti_jsonloader::test_cached_json_decode() {
   VS(0, unlink(test_files[0]));
   VS(0, rename("temporal_database", test_files[0]));
 
+  VS(0, chdir("../.."));
   return Count(true);
 }
