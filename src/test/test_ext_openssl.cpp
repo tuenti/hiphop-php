@@ -27,7 +27,6 @@ bool TestExtOpenssl::RunTests(const std::string &which) {
   RUN_TEST(test_openssl_csr_export_to_file);
   RUN_TEST(test_openssl_csr_export);
   RUN_TEST(test_openssl_csr_get_public_key);
-  RUN_TEST(test_openssl_csr_get_subject);
   RUN_TEST(test_openssl_csr_new);
   RUN_TEST(test_openssl_csr_sign);
   RUN_TEST(test_openssl_error_string);
@@ -95,14 +94,6 @@ bool TestExtOpenssl::test_openssl_csr_get_public_key() {
   Variant publickey = f_openssl_csr_get_public_key(csr);
   VERIFY(!same(publickey, false));
   VERIFY(!publickey.isNull());
-  return Count(true);
-}
-
-bool TestExtOpenssl::test_openssl_csr_get_subject() {
-  Variant csr = f_openssl_csr_new(null, null);
-  VERIFY(!csr.isNull());
-  VERIFY((f_openssl_csr_get_subject(csr)["O"] == "My Company Ltd") ||
-         (f_openssl_csr_get_subject(csr)["O"] == "Default Company Ltd"));
   return Count(true);
 }
 

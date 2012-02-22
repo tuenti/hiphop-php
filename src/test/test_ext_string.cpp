@@ -22,6 +22,7 @@
 bool TestExtString::RunTests(const std::string &which) {
   bool ret = true;
 
+  setlocale(LC_ALL, "C");
   RUN_TEST(test_addcslashes);
   RUN_TEST(test_stripcslashes);
   RUN_TEST(test_addslashes);

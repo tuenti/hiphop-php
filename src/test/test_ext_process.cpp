@@ -26,7 +26,7 @@ using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////
 
-static const char *php_path = "/usr/local/php/bin/php";
+static const char *php_path = "/usr/bin/php";
 
 bool TestExtProcess::RunTests(const std::string &which) {
   bool ret = true;

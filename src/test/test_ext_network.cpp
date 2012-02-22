@@ -25,13 +25,11 @@
 bool TestExtNetwork::RunTests(const std::string &which) {
   bool ret = true;
 
-  RUN_TEST(test_gethostbyaddr);
   RUN_TEST(test_gethostbyname);
   RUN_TEST(test_gethostbynamel);
   RUN_TEST(test_getprotobyname);
   RUN_TEST(test_getprotobynumber);
   RUN_TEST(test_getservbyname);
-  RUN_TEST(test_getservbyport);
   RUN_TEST(test_inet_ntop);
   RUN_TEST(test_inet_pton);
   RUN_TEST(test_ip2long);
@@ -62,11 +60,6 @@ bool TestExtNetwork::RunTests(const std::string &which) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-bool TestExtNetwork::test_gethostbyaddr() {
-  VS(f_gethostbyaddr("127.0.0.1"), "localhost.localdomain");
-  return Count(true);
-}
-
 bool TestExtNetwork::test_gethostbyname() {
   VS(f_gethostbyname("localhost"), "127.0.0.1");
   return Count(true);
@@ -89,11 +82,6 @@ bool TestExtNetwork::test_getprotobynumber() {
 
 bool TestExtNetwork::test_getservbyname() {
   VS(f_getservbyname("http", "tcp"), 80);
-  return Count(true);
-}
-
-bool TestExtNetwork::test_getservbyport() {
-  VS(f_getservbyport(80, "tcp"), "http");
   return Count(true);
 }
 
