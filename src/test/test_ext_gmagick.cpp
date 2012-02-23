@@ -19,6 +19,8 @@
 #include <runtime/ext/ext_options.h>
 #include <unistd.h>
 
+#define IMG_DIR "test/images"
+
 IMPLEMENT_SEP_EXTENSION_TEST(Gmagick);
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -41,7 +43,7 @@ bool TestExtGmagick::test_Gmagick() {
   p_Gmagick gm(p_Gmagick(NEWOBJ(c_Gmagick))->create());
   p_GmagickPixel gmp(p_GmagickPixel(NEWOBJ(c_GmagickPixel))->create("#ffffff"));
 
-  gm->t_readimage("images/test2.jpg");
+  gm->t_readimage(IMG_DIR "/test2.jpg");
   VS(gm->t_getimagewidth(), 800);
   VS(gm->t_getimageheight(), 600);
 
@@ -66,15 +68,15 @@ bool TestExtGmagick::test_Gmagick() {
   VS(gm->t_getimageheight(), 75);
 
   gm->t_setimageformat("PNG");
-  gm->t_writeimage("images/test2.png");
+  gm->t_writeimage(IMG_DIR "/test2.png");
   VS(gm->t_getimageformat(), "PNG");
-  unlink("images/test2.png");
+  unlink(IMG_DIR "/test2.png");
 
   VS(gm->t_getimagetype(), q_Gmagick___IMGTYPE_TRUECOLOR);
   VS(gm->t_getimagecolorspace(), q_Gmagick___COLORSPACE_RGB);
   gm->t_setcompressionquality(20);
   gm->t_setimageformat("JPG");
-  gm->t_writeimage("images/mala.jpg");
+  gm->t_writeimage(IMG_DIR "/mala.jpg");
   VS(gm->t_getimageprofile("ICM"), "");
   VS(gm->t_getimageformat(), "JPG");
   
@@ -84,15 +86,15 @@ bool TestExtGmagick::test_Gmagick() {
   VS(gm2->t_getimagefilename(), "patata");
   VS(gm2->t_getimagewidth(), 75);
   VS(gm2->t_getimageheight(), 75);
-  unlink("images/mala.jpg");
+  unlink(IMG_DIR "/mala.jpg");
 
   p_Gmagick gm3(p_Gmagick(NEWOBJ(c_Gmagick))->create());
-  gm3->t_readimage("images/palomas_small.jpg");
+  gm3->t_readimage(IMG_DIR "/palomas_small.jpg");
   VS(gm3->t_getimageprofile("ICM").size(), 560);
   gm3->t_profileimage("*", (const char *)NULL);
   VS(gm3->t_getimageprofile("ICM").size(), 0);
-  gm3->t_writeimage("images/palomas_noprofile.jpg");
-  unlink("images/palomas_noprofile.jpg");
+  gm3->t_writeimage(IMG_DIR "/palomas_noprofile.jpg");
+  unlink(IMG_DIR "/palomas_noprofile.jpg");
 
   return Count(true);
 }

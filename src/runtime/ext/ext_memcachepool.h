@@ -86,7 +86,7 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
   DECLARE_METHOD_INVOKE_HELPERS(setserverparams);
   public: bool t_setfailurecallback(CVarRef failure_callback = null_variant);
   DECLARE_METHOD_INVOKE_HELPERS(setfailurecallback);
-  public: bool t_addserver(CStrRef host, int tcp_port = 11211, int udp_port = 11211, bool persistent = false, int weight = 0, int timeout = 0, int retry_interval = 0, bool status = true);
+  public: bool t_addserver(CStrRef host, int tcp_port = 11211, int udp_port = 0, bool persistent = false, int weight = 0, int timeout = 0, int retry_interval = 0, bool status = true);
   DECLARE_METHOD_INVOKE_HELPERS(addserver);
   public: Variant t___destruct();
   DECLARE_METHOD_INVOKE_HELPERS(__destruct);

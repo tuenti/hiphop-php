@@ -129,25 +129,25 @@ EXTERNAL_LIBJPEG_LIBS = -ljpeg
 GD_LIBS = $(EXT_DIR)/gd/lib/libgd.a $(EXT_DIR)/libpng/lib/libpng.a \
 	$(EXTERNAL_LIBJPEG_LIBS) -lfreetype -lfontconfig
 
-MOZILLA_LIBS = $(EXT_DIR)/mozilla/libmozutil_s.a \
-               $(EXT_DIR)/mozilla/libexpat_s.a \
-               $(EXT_DIR)/mozilla/libsaxp.a \
-               $(EXT_DIR)/mozilla/libunicharutil_s.a \
-               $(EXT_DIR)/mozilla/libxptcmd.a \
-               $(EXT_DIR)/mozilla/libxptcall.a \
-               $(EXT_DIR)/mozilla/libxptinfo.a \
-               $(EXT_DIR)/mozilla/libxpt.a \
-               $(EXT_DIR)/mozilla/libxpcomcomponents_s.a \
-               $(EXT_DIR)/mozilla/libxpcomproxy_s.a \
-               $(EXT_DIR)/mozilla/libxpcomio_s.a \
-               $(EXT_DIR)/mozilla/libxpcomds_s.a \
-               $(EXT_DIR)/mozilla/libxpcomglue.a \
-               $(EXT_DIR)/mozilla/libxpcombase_s.a \
-               $(EXT_DIR)/mozilla/libxpcomthreads_s.a \
-               $(EXT_DIR)/mozilla/libstring_s.a \
-               $(EXT_DIR)/mozilla/libplc4.a \
-               $(EXT_DIR)/mozilla/libplds4.a \
-               $(EXT_DIR)/mozilla/libnspr4.a
+#MOZILLA_LIBS = $(EXT_DIR)/mozilla/libmozutil_s.a \
+#               $(EXT_DIR)/mozilla/libexpat_s.a \
+#               $(EXT_DIR)/mozilla/libsaxp.a \
+#               $(EXT_DIR)/mozilla/libunicharutil_s.a \
+#               $(EXT_DIR)/mozilla/libxptcmd.a \
+#               $(EXT_DIR)/mozilla/libxptcall.a \
+#               $(EXT_DIR)/mozilla/libxptinfo.a \
+#               $(EXT_DIR)/mozilla/libxpt.a \
+#               $(EXT_DIR)/mozilla/libxpcomcomponents_s.a \
+#               $(EXT_DIR)/mozilla/libxpcomproxy_s.a \
+#               $(EXT_DIR)/mozilla/libxpcomio_s.a \
+#               $(EXT_DIR)/mozilla/libxpcomds_s.a \
+#               $(EXT_DIR)/mozilla/libxpcomglue.a \
+#               $(EXT_DIR)/mozilla/libxpcombase_s.a \
+#               $(EXT_DIR)/mozilla/libxpcomthreads_s.a \
+#               $(EXT_DIR)/mozilla/libstring_s.a \
+#               $(EXT_DIR)/mozilla/libplc4.a \
+#               $(EXT_DIR)/mozilla/libplds4.a \
+#               $(EXT_DIR)/mozilla/libnspr4.a
 
 CURL_LIBS = $(EXT_DIR)/libcurl/lib/libcurl.a
 
@@ -239,7 +239,7 @@ STATIC_LIBS = $(filter-out $(EXCEPTIONS), $(EXTERNAL_STATIC_LIBS))
 
 SHARED_LIBS = $(EXT_DIR)/binutils/libbinutils.so \
               $(EXT_DIR)/imap/lib/libc-client.so.2007 \
-              $(shell find $(EXT_DIR)/mozilla -name "*.so") \
+#              $(shell find $(EXT_DIR)/mozilla -name "*.so") \
               $(patsubst %.a, %.so, $(STATIC_LIBS)) \
               $(LINK_LIBS) \
 

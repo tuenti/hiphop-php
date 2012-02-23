@@ -30,7 +30,6 @@ class TestExtDatetime : public TestCppExt {
   bool test_checkdate();
   bool test_date_create();
   bool test_date_date_set();
-  bool test_date_default_timezone_get();
   bool test_date_default_timezone_set();
   bool test_date_format();
   bool test_date_isodate_set();

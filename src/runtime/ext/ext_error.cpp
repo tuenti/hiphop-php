@@ -93,12 +93,19 @@ Array f_error_get_last() {
     return (ArrayData *)NULL;
   }
 
-  Array frame = FrameInjection::GetBacktrace(true).begin().second().toArray();
+  String file,line;
+  Array bt = FrameInjection::GetBacktrace(true);
+
+  if (bt.size() > 0) {
+    Array frame = FrameInjection::GetBacktrace(true).begin().second().toArray();
+    file = frame->get("file").toString();
+    line = frame->get("line").toString();
+  }
 
   return CREATE_MAP4("message", g_context->getLastError(),
                      "type", g_context->getLastErrorNumber(),
-                     "file", frame->get("file").toString(),
-                     "line", frame->get("line").toString());
+                     "file", file,
+                     "line", line);
 }
 
 bool f_error_log(CStrRef message, int message_type /* = 0 */,

@@ -451,7 +451,7 @@ bool TestCodeError::TestBadPassByReference() {
       "$a = 'foo';"
       "$b = 'a';"
       "set_to_null($a());"
-      "set_to_null(___b);"
+      "set_to_null($$b);"
       "$i = 1;"
       "set_to_null(++$i); set_to_null($i--);"
       "set_to_null(--$i); set_to_null($i--);"

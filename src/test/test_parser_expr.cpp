@@ -69,7 +69,7 @@ bool TestParserExpr::TestAssignmentExpression() {
   V("<?php $a = &$b;",             "$a = &$b;\n");
   V("<?php $a = &new Test();",     "$a = new Test();\n");
   V("<?php $a = &new $b();",       "$a = new $b();\n");
-  V("<?php $a = &new ___b();",      "$a = new ${$b}();\n");
+  V("<?php $a = &new $$b();",      "$a = new ${$b}();\n");
   V("<?php $a = &new Test::$b();", "$a = new Test::$b();\n");
   V("<?php $a = &new $b->c();",    "$a = new $b->c();\n");
   V("<?php $a = &new $b->c->d();", "$a = new $b->c->d();\n");
@@ -83,9 +83,9 @@ bool TestParserExpr::TestSimpleVariable() {
 
 bool TestParserExpr::TestDynamicVariable() {
   V("<?php $a = ${$a + $b};", "$a = ${$a + $b};\n");
-  V("<?php $a = ___a;",        "$a = ${$a};\n");
+  V("<?php $a = $$a;",        "$a = ${$a};\n");
   V("<?php $a = ${$a};",      "$a = ${$a};\n");
-  V("<?php $a = ___$a;",       "$a = ${${$a}};\n");
+  V("<?php $a = $$$a;",       "$a = ${${$a}};\n");
   return true;
 }
 

@@ -30,7 +30,6 @@ class TestExtOpenssl : public TestCppExt {
   bool test_openssl_csr_export_to_file();
   bool test_openssl_csr_export();
   bool test_openssl_csr_get_public_key();
-  bool test_openssl_csr_get_subject();
   bool test_openssl_csr_new();
   bool test_openssl_csr_sign();
   bool test_openssl_error_string();

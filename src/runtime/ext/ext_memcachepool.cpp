@@ -215,7 +215,7 @@ Variant static memcache_fetch_from_storage(const char *payload,
   Variant ret = null;
 
   if (flags & k_MEMCACHE_COMPRESSED) {
-    ret = f_gzuncompress(String(payload, payload_len, AttachString));
+    ret = f_gzuncompress(String(payload, payload_len, CopyString));
   } else {
     ret = String(payload, payload_len, CopyString);
   }
@@ -299,6 +299,8 @@ bool c_MemcachePool::t_replace(CStrRef key, CVarRef var, int flag /*= 0*/,
                                              serialized.c_str(),
                                              serialized.length(),
                                              expire, flag);
+
+
   return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
 }
 
@@ -429,10 +431,6 @@ Variant c_MemcachePool::t_increment(CStrRef key, int offset /*= 1*/) {
     return (int64)value;
   }
 
-  if (ret == MEMCACHED_NOTFOUND) {
-    return false;
-  }
-
   return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
 }
 
@@ -450,16 +448,13 @@ Variant c_MemcachePool::t_decrement(CStrRef key, int offset /*= 1*/) {
     return (int64)value;
   }
 
-  if (ret == MEMCACHED_NOTFOUND) {
-    return false;
-  }
-
   return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
 }
 
 bool c_MemcachePool::t_close() {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::close);
   memcached_quit(MEMCACHEL(tcp_st));
+  memcached_quit(MEMCACHEL(udp_st));
   return true;
 }
 
@@ -680,8 +675,13 @@ bool c_MemcachePool::check_memcache_return(memcached_st * st,
   const char * str_error=NULL, *hostname="";
   int tcp_port=0, udp_port=0;
 
-  if ((ret == MEMCACHED_SUCCESS) || (ret == MEMCACHED_NOTFOUND) || (ret == MEMCACHED_NOTSTORED))
+  if (ret == MEMCACHED_SUCCESS)
     return true;
+
+  if ((ret == MEMCACHED_NOTSTORED)
+      || (ret == MEMCACHED_DATA_EXISTS)
+      || (ret == MEMCACHED_NOTFOUND))
+    return false;
 
   if (MEMCACHEL(failure_callback).isNull())
     return false;

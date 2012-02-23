@@ -1,14 +1,11 @@
-#/bin/sh
+#!/bin/bash
 # called by src/
 
-MK=${MAKE:-make}
-J=-j
-
-if [ -n "${USE_EMAKE}" ] ; then MK=${USE_EMAKE}; J=; fi
+JOBS="4"
 
 if [ $1 == "SHARED" ]; then
-  SHARED=1 ${MK} -k -C runtime/tmp all $J
+  SHARED=1 make -k -C runtime/tmp all -j $JOBS
 else
-  COMPILE=1 ${MK} -k -C runtime/tmp all $J
-  LINK=1 ${MK} -kj10 -C runtime/tmp all
+  COMPILE=1 make -k -C runtime/tmp all -j $JOBS
+  LINK=1 make -k -C runtime/tmp all -j $JOBS
 fi
