@@ -31,7 +31,7 @@ using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////
 
-static const char *php_path = "/usr/local/php/bin/php";
+static const char *php_path = "/usr/bin/php";
 
 // By default, use shared linking for faster testing.
 bool TestCodeRun::FastMode = true;
@@ -236,12 +236,12 @@ static bool verify_result(const char *input, const char *output, bool perfMode,
       if (fastMode) {
         string path = "runtime/tmp/";
         if (subdir) path = path + subdir + "/";
-        path += "libtest.so";
-        const char *argv[] = {"", "--file=string", "--config=test/config.hdf",
-                              path.c_str(), NULL};
+        path += "program";
+        const char *argv[] = {"", path.c_str(), "--file=string", "-c test/config.hdf",
+                              NULL};
         Process::Exec("runtime/tmp/run.sh", argv, NULL, actual, &err);
       } else {
-        const char *argv[] = {"", "--file=string", "--config=test/config.hdf",
+        const char *argv[] = {"", "--file=string", "-c test/config.hdf",
                               NULL};
         string path = "runtime/tmp/";
         if (subdir) path = path + subdir + "/";
@@ -253,7 +253,7 @@ static bool verify_result(const char *input, const char *output, bool perfMode,
       if (subdir) filearg = filearg + subdir + "/";
       filearg += "main.php";
       const char *argv[] = {"", filearg.c_str(),
-                            "--config=test/config.hdf",
+                            "-c test/config.hdf",
                             "-v Fiber.ThreadCount=5",
                             "-v Eval.EnableObjDestructCall=true",
                             NULL};
@@ -385,6 +385,7 @@ bool TestCodeRun::VerifyCodeRun(const char *input, const char *output,
 
 bool TestCodeRun::RunTests(const std::string &which) {
   bool ret = true;
+
   RUN_TEST(TestSanity);
   RUN_TEST(TestInnerFunction);
   RUN_TEST(TestInnerClass);

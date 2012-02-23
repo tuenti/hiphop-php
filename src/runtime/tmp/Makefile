@@ -3,7 +3,6 @@ PROJECT_ROOT=$(HPHP_HOME)
 override OUTDIR_BY_TYPE=
 override OUTPUT_ROOT=
 
-include $(PROJECT_ROOT)/src/rules.mk
 MONO_TARGETS = run
 TARGETS = $(MONO_TARGETS)
 
@@ -14,9 +13,10 @@ all : $(TEST_DIRS) $(TARGETS) run.sh
 
 .PHONY : $(TEST_DIRS)
 $(TEST_DIRS):
-	@$(MAKE) -C $@
+	@cp $(PROJECT_ROOT)/bin/CMakeLists.base.txt $@/CMakeLists.txt
+	@cd $@ && cmake . && $(MAKE)
 
-run.sh : $(PROJECT_ROOT)/src/rules.mk
+run.sh :
 	@$(MAKE) -f script.mk
 	@chmod +x $@
 
