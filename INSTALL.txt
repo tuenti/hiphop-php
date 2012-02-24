@@ -36,9 +36,8 @@ php5-imagick
 libgoogle-perftools-dev
 memcached
 
-
+# From debian backports
 dpkg -i cmake_2.8.5-1~bpo60+1_amd64.deb cmake-data_2.8.5-1~bpo60+1_amd64.deb + apt-get -f install
-
 
 
 #############################
@@ -51,3 +50,26 @@ export HPHP_HOME=`pwd`
 mkdir build; cd build
 cmake ..
 make -j 4 package
+
+
+#############################
+# Test
+#############################
+
+once compiled, you could run the test going to $HPHP_HOME/src and running
+
+../build/src/test/test
+
+TestCodeRun is disabled by default because its too slow
+
+Some test require some infrastructure.
+    - A running memcached server
+
+    - A runnun mysqld with the config used on test_mysql_info.inc .If you don't 
+      want to use that settings, you will need to change the file and recompile.
+
+    - Some locales must be added to test i18n stuff:
+        de_DE.iso88591
+        en_US.utf8
+        fi_FI.iso88591
+        fr_FR.iso88591
