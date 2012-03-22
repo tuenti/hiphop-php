@@ -53,7 +53,8 @@ Variant StaticMethodExpression::eval(VariableEnvironment &env) const {
   bool foundClass;
   const MethodStatement *ms = RequestEvalState::findMethod(cname,
                                                            name.data(),
-                                                           foundClass);
+                                                           foundClass,
+                                                           true);
   if (withinClass) {
     if (m_construct) {
       String name = cname;
