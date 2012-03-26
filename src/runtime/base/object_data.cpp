@@ -649,6 +649,8 @@ Variant ObjectData::os_invoke(CStrRef c, CStrRef s,
 static StaticString s_Iterator("Iterator");
 static StaticString s_IteratorAggregate("IteratorAggregate");
 static StaticString s_getIterator("getIterator");
+static StaticString s_zero("\0", 1);
+
 
 ArrayIter ObjectData::begin(CStrRef context /* = null_string */) {
   if (o_instanceof(s_Iterator)) {
@@ -1027,9 +1029,18 @@ void ObjectData::o_setArray(CArrRef properties) {
 
 void ObjectData::o_getArray(Array &props, bool pubOnly /* = false */) const {
   if (!o_properties.empty()) {
+    const ClassInfo *cls = ClassInfo::FindClass(o_getClassName());
     for (ArrayIter it(o_properties); !it.end(); it.next()) {
       Variant key = it.first();
       CVarRef value = it.secondRef();
+
+      if (cls) {
+          ClassInfo::PropertyInfo *p = cls->getPropertyInfo(key);
+          if (p && (p->attribute & ClassInfo::IsProtected)) {
+            key = concat4(s_zero, "*", s_zero, key);
+          }
+      }
+
       props.lvalAt(key, AccessFlags::Key).setWithRef(value);
     }
   }
@@ -1301,8 +1312,6 @@ bool ObjectData::php_sleep(Variant &ret) {
   return getAttribute(HasSleep);
 }
 
-StaticString s_zero("\0", 1);
-
 void ObjectData::serialize(VariableSerializer *serializer) const {
   if (serializer->incNestedLevel((void*)this, true)) {
     serializer->writeOverflow((void*)this, true);
@@ -1337,6 +1346,9 @@ void ObjectData::serialize(VariableSerializer *serializer) const {
             String propName = name;
             if (p && (p->attribute & ClassInfo::IsPrivate)) {
               propName = concat4(s_zero, o_getClassName(), s_zero, name);
+            }
+            if (p && (p->attribute & ClassInfo::IsProtected)) {
+              propName = concat4(s_zero, "*", s_zero, name);
             }
             wanted.set(propName, const_cast<ObjectData*>(this)->
                        o_getUnchecked(name, o_getClassName()));

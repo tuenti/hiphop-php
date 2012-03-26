@@ -607,6 +607,9 @@ void VariableSerializer::writePropertyPrivacy(CStrRef prop,
   if (a & ClassInfo::IsProtected) {
     m_buf->append(":protected");
   } else if (a & ClassInfo::IsPrivate && cls == origCls) {
+    const char *clsname = cls->getName();
+    m_buf->append(":");
+    m_buf->append(clsname);
     m_buf->append(":private");
   }
 }
@@ -669,8 +672,11 @@ void VariableSerializer::writeArrayKey(const ArrayData *arr, Variant key) {
       int span = ks.find('\0', 1);
       ASSERT(span != String::npos);
       String cl(ks.substr(1, span - 1));
-      cls = ClassInfo::FindClass(cl);
-      ASSERT(cls);
+      // Skip Protected methods
+      if (cl != "*") {
+        cls = ClassInfo::FindClass(cl);
+        ASSERT(cls);
+      }
       key = ks.substr(span + 1);
     }
   }

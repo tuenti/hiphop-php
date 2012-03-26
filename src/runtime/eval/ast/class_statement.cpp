@@ -706,7 +706,14 @@ void ClassStatement::toArray(Array &props, Array &vals) const {
         pname += name().c_str();
         pname += zero;
         pname += tmp;
-      }
+      } else if (cv->getModifiers() & Protected) {
+        String tmp(pname);
+        pname = zero;
+        pname += "*";
+        pname += zero;
+        pname += tmp;
+     }
+
       if (vals.exists(pname)) {
         Variant &p = vals.lvalAt(pname, AccessFlags::Key);
         props.lvalAt(pname, AccessFlags::Key).setWithRef(p);
