@@ -40,8 +40,16 @@ Variant InstanceOfExpression::eval(VariableEnvironment &env) const {
   } else if (sname == "parent") {
     return instanceOf(obj, FrameInjection::GetParentClassName(false));
   }
-  String name(m_name->get(env));
-  return instanceOf(obj, name);
+  Variant var(m_name->getAsVariant(env));
+  String className;
+
+  if (var.isObject()) {
+    className = var.toObject()->o_getClassName();
+  } else {
+    className = var.toString();
+  }
+
+  return instanceOf(obj, className.data());
 }
 
 void InstanceOfExpression::dump(std::ostream &out) const {
