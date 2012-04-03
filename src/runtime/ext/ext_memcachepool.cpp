@@ -740,28 +740,35 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
   memcached_return_t ret2 = MEMCACHED_SUCCESS;
   int port = 0;
 
-  if (!host.empty() && host[0] == '/') {
-    ret = memcached_server_add_unix_socket_with_weight(MEMCACHEL(tcp_st),
-                                                       host.c_str(), weight);
-  } else {
-    if (tcp_port > 0) {
-      port = tcp_port;
-      ret = memcached_server_add_with_weight(MEMCACHEL(tcp_st), host.c_str(), 
+  if (tcp_port > 0) {
+    port = tcp_port;
+    ret = memcached_server_add_with_weight(MEMCACHEL(tcp_st), host.c_str(),
                                              tcp_port, weight);
-      check_memcache_return(MEMCACHEL(tcp_st), ret, "", "Cannot add server");
-    }
+    check_memcache_return(MEMCACHEL(tcp_st), ret, "", "Cannot add server");
+  }
 
-    if (udp_port > 0) {
-      port = udp_port;
-      ret2 = memcached_server_add_udp_with_weight(MEMCACHEL(udp_st), host.c_str(), 
-                                                udp_port, weight);
+  if (udp_port > 0) {
+    port = udp_port;
+    ret2 = memcached_server_add_udp_with_weight(MEMCACHEL(udp_st), host.c_str(),
+                                              udp_port, weight);
 
-      check_memcache_return(MEMCACHEL(udp_st), ret, "", "Cannot add server");
-    }
+    check_memcache_return(MEMCACHEL(udp_st), ret, "", "Cannot add server");
+  }
+
+  if (!port) {
+    //Socket unix or invalid parameters
+    String unix_sock = host.replace("unix://","");
+
+    if (unix_sock.empty())
+      return false;
+
+    ret = memcached_server_add_unix_socket_with_weight(MEMCACHEL(tcp_st),
+                                                       unix_sock.c_str(), weight);
+    check_memcache_return(MEMCACHEL(udp_st), ret, "", "Cannot add server");
   }
 
   if ((ret == MEMCACHED_SUCCESS) && (ret2 == MEMCACHED_SUCCESS)) {
-    t_setserverparams(host, port, timeout, retry_interval, status);
+    if (port) t_setserverparams(host, port, timeout, retry_interval, status);
     return true;
   }
 
