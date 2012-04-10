@@ -116,6 +116,8 @@ flood error logs.
 
 = Server
 
+  User = run the server under this user
+
   PidFile = pid filename
 
   # $_SERVER['name'] = value
@@ -165,8 +167,8 @@ flood error logs.
     CheckMemory = false
 
     # Recommend to turn this on for faster array operations.
-    UseZendArray = true
-    # Faster data structure for arrays of size < 8. Requires UseZendArray=true.
+    UseHphpArray = true
+    # Faster data structure for arrays of size < 8. Requires UseHphpArray=true.
     # Recommend to turn this on.
     UseSmallArray = true
 
