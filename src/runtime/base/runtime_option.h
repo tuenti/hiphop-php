@@ -398,6 +398,8 @@ public:
   static int MemcachePoolHashStrategy;
   static int MemcachePoolHashFunction;
   static int MemcachePoolCompressThreshold;
+
+  static bool EnableForeachWarning;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

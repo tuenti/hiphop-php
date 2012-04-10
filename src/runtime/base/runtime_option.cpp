@@ -386,6 +386,7 @@ int RuntimeOption::JsonCacheRefreshTime = 1;
 int RuntimeOption::MemcachePoolHashStrategy = 0;
 int RuntimeOption::MemcachePoolHashFunction = 11;
 int RuntimeOption::MemcachePoolCompressThreshold = 1000;
+bool RuntimeOption::EnableForeachWarning = false;
 
 ///////////////////////////////////////////////////////////////////////////////
 // keep this block after all the above static variables, or we will have
@@ -579,6 +580,7 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
     AssertWarning = error["AssertWarning"].getBool();
     NoticeFrequency = error["NoticeFrequency"].getInt32(1);
     WarningFrequency = error["WarningFrequency"].getInt32(1);
+    EnableForeachWarning = error["EnableForeachWarning"].getBool(false);
   }
   {
     Hdf rlimit = config["ResourceLimit"];
