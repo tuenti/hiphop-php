@@ -3,7 +3,7 @@ include(ExternalProject)
 
 ExternalProject_Add(
     curl
-    URL http://curl.haxx.se/download/curl-7.21.2.tar.gz
+    URL http://curl.haxx.se/download/curl-7.25.0.tar.gz
     PATCH_COMMAND patch -p1 <  ${CMAKE_SOURCE_DIR}/src/third_party/libcurl.fb-changes.diff
     INSTALL_DIR ${CMAKE_BINARY_DIR}/external_build/
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR> --prefix=<INSTALL_DIR>
