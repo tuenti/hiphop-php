@@ -44,3 +44,4 @@ tags
 doc/www.pid
 build
 lib
+src/runtime/ext/filter/tests

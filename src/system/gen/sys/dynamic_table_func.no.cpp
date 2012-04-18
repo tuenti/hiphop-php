@@ -922,6 +922,18 @@ Variant ifa_die(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 Variant i_die(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_die);
 }
+Variant ifa_filter_var(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("filter_var", count, 1, 3, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (x_filter_var(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (x_filter_var(arg0, arg1));
+  CVarRef arg2(a2);
+  return (x_filter_var(arg0, arg1, arg2));
+}
+Variant i_filter_var(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_filter_var);
+}
 Variant ifa_phpcredits(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count > 1)) return throw_toomany_arguments("phpcredits", 1, 1);
   if (count <= 0) return (x_phpcredits());
@@ -1057,6 +1069,16 @@ Variant ifa_hphp_current_ref(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) 
 }
 Variant i_hphp_current_ref(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_hphp_current_ref);
+}
+Variant ifa_filter_var_array(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("filter_var_array", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (x_filter_var_array(arg0));
+  CVarRef arg1(a1);
+  return (x_filter_var_array(arg0, arg1));
+}
+Variant i_filter_var_array(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_filter_var_array);
 }
 Variant ifa_drawgetfillrule(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("drawgetfillrule", count, 1, 1, 1);
@@ -11125,6 +11147,16 @@ Variant i_call_user_func_rpc(void *extra, CArrRef params) {
     return (x_call_user_func_rpc(count, arg0, arg1, arg2, arg3, arg4, p));
   }
 }
+Variant ifa_filter_input_array(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("filter_input_array", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (x_filter_input_array(arg0));
+  CVarRef arg1(a1);
+  return (x_filter_input_array(arg0, arg1));
+}
+Variant i_filter_input_array(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_filter_input_array);
+}
 Variant ifa_dom_document_save(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("dom_document_save", count, 2, 3, 1);
   CVarRef arg0(a0);
@@ -12084,6 +12116,19 @@ Variant ifa_ob_get_flush(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 }
 Variant i_ob_get_flush(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_ob_get_flush);
+}
+Variant ifa_filter_input(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 2 || count > 4)) return throw_wrong_arguments("filter_input", count, 2, 4, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  if (count <= 2) return (x_filter_input(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (x_filter_input(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (x_filter_input(arg0, arg1, arg2, arg3));
+}
+Variant i_filter_input(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_filter_input);
 }
 Variant ifa_mb_send_mail(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 3 || count > 5)) return throw_wrong_arguments("mb_send_mail", count, 3, 5, 1);
@@ -15788,6 +15833,14 @@ Variant ifa_sizeof(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 Variant i_sizeof(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_sizeof);
 }
+Variant ifa_filter_id(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("filter_id", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_filter_id(arg0));
+}
+Variant i_filter_id(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_filter_id);
+}
 Variant ifa_mcrypt_enc_is_block_algorithm(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("mcrypt_enc_is_block_algorithm", count, 1, 1, 1);
   CVarRef arg0(a0);
@@ -16425,6 +16478,15 @@ Variant ifa_debug_backtrace(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 }
 Variant i_debug_backtrace(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_debug_backtrace);
+}
+Variant ifa_filter_has_var(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("filter_has_var", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (x_filter_has_var(arg0, arg1));
+}
+Variant i_filter_has_var(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_filter_has_var);
 }
 Variant ifa_stream_set_timeout(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("stream_set_timeout", count, 2, 3, 1);
@@ -17450,6 +17512,15 @@ Variant ifa_dom_document_get_element_by_id(void *extra, int count, INVOKE_FEW_AR
 Variant i_dom_document_get_element_by_id(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_dom_document_get_element_by_id);
 }
+Variant ifa_posix_setpgid(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("posix_setpgid", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (x_posix_setpgid(arg0, arg1));
+}
+Variant i_posix_setpgid(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_posix_setpgid);
+}
 Variant ifa_magickmattefloodfillimage(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 6)) return throw_wrong_arguments("magickmattefloodfillimage", count, 6, 6, 1);
   CVarRef arg0(a0);
@@ -17462,15 +17533,6 @@ Variant ifa_magickmattefloodfillimage(void *extra, int count, INVOKE_FEW_ARGS_IM
 }
 Variant i_magickmattefloodfillimage(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_magickmattefloodfillimage);
-}
-Variant ifa_posix_setpgid(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("posix_setpgid", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (x_posix_setpgid(arg0, arg1));
-}
-Variant i_posix_setpgid(void *extra, CArrRef params) {
-  return invoke_func_few_handler(extra, params, &ifa_posix_setpgid);
 }
 Variant ifa_dns_get_mx(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("dns_get_mx", count, 2, 3, 1);
@@ -21463,6 +21525,13 @@ Variant ifa_drawcircle(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 Variant i_drawcircle(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_drawcircle);
 }
+Variant ifa_filter_list(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("filter_list", 0, 1);
+  return (x_filter_list());
+}
+Variant i_filter_list(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_filter_list);
+}
 Variant ifa_magickshearimage(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 4)) return throw_wrong_arguments("magickshearimage", count, 4, 4, 1);
   CVarRef arg0(a0);
@@ -21620,6 +21689,7 @@ CallInfo ci_apc_bin_dumpfile((void*)&i_apc_bin_dumpfile, (void*)&ifa_apc_bin_dum
 CallInfo ci_memcache_set_compress_threshold((void*)&i_memcache_set_compress_threshold, (void*)&ifa_memcache_set_compress_threshold, 3, 0, 0x0000000000000000LL);
 CallInfo ci_error_log((void*)&i_error_log, (void*)&ifa_error_log, 4, 0, 0x0000000000000000LL);
 CallInfo ci_die((void*)&i_die, (void*)&ifa_die, 1, 0, 0x0000000000000000LL);
+CallInfo ci_filter_var((void*)&i_filter_var, (void*)&ifa_filter_var, 3, 0, 0x0000000000000000LL);
 CallInfo ci_phpcredits((void*)&i_phpcredits, (void*)&ifa_phpcredits, 1, 0, 0x0000000000000000LL);
 CallInfo ci_drawgetexceptionstring((void*)&i_drawgetexceptionstring, (void*)&ifa_drawgetexceptionstring, 1, 0, 0x0000000000000000LL);
 CallInfo ci_openssl_pkey_get_public((void*)&i_openssl_pkey_get_public, (void*)&ifa_openssl_pkey_get_public, 1, 0, 0x0000000000000000LL);
@@ -21633,6 +21703,7 @@ CallInfo ci_tmpfile((void*)&i_tmpfile, (void*)&ifa_tmpfile, 0, 0, 0x000000000000
 CallInfo ci_array_uintersect_assoc((void*)&i_array_uintersect_assoc, (void*)&ifa_array_uintersect_assoc, 3, 1, 0x0000000000000000LL);
 CallInfo ci_pixelgetyellow((void*)&i_pixelgetyellow, (void*)&ifa_pixelgetyellow, 1, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_current_ref((void*)&i_hphp_current_ref, (void*)&ifa_hphp_current_ref, 1, 0, 0x0000000000000001LL);
+CallInfo ci_filter_var_array((void*)&i_filter_var_array, (void*)&ifa_filter_var_array, 2, 0, 0x0000000000000000LL);
 CallInfo ci_drawgetfillrule((void*)&i_drawgetfillrule, (void*)&ifa_drawgetfillrule, 1, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_splfileobject_current((void*)&i_hphp_splfileobject_current, (void*)&ifa_hphp_splfileobject_current, 1, 0, 0x0000000000000000LL);
 CallInfo ci_getservbyname((void*)&i_getservbyname, (void*)&ifa_getservbyname, 2, 0, 0x0000000000000000LL);
@@ -22629,6 +22700,7 @@ CallInfo ci_imap_fetchbody((void*)&i_imap_fetchbody, (void*)&ifa_imap_fetchbody,
 CallInfo ci_drawskewx((void*)&i_drawskewx, (void*)&ifa_drawskewx, 2, 0, 0x0000000000000000LL);
 CallInfo ci_date_format((void*)&i_date_format, (void*)&ifa_date_format, 2, 0, 0x0000000000000000LL);
 CallInfo ci_call_user_func_rpc((void*)&i_call_user_func_rpc, (void*)&ifa_call_user_func_rpc, 5, 32, 0x0000000000000000LL);
+CallInfo ci_filter_input_array((void*)&i_filter_input_array, (void*)&ifa_filter_input_array, 2, 0, 0x0000000000000000LL);
 CallInfo ci_dom_document_save((void*)&i_dom_document_save, (void*)&ifa_dom_document_save, 3, 0, 0x0000000000000000LL);
 CallInfo ci_mcrypt_generic_deinit((void*)&i_mcrypt_generic_deinit, (void*)&ifa_mcrypt_generic_deinit, 1, 0, 0x0000000000000000LL);
 CallInfo ci_socket_last_error((void*)&i_socket_last_error, (void*)&ifa_socket_last_error, 1, 0, 0x0000000000000000LL);
@@ -22728,6 +22800,7 @@ CallInfo ci_drawgetstrokewidth((void*)&i_drawgetstrokewidth, (void*)&ifa_drawget
 CallInfo ci_hphp_recursivedirectoryiterator_key((void*)&i_hphp_recursivedirectoryiterator_key, (void*)&ifa_hphp_recursivedirectoryiterator_key, 1, 0, 0x0000000000000000LL);
 CallInfo ci_readfile((void*)&i_readfile, (void*)&ifa_readfile, 3, 0, 0x0000000000000000LL);
 CallInfo ci_ob_get_flush((void*)&i_ob_get_flush, (void*)&ifa_ob_get_flush, 0, 0, 0x0000000000000000LL);
+CallInfo ci_filter_input((void*)&i_filter_input, (void*)&ifa_filter_input, 4, 0, 0x0000000000000000LL);
 CallInfo ci_mb_send_mail((void*)&i_mb_send_mail, (void*)&ifa_mb_send_mail, 5, 0, 0x0000000000000000LL);
 CallInfo ci_gzgetc((void*)&i_gzgetc, (void*)&ifa_gzgetc, 1, 0, 0x0000000000000000LL);
 CallInfo ci_fputcsv((void*)&i_fputcsv, (void*)&ifa_fputcsv, 4, 0, 0x0000000000000000LL);
@@ -23106,6 +23179,7 @@ CallInfo ci_hash((void*)&i_hash, (void*)&ifa_hash, 3, 0, 0x0000000000000000LL);
 CallInfo ci_timezone_abbreviations_list((void*)&i_timezone_abbreviations_list, (void*)&ifa_timezone_abbreviations_list, 0, 0, 0x0000000000000000LL);
 CallInfo ci_iconv((void*)&i_iconv, (void*)&ifa_iconv, 3, 0, 0x0000000000000000LL);
 CallInfo ci_sizeof((void*)&i_sizeof, (void*)&ifa_sizeof, 2, 0, 0x0000000000000000LL);
+CallInfo ci_filter_id((void*)&i_filter_id, (void*)&ifa_filter_id, 1, 0, 0x0000000000000000LL);
 CallInfo ci_mcrypt_enc_is_block_algorithm((void*)&i_mcrypt_enc_is_block_algorithm, (void*)&ifa_mcrypt_enc_is_block_algorithm, 1, 0, 0x0000000000000000LL);
 CallInfo ci_xbox_schedule_thread_reset((void*)&i_xbox_schedule_thread_reset, (void*)&ifa_xbox_schedule_thread_reset, 0, 0, 0x0000000000000000LL);
 CallInfo ci_gettype((void*)&i_gettype, (void*)&ifa_gettype, 1, 0, 0x0000000000000000LL);
@@ -23173,6 +23247,7 @@ CallInfo ci_socket_create((void*)&i_socket_create, (void*)&ifa_socket_create, 3,
 CallInfo ci_hphpd_get_client((void*)&i_hphpd_get_client, (void*)&ifa_hphpd_get_client, 1, 0, 0x0000000000000000LL);
 CallInfo ci_magicksetimageinterlacescheme((void*)&i_magicksetimageinterlacescheme, (void*)&ifa_magicksetimageinterlacescheme, 2, 0, 0x0000000000000000LL);
 CallInfo ci_debug_backtrace((void*)&i_debug_backtrace, (void*)&ifa_debug_backtrace, 1, 0, 0x0000000000000000LL);
+CallInfo ci_filter_has_var((void*)&i_filter_has_var, (void*)&ifa_filter_has_var, 2, 0, 0x0000000000000000LL);
 CallInfo ci_stream_set_timeout((void*)&i_stream_set_timeout, (void*)&ifa_stream_set_timeout, 3, 0, 0x0000000000000000LL);
 CallInfo ci_highlight_string((void*)&i_highlight_string, (void*)&ifa_highlight_string, 2, 0, 0x0000000000000000LL);
 CallInfo ci_ldap_modify((void*)&i_ldap_modify, (void*)&ifa_ldap_modify, 3, 0, 0x0000000000000000LL);
@@ -23266,8 +23341,8 @@ CallInfo ci_mailparse_msg_free((void*)&i_mailparse_msg_free, (void*)&ifa_mailpar
 CallInfo ci_setcookie((void*)&i_setcookie, (void*)&ifa_setcookie, 7, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_get_timers((void*)&i_hphp_get_timers, (void*)&ifa_hphp_get_timers, 1, 0, 0x0000000000000000LL);
 CallInfo ci_dom_document_get_element_by_id((void*)&i_dom_document_get_element_by_id, (void*)&ifa_dom_document_get_element_by_id, 2, 0, 0x0000000000000000LL);
-CallInfo ci_magickmattefloodfillimage((void*)&i_magickmattefloodfillimage, (void*)&ifa_magickmattefloodfillimage, 6, 0, 0x0000000000000000LL);
 CallInfo ci_posix_setpgid((void*)&i_posix_setpgid, (void*)&ifa_posix_setpgid, 2, 0, 0x0000000000000000LL);
+CallInfo ci_magickmattefloodfillimage((void*)&i_magickmattefloodfillimage, (void*)&ifa_magickmattefloodfillimage, 6, 0, 0x0000000000000000LL);
 CallInfo ci_dns_get_mx((void*)&i_dns_get_mx, (void*)&ifa_dns_get_mx, 3, 0, 0x0000000000000006LL);
 CallInfo ci_preg_last_error((void*)&i_preg_last_error, (void*)&ifa_preg_last_error, 0, 0, 0x0000000000000000LL);
 CallInfo ci_imagecopymerge((void*)&i_imagecopymerge, (void*)&ifa_imagecopymerge, 9, 0, 0x0000000000000000LL);
@@ -23675,6 +23750,7 @@ CallInfo ci_is_null((void*)&i_is_null, (void*)&ifa_is_null, 1, 0, 0x000000000000
 CallInfo ci_strtok((void*)&i_strtok, (void*)&ifa_strtok, 2, 0, 0x0000000000000000LL);
 CallInfo ci_xml_parse((void*)&i_xml_parse, (void*)&ifa_xml_parse, 3, 0, 0x0000000000000000LL);
 CallInfo ci_drawcircle((void*)&i_drawcircle, (void*)&ifa_drawcircle, 5, 0, 0x0000000000000000LL);
+CallInfo ci_filter_list((void*)&i_filter_list, (void*)&ifa_filter_list, 0, 0, 0x0000000000000000LL);
 CallInfo ci_magickshearimage((void*)&i_magickshearimage, (void*)&ifa_magickshearimage, 4, 0, 0x0000000000000000LL);
 CallInfo ci_htmlspecialchars_decode((void*)&i_htmlspecialchars_decode, (void*)&ifa_htmlspecialchars_decode, 2, 0, 0x0000000000000000LL);
 CallInfo ci_fflush((void*)&i_fflush, (void*)&ifa_fflush, 1, 0, 0x0000000000000000LL);
@@ -25207,6 +25283,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
       }
       HASH_GUARD(0x002CCCD877D9640DLL, drawpathclose) {
         ci = &ci_drawpathclose;
+        return true;
+      }
+      break;
+    case 1048:
+      HASH_GUARD(0x5C424C6FA7724418LL, filter_input_array) {
+        ci = &ci_filter_input_array;
         return true;
       }
       break;
@@ -27887,6 +27969,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 2795:
       HASH_GUARD(0x528D41A17B8FCAEBLL, imap_set_quota) {
         ci = &ci_imap_set_quota;
+        return true;
+      }
+      break;
+    case 2798:
+      HASH_GUARD(0x5D98B41187F60AEELL, filter_has_var) {
+        ci = &ci_filter_has_var;
         return true;
       }
       break;
@@ -31506,6 +31594,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
         return true;
       }
       break;
+    case 5063:
+      HASH_GUARD(0x256B1F4CFBBBF3C7LL, filter_list) {
+        ci = &ci_filter_list;
+        return true;
+      }
+      break;
     case 5064:
       HASH_GUARD(0x4D100C70E86593C8LL, stream_set_write_buffer) {
         ci = &ci_stream_set_write_buffer;
@@ -32302,6 +32396,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
         return true;
       }
       break;
+    case 5541:
+      HASH_GUARD(0x7F43D40AA4F755A5LL, filter_input) {
+        ci = &ci_filter_input;
+        return true;
+      }
+      break;
     case 5548:
       HASH_GUARD(0x763BA2B1C60A55ACLL, pixelgetalphaquantum) {
         ci = &ci_pixelgetalphaquantum;
@@ -32517,6 +32617,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 5711:
       HASH_GUARD(0x1F3F16CED6BDD64FLL, imap_utf8) {
         ci = &ci_imap_utf8;
+        return true;
+      }
+      break;
+    case 5716:
+      HASH_GUARD(0x429FCF8CCD49D654LL, filter_id) {
+        ci = &ci_filter_id;
         return true;
       }
       break;
@@ -32837,6 +32943,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 5933:
       HASH_GUARD(0x14563723F798172DLL, magickpaintopaqueimage) {
         ci = &ci_magickpaintopaqueimage;
+        return true;
+      }
+      break;
+    case 5939:
+      HASH_GUARD(0x3E9816C2353CB733LL, filter_var_array) {
+        ci = &ci_filter_var_array;
         return true;
       }
       break;
@@ -33429,6 +33541,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 6363:
       HASH_GUARD(0x4052842EC87038DBLL, magickcropimage) {
         ci = &ci_magickcropimage;
+        return true;
+      }
+      break;
+    case 6368:
+      HASH_GUARD(0x34B2220F0979F8E0LL, filter_var) {
+        ci = &ci_filter_var;
         return true;
       }
       break;

@@ -34,6 +34,7 @@
 #include <test/test_ext_error.h>
 #include <test/test_ext_fb.h>
 #include <test/test_ext_file.h>
+#include <test/test_ext_filter.h>
 #include <test/test_ext_function.h>
 #include <test/test_ext_gettext.h>
 #include <test/test_ext_gmagick.h>

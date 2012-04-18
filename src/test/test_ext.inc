@@ -19,6 +19,7 @@ RUN_TESTSUITE(TestExtDomdocument);
 RUN_TESTSUITE(TestExtError);
 RUN_TESTSUITE(TestExtFb);
 RUN_TESTSUITE(TestExtFile);
+RUN_TESTSUITE(TestExtFilter);
 RUN_TESTSUITE(TestExtFunction);
 RUN_TESTSUITE(TestExtGettext);
 RUN_TESTSUITE(TestExtGmagick);

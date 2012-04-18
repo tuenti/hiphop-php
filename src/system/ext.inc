@@ -19,6 +19,7 @@
 #include "error.inc"
 #include "fb.inc"
 #include "file.inc"
+#include "filter.inc"
 #include "function.inc"
 #include "gettext.inc"
 #include "gmagick.inc"

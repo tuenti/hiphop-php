@@ -3,10 +3,10 @@ V ?= @
 
 IDL_PHPS = $(wildcard  *.idl.php)
 ifndef REPO_ADD
-REPO_ADD = git add
+REPO_ADD = hg add
 endif
 ifndef REPO_DEL
-REPO_DEL = git rm
+REPO_DEL = hg rm
 endif
 
 PHP := $(wildcard /usr/local/hphpi/bin/hphpi)
