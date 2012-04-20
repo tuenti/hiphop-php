@@ -104,8 +104,6 @@ static const filter_list_entry filter_list[] = {
     { "number_int",      FILTER_SANITIZE_NUMBER_INT,    php_filter_number_int      },  
     { "number_float",    FILTER_SANITIZE_NUMBER_FLOAT,  php_filter_number_float    },  
     { "magic_quotes",    FILTER_SANITIZE_MAGIC_QUOTES,  php_filter_magic_quotes    },  
-
-    //{ "callback",        FILTER_CALLBACK,               php_filter_callback        },  
 };
 
 static Variant php_zval_filter_recursive(CVarRef variable, long filter, long flags, CVarRef options, char *charset);
@@ -123,21 +121,19 @@ static Variant php_filter_call(CVarRef variable, long filter, CVarRef options, l
 	Variant ret;
 	char  *charset = NULL;
 
-	if (options.isInteger()) {
-		long lval = options.toInt32();
-
+	if (options && !options.isArray()) {
 		if (filter != -1) { /* handler for array apply */
 			/* options is the flags */
-			flags = lval;
+			flags = options.toInt32();
 
-			if (!(flags & FILTER_REQUIRE_ARRAY ||  flags & FILTER_FORCE_ARRAY)) {
+			if (!(flags & FILTER_REQUIRE_ARRAY || flags & FILTER_FORCE_ARRAY)) {
 				flags |= FILTER_REQUIRE_SCALAR;
 			}
 		} else {
-			filter = lval;
+			filter = options.toInt32();
 		}
 	} 
-    else if (options.isArray()) {
+    else if (options) {
         Array arr_options = options.toArray();
         
         if (arr_options.exists("filter")) {
@@ -169,10 +165,14 @@ static Variant php_filter_call(CVarRef variable, long filter, CVarRef options, l
 			RETURN_VALIDATION_FAILED
 		}
 
-		return php_zval_filter_recursive(variable, filter, flags, options, charset);
+		return php_zval_filter_recursive(variable, filter, flags, filter_options, charset);
 	}
 
-	ret = php_zval_filter(variable, filter, flags, options, charset);
+    if (flags & FILTER_REQUIRE_ARRAY) {
+        RETURN_VALIDATION_FAILED
+    }
+
+	ret = php_zval_filter(variable, filter, flags, filter_options, charset);
 
 	if (flags & FILTER_FORCE_ARRAY) {
 		ret = CREATE_VECTOR1(ret);
@@ -213,14 +213,11 @@ static Variant php_zval_filter(CVarRef variable, long filter, long flags, CVarRe
 		filter_func = php_find_filter(FILTER_DEFAULT);
 	}
 
-	// Not sure if needed
-	/*
-	if (variable.isObject()) {
-		return false;
-	}
-	*/
-
-	ret = filter_func.function(variable.toString(), flags, options, charset);
+    try {
+    	ret = filter_func.function(variable.toString(), flags, options, charset);
+    } catch (BadTypeConversionException e) {
+        return false;
+    }
 
 	if (options.toArray().exists("default") &&
 		((flags & FILTER_NULL_ON_FAILURE && ret.isNull()) ||
@@ -250,33 +247,33 @@ static Variant php_zval_filter_recursive(CVarRef variable, long filter, long fla
 
 static Variant php_filter_array_handler(CVarRef variable, CVarRef options)
 {
-    if (options.isInteger()) {
+    if (! options.isArray()) {
         return php_filter_call(variable, options.toInt64(), null, FILTER_REQUIRE_ARRAY);
-    } else if (options.isArray()) {
-        Variant ret = Array::Create();
+    } 
 
-        for (ArrayIter iter(variable); iter; ++iter) {
-            if (!iter.first().isString()) {
-                raise_warning("Numeric keys are not allowed in the definition array");
-                return false;
-            }
-            if (iter.first().toString().empty()) {
-                raise_warning("Empty keys are not allowed in the definition array");
-                return false;
-            }
+    Variant ret = Array::Create();
+    Array arr_var = variable.toArray();
 
-            String key = iter.first().toString();
-            Array arr_var = variable.toArray();
-
-            if (arr_var.exists(key)) {
-                ret.set(key, php_filter_call(arr_var[key], -1, iter.second(), FILTER_REQUIRE_SCALAR));
-            }
+    for (ArrayIter iter(options); iter; ++iter) {
+        if (!iter.first().isString()) {
+            raise_warning("Numeric keys are not allowed in the definition array");
+            return false;
+        }
+        if (iter.first().toString().empty()) {
+            raise_warning("Empty keys are not allowed in the definition array");
+            return false;
         }
 
-        return ret;
-    } else {
-        return false;
-    }   
+        String key = iter.first().toString();
+
+        if (arr_var.exists(key)) {
+            ret.set(key, php_filter_call(arr_var[key], -1, iter.second(), FILTER_REQUIRE_SCALAR));
+        } else {
+            ret.set(key, null);
+        }
+    }
+
+    return ret;
 }
 
 bool f_filter_has_var(int type, CStrRef variable_name) {
@@ -308,14 +305,14 @@ Variant f_filter_list() {
 
     Array arr = Array::Create();
 	for (int i = 0; i < size; ++i) {
-		arr.set(filter_list[i].name, 1);
+		arr.set(i, filter_list[i].name);
 	}
 	
 	return arr;
 }
 
 Variant f_filter_var_array(CArrRef data, CVarRef definition /* = k_FILTER_DEFAULT */) {
-    if (definition.isInteger() && !php_filter_id_exists(definition.toInt64())) {
+    if (!definition.isArray() && !php_filter_id_exists(definition.toInt64())) {
         return false;
     }
 

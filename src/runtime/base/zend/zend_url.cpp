@@ -39,7 +39,12 @@ static char *replace_controlchars(char *str, int len) {
   return (str);
 }
 
-Url::~Url() {
+Url::Url() {
+  scheme = user = pass = host = path = query = fragment = NULL;
+  port = 0;
+}
+
+void Url::reset() {
   if (scheme)   free(scheme);
   if (user)     free(user);
   if (pass)     free(pass);
@@ -47,10 +52,18 @@ Url::~Url() {
   if (path)     free(path);
   if (query)    free(query);
   if (fragment) free(fragment);
+
+  scheme = user = pass = host = path = query = fragment = NULL;
+  port = 0;
+}
+
+
+Url::~Url() {
+  reset();
 }
 
 bool url_parse(Url &output, const char *str, int length) {
-  memset(&output, 0, sizeof(Url));
+  output.reset();
 
   char port_buf[6];
   const char *s, *e, *p, *pp, *ue;
@@ -144,7 +157,13 @@ bool url_parse(Url &output, const char *str, int length) {
     if (pp-p < 6 && (*pp == '/' || *pp == '\0')) {
       memcpy(port_buf, p, (pp-p));
       port_buf[pp-p] = '\0';
-      output.port = atoi(port_buf);
+      int port = atoi(port_buf);
+      if ((port > 65535) || (port < 1)) {
+        return false;
+      }
+      else {
+        output.port = port;
+      }
     } else {
       goto just_path;
     }
@@ -207,7 +226,13 @@ bool url_parse(Url &output, const char *str, int length) {
       } else if (e - p > 0) {
         memcpy(port_buf, p, (e-p));
         port_buf[e-p] = '\0';
-        output.port = atoi(port_buf);
+        int port = atoi(port_buf);
+        if ((port > 65535) || (port < 1)) {
+          return false;
+        }
+        else {
+          output.port = port;
+        }
       }
       p--;
     }

@@ -362,7 +362,7 @@ error:
 			RETURN_VALIDATION_FAILED
 	}
 	free(num);
-	return ret;
+	return (double) ret;
 }
 /* }}} */
 
@@ -370,24 +370,25 @@ Variant php_filter_validate_regexp(PHP_INPUT_FILTER_PARAM_DECL) /* {{{ */
 {
 	String regexp;
 	int matches;
+	Array arr_options;
 
 	/* Parse options */
 	if (option_array.isArray()) {
-		Array arr_options = option_array.toArray();
+		arr_options = option_array.toArray();
+	} 
 
-		if (arr_options.exists("regexp")) {
-			regexp = arr_options["regexp"].toString();
+	if (arr_options.exists("regexp")) {
+		regexp = arr_options["regexp"].toString();
 
-		} else {
-			raise_warning("'regexp' option missing");
-			RETURN_VALIDATION_FAILED
-		}
+	} else {
+		raise_warning("'regexp' option missing");
+		RETURN_VALIDATION_FAILED
 	}
 
 	matches = preg_match(regexp, in_str);
 
 	/* 0 means that the vector is too small to hold all the captured substring offsets */
-	if (matches < 0) {
+	if (matches <= 0) {
 		RETURN_VALIDATION_FAILED
 	}
 	
@@ -402,7 +403,6 @@ Variant php_filter_validate_url(PHP_INPUT_FILTER_PARAM_DECL) /* {{{ */
 	int old_len = in_str.size();
 
 	ret = php_filter_url(in_str, flags, option_array, charset);
-
 
 	if (!ret.isString() || old_len != ret.toString().size()) {
 		RETURN_VALIDATION_FAILED
@@ -491,7 +491,7 @@ Variant php_filter_validate_email(PHP_INPUT_FILTER_PARAM_DECL) /* {{{ */
 	matches = preg_match(regexp, in_str);
 
 	/* 0 means that the vector is too small to hold all the captured substring offsets */
-	if (matches < 0) {
+	if (matches <= 0) {
 		RETURN_VALIDATION_FAILED
 	}
 

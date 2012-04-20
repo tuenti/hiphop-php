@@ -28,7 +28,9 @@ namespace HPHP {
  */
 class Url {
 public:
+  Url();
   ~Url();
+  void reset();
 
   char *scheme;
   char *user;

@@ -37,10 +37,10 @@ static String php_filter_encode_html(String in_str, const unsigned char *chars)
     smart_str str = {0};
 
     for (int i = 0; i <in_str.size(); i++) {
-        char c = in_str[i];
-        if (chars[(short)c]) {
+        unsigned char c = in_str[i];
+        if (chars[c]) {
             smart_str_appendl(&str, "&#", 2); 
-            smart_str_append_unsigned(&str, (unsigned long)c);
+            smart_str_append_unsigned(&str, c);
             smart_str_appendc(&str, ';');
         } else {
             /* XXX: this needs to be optimized to work with blocks of 'safe' chars */
@@ -139,19 +139,20 @@ static void filter_map_update(filter_map *map, int flag, const unsigned char *al
 static Variant filter_map_apply(String in_str, filter_map *map)
 {
 	unsigned char *buf;
-	int   i, c;
+	int   i, j;
 	
 	buf = (unsigned char *) malloc(in_str.size() + 2);
 
-	c = 0;
+	j = 0;
 	for (i = 0; i < in_str.size(); i++) {
-		if ((*map)[(short)in_str[i]]) {
-			buf[c] = in_str[i];
-			++c;
+        unsigned char c = in_str[i];
+		if ((*map)[c]) {
+			buf[j] = c;
+			++j;
 		}
 	}
 	/* update string data */
-	buf[c] = '\0';
+	buf[j] = '\0';
 	return Variant(String((const char *) buf, AttachString));
 }
 /* }}} */
@@ -234,7 +235,7 @@ Variant php_filter_full_special_chars(PHP_INPUT_FILTER_PARAM_DECL)
 {
 	StringUtil::QuoteStyle quotes;
 	
-	if (!(flags & FILTER_FLAG_NO_ENCODE_QUOTES)) {
+	if (flags & FILTER_FLAG_NO_ENCODE_QUOTES) {
 		quotes = StringUtil::NoQuotes;
 	} else {
 		quotes = StringUtil::BothQuotes;
@@ -265,7 +266,7 @@ Variant php_filter_unsafe_raw(PHP_INPUT_FILTER_PARAM_DECL)
 
 		return php_filter_encode_html(in_str, enc);	
 	} else if (flags & FILTER_FLAG_EMPTY_STRING_NULL && in_str.empty()) {
-		return NULL;
+		return null;
 	}
 
 	return in_str;
