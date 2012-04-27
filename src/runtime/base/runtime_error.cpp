@@ -24,7 +24,7 @@ namespace HPHP {
 
 void raise_error(const std::string &msg) {
   int errnum = ErrorConstants::ERROR;
-  g_context->handleError(msg, errnum, false,
+  g_context->handleError(msg, errnum, true,
                          RuntimeOption::CallUserHandlerOnFatals ?
                          ExecutionContext::ThrowIfUnhandled :
                          ExecutionContext::AlwaysThrow,
