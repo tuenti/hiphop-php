@@ -80,6 +80,7 @@ class MemcacheObjectData {
     failure_callback.setNull();
 
     compress_threshold = RuntimeOption::MemcachePoolCompressThreshold;
+
     memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION, RuntimeOption::MemcachePoolHashStrategy);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION, RuntimeOption::MemcachePoolHashStrategy);
     memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_HASH, RuntimeOption::MemcachePoolHashFunction);
@@ -112,8 +113,9 @@ Object c_MemcachePool::ti_getstoragememcache(const char *, int storage_id, int t
   empty = false;
 
   if (MEMCACHEG(storage_map).count(storage_id) < 1) {
-    Logger::Verbose("[MemcachePool] Creating new MemcachePool object for storage id  %d", storage_id);
-
+    if (RuntimeOption::MemcachePoolDebug) {
+      Logger::Verbose("[MemcachePool] Creating new MemcachePool object for storage id  %d", storage_id);
+    }
     // Insert new entry
     st_data = &(MEMCACHEG(storage_map)[storage_id]);
     st_data->last_config_update = timestamp;
@@ -131,9 +133,9 @@ Object c_MemcachePool::ti_getstoragememcache(const char *, int storage_id, int t
   }
 
   if (st_data->last_config_update < timestamp) {
-  //if (timestamp == 1) {
-    Logger::Verbose("[MemcachePool] Object too old for storage id  %d, destroying data", storage_id);
-
+    if (RuntimeOption::MemcachePoolDebug) {
+      Logger::Verbose("[MemcachePool] Object too old for storage id  %d, destroying data", storage_id);
+    }
     delete MEMCACHEG(obj_map)[st_data->memcachepool_object];
     MEMCACHEG(obj_map)[st_data->memcachepool_object] = new MemcacheObjectData;
 
@@ -154,7 +156,9 @@ c_MemcachePool::c_MemcachePool(const ObjectStaticCallbacks *cb) : ExtObjectData(
 }
 
 c_MemcachePool::~c_MemcachePool() {
-  Logger::Verbose("[MemcachePool] Destroying MemcachePool object %p", this);
+  if (RuntimeOption::MemcachePoolDebug) {
+    Logger::Verbose("[MemcachePool] Destroying MemcachePool object %p", this);
+  }
   std::map<int, StorageData>::iterator it;
 
   for (it = MEMCACHEG(storage_map).begin(); it != MEMCACHEG(storage_map).end(); it++) {

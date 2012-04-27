@@ -386,6 +386,7 @@ int RuntimeOption::JsonCacheRefreshTime = 1;
 int RuntimeOption::MemcachePoolHashStrategy = 0;
 int RuntimeOption::MemcachePoolHashFunction = 11;
 int RuntimeOption::MemcachePoolCompressThreshold = 1000;
+int RuntimeOption::MemcachePoolDebug = false;
 bool RuntimeOption::EnableForeachWarning = false;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1121,6 +1122,7 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
      MemcachePoolHashStrategy = memcachepool_config["HashStrategy"].getInt32(0);
      MemcachePoolHashFunction = memcachepool_config["HashFunction"].getInt32(11);
      MemcachePoolCompressThreshold = memcachepool_config["CompressThreshold"].getInt32(1000);
+     MemcachePoolDebug = memcachepool_config["MemcachePoolDebug"].getBool(false);
   }
 
   Extension::LoadModules(config);
