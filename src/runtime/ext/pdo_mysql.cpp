@@ -933,13 +933,13 @@ bool PDOMySqlStatement::executer() {
       return false;
     }
 
-    row_count = mysql_num_rows(m_result);
+    this->row_count = mysql_num_rows(m_result);
     column_count = (int) mysql_num_fields(m_result);
     m_fields = mysql_fetch_fields(m_result);
 
   } else {
     /* this was a DML or DDL query (INSERT, UPDATE, DELETE, ... */
-    row_count = row_count;
+    this->row_count = row_count;
   }
 
   return true;
@@ -1210,7 +1210,7 @@ bool PDOMySqlStatement::nextRowset() {
   my_ulonglong row_count;
   if (!m_conn->buffered()) {
     m_result = mysql_use_result(m_server);
-    row_count = 0;
+    row_count = mysql_num_rows(m_result);
   } else {
     m_result = mysql_store_result(m_server);
     if ((my_ulonglong)-1 == (row_count = mysql_affected_rows(m_server))) {
@@ -1223,7 +1223,7 @@ bool PDOMySqlStatement::nextRowset() {
     return false;
   }
 
-  row_count = row_count;
+  this->row_count = row_count;
   column_count = (int)mysql_num_fields(m_result);
   m_fields = mysql_fetch_fields(m_result);
   return true;
