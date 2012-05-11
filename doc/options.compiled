@@ -97,7 +97,7 @@ flood error logs.
     WarningFrequency = 1   # 1 out of these many warnings to log
     AssertActive = false
     AssertWarning = false
-    EnableForeachWarning = false # Enable warning when mixing foreach loops with current/next... functions
+    EnableForeachWarning = true # Enable warning when mixing foreach loops with current/next... functions
   }
 
 = Resource Limits

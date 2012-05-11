@@ -387,7 +387,7 @@ int RuntimeOption::MemcachePoolHashStrategy = 0;
 int RuntimeOption::MemcachePoolHashFunction = 11;
 int RuntimeOption::MemcachePoolCompressThreshold = 1000;
 int RuntimeOption::MemcachePoolDebug = false;
-bool RuntimeOption::EnableForeachWarning = false;
+bool RuntimeOption::EnableForeachWarning = true;
 
 ///////////////////////////////////////////////////////////////////////////////
 // keep this block after all the above static variables, or we will have
@@ -581,7 +581,7 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
     AssertWarning = error["AssertWarning"].getBool();
     NoticeFrequency = error["NoticeFrequency"].getInt32(1);
     WarningFrequency = error["WarningFrequency"].getInt32(1);
-    EnableForeachWarning = error["EnableForeachWarning"].getBool(false);
+    EnableForeachWarning = error["EnableForeachWarning"].getBool(true);
   }
   {
     Hdf rlimit = config["ResourceLimit"];
