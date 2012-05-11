@@ -183,4 +183,18 @@ SET(CPACK_PACKAGE_VERSION_PATCH "tuenti2")
 
 SET(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
 
+SET(DDEPS "libtcmalloc-minimal0 (>= 1.5-1)")
+SET(DDEPS "${DDEPS}, libboost-filesystem1.42.0 (>= 1.42.0-4)")
+SET(DDEPS "${DDEPS}, libpcre3 (>= 8.02-1.1)")
+SET(DDEPS "${DDEPS}, libicu44 (>= 4.4.1-7)")
+SET(DDEPS "${DDEPS}, libboost-program-options1.42.0 (>= 1.42.0-4)")
+SET(DDEPS "${DDEPS}, libmcrypt4 (>= 2.5.8-3.1)")
+SET(DDEPS "${DDEPS}, libonig2 (>= 5.9.1-1)")
+SET(DDEPS "${DDEPS}, libtbb2 (>= 3.0+r035-1)")
+SET(DDEPS "${DDEPS}, libgd2-xpm (>= 2.0.36~rc1~dfsg-5)")
+SET(DDEPS "${DDEPS}, libc-client2007e (>= 8:2007e~dfsg-3.1)")
+SET(DDEPS "${DDEPS}, libgraphicsmagick3 (>= 1.3.12-1+b1)")
+
+SET(CPACK_DEBIAN_PACKAGE_DEPENDS "${DDEPS}")
+
 INCLUDE(CPack)
