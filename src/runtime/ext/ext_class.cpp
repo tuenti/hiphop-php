@@ -172,8 +172,13 @@ bool f_is_a(CObjRef object, CStrRef class_name) {
 }
 
 bool f_is_subclass_of(CVarRef class_or_object, CStrRef class_name) {
+  // This also invokes autoloader
+  if (!f_class_exists(get_classname(class_or_object)) || !f_class_exists(class_name))
+      return false;
+
   const ClassInfo *classInfo =
     ClassInfo::FindClass(get_classname(class_or_object));
+
   if (classInfo) {
     return classInfo->derivesFrom(class_name, false);
   }
