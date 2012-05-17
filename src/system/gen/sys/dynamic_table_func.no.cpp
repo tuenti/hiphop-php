@@ -6594,6 +6594,14 @@ Variant i_drawarc(void *extra, CArrRef params) {
     return (x_drawarc(arg0, arg1, arg2, arg3, arg4, arg5, arg6), null);
   }
 }
+Variant ifa_date_timestamp_get(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("date_timestamp_get", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_date_timestamp_get(arg0));
+}
+Variant i_date_timestamp_get(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_date_timestamp_get);
+}
 Variant ifa_msg_queue_exists(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("msg_queue_exists", count, 1, 1, 1);
   CVarRef arg0(a0);
@@ -22256,6 +22264,7 @@ CallInfo ci_session_commit((void*)&i_session_commit, (void*)&ifa_session_commit,
 CallInfo ci_openssl_get_privatekey((void*)&i_openssl_get_privatekey, (void*)&ifa_openssl_get_privatekey, 2, 0, 0x0000000000000000LL);
 CallInfo ci_mt_srand((void*)&i_mt_srand, (void*)&ifa_mt_srand, 1, 0, 0x0000000000000000LL);
 CallInfo ci_drawarc((void*)&i_drawarc, (void*)&ifa_drawarc, 7, 0, 0x0000000000000000LL);
+CallInfo ci_date_timestamp_get((void*)&i_date_timestamp_get, (void*)&ifa_date_timestamp_get, 1, 0, 0x0000000000000000LL);
 CallInfo ci_msg_queue_exists((void*)&i_msg_queue_exists, (void*)&ifa_msg_queue_exists, 1, 0, 0x0000000000000000LL);
 CallInfo ci_strtotime((void*)&i_strtotime, (void*)&ifa_strtotime, 2, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_get_thread_id((void*)&i_hphp_get_thread_id, (void*)&ifa_hphp_get_thread_id, 0, 0, 0x0000000000000000LL);
@@ -35208,6 +35217,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 7497:
       HASH_GUARD(0x113ED435AEFDDD49LL, imagecolorallocatealpha) {
         ci = &ci_imagecolorallocatealpha;
+        return true;
+      }
+      break;
+    case 7500:
+      HASH_GUARD(0x737152091C561D4CLL, date_timestamp_get) {
+        ci = &ci_date_timestamp_get;
         return true;
       }
       break;

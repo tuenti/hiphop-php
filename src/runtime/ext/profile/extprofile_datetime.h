@@ -215,6 +215,10 @@ inline Array x_timezone_transitions_get(CObjRef object) {
   return f_timezone_transitions_get(object);
 }
 
+inline int64 x_date_timestamp_get(CObjRef object) {
+  FUNCTION_INJECTION_BUILTIN(date_timestamp_get);
+  return f_date_timestamp_get(object);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 }

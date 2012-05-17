@@ -66,6 +66,8 @@ class c_DateTime : public ExtObjectData {
   DECLARE_METHOD_INVOKE_HELPERS(settime);
   public: Object t_settimezone(CObjRef timezone);
   DECLARE_METHOD_INVOKE_HELPERS(settimezone);
+  public: int64 t_gettimestamp();
+  DECLARE_METHOD_INVOKE_HELPERS(gettimestamp);
   public: Variant t___destruct();
   DECLARE_METHOD_INVOKE_HELPERS(__destruct);
 
@@ -382,6 +384,10 @@ inline Variant f_date_timezone_get(CObjRef object) {
 
 inline void f_date_timezone_set(CObjRef object, CObjRef timezone) {
   object.getTyped<c_DateTime>()->t_settimezone(timezone);
+}
+
+inline int64 f_date_timestamp_get(CObjRef object) {
+  return object.getTyped<c_DateTime>()->t_gettimestamp();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

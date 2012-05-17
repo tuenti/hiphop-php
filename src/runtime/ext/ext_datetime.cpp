@@ -116,6 +116,12 @@ Object c_DateTime::t_settimezone(CObjRef timezone) {
   return this;
 }
 
+int64 c_DateTime::t_gettimestamp() {
+  INSTANCE_METHOD_INJECTION_BUILTIN(DateTime, DateTime::gettimestamp);
+  bool error;
+  return m_dt->toTimeStamp(error);
+}
+
 Variant c_DateTime::t___destruct() {
   INSTANCE_METHOD_INJECTION_BUILTIN(DateTime, DateTime::__destruct);
   return null;

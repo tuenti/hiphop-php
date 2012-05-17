@@ -949,6 +949,22 @@ DefineFunction(
     'taint_observer' => false,
   ));
 
+DefineFunction(
+  array(
+    'name'   => "date_timestamp_get",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Int64,
+      'desc'   => " Gets the Unix timestamp.",
+    ),
+	'args'   => array(
+      array(
+        'name'   => "object",
+        'type'   => Object,
+      ),
+    ),
+    'taint_observer' => false,
+  ));
 
 ///////////////////////////////////////////////////////////////////////////////
 // Classes
@@ -1248,6 +1264,17 @@ DefineFunction(
         'desc'   => "DateTime object returned by date_create(). The function modifies this object.",
       ),
     ),
+  ));
+
+DefineFunction(
+  array(
+    'name'   => "getTimestamp",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Int64,
+      'desc'   => " Gets the Unix timestamp.",
+    ),
+    'taint_observer' => false,
   ));
 
 DefineFunction(

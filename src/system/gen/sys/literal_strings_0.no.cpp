@@ -1072,6 +1072,7 @@ StaticString s_sys_ss58821ef5("ERR_NONE");
 StaticString s_sys_ss58a78f5c("setIDAttributeNode");
 StaticString s_sys_ss5916f77a("argCount");
 StaticString s_sys_ss5981c1ad("CHANNEL_ALL");
+StaticString s_sys_ss599b7f86("getTimestamp");
 StaticString s_sys_ss59e8cefa("COMPOSITE_DIFFERENCE");
 StaticString s_sys_ss5a431902("ATTR_STATEMENT_CLASS");
 StaticString s_sys_ss5a925f88("PARAM_STR");
