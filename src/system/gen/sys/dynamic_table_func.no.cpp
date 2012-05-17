@@ -4288,6 +4288,16 @@ Variant ifa_drawskewy(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 Variant i_drawskewy(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_drawskewy);
 }
+Variant ifa_cal_days_in_month(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 3)) return throw_wrong_arguments("cal_days_in_month", count, 3, 3, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  CVarRef arg2(a2);
+  return (x_cal_days_in_month(arg0, arg1, arg2));
+}
+Variant i_cal_days_in_month(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_cal_days_in_month);
+}
 Variant ifa_imagepolygon(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 4)) return throw_wrong_arguments("imagepolygon", count, 4, 4, 1);
   CVarRef arg0(a0);
@@ -17439,6 +17449,14 @@ Variant ifa_pcntl_exec(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 Variant i_pcntl_exec(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_pcntl_exec);
 }
+Variant ifa_mailparse_msg_free(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("mailparse_msg_free", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_mailparse_msg_free(arg0));
+}
+Variant i_mailparse_msg_free(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_mailparse_msg_free);
+}
 Variant ifa_drawpathlinetorelative(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 3)) return throw_wrong_arguments("drawpathlinetorelative", count, 3, 3, 1);
   CVarRef arg0(a0);
@@ -17448,14 +17466,6 @@ Variant ifa_drawpathlinetorelative(void *extra, int count, INVOKE_FEW_ARGS_IMPL_
 }
 Variant i_drawpathlinetorelative(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_drawpathlinetorelative);
-}
-Variant ifa_mailparse_msg_free(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("mailparse_msg_free", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (x_mailparse_msg_free(arg0));
-}
-Variant i_mailparse_msg_free(void *extra, CArrRef params) {
-  return invoke_func_few_handler(extra, params, &ifa_mailparse_msg_free);
 }
 Variant ifa_setcookie(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 1)) return throw_wrong_arguments("setcookie", count, 1, 7, 1);
@@ -22020,6 +22030,7 @@ CallInfo ci_posix_mknod((void*)&i_posix_mknod, (void*)&ifa_posix_mknod, 4, 0, 0x
 CallInfo ci_magicksetimageformat((void*)&i_magicksetimageformat, (void*)&ifa_magicksetimageformat, 2, 0, 0x0000000000000000LL);
 CallInfo ci_array_intersect_assoc((void*)&i_array_intersect_assoc, (void*)&ifa_array_intersect_assoc, 2, 1, 0x0000000000000000LL);
 CallInfo ci_drawskewy((void*)&i_drawskewy, (void*)&ifa_drawskewy, 2, 0, 0x0000000000000000LL);
+CallInfo ci_cal_days_in_month((void*)&i_cal_days_in_month, (void*)&ifa_cal_days_in_month, 3, 0, 0x0000000000000000LL);
 CallInfo ci_imagepolygon((void*)&i_imagepolygon, (void*)&ifa_imagepolygon, 4, 0, 0x0000000000000000LL);
 CallInfo ci_imap_createmailbox((void*)&i_imap_createmailbox, (void*)&ifa_imap_createmailbox, 2, 0, 0x0000000000000000LL);
 CallInfo ci_dom_element_remove_attribute((void*)&i_dom_element_remove_attribute, (void*)&ifa_dom_element_remove_attribute, 2, 0, 0x0000000000000000LL);
@@ -23336,8 +23347,8 @@ CallInfo ci_mysql_connect_with_db((void*)&i_mysql_connect_with_db, (void*)&ifa_m
 CallInfo ci_imap_close((void*)&i_imap_close, (void*)&ifa_imap_close, 2, 0, 0x0000000000000000LL);
 CallInfo ci_openssl_x509_export_to_file((void*)&i_openssl_x509_export_to_file, (void*)&ifa_openssl_x509_export_to_file, 3, 0, 0x0000000000000000LL);
 CallInfo ci_pcntl_exec((void*)&i_pcntl_exec, (void*)&ifa_pcntl_exec, 3, 0, 0x0000000000000000LL);
-CallInfo ci_drawpathlinetorelative((void*)&i_drawpathlinetorelative, (void*)&ifa_drawpathlinetorelative, 3, 0, 0x0000000000000000LL);
 CallInfo ci_mailparse_msg_free((void*)&i_mailparse_msg_free, (void*)&ifa_mailparse_msg_free, 1, 0, 0x0000000000000000LL);
+CallInfo ci_drawpathlinetorelative((void*)&i_drawpathlinetorelative, (void*)&ifa_drawpathlinetorelative, 3, 0, 0x0000000000000000LL);
 CallInfo ci_setcookie((void*)&i_setcookie, (void*)&ifa_setcookie, 7, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_get_timers((void*)&i_hphp_get_timers, (void*)&ifa_hphp_get_timers, 1, 0, 0x0000000000000000LL);
 CallInfo ci_dom_document_get_element_by_id((void*)&i_dom_document_get_element_by_id, (void*)&ifa_dom_document_get_element_by_id, 2, 0, 0x0000000000000000LL);
@@ -33867,6 +33878,10 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
       }
       break;
     case 6623:
+      HASH_GUARD(0x6F0E5BCBEC6659DFLL, cal_days_in_month) {
+        ci = &ci_cal_days_in_month;
+        return true;
+      }
       HASH_GUARD(0x349E2E0F2CD7B9DFLL, magickgetversion) {
         ci = &ci_magickgetversion;
         return true;

@@ -85,6 +85,7 @@ extern const int64 k_BUCKET_INFO_ID;
 extern const int64 k_BUCKET_INFO_SERVER;
 extern const int64 k_BUCKET_INFO_STATE;
 extern const int64 k_BUCKET_INFO_VOLUME;
+extern const int64 k_CAL_GREGORIAN;
 extern const int64 k_CURLINFO_LOCAL_PORT;
 extern const int64 k_CURLOPT_CONNECTTIMEOUT_MS;
 extern const int64 k_CURLOPT_TIMEOUT_MS;

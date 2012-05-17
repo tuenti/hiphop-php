@@ -2089,7 +2089,7 @@ public:
   hashNodeCon *next;
 };
 static hashNodeCon *conMapTable[8192];
-static hashNodeCon conBuckets[2172];
+static hashNodeCon conBuckets[2173];
 
 void init_builtin_constant_table() {
   const char *conMapData[] = {
@@ -2130,6 +2130,7 @@ void init_builtin_constant_table() {
       (const char *)"BUCKET_INFO_SERVER", (const char *)-1, (const char *)32, (const char *)&k_BUCKET_INFO_SERVER,
       (const char *)"BUCKET_INFO_STATE", (const char *)-1, (const char *)32, (const char *)&k_BUCKET_INFO_STATE,
       (const char *)"BUCKET_INFO_VOLUME", (const char *)-1, (const char *)32, (const char *)&k_BUCKET_INFO_VOLUME,
+      (const char *)"CAL_GREGORIAN", (const char *)-1, (const char *)32, (const char *)&k_CAL_GREGORIAN,
       (const char *)"CASE_LOWER", (const char *)-1, (const char *)32, (const char *)&k_CASE_LOWER,
       (const char *)"CASE_UPPER", (const char *)-1, (const char *)32, (const char *)&k_CASE_UPPER,
       (const char *)"CHAR_MAX", (const char *)-1, (const char *)32, (const char *)&k_CHAR_MAX,
