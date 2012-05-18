@@ -159,15 +159,19 @@ c_MemcachePool::~c_MemcachePool() {
   if (RuntimeOption::MemcachePoolDebug) {
     Logger::Verbose("[MemcachePool] Destroying MemcachePool object %p", this);
   }
-  std::map<int, StorageData>::iterator it;
 
-  for (it = MEMCACHEG(storage_map).begin(); it != MEMCACHEG(storage_map).end(); it++) {
-    if (this == (*it).second.memcachepool_object) {
-        break;
-    }
+  if (MEMCACHEG(storage_map).size() > 0) {
+      std::map<int, StorageData>::iterator it;
+
+      for (it = MEMCACHEG(storage_map).begin(); it != MEMCACHEG(storage_map).end(); it++) {
+        if (this == (*it).second.memcachepool_object) {
+            break;
+        }
+      }
+
+      MEMCACHEG(storage_map).erase(it);
   }
 
-  MEMCACHEG(storage_map).erase(it);
   MEMCACHEG(obj_map).erase(this);
 }
 
