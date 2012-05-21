@@ -21,7 +21,7 @@ function execute_phpt {
     diff -q obtained expected >/dev/null
     error=$?
 
-    (( error )) && echo "Error on test: $PHPT"
+    (( error )) && echo "Error on test: $PHPT" && exit 1
 
     rm file expected obtained
     return $error

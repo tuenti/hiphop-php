@@ -299,7 +299,7 @@ macro(hphp_link target)
 	target_link_libraries(${target} ${MYSQL_CLIENT_LIBS})
 	target_link_libraries(${target} ${PCRE_LIBRARY})
 	target_link_libraries(${target} ${ICU_LIBRARIES} ${ICU_I18N_LIBRARIES})
-	target_link_libraries(${target} "-levent -lcurl -lmemcached")
+	target_link_libraries(${target} "-levent -lcurl -lmemcached -lGeoIP")
 
 if (LINUX)
 	target_link_libraries(${target} ${CAP_LIB})

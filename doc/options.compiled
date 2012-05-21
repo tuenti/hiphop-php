@@ -881,3 +881,16 @@ Sets the hashing algorithm for host mapping on continuum. Values are used direct
  - CompressThreshold
 
 Compression is enabled by default, the threshold which control the minimum string length which triggers compresssion.
+
+= GeoIP
+
+  GeoIP {
+    CustomDirectory
+    OpenFlags = 8
+  }
+
+ - CustomDirectory
+Using this option you can change the path to search for db files
+
+ - OpenFlags
+Flags used when opening db file.

@@ -22,6 +22,7 @@ RUN_TESTSUITE(TestExtFile);
 RUN_TESTSUITE(TestExtFilter);
 RUN_TESTSUITE(TestExtFixes);
 RUN_TESTSUITE(TestExtFunction);
+RUN_TESTSUITE(TestExtGeoip);
 RUN_TESTSUITE(TestExtGettext);
 RUN_TESTSUITE(TestExtGmagick);
 RUN_TESTSUITE(TestExtHash);

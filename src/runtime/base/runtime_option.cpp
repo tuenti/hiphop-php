@@ -388,6 +388,8 @@ int RuntimeOption::MemcachePoolHashFunction = 11;
 int RuntimeOption::MemcachePoolCompressThreshold = 1000;
 int RuntimeOption::MemcachePoolDebug = false;
 bool RuntimeOption::EnableForeachWarning = true;
+std::string RuntimeOption::GeoIPCustomDirectory = "";
+int RuntimeOption::GeoIPOpenFlags = 8;
 
 ///////////////////////////////////////////////////////////////////////////////
 // keep this block after all the above static variables, or we will have
@@ -1123,6 +1125,12 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
      MemcachePoolHashFunction = memcachepool_config["HashFunction"].getInt32(11);
      MemcachePoolCompressThreshold = memcachepool_config["CompressThreshold"].getInt32(1000);
      MemcachePoolDebug = memcachepool_config["MemcachePoolDebug"].getBool(false);
+  }
+
+  {
+     Hdf geoip_config = config["GeoIP"];
+     GeoIPCustomDirectory = geoip_config["CustomDirectory"].getString("");
+     GeoIPOpenFlags = geoip_config["OpenFlags"].getInt32(8);
   }
 
   Extension::LoadModules(config);

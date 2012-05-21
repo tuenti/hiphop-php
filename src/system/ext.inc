@@ -22,6 +22,7 @@
 #include "filter.inc"
 #include "fixes.inc"
 #include "function.inc"
+#include "geoip.inc"
 #include "gettext.inc"
 #include "gmagick.inc"
 #include "hash.inc"

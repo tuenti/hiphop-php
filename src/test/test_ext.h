@@ -37,6 +37,7 @@
 #include <test/test_ext_filter.h>
 #include <test/test_ext_fixes.h>
 #include <test/test_ext_function.h>
+#include <test/test_ext_geoip.h>
 #include <test/test_ext_gettext.h>
 #include <test/test_ext_gmagick.h>
 #include <test/test_ext_hash.h>

@@ -292,6 +292,14 @@ Variant ifa_imap_append(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 Variant i_imap_append(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_imap_append);
 }
+Variant ifa_geoip_country_code_by_name(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("geoip_country_code_by_name", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_geoip_country_code_by_name(arg0));
+}
+Variant i_geoip_country_code_by_name(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_country_code_by_name);
+}
 Variant ifa_hphp_get_original_class_name(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("hphp_get_original_class_name", count, 1, 1, 1);
   CVarRef arg0(a0);
@@ -1516,6 +1524,14 @@ Variant ifa_ispixelwand(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 Variant i_ispixelwand(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_ispixelwand);
 }
+Variant ifa_geoip_id_by_name(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("geoip_id_by_name", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_geoip_id_by_name(arg0));
+}
+Variant i_geoip_id_by_name(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_id_by_name);
+}
 Variant ifa_drawsetgravity(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 2)) return throw_wrong_arguments("drawsetgravity", count, 2, 2, 1);
   CVarRef arg0(a0);
@@ -2140,6 +2156,14 @@ Variant ifa_magickgetimageblob(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS
 }
 Variant i_magickgetimageblob(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_magickgetimageblob);
+}
+Variant ifa_geoip_country_code3_by_name(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("geoip_country_code3_by_name", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_geoip_country_code3_by_name(arg0));
+}
+Variant i_geoip_country_code3_by_name(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_country_code3_by_name);
 }
 Variant ifa_pagelet_server_task_start(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 1 || count > 4)) return throw_wrong_arguments("pagelet_server_task_start", count, 1, 4, 1);
@@ -3736,6 +3760,14 @@ Variant ifa_check_user_func_async(void *extra, int count, INVOKE_FEW_ARGS_IMPL_A
 }
 Variant i_check_user_func_async(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_check_user_func_async);
+}
+Variant ifa_geoip_org_by_name(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("geoip_org_by_name", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_geoip_org_by_name(arg0));
+}
+Variant i_geoip_org_by_name(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_org_by_name);
 }
 Variant ifa_disk_free_space(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("disk_free_space", count, 1, 1, 1);
@@ -6182,6 +6214,16 @@ Variant ifa_is_double(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 }
 Variant i_is_double(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_is_double);
+}
+Variant ifa_geoip_time_zone_by_country_and_region(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("geoip_time_zone_by_country_and_region", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (x_geoip_time_zone_by_country_and_region(arg0));
+  CVarRef arg1(a1);
+  return (x_geoip_time_zone_by_country_and_region(arg0, arg1));
+}
+Variant i_geoip_time_zone_by_country_and_region(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_time_zone_by_country_and_region);
 }
 Variant ifa_thrift_protocol_read_binary(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 3)) return throw_wrong_arguments("thrift_protocol_read_binary", count, 3, 3, 1);
@@ -8816,6 +8858,15 @@ Variant ifa_openssl_get_publickey(void *extra, int count, INVOKE_FEW_ARGS_IMPL_A
 Variant i_openssl_get_publickey(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_openssl_get_publickey);
 }
+Variant ifa_geoip_database_info(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count > 1)) return throw_toomany_arguments("geoip_database_info", 1, 1);
+  if (count <= 0) return (x_geoip_database_info());
+  CVarRef arg0(a0);
+  return (x_geoip_database_info(arg0));
+}
+Variant i_geoip_database_info(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_database_info);
+}
 Variant ifa_hash_update_stream(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("hash_update_stream", count, 2, 3, 1);
   CVarRef arg0(a0);
@@ -10021,6 +10072,14 @@ Variant ifa_drawbezier(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 Variant i_drawbezier(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_drawbezier);
 }
+Variant ifa_geoip_db_filename(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("geoip_db_filename", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_geoip_db_filename(arg0));
+}
+Variant i_geoip_db_filename(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_db_filename);
+}
 Variant ifa_substr_compare(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 3 || count > 5)) return throw_wrong_arguments("substr_compare", count, 3, 5, 1);
   CVarRef arg0(a0);
@@ -10124,6 +10183,14 @@ Variant ifa_ftruncate(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 }
 Variant i_ftruncate(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_ftruncate);
+}
+Variant ifa_geoip_record_by_name(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("geoip_record_by_name", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_geoip_record_by_name(arg0));
+}
+Variant i_geoip_record_by_name(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_record_by_name);
 }
 Variant ifa_dcngettext(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 5)) return throw_wrong_arguments("dcngettext", count, 5, 5, 1);
@@ -13261,6 +13328,14 @@ Variant ifa_hphp_splfileinfo_getgroup(void *extra, int count, INVOKE_FEW_ARGS_IM
 Variant i_hphp_splfileinfo_getgroup(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_hphp_splfileinfo_getgroup);
 }
+Variant ifa_geoip_country_name_by_name(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("geoip_country_name_by_name", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_geoip_country_name_by_name(arg0));
+}
+Variant i_geoip_country_name_by_name(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_country_name_by_name);
+}
 Variant ifa_exit(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count > 1)) return throw_toomany_arguments("exit", 1, 1);
   if (count <= 0) return (x_exit());
@@ -13681,6 +13756,13 @@ Variant ifa_magickblackthresholdimage(void *extra, int count, INVOKE_FEW_ARGS_IM
 }
 Variant i_magickblackthresholdimage(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_magickblackthresholdimage);
+}
+Variant ifa_geoip_db_get_all_info(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("geoip_db_get_all_info", 0, 1);
+  return (x_geoip_db_get_all_info());
+}
+Variant i_geoip_db_get_all_info(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_db_get_all_info);
 }
 Variant ifa_dom_node_is_same_node(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 2)) return throw_wrong_arguments("dom_node_is_same_node", count, 2, 2, 1);
@@ -14168,6 +14250,14 @@ Variant ifa_array_change_key_case(void *extra, int count, INVOKE_FEW_ARGS_IMPL_A
 }
 Variant i_array_change_key_case(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_array_change_key_case);
+}
+Variant ifa_geoip_continent_code_by_name(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("geoip_continent_code_by_name", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_geoip_continent_code_by_name(arg0));
+}
+Variant i_geoip_continent_code_by_name(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_continent_code_by_name);
 }
 Variant ifa_mysql_list_processes(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count > 1)) return throw_toomany_arguments("mysql_list_processes", 1, 1);
@@ -14675,6 +14765,14 @@ Variant ifa_destroydrawingwand(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS
 Variant i_destroydrawingwand(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_destroydrawingwand);
 }
+Variant ifa_geoip_db_avail(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("geoip_db_avail", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_geoip_db_avail(arg0));
+}
+Variant i_geoip_db_avail(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_db_avail);
+}
 Variant ifa_msg_receive(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 5)) return throw_wrong_arguments("msg_receive", count, 5, 8, 1);
   CVarRef arg0(a0);
@@ -14799,6 +14897,14 @@ Variant ifa_hash_hmac(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 }
 Variant i_hash_hmac(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_hash_hmac);
+}
+Variant ifa_geoip_region_by_name(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("geoip_region_by_name", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_geoip_region_by_name(arg0));
+}
+Variant i_geoip_region_by_name(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_region_by_name);
 }
 Variant ifa_imagedestroy(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("imagedestroy", count, 1, 1, 1);
@@ -17049,6 +17155,15 @@ Variant ifa_pdo_drivers(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 Variant i_pdo_drivers(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_pdo_drivers);
 }
+Variant ifa_geoip_region_name_by_code(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("geoip_region_name_by_code", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (x_geoip_region_name_by_code(arg0, arg1));
+}
+Variant i_geoip_region_name_by_code(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_region_name_by_code);
+}
 Variant ifa_bzopen(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 2)) return throw_wrong_arguments("bzopen", count, 2, 2, 1);
   CVarRef arg0(a0);
@@ -17346,6 +17461,13 @@ Variant ifa_stream_set_blocking(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARG
 Variant i_stream_set_blocking(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_stream_set_blocking);
 }
+Variant ifa_posix_getegid(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("posix_getegid", 0, 1);
+  return (x_posix_getegid());
+}
+Variant i_posix_getegid(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_posix_getegid);
+}
 Variant ifa_mdecrypt_generic(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 2)) return throw_wrong_arguments("mdecrypt_generic", count, 2, 2, 1);
   CVarRef arg0(a0);
@@ -17354,13 +17476,6 @@ Variant ifa_mdecrypt_generic(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) 
 }
 Variant i_mdecrypt_generic(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_mdecrypt_generic);
-}
-Variant ifa_posix_getegid(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("posix_getegid", 0, 1);
-  return (x_posix_getegid());
-}
-Variant i_posix_getegid(void *extra, CArrRef params) {
-  return invoke_func_few_handler(extra, params, &ifa_posix_getegid);
 }
 Variant ifa_html_entity_decode(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("html_entity_decode", count, 1, 3, 1);
@@ -17424,16 +17539,6 @@ Variant i_mysql_connect_with_db(void *extra, CArrRef params) {
     return (x_mysql_connect_with_db(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
   }
 }
-Variant ifa_imap_close(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("imap_close", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (x_imap_close(arg0));
-  CVarRef arg1(a1);
-  return (x_imap_close(arg0, arg1));
-}
-Variant i_imap_close(void *extra, CArrRef params) {
-  return invoke_func_few_handler(extra, params, &ifa_imap_close);
-}
 Variant ifa_openssl_x509_export_to_file(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("openssl_x509_export_to_file", count, 2, 3, 1);
   CVarRef arg0(a0);
@@ -17444,6 +17549,16 @@ Variant ifa_openssl_x509_export_to_file(void *extra, int count, INVOKE_FEW_ARGS_
 }
 Variant i_openssl_x509_export_to_file(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_openssl_x509_export_to_file);
+}
+Variant ifa_imap_close(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("imap_close", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (x_imap_close(arg0));
+  CVarRef arg1(a1);
+  return (x_imap_close(arg0, arg1));
+}
+Variant i_imap_close(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_imap_close);
 }
 Variant ifa_pcntl_exec(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("pcntl_exec", count, 1, 3, 1);
@@ -18152,14 +18267,6 @@ Variant ifa_php_check_syntax(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) 
 Variant i_php_check_syntax(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_php_check_syntax);
 }
-Variant ifa_hphp_get_function_info(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("hphp_get_function_info", count, 1, 1, 1);
-  CVarRef arg0(a0);
-  return (x_hphp_get_function_info(arg0));
-}
-Variant i_hphp_get_function_info(void *extra, CArrRef params) {
-  return invoke_func_few_handler(extra, params, &ifa_hphp_get_function_info);
-}
 Variant ifa_mysql_fetch_lengths(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("mysql_fetch_lengths", count, 1, 1, 1);
   CVarRef arg0(a0);
@@ -18167,6 +18274,14 @@ Variant ifa_mysql_fetch_lengths(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARG
 }
 Variant i_mysql_fetch_lengths(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_mysql_fetch_lengths);
+}
+Variant ifa_hphp_get_function_info(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("hphp_get_function_info", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_hphp_get_function_info(arg0));
+}
+Variant i_hphp_get_function_info(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_hphp_get_function_info);
 }
 Variant ifa_magickadaptivethresholdimage(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 4)) return throw_wrong_arguments("magickadaptivethresholdimage", count, 4, 4, 1);
@@ -18873,15 +18988,6 @@ Variant ifa_ldap_close(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 Variant i_ldap_close(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_ldap_close);
 }
-Variant ifa_hphp_create_object(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count != 2)) return throw_wrong_arguments("hphp_create_object", count, 2, 2, 1);
-  CVarRef arg0(a0);
-  CVarRef arg1(a1);
-  return (x_hphp_create_object(arg0, arg1));
-}
-Variant i_hphp_create_object(void *extra, CArrRef params) {
-  return invoke_func_few_handler(extra, params, &ifa_hphp_create_object);
-}
 Variant ifa_chmod(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 2)) return throw_wrong_arguments("chmod", count, 2, 2, 1);
   CVarRef arg0(a0);
@@ -18890,6 +18996,15 @@ Variant ifa_chmod(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 }
 Variant i_chmod(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_chmod);
+}
+Variant ifa_hphp_create_object(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("hphp_create_object", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (x_hphp_create_object(arg0, arg1));
+}
+Variant i_hphp_create_object(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_hphp_create_object);
 }
 Variant ifa_imageloadfont(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("imageloadfont", count, 1, 1, 1);
@@ -20651,6 +20766,14 @@ Variant ifa_xml_set_default_handler(void *extra, int count, INVOKE_FEW_ARGS_IMPL
 Variant i_xml_set_default_handler(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_xml_set_default_handler);
 }
+Variant ifa_geoip_isp_by_name(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("geoip_isp_by_name", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_geoip_isp_by_name(arg0));
+}
+Variant i_geoip_isp_by_name(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_isp_by_name);
+}
 Variant ifa_dom_document_savexml(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("dom_document_savexml", count, 1, 3, 1);
   CVarRef arg0(a0);
@@ -21641,6 +21764,7 @@ CallInfo ci_reset((void*)&i_reset, (void*)&ifa_reset, 1, 0, 0x0000000000000001LL
 CallInfo ci_deg2rad((void*)&i_deg2rad, (void*)&ifa_deg2rad, 1, 0, 0x0000000000000000LL);
 CallInfo ci_shm_put_var((void*)&i_shm_put_var, (void*)&ifa_shm_put_var, 3, 0, 0x0000000000000000LL);
 CallInfo ci_imap_append((void*)&i_imap_append, (void*)&ifa_imap_append, 4, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_country_code_by_name((void*)&i_geoip_country_code_by_name, (void*)&ifa_geoip_country_code_by_name, 1, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_get_original_class_name((void*)&i_hphp_get_original_class_name, (void*)&ifa_hphp_get_original_class_name, 1, 0, 0x0000000000000000LL);
 CallInfo ci_drawgetstrokelinejoin((void*)&i_drawgetstrokelinejoin, (void*)&ifa_drawgetstrokelinejoin, 1, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_recursivedirectoryiterator_valid((void*)&i_hphp_recursivedirectoryiterator_valid, (void*)&ifa_hphp_recursivedirectoryiterator_valid, 1, 0, 0x0000000000000000LL);
@@ -21767,6 +21891,7 @@ CallInfo ci_stream_socket_shutdown((void*)&i_stream_socket_shutdown, (void*)&ifa
 CallInfo ci_usort((void*)&i_usort, (void*)&ifa_usort, 2, 0, 0x0000000000000001LL);
 CallInfo ci_array_rand((void*)&i_array_rand, (void*)&ifa_array_rand, 2, 0, 0x0000000000000000LL);
 CallInfo ci_ispixelwand((void*)&i_ispixelwand, (void*)&ifa_ispixelwand, 1, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_id_by_name((void*)&i_geoip_id_by_name, (void*)&ifa_geoip_id_by_name, 1, 0, 0x0000000000000000LL);
 CallInfo ci_drawsetgravity((void*)&i_drawsetgravity, (void*)&ifa_drawsetgravity, 2, 0, 0x0000000000000000LL);
 CallInfo ci_mb_eregi((void*)&i_mb_eregi, (void*)&ifa_mb_eregi, 3, 0, 0x0000000000000004LL);
 CallInfo ci_mb_strtoupper((void*)&i_mb_strtoupper, (void*)&ifa_mb_strtoupper, 2, 0, 0x0000000000000000LL);
@@ -21828,6 +21953,7 @@ CallInfo ci_ob_implicit_flush((void*)&i_ob_implicit_flush, (void*)&ifa_ob_implic
 CallInfo ci_mysql_get_host_info((void*)&i_mysql_get_host_info, (void*)&ifa_mysql_get_host_info, 1, 0, 0x0000000000000000LL);
 CallInfo ci_array_diff((void*)&i_array_diff, (void*)&ifa_array_diff, 2, 1, 0x0000000000000000LL);
 CallInfo ci_magickgetimageblob((void*)&i_magickgetimageblob, (void*)&ifa_magickgetimageblob, 1, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_country_code3_by_name((void*)&i_geoip_country_code3_by_name, (void*)&ifa_geoip_country_code3_by_name, 1, 0, 0x0000000000000000LL);
 CallInfo ci_pagelet_server_task_start((void*)&i_pagelet_server_task_start, (void*)&ifa_pagelet_server_task_start, 4, 0, 0x0000000000000000LL);
 CallInfo ci_get_included_files((void*)&i_get_included_files, (void*)&ifa_get_included_files, 0, 0, 0x0000000000000000LL);
 CallInfo ci_apache_request_headers((void*)&i_apache_request_headers, (void*)&ifa_apache_request_headers, 0, 0, 0x0000000000000000LL);
@@ -21987,6 +22113,7 @@ CallInfo ci_magicksetsize((void*)&i_magicksetsize, (void*)&ifa_magicksetsize, 3,
 CallInfo ci_memcache_replace((void*)&i_memcache_replace, (void*)&ifa_memcache_replace, 5, 0, 0x0000000000000000LL);
 CallInfo ci_magicksetimagetype((void*)&i_magicksetimagetype, (void*)&ifa_magicksetimagetype, 2, 0, 0x0000000000000000LL);
 CallInfo ci_check_user_func_async((void*)&i_check_user_func_async, (void*)&ifa_check_user_func_async, 2, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_org_by_name((void*)&i_geoip_org_by_name, (void*)&ifa_geoip_org_by_name, 1, 0, 0x0000000000000000LL);
 CallInfo ci_disk_free_space((void*)&i_disk_free_space, (void*)&ifa_disk_free_space, 1, 0, 0x0000000000000000LL);
 CallInfo ci_mysql_affected_rows((void*)&i_mysql_affected_rows, (void*)&ifa_mysql_affected_rows, 1, 0, 0x0000000000000000LL);
 CallInfo ci_sql_regcase((void*)&i_sql_regcase, (void*)&ifa_sql_regcase, 1, 0, 0x0000000000000000LL);
@@ -22223,6 +22350,7 @@ CallInfo ci_fb_const_fetch((void*)&i_fb_const_fetch, (void*)&ifa_fb_const_fetch,
 CallInfo ci_socket_recvfrom((void*)&i_socket_recvfrom, (void*)&ifa_socket_recvfrom, 6, 0, 0x0000000000000032LL);
 CallInfo ci_drawgettextencoding((void*)&i_drawgettextencoding, (void*)&ifa_drawgettextencoding, 1, 0, 0x0000000000000000LL);
 CallInfo ci_is_double((void*)&i_is_double, (void*)&ifa_is_double, 1, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_time_zone_by_country_and_region((void*)&i_geoip_time_zone_by_country_and_region, (void*)&ifa_geoip_time_zone_by_country_and_region, 2, 0, 0x0000000000000000LL);
 CallInfo ci_thrift_protocol_read_binary((void*)&i_thrift_protocol_read_binary, (void*)&ifa_thrift_protocol_read_binary, 3, 0, 0x0000000000000000LL);
 CallInfo ci_ldap_compare((void*)&i_ldap_compare, (void*)&ifa_ldap_compare, 4, 0, 0x0000000000000000LL);
 CallInfo ci_magickaverageimages((void*)&i_magickaverageimages, (void*)&ifa_magickaverageimages, 1, 0, 0x0000000000000000LL);
@@ -22490,6 +22618,7 @@ CallInfo ci_chr((void*)&i_chr, (void*)&ifa_chr, 1, 0, 0x0000000000000000LL);
 CallInfo ci_socket_server((void*)&i_socket_server, (void*)&ifa_socket_server, 4, 0, 0x000000000000000CLL);
 CallInfo ci_ereg_replace((void*)&i_ereg_replace, (void*)&ifa_ereg_replace, 3, 0, 0x0000000000000000LL);
 CallInfo ci_openssl_get_publickey((void*)&i_openssl_get_publickey, (void*)&ifa_openssl_get_publickey, 1, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_database_info((void*)&i_geoip_database_info, (void*)&ifa_geoip_database_info, 1, 0, 0x0000000000000000LL);
 CallInfo ci_hash_update_stream((void*)&i_hash_update_stream, (void*)&ifa_hash_update_stream, 3, 0, 0x0000000000000000LL);
 CallInfo ci_openssl_pkcs7_sign((void*)&i_openssl_pkcs7_sign, (void*)&ifa_openssl_pkcs7_sign, 7, 0, 0x0000000000000000LL);
 CallInfo ci_drawpathlinetoverticalabsolute((void*)&i_drawpathlinetoverticalabsolute, (void*)&ifa_drawpathlinetoverticalabsolute, 2, 0, 0x0000000000000000LL);
@@ -22608,6 +22737,7 @@ CallInfo ci_msg_get_queue((void*)&i_msg_get_queue, (void*)&ifa_msg_get_queue, 2,
 CallInfo ci_utf8_encode((void*)&i_utf8_encode, (void*)&ifa_utf8_encode, 1, 0, 0x0000000000000000LL);
 CallInfo ci_destroypixeliterator((void*)&i_destroypixeliterator, (void*)&ifa_destroypixeliterator, 1, 0, 0x0000000000000000LL);
 CallInfo ci_drawbezier((void*)&i_drawbezier, (void*)&ifa_drawbezier, 2, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_db_filename((void*)&i_geoip_db_filename, (void*)&ifa_geoip_db_filename, 1, 0, 0x0000000000000000LL);
 CallInfo ci_substr_compare((void*)&i_substr_compare, (void*)&ifa_substr_compare, 5, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_splfileinfo_getmtime((void*)&i_hphp_splfileinfo_getmtime, (void*)&ifa_hphp_splfileinfo_getmtime, 1, 0, 0x0000000000000000LL);
 CallInfo ci_parse_hdf_string((void*)&i_parse_hdf_string, (void*)&ifa_parse_hdf_string, 1, 0, 0x0000000000000000LL);
@@ -22619,6 +22749,7 @@ CallInfo ci_dom_node_has_child_nodes((void*)&i_dom_node_has_child_nodes, (void*)
 CallInfo ci_phpversion((void*)&i_phpversion, (void*)&ifa_phpversion, 1, 0, 0x0000000000000000LL);
 CallInfo ci_socket_accept((void*)&i_socket_accept, (void*)&ifa_socket_accept, 1, 0, 0x0000000000000000LL);
 CallInfo ci_ftruncate((void*)&i_ftruncate, (void*)&ifa_ftruncate, 2, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_record_by_name((void*)&i_geoip_record_by_name, (void*)&ifa_geoip_record_by_name, 1, 0, 0x0000000000000000LL);
 CallInfo ci_dcngettext((void*)&i_dcngettext, (void*)&ifa_dcngettext, 5, 0, 0x0000000000000000LL);
 CallInfo ci_socket_getsockname((void*)&i_socket_getsockname, (void*)&ifa_socket_getsockname, 3, 0, 0x0000000000000006LL);
 CallInfo ci_set_exception_handler((void*)&i_set_exception_handler, (void*)&ifa_set_exception_handler, 1, 0, 0x0000000000000000LL);
@@ -22933,6 +23064,7 @@ CallInfo ci_xmlwriter_open_uri((void*)&i_xmlwriter_open_uri, (void*)&ifa_xmlwrit
 CallInfo ci_collator_set_strength((void*)&i_collator_set_strength, (void*)&ifa_collator_set_strength, 2, 0, 0x0000000000000000LL);
 CallInfo ci_pixelsetredquantum((void*)&i_pixelsetredquantum, (void*)&ifa_pixelsetredquantum, 2, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_splfileinfo_getgroup((void*)&i_hphp_splfileinfo_getgroup, (void*)&ifa_hphp_splfileinfo_getgroup, 1, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_country_name_by_name((void*)&i_geoip_country_name_by_name, (void*)&ifa_geoip_country_name_by_name, 1, 0, 0x0000000000000000LL);
 CallInfo ci_exit((void*)&i_exit, (void*)&ifa_exit, 1, 0, 0x0000000000000000LL);
 CallInfo ci_magickwriteimages((void*)&i_magickwriteimages, (void*)&ifa_magickwriteimages, 3, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_splfileinfo_getpathinfo((void*)&i_hphp_splfileinfo_getpathinfo, (void*)&ifa_hphp_splfileinfo_getpathinfo, 2, 0, 0x0000000000000000LL);
@@ -22978,6 +23110,7 @@ CallInfo ci_ob_get_level((void*)&i_ob_get_level, (void*)&ifa_ob_get_level, 0, 0,
 CallInfo ci_xbox_send_message((void*)&i_xbox_send_message, (void*)&ifa_xbox_send_message, 4, 0, 0x0000000000000002LL);
 CallInfo ci_rawurlencode((void*)&i_rawurlencode, (void*)&ifa_rawurlencode, 1, 0, 0x0000000000000000LL);
 CallInfo ci_magickblackthresholdimage((void*)&i_magickblackthresholdimage, (void*)&ifa_magickblackthresholdimage, 2, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_db_get_all_info((void*)&i_geoip_db_get_all_info, (void*)&ifa_geoip_db_get_all_info, 0, 0, 0x0000000000000000LL);
 CallInfo ci_dom_node_is_same_node((void*)&i_dom_node_is_same_node, (void*)&ifa_dom_node_is_same_node, 2, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_create_continuation((void*)&i_hphp_create_continuation, (void*)&ifa_hphp_create_continuation, 4, 0, 0x0000000000000000LL);
 CallInfo ci_magicktransformimage((void*)&i_magicktransformimage, (void*)&ifa_magicktransformimage, 3, 0, 0x0000000000000000LL);
@@ -23029,6 +23162,7 @@ CallInfo ci_openssl_csr_new((void*)&i_openssl_csr_new, (void*)&ifa_openssl_csr_n
 CallInfo ci_gzeof((void*)&i_gzeof, (void*)&ifa_gzeof, 1, 0, 0x0000000000000000LL);
 CallInfo ci_array_intersect((void*)&i_array_intersect, (void*)&ifa_array_intersect, 2, 1, 0x0000000000000000LL);
 CallInfo ci_array_change_key_case((void*)&i_array_change_key_case, (void*)&ifa_array_change_key_case, 2, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_continent_code_by_name((void*)&i_geoip_continent_code_by_name, (void*)&ifa_geoip_continent_code_by_name, 1, 0, 0x0000000000000000LL);
 CallInfo ci_mysql_list_processes((void*)&i_mysql_list_processes, (void*)&ifa_mysql_list_processes, 1, 0, 0x0000000000000000LL);
 CallInfo ci_pixelsetalphaquantum((void*)&i_pixelsetalphaquantum, (void*)&ifa_pixelsetalphaquantum, 2, 0, 0x0000000000000000LL);
 CallInfo ci_filegroup((void*)&i_filegroup, (void*)&ifa_filegroup, 1, 0, 0x0000000000000000LL);
@@ -23082,6 +23216,7 @@ CallInfo ci_token_get_all((void*)&i_token_get_all, (void*)&ifa_token_get_all, 1,
 CallInfo ci_magickquantizeimages((void*)&i_magickquantizeimages, (void*)&ifa_magickquantizeimages, 6, 0, 0x0000000000000000LL);
 CallInfo ci_collator_sort_with_sort_keys((void*)&i_collator_sort_with_sort_keys, (void*)&ifa_collator_sort_with_sort_keys, 2, 0, 0x0000000000000002LL);
 CallInfo ci_destroydrawingwand((void*)&i_destroydrawingwand, (void*)&ifa_destroydrawingwand, 1, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_db_avail((void*)&i_geoip_db_avail, (void*)&ifa_geoip_db_avail, 1, 0, 0x0000000000000000LL);
 CallInfo ci_msg_receive((void*)&i_msg_receive, (void*)&ifa_msg_receive, 8, 0, 0x0000000000000094LL);
 CallInfo ci_xml_error_string((void*)&i_xml_error_string, (void*)&ifa_xml_error_string, 1, 0, 0x0000000000000000LL);
 CallInfo ci_spl_autoload_unregister((void*)&i_spl_autoload_unregister, (void*)&ifa_spl_autoload_unregister, 1, 0, 0x0000000000000000LL);
@@ -23091,6 +23226,7 @@ CallInfo ci_magickpaintopaqueimage((void*)&i_magickpaintopaqueimage, (void*)&ifa
 CallInfo ci_sscanf((void*)&i_sscanf, (void*)&ifa_sscanf, 2, 2, 0x0000000000000000LL);
 CallInfo ci_mb_http_output((void*)&i_mb_http_output, (void*)&ifa_mb_http_output, 1, 0, 0x0000000000000000LL);
 CallInfo ci_hash_hmac((void*)&i_hash_hmac, (void*)&ifa_hash_hmac, 4, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_region_by_name((void*)&i_geoip_region_by_name, (void*)&ifa_geoip_region_by_name, 1, 0, 0x0000000000000000LL);
 CallInfo ci_imagedestroy((void*)&i_imagedestroy, (void*)&ifa_imagedestroy, 1, 0, 0x0000000000000000LL);
 CallInfo ci_ldap_set_option((void*)&i_ldap_set_option, (void*)&ifa_ldap_set_option, 3, 0, 0x0000000000000000LL);
 CallInfo ci_sleep((void*)&i_sleep, (void*)&ifa_sleep, 1, 0, 0x0000000000000000LL);
@@ -23320,6 +23456,7 @@ CallInfo ci_drawsetfillopacity((void*)&i_drawsetfillopacity, (void*)&ifa_drawset
 CallInfo ci_array_diff_uassoc((void*)&i_array_diff_uassoc, (void*)&ifa_array_diff_uassoc, 3, 1, 0x0000000000000000LL);
 CallInfo ci_iconv_mime_decode((void*)&i_iconv_mime_decode, (void*)&ifa_iconv_mime_decode, 3, 0, 0x0000000000000000LL);
 CallInfo ci_pdo_drivers((void*)&i_pdo_drivers, (void*)&ifa_pdo_drivers, 0, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_region_name_by_code((void*)&i_geoip_region_name_by_code, (void*)&ifa_geoip_region_name_by_code, 2, 0, 0x0000000000000000LL);
 CallInfo ci_bzopen((void*)&i_bzopen, (void*)&ifa_bzopen, 2, 0, 0x0000000000000000LL);
 CallInfo ci_spl_classes((void*)&i_spl_classes, (void*)&ifa_spl_classes, 0, 0, 0x0000000000000000LL);
 CallInfo ci_xmlwriter_start_dtd_element((void*)&i_xmlwriter_start_dtd_element, (void*)&ifa_xmlwriter_start_dtd_element, 2, 0, 0x0000000000000000LL);
@@ -23348,13 +23485,13 @@ CallInfo ci_count_chars((void*)&i_count_chars, (void*)&ifa_count_chars, 2, 0, 0x
 CallInfo ci_hphp_splfileobject_getmaxlinelen((void*)&i_hphp_splfileobject_getmaxlinelen, (void*)&ifa_hphp_splfileobject_getmaxlinelen, 1, 0, 0x0000000000000000LL);
 CallInfo ci_utf8_decode((void*)&i_utf8_decode, (void*)&ifa_utf8_decode, 1, 0, 0x0000000000000000LL);
 CallInfo ci_stream_set_blocking((void*)&i_stream_set_blocking, (void*)&ifa_stream_set_blocking, 2, 0, 0x0000000000000000LL);
-CallInfo ci_mdecrypt_generic((void*)&i_mdecrypt_generic, (void*)&ifa_mdecrypt_generic, 2, 0, 0x0000000000000000LL);
 CallInfo ci_posix_getegid((void*)&i_posix_getegid, (void*)&ifa_posix_getegid, 0, 0, 0x0000000000000000LL);
+CallInfo ci_mdecrypt_generic((void*)&i_mdecrypt_generic, (void*)&ifa_mdecrypt_generic, 2, 0, 0x0000000000000000LL);
 CallInfo ci_html_entity_decode((void*)&i_html_entity_decode, (void*)&ifa_html_entity_decode, 3, 0, 0x0000000000000000LL);
 CallInfo ci_imap_listsubscribed((void*)&i_imap_listsubscribed, (void*)&ifa_imap_listsubscribed, 3, 0, 0x0000000000000000LL);
 CallInfo ci_mysql_connect_with_db((void*)&i_mysql_connect_with_db, (void*)&ifa_mysql_connect_with_db, 8, 0, 0x0000000000000000LL);
-CallInfo ci_imap_close((void*)&i_imap_close, (void*)&ifa_imap_close, 2, 0, 0x0000000000000000LL);
 CallInfo ci_openssl_x509_export_to_file((void*)&i_openssl_x509_export_to_file, (void*)&ifa_openssl_x509_export_to_file, 3, 0, 0x0000000000000000LL);
+CallInfo ci_imap_close((void*)&i_imap_close, (void*)&ifa_imap_close, 2, 0, 0x0000000000000000LL);
 CallInfo ci_pcntl_exec((void*)&i_pcntl_exec, (void*)&ifa_pcntl_exec, 3, 0, 0x0000000000000000LL);
 CallInfo ci_mailparse_msg_free((void*)&i_mailparse_msg_free, (void*)&ifa_mailparse_msg_free, 1, 0, 0x0000000000000000LL);
 CallInfo ci_drawpathlinetorelative((void*)&i_drawpathlinetorelative, (void*)&ifa_drawpathlinetorelative, 3, 0, 0x0000000000000000LL);
@@ -23424,8 +23561,8 @@ CallInfo ci_drawpathmovetorelative((void*)&i_drawpathmovetorelative, (void*)&ifa
 CallInfo ci_show_source((void*)&i_show_source, (void*)&ifa_show_source, 2, 0, 0x0000000000000000LL);
 CallInfo ci_pcntl_signal_dispatch((void*)&i_pcntl_signal_dispatch, (void*)&ifa_pcntl_signal_dispatch, 0, 0, 0x0000000000000000LL);
 CallInfo ci_php_check_syntax((void*)&i_php_check_syntax, (void*)&ifa_php_check_syntax, 2, 0, 0x0000000000000002LL);
-CallInfo ci_hphp_get_function_info((void*)&i_hphp_get_function_info, (void*)&ifa_hphp_get_function_info, 1, 0, 0x0000000000000000LL);
 CallInfo ci_mysql_fetch_lengths((void*)&i_mysql_fetch_lengths, (void*)&ifa_mysql_fetch_lengths, 1, 0, 0x0000000000000000LL);
+CallInfo ci_hphp_get_function_info((void*)&i_hphp_get_function_info, (void*)&ifa_hphp_get_function_info, 1, 0, 0x0000000000000000LL);
 CallInfo ci_magickadaptivethresholdimage((void*)&i_magickadaptivethresholdimage, (void*)&ifa_magickadaptivethresholdimage, 4, 0, 0x0000000000000000LL);
 CallInfo ci_thrift_protocol_write_binary((void*)&i_thrift_protocol_write_binary, (void*)&ifa_thrift_protocol_write_binary, 6, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_splfileobject___construct((void*)&i_hphp_splfileobject___construct, (void*)&ifa_hphp_splfileobject___construct, 5, 0, 0x0000000000000000LL);
@@ -23497,8 +23634,8 @@ CallInfo ci_posix_times((void*)&i_posix_times, (void*)&ifa_posix_times, 0, 0, 0x
 CallInfo ci_xml_parser_set_option((void*)&i_xml_parser_set_option, (void*)&ifa_xml_parser_set_option, 3, 0, 0x0000000000000000LL);
 CallInfo ci_posix_getuid((void*)&i_posix_getuid, (void*)&ifa_posix_getuid, 0, 0, 0x0000000000000000LL);
 CallInfo ci_ldap_close((void*)&i_ldap_close, (void*)&ifa_ldap_close, 1, 0, 0x0000000000000000LL);
-CallInfo ci_hphp_create_object((void*)&i_hphp_create_object, (void*)&ifa_hphp_create_object, 2, 0, 0x0000000000000000LL);
 CallInfo ci_chmod((void*)&i_chmod, (void*)&ifa_chmod, 2, 0, 0x0000000000000000LL);
+CallInfo ci_hphp_create_object((void*)&i_hphp_create_object, (void*)&ifa_hphp_create_object, 2, 0, 0x0000000000000000LL);
 CallInfo ci_imageloadfont((void*)&i_imageloadfont, (void*)&ifa_imageloadfont, 1, 0, 0x0000000000000000LL);
 CallInfo ci_apc_store((void*)&i_apc_store, (void*)&ifa_apc_store, 4, 0, 0x0000000000000000LL);
 CallInfo ci_mysql_list_tables((void*)&i_mysql_list_tables, (void*)&ifa_mysql_list_tables, 2, 0, 0x0000000000000000LL);
@@ -23678,6 +23815,7 @@ CallInfo ci_openssl_pkey_get_details((void*)&i_openssl_pkey_get_details, (void*)
 CallInfo ci_mb_ereg_search_setpos((void*)&i_mb_ereg_search_setpos, (void*)&ifa_mb_ereg_search_setpos, 1, 0, 0x0000000000000000LL);
 CallInfo ci_lchgrp((void*)&i_lchgrp, (void*)&ifa_lchgrp, 2, 0, 0x0000000000000000LL);
 CallInfo ci_xml_set_default_handler((void*)&i_xml_set_default_handler, (void*)&ifa_xml_set_default_handler, 2, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_isp_by_name((void*)&i_geoip_isp_by_name, (void*)&ifa_geoip_isp_by_name, 1, 0, 0x0000000000000000LL);
 CallInfo ci_dom_document_savexml((void*)&i_dom_document_savexml, (void*)&ifa_dom_document_savexml, 3, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_splfileobject_fflush((void*)&i_hphp_splfileobject_fflush, (void*)&ifa_hphp_splfileobject_fflush, 1, 0, 0x0000000000000000LL);
 CallInfo ci_drawgetstrokedashoffset((void*)&i_drawgetstrokedashoffset, (void*)&ifa_drawgetstrokedashoffset, 1, 0, 0x0000000000000000LL);
@@ -24891,6 +25029,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
       }
       HASH_GUARD(0x65F586C35A88030BLL, magickresizeimage) {
         ci = &ci_magickresizeimage;
+        return true;
+      }
+      break;
+    case 806:
+      HASH_GUARD(0x3B6BB08D5DFD2326LL, geoip_country_name_by_name) {
+        ci = &ci_geoip_country_name_by_name;
         return true;
       }
       break;
@@ -26241,6 +26385,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 1694:
       HASH_GUARD(0x5E9821F06711669ELL, gethostbynamel) {
         ci = &ci_gethostbynamel;
+        return true;
+      }
+      break;
+    case 1698:
+      HASH_GUARD(0x5F40815BD9A066A2LL, geoip_country_code_by_name) {
+        ci = &ci_geoip_country_code_by_name;
         return true;
       }
       break;
@@ -29094,6 +29244,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
         return true;
       }
       break;
+    case 3490:
+      HASH_GUARD(0x34095007477D8DA2LL, geoip_id_by_name) {
+        ci = &ci_geoip_id_by_name;
+        return true;
+      }
+      break;
     case 3496:
       HASH_GUARD(0x18FEAF2459E5ADA8LL, dom_element_has_attribute) {
         ci = &ci_dom_element_has_attribute;
@@ -30392,6 +30548,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
         return true;
       }
       break;
+    case 4285:
+      HASH_GUARD(0x31DB92E61C7250BDLL, geoip_db_get_all_info) {
+        ci = &ci_geoip_db_get_all_info;
+        return true;
+      }
+      break;
     case 4288:
       HASH_GUARD(0x6EDC1E7A8D5710C0LL, memcache_add_server) {
         ci = &ci_memcache_add_server;
@@ -31632,6 +31794,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
         return true;
       }
       break;
+    case 5069:
+      HASH_GUARD(0x03159E91528B93CDLL, geoip_region_by_name) {
+        ci = &ci_geoip_region_by_name;
+        return true;
+      }
+      break;
     case 5070:
       HASH_GUARD(0x02BEFBEE8287D3CELL, get_magic_quotes_runtime) {
         ci = &ci_get_magic_quotes_runtime;
@@ -32173,6 +32341,10 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 5384:
       HASH_GUARD(0x63A08D6AD1209508LL, magickgetexception) {
         ci = &ci_magickgetexception;
+        return true;
+      }
+      HASH_GUARD(0x0CEE5CCF388CD508LL, geoip_record_by_name) {
+        ci = &ci_geoip_record_by_name;
         return true;
       }
       break;
@@ -33955,6 +34127,10 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
         ci = &ci_soundex;
         return true;
       }
+      HASH_GUARD(0x79330A265A331A08LL, geoip_continent_code_by_name) {
+        ci = &ci_geoip_continent_code_by_name;
+        return true;
+      }
       break;
     case 6667:
       HASH_GUARD(0x70075DC878825A0BLL, ctype_lower) {
@@ -34114,6 +34290,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
         return true;
       }
       break;
+    case 6788:
+      HASH_GUARD(0x0D34F6EF5A253A84LL, geoip_country_code3_by_name) {
+        ci = &ci_geoip_country_code3_by_name;
+        return true;
+      }
+      break;
     case 6789:
       HASH_GUARD(0x755DEFDEDF35DA85LL, ctype_print) {
         ci = &ci_ctype_print;
@@ -34157,6 +34339,10 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
       }
       break;
     case 6805:
+      HASH_GUARD(0x710E29AB0FDA7A95LL, geoip_database_info) {
+        ci = &ci_geoip_database_info;
+        return true;
+      }
       HASH_GUARD(0x34B8A4E5AE0EFA95LL, pixelgetopacity) {
         ci = &ci_pixelgetopacity;
         return true;
@@ -34434,6 +34620,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
         return true;
       }
       break;
+    case 6971:
+      HASH_GUARD(0x6A3A4B2322419B3BLL, geoip_db_avail) {
+        ci = &ci_geoip_db_avail;
+        return true;
+      }
+      break;
     case 6972:
       HASH_GUARD(0x35F4A0789F367B3CLL, drawpathlinetohorizontalrelative) {
         ci = &ci_drawpathlinetohorizontalrelative;
@@ -34559,6 +34751,10 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
       }
       break;
     case 7054:
+      HASH_GUARD(0x192FC08B41A8DB8ELL, geoip_isp_by_name) {
+        ci = &ci_geoip_isp_by_name;
+        return true;
+      }
       HASH_GUARD(0x62A4D7A03F7C3B8ELL, ceil) {
         ci = &ci_ceil;
         return true;
@@ -34897,6 +35093,10 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 7272:
       HASH_GUARD(0x10D6AE9D688D1C68LL, copy) {
         ci = &ci_copy;
+        return true;
+      }
+      HASH_GUARD(0x6D2E0C8B74F91C68LL, geoip_region_name_by_code) {
+        ci = &ci_geoip_region_name_by_code;
         return true;
       }
       break;
@@ -35384,6 +35584,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
         return true;
       }
       break;
+    case 7597:
+      HASH_GUARD(0x1CB6F51B35FFFDADLL, geoip_db_filename) {
+        ci = &ci_geoip_db_filename;
+        return true;
+      }
+      break;
     case 7601:
       HASH_GUARD(0x67EAC6D7332F3DB1LL, hphp_splfileobject_fgetcsv) {
         ci = &ci_hphp_splfileobject_fgetcsv;
@@ -35701,6 +35907,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 7822:
       HASH_GUARD(0x29A2FBD427647E8ELL, mysql_connect) {
         ci = &ci_mysql_connect;
+        return true;
+      }
+      break;
+    case 7825:
+      HASH_GUARD(0x1E7E5D20FF71FE91LL, geoip_time_zone_by_country_and_region) {
+        ci = &ci_geoip_time_zone_by_country_and_region;
         return true;
       }
       break;
@@ -36121,6 +36333,10 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 8102:
       HASH_GUARD(0x0DEEA8C3E3A47FA6LL, read_exif_data) {
         ci = &ci_read_exif_data;
+        return true;
+      }
+      HASH_GUARD(0x41D0EFAFA03FDFA6LL, geoip_org_by_name) {
+        ci = &ci_geoip_org_by_name;
         return true;
       }
       break;

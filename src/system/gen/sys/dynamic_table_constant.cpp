@@ -2089,7 +2089,7 @@ public:
   hashNodeCon *next;
 };
 static hashNodeCon *conMapTable[8192];
-static hashNodeCon conBuckets[2173];
+static hashNodeCon conBuckets[2193];
 
 void init_builtin_constant_table() {
   const char *conMapData[] = {
@@ -2569,6 +2569,26 @@ void init_builtin_constant_table() {
       (const char *)"GD_MINOR_VERSION", (const char *)-1, (const char *)32, (const char *)&k_GD_MINOR_VERSION,
       (const char *)"GD_RELEASE_VERSION", (const char *)-1, (const char *)32, (const char *)&k_GD_RELEASE_VERSION,
       (const char *)"GD_VERSION", (const char *)-1, (const char *)128, (const char *)&k_GD_VERSION,
+      (const char *)"GEOIP_ASNUM_EDITION", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_ASNUM_EDITION,
+      (const char *)"GEOIP_CABLEDSL_SPEED", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_CABLEDSL_SPEED,
+      (const char *)"GEOIP_CHECK_CACHE", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_CHECK_CACHE,
+      (const char *)"GEOIP_CITY_EDITION_REV0", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_CITY_EDITION_REV0,
+      (const char *)"GEOIP_CITY_EDITION_REV1", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_CITY_EDITION_REV1,
+      (const char *)"GEOIP_CORPORATE_SPEED", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_CORPORATE_SPEED,
+      (const char *)"GEOIP_COUNTRY_EDITION", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_COUNTRY_EDITION,
+      (const char *)"GEOIP_DIALUP_SPEED", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_DIALUP_SPEED,
+      (const char *)"GEOIP_DOMAIN_EDITION", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_DOMAIN_EDITION,
+      (const char *)"GEOIP_INDEX_CACHE", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_INDEX_CACHE,
+      (const char *)"GEOIP_ISP_EDITION", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_ISP_EDITION,
+      (const char *)"GEOIP_MEMORY_CACHE", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_MEMORY_CACHE,
+      (const char *)"GEOIP_MMAP_CACHE", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_MMAP_CACHE,
+      (const char *)"GEOIP_NETSPEED_EDITION", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_NETSPEED_EDITION,
+      (const char *)"GEOIP_ORG_EDITION", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_ORG_EDITION,
+      (const char *)"GEOIP_PROXY_EDITION", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_PROXY_EDITION,
+      (const char *)"GEOIP_REGION_EDITION_REV0", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_REGION_EDITION_REV0,
+      (const char *)"GEOIP_REGION_EDITION_REV1", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_REGION_EDITION_REV1,
+      (const char *)"GEOIP_STANDARD", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_STANDARD,
+      (const char *)"GEOIP_UNKNOWN_SPEED", (const char *)-1, (const char *)32, (const char *)&k_GEOIP_UNKNOWN_SPEED,
       (const char *)"GLOBAL_STATE_IGNORE", (const char *)-1, (const char *)32, (const char *)&k_GLOBAL_STATE_IGNORE,
       (const char *)"GLOBAL_STATE_OVERWRITE", (const char *)-1, (const char *)32, (const char *)&k_GLOBAL_STATE_OVERWRITE,
       (const char *)"GLOBAL_STATE_SKIP", (const char *)-1, (const char *)32, (const char *)&k_GLOBAL_STATE_SKIP,
