@@ -346,6 +346,12 @@ class c_Gmagick : public ExtObjectData, public Sweepable {
   DECLARE_METHOD_INVOKE_HELPERS(writeimage);
   public: Object t_borderimage(CObjRef bordercolor, int64 width, int64 height);
   DECLARE_METHOD_INVOKE_HELPERS(borderimage);
+  public: Object t_scaleimage(int64 columns, int64 rows, bool fit = false);
+  DECLARE_METHOD_INVOKE_HELPERS(scaleimage);
+  public: Object t_setimagebackgroundcolor(CObjRef color);
+  DECLARE_METHOD_INVOKE_HELPERS(setimagebackgroundcolor);
+  public: Object t_flattenimages();
+  DECLARE_METHOD_INVOKE_HELPERS(flattenimages);
 
   // implemented by HPHP
   public: c_Gmagick *create();

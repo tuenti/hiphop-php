@@ -308,6 +308,31 @@ DefineFunction(
 
 DefineFunction(
   array(
+    'name'   => "scaleimage",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Object,
+      'desc'   => "The Gmagick object itself (for method chaining).",
+    ),
+    'args'   => array(
+      array(
+        'name'   => "columns",
+        'type'   => Int64,
+      ),
+      array(
+        'name'   => "rows",
+        'type'   => Int64,
+      ),
+	  array(
+        'name'   => "fit",
+        'type'   => Boolean,
+        'value'  => "false",
+	  ),	
+    ),
+  ));
+
+DefineFunction(
+  array(
     'name'   => "resizeimage",
     'flags'  =>  HasDocComment,
     'return' => array(
@@ -445,6 +470,32 @@ DefineFunction(
         'name'   => "height",
         'type'   => Int64,
       ),
+    ),
+  ));
+
+DefineFunction(
+  array(
+    'name'   => "setimagebackgroundcolor",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Object,
+      'desc'   => "The Gmagick object itself (for method chaining).",
+    ),
+    'args'   => array(
+      array(
+        'name'   => "color",
+        'type'   => Resource,
+      ),
+    ),
+  ));
+
+DefineFunction(
+  array(
+    'name'   => "flattenimages",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Object,
+      'desc'   => "The Gmagick object itself (for method chaining).",
     ),
   ));
 

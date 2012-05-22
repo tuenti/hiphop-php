@@ -659,5 +659,47 @@ Object c_Gmagick::t_borderimage(CObjRef bordercolor, int64 width, int64 height) 
   return this;
 }
 
+Object c_Gmagick::t_scaleimage(int64 columns, int64 rows, bool fit) {
+  INSTANCE_METHOD_INJECTION_BUILTIN(Gmagick, Gmagick::scaleimage);
+  checkNotEmpty();
+  
+  // Adjust width and height to work like php extension of gmagick
+  long width, height;
+  if (! adjust_dimensions(fit, columns, rows, &width, &height)) {
+    throwException("Unable to calculate image dimensions", ImageError);
+  }
+
+  int result = MagickScaleImage(magick_wand, width, height);
+  checkResult(result);
+
+  return this;
+}
+
+Object c_Gmagick::t_setimagebackgroundcolor(CObjRef color) {
+  INSTANCE_METHOD_INJECTION_BUILTIN(Gmagick, Gmagick::setimagebackgroundcolor);
+  checkNotEmpty();
+  c_GmagickPixel *gp = color.getTyped<c_GmagickPixel>();
+  int result = MagickSetImageBackgroundColor(magick_wand, gp->get_PixelWand());
+  checkResult(result);
+
+  return this;
+}
+
+Object c_Gmagick::t_flattenimages() {
+  INSTANCE_METHOD_INJECTION_BUILTIN(Gmagick, Gmagick::flattenimages);
+  checkNotEmpty();
+  MagickResetIterator(magick_wand);
+  MagickWand *tmp_wand = MagickFlattenImages(magick_wand);
+
+  if (tmp_wand == (MagickWand *)NULL) {
+    throwException("Flatten images failed", ImageError);
+  }
+
+  DestroyMagickWand(magick_wand);
+  magick_wand = tmp_wand;
+  
+  return this;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 }
