@@ -782,6 +782,18 @@ DefineFunction(
     ),
   ));
 
+DefineFunction(
+  array(
+    'name'   => "gethostname",
+    'desc'   => "Obtiene el nombre de host.",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Variant,
+      'desc'   => "Devuelve un string con con el nombre de host en caso de éxito, FALSE en caso contrario.",
+    ),
+  ));
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Classes

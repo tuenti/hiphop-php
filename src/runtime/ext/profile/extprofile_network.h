@@ -180,6 +180,10 @@ inline bool x_syslog(int priority, CStrRef message) {
   return f_syslog(priority, message);
 }
 
+inline Variant x_gethostname() {
+  FUNCTION_INJECTION_BUILTIN(gethostname);
+  return f_gethostname();
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 }

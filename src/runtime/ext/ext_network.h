@@ -117,6 +117,8 @@ inline bool f_syslog(int priority, CStrRef message) {
   return true;
 }
 
+Variant f_gethostname();
+
 ///////////////////////////////////////////////////////////////////////////////
 }
 

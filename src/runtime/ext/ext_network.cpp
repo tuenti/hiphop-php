@@ -922,5 +922,15 @@ bool f_setrawcookie(CStrRef name, CStrRef value /* = null_string */,
   return false;
 }
 
+Variant f_gethostname() {
+  char hostname[65];
+
+  if (gethostname(hostname, sizeof(hostname))) {
+    return false;
+  }
+
+  return String(hostname, CopyString);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 }

@@ -10622,6 +10622,13 @@ Variant ifa_xmlwriter_end_dtd_element(void *extra, int count, INVOKE_FEW_ARGS_IM
 Variant i_xmlwriter_end_dtd_element(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_xmlwriter_end_dtd_element);
 }
+Variant ifa_gethostname(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("gethostname", 0, 1);
+  return (x_gethostname());
+}
+Variant i_gethostname(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_gethostname);
+}
 Variant ifa_fb_unserialize(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("fb_unserialize", count, 2, 3, 1);
   CVarRef arg0(a0);
@@ -17372,16 +17379,6 @@ Variant ifa_dom_element_set_id_attribute_node(void *extra, int count, INVOKE_FEW
 Variant i_dom_element_set_id_attribute_node(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_dom_element_set_id_attribute_node);
 }
-Variant ifa_gzuncompress(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("gzuncompress", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (x_gzuncompress(arg0));
-  CVarRef arg1(a1);
-  return (x_gzuncompress(arg0, arg1));
-}
-Variant i_gzuncompress(void *extra, CArrRef params) {
-  return invoke_func_few_handler(extra, params, &ifa_gzuncompress);
-}
 Variant ifa_array_unshift(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 2)) return throw_missing_arguments("array_unshift", count+1, 1);
   VRefParam arg0(vref(a0));
@@ -17405,6 +17402,16 @@ Variant i_array_unshift(void *extra, CArrRef params) {
     const Array &p(count > 2 ? params.slice(2, count - 2, false) : Array());
     return (x_array_unshift(count, arg0, arg1, p));
   }
+}
+Variant ifa_gzuncompress(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("gzuncompress", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (x_gzuncompress(arg0));
+  CVarRef arg1(a1);
+  return (x_gzuncompress(arg0, arg1));
+}
+Variant i_gzuncompress(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_gzuncompress);
 }
 Variant ifa_parse_ini_string(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("parse_ini_string", count, 1, 3, 1);
@@ -22793,6 +22800,7 @@ CallInfo ci_restore_exception_handler((void*)&i_restore_exception_handler, (void
 CallInfo ci_openssl_pkcs7_encrypt((void*)&i_openssl_pkcs7_encrypt, (void*)&ifa_openssl_pkcs7_encrypt, 6, 0, 0x0000000000000000LL);
 CallInfo ci_md5((void*)&i_md5, (void*)&ifa_md5, 2, 0, 0x0000000000000000LL);
 CallInfo ci_xmlwriter_end_dtd_element((void*)&i_xmlwriter_end_dtd_element, (void*)&ifa_xmlwriter_end_dtd_element, 1, 0, 0x0000000000000000LL);
+CallInfo ci_gethostname((void*)&i_gethostname, (void*)&ifa_gethostname, 0, 0, 0x0000000000000000LL);
 CallInfo ci_fb_unserialize((void*)&i_fb_unserialize, (void*)&ifa_fb_unserialize, 3, 0, 0x0000000000000006LL);
 CallInfo ci_ftok((void*)&i_ftok, (void*)&ifa_ftok, 2, 0, 0x0000000000000000LL);
 CallInfo ci_str_shuffle((void*)&i_str_shuffle, (void*)&ifa_str_shuffle, 1, 0, 0x0000000000000000LL);
@@ -23477,8 +23485,8 @@ CallInfo ci_imap_binary((void*)&i_imap_binary, (void*)&ifa_imap_binary, 1, 0, 0x
 CallInfo ci_ob_get_status((void*)&i_ob_get_status, (void*)&ifa_ob_get_status, 1, 0, 0x0000000000000000LL);
 CallInfo ci_posix_getpwuid((void*)&i_posix_getpwuid, (void*)&ifa_posix_getpwuid, 1, 0, 0x0000000000000000LL);
 CallInfo ci_dom_element_set_id_attribute_node((void*)&i_dom_element_set_id_attribute_node, (void*)&ifa_dom_element_set_id_attribute_node, 3, 0, 0x0000000000000000LL);
-CallInfo ci_gzuncompress((void*)&i_gzuncompress, (void*)&ifa_gzuncompress, 2, 0, 0x0000000000000000LL);
 CallInfo ci_array_unshift((void*)&i_array_unshift, (void*)&ifa_array_unshift, 2, 1, 0x0000000000000001LL);
+CallInfo ci_gzuncompress((void*)&i_gzuncompress, (void*)&ifa_gzuncompress, 2, 0, 0x0000000000000000LL);
 CallInfo ci_parse_ini_string((void*)&i_parse_ini_string, (void*)&ifa_parse_ini_string, 3, 0, 0x0000000000000000LL);
 CallInfo ci_drawgetstrokelinecap((void*)&i_drawgetstrokelinecap, (void*)&ifa_drawgetstrokelinecap, 1, 0, 0x0000000000000000LL);
 CallInfo ci_count_chars((void*)&i_count_chars, (void*)&ifa_count_chars, 2, 0, 0x0000000000000000LL);
@@ -30355,6 +30363,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
       }
       HASH_GUARD(0x67C1ED9B816E503ELL, md5_file) {
         ci = &ci_md5_file;
+        return true;
+      }
+      break;
+    case 4162:
+      HASH_GUARD(0x79F162983C77F042LL, gethostname) {
+        ci = &ci_gethostname;
         return true;
       }
       break;
