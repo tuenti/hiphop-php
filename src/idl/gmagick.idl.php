@@ -499,6 +499,16 @@ DefineFunction(
     ),
   ));
 
+DefineFunction(
+  array(
+    'name'   => "getimage",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Object,
+      'desc'   => "Returns a new Gmagick object with the current image sequence.",
+    ),
+  ));
+
 DefineConstant(array('name' => "FILTER_UNDEFINED", 'type' => Int32,));
 DefineConstant(array('name' => "COMPOSITE_DEFAULT", 'type' => Int32,));
 DefineConstant(array('name' => "COMPOSITE_UNDEFINED", 'type' => Int32,));

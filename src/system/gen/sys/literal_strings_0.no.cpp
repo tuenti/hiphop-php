@@ -508,6 +508,7 @@ StaticString s_sys_sse302a373("IS_ABSTRACT");
 StaticString s_sys_sse33e1a4b("PIXEL_FLOAT");
 StaticString s_sys_sse3783d41("getSubPath");
 StaticString s_sys_sse3f54806("query");
+StaticString s_sys_sse3f6c86f("getimage");
 StaticString s_sys_sse41ca304("addString");
 StaticString s_sys_sse45f1271("getimagecolorspace");
 StaticString s_sys_sse4662809("n");

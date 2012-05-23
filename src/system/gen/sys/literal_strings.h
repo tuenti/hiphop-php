@@ -513,6 +513,7 @@ extern StaticString s_sys_sse302a373;
 extern StaticString s_sys_sse33e1a4b;
 extern StaticString s_sys_sse3783d41;
 extern StaticString s_sys_sse3f54806;
+extern StaticString s_sys_sse3f6c86f;
 extern StaticString s_sys_sse41ca304;
 extern StaticString s_sys_sse45f1271;
 extern StaticString s_sys_sse4662809;

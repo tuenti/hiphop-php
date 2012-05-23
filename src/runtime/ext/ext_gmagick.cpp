@@ -701,5 +701,20 @@ Object c_Gmagick::t_flattenimages() {
   return this;
 }
 
+Object c_Gmagick::t_getimage() {
+  INSTANCE_METHOD_INJECTION_BUILTIN(Gmagick, Gmagick::getimage);
+  checkNotEmpty();
+
+  MagickWand *tmp_wand = MagickGetImage(magick_wand);
+  if (tmp_wand == (MagickWand *)NULL) {
+    throwException("GetImage failed", ImageError);
+  }
+  
+  c_Gmagick * gm = NEWOBJ(c_Gmagick);
+  gm->magick_wand = tmp_wand;
+
+  return gm;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 }

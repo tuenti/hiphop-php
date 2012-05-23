@@ -352,10 +352,14 @@ class c_Gmagick : public ExtObjectData, public Sweepable {
   DECLARE_METHOD_INVOKE_HELPERS(setimagebackgroundcolor);
   public: Object t_flattenimages();
   DECLARE_METHOD_INVOKE_HELPERS(flattenimages);
+  public: Object t_getimage();
+  DECLARE_METHOD_INVOKE_HELPERS(getimage);
 
   // implemented by HPHP
   public: c_Gmagick *create();
   static const ClassPropTable os_prop_table;
+
+  MagickWand *magick_wand;
 
  private:
   void checkResult(int result);
@@ -363,7 +367,6 @@ class c_Gmagick : public ExtObjectData, public Sweepable {
   void checkHasFormat();
   void throwException(const char * magick_message, int magick_severity);
   bool adjust_dimensions(bool bestfit, long desired_width, long desired_height, long *new_width, long *new_height);
-  MagickWand *magick_wand;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

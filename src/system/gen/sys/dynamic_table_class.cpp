@@ -908,6 +908,7 @@ CallInfo c_Gmagick::ci_borderimage((void*)&c_Gmagick::i_borderimage, (void*)&c_G
 CallInfo c_Gmagick::ci_flattenimages((void*)&c_Gmagick::i_flattenimages, (void*)&c_Gmagick::ifa_flattenimages, 0, 4, 0x0000000000000000LL);
 CallInfo c_Gmagick::ci_getimagecolorspace((void*)&c_Gmagick::i_getimagecolorspace, (void*)&c_Gmagick::ifa_getimagecolorspace, 0, 4, 0x0000000000000000LL);
 CallInfo c_Gmagick::ci_readimageblob((void*)&c_Gmagick::i_readimageblob, (void*)&c_Gmagick::ifa_readimageblob, 2, 4, 0x0000000000000000LL);
+CallInfo c_Gmagick::ci_getimage((void*)&c_Gmagick::i_getimage, (void*)&c_Gmagick::ifa_getimage, 0, 4, 0x0000000000000000LL);
 CallInfo c_Gmagick::ci_setimagebackgroundcolor((void*)&c_Gmagick::i_setimagebackgroundcolor, (void*)&c_Gmagick::ifa_setimagebackgroundcolor, 1, 4, 0x0000000000000000LL);
 CallInfo c_Gmagick::ci_destroy((void*)&c_Gmagick::i_destroy, (void*)&c_Gmagick::ifa_destroy, 0, 4, 0x0000000000000000LL);
 CallInfo c_Gmagick::ci_rotateimage((void*)&c_Gmagick::i_rotateimage, (void*)&c_Gmagick::ifa_rotateimage, 2, 4, 0x0000000000000000LL);
@@ -999,6 +1000,9 @@ Variant c_Gmagick::i_setimagebackgroundcolor(MethodCallPackage &mcp, CArrRef par
 }
 Variant c_Gmagick::i_flattenimages(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa_flattenimages);
+}
+Variant c_Gmagick::i_getimage(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_getimage);
 }
 Variant c_Gmagick::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
@@ -1231,6 +1235,14 @@ Variant c_Gmagick::ifa_flattenimages(MethodCallPackage &mcp, int count, INVOKE_F
   if (UNLIKELY(count > 0)) return throw_toomany_arguments("flattenimages", 0, 1);
   return (self->t_flattenimages());
 }
+Variant c_Gmagick::ifa_getimage(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_getimage, coo_Gmagick);
+  }
+  c_Gmagick *self ATTRIBUTE_UNUSED (static_cast<c_Gmagick*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("getimage", 0, 1);
+  return (self->t_getimage());
+}
 const MethodCallInfoTable c_Gmagick::s_call_info_table[] = {
   { 0x468C75F912D25480LL, 1, 14, "getimageformat", &c_Gmagick::ci_getimageformat },
   { 0x71FCA435F3D231C1LL, 1, 11, "rotateimage", &c_Gmagick::ci_rotateimage },
@@ -1251,6 +1263,7 @@ const MethodCallInfoTable c_Gmagick::s_call_info_table[] = {
   { 0x025CEDC49276CFEELL, 1, 11, "borderimage", &c_Gmagick::ci_borderimage },
   { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_Gmagick::ci___destruct },
   { 0x2CB0EADA5D656733LL, 0, 12, "profileimage", &c_Gmagick::ci_profileimage },
+  { 0x352ED8A4F6D8B1F4LL, 1, 8, "getimage", &c_Gmagick::ci_getimage },
   { 0x68881049A5171BB6LL, 1, 14, "setimageformat", &c_Gmagick::ci_setimageformat },
   { 0x06E9AFC510E218B6LL, 0, 13, "flattenimages", &c_Gmagick::ci_flattenimages },
   { 0x2B28BB75ED5591B8LL, 1, 13, "getimagewidth", &c_Gmagick::ci_getimagewidth },
@@ -1267,8 +1280,8 @@ const int c_Gmagick::s_call_info_index[] = {
   -1,-1,9,-1,-1,-1,-1,11,
   -1,-1,12,14,-1,-1,-1,-1,
   15,-1,-1,-1,-1,-1,16,-1,
-  -1,-1,-1,17,-1,-1,19,-1,
-  21,-1,-1,22,23,24,-1,-1,
+  -1,-1,-1,17,19,-1,20,-1,
+  22,-1,-1,23,24,25,-1,-1,
 
 };
 c_Gmagick *c_Gmagick::create() {
