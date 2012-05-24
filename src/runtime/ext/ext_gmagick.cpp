@@ -299,6 +299,9 @@ const int q_Gmagick___DISPOSE_BACKGROUND = BackgroundDispose;
 const int q_Gmagick___DISPOSE_PREVIOUS = PreviousDispose;
 
 c_Gmagick::c_Gmagick(const ObjectStaticCallbacks *cb) :ExtObjectData(cb){
+  if (! RuntimeOption::GmagickEnabled) {
+    throw DisabledException("Gmagick");
+  }
   magick_wand = NewMagickWand();
 }
 

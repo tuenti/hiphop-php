@@ -885,6 +885,7 @@ Compression is enabled by default, the threshold which control the minimum strin
 = GeoIP
 
   GeoIP {
+    Enable = true
     CustomDirectory
     OpenFlags = 8
   }
@@ -894,3 +895,9 @@ Using this option you can change the path to search for db files
 
  - OpenFlags
 Flags used when opening db file.
+
+= Gmagick
+
+  Gmagick {
+    Enable = true
+  }

@@ -97,7 +97,15 @@ const int64 k_GEOIP_CHECK_CACHE = GEOIP_CHECK_CACHE;
 const int64 k_GEOIP_INDEX_CACHE = GEOIP_INDEX_CACHE;
 const int64 k_GEOIP_MMAP_CACHE = GEOIP_MMAP_CACHE;
 
+void check_enabled() {
+  if (! RuntimeOption::GeoIPEnabled) {
+    throw DisabledException("GeoIP");
+  }
+}
+
 bool is_db_avail(GeoIP *gi, int64 database) {
+  check_enabled();
+
   if (!gi) 
     raise_warning("Required database not available at %s.", GeoIPDBFileName[GEOIP_COUNTRY_EDITION]);
   
@@ -107,6 +115,8 @@ bool is_db_avail(GeoIP *gi, int64 database) {
 ///////////////////////////////////////////////////////////////////////////////
 
 Variant f_geoip_db_avail(int64 database) {
+  check_enabled();
+
   if (database < 0 || database >= NUM_DB_TYPES)
   {   
     raise_warning("Database type given is out of bound.");
@@ -133,6 +143,8 @@ Variant f_geoip_db_filename(int64 database) {
 }
 
 Array f_geoip_db_get_all_info() {
+  check_enabled();
+
   Array return_value = Array::Create();
 
   for (int i=0; i < NUM_DB_TYPES; i++)
@@ -153,6 +165,8 @@ Array f_geoip_db_get_all_info() {
 }
 
 Variant f_geoip_database_info(int64 database /* = k_GEOIP_COUNTRY_database */) {
+  check_enabled();
+
   GeoIP * gi; 
   const char *db_info;
 
@@ -321,6 +335,8 @@ Variant f_geoip_isp_by_name(CStrRef hostname) {
 }
 
 Variant f_geoip_region_name_by_code(CStrRef country_code, CStrRef region_code) {
+  check_enabled();
+
   if (country_code.empty() || region_code.empty()) {
     raise_warning("You need to specify the country and region codes.");
     return false;
@@ -335,6 +351,8 @@ Variant f_geoip_region_name_by_code(CStrRef country_code, CStrRef region_code) {
 }
 
 Variant f_geoip_time_zone_by_country_and_region(CStrRef country_code, CStrRef region_code /* = null */) {
+  check_enabled();
+
   if (country_code.empty()) {
     raise_warning("You need to specify at least the country code.");
     return false;

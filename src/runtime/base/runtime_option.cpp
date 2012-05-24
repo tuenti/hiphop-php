@@ -379,17 +379,25 @@ int RuntimeOption::ProfilerMaxTraceBuffer = 0;
 // Tuenti specific config
 std::string RuntimeOption::UserPartitionCacheFile = "/tmp/user_partitions_cache.bin";
 std::string RuntimeOption::BucketCacheFile = "/tmp/bucketcache.bin";
+
 int RuntimeOption::BucketCacheTTL = 3600;
 int RuntimeOption::BucketCacheStaleDataReusability = 120;
 int RuntimeOption::BucketCacheTTLForPrimingStaleData = 12;
+
 int RuntimeOption::JsonCacheRefreshTime = 1;
+
 int RuntimeOption::MemcachePoolHashStrategy = 0;
 int RuntimeOption::MemcachePoolHashFunction = 11;
 int RuntimeOption::MemcachePoolCompressThreshold = 1000;
 int RuntimeOption::MemcachePoolDebug = false;
+
 bool RuntimeOption::EnableForeachWarning = true;
+
+bool RuntimeOption::GeoIPEnabled = true;
 std::string RuntimeOption::GeoIPCustomDirectory = "";
 int RuntimeOption::GeoIPOpenFlags = 8;
+
+bool RuntimeOption::GmagickEnabled = true;
 
 ///////////////////////////////////////////////////////////////////////////////
 // keep this block after all the above static variables, or we will have
@@ -1126,11 +1134,15 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
      MemcachePoolCompressThreshold = memcachepool_config["CompressThreshold"].getInt32(1000);
      MemcachePoolDebug = memcachepool_config["MemcachePoolDebug"].getBool(false);
   }
-
   {
      Hdf geoip_config = config["GeoIP"];
+     GeoIPEnabled = geoip_config["Enabled"].getBool(true);
      GeoIPCustomDirectory = geoip_config["CustomDirectory"].getString("");
      GeoIPOpenFlags = geoip_config["OpenFlags"].getInt32(8);
+  }
+  {
+     Hdf gmagick_config = config["Gmagick"];
+     GmagickEnabled = gmagick_config["Enabled"].getBool(true);
   }
 
   Extension::LoadModules(config);

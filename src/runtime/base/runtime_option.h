@@ -401,8 +401,12 @@ public:
   static int MemcachePoolDebug;
 
   static bool EnableForeachWarning;
+
+  static bool GeoIPEnabled;
   static std::string GeoIPCustomDirectory;
   static int GeoIPOpenFlags;
+
+  static bool GmagickEnabled;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

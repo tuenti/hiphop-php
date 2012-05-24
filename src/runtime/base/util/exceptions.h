@@ -230,6 +230,13 @@ public:
   virtual ~NotImplementedException() throw() {}
 };
 
+class DisabledException : public ExtendedException {
+public:
+  DisabledException(const char *feature)
+    : ExtendedException("%s is disabled.", feature) {}
+  virtual ~DisabledException() throw() {}
+};
+
 class NotSupportedException : public ExtendedException {
 public:
   NotSupportedException(const char *feature, const char *reason)
