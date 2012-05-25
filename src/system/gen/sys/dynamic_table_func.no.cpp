@@ -20347,6 +20347,13 @@ Variant ifa_mb_ereg_search_getpos(void *extra, int count, INVOKE_FEW_ARGS_IMPL_A
 Variant i_mb_ereg_search_getpos(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_mb_ereg_search_getpos);
 }
+Variant ifa_geoip_db_reload(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("geoip_db_reload", 0, 1);
+  return (x_geoip_db_reload());
+}
+Variant i_geoip_db_reload(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_geoip_db_reload);
+}
 Variant ifa_magickgetimagedelay(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("magickgetimagedelay", count, 1, 1, 1);
   CVarRef arg0(a0);
@@ -23777,6 +23784,7 @@ CallInfo ci_openssl_x509_parse((void*)&i_openssl_x509_parse, (void*)&ifa_openssl
 CallInfo ci_imap_errors((void*)&i_imap_errors, (void*)&ifa_imap_errors, 0, 0, 0x0000000000000000LL);
 CallInfo ci_magickevaluateimage((void*)&i_magickevaluateimage, (void*)&ifa_magickevaluateimage, 4, 0, 0x0000000000000000LL);
 CallInfo ci_mb_ereg_search_getpos((void*)&i_mb_ereg_search_getpos, (void*)&ifa_mb_ereg_search_getpos, 0, 0, 0x0000000000000000LL);
+CallInfo ci_geoip_db_reload((void*)&i_geoip_db_reload, (void*)&ifa_geoip_db_reload, 0, 0, 0x0000000000000000LL);
 CallInfo ci_magickgetimagedelay((void*)&i_magickgetimagedelay, (void*)&ifa_magickgetimagedelay, 1, 0, 0x0000000000000000LL);
 CallInfo ci_shuffle((void*)&i_shuffle, (void*)&ifa_shuffle, 1, 0, 0x0000000000000001LL);
 CallInfo ci_imap_last_error((void*)&i_imap_last_error, (void*)&ifa_imap_last_error, 0, 0, 0x0000000000000000LL);
@@ -34691,6 +34699,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 7009:
       HASH_GUARD(0x7636825871399B61LL, highlight_file) {
         ci = &ci_highlight_file;
+        return true;
+      }
+      break;
+    case 7010:
+      HASH_GUARD(0x4601D9532E1DFB62LL, geoip_db_reload) {
+        ci = &ci_geoip_db_reload;
         return true;
       }
       break;

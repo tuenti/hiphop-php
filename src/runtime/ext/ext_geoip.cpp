@@ -16,6 +16,8 @@
 */
 
 #include <runtime/ext/ext_geoip.h>
+#include <sys/stat.h>
+#include <util/logger.h>
 
 namespace HPHP {
 IMPLEMENT_DEFAULT_EXTENSION(ldap);  
@@ -23,55 +25,36 @@ IMPLEMENT_DEFAULT_EXTENSION(ldap);
 class GeoIPRequestData {
 public:
   GeoIPRequestData() {
-    gi_country_edition = gi_org_edition = gi_city_edition = NULL;
-    gi_netspeed_edition = gi_region_edition = gi_isp_edition = NULL;
+    for (int i=0; i<NUM_DB_TYPES; i++) {
+      db_last_modified[i] = db_last_modified[i] = 0;
+      gi[i] = NULL;
+    }
+     
     open_flags = RuntimeOption::GeoIPOpenFlags;
 
     if (RuntimeOption::GeoIPCustomDirectory.size() > 0) {
       GeoIP_setup_custom_directory((char *)RuntimeOption::GeoIPCustomDirectory.c_str());
     }
-
-    if (GeoIP_db_avail(GEOIP_COUNTRY_EDITION))
-      gi_country_edition = GeoIP_open_type(GEOIP_COUNTRY_EDITION, open_flags);
-
-    if (GeoIP_db_avail(GEOIP_ORG_EDITION))
-      gi_org_edition = GeoIP_open_type(GEOIP_ORG_EDITION, open_flags);
-
-    if (GeoIP_db_avail(GEOIP_CITY_EDITION_REV1)) {
-      gi_city_edition = GeoIP_open_type(GEOIP_CITY_EDITION_REV1, open_flags);
-    } else if (GeoIP_db_avail(GEOIP_CITY_EDITION_REV0)) {
-      gi_city_edition = GeoIP_open_type(GEOIP_CITY_EDITION_REV0, open_flags);
-    }
- 
-    if (GeoIP_db_avail(GEOIP_NETSPEED_EDITION))
-      gi_netspeed_edition = GeoIP_open_type(GEOIP_NETSPEED_EDITION, open_flags);
-
-    if (GeoIP_db_avail(GEOIP_REGION_EDITION_REV1)) {
-      gi_region_edition = GeoIP_open_type(GEOIP_REGION_EDITION_REV1, open_flags);
-    } else if (GeoIP_db_avail(GEOIP_REGION_EDITION_REV0)) {
-      gi_region_edition = GeoIP_open_type(GEOIP_REGION_EDITION_REV0, open_flags);
-    }
-
-    if (GeoIP_db_avail(GEOIP_ISP_EDITION))
-      gi_isp_edition = GeoIP_open_type(GEOIP_ISP_EDITION, open_flags);
   }
 
   ~GeoIPRequestData() {
-    GeoIP_delete(gi_country_edition);
-    GeoIP_delete(gi_org_edition);
-    GeoIP_delete(gi_city_edition);
-    GeoIP_delete(gi_netspeed_edition);
-    GeoIP_delete(gi_region_edition);
-    GeoIP_delete(gi_isp_edition);
+    unload();
   }  
 
+  void unload() {
+    for (int i=0; i<NUM_DB_TYPES; i++) {
+      db_last_modified[i] = db_last_modified[i] = 0;
+      if (gi[i] != NULL) {
+        GeoIP_delete(gi[i]);
+        gi[i] = NULL;
+      }
+    }
+  }
+
   int open_flags;
-  GeoIP * gi_country_edition;
-  GeoIP * gi_org_edition;
-  GeoIP * gi_city_edition;
-  GeoIP * gi_netspeed_edition;
-  GeoIP * gi_region_edition;
-  GeoIP * gi_isp_edition;
+  GeoIP * gi[NUM_DB_TYPES];
+  time_t  db_last_modified[NUM_DB_TYPES];
+  time_t  db_last_checked[NUM_DB_TYPES];
 };
 
 static IMPLEMENT_THREAD_LOCAL(GeoIPRequestData, s_geoip);
@@ -103,18 +86,7 @@ void check_enabled() {
   }
 }
 
-bool is_db_avail(GeoIP *gi, int64 database) {
-  check_enabled();
-
-  if (!gi) 
-    raise_warning("Required database not available at %s.", GeoIPDBFileName[GEOIP_COUNTRY_EDITION]);
-  
-  return gi != NULL;
-}
-
-///////////////////////////////////////////////////////////////////////////////
-
-Variant f_geoip_db_avail(int64 database) {
+bool is_db_avail(int64 database, bool log_warning = true) {
   check_enabled();
 
   if (database < 0 || database >= NUM_DB_TYPES)
@@ -123,18 +95,53 @@ Variant f_geoip_db_avail(int64 database) {
     return false;
   }   
 
-  return (bool)GeoIP_db_avail(database);
+  if (!RuntimeOption::GeoIPAutoreload && s_geoip->gi[database]) {
+    return true;
+  }
+
+  if (! GeoIP_db_avail(database) && log_warning) {
+    raise_warning("Required database not available at %s.", GeoIPDBFileName[database]);
+    return false;
+  }
+
+  time_t now = time(NULL);
+
+  // Refresh time is 5 seconds, to avoid to stat files all the time
+  if (now < s_geoip->db_last_checked[database] + 5) {
+    return true;
+  }
+
+  // We hit refresh timeout, checking file modification time
+  struct stat db_stat;
+  stat(GeoIPDBFileName[GEOIP_COUNTRY_EDITION], &db_stat);
+  s_geoip->db_last_checked[database] = now;
+
+  if (db_stat.st_mtime <= s_geoip->db_last_modified[database]) {
+    return true;
+  }
+
+  if (s_geoip->gi[database]) GeoIP_delete(s_geoip->gi[database]);
+  s_geoip->gi[database] = GeoIP_open_type(database, s_geoip->open_flags);
+  s_geoip->db_last_modified[database] = now;
+
+  Logger::Verbose("Loading %s db",  GeoIPDBFileName[database]);
+
+  if (!s_geoip->gi[database] && log_warning) {
+    raise_warning("Required database not available at %s.", GeoIPDBFileName[database]);
+  }
+
+  return s_geoip->gi[database] != NULL;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+Variant f_geoip_db_avail(int64 database) {
+  return is_db_avail(database);
 }
 
 Variant f_geoip_db_filename(int64 database) {
-  if (!is_db_avail(s_geoip->gi_country_edition, GEOIP_COUNTRY_EDITION))
+  if (!is_db_avail(database))
     return NULL;
-
-  if (database < 0 || database >= NUM_DB_TYPES)
-  {   
-    raise_warning("Database type given is out of bound.");
-    return NULL;
-  }   
 
   if (NULL == GeoIPDBFileName[database])
     return NULL;
@@ -143,7 +150,8 @@ Variant f_geoip_db_filename(int64 database) {
 }
 
 Array f_geoip_db_get_all_info() {
-  check_enabled();
+  if (!is_db_avail(GEOIP_COUNTRY_EDITION))
+    return NULL;
 
   Array return_value = Array::Create();
 
@@ -164,40 +172,20 @@ Array f_geoip_db_get_all_info() {
   return return_value;
 }
 
-Variant f_geoip_database_info(int64 database /* = k_GEOIP_COUNTRY_database */) {
-  check_enabled();
-
-  GeoIP * gi; 
-  const char *db_info;
-
-  if (database < 0 || database >= NUM_DB_TYPES)
-  {   
-    raise_warning("Database type given is out of bound.");
+Variant f_geoip_database_info(int64 database /* = k_GEOIP_COUNTRY_EDITION */) {
+  if (!is_db_avail(database))
     return NULL;
-  }   
 
-  if (GeoIP_db_avail(database)) {
-    gi = GeoIP_open_type(database, s_geoip->open_flags);
-  } else {
-    if (NULL != GeoIPDBFileName[database])
-      raise_warning("Required database not available at %s.", GeoIPDBFileName[GEOIP_COUNTRY_EDITION]);
-    else
-      raise_warning("Required database not available.");
-
-    return NULL;
-  }   
-
-  db_info = GeoIP_database_info(gi);
-  GeoIP_delete(gi);
+  const char *db_info = GeoIP_database_info(s_geoip->gi[database]);
 
   return String(db_info, AttachString);
 }
 
 Variant f_geoip_country_code_by_name(CStrRef hostname) {
-  if (!is_db_avail(s_geoip->gi_country_edition, GEOIP_COUNTRY_EDITION))
+  if (!is_db_avail(GEOIP_COUNTRY_EDITION))
     return NULL;
 
-  const char * country_code = GeoIP_country_code_by_name(s_geoip->gi_country_edition, hostname.data());
+  const char * country_code = GeoIP_country_code_by_name(s_geoip->gi[GEOIP_COUNTRY_EDITION], hostname.data());
   if (country_code == NULL) {
     raise_notice("Host %s not found", hostname.data());
     return false;
@@ -207,10 +195,10 @@ Variant f_geoip_country_code_by_name(CStrRef hostname) {
 }
 
 Variant f_geoip_country_code3_by_name(CStrRef hostname) {
-  if (!is_db_avail(s_geoip->gi_country_edition, GEOIP_COUNTRY_EDITION))
+  if (!is_db_avail(GEOIP_COUNTRY_EDITION))
     return NULL;
 
-  const char * country_code = GeoIP_country_code3_by_name(s_geoip->gi_country_edition, hostname.data());
+  const char * country_code = GeoIP_country_code3_by_name(s_geoip->gi[GEOIP_COUNTRY_EDITION], hostname.data());
   if (country_code == NULL) {
     raise_notice("Host %s not found", hostname.data());
     return false;
@@ -220,10 +208,10 @@ Variant f_geoip_country_code3_by_name(CStrRef hostname) {
 }
 
 Variant f_geoip_country_name_by_name(CStrRef hostname) {
-  if (!is_db_avail(s_geoip->gi_country_edition, GEOIP_COUNTRY_EDITION))
+  if (!is_db_avail(GEOIP_COUNTRY_EDITION))
     return NULL;
 
-  const char *country_name = GeoIP_country_name_by_name(s_geoip->gi_country_edition, hostname.data());
+  const char *country_name = GeoIP_country_name_by_name(s_geoip->gi[GEOIP_COUNTRY_EDITION], hostname.data());
   if (country_name == NULL) {
     raise_notice("Host %s not found", hostname.data());
     return false;
@@ -233,10 +221,10 @@ Variant f_geoip_country_name_by_name(CStrRef hostname) {
 }
 
 Variant f_geoip_continent_code_by_name(CStrRef hostname) {
-  if (!is_db_avail(s_geoip->gi_country_edition, GEOIP_COUNTRY_EDITION))
+  if (!is_db_avail(GEOIP_COUNTRY_EDITION))
     return NULL;
 
-  int id = GeoIP_id_by_name(s_geoip->gi_country_edition, hostname);
+  int id = GeoIP_id_by_name(s_geoip->gi[GEOIP_COUNTRY_EDITION], hostname);
   if (id == 0) {
     raise_notice("Host %s not found", hostname.data());
     return false;
@@ -246,10 +234,10 @@ Variant f_geoip_continent_code_by_name(CStrRef hostname) {
 }
 
 Variant f_geoip_org_by_name(CStrRef hostname) {
-  if (!is_db_avail(s_geoip->gi_country_edition, GEOIP_COUNTRY_EDITION))
+  if (!is_db_avail(GEOIP_COUNTRY_EDITION))
     return NULL;
 
-  char *org = GeoIP_org_by_name(s_geoip->gi_country_edition, hostname);
+  char *org = GeoIP_org_by_name(s_geoip->gi[GEOIP_COUNTRY_EDITION], hostname);
   if (org == NULL) {
     raise_notice("Host %s not found", hostname.data());
     return false;
@@ -259,12 +247,18 @@ Variant f_geoip_org_by_name(CStrRef hostname) {
 }
 
 Array f_geoip_record_by_name(CStrRef hostname) {
-  if (!is_db_avail(s_geoip->gi_city_edition, GEOIP_CITY_EDITION_REV0))
-    return NULL;
+  GeoIP * gi;
+
+  if (is_db_avail(GEOIP_CITY_EDITION_REV1, false)) {
+    gi = s_geoip->gi[GEOIP_CITY_EDITION_REV1];
+  } else if (is_db_avail(GEOIP_CITY_EDITION_REV0)) {
+    gi = s_geoip->gi[GEOIP_CITY_EDITION_REV0];
+  }
+  else return NULL;
 
   Array return_value = Array::Create();
 
-  GeoIPRecord * gir = GeoIP_record_by_name(s_geoip->gi_city_edition, hostname);
+  GeoIPRecord * gir = GeoIP_record_by_name(gi, hostname);
 
   if (NULL == gir) {
     raise_notice("Host %s not found", hostname.data());
@@ -295,18 +289,24 @@ Array f_geoip_record_by_name(CStrRef hostname) {
 }
 
 Variant f_geoip_id_by_name(CStrRef hostname) {
-  if (!is_db_avail(s_geoip->gi_netspeed_edition, GEOIP_NETSPEED_EDITION))
+  if (!is_db_avail(GEOIP_NETSPEED_EDITION))
     return NULL;
 
-  return GeoIP_id_by_name(s_geoip->gi_netspeed_edition, hostname.data());
+  return GeoIP_id_by_name(s_geoip->gi[GEOIP_NETSPEED_EDITION], hostname.data());
 }
 
 Array f_geoip_region_by_name(CStrRef hostname) {
-  if (!is_db_avail(s_geoip->gi_region_edition, GEOIP_REGION_EDITION_REV0))
-    return NULL;
+  GeoIP * gi;
+
+  if (is_db_avail(GEOIP_REGION_EDITION_REV1, false)) {
+    gi = s_geoip->gi[GEOIP_REGION_EDITION_REV1];
+  } else if (is_db_avail(GEOIP_REGION_EDITION_REV0)) {
+    gi = s_geoip->gi[GEOIP_REGION_EDITION_REV0];
+  }
+  else return NULL;
 
   Array return_value = Array::Create();
-  GeoIPRegion * region = GeoIP_region_by_name(s_geoip->gi_region_edition, hostname.data());
+  GeoIPRegion * region = GeoIP_region_by_name(gi, hostname.data());
 
   if (NULL == region) {
     raise_notice("Host %s not found", hostname.data());
@@ -322,10 +322,10 @@ Array f_geoip_region_by_name(CStrRef hostname) {
 }
 
 Variant f_geoip_isp_by_name(CStrRef hostname) {
-  if (!is_db_avail(s_geoip->gi_isp_edition, GEOIP_ISP_EDITION))
+  if (!is_db_avail(GEOIP_ISP_EDITION))
     return NULL;
 
-  char * isp = GeoIP_name_by_name(s_geoip->gi_isp_edition, hostname.data());
+  char * isp = GeoIP_name_by_name(s_geoip->gi[GEOIP_ISP_EDITION], hostname.data());
   if (isp == NULL) {
     raise_notice("Host %s not found", hostname.data());
     return false;
@@ -366,6 +366,10 @@ Variant f_geoip_time_zone_by_country_and_region(CStrRef country_code, CStrRef re
   return String(timezone, CopyString);
 }
 
+bool f_geoip_db_reload() {
+  s_geoip->unload();
+  return is_db_avail(GEOIP_COUNTRY_EDITION, false);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 }

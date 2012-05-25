@@ -405,6 +405,7 @@ public:
   static bool GeoIPEnabled;
   static std::string GeoIPCustomDirectory;
   static int GeoIPOpenFlags;
+  static bool GeoIPAutoreload;
 
   static bool GmagickEnabled;
 };

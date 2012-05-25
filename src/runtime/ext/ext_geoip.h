@@ -64,6 +64,7 @@ Array f_geoip_region_by_name(CStrRef hostname);
 Variant f_geoip_isp_by_name(CStrRef hostname);
 Variant f_geoip_region_name_by_code(CStrRef country_code, CStrRef region_code);
 Variant f_geoip_time_zone_by_country_and_region(CStrRef country_code, CStrRef region_code = null_string);
+bool f_geoip_db_reload();
 
 ///////////////////////////////////////////////////////////////////////////////
 }

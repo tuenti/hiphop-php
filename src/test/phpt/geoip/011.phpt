@@ -9,4 +9,4 @@ geoip_database_info(14);
 
 ?>
 --EXPECTF--
-HipHop Warning:  Required database not available at /usr/share/GeoIP/GeoIP.dat. in /home/daniel/tuenti/hiphop-php/src/test/phpt/file on line 3
+HipHop Warning:  Required database not available at /usr/share/GeoIP/GeoIPDistance.dat. in /home/daniel/tuenti/hiphop-php/src/test/phpt/file on line 3

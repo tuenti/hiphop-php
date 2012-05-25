@@ -253,6 +253,17 @@ DefineFunction(
      )
   ));
 
+DefineFunction(
+  array(
+    'name'   => "geoip_db_reload",
+    'flags'  =>  HasDocComment,
+    'desc'   => "Resets the current db file and reloads it",
+    'return' => array(
+      'type' => Boolean,
+			'desc' => "Returns TRUE if db reloaded successfully",
+    ),
+  ));
+
 /* For database type constants */
 DefineConstant(
   array(

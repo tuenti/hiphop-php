@@ -396,6 +396,7 @@ bool RuntimeOption::EnableForeachWarning = true;
 bool RuntimeOption::GeoIPEnabled = true;
 std::string RuntimeOption::GeoIPCustomDirectory = "";
 int RuntimeOption::GeoIPOpenFlags = 8;
+bool RuntimeOption::GeoIPAutoreload = false;
 
 bool RuntimeOption::GmagickEnabled = true;
 
@@ -1139,6 +1140,7 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
      GeoIPEnabled = geoip_config["Enabled"].getBool(true);
      GeoIPCustomDirectory = geoip_config["CustomDirectory"].getString("");
      GeoIPOpenFlags = geoip_config["OpenFlags"].getInt32(8);
+     GeoIPAutoreload = geoip_config["Autoreload"].getBool(false);
   }
   {
      Hdf gmagick_config = config["Gmagick"];

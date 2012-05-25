@@ -100,6 +100,10 @@ inline Variant x_geoip_time_zone_by_country_and_region(CStrRef country_code, CSt
   return f_geoip_time_zone_by_country_and_region(country_code, region_code);
 }
 
+inline bool x_geoip_db_reload() {
+  FUNCTION_INJECTION_BUILTIN(geoip_db_reload);
+  return f_geoip_db_reload();
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 }

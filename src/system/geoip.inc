@@ -16,6 +16,7 @@
 "geoip_isp_by_name", T(Variant), S(0), "hostname", T(String), NULL, NULL, S(0), NULL, S(16384), "/**\n * ( excerpt from http://php.net/manual/en/function.geoip-isp-by-name.php )\n *\n * Returns the ISP Name found in the GeoIP Database\n *\n * @hostname   string\n *\n * @return     mixed\n */", 
 "geoip_region_name_by_code", T(Variant), S(0), "country_code", T(String), NULL, NULL, S(0), "region_code", T(String), NULL, NULL, S(0), NULL, S(16384), "/**\n * ( excerpt from\n * http://php.net/manual/en/function.geoip-region-name-by-code.php )\n *\n * Returns the region name for some country code and region code combo\n *\n * @country_code\n *             string\n * @region_code\n *             string\n *\n * @return     mixed\n */", 
 "geoip_time_zone_by_country_and_region", T(Variant), S(0), "country_code", T(String), NULL, NULL, S(0), "region_code", T(String), "N;", "null", S(0), NULL, S(16384), "/**\n * ( excerpt from\n * http://php.net/manual/en/function.geoip-time-zone-by-country-and-region.php\n * )\n *\n * Returns the time zone for some country code and region code combo\n *\n * @country_code\n *             string\n * @region_code\n *             string\n *\n * @return     mixed\n */", 
+"geoip_db_reload", T(Boolean), S(0), NULL, S(16384), "/**\n * ( excerpt from http://php.net/manual/en/function.geoip-db-reload.php )\n *\n * Resets the current db file and reloads it\n *\n * @return     bool    Returns TRUE if db reloaded successfully\n */", 
 
 #elif EXT_TYPE == 1
 "GEOIP_COUNTRY_EDITION", T(Int64),
