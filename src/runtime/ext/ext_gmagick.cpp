@@ -22,6 +22,7 @@
 #include <stdexcept>
 
 namespace HPHP {
+#define MAX_BUFFER_SIZE        1024
 
 /* Static Initializer to call Init and Sutdown functions only one time */
 class GmagickStaticInitializer {
@@ -717,6 +718,50 @@ Object c_Gmagick::t_getimage() {
   gm->magick_wand = tmp_wand;
 
   return gm;
+}
+
+Object c_Gmagick::t_removeimage() {
+  INSTANCE_METHOD_INJECTION_BUILTIN(Gmagick, Gmagick::removeimage);
+
+  checkNotEmpty();
+
+  int result = MagickRemoveImage(magick_wand);
+  checkResult(result);
+
+  return this;
+}
+
+Object c_Gmagick::t_newimage(int64 columns, int64 rows, CStrRef background, CStrRef format) {
+  INSTANCE_METHOD_INJECTION_BUILTIN(Gmagick, Gmagick::newimage);
+  char xc_str[MAX_BUFFER_SIZE];
+
+  if (background.empty()) {
+    throwException("The color must not be empty", ImageError);
+  }
+
+  snprintf((char *)&xc_str, MAX_BUFFER_SIZE, "xc:%s", background.data());
+  int result = MagickReadImage(magick_wand, xc_str);
+  checkResult(result);
+
+  result = MagickScaleImage(magick_wand, columns, rows);
+  checkResult(result);
+  
+  if (format.size() > 0) {
+    result = MagickSetImageFormat(magick_wand, format.data());
+    checkResult(result);
+  }
+
+  return this;
+}
+
+Object c_Gmagick::t_compositeimage(CObjRef gm, int64 compose, int64 x, int64 y) {
+  INSTANCE_METHOD_INJECTION_BUILTIN(Gmagick, Gmagick::compositeimage);
+
+  c_Gmagick *gm2 = gm.getTyped<c_Gmagick>();
+  int result = MagickCompositeImage(magick_wand, gm2->magick_wand, (CompositeOperator) compose, x, y);
+  checkResult(result);
+  
+  return this;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

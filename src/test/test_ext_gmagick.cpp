@@ -96,5 +96,35 @@ bool TestExtGmagick::test_Gmagick() {
   gm3->t_writeimage(IMG_DIR "/palomas_noprofile.jpg");
   unlink(IMG_DIR "/palomas_noprofile.jpg");
 
+  p_Gmagick gm4(p_Gmagick(NEWOBJ(c_Gmagick))->create());
+  gm4->t_readimage(IMG_DIR "/test2.jpg");
+  gm4->t_borderimage(gmp, 10, 20);
+  VS(gm4->t_getimagewidth(), 820);
+  VS(gm4->t_getimageheight(), 640);
+  gm4->t_scaleimage(100, 200);
+  VS(gm4->t_getimagewidth(), 100);
+  VS(gm4->t_getimageheight(), 200);
+  gm4->t_setimagebackgroundcolor(gmp);
+  gm4->t_flattenimages();
+
+  p_Gmagick gm5(p_Gmagick(NEWOBJ(c_Gmagick))->create());
+  gm5->t_readimage(IMG_DIR "/test2.jpg");
+  p_Gmagick gm6 = gm5->t_getimage();
+  gm6->t_borderimage(gmp, 10, 20);
+  VS(gm5->t_getimagewidth(), 800);
+  VS(gm5->t_getimageheight(), 600);
+  VS(gm6->t_getimagewidth(), 820);
+  VS(gm6->t_getimageheight(), 640);
+
+  p_Gmagick gm7(p_Gmagick(NEWOBJ(c_Gmagick))->create());
+  gm7->t_readimage(IMG_DIR "/test2.jpg");
+  gm7->t_newimage(100, 100, "red");
+  VS(gm7->t_getimagewidth(), 100);
+  VS(gm7->t_getimageheight(), 100);
+  gm7->t_removeimage();
+  VS(gm7->t_getimagewidth(), 800);
+  VS(gm7->t_getimageheight(), 600);
+  gm7->t_compositeimage(gm5, q_Gmagick___COMPOSITE_COPY, 0, 0);
+
   return Count(true);
 }

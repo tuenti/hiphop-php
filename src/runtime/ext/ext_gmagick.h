@@ -354,6 +354,13 @@ class c_Gmagick : public ExtObjectData, public Sweepable {
   DECLARE_METHOD_INVOKE_HELPERS(flattenimages);
   public: Object t_getimage();
   DECLARE_METHOD_INVOKE_HELPERS(getimage);
+  public: Object t_removeimage();
+  DECLARE_METHOD_INVOKE_HELPERS(removeimage);
+  public: Object t_newimage(int64 columns, int64 rows, CStrRef background, CStrRef format = null_string);
+  DECLARE_METHOD_INVOKE_HELPERS(newimage);
+  public: Object t_compositeimage(CObjRef gm, int64 compose, int64 x, int64 y); 
+  DECLARE_METHOD_INVOKE_HELPERS(compositeimage);
+                              
 
   // implemented by HPHP
   public: c_Gmagick *create();

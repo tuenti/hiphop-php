@@ -509,6 +509,74 @@ DefineFunction(
     ),
   ));
 
+DefineFunction(
+  array(
+    'name'   => "removeimage",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Object,
+      'desc'   => "Removes current image from the image list.",
+    ),
+  ));
+
+DefineFunction(
+  array(
+    'name'   => "newimage",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Object,
+      'desc'   => "Creates a new image of given size, background color and format.",
+    ),
+    'args'   => array(
+      array(
+        'name'   => "columns",
+        'type'   => Int64,
+      ),
+      array(
+        'name'   => "rows",
+        'type'   => Int64,
+      ),
+      array(
+        'name'   => "background",
+        'type'   => String,
+      ),
+      array(
+        'name'   => "format",
+        'type'   => String,
+				'value'  => 'null_string',
+      ),
+		),
+  ));
+
+
+DefineFunction(
+  array(
+    'name'   => "compositeimage",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Object,
+      'desc'   => "Composite one image onto another at the specified offset.",
+    ),
+    'args'   => array(
+      array(
+        'name'   => "gm",
+        'type'   => Resource,
+      ),
+      array(
+        'name'   => "compose",
+        'type'   => Int64,
+      ),
+      array(
+        'name'   => "x",
+        'type'   => Int64,
+      ),
+      array(
+        'name'   => "y",
+        'type'   => Int64,
+      ),
+		),
+  ));
+
 DefineConstant(array('name' => "FILTER_UNDEFINED", 'type' => Int32,));
 DefineConstant(array('name' => "COMPOSITE_DEFAULT", 'type' => Int32,));
 DefineConstant(array('name' => "COMPOSITE_UNDEFINED", 'type' => Int32,));
