@@ -441,8 +441,8 @@ Variant ZendPack::pack(CStrRef fmt, CArrRef argv) {
   return String(output, outputpos, AttachString);
 }
 
-int32 ZendPack::unpack(const char *data, int size, int issigned, int *map) {
-  int32 result;
+int64 ZendPack::unpack(const char *data, int size, int issigned, int *map) {
+  int64 result;
   char *cresult = (char *) &result;
   int i;
 
@@ -698,6 +698,7 @@ Variant ZendPack::unpack(CStrRef fmt, CStrRef data) {
           }
 
           v |= unpack(&input[inputpos], sizeof(int), issigned, int_map);
+
           ret.set(String(n, CopyString), v);
           break;
         }
@@ -708,16 +709,13 @@ Variant ZendPack::unpack(CStrRef fmt, CStrRef data) {
         case 'V': {
           int issigned = 0;
           int *map = machine_endian_int32_map;
-          int32 v = 0;
+          int64 v = 0;
 
-          if (type == 'l' || type == 'L') {
-            issigned = input[inputpos + (machine_little_endian ? 3 : 0)]
-              & 0x80;
+          if (type == 'l') {
+            issigned = input[inputpos + (machine_little_endian ? 3 : 0)] & 0x80;
           } else if (type == 'N') {
-            issigned = input[inputpos] & 0x80;
             map = big_endian_int32_map;
           } else if (type == 'V') {
-            issigned = input[inputpos + 3] & 0x80;
             map = little_endian_int32_map;
           }
 
