@@ -191,7 +191,7 @@ Variant f_geoip_country_code_by_name(CStrRef hostname) {
     return false;
   }
 
-  return String(country_code, AttachString);
+  return String(country_code, CopyString);
 }
 
 Variant f_geoip_country_code3_by_name(CStrRef hostname) {
@@ -204,7 +204,7 @@ Variant f_geoip_country_code3_by_name(CStrRef hostname) {
     return false;
   }
 
-  return String(country_code, AttachString);
+  return String(country_code, CopyString);
 }
 
 Variant f_geoip_country_name_by_name(CStrRef hostname) {
@@ -217,7 +217,7 @@ Variant f_geoip_country_name_by_name(CStrRef hostname) {
     return false;
   }
 
-  return String(country_name, AttachString);
+  return String(country_name, CopyString);
 }
 
 Variant f_geoip_continent_code_by_name(CStrRef hostname) {
