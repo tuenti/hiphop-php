@@ -220,6 +220,11 @@ inline int64 x_date_timestamp_get(CObjRef object) {
   return f_date_timestamp_get(object);
 }
 
+inline Object x_date_timestamp_set(CObjRef object, int64 timestamp) {
+  FUNCTION_INJECTION_BUILTIN(date_timestamp_set);
+  return f_date_timestamp_set(object, timestamp);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 }
 

@@ -9318,6 +9318,15 @@ Variant ifa_mcrypt_enc_get_block_size(void *extra, int count, INVOKE_FEW_ARGS_IM
 Variant i_mcrypt_enc_get_block_size(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_mcrypt_enc_get_block_size);
 }
+Variant ifa_date_timestamp_set(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 2)) return throw_wrong_arguments("date_timestamp_set", count, 2, 2, 1);
+  CVarRef arg0(a0);
+  CVarRef arg1(a1);
+  return (x_date_timestamp_set(arg0, arg1));
+}
+Variant i_date_timestamp_set(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_date_timestamp_set);
+}
 Variant ifa_drawsetclipunits(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 2)) return throw_wrong_arguments("drawsetclipunits", count, 2, 2, 1);
   CVarRef arg0(a0);
@@ -22674,6 +22683,7 @@ CallInfo ci_drawgettextalignment((void*)&i_drawgettextalignment, (void*)&ifa_dra
 CallInfo ci_magicknegateimage((void*)&i_magicknegateimage, (void*)&ifa_magicknegateimage, 3, 0, 0x0000000000000000LL);
 CallInfo ci_imap_num_msg((void*)&i_imap_num_msg, (void*)&ifa_imap_num_msg, 1, 0, 0x0000000000000000LL);
 CallInfo ci_mcrypt_enc_get_block_size((void*)&i_mcrypt_enc_get_block_size, (void*)&ifa_mcrypt_enc_get_block_size, 1, 0, 0x0000000000000000LL);
+CallInfo ci_date_timestamp_set((void*)&i_date_timestamp_set, (void*)&ifa_date_timestamp_set, 2, 0, 0x0000000000000000LL);
 CallInfo ci_drawsetclipunits((void*)&i_drawsetclipunits, (void*)&ifa_drawsetclipunits, 2, 0, 0x0000000000000000LL);
 CallInfo ci_xhprof_enable((void*)&i_xhprof_enable, (void*)&ifa_xhprof_enable, 2, 0, 0x0000000000000000LL);
 CallInfo ci_magickdeconstructimages((void*)&i_magickdeconstructimages, (void*)&ifa_magickdeconstructimages, 1, 0, 0x0000000000000000LL);
@@ -35863,6 +35873,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 7771:
       HASH_GUARD(0x299F1A5895461E5BLL, curl_multi_close) {
         ci = &ci_curl_multi_close;
+        return true;
+      }
+      break;
+    case 7776:
+      HASH_GUARD(0x1BAA7F9718C21E60LL, date_timestamp_set) {
+        ci = &ci_date_timestamp_set;
         return true;
       }
       break;

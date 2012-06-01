@@ -110,6 +110,7 @@ extern StaticString s_sys_ss90393941;
 extern StaticString s_sys_ss907b3ce6;
 extern StaticString s_sys_ss909d364a;
 extern StaticString s_sys_ss90a52af9;
+extern StaticString s_sys_ss90be3253;
 extern StaticString s_sys_ss90d9de57;
 extern StaticString s_sys_ss90f68f81;
 extern StaticString s_sys_ss90f6b8b6;

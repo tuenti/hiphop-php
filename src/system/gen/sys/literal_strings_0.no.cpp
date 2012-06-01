@@ -105,6 +105,7 @@ StaticString s_sys_ss90393941("getfunctions");
 StaticString s_sys_ss907b3ce6("isSuspicious");
 StaticString s_sys_ss909d364a("SINGLE_SCRIPT");
 StaticString s_sys_ss90a52af9("saveXML");
+StaticString s_sys_ss90be3253("setTimestamp");
 StaticString s_sys_ss90d9de57("isConstructor");
 StaticString s_sys_ss90f68f81("getLinkTarget");
 StaticString s_sys_ss90f6b8b6("STATE_INITIALIZING");

@@ -122,6 +122,12 @@ int64 c_DateTime::t_gettimestamp() {
   return m_dt->toTimeStamp(error);
 }
 
+Object c_DateTime::t_settimestamp(int64 timestamp) {
+  INSTANCE_METHOD_INJECTION_BUILTIN(DateTime, DateTime::settimestamp);
+  m_dt->fromTimeStamp(timestamp);
+  return this;
+}
+
 Variant c_DateTime::t___destruct() {
   INSTANCE_METHOD_INJECTION_BUILTIN(DateTime, DateTime::__destruct);
   return null;

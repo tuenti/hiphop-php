@@ -955,13 +955,33 @@ DefineFunction(
     'flags'  =>  HasDocComment,
     'return' => array(
       'type'   => Int64,
-      'desc'   => " Gets the Unix timestamp.",
+      'desc'   => "Gets the Unix timestamp.",
     ),
 	'args'   => array(
       array(
         'name'   => "object",
         'type'   => Object,
       ),
+    ),
+    'taint_observer' => false,
+  ));
+
+DefineFunction(
+  array(
+    'name'   => "date_timestamp_set",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Object,
+    ),
+	  'args' => array(
+      array(
+        'name'   => "object",
+        'type'   => Object,
+      ),
+		  array(
+				'name' => "timestamp",
+				'type' => Int64,
+		  ),
     ),
     'taint_observer' => false,
   ));
@@ -1274,7 +1294,23 @@ DefineFunction(
       'type'   => Int64,
       'desc'   => " Gets the Unix timestamp.",
     ),
-    'taint_observer' => false,
+  ));
+
+DefineFunction(
+  array(
+    'name'   => "setTimestamp",
+		'desc'   => "Sets the Unix timestamp",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'  => Object,
+      'desc'  => "Returns the DateTime object for method chaining or FALSE on failure.",
+    ),
+		'args'   => array(
+		  array(
+				'name' => "timestamp",
+				'type' => Int64,
+		  ),
+		),
   ));
 
 DefineFunction(
