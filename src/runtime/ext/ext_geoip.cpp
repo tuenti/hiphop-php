@@ -20,7 +20,7 @@
 #include <util/logger.h>
 
 namespace HPHP {
-IMPLEMENT_DEFAULT_EXTENSION(ldap);  
+IMPLEMENT_DEFAULT_EXTENSION(geoip);
 
 class GeoIPRequestData {
 public:
