@@ -475,7 +475,7 @@ static bool do_request(c_SoapClient *client, xmlDoc *request,
     client->m_last_request = String((char*)buf, buf_size, CopyString);
   }
   response = client->o_root_invoke_few_args("__dorequest", -1, 5,
-      String(buf, buf_size, AttachLiteral),
+      String(buf, buf_size, CopyString),
       String(location, AttachLiteral),
       String(action, AttachLiteral),
       version, one_way);
