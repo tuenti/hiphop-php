@@ -4,11 +4,6 @@ include $(PROJECT_ROOT)/src/dirs.mk
 
 HPHPI_EXTRA =
 
-HOOK_RULE_FILE = $(wildcard hook.mk)
-ifneq ($(strip $(HOOK_RULE_FILE)),)
- include hook.mk
-endif
-
 PHP_FILES = hphpi.php
 
 all: $(HPHPI)
