@@ -99,8 +99,8 @@ bool is_db_avail(int64 database, bool log_warning = true) {
     return true;
   }
 
-  if (! GeoIP_db_avail(database) && log_warning) {
-    raise_warning("Required database not available at %s.", GeoIPDBFileName[database]);
+  if (! GeoIP_db_avail(database)) {
+    if (log_warning) raise_warning("Required database not available at %s.", GeoIPDBFileName[database]);
     return false;
   }
 
@@ -136,7 +136,7 @@ bool is_db_avail(int64 database, bool log_warning = true) {
 ///////////////////////////////////////////////////////////////////////////////
 
 Variant f_geoip_db_avail(int64 database) {
-  return is_db_avail(database);
+  return is_db_avail(database, false);
 }
 
 Variant f_geoip_db_filename(int64 database) {
