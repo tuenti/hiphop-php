@@ -19,7 +19,7 @@ ExternalProject_Add(
 
 ExternalProject_Add(
     graphicsmagick
-    URL http://downloads.sourceforge.net/project/graphicsmagick/graphicsmagick/1.3.13/GraphicsMagick-1.3.13.tar.gz
+    URL http://downloads.sourceforge.net/project/graphicsmagick/graphicsmagick/1.3.15/GraphicsMagick-1.3.15.tar.gz
     PATCH_COMMAND patch -p1 <  ${CMAKE_SOURCE_DIR}/src/third_party/graphicsmagick-1.3.13-changes.diff
     INSTALL_DIR ${CMAKE_BINARY_DIR}/external_build/
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR> --disable-openmp --enable-static=no --enable-shared=yes
