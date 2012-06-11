@@ -5068,6 +5068,20 @@ Variant ifa_xml_set_character_data_handler(void *extra, int count, INVOKE_FEW_AR
 Variant i_xml_set_character_data_handler(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_xml_set_character_data_handler);
 }
+Variant ifa_finfo_buffer(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 1 || count > 4)) return throw_wrong_arguments("finfo_buffer", count, 1, 4, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (x_finfo_buffer(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (x_finfo_buffer(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (x_finfo_buffer(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (x_finfo_buffer(arg0, arg1, arg2, arg3));
+}
+Variant i_finfo_buffer(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_finfo_buffer);
+}
 Variant ifa_atan(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("atan", count, 1, 1, 1);
   CVarRef arg0(a0);
@@ -8641,6 +8655,20 @@ Variant ifa_imap_reopen(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 Variant i_imap_reopen(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_imap_reopen);
 }
+Variant ifa_finfo_file(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 1 || count > 4)) return throw_wrong_arguments("finfo_file", count, 1, 4, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (x_finfo_file(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (x_finfo_file(arg0, arg1));
+  CVarRef arg2(a2);
+  if (count <= 3) return (x_finfo_file(arg0, arg1, arg2));
+  CVarRef arg3(a3);
+  return (x_finfo_file(arg0, arg1, arg2, arg3));
+}
+Variant i_finfo_file(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_finfo_file);
+}
 Variant ifa_getenv(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("getenv", count, 1, 1, 1);
   CVarRef arg0(a0);
@@ -8648,6 +8676,14 @@ Variant ifa_getenv(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 }
 Variant i_getenv(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_getenv);
+}
+Variant ifa_finfo_close(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("finfo_close", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (x_finfo_close(arg0));
+}
+Variant i_finfo_close(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_finfo_close);
 }
 Variant ifa_virtual(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 1)) return throw_wrong_arguments("virtual", count, 1, 1, 1);
@@ -9377,6 +9413,16 @@ Variant ifa_posix_ctermid(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 }
 Variant i_posix_ctermid(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_posix_ctermid);
+}
+Variant ifa_finfo_set_flags(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("finfo_set_flags", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (x_finfo_set_flags(arg0));
+  CVarRef arg1(a1);
+  return (x_finfo_set_flags(arg0, arg1));
+}
+Variant i_finfo_set_flags(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_finfo_set_flags);
 }
 Variant ifa_png2wbmp(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 5)) return throw_wrong_arguments("png2wbmp", count, 5, 5, 1);
@@ -15522,6 +15568,17 @@ Variant ifa_socket_set_nonblock(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARG
 Variant i_socket_set_nonblock(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_socket_set_nonblock);
 }
+Variant ifa_finfo_open(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count > 2)) return throw_toomany_arguments("finfo_open", 2, 1);
+  if (count <= 0) return (x_finfo_open());
+  CVarRef arg0(a0);
+  if (count <= 1) return (x_finfo_open(arg0));
+  CVarRef arg1(a1);
+  return (x_finfo_open(arg0, arg1));
+}
+Variant i_finfo_open(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_finfo_open);
+}
 Variant ifa_magickcommentimage(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 2)) return throw_wrong_arguments("magickcommentimage", count, 2, 2, 1);
   CVarRef arg0(a0);
@@ -18900,6 +18957,16 @@ Variant ifa_mysql_info(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 Variant i_mysql_info(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_mysql_info);
 }
+Variant ifa_fgets(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("fgets", count, 1, 2, 1);
+  CVarRef arg0(a0);
+  if (count <= 1) return (x_fgets(arg0));
+  CVarRef arg1(a1);
+  return (x_fgets(arg0, arg1));
+}
+Variant i_fgets(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_fgets);
+}
 Variant ifa_exec(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("exec", count, 1, 3, 1);
   CVarRef arg0(a0);
@@ -18911,16 +18978,6 @@ Variant ifa_exec(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 }
 Variant i_exec(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_exec);
-}
-Variant ifa_fgets(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("fgets", count, 1, 2, 1);
-  CVarRef arg0(a0);
-  if (count <= 1) return (x_fgets(arg0));
-  CVarRef arg1(a1);
-  return (x_fgets(arg0, arg1));
-}
-Variant i_fgets(void *extra, CArrRef params) {
-  return invoke_func_few_handler(extra, params, &ifa_fgets);
 }
 Variant ifa_dom_document_schema_validate_xml(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 2)) return throw_wrong_arguments("dom_document_schema_validate_xml", count, 2, 2, 1);
@@ -22260,6 +22317,7 @@ CallInfo ci_libxml_use_internal_errors((void*)&i_libxml_use_internal_errors, (vo
 CallInfo ci_array_intersect_uassoc((void*)&i_array_intersect_uassoc, (void*)&ifa_array_intersect_uassoc, 3, 1, 0x0000000000000000LL);
 CallInfo ci_gzinflate((void*)&i_gzinflate, (void*)&ifa_gzinflate, 2, 0, 0x0000000000000000LL);
 CallInfo ci_xml_set_character_data_handler((void*)&i_xml_set_character_data_handler, (void*)&ifa_xml_set_character_data_handler, 2, 0, 0x0000000000000000LL);
+CallInfo ci_finfo_buffer((void*)&i_finfo_buffer, (void*)&ifa_finfo_buffer, 4, 0, 0x0000000000000000LL);
 CallInfo ci_atan((void*)&i_atan, (void*)&ifa_atan, 1, 0, 0x0000000000000000LL);
 CallInfo ci_stream_wrapper_register((void*)&i_stream_wrapper_register, (void*)&ifa_stream_wrapper_register, 2, 0, 0x0000000000000000LL);
 CallInfo ci_ldap_get_option((void*)&i_ldap_get_option, (void*)&ifa_ldap_get_option, 3, 0, 0x0000000000000004LL);
@@ -22618,7 +22676,9 @@ CallInfo ci_hphp_splfileinfo_getpath((void*)&i_hphp_splfileinfo_getpath, (void*)
 CallInfo ci_imap_getacl((void*)&i_imap_getacl, (void*)&ifa_imap_getacl, 2, 0, 0x0000000000000000LL);
 CallInfo ci_imagefontheight((void*)&i_imagefontheight, (void*)&ifa_imagefontheight, 1, 0, 0x0000000000000000LL);
 CallInfo ci_imap_reopen((void*)&i_imap_reopen, (void*)&ifa_imap_reopen, 4, 0, 0x0000000000000000LL);
+CallInfo ci_finfo_file((void*)&i_finfo_file, (void*)&ifa_finfo_file, 4, 0, 0x0000000000000000LL);
 CallInfo ci_getenv((void*)&i_getenv, (void*)&ifa_getenv, 1, 0, 0x0000000000000000LL);
+CallInfo ci_finfo_close((void*)&i_finfo_close, (void*)&ifa_finfo_close, 1, 0, 0x0000000000000000LL);
 CallInfo ci_virtual((void*)&i_virtual, (void*)&ifa_virtual, 1, 0, 0x0000000000000000LL);
 CallInfo ci_hphp_splfileobject_fpassthru((void*)&i_hphp_splfileobject_fpassthru, (void*)&ifa_hphp_splfileobject_fpassthru, 1, 0, 0x0000000000000000LL);
 CallInfo ci_getlastmod((void*)&i_getlastmod, (void*)&ifa_getlastmod, 0, 0, 0x0000000000000000LL);
@@ -22690,6 +22750,7 @@ CallInfo ci_magickdeconstructimages((void*)&i_magickdeconstructimages, (void*)&i
 CallInfo ci_hexdec((void*)&i_hexdec, (void*)&ifa_hexdec, 1, 0, 0x0000000000000000LL);
 CallInfo ci_imagecolorstotal((void*)&i_imagecolorstotal, (void*)&ifa_imagecolorstotal, 1, 0, 0x0000000000000000LL);
 CallInfo ci_posix_ctermid((void*)&i_posix_ctermid, (void*)&ifa_posix_ctermid, 0, 0, 0x0000000000000000LL);
+CallInfo ci_finfo_set_flags((void*)&i_finfo_set_flags, (void*)&ifa_finfo_set_flags, 2, 0, 0x0000000000000000LL);
 CallInfo ci_png2wbmp((void*)&i_png2wbmp, (void*)&ifa_png2wbmp, 5, 0, 0x0000000000000000LL);
 CallInfo ci_call_user_method((void*)&i_call_user_method, (void*)&ifa_call_user_method, 2, 1, 0x0000000000000002LL);
 CallInfo ci_posix_getlogin((void*)&i_posix_getlogin, (void*)&ifa_posix_getlogin, 0, 0, 0x0000000000000000LL);
@@ -23314,6 +23375,7 @@ CallInfo ci_dom_xpath_evaluate((void*)&i_dom_xpath_evaluate, (void*)&ifa_dom_xpa
 CallInfo ci_magickcyclecolormapimage((void*)&i_magickcyclecolormapimage, (void*)&ifa_magickcyclecolormapimage, 2, 0, 0x0000000000000000LL);
 CallInfo ci_magickgetimagemimetype((void*)&i_magickgetimagemimetype, (void*)&ifa_magickgetimagemimetype, 1, 0, 0x0000000000000000LL);
 CallInfo ci_socket_set_nonblock((void*)&i_socket_set_nonblock, (void*)&ifa_socket_set_nonblock, 1, 0, 0x0000000000000000LL);
+CallInfo ci_finfo_open((void*)&i_finfo_open, (void*)&ifa_finfo_open, 2, 0, 0x0000000000000000LL);
 CallInfo ci_magickcommentimage((void*)&i_magickcommentimage, (void*)&ifa_magickcommentimage, 2, 0, 0x0000000000000000LL);
 CallInfo ci_wordwrap((void*)&i_wordwrap, (void*)&ifa_wordwrap, 4, 0, 0x0000000000000000LL);
 CallInfo ci_pixelgetredquantum((void*)&i_pixelgetredquantum, (void*)&ifa_pixelgetredquantum, 1, 0, 0x0000000000000000LL);
@@ -23648,8 +23710,8 @@ CallInfo ci_magickgaussianblurimage((void*)&i_magickgaussianblurimage, (void*)&i
 CallInfo ci_asin((void*)&i_asin, (void*)&ifa_asin, 1, 0, 0x0000000000000000LL);
 CallInfo ci_curl_multi_select((void*)&i_curl_multi_select, (void*)&ifa_curl_multi_select, 2, 0, 0x0000000000000000LL);
 CallInfo ci_mysql_info((void*)&i_mysql_info, (void*)&ifa_mysql_info, 1, 0, 0x0000000000000000LL);
-CallInfo ci_exec((void*)&i_exec, (void*)&ifa_exec, 3, 0, 0x0000000000000006LL);
 CallInfo ci_fgets((void*)&i_fgets, (void*)&ifa_fgets, 2, 0, 0x0000000000000000LL);
+CallInfo ci_exec((void*)&i_exec, (void*)&ifa_exec, 3, 0, 0x0000000000000006LL);
 CallInfo ci_dom_document_schema_validate_xml((void*)&i_dom_document_schema_validate_xml, (void*)&ifa_dom_document_schema_validate_xml, 2, 0, 0x0000000000000000LL);
 CallInfo ci_pixelsetopacity((void*)&i_pixelsetopacity, (void*)&ifa_pixelsetopacity, 2, 0, 0x0000000000000000LL);
 CallInfo ci_apc_cache_info((void*)&i_apc_cache_info, (void*)&ifa_apc_cache_info, 2, 0, 0x0000000000000000LL);
@@ -27346,6 +27408,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
         return true;
       }
       break;
+    case 2294:
+      HASH_GUARD(0x7032D43426C4E8F6LL, finfo_set_flags) {
+        ci = &ci_finfo_set_flags;
+        return true;
+      }
+      break;
     case 2295:
       HASH_GUARD(0x17582BEA497D48F7LL, ctype_alpha) {
         ci = &ci_ctype_alpha;
@@ -30009,6 +30077,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 3926:
       HASH_GUARD(0x621590803EC88F56LL, imageline) {
         ci = &ci_imageline;
+        return true;
+      }
+      break;
+    case 3928:
+      HASH_GUARD(0x6E7AF3084E024F58LL, finfo_close) {
+        ci = &ci_finfo_close;
         return true;
       }
       break;
@@ -32814,6 +32888,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
         return true;
       }
       break;
+    case 5692:
+      HASH_GUARD(0x17EB8D729A13F63CLL, finfo_open) {
+        ci = &ci_finfo_open;
+        return true;
+      }
+      break;
     case 5694:
       HASH_GUARD(0x60302D15A677963ELL, ldap_free_result) {
         ci = &ci_ldap_free_result;
@@ -33811,6 +33891,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
       }
       HASH_GUARD(0x0AFD4F231D6CB911LL, magickaddimage) {
         ci = &ci_magickaddimage;
+        return true;
+      }
+      break;
+    case 6421:
+      HASH_GUARD(0x493FECD7382B1915LL, finfo_buffer) {
+        ci = &ci_finfo_buffer;
         return true;
       }
       break;
@@ -36469,6 +36555,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
       }
       HASH_GUARD(0x72925D2DF7E61FDELL, drawpathcurvetoquadraticbeziersmoothrelative) {
         ci = &ci_drawpathcurvetoquadraticbeziersmoothrelative;
+        return true;
+      }
+      break;
+    case 8165:
+      HASH_GUARD(0x3D54C90F747CFFE5LL, finfo_file) {
+        ci = &ci_finfo_file;
         return true;
       }
       break;

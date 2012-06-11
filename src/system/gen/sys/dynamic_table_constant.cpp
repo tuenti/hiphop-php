@@ -2089,7 +2089,7 @@ public:
   hashNodeCon *next;
 };
 static hashNodeCon *conMapTable[8192];
-static hashNodeCon conBuckets[2193];
+static hashNodeCon conBuckets[2202];
 
 void init_builtin_constant_table() {
   const char *conMapData[] = {
@@ -2501,6 +2501,15 @@ void init_builtin_constant_table() {
       (const char *)"FB_UNSERIALIZE_UNEXPECTED_ARRAY_KEY_TYPE", (const char *)-1, (const char *)32, (const char *)&k_FB_UNSERIALIZE_UNEXPECTED_ARRAY_KEY_TYPE,
       (const char *)"FB_UNSERIALIZE_UNEXPECTED_END", (const char *)-1, (const char *)32, (const char *)&k_FB_UNSERIALIZE_UNEXPECTED_END,
       (const char *)"FB_UNSERIALIZE_UNRECOGNIZED_OBJECT_TYPE", (const char *)-1, (const char *)32, (const char *)&k_FB_UNSERIALIZE_UNRECOGNIZED_OBJECT_TYPE,
+      (const char *)"FILEINFO_CONTINUE", (const char *)-1, (const char *)32, (const char *)&k_FILEINFO_CONTINUE,
+      (const char *)"FILEINFO_DEVICES", (const char *)-1, (const char *)32, (const char *)&k_FILEINFO_DEVICES,
+      (const char *)"FILEINFO_MIME", (const char *)-1, (const char *)32, (const char *)&k_FILEINFO_MIME,
+      (const char *)"FILEINFO_MIME_ENCODING", (const char *)-1, (const char *)32, (const char *)&k_FILEINFO_MIME_ENCODING,
+      (const char *)"FILEINFO_MIME_TYPE", (const char *)-1, (const char *)32, (const char *)&k_FILEINFO_MIME_TYPE,
+      (const char *)"FILEINFO_NONE", (const char *)-1, (const char *)32, (const char *)&k_FILEINFO_NONE,
+      (const char *)"FILEINFO_PRESERVE_ATIME", (const char *)-1, (const char *)32, (const char *)&k_FILEINFO_PRESERVE_ATIME,
+      (const char *)"FILEINFO_RAW", (const char *)-1, (const char *)32, (const char *)&k_FILEINFO_RAW,
+      (const char *)"FILEINFO_SYMLINK", (const char *)-1, (const char *)32, (const char *)&k_FILEINFO_SYMLINK,
       (const char *)"FILE_APPEND", (const char *)-1, (const char *)32, (const char *)&k_FILE_APPEND,
       (const char *)"FILE_IGNORE_NEW_LINES", (const char *)-1, (const char *)32, (const char *)&k_FILE_IGNORE_NEW_LINES,
       (const char *)"FILE_NO_DEFAULT_CONTEXT", (const char *)-1, (const char *)32, (const char *)&k_FILE_NO_DEFAULT_CONTEXT,

@@ -36,6 +36,7 @@
 #include <runtime/ext/profile/extprofile_error.h>
 #include <runtime/ext/profile/extprofile_fb.h>
 #include <runtime/ext/profile/extprofile_file.h>
+#include <runtime/ext/profile/extprofile_fileinfo.h>
 #include <runtime/ext/profile/extprofile_filter.h>
 #include <runtime/ext/profile/extprofile_fixes.h>
 #include <runtime/ext/profile/extprofile_function.h>

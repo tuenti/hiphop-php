@@ -156,6 +156,10 @@ INSTALL(FILES ${CMAKE_SOURCE_DIR}/LICENSE.PHP
         DESTINATION .
         COMPONENT dev)
 
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/bin/magic.mgc
+        DESTINATION lib
+        COMPONENT runtime)
+
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/src/runtime/base/memory/smart_allocator.inc_gen
         DESTINATION src/runtime/base/memory
         COMPONENT dev)

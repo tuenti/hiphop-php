@@ -19,6 +19,7 @@
 #include "error.inc"
 #include "fb.inc"
 #include "file.inc"
+#include "fileinfo.inc"
 #include "filter.inc"
 #include "fixes.inc"
 #include "function.inc"

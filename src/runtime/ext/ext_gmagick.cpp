@@ -722,7 +722,6 @@ Object c_Gmagick::t_getimage() {
 
 Object c_Gmagick::t_removeimage() {
   INSTANCE_METHOD_INJECTION_BUILTIN(Gmagick, Gmagick::removeimage);
-
   checkNotEmpty();
 
   int result = MagickRemoveImage(magick_wand);
@@ -756,7 +755,6 @@ Object c_Gmagick::t_newimage(int64 columns, int64 rows, CStrRef background, CStr
 
 Object c_Gmagick::t_compositeimage(CObjRef gm, int64 compose, int64 x, int64 y) {
   INSTANCE_METHOD_INJECTION_BUILTIN(Gmagick, Gmagick::compositeimage);
-
   c_Gmagick *gm2 = gm.getTyped<c_Gmagick>();
   int result = MagickCompositeImage(magick_wand, gm2->magick_wand, (CompositeOperator) compose, x, y);
   checkResult(result);
