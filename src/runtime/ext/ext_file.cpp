@@ -54,18 +54,9 @@
 
 #define CHECK_SYSTEM(exp)                                 \
   if ((exp) != 0) {                                       \
-    Logger::Verbose("%s/%d: %s", __FUNCTION__, __LINE__,  \
-                    Util::safe_strerror(errno).c_str());  \
+    raise_warning(Util::safe_strerror(errno).c_str());    \
     return false;                                         \
   }                                                       \
-
-// libxml/xpathInternals.h defines CHECK_ERROR,
-// we need to undef it first
-#ifdef CHECK_ERROR
-#undef CHECK_ERROR
-#endif
-#define CHECK_ERROR(ret)                                 \
-  check_error(__FUNCTION__, __LINE__, (ret))
 
 #define PHP_FILE_USE_INCLUDE_PATH   1
 #define PHP_FILE_IGNORE_NEW_LINES   2
@@ -87,10 +78,9 @@ namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
 // helpers
 
-static bool check_error(const char *function, int line, bool ret) {
+static bool check_error(bool ret) {
   if (!ret) {
-    Logger::Verbose("%s/%d: %s", function, line,
-                    Util::safe_strerror(errno).c_str());
+    raise_warning(Util::safe_strerror(errno).c_str());
   }
   return ret;
 }
@@ -146,7 +136,7 @@ Variant f_fopen(CStrRef filename, CStrRef mode,
 Variant f_popen(CStrRef command, CStrRef mode) {
   File *file = NEWOBJ(Pipe)();
   Object handle(file);
-  bool ret = CHECK_ERROR(file->open(File::TranslateCommand(command), mode));
+  bool ret = check_error(file->open(File::TranslateCommand(command), mode));
   if (!ret) {
     return false;
   }
@@ -155,30 +145,30 @@ Variant f_popen(CStrRef command, CStrRef mode) {
 
 bool f_fclose(CObjRef handle) {
   CHECK_HANDLE(handle, f);
-  return CHECK_ERROR(f->close());
+  return check_error(f->close());
 }
 
 Variant f_pclose(CObjRef handle) {
   CHECK_HANDLE(handle, f);
-  CHECK_ERROR(f->close());
+  check_error(f->close());
   return s_file_data->m_pcloseRet;
 }
 
 Variant f_fseek(CObjRef handle, int64 offset,
                 int64 whence /* = k_SEEK_SET */) {
   CHECK_HANDLE(handle, f);
-  return CHECK_ERROR(f->seek(offset, whence)) ? 0 : -1;
+  return check_error(f->seek(offset, whence)) ? 0 : -1;
 }
 
 bool f_rewind(CObjRef handle) {
   CHECK_HANDLE(handle, f);
-  return CHECK_ERROR(f->rewind());
+  return check_error(f->rewind());
 }
 
 Variant f_ftell(CObjRef handle) {
   CHECK_HANDLE(handle, f);
   int64 ret = f->tell();
-  if (!CHECK_ERROR(ret != -1)) {
+  if (!check_error(ret != -1)) {
     return false;
   }
   return ret;
@@ -274,12 +264,12 @@ Variant f_vfprintf(CObjRef handle, CStrRef format, CArrRef args) {
 
 bool f_fflush(CObjRef handle) {
   CHECK_HANDLE(handle, f);
-  return CHECK_ERROR(f->flush());
+  return check_error(f->flush());
 }
 
 bool f_ftruncate(CObjRef handle, int64 size) {
   CHECK_HANDLE(handle, f);
-  return CHECK_ERROR(f->truncate(size));
+  return check_error(f->truncate(size));
 }
 
 static int flock_values[] = { LOCK_SH, LOCK_EX, LOCK_UN };
@@ -348,8 +338,7 @@ Variant f_file_put_contents(CStrRef filename, CVarRef data,
                   (flags & PHP_FILE_APPEND) ? "ab" : "wb");
   Object closer(NEWOBJ(PlainFile)(f));
   if (!f) {
-    Logger::Verbose("%s/%d: %s", __FUNCTION__, __LINE__,
-                    Util::safe_strerror(errno).c_str());
+    raise_warning(Util::safe_strerror(errno).c_str());
     return false;
   }
 
@@ -475,8 +464,7 @@ Variant f_readfile(CStrRef filename, bool use_include_path /* = false */,
                    CVarRef context /* = null */) {
   Variant f = f_fopen(filename, "rb", use_include_path, context);
   if (same(f, false)) {
-    Logger::Verbose("%s/%d: %s", __FUNCTION__, __LINE__,
-                    Util::safe_strerror(errno).c_str());
+    raise_warning(Util::safe_strerror(errno).c_str());
     return false;
   }
   Variant ret = f_fpassthru(f.toObject());
@@ -908,8 +896,7 @@ static int get_uid(CVarRef user) {
     String suser = user.toString();
     struct passwd *pw = getpwnam(suser.data());
     if (!pw) {
-      Logger::Verbose("%s/%d: Unable to find uid for %s",
-                      __FUNCTION__, __LINE__, suser.data());
+      raise_warning("Unable to find uid for %s", suser.data());
       return 0;
     }
     uid = pw->pw_uid;
@@ -939,8 +926,7 @@ static int get_gid(CVarRef group) {
     String sgroup = group.toString();
     struct group *gr = getgrnam(sgroup.data());
     if (!gr) {
-      Logger::Verbose("%s/%d: Unable to find gid for %s",
-                      __FUNCTION__, __LINE__, sgroup.data());
+      raise_warning("Unable to find gid for %s", sgroup.data());
       return 0;
     }
     gid = gr->gr_gid;
@@ -971,8 +957,7 @@ bool f_touch(CStrRef filename, int64 mtime /* = 0 */, int64 atime /* = 0 */) {
   if (access(translated.data(), F_OK)) {
     FILE *f = fopen(translated.data(), "w");
     if (f == NULL) {
-      Logger::Verbose("%s/%d: Unable to create file %s because %s",
-                      __FUNCTION__, __LINE__, translated.data(),
+      raise_warning("Unable to touch file %s because %s", translated.data(),
                       Util::safe_strerror(errno).c_str());
       return false;
     }
@@ -1177,8 +1162,7 @@ Variant f_tempnam(CStrRef dir, CStrRef prefix) {
   strcpy(buf, templ.data());
   int fd = mkstemp(buf);
   if (fd < 0) {
-    Logger::Verbose("%s/%d: %s", __FUNCTION__, __LINE__,
-                    Util::safe_strerror(errno).c_str());
+    raise_warning(Util::safe_strerror(errno).c_str());
     return false;
   }
 
