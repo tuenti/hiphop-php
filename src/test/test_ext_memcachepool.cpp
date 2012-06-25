@@ -36,6 +36,7 @@ bool TestExtMemcachepool::RunTests(const std::string &which) {
   RUN_TEST(test_MemcachePool_expiration);
   RUN_TEST(test_MemcachePool_cas);
   RUN_TEST(test_MemcachePool_delete);
+  RUN_TEST(test_MemcachePool_types);
 
   return ret;
 }
@@ -298,6 +299,27 @@ bool TestExtMemcachepool::test_MemcachePool_delete() {
   VERIFY(memc->t_delete(key));
   VERIFY(! memc->t_delete(key));
   VERIFY(! memc->t_get(key));
+
+  return Count(true);
+}
+
+bool TestExtMemcachepool::test_MemcachePool_types() {
+  CREATE_MEMCACHED();
+
+  VERIFY(memc->t_set("false", false));
+  Variant res = memc->t_get("false");
+  VERIFY(res.isBoolean());
+  VERIFY(memc->t_delete("false"));
+
+  VERIFY(memc->t_set("integer", 123123));
+  res = memc->t_get("integer");
+  VERIFY(res.isInteger());
+  VERIFY(memc->t_delete("integer"));
+
+  VERIFY(memc->t_set("float", 1.12345678));
+  res = memc->t_get("float");
+  VERIFY(res.isDouble());
+  VERIFY(memc->t_delete("float"));
 
   return Count(true);
 }

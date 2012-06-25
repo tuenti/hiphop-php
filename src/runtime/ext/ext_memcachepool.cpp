@@ -26,8 +26,15 @@
 namespace HPHP {
 IMPLEMENT_DEFAULT_EXTENSION(memcachepool);
 
+/* use lowest byte for flags */
 const int64 k_MEMCACHE_SERIALIZED = 1;
 const int64 k_MEMCACHE_COMPRESSED = 2;
+
+/* use second lowest byte to indicate data type */
+const int64 MMC_TYPE_BOOL   = 0x0100;
+const int64 MMC_TYPE_LONG   = 0x0300;
+const int64 MMC_TYPE_DOUBLE = 0x0700;
+
 
 class MemcacheObjectData;
 
@@ -205,10 +212,24 @@ bool c_MemcachePool::t_pconnect(CStrRef host, int port /*= 0*/,
 String static memcache_prepare_for_storage(CVarRef var, int &flag, int threshold) {
   String serialized;
 
-  if (var.isString()) {
-    serialized = var.toString();
-  } else if (var.isNumeric() || var.isBoolean()) {
-    serialized = var.toString();
+  if (flag & 0xffff & ~k_MEMCACHE_COMPRESSED) {
+    raise_warning("The lowest two bytes of the flags array are reserved for memcache internal use.");
+    flag &= k_MEMCACHE_COMPRESSED & ~0xffff;
+  }
+
+  if (var.isString() || var.isNumeric() || var.isBoolean()) {
+    if (var.isInteger()) {
+      flag |= MMC_TYPE_LONG;
+    } else if (var.isBoolean()) {
+      flag |= MMC_TYPE_BOOL;
+      serialized = var ? "1" : "0";
+    } else if (var.isDouble()) {
+      flag |= MMC_TYPE_DOUBLE;
+    }
+
+    if (!var.isBoolean()) {
+      serialized = var.toString();
+    }
   } else {
     flag |= k_MEMCACHE_SERIALIZED;
     serialized = f_serialize(var);
@@ -239,6 +260,13 @@ Variant static memcache_fetch_from_storage(const char *payload,
 
   if (flags & k_MEMCACHE_SERIALIZED) {
     ret = f_unserialize(ret);
+  } switch (flags & 0x0f00) {
+    case MMC_TYPE_LONG:
+      return ret.toInt64();
+    case MMC_TYPE_DOUBLE:
+      return ret.toDouble();
+    case MMC_TYPE_BOOL:
+      return ret.toBoolean();
   }
 
   return ret;
