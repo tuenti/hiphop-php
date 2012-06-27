@@ -58,6 +58,11 @@
     return false;                                         \
   }                                                       \
 
+#define CHECK_SYSTEM_NO_WARN(exp)                         \
+  if ((exp) != 0) {                                       \
+    return false;                                         \
+  }                                                       \
+
 #define PHP_FILE_USE_INCLUDE_PATH   1
 #define PHP_FILE_IGNORE_NEW_LINES   2
 #define PHP_FILE_SKIP_EMPTY_LINES   4
@@ -715,7 +720,7 @@ bool f_is_executable(CStrRef filename) {
 
 bool f_is_file(CStrRef filename) {
   struct stat sb;
-  CHECK_SYSTEM(stat(File::TranslatePath(filename, true).data(), &sb));
+  CHECK_SYSTEM_NO_WARN(stat(File::TranslatePath(filename, true).data(), &sb));
   return (sb.st_mode & S_IFMT) == S_IFREG;
 }
 
@@ -733,13 +738,13 @@ bool f_is_dir(CStrRef filename) {
   }
 
   struct stat sb;
-  CHECK_SYSTEM(stat(File::TranslatePath(filename).data(), &sb));
+  CHECK_SYSTEM_NO_WARN(stat(File::TranslatePath(filename).data(), &sb));
   return (sb.st_mode & S_IFMT) == S_IFDIR;
 }
 
 bool f_is_link(CStrRef filename) {
   struct stat sb;
-  CHECK_SYSTEM(lstat(File::TranslatePath(filename).data(), &sb));
+  CHECK_SYSTEM_NO_WARN(lstat(File::TranslatePath(filename).data(), &sb));
   return (sb.st_mode & S_IFMT) == S_IFLNK;
 }
 
