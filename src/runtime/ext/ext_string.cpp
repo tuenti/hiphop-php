@@ -160,7 +160,7 @@ static Variant str_replace(CVarRef search, CVarRef replace, CVarRef subject,
                            int &count, bool caseSensitive) {
   if (subject.is(KindOfArray)) {
     Array arr = subject.toArray();
-    Array ret;
+    Array ret = Array::Create();
     for (ArrayIter iter(arr); iter; ++iter) {
       String replaced = str_replace(search, replace, iter.second().toString(),
                                     count, caseSensitive);
