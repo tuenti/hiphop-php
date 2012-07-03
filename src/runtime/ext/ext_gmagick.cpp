@@ -715,6 +715,7 @@ Object c_Gmagick::t_getimage() {
   }
   
   c_Gmagick * gm = NEWOBJ(c_Gmagick);
+  DestroyMagickWand(gm->magick_wand);
   gm->magick_wand = tmp_wand;
 
   return gm;

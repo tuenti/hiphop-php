@@ -118,13 +118,13 @@ bool TestExtGmagick::test_Gmagick() {
 
   p_Gmagick gm7(p_Gmagick(NEWOBJ(c_Gmagick))->create());
   gm7->t_readimage(IMG_DIR "/test2.jpg");
+
+  p_Gmagick gm8 = gm7->t_getimage();
+  gm7->t_removeimage();
   gm7->t_newimage(100, 100, "red");
   VS(gm7->t_getimagewidth(), 100);
   VS(gm7->t_getimageheight(), 100);
-  gm7->t_removeimage();
-  VS(gm7->t_getimagewidth(), 800);
-  VS(gm7->t_getimageheight(), 600);
-  gm7->t_compositeimage(gm5, q_Gmagick___COMPOSITE_COPY, 0, 0);
+  gm7->t_compositeimage(gm8, q_Gmagick___COMPOSITE_OVER, 0, 0);
 
   return Count(true);
 }
