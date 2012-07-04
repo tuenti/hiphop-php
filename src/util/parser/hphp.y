@@ -1331,7 +1331,7 @@ non_empty_parameter_list:
 non_empty_type_decl:
     T_STRING                           { $$ = $1;}
   | T_ARRAY                            { $$.setText("array");}
-  | T_XHP_LABEL                        { $1.xhpLabel(); $$ = $1;}
+  | fully_qualified_class_name         { $$ = $1;}
 ;
 type_decl:
     non_empty_type_decl                { $$ = $1;}
