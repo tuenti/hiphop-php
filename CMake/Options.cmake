@@ -1,4 +1,4 @@
-set(CMAKE_BUILD_TYPE Debug)
+# set(CMAKE_BUILD_TYPE Debug)
 
 option(ENABLE_LATE_STATIC_BINDING "Enable Late Static Binding" ON)
 option(INFINITE_LOOP_DETECTION "Enable Infinite Loop Detection" ON)

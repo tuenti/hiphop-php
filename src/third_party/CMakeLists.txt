@@ -29,7 +29,7 @@ ExternalProject_Add(
     libmemcached
     GIT_REPOSITORY git://github.com/dpaneda/libmemcached.git
     INSTALL_DIR ${CMAKE_BINARY_DIR}/external_build/
-    CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR>
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure --disable-sasl --prefix=<INSTALL_DIR>
 )
 
 if (NOT SKIP_BUNDLED_XHP)

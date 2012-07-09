@@ -35,6 +35,10 @@ php5-mcrypt
 php5-imagick
 libgoogle-perftools-dev
 memcached
+libgeoip-dev
+libgeoip1
+libmagic-dev
+libmagic1
 
 # From debian backports
 dpkg -i cmake_2.8.5-1~bpo60+1_amd64.deb cmake-data_2.8.5-1~bpo60+1_amd64.deb + apt-get -f install
