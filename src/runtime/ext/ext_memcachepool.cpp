@@ -131,8 +131,6 @@ Object c_MemcachePool::ti_getstoragememcache(const char *, int storage_id, int t
     // We don't want this object to be destroyed when it gets unreferenced on PHP
     st_data->memcachepool_object->incRefCount();
 
-    MEMCACHEG(obj_map)[st_data->memcachepool_object] = new MemcacheObjectData;
-
     empty = true;
   } else {
     // Get old entry
@@ -156,10 +154,7 @@ Object c_MemcachePool::ti_getstoragememcache(const char *, int storage_id, int t
 }
 
 c_MemcachePool::c_MemcachePool(const ObjectStaticCallbacks *cb) : ExtObjectData(cb) {
-  MEMCACHEG(obj_map)[this] = NULL;
-  if (! s_memcachepool_data->obj_map[this]) {
-    s_memcachepool_data->obj_map[this] = new MemcacheObjectData;
-  }
+  MEMCACHEG(obj_map)[this] = new MemcacheObjectData;
 }
 
 c_MemcachePool::~c_MemcachePool() {
