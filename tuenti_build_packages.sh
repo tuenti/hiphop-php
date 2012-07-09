@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # installing needed deps
-apt-get install libgeoip-dev libgeoip1 libmagic-dev libmagic1
+sudo apt-get update
+sudo apt-get install `cat build_dependencies`
 
 export HPHP_HOME=`pwd`
 
@@ -12,8 +13,4 @@ fi
 cd build
 
 cmake ..
-make -j1 package
-
-echo -e "\n\nDone.\n\n"
-
-ls -la hiphop-debug-*-Linux-*.deb
+make -j 4 package
