@@ -632,28 +632,6 @@ bool f_is_writable(CStrRef filename) {
   }
   CHECK_SYSTEM(access(File::TranslatePath(filename).data(), W_OK));
   return true;
-  /*
-  int mask = S_IWOTH;
-  if (sb.st_uid == getuid()) {
-    mask = S_IWUSR;
-  } else if (sb.st_gid == getgid()) {
-    mask = S_IWGRP;
-  } else {
-    int groups = getgroups(0, NULL);
-    if (groups > 0) {
-      gid_t *gids = (gid_t *)malloc(groups * sizeof(gid_t));
-      int n = getgroups(groups, gids);
-      for (int i = 0; i < n; i++) {
-        if (sb.st_gid == gids[i]) {
-          mask = S_IWGRP;
-          break;
-        }
-      }
-      free(gids);
-    }
-  }
-  return sb.st_mode & mask;
-  */
 }
 
 bool f_is_writeable(CStrRef filename) {
@@ -662,60 +640,16 @@ bool f_is_writeable(CStrRef filename) {
 
 bool f_is_readable(CStrRef filename) {
   struct stat sb;
-  CHECK_SYSTEM(stat(File::TranslatePath(filename, true).data(), &sb));
-  CHECK_SYSTEM(access(File::TranslatePath(filename, true).data(), R_OK));
+  CHECK_SYSTEM_NO_WARN(stat(File::TranslatePath(filename, true).data(), &sb));
+  CHECK_SYSTEM_NO_WARN(access(File::TranslatePath(filename, true).data(), R_OK));
   return true;
-  /*
-  int mask = S_IROTH;
-  if (sb.st_uid == getuid()) {
-    mask = S_IRUSR;
-  } else if (sb.st_gid == getgid()) {
-    mask = S_IRGRP;
-  } else {
-    int groups = getgroups(0, NULL);
-    if (groups > 0) {
-      gid_t *gids = (gid_t *)malloc(groups * sizeof(gid_t));
-      int n = getgroups(groups, gids);
-      for (int i = 0; i < n; i++) {
-        if (sb.st_gid == gids[i]) {
-          mask = S_IRGRP;
-          break;
-        }
-      }
-      free(gids);
-    }
-  }
-  return sb.st_mode & mask;
-  */
 }
 
 bool f_is_executable(CStrRef filename) {
   struct stat sb;
-  CHECK_SYSTEM(stat(File::TranslatePath(filename).data(), &sb));
-  CHECK_SYSTEM(access(File::TranslatePath(filename).data(), X_OK));
+  CHECK_SYSTEM_NO_WARN(stat(File::TranslatePath(filename).data(), &sb));
+  CHECK_SYSTEM_NO_WARN(access(File::TranslatePath(filename).data(), X_OK));
   return true;
-  /*
-  int mask = S_IXOTH;
-  if (sb.st_uid == getuid()) {
-    mask = S_IXUSR;
-  } else if (sb.st_gid == getgid()) {
-    mask = S_IXGRP;
-  } else {
-    int groups = getgroups(0, NULL);
-    if (groups > 0) {
-      gid_t *gids = (gid_t *)malloc(groups * sizeof(gid_t));
-      int n = getgroups(groups, gids);
-      for (int i = 0; i < n; i++) {
-        if (sb.st_gid == gids[i]) {
-          mask = S_IXGRP;
-          break;
-        }
-      }
-      free(gids);
-    }
-  }
-  return (sb.st_mode & mask) && (sb.st_mode & S_IFMT) != S_IFDIR;
-  */
 }
 
 bool f_is_file(CStrRef filename) {
@@ -787,11 +721,15 @@ bool f_file_exists(CStrRef filename) {
     return true;
   }
   // ignore all other php files
-  if (filename.find(".php") == filename.size() - 4) {
-    Logger::Verbose("%s/%d: All .php files that are not built-in are ommited: %s",
+  if (! RuntimeOption::EnableSearchPHPOnDisk &&
+      ((filename.find(".php") == filename.size() - 4) ||
+      (filename.find(".phtml") == filename.size() - 6)))
+  {
+    Logger::Verbose("%s/%d: All .php or .phtml files that are not built-in are ommited: %s",
                     __FUNCTION__, __LINE__, filename.data());
     return false;
   }
+
   if (filename.empty() ||
       (access(File::TranslatePath(filename, true).data(), F_OK)) < 0) {
     return false;

@@ -178,6 +178,7 @@ public:
   static bool EnableStaticContentFromDisk;
   static bool EnableOnDemandUncompress;
   static bool EnableStaticContentMMap;
+  static bool EnableSearchPHPOnDisk;
 
   static std::string RTTIDirectory;
   static bool EnableCliRTTI;

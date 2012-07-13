@@ -183,6 +183,7 @@ bool RuntimeOption::EnableStaticContentCache = true;
 bool RuntimeOption::EnableStaticContentFromDisk = true;
 bool RuntimeOption::EnableOnDemandUncompress = true;
 bool RuntimeOption::EnableStaticContentMMap = true;
+bool RuntimeOption::EnableSearchPHPOnDisk = true;
 
 std::string RuntimeOption::RTTIDirectory;
 bool RuntimeOption::EnableCliRTTI = false;
@@ -700,6 +701,8 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
       server["EnableOnDemandUncompress"].getBool(true);
     EnableStaticContentMMap =
       server["EnableStaticContentMMap"].getBool(true);
+    EnableSearchPHPOnDisk =
+      server["EnableSearchPHPOnDisk"].getBool(true);
     if (EnableStaticContentMMap) {
       EnableOnDemandUncompress = true;
     }
