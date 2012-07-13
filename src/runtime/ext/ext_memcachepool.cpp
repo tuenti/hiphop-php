@@ -162,6 +162,7 @@ c_MemcachePool::~c_MemcachePool() {
     Logger::Verbose("[MemcachePool] Destroying MemcachePool object %p", this);
   }
 
+  t_close();
   if (MEMCACHEG(storage_map).size() > 0) {
       std::map<int, StorageData>::iterator it;
 
@@ -817,7 +818,6 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
 
 Variant c_MemcachePool::t___destruct() {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::__destruct);
-  t_close();
   return null;
 }
 
