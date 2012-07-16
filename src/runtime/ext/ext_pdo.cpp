@@ -574,10 +574,10 @@ static Object pdo_stmt_instantiate(sp_PDOConnection dbh, CStrRef clsname,
 static void pdo_stmt_construct(sp_PDOStatement stmt, Object object,
                                CStrRef clsname, CVarRef ctor_args) {
   const ClassInfo *cls = ClassInfo::FindClass(clsname);
+  object->set("queryString", stmt->query_string);
   if (cls) {
     const char *constructor = cls->getConstructor();
     if (constructor) {
-      object->set("queryString", stmt->query_string);
       MethodCallPackage mcp;
       object->getConstructor(mcp);
       mcp.ci->getMeth()(mcp, ctor_args);
