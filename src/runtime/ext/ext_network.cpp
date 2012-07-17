@@ -843,14 +843,15 @@ void f_header(CStrRef str, bool replace /* = true */,
         }
       }
     }
-    if (replace) {
-      transport->replaceHeader(newHeader.empty() ? header : newHeader);
-    } else {
-      transport->addHeader(newHeader.empty() ? header : newHeader);
-    }
     if (http_response_code) {
       transport->setResponse(http_response_code,
                              "explicit_header_response_code");
+    } else {
+      if (replace) {
+        transport->replaceHeader(newHeader.empty() ? header : newHeader);
+      } else {
+        transport->addHeader(newHeader.empty() ? header : newHeader);
+      }
     }
   }
 }
