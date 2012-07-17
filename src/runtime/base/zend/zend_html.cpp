@@ -419,11 +419,16 @@ static int utf32_to_utf8(unsigned char *buf, int k) {
 typedef hphp_hash_map
 <const char *, std::string, hphp_hash<const char *>, eqstr>
 HtmlEntityMap;
+typedef hphp_hash_map
+<std::string, std::string, hphp_hash<std::string> >
+ReverseHtmlEntityMap;
 
 static volatile bool EntityMapInited = false;
 static Mutex EntityMapMutex;
 static HtmlEntityMap EntityMap[cs_end];
 static HtmlEntityMap XHPEntityMap[cs_end];
+
+static ReverseHtmlEntityMap ReverseEntityMapUtf8;
 
 static void init_entity_table() {
   for (unsigned int i = 0; entity_map[i].charset != cs_terminator; i++) {
@@ -458,6 +463,8 @@ static void init_entity_table() {
       }
       EntityMap[charset][entity] = (const char *)buf;
       XHPEntityMap[charset][entity] = (const char *)buf;
+      if (charset == cs_utf_8)
+        ReverseEntityMapUtf8[(const char*)buf] = entity;
     }
 
     EntityMap[charset]["quot"] = "\"";
@@ -503,6 +510,15 @@ char *string_html_encode(const char *input, int &len, bool encode_double_quote,
     return NULL;
   }
 
+  if (!EntityMapInited) {
+    Lock lock(EntityMapMutex);
+    if (!EntityMapInited) {
+      init_entity_table();
+      EntityMapInited = true;
+    }
+  }
+
+
   /**
    * Though seems to be wasting memory a lot, we have to realize most of the
    * time this function is called with small strings, or fragments of HTMLs.
@@ -523,7 +539,7 @@ char *string_html_encode(const char *input, int &len, bool encode_double_quote,
   }
   char *q = ret;
   for (const char *p = input; *p; p++) {
-    char c = *p;
+    unsigned char c = *p;
     switch (c) {
     case '"':
       if (encode_double_quote) {
@@ -548,15 +564,7 @@ char *string_html_encode(const char *input, int &len, bool encode_double_quote,
     case '&':
       *q++ = '&'; *q++ = 'a'; *q++ = 'm'; *q++ = 'p'; *q++ = ';';
       break;
-    case '\xc2':
-      if (nbsp && utf8 && *(p+1) == '\xa0') {
-        *q++ = '&'; *q++ = 'n'; *q++ = 'b'; *q++ = 's'; *q++ = 'p'; *q++ = ';';
-        p++;
-      } else {
-        *q++ = c;
-      }
-      break;
-    case '\xa0':
+    case 0xa0:
       if (nbsp && !utf8) {
         *q++ = '&'; *q++ = 'n'; *q++ = 'b'; *q++ = 's'; *q++ = 'p'; *q++ = ';';
       } else {
@@ -564,7 +572,21 @@ char *string_html_encode(const char *input, int &len, bool encode_double_quote,
       }
       break;
     default:
-      *q++ = c;
+      if (utf8 && c > 0x7F && *(p+1)) {
+        const char dchar[3] = {*p, *(p+1), 0};
+        ReverseHtmlEntityMap::const_iterator iter = ReverseEntityMapUtf8.find(dchar);
+        if (iter != ReverseEntityMapUtf8.end()) {
+          *q++ = '&';
+          memcpy(q, iter->second.c_str(), iter->second.length());
+          q += iter->second.length();
+          *q++ = ';';
+          p++;
+        } else {
+          *q++ = c;
+        }
+      } else {
+        *q++ = c;
+      }
       break;
     }
   }
