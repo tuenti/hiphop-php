@@ -681,7 +681,12 @@ Variant *c_SimpleXMLElement::___lval(Variant v_name) {
 
 Variant c_SimpleXMLElement::t___get(Variant name) {
   INSTANCE_METHOD_INJECTION_BUILTIN(SimpleXMLElement, SimpleXMLElement::__get);
-  Variant ret = m_children[name];
+  Variant ret;
+  if (m_is_attribute) {
+    ret = m_attributes[name];
+  } else {
+    ret = m_children[name];
+  }
   if (ret.isArray()) {
     ret = ret[0];
   }
