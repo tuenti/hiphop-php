@@ -720,7 +720,7 @@ Variant Variant::array_iter_current() const {
     return getArrayData()->current();
   } else if (is(KindOfObject)) {
     ArrayIter iter = getObjectData()->begin(null_string, false);
-    return iter.second();
+    return iter ? iter.second() : (Variant)false;
   }
   throw_bad_type_exception("expecting an array");
   return false;
