@@ -718,6 +718,9 @@ Variant Variant::array_iter_prev() {
 Variant Variant::array_iter_current() const {
   if (is(KindOfArray)) {
     return getArrayData()->current();
+  } else if (is(KindOfObject)) {
+    ArrayIter iter = getObjectData()->begin(null_string, false);
+    return iter.second();
   }
   throw_bad_type_exception("expecting an array");
   return false;

@@ -107,7 +107,7 @@ class ObjectData : public CountableNF {
     return oldInCtor;
   }
 
-  ArrayIter begin(CStrRef context = null_string);
+  ArrayIter begin(CStrRef context = null_string, bool rewind = true);
   MutableArrayIter begin(Variant *key, Variant &val,
                          CStrRef context = null_string);
 

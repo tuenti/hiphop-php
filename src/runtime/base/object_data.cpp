@@ -652,7 +652,7 @@ static StaticString s_getIterator("getIterator");
 static StaticString s_zero("\0", 1);
 
 
-ArrayIter ObjectData::begin(CStrRef context /* = null_string */) {
+ArrayIter ObjectData::begin(CStrRef context /* = null_string */, bool rewind /* = true */) {
   if (o_instanceof(s_Iterator)) {
     return ArrayIter(this);
   }
@@ -661,7 +661,7 @@ ArrayIter ObjectData::begin(CStrRef context /* = null_string */) {
     Variant iterator = obj->o_invoke(s_getIterator, Array());
     if (!iterator.isObject()) break;
     if (iterator.instanceof(s_Iterator)) {
-      return ArrayIter(iterator.getObjectData());
+      return ArrayIter(iterator.getObjectData(), rewind);
     }
     obj = iterator.getObjectData();
   }
