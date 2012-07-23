@@ -400,9 +400,9 @@ inline Variant x_lstat(CStrRef filename) {
   return f_lstat(filename);
 }
 
-inline void x_clearstatcache() {
+inline void x_clearstatcache(bool clear_realpath_cache = false, CVarRef filename = null) {
   FUNCTION_INJECTION_BUILTIN(clearstatcache);
-  f_clearstatcache();
+  f_clearstatcache(clear_realpath_cache, filename);
 }
 
 inline Variant x_readlink(CStrRef path) {

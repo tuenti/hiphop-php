@@ -3234,8 +3234,12 @@ Variant i_pcntl_signal(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_pcntl_signal);
 }
 Variant ifa_clearstatcache(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
-  if (UNLIKELY(count > 0)) return throw_toomany_arguments("clearstatcache", 0, 1);
-  return (x_clearstatcache(), null);
+  if (UNLIKELY(count > 2)) return throw_toomany_arguments("clearstatcache", 2, 1);
+  if (count <= 0) return (x_clearstatcache(), null);
+  CVarRef arg0(a0);
+  if (count <= 1) return (x_clearstatcache(arg0), null);
+  CVarRef arg1(a1);
+  return (x_clearstatcache(arg0, arg1), null);
 }
 Variant i_clearstatcache(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_clearstatcache);
@@ -22140,7 +22144,7 @@ CallInfo ci_escapeshellcmd((void*)&i_escapeshellcmd, (void*)&ifa_escapeshellcmd,
 CallInfo ci_hphp_object_pointer((void*)&i_hphp_object_pointer, (void*)&ifa_hphp_object_pointer, 1, 0, 0x0000000000000000LL);
 CallInfo ci_magickequalizeimage((void*)&i_magickequalizeimage, (void*)&ifa_magickequalizeimage, 1, 0, 0x0000000000000000LL);
 CallInfo ci_pcntl_signal((void*)&i_pcntl_signal, (void*)&ifa_pcntl_signal, 3, 0, 0x0000000000000000LL);
-CallInfo ci_clearstatcache((void*)&i_clearstatcache, (void*)&ifa_clearstatcache, 0, 0, 0x0000000000000000LL);
+CallInfo ci_clearstatcache((void*)&i_clearstatcache, (void*)&ifa_clearstatcache, 2, 0, 0x0000000000000000LL);
 CallInfo ci_zend_logo_guid((void*)&i_zend_logo_guid, (void*)&ifa_zend_logo_guid, 0, 0, 0x0000000000000000LL);
 CallInfo ci_magickmontageimage((void*)&i_magickmontageimage, (void*)&ifa_magickmontageimage, 6, 0, 0x0000000000000000LL);
 CallInfo ci_money_format((void*)&i_money_format, (void*)&ifa_money_format, 2, 0, 0x0000000000000000LL);

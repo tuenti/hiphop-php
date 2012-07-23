@@ -749,7 +749,7 @@ Variant f_lstat(CStrRef filename) {
   return stat_impl(&sb);
 }
 
-void f_clearstatcache() {
+void f_clearstatcache(bool clear_realpath_cache /* = false */, CVarRef filename /* = null */) {
   // we are not having a cache for file stats, so do nothing here
 }
 

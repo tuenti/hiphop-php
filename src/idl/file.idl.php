@@ -1753,6 +1753,20 @@ DefineFunction(
       'type'   => null,
       'desc'   => "No value is returned.",
     ),
+    'args'   => array(
+      array(
+        'name'   => "clear_realpath_cache",
+        'type'   => Boolean,
+        'value'  => "false",
+        'desc'   => "Whether to clear the realpath cache or not.",
+      ),
+      array(
+        'name'   => "filename",
+        'type'   => Variant,
+        'value'  => "null",
+        'desc'   => "Path to a file or a symbolic link.",
+      ),
+    ),
   ));
 
 DefineFunction(
