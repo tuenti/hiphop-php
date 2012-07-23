@@ -86,12 +86,18 @@ const ClassInfo *ClassInfo::FindClassInterfaceOrTrait(CStrRef name) {
   ASSERT(!name.isNull());
   ASSERT(s_loaded);
 
+  String trimmed_name = name;
+
+  if (!name.empty() && name[0] == '\\') {
+	trimmed_name = StringUtil::Trim(name, StringUtil::TrimLeft, "\\");
+  }
+
   if (s_hook) {
-    const ClassInfo *r = s_hook->findClassLike(name);
+    const ClassInfo *r = s_hook->findClassLike(trimmed_name);
     if (r) return r;
   }
 
-  ClassMap::const_iterator iter = s_class_like.find(name);
+  ClassMap::const_iterator iter = s_class_like.find(trimmed_name);
   if (iter != s_class_like.end()) {
     return iter->second->getDeclared();
   }

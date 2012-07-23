@@ -40,6 +40,7 @@
 #include <runtime/base/array/array_init.h>
 #include <runtime/base/string_util.h>
 #include <runtime/ext/ext_variable.h>
+#include <boost/algorithm/string/trim.hpp>
 
 using namespace HPHP;
 using namespace std;
@@ -843,7 +844,8 @@ ExpressionPtr SimpleFunctionCall::preOptimize(AnalysisResultConstPtr ar) {
             break;
           }
           case ClassExistsFunction: {
-            ClassScopePtrVec classes = ar->findClasses(Util::toLower(symbol));
+            boost::algorithm::trim_left_if(symbol, boost::algorithm::is_any_of("\\"));
+            ClassScopePtrVec classes = ar->findClasses(symbol);
             bool classFound = false;
             for (ClassScopePtrVec::const_iterator it = classes.begin();
                  it != classes.end(); ++it) {
@@ -2191,6 +2193,8 @@ void SimpleFunctionCall::outputCPPImpl(CodeGenerator &cg,
             case ClassExistsFunction:
             case InterfaceExistsFunction:
             {
+              symbol = lname;
+              boost::algorithm::trim_left_if(symbol, boost::algorithm::is_any_of("\\"));
               ClassScopePtrVec classes = ar->findClasses(Util::toLower(symbol));
               int found = 0;
               bool foundOther = false;
@@ -2218,7 +2222,7 @@ void SimpleFunctionCall::outputCPPImpl(CodeGenerator &cg,
                   cg_printString(symbol, ar, shared_from_this());
                   cg_printf(", &%s->CDEC(%s))",
                             cg.getGlobals(ar),
-                            CodeGenerator::FormatLabel(lname).c_str());
+                            CodeGenerator::FormatLabel(symbol).c_str());
                 }
               } else {
                 if (m_type == ClassExistsFunction) {

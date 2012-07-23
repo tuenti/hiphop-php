@@ -1589,6 +1589,8 @@ bool MethodCallPackage::dynamicNamedCall(CVarRef self, CStrRef method,
     return rootObj->o_get_call_info(*this, prehash);
   } else {
     String str = self.toString();
+    if (!str.empty() && str[0] == '\\')
+      str = StringUtil::Trim(str, StringUtil::TrimLeft, "\\");
     ObjectData *obj = FrameInjection::GetThis();
     if (!obj || !obj->o_instanceof(str)) {
       rootCls = str.get();
@@ -1603,7 +1605,13 @@ bool MethodCallPackage::dynamicNamedCall(CVarRef self, CStrRef method,
 
 bool MethodCallPackage::dynamicNamedCall(CStrRef self, CStrRef method,
     int64 prehash /* = -1 */) {
-  rootCls = self.get();
+  String str;
+  if (!self.empty() && self[0] == '\\') {
+    str = StringUtil::Trim(self, StringUtil::TrimLeft, "\\");
+    rootCls = str.get();
+  } else {
+    rootCls = self.get();
+  }
   name = &method;
   ObjectData *obj = FrameInjection::GetThis();
   if (!obj || !obj->o_instanceof(self)) {
