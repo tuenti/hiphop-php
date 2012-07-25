@@ -127,13 +127,17 @@ INSTALL(DIRECTORY "${CMAKE_BINARY_DIR}/external_build/include"
         FILES_MATCHING PATTERN "*.h")
 
 INSTALL(PROGRAMS
-        ${CMAKE_BINARY_DIR}/src/hphp/hphpi
         ${CMAKE_BINARY_DIR}/src/hphp/hphp
         ${CMAKE_SOURCE_DIR}/bin/libhphp_runtime.a
         ${CMAKE_SOURCE_DIR}/bin/run.sh
         ${CMAKE_SOURCE_DIR}/bin/CMakeLists.base.txt
         DESTINATION bin
         COMPONENT dev)
+
+INSTALL(PROGRAMS
+        ${CMAKE_BINARY_DIR}/src/hphp/hphpi
+        DESTINATION bin
+        COMPONENT runtime)
 
 INSTALL(DIRECTORY ${CMAKE_SOURCE_DIR}/CMake
         DESTINATION .
@@ -182,7 +186,7 @@ SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "dpaneda@tuenti.com")
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "HipHop compiler and runtime dependencies")
 SET(CPACK_PACKAGE_VENDOR "Tuenti")
 SET(CPACK_PACKAGE_VERSION_MAJOR "0")
-SET(CPACK_PACKAGE_VERSION_MINOR "3")
+SET(CPACK_PACKAGE_VERSION_MINOR "4")
 SET(CPACK_PACKAGE_VERSION_PATCH "tuenti1")
 
 SET(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
