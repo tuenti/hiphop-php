@@ -484,7 +484,7 @@ void ClassStatement::outputCPPImpl(CodeGenerator &cg, AnalysisResultPtr ar) {
                                     : "ObjectData");
         } else {
           cg_printf("DECLARE_DYNAMIC_CLASS(%s, %s, %s)\n", clsName,
-                    m_originalName.c_str(),
+                    CodeGenerator::EscapeLabel(m_originalName).c_str(),
                     dyn || !parCls ? "DynamicObjectData" :
                     parCls->getId().c_str());
         }
