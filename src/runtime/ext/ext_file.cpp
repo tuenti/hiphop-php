@@ -725,8 +725,6 @@ bool f_file_exists(CStrRef filename) {
       ((filename.find(".php") == filename.size() - 4) ||
       (filename.find(".phtml") == filename.size() - 6)))
   {
-    Logger::Verbose("%s/%d: All .php or .phtml files that are not built-in are ommited: %s",
-                    __FUNCTION__, __LINE__, filename.data());
     return false;
   }
 
