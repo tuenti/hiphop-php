@@ -26,7 +26,7 @@ class GeoIPRequestData {
 public:
   GeoIPRequestData() {
     for (int i=0; i<NUM_DB_TYPES; i++) {
-      db_last_modified[i] = db_last_modified[i] = 0;
+      db_last_modified[i] = db_last_checked[i] = 0;
       gi[i] = NULL;
     }
      
@@ -43,7 +43,7 @@ public:
 
   void unload() {
     for (int i=0; i<NUM_DB_TYPES; i++) {
-      db_last_modified[i] = db_last_modified[i] = 0;
+      db_last_modified[i] = db_last_checked[i] = 0;
       if (gi[i] != NULL) {
         GeoIP_delete(gi[i]);
         gi[i] = NULL;
