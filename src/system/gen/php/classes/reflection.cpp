@@ -3730,7 +3730,12 @@ Array c_ReflectionClass::t_getstaticproperties() {
             {
               {
                 const Variant &tmp0((v_prop.o_getPublic(NAMSTR(s_sys_ssdc3cbddc, "name"), true)));
-                v_ret.set(tmp0, (v_prop));
+                MethodCallPackage mcp1;
+                CVarRef obj1 = v_prop;
+                mcp1.methodCall((obj1), NAMSTR(s_sys_ssd14ebd08, "getValue"), 0x56879BCEB40997E3LL);
+                const CallInfo *cit1 ATTRIBUTE_UNUSED = mcp1.ci;
+                Variant tmp2(((mcp1.bindClass(fi)->getMeth0Args())(mcp1, 0)));
+                v_ret.set(tmp0, (tmp2));
               }
             }
           }

@@ -1168,13 +1168,13 @@ class ReflectionClass implements Reflector {
  * Get the static properties. WarningThis function is currently not
  * documented; only its argument list is available.
  *
- * @return     mixed   The static properties, as an array.
+ * @return     mixed   The static properties values, as an array.
  */
   public function getStaticProperties() {
     $ret = array();
     foreach ($this->getProperties() as $prop) {
       if ($prop->isStatic()) {
-        $ret[$prop->name] = $prop;
+        $ret[$prop->name] = $prop->getValue();
       }
     }
     return $ret;
