@@ -232,13 +232,14 @@ void FileScope::setVolatileClasses(AnalysisResultPtr ar) {
   bool onlyClassDeclarations = true;
   if (m_tree) {
     for(int i = 0; i < m_tree->getCount(); i++) {
-      if (!(*m_tree)[i]->is(Statement::KindOfClassStatement)) {
+      Statement::KindOf kindOf = (*m_tree)[i]->getKindOf();
+      if (kindOf != Statement::KindOfClassStatement && kindOf != Statement::KindOfInterfaceStatement) {
         onlyClassDeclarations = false;
         break;
       }
     }
   }
-  if (onlyClassDeclarations) {
+  if (!onlyClassDeclarations) {
     const StringToClassScopePtrVecMap &classes = getClasses();
     for (StringToClassScopePtrVecMap::const_iterator iter = classes.begin(),
            end = classes.end(); iter != end; ++iter) {
