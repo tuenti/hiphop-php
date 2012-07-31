@@ -222,6 +222,7 @@ std::string Option::DocJson;
 
 bool Option::AllDynamic = true;
 bool Option::AllVolatile = false;
+bool Option::SmartVolatile = true;
 
 StringBag Option::OptionStrings;
 
@@ -412,6 +413,7 @@ void Option::Load(Hdf &config) {
   EnableEval = (EvalLevel)config["EnableEval"].getByte(0);
   AllDynamic = config["AllDynamic"].getBool(true);
   AllVolatile = config["AllVolatile"].getBool();
+  SmartVolatile = config["SmartVolatile"].getBool(true);
 
   GenerateCppLibCode       = config["GenerateCppLibCode"].getBool(false);
   GenerateSourceInfo       = config["GenerateSourceInfo"].getBool(false);

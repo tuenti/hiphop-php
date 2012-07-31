@@ -228,6 +228,31 @@ void FileScope::analyzeProgram(AnalysisResultPtr ar) {
   }
 }
 
+void FileScope::setVolatileClasses(AnalysisResultPtr ar) {
+  bool onlyClassDeclarations = true;
+  if (m_tree) {
+    for(int i = 0; i < m_tree->getCount(); i++) {
+      if (!(*m_tree)[i]->is(Statement::KindOfClassStatement)) {
+        onlyClassDeclarations = false;
+        break;
+      }
+    }
+  }
+  if (onlyClassDeclarations) {
+    const StringToClassScopePtrVecMap &classes = getClasses();
+    for (StringToClassScopePtrVecMap::const_iterator iter = classes.begin(),
+           end = classes.end(); iter != end; ++iter) {
+      for (ClassScopePtrVec::const_iterator it = iter->second.begin(),
+             e = iter->second.end(); it != e; ++it) {
+        ClassScopePtr cls = *it;
+        if (cls->isUserClass()) {
+          cls->setVolatile();
+        }
+      }
+    }
+  }
+}
+
 void FileScope::visit(AnalysisResultPtr ar,
                       void (*cb)(AnalysisResultPtr, StatementPtr, void*),
                       void *data)

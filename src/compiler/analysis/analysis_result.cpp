@@ -679,6 +679,12 @@ void AnalysisResult::analyzeProgram(bool system /* = false */) {
   if (Option::AnalyzePerfectVirtuals && !system) {
     analyzePerfectVirtuals();
   }
+
+  if (Option::SmartVolatile) {
+    for (uint i = 0; i < m_fileScopes.size(); i++) {
+      m_fileScopes[i]->setVolatileClasses(ar);
+    }
+  }
 }
 
 static void addClassRootMethods(AnalysisResultPtr ar, ClassScopePtr cls,

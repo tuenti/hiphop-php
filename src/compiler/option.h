@@ -338,6 +338,7 @@ public:
    */
   static bool AllDynamic;
   static bool AllVolatile;
+  static bool SmartVolatile;
 
   /**
    * Optimizations

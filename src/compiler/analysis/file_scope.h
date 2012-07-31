@@ -205,6 +205,7 @@ public:
   }
 
   void analyzeProgram(AnalysisResultPtr ar);
+  void setVolatileClasses(AnalysisResultPtr ar);
   void inferTypes(AnalysisResultPtr ar);
   void visit(AnalysisResultPtr ar,
              void (*cb)(AnalysisResultPtr, StatementPtr, void*),
