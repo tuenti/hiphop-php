@@ -1173,7 +1173,7 @@ class ReflectionClass implements Reflector {
   public function getStaticProperties() {
     $ret = array();
     foreach ($this->getProperties() as $prop) {
-      if ($prop->isStatic()) {
+      if ($prop->isStatic() && $prop->isPublic()) {
         $ret[$prop->name] = $prop->getValue();
       }
     }

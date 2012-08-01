@@ -3724,7 +3724,15 @@ Array c_ReflectionClass::t_getstaticproperties() {
             CVarRef obj1 = v_prop;
             mcp1.methodCall((obj1), NAMSTR(s_sys_ss404bf1b4, "isStatic"), 0x7A15DC56E8CC0B19LL);
             const CallInfo *cit1 ATTRIBUTE_UNUSED = mcp1.ci;
-            tmp0 = (toBoolean((mcp1.bindClass(fi)->getMeth0Args())(mcp1, 0)));
+            bool tmp2 = (toBoolean((mcp1.bindClass(fi)->getMeth0Args())(mcp1, 0)));
+            if (tmp2) {
+              MethodCallPackage mcp3;
+              CVarRef obj3 = v_prop;
+              mcp3.methodCall((obj3), NAMSTR(s_sys_ssdec3c0f0, "isPublic"), 0x2820F10358723B7CLL);
+              const CallInfo *cit3 ATTRIBUTE_UNUSED = mcp3.ci;
+              tmp2 = (toBoolean((mcp3.bindClass(fi)->getMeth0Args())(mcp3, 0)));
+            }
+            tmp0 = (tmp2);
           }
           if (tmp0) {
             {
