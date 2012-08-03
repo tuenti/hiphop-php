@@ -121,7 +121,7 @@ class c_DOMNode : public ExtObjectDataFlags<ObjectData::UseGet|ObjectData::UseSe
   DECLARE_METHOD_INVOKE_HELPERS(hasattributes);
   public: bool t_haschildnodes();
   DECLARE_METHOD_INVOKE_HELPERS(haschildnodes);
-  public: Variant t_insertbefore(CObjRef newnode, CObjRef refnode = null);
+  public: Variant t_insertbefore(CObjRef newnode, CObjRef refnode = null_object);
   DECLARE_METHOD_INVOKE_HELPERS(insertbefore);
   public: bool t_isdefaultnamespace(CStrRef namespaceuri);
   DECLARE_METHOD_INVOKE_HELPERS(isdefaultnamespace);

@@ -2046,7 +2046,7 @@ bool c_DOMNode::t_haschildnodes() {
 }
 
 Variant c_DOMNode::t_insertbefore(CObjRef newnode,
-                                  CObjRef refnode /* = null */) {
+                                  CObjRef refnode /* = null_object */) {
   INSTANCE_METHOD_INJECTION_BUILTIN(DOMNode, DOMNode::insertbefore);
   xmlNodePtr parentp = m_node;
   if (!dom_node_children_valid(parentp)) {
@@ -2073,7 +2073,7 @@ Variant c_DOMNode::t_insertbefore(CObjRef newnode,
     raise_warning("Document Fragment is empty");
     return false;
   }
-  if (!refnode.isNull()) {
+  if (!refnode.isNull() && !refnode.is<c_stdClass>()) {
     c_DOMNode *domrefnode = refnode.getTyped<c_DOMNode>();
     xmlNodePtr refp = domrefnode->m_node;
     if (refp->parent != parentp) {
@@ -3562,7 +3562,7 @@ Variant c_DOMDocument::t_savexml(CObjRef node /* = null_object */,
 
   format = m_formatoutput;
 
-  if (!node.isNull()) {
+  if (!node.isNull() && !node.is<c_stdClass>()) {
     c_DOMNode *domnode = node.getTyped<c_DOMNode>();
     xmlNodePtr node = domnode->m_node;
     /* Dump contents of Node */
@@ -5093,7 +5093,7 @@ Variant c_DOMImplementation::t_createdocument
   int errorcode = 0;
   char *prefix = NULL, *localname = NULL;
   xmlDtdPtr doctype = NULL;
-  if (!doctypeobj.isNull()) {
+  if (!doctypeobj.isNull() && !doctypeobj.is<c_stdClass>()) {
     c_DOMDocumentType *domdoctype = doctypeobj.getTyped<c_DOMDocumentType>();
     doctype = (xmlDtdPtr)domdoctype->m_node;
     if (doctype->type == XML_DOCUMENT_TYPE_NODE) {
