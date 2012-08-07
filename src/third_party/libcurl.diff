@@ -1,0 +1,395 @@
+Description: runtests_gdb.
+Origin: vendor
+Forwarded: no
+Author: Ramakrishnan Muthukrishnan <vu3rdd@gmail.com>
+Reviewed-by: Alessandro Ghedini <al3xbio@gmail.com>
+Last-Update: 2011-11-01
+
+--- a/tests/runtests.pl
++++ b/tests/runtests.pl
+@@ -3133,11 +3133,11 @@
+     # run the command line we built
+     if ($torture) {
+         $cmdres = torture($CMDLINE,
+-                       "$gdb --directory libtest $DBGCURL -x $LOGDIR/gdbcmd");
++                       "libtool --mode=execute gdb --directory libtest $DBGCURL -x $LOGDIR/gdbcmd");
+     }
+     elsif($gdbthis) {
+         my $GDBW = ($gdbxwin) ? "-w" : "";
+-        runclient("$gdb --directory libtest $DBGCURL $GDBW -x $LOGDIR/gdbcmd");
++        runclient("libtool --mode=execute gdb --directory libtest $DBGCURL -x $LOGDIR/gdbcmd");
+         $cmdres=0; # makes it always continue after a debugged run
+     }
+     else {
+@@ -3171,7 +3171,7 @@
+             open(GDBCMD, ">$LOGDIR/gdbcmd2");
+             print GDBCMD "bt\n";
+             close(GDBCMD);
+-            runclient("$gdb --directory libtest -x $LOGDIR/gdbcmd2 -batch $DBGCURL core ");
++            runclient("libtool --mode=execute gdb --directory libtest -x $LOGDIR/gdbcmd2 -batch $DBGCURL core ");
+      #       unlink("$LOGDIR/gdbcmd2");
+         }
+     }
+Description: Fix path to "TheArtOfHttpScripting" in docs.
+Origin: vendor
+Forwarded: not-needed
+Author: Ramakrishnan Muthukrishnan <vu3rdd@gmail.com>
+Reviewed-by: Alessandro Ghedini <al3xbio@gmail.com>
+Last-Update: 2011-11-01
+
+--- a/docs/index.html
++++ b/docs/index.html
+@@ -12,7 +12,7 @@
+ <br><a href="curl.html">curl</A>
+ 
+ <h2>Tutorial</h2>
+-<a href="TheArtOfHttpScripting">The Art Of Scripting HTTP Requests Using Curl</a> (plain text)
++<a href="../TheArtOfHttpScripting.gz">The Art Of Scripting HTTP Requests Using Curl</a> (plain text)
+ 
+ <h2>libcurl</h2>
+ See the <a href="libcurl/index.html">libcurl section</a>
+Description: Keep versioned symbols backwards compatibility.
+Origin: vendor
+Forwarded: not-needed
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Reviewed-by: Alessandro Ghedini <al3xbio@gmail.com>
+Last-Update: 2012-01-24
+
+--- a/lib/libcurl.vers.in
++++ b/lib/libcurl.vers.in
+@@ -6,7 +6,7 @@
+     _save*;
+ };
+ 
+-CURL_@VERSIONED_FLAVOUR@4
++CURL_@VERSIONED_FLAVOUR@3
+ {
+   global: curl_*;
+   local: *;
+Description: Work around libtool --as-needed reordering bug
+Origin: vendor
+Bug-Debian: http://bugs.debian.org/347650
+Forwarded: not-needed
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Reviewed-by: Alessandro Ghedini <al3xbio@gmail.com>
+Last-Update: 2013-03-22
+
+--- a/ltmain.sh
++++ b/ltmain.sh
+@@ -5800,6 +5800,11 @@
+ 	arg=$func_stripname_result
+ 	;;
+ 
++      -Wl,--as-needed|-Wl,--no-as-needed)
++	deplibs="$deplibs $arg"
++	continue
++	;;
++
+       -Wl,*)
+ 	func_stripname '-Wl,' '' "$arg"
+ 	args=$func_stripname_result
+@@ -6163,6 +6168,15 @@
+ 	lib=
+ 	found=no
+ 	case $deplib in
++	-Wl,--as-needed|-Wl,--no-as-needed)
++	  if test "$linkmode,$pass" = "prog,link"; then
++	    compile_deplibs="$deplib $compile_deplibs"
++	    finalize_deplibs="$deplib $finalize_deplibs"
++	  else
++	    deplibs="$deplib $deplibs"
++	  fi
++	  continue
++	  ;;
+ 	-mt|-mthreads|-kthread|-Kthread|-pthread|-pthreads|--thread-safe \
+         |-threads|-fopenmp|-openmp|-mp|-xopenmp|-omp|-qsmp=*)
+ 	  if test "$linkmode,$pass" = "prog,link"; then
+Description: Build with GnuTLS.
+Origin: vendor
+Forwarded: not-needed
+Author: Ramakrishnan Muthukrishnan <vu3rdd@gmail.com>
+Reviewed-by: Alessandro Ghedini <al3xbio@gmail.com>
+Last-Update: 2012-03-22
+
+--- a/configure.ac
++++ b/configure.ac
+@@ -1791,9 +1791,9 @@
+ 
+       CLEANLIBS="$LIBS"
+       CLEANCPPFLAGS="$CPPFLAGS"
+-      CLEADLDFLAGS="$LDFLAGS"
++      CLEANLDFLAGS="$LDFLAGS"
+ 
+-      LIBS="$LIBS $addlib"
++      LIBS="$LIBS $addlib -lgcrypt"
+       LDFLAGS="$LDFLAGS $addld"
+       if test "$addcflags" != "-I/usr/include"; then
+          CPPFLAGS="$CPPFLAGS $addcflags"
+--- a/docs/examples/Makefile.am
++++ b/docs/examples/Makefile.am
+@@ -48,7 +48,7 @@
+ endif
+ 
+ # Dependencies
+-LDADD = $(LIBDIR)/libcurl.la
++LDADD = $(LIBDIR)/libcurl-gnutls.la
+ 
+ # Makefile.inc provides the check_PROGRAMS and COMPLICATED_EXAMPLES defines
+ include Makefile.inc
+--- a/lib/Makefile.am
++++ b/lib/Makefile.am
+@@ -42,7 +42,7 @@
+ 
+ CLEANFILES = $(DSP) $(VCPROJ)
+ 
+-lib_LTLIBRARIES = libcurl.la
++lib_LTLIBRARIES = libcurl-gnutls.la
+ LIBCURL_LIBS = @LIBCURL_LIBS@
+ 
+ # This might hold -Werror
+@@ -134,7 +134,7 @@
+ VERSIONED_SYMBOLS = -Wl,--version-script=libcurl.vers
+ endif
+ 
+-libcurl_la_LDFLAGS = $(UNDEF) $(VERSIONINFO) $(MIMPURE) $(VERSIONED_SYMBOLS) $(LIBCURL_LIBS)
++libcurl_gnutls_la_LDFLAGS = $(UNDEF) $(VERSIONINFO) $(MIMPURE) $(VERSIONED_SYMBOLS) $(LIBCURL_LIBS)
+ 
+ if DOING_CURL_SYMBOL_HIDING
+ libcurl_la_CPPFLAGS = $(AM_CPPFLAGS) -DCURL_HIDDEN_SYMBOLS
+@@ -158,7 +158,7 @@
+ # Makefile.inc provides the CSOURCES and HHEADERS defines
+ include Makefile.inc
+ 
+-libcurl_la_SOURCES = $(CSOURCES) $(HHEADERS)
++libcurl_gnutls_la_SOURCES = $(CSOURCES) $(HHEADERS)
+ libcurlu_la_SOURCES = $(CSOURCES) $(HHEADERS)
+ 
+ WIN32SOURCES = $(CSOURCES)
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -54,8 +54,8 @@
+ # This might hold -Werror
+ CFLAGS += @CURL_CFLAG_EXTRAS@
+ 
+-curl_LDADD = $(top_builddir)/lib/libcurl.la @CURL_LIBS@
+-curl_DEPENDENCIES = $(top_builddir)/lib/libcurl.la
++curl_LDADD = $(top_builddir)/lib/libcurl-gnutls.la @CURL_LIBS@
++curl_DEPENDENCIES = $(top_builddir)/lib/libcurl-gnutls.la
+ BUILT_SOURCES = hugehelp.c
+ CLEANFILES = hugehelp.c
+ # Use the C locale to ensure that only ASCII characters appear in the
+--- a/tests/libtest/Makefile.am
++++ b/tests/libtest/Makefile.am
+@@ -56,8 +56,8 @@
+ CFLAG_CURL_SYMBOL_HIDING = @CFLAG_CURL_SYMBOL_HIDING@
+ 
+ # Dependencies (may need to be overriden)
+-LDADD = $(top_builddir)/lib/libcurl.la @CURL_LIBS@
+-DEPENDENCIES = $(top_builddir)/lib/libcurl.la
++LDADD = $(top_builddir)/lib/libcurl-gnutls.la @CURL_LIBS@
++DEPENDENCIES = $(top_builddir)/lib/libcurl-gnutls.la
+ 
+ # Mostly for Windows build targets, when using static libcurl
+ if USE_CPPFLAG_CURL_STATICLIB
+Description: Build with NSS.
+Origin: vendor
+Forwarded: not-needed
+Author: Ramakrishnan Muthukrishnan <vu3rdd@gmail.com>
+Reviewed-by: Alessandro Ghedini <al3xbio@gmail.com>
+Last-Update: 2012-03-22
+
+--- a/configure.ac
++++ b/configure.ac
+@@ -1793,7 +1793,7 @@
+       CLEANCPPFLAGS="$CPPFLAGS"
+       CLEANLDFLAGS="$LDFLAGS"
+ 
+-      LIBS="$LIBS $addlib -lgcrypt"
++      LIBS="$LIBS $addlib"
+       LDFLAGS="$LDFLAGS $addld"
+       if test "$addcflags" != "-I/usr/include"; then
+          CPPFLAGS="$CPPFLAGS $addcflags"
+--- a/docs/examples/Makefile.am
++++ b/docs/examples/Makefile.am
+@@ -48,7 +48,7 @@
+ endif
+ 
+ # Dependencies
+-LDADD = $(LIBDIR)/libcurl-gnutls.la
++LDADD = $(LIBDIR)/libcurl-nss.la
+ 
+ # Makefile.inc provides the check_PROGRAMS and COMPLICATED_EXAMPLES defines
+ include Makefile.inc
+--- a/lib/Makefile.am
++++ b/lib/Makefile.am
+@@ -42,7 +42,7 @@
+ 
+ CLEANFILES = $(DSP) $(VCPROJ)
+ 
+-lib_LTLIBRARIES = libcurl-gnutls.la
++lib_LTLIBRARIES = libcurl-nss.la
+ LIBCURL_LIBS = @LIBCURL_LIBS@
+ 
+ # This might hold -Werror
+@@ -134,7 +134,7 @@
+ VERSIONED_SYMBOLS = -Wl,--version-script=libcurl.vers
+ endif
+ 
+-libcurl_gnutls_la_LDFLAGS = $(UNDEF) $(VERSIONINFO) $(MIMPURE) $(VERSIONED_SYMBOLS) $(LIBCURL_LIBS)
++libcurl_nss_la_LDFLAGS = $(UNDEF) $(VERSIONINFO) $(MIMPURE) $(VERSIONED_SYMBOLS) $(LIBCURL_LIBS)
+ 
+ if DOING_CURL_SYMBOL_HIDING
+ libcurl_la_CPPFLAGS = $(AM_CPPFLAGS) -DCURL_HIDDEN_SYMBOLS
+@@ -158,7 +158,7 @@
+ # Makefile.inc provides the CSOURCES and HHEADERS defines
+ include Makefile.inc
+ 
+-libcurl_gnutls_la_SOURCES = $(CSOURCES) $(HHEADERS)
++libcurl_nss_la_SOURCES = $(CSOURCES) $(HHEADERS)
+ libcurlu_la_SOURCES = $(CSOURCES) $(HHEADERS)
+ 
+ WIN32SOURCES = $(CSOURCES)
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -54,8 +54,8 @@
+ # This might hold -Werror
+ CFLAGS += @CURL_CFLAG_EXTRAS@
+ 
+-curl_LDADD = $(top_builddir)/lib/libcurl-gnutls.la @CURL_LIBS@
+-curl_DEPENDENCIES = $(top_builddir)/lib/libcurl-gnutls.la
++curl_LDADD = $(top_builddir)/lib/libcurl-nss.la @CURL_LIBS@
++curl_DEPENDENCIES = $(top_builddir)/lib/libcurl-nss.la
+ BUILT_SOURCES = hugehelp.c
+ CLEANFILES = hugehelp.c
+ # Use the C locale to ensure that only ASCII characters appear in the
+--- a/tests/libtest/Makefile.am
++++ b/tests/libtest/Makefile.am
+@@ -56,8 +56,8 @@
+ CFLAG_CURL_SYMBOL_HIDING = @CFLAG_CURL_SYMBOL_HIDING@
+ 
+ # Dependencies (may need to be overriden)
+-LDADD = $(top_builddir)/lib/libcurl-gnutls.la @CURL_LIBS@
+-DEPENDENCIES = $(top_builddir)/lib/libcurl-gnutls.la
++LDADD = $(top_builddir)/lib/libcurl-nss.la @CURL_LIBS@
++DEPENDENCIES = $(top_builddir)/lib/libcurl-nss.la
+ 
+ # Mostly for Windows build targets, when using static libcurl
+ if USE_CPPFLAG_CURL_STATICLIB
+Description: multiselect
+Origin: facebook
+
+diff -rupN curl-7.25.0/include/curl/multi.h curl-7.25.0-hiphop/include/curl/multi.h
+--- curl-7.25.0/include/curl/multi.h	2011-03-19 16:16:07.000000000 +0100
++++ curl-7.25.0-hiphop/include/curl/multi.h	2012-04-04 12:40:10.576210337 +0200
+@@ -134,6 +134,19 @@ CURL_EXTERN CURLMcode curl_multi_fdset(C
+                                        int *max_fd);
+ 
+  /*
++  * Name:    curl_multi_select()
++  *
++  * Desc:    Calls select() or poll() internally so app can call
++  *          curl_multi_perform() as soon as one of them is ready. This is to
++  *          fix FD_SETSIZE problem curl_multi_fdset() has.
++  *
++  * Returns: CURLMcode type, general multi error code.
++  */
++CURL_EXTERN CURLMcode curl_multi_select(CURLM *multi_handle,
++                                        int timeout_ms,
++                                        int *ret);
++
++ /*
+   * Name:    curl_multi_perform()
+   *
+   * Desc:    When the app thinks there's data available for curl it calls this
+diff -rupN curl-7.25.0/lib/multi.c curl-7.25.0-hiphop/lib/multi.c
+--- curl-7.25.0/lib/multi.c	2012-03-22 00:12:37.000000000 +0100
++++ curl-7.25.0-hiphop/lib/multi.c	2012-04-04 12:40:53.866210341 +0200
+@@ -43,6 +43,7 @@
+ #include "http.h"
+ #include "select.h"
+ #include "warnless.h"
++#include "select.h"
+ 
+ #define _MPRINTF_REPLACE /* use our functions only */
+ #include <curl/mprintf.h>
+@@ -941,6 +942,80 @@ CURLMcode curl_multi_fdset(CURLM *multi_
+   return CURLM_OK;
+ }
+ 
++CURLMcode curl_multi_select(CURLM *multi_handle, int timeout_ms, int *ret) {
++  struct Curl_multi *multi=(struct Curl_multi *)multi_handle;
++  struct Curl_one_easy *easy;
++  curl_socket_t sockbunch[MAX_SOCKSPEREASYHANDLE];
++  int bitmap;
++  int i;
++  unsigned int nfds = 0;
++  struct pollfd *ufds;
++  int nret = -1;
++
++  if(!GOOD_MULTI_HANDLE(multi))
++    return CURLM_BAD_HANDLE;
++
++  easy=multi->easy.next;
++  while(easy != &multi->easy) {
++    bitmap = multi_getsock(easy, sockbunch, MAX_SOCKSPEREASYHANDLE);
++
++    for(i=0; i< MAX_SOCKSPEREASYHANDLE; i++) {
++      curl_socket_t s = CURL_SOCKET_BAD;
++
++      if(bitmap & GETSOCK_READSOCK(i)) {
++        ++nfds;
++        s = sockbunch[i];
++      }
++      if(bitmap & GETSOCK_WRITESOCK(i)) {
++        ++nfds;
++        s = sockbunch[i];
++      }
++      if(s == CURL_SOCKET_BAD) {
++        break;
++      }
++    }
++
++    easy = easy->next; /* check next handle */
++  }
++
++  ufds = (struct pollfd *)malloc(nfds * sizeof(struct pollfd));
++  nfds = 0;
++
++  easy=multi->easy.next;
++  while(easy != &multi->easy) {
++    bitmap = multi_getsock(easy, sockbunch, MAX_SOCKSPEREASYHANDLE);
++
++    for(i=0; i< MAX_SOCKSPEREASYHANDLE; i++) {
++      curl_socket_t s = CURL_SOCKET_BAD;
++
++      if(bitmap & GETSOCK_READSOCK(i)) {
++        ufds[nfds].fd = sockbunch[i];
++        ufds[nfds].events = POLLIN;
++        ++nfds;
++        s = sockbunch[i];
++      }
++      if(bitmap & GETSOCK_WRITESOCK(i)) {
++        ufds[nfds].fd = sockbunch[i];
++        ufds[nfds].events = POLLOUT;
++        ++nfds;
++        s = sockbunch[i];
++      }
++      if(s == CURL_SOCKET_BAD) {
++        break;
++      }
++    }
++
++    easy = easy->next; /* check next handle */
++  }
++
++  nret = Curl_poll(ufds, nfds, timeout_ms);
++  free(ufds);
++  if (ret) {
++    *ret = nret;
++  }
++  return CURLM_OK;
++}
++
+ static CURLMcode multi_runsingle(struct Curl_multi *multi,
+                                  struct timeval now,
+                                  struct Curl_one_easy *easy)
