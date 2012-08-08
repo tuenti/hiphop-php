@@ -34,7 +34,8 @@ StaticMethodExpression(EXPRESSION_ARGS, const NamePtr &cname,
 
 Expression *StaticMethodExpression::optimize(VariableEnvironment &env) {
   Eval::optimize(env, m_cname);
-  SimpleFunctionCallExpression::optimize(env);
+  Expression *tmp = SimpleFunctionCallExpression::optimize(env);
+  delete tmp;
   return NULL;
 }
 
