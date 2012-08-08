@@ -60,7 +60,7 @@ class MemcachePoolRequest: public RequestEventHandler {
 
       for (it = storage_map.begin(); it != storage_map.end(); it++) {
         if (! (*it).second.persistent) {
-          (*it).second.memcachepool_object->t_close();
+          (*it).second.memcachepool_object->close();
         }
       }
     }
@@ -162,7 +162,8 @@ c_MemcachePool::~c_MemcachePool() {
     Logger::Verbose("[MemcachePool] Destroying MemcachePool object %p", this);
   }
 
-  t_close();
+  close();
+
   if (MEMCACHEG(storage_map).size() > 0) {
       std::map<int, StorageData>::iterator it;
 
@@ -492,10 +493,14 @@ Variant c_MemcachePool::t_decrement(CStrRef key, int offset /*= 1*/) {
   return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
 }
 
-bool c_MemcachePool::t_close() {
-  INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::close);
+void c_MemcachePool::close() {
   memcached_quit(MEMCACHEL(tcp_st));
   memcached_quit(MEMCACHEL(udp_st));
+}
+
+bool c_MemcachePool::t_close() {
+  INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::close);
+  close();
   return true;
 }
 

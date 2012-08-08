@@ -98,6 +98,7 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
                                String key = "", char *default_msg = "");
     void exec_failure_callback(const char * hostname, int tcp_port, int udp_port,
                                memcached_return_t ret, const char * error, Array backtrace);
+  public: void close();
 };
 
 ///////////////////////////////////////////////////////////////////////////////
