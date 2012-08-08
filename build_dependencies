@@ -32,3 +32,4 @@ libgeoip-dev
 libgeoip1
 libmagic-dev
 libmagic1
+libc-ares-dev
