@@ -32,7 +32,8 @@ ObjectMethodExpression::ObjectMethodExpression(EXPRESSION_ARGS,
 
 Expression *ObjectMethodExpression::optimize(VariableEnvironment &env) {
   Eval::optimize(env, m_obj);
-  SimpleFunctionCallExpression::optimize(env);
+  Expression * tmp = SimpleFunctionCallExpression::optimize(env);
+  delete tmp;
   return NULL;
 }
 
