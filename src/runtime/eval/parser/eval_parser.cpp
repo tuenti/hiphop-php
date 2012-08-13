@@ -1077,7 +1077,7 @@ void Parser::onFunction(Token &out, Token &ret, Token &ref, Token &name,
   FunctionStatementPtr func = peekFunc();
   ASSERT(func);
   popFunc();
-  Location *start_loc = popFuncLocation().get();
+  LocationPtr start_loc = popFuncLocation();
   Location loc;
   this->getLocation(loc);
   loc.line0 = start_loc->line0;
@@ -1255,7 +1255,7 @@ void Parser::onMethod(Token &out, Token &modifiers, Token &ret, Token &ref,
   MethodStatementPtr ms = peekFunc()->unsafe_cast<MethodStatement>();
   ASSERT(ms);
   popFunc();
-  Location *start_loc = popFuncLocation().get();
+  LocationPtr start_loc = popFuncLocation();
   Location loc;
   this->getLocation(loc);
   loc.line0 = start_loc->line0;
