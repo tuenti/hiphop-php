@@ -672,7 +672,7 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
     SSLCertificateFile = server["SSLCertificateFile"].getString();
     SSLCertificateKeyFile = server["SSLCertificateKeyFile"].getString();
 
-    SourceRoot = Util::normalizeDir(server["SourceRoot"].getString());
+    SourceRoot = Util::normalizeDir(Util::replaceEnv(server["SourceRoot"].getString()));
     if (!SourceRoot.empty()) {
       // Guaranteed empty on empty load so avoid setting FileCache::SourceRoot
       // since it may not be initialized
@@ -684,12 +684,12 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
     }
     IncludeSearchPaths.insert(IncludeSearchPaths.begin(), "./");
 
-    FileCache = server["FileCache"].getString();
-    DefaultDocument = server["DefaultDocument"].getString();
-    ErrorDocument404 = server["ErrorDocument404"].getString();
+    FileCache = Util::replaceEnv(server["FileCache"].getString());
+    DefaultDocument = Util::replaceEnv(server["DefaultDocument"].getString());
+    ErrorDocument404 = Util::replaceEnv(server["ErrorDocument404"].getString());
     normalizePath(ErrorDocument404);
     ForbiddenAs404 = server["ForbiddenAs404"].getBool();
-    ErrorDocument500 = server["ErrorDocument500"].getString();
+    ErrorDocument500 = Util::replaceEnv(server["ErrorDocument500"].getString());
     normalizePath(ErrorDocument500);
     FatalErrorMessage = server["FatalErrorMessage"].getString();
     FontPath = Util::normalizeDir(server["FontPath"].getString());
@@ -711,11 +711,11 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
     EnableCliRTTI = server["EnableCliRTTI"].getBool();
     Utf8izeReplace = server["Utf8izeReplace"].getBool(true);
 
-    StartupDocument = server["StartupDocument"].getString();
+    StartupDocument = Util::replaceEnv(server["StartupDocument"].getString());
     normalizePath(StartupDocument);
-    WarmupDocument = server["WarmupDocument"].getString();
+    WarmupDocument = Util::replaceEnv(server["WarmupDocument"].getString());
     RequestInitFunction = server["RequestInitFunction"].getString();
-    RequestInitDocument = server["RequestInitDocument"].getString();
+    RequestInitDocument = Util::replaceEnv(server["RequestInitDocument"].getString());
     server["ThreadDocuments"].get(ThreadDocuments);
     for (unsigned int i = 0; i < ThreadDocuments.size(); i++) {
       normalizePath(ThreadDocuments[i]);

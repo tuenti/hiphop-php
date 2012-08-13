@@ -199,6 +199,11 @@ void find(std::vector<std::string> &out,
  */
 std::string format_pattern(const std::string &pattern, bool prefixSlash);
 
+/**
+ * Replace references to env variables with the format ${VARNAME}
+ */
+std::string replaceEnv(const std::string &s);
+
 ///////////////////////////////////////////////////////////////////////////////
 }}
 

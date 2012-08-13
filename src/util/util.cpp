@@ -816,5 +816,20 @@ std::string Util::format_pattern(const std::string &pattern,
   return ret;
 }
 
+std::string Util::replaceEnv(const std::string &s) {
+  string ret = s;
+  std::string::size_type pos = 0;
+  while ((pos = ret.find("${", pos)) != string::npos) {
+    string::size_type end = ret.find("}", pos + 2);
+    if (end != string::npos) {
+      string varname(ret, pos + 2, end - pos - 2);
+      const char* value = getenv(varname.c_str());
+      ret.replace(pos, end - pos + 1, value);
+      pos += strlen(value);
+    }
+  }
+  return ret;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 }
