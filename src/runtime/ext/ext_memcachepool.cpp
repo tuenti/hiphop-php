@@ -176,6 +176,7 @@ c_MemcachePool::~c_MemcachePool() {
       MEMCACHEG(storage_map).erase(it);
   }
 
+  delete MEMCACHEG(obj_map)[this];
   MEMCACHEG(obj_map).erase(this);
 }
 
