@@ -462,7 +462,7 @@ Variant ZendPack::unpack(CStrRef fmt, CStrRef data) {
   int inputlen = data.size();
   int inputpos = 0;
 
-  Array ret;
+  Array ret = Array::Create();
   while (formatlen-- > 0) {
     char type = *(format++);
     char c;
