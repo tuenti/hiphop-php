@@ -941,7 +941,7 @@ void FunctionScope::outputCPP(CodeGenerator &cg, AnalysisResultPtr ar) {
       cg_printString(specType->getName(), ar, shared_from_this());
       cg_indentBegin(")) {\n");
       cg_printf("throw_unexpected_argument_type(%d,\"%s\",\"%s\",%s%s);\n",
-                i + 1, funcName.c_str(), specType->getName().c_str(),
+                i + 1, funcName.c_str(), CodeGenerator::EscapeLabel(specType->getName()).c_str(),
                 Option::VariablePrefix, param->getName().c_str());
       if (Option::HardTypeHints) {
         cg_printf("return%s;\n", getReturnType() ? " null" : "");
