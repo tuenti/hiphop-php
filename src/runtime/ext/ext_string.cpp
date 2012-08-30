@@ -16,6 +16,7 @@
 */
 
 #include <runtime/ext/ext_string.h>
+#include <runtime/ext/ext_gettext.h>
 #include <runtime/base/util/string_buffer.h>
 #include <runtime/base/zend/zend_string.h>
 #include <runtime/base/zend/zend_url.h>
@@ -706,6 +707,7 @@ Variant f_setlocale(int _argc, int category, CVarRef locale, CArrRef _argv /* = 
       loc = NULL;
     }
     {
+      set_request_locale(slocale);
       Lock lock(s_mutex);
       const char *retval = setlocale(category, loc);
       if (retval) {

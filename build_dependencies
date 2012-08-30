@@ -33,3 +33,6 @@ libgeoip1
 libmagic-dev
 libmagic1
 libc-ares-dev
+libboost-locale1.49.0-dev
+libboost-filesystem1.49-dev
+

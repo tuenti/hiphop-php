@@ -16,6 +16,7 @@
 
 #include <test/test_ext_gettext.h>
 #include <runtime/ext/ext_gettext.h>
+#include <runtime/ext/ext_string.h>
 
 IMPLEMENT_SEP_EXTENSION_TEST(Gettext);
 ///////////////////////////////////////////////////////////////////////////////
@@ -35,11 +36,9 @@ bool TestExtGettext::RunTests(const std::string &which) {
     RUN_TEST(test_textdomain);
     RUN_TEST(test_gettext);
     RUN_TEST(test_dgettext);
-    RUN_TEST(test_dcgettext);
     RUN_TEST(test_bindtextdomain);
     RUN_TEST(test_ngettext);
     RUN_TEST(test_dngettext);
-    RUN_TEST(test_dcngettext);
     RUN_TEST(test_bind_textdomain_codeset);
 
     return ret;
@@ -48,9 +47,7 @@ bool TestExtGettext::RunTests(const std::string &which) {
 ///////////////////////////////////////////////////////////////////////////////
 
 bool TestExtGettext::test_textdomain() {
-    if (!setlocale(LC_ALL, "en_US.UTF-8")) {
-        SKIP("setlocale() failed");
-    }
+    set_request_locale("en_US.UTF-8");
 
     f_bindtextdomain ("messages", "test/locale");
     VS("test", f_textdomain("test"));
@@ -61,31 +58,24 @@ bool TestExtGettext::test_textdomain() {
 }
 
 bool TestExtGettext::test_gettext() {
-    bindtextdomain ("messages", "test/locale");
-    textdomain ("messages");
+    f_bindtextdomain ("messages", "test/locale");
+    f_textdomain ("messages");
 
-    if (!setlocale(LC_ALL, "en_US.UTF-8")) {
-        SKIP("setlocale() failed");
-    }
+    set_request_locale("en_US.UTF-8");
 
     VS("A basic test", f_gettext("Basic test"));
     VS("A basic test", f__("Basic test"));
 
-    if (!setlocale(LC_ALL, "fi_FI")) {
-        SKIP("setlocale() failed");
-    }
+    set_request_locale("fi_FI");
                 
     VS("Perustesti", f__("Basic test"));
     VS("Perustesti", f_gettext("Basic test"));
-
 
     return Count(true);
 }
 
 bool TestExtGettext::test_dgettext() {
-    if (!setlocale(LC_ALL, "en_US.UTF-8") || !setlocale(LC_MESSAGES, "en_US.UTF-8")) {
-        SKIP("setlocale() failed");
-    }
+    set_request_locale("en_US.UTF-8");
     f_bindtextdomain("dgettextTest", "test/locale");
     f_bindtextdomain("dgettextTest_switch", "test/locale");
     f_textdomain("dgettextTest");
@@ -93,15 +83,12 @@ bool TestExtGettext::test_dgettext() {
     VS("Produkt", f_gettext("item"));
     VS("Produkt_switched", f_dgettext("dgettextTest_switch", "item"));
     VS("Produkt", f_gettext("item"));
-    return Count(true);
-}
 
-bool TestExtGettext::test_dcgettext() {
     return Count(true);
 }
 
 bool TestExtGettext::test_bindtextdomain() {
-    setlocale(LC_ALL, "en_US.UTF-8");
+    set_request_locale("en_US.UTF-8");
     f_textdomain("messages");
     f_bindtextdomain("messages", "");
     VS("Basic test", f_gettext("Basic test"));
@@ -116,9 +103,7 @@ bool TestExtGettext::test_bindtextdomain() {
 }
 
 bool TestExtGettext::test_ngettext() {
-    if (!setlocale(LC_ALL, "en_US.UTF-8")) {
-        SKIP("setlocale() failed");
-    }
+    set_request_locale("en_US.UTF-8");
 
     f_bindtextdomain("dngettextTest", "test/locale");
     f_textdomain("dngettextTest");
@@ -129,10 +114,7 @@ bool TestExtGettext::test_ngettext() {
 }
 
 bool TestExtGettext::test_dngettext() {
-    if (!setlocale(LC_ALL, "en_US.UTF-8")) {
-        SKIP("setlocale() failed");
-    }
-
+    set_request_locale("en_US.UTF-8");
     f_bindtextdomain("dngettextTest", "test/locale");
 
     VS("Produkt", f_dngettext("dngettextTest", "item", "items", 1));
@@ -141,29 +123,7 @@ bool TestExtGettext::test_dngettext() {
     return Count(true);
 }
 
-bool TestExtGettext::test_dcngettext() {
-    VS(f_dcngettext(1,1,1,1,1), "1");
-    VS(f_dcngettext("test","test","test",1,1), "test");
-    VS(f_dcngettext("test","test","test",0,0), "test");
-    VS(f_dcngettext("test","test","test",-1,-1), "test");
-    VS(f_dcngettext("","","",1,1), "");
-    VS(f_dcngettext("","","",0,0), "");
-
-    if (!setlocale(LC_ALL, "en_US.UTF-8") || !setlocale(LC_MESSAGES, "en_US.UTF-8")) {
-        SKIP("setlocale() failed");
-    }
-
-    f_bindtextdomain("dgettextTest", "test/locale");
-    f_bindtextdomain("dngettextTest", "test/locale");
-
-    VS("cProdukt", f_dcgettext("dngettextTest", "item", LC_CTYPE));
-    VS("Produkt", f_dcgettext("dngettextTest", "item", LC_MESSAGES));
-
-    return Count(true);
-}
-
 bool TestExtGettext::test_bind_textdomain_codeset() {
-    VS("UTF-8", f_bind_textdomain_codeset("messages", "UTF-8"));
-
+    //VS("UTF-8", f_bind_textdomain_codeset("messages", "UTF-8"));
     return Count(true);
 }

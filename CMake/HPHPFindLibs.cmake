@@ -19,7 +19,7 @@ include(CheckFunctionExists)
 
 # boost checks
 
-find_package(Boost 1.37.0 COMPONENTS system;program_options;filesystem REQUIRED)
+find_package(Boost 1.49.0 COMPONENTS system;program_options;filesystem;locale REQUIRED)
 if (BOOST_VERSION EQUAL 104200)
 	# Boost bug #3942 prevents us using 1.42
 	message(FATAL_ERROR "Boost 1.42 is not compatible with HipHop")

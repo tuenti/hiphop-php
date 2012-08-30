@@ -19,155 +19,144 @@
 #include <runtime/ext/ext_file.h>
 #include <libintl.h>
 #include <string.h>
+#include <boost/locale.hpp>
 
 namespace HPHP {
-///////////////////////////////////////////////////////////////////////////////
+IMPLEMENT_DEFAULT_EXTENSION(gettext);
 
-#define PHP_GETTEXT_MAX_DOMAIN_LENGTH 1024
-#define PHP_GETTEXT_MAX_MSGID_LENGTH 4096
-
-#define PHP_GETTEXT_LENGTH_CHECK(check_name, check_content) \
-    if (strlen(check_content) > PHP_GETTEXT_MAX_MSGID_LENGTH) { \
-        raise_warning("%s passed is too long", check_name); \
-        return false; \
+class GettextRequestData : public RequestEventHandler {
+public:
+    virtual void requestInit() {
+        m_locale = setlocale(LC_ALL, NULL);
+        m_domain = textdomain(NULL);
+        m_domains_map.clear();
+        m_domains_map[m_domain] = bindtextdomain(m_domain.c_str(), NULL);
     }
 
+    virtual void requestShutdown() {
+    }
+
+    // Default locale and domain of the request
+    String m_locale;
+    String m_domain;
+
+    // Map of domain => locale path
+    std::map<String, String> m_domains_map;
+};
+
+IMPLEMENT_STATIC_REQUEST_LOCAL(GettextRequestData, s_gettext_request);
+
+class GettextData {
+public:
+  std::locale & get_cached_locale(CStrRef domain) {
+      if (s_gettext_request->m_domains_map.count(domain) == 0)
+          s_gettext_request->m_domains_map[domain] = bindtextdomain(domain.c_str(), NULL);
+
+      String key = s_gettext_request->m_locale + "#" + domain + "#" + s_gettext_request->m_domains_map[domain];
+
+      locale_mutex.acquireRead();
+      if (locale_map.count(key.c_str()) == 0) {
+          boost::locale::gnu_gettext::messages_info info;
+          info.paths.push_back(s_gettext_request->m_domains_map[domain].c_str());
+          info.domains.push_back(boost::locale::gnu_gettext::messages_info::domain(domain.c_str()));
+    
+          boost::locale::generator gen;
+          std::locale base_locale = gen(s_gettext_request->m_locale.c_str());
+
+          // Use boost::locale::info to configure all parameters
+          boost::locale::info const &properties = std::use_facet<boost::locale::info>(base_locale);
+          info.language = properties.language();
+          info.country  = properties.country();
+          info.encoding = properties.encoding();
+          info.variant  = properties.variant();
+    
+          locale_mutex.release();
+          locale_mutex.acquireWrite();
+          // Install messages catalogs to the final locale
+          locale_map[key.c_str()] = std::locale(base_locale, boost::locale::gnu_gettext::create_messages_facet<char>(info));
+      }
+
+      std::locale & l = locale_map[key.c_str()];
+      locale_mutex.release();
+      return l;
+
+  }
+
+  hphp_hash_map<std::string, std::locale> locale_map;
+  ReadWriteMutex locale_mutex;
+};
+
+static GettextData s_gettext;
+
+/*
+ * This function is being called from f_setlocale. That way we can
+ * make code compatible with PHP behaviour
+ */
+void set_request_locale(CStrRef locale) {
+    s_gettext_request->m_locale = locale;
+}
+
 Variant f_textdomain(CStrRef domain) {
-    const char *c_domain = domain.c_str();
+    if (!domain.empty()) {
+      s_gettext_request->m_domain = domain;
+    }
 
-    PHP_GETTEXT_LENGTH_CHECK("domain", c_domain)
-
-    if (strcmp(c_domain, "") && strcmp(c_domain, "0")) {
-        c_domain = domain.c_str();
-    } else {
-        c_domain = NULL;
-    }   
-
-    return String(textdomain(c_domain));
+    return s_gettext_request->m_domain;
 }
 
 Variant f_gettext(CStrRef msgid) {
-    const char *c_msgid = msgid.c_str();
-
-    PHP_GETTEXT_LENGTH_CHECK("msgid", c_msgid)
-
-    return String(gettext(c_msgid));
+    return f_dgettext(s_gettext_request->m_domain, msgid);
 }
 
 Variant f__(CStrRef msgid) {
-    return f_gettext(msgid);
+    return f_dgettext(s_gettext_request->m_domain, msgid);
 }
 
-Variant f_dgettext(CStrRef domain_name, CStrRef msgid) {
-    const char *c_domain = domain_name.c_str();
-    const char *c_msgid = msgid.c_str();
-
-    PHP_GETTEXT_LENGTH_CHECK("domain", c_domain)
-    PHP_GETTEXT_LENGTH_CHECK("msgid", c_msgid)
-
-    return String(dgettext(c_domain, c_msgid));
-}
-
-Variant f_dcgettext(CStrRef domain_name, CStrRef msgid, int64 category) {
-    const char *c_domain = domain_name.c_str();
-    const char *c_msgid = msgid.c_str();
-
-    PHP_GETTEXT_LENGTH_CHECK("domain", c_domain)
-    PHP_GETTEXT_LENGTH_CHECK("msgid", c_msgid)
-
-    return String(dcgettext(c_domain, c_msgid, category));
-}
-
-Variant f_bindtextdomain(CStrRef domain_name, CStrRef dir) {
-    const char *c_domain = domain_name.c_str();
-    const char *c_dir = dir.c_str();
-    Variant final_path;
-
-    PHP_GETTEXT_LENGTH_CHECK("domain", c_domain)
-
-    if (c_domain[0] == '\0') {
+Variant f_bindtextdomain(CStrRef domain, CStrRef dir) {
+    if (domain.empty()) {
         raise_warning("The first parameter of bindtextdomain must not be empty");
         return false;
     }
 
-    if (c_dir[0] != '\0' && strcmp(c_dir, "0")) {
+    Variant final_path;
+    if (!dir.empty() && dir != "0") {
         final_path = f_realpath(dir);
-        if (!final_path) {
-            return false;
-        }
     } else {
         final_path = f_getcwd();
-        if (!final_path ){
-            return false;
-        }
+    }
+    if (!final_path) {
+        return false;
     }
 
-    return String(bindtextdomain(c_domain, final_path.toString().c_str()));
+    s_gettext_request->m_domains_map[domain] = final_path;
+    return final_path;
+}
+
+Variant f_dgettext(CStrRef domain_name, CStrRef msgid) {
+    std::locale & l = s_gettext.get_cached_locale(domain_name);
+    return boost::locale::dgettext(domain_name.c_str(), msgid.c_str(), l);
+}
+
+Variant f_dcgettext(CStrRef domain_name, CStrRef msgid, int64 category) {
+    throw NotImplementedException(__func__);
 }
 
 Variant f_ngettext(CStrRef msg, CStrRef msg_plural, int64 n) {
-    const char *c_msg = msg.c_str();
-    const char *c_msg_plural = msg_plural.c_str();
-
-    PHP_GETTEXT_LENGTH_CHECK("msg", c_msg)
-    PHP_GETTEXT_LENGTH_CHECK("msg_plural", c_msg_plural)
-
-    const char *translated_msg = ngettext(c_msg, c_msg_plural, n);
-    
-    if (!translated_msg)
-        return false;
-
-    return String(translated_msg);
+    return f_dngettext(s_gettext_request->m_domain.c_str(), msg.c_str(), msg_plural.c_str(), n);
 }
 
 Variant f_dngettext(CStrRef domain, CStrRef msg, CStrRef msg_plural, int64 n) {
-    const char *c_domain = domain.c_str();
-    const char *c_msg = msg.c_str();
-    const char *c_msg_plural = msg_plural.c_str();
-
-    PHP_GETTEXT_LENGTH_CHECK("domain", c_domain)
-    PHP_GETTEXT_LENGTH_CHECK("msg", c_msg)
-    PHP_GETTEXT_LENGTH_CHECK("msg_plural", c_msg_plural)
-
-    const char *translated_msg = dngettext(c_domain, c_msg, c_msg_plural, n);
-    
-    if (!translated_msg)
-        return false;
-
-    return String(translated_msg);
+    std::locale & l = s_gettext.get_cached_locale(domain);
+    return boost::locale::dngettext(domain.c_str(), msg.c_str(), msg_plural.c_str(), n, l);
 }
 
 Variant f_dcngettext(CStrRef domain, CStrRef msg, CStrRef msg_plural, int64 n, int64 category) {
-    const char *c_domain = domain.c_str();
-    const char *c_msg = msg.c_str();
-    const char *c_msg_plural = msg_plural.c_str();
-
-    PHP_GETTEXT_LENGTH_CHECK("domain", c_domain)
-    PHP_GETTEXT_LENGTH_CHECK("msg", c_msg)
-    PHP_GETTEXT_LENGTH_CHECK("msg_plural", c_msg_plural)
-
-    const char *translated_msg = dcngettext(c_domain, c_msg, c_msg_plural, n, category);
-    
-    if (!translated_msg)
-        return false;
-
-    return String(translated_msg);
+    throw NotImplementedException(__func__);
 }
 
 Variant f_bind_textdomain_codeset(CStrRef domain, CStrRef codeset) {
-    const char *c_domain = domain.c_str();
-    const char *c_codeset = codeset.c_str();
-
-    PHP_GETTEXT_LENGTH_CHECK("domain", c_domain);
-
-    const char *curr_codeset = bind_textdomain_codeset(c_domain, c_codeset);
-
-    if (!curr_codeset)
-        return false;
-
-    return String(curr_codeset);
-    return String();
+    // TODO implement getting the locale from the cache and changing it
+    throw NotImplementedException(__func__);
 }
 
-///////////////////////////////////////////////////////////////////////////////
 }

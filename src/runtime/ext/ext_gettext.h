@@ -25,6 +25,7 @@
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
 
+void set_request_locale(CStrRef locale);
 Variant f_textdomain(CStrRef domain);
 Variant f_gettext(CStrRef msgid);
 Variant f__(CStrRef msgid);
