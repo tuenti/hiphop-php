@@ -20,6 +20,9 @@
 #include <libintl.h>
 #include <string.h>
 #include <boost/locale.hpp>
+#include <util/lock.h>
+#include <iostream>
+#include <stdexcept>
 
 namespace HPHP {
 IMPLEMENT_DEFAULT_EXTENSION(gettext);
@@ -27,6 +30,7 @@ IMPLEMENT_DEFAULT_EXTENSION(gettext);
 class GettextRequestData : public RequestEventHandler {
 public:
     virtual void requestInit() {
+        std::locale::global(std::locale(""));
         m_locale = setlocale(LC_ALL, NULL);
         m_domain = textdomain(NULL);
         m_domains_map.clear();
@@ -54,32 +58,49 @@ public:
 
       String key = s_gettext_request->m_locale + "#" + domain + "#" + s_gettext_request->m_domains_map[domain];
 
-      locale_mutex.acquireRead();
-      if (locale_map.count(key.c_str()) == 0) {
-          boost::locale::gnu_gettext::messages_info info;
-          info.paths.push_back(s_gettext_request->m_domains_map[domain].c_str());
-          info.domains.push_back(boost::locale::gnu_gettext::messages_info::domain(domain.c_str()));
-    
-          boost::locale::generator gen;
-          std::locale base_locale = gen(s_gettext_request->m_locale.c_str());
+      bool found;
 
-          // Use boost::locale::info to configure all parameters
-          boost::locale::info const &properties = std::use_facet<boost::locale::info>(base_locale);
-          info.language = properties.language();
-          info.country  = properties.country();
-          info.encoding = properties.encoding();
-          info.variant  = properties.variant();
-    
-          locale_mutex.release();
-          locale_mutex.acquireWrite();
-          // Install messages catalogs to the final locale
-          locale_map[key.c_str()] = std::locale(base_locale, boost::locale::gnu_gettext::create_messages_facet<char>(info));
+      {
+        ReadLock lock(locale_mutex);
+        found = (locale_map.count(key.c_str()) > 0);
       }
 
-      std::locale & l = locale_map[key.c_str()];
-      locale_mutex.release();
-      return l;
 
+      if (!found) {
+        boost::locale::gnu_gettext::messages_info info;
+        info.paths.push_back((s_gettext_request->m_domains_map[domain]).c_str());
+        info.domains.push_back(boost::locale::gnu_gettext::messages_info::domain(domain.c_str()));
+    
+        boost::locale::generator gen;
+        std::locale base_locale = gen(s_gettext_request->m_locale.c_str());
+
+        // Use boost::locale::info to configure all parameters
+        boost::locale::info const &properties = std::use_facet<boost::locale::info>(base_locale);
+        info.language = properties.language();
+        info.country  = properties.country();
+        info.encoding = properties.encoding();
+        info.variant  = properties.variant();
+
+        try {
+          std::locale new_locale(base_locale, boost::locale::gnu_gettext::create_messages_facet<char>(info));
+          WriteLock lock(locale_mutex);
+          // Check that no other thread creates the entry in the meantime
+          if (locale_map.count(key.c_str()) == 0) {
+            locale_map[key.c_str()] = new_locale;
+          }
+        } catch (std::runtime_error e) {
+          raise_warning("Gettext: Locale not found, falling back to default locale: %s", s_gettext_request->m_locale.c_str());
+          WriteLock lock(locale_mutex);
+          // Check that no other thread creates the entry in the meantime
+          if (locale_map.count(key.c_str()) == 0) {
+            locale_map[key.c_str()] = base_locale;
+          }
+        }
+      } 
+
+      ReadLock lock(locale_mutex);
+      std::locale & l = locale_map[key.c_str()];
+      return l;
   }
 
   hphp_hash_map<std::string, std::locale> locale_map;

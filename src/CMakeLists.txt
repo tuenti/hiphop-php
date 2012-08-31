@@ -192,7 +192,7 @@ SET(CPACK_PACKAGE_VERSION_PATCH "tuenti1")
 SET(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
 
 SET(DDEPS "libtcmalloc-minimal0 (>= 1.5-1)")
-SET(DDEPS "${DDEPS}, lbboost-filesystem1.49.0")
+SET(DDEPS "${DDEPS}, libboost-filesystem1.49.0")
 SET(DDEPS "${DDEPS}, libboost-program-options1.49.0")
 SET(DDEPS "${DDEPS}, libboost-locale1.49.0")
 SET(DDEPS "${DDEPS}, libpcre3 (>= 8.02-1.1)")
