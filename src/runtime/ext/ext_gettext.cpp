@@ -33,11 +33,11 @@ public:
         std::locale::global(std::locale(""));
         m_locale = setlocale(LC_ALL, NULL);
         m_domain = textdomain(NULL);
-        m_domains_map.clear();
         m_domains_map[m_domain] = bindtextdomain(m_domain.c_str(), NULL);
     }
 
     virtual void requestShutdown() {
+        m_domains_map.clear();
     }
 
     // Default locale and domain of the request
