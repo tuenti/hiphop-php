@@ -1,5 +1,4 @@
 g++
-libboost-dev
 libmysqlclient-dev
 libxml2-dev
 libmcrypt-dev
@@ -13,9 +12,6 @@ zlib1g-dev
 libtbb-dev
 libonig-dev
 libpcre3-dev
-libboost-system-dev
-libboost-program-options-dev
-libboost-filesystem-dev
 wget
 libreadline-dev
 libncurses-dev
@@ -33,6 +29,13 @@ libgeoip1
 libmagic-dev
 libmagic1
 libc-ares-dev
-libboost-locale1.49.0-dev
 libboost-filesystem1.49-dev
-
+libboost-filesystem1.49.0
+libboost-locale1.49-dev
+libboost-locale1.49.0
+libboost-program-options1.49-dev
+libboost-program-options1.49.0
+libboost-system1.49-dev
+libboost-system1.49.0
+libboost-thread1.49.0
+libboost1.49-dev
