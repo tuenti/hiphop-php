@@ -32,10 +32,10 @@ public:
 
   GettextData() {
       gen.locale_cache_enabled(true);
-      std::locale::global(default_locale);
       // Storing default locale. 
       // Is has to be done here because gettext is not thread safe
       default_locale = gen("");
+      std::locale::global(default_locale);
       default_domain = textdomain(NULL);
       default_path = bindtextdomain(default_domain.c_str(), NULL);
   }
