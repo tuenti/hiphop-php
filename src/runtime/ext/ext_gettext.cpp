@@ -36,6 +36,7 @@ public:
       // Is has to be done here because gettext is not thread safe
       default_locale = gen("");
       std::locale::global(default_locale);
+      default_locale_name = setlocale(LC_ALL, NULL);
       default_domain = textdomain(NULL);
       default_path = bindtextdomain(default_domain.c_str(), NULL);
   }
@@ -43,6 +44,7 @@ public:
   std::locale default_locale;
   std::string default_domain;
   std::string default_path;
+  std::string default_locale_name;
 
   hphp_hash_map<std::string, std::locale> locale_map;
   ReadWriteMutex locale_mutex;
@@ -55,6 +57,7 @@ class GettextRequestData : public RequestEventHandler {
 public:
   virtual void requestInit() {
       m_locale = s_gettext.default_locale;
+      m_locale_name = s_gettext.default_locale_name; 
       m_domain = s_gettext.default_domain;
       m_domains_map[m_domain] = s_gettext.default_path;
   }
@@ -69,13 +72,14 @@ public:
 
   void set_locale(std::string locale) {
       m_locale = s_gettext.gen(locale);
+      m_locale_name = locale;
   }
 
   std::locale & get_cached_locale(std::string domain) {
       if (m_domains_map.count(domain) == 0)
           m_domains_map[domain] = s_gettext.default_path;
 
-      std::string key = m_locale.name() + "#" + domain + "#" + m_domains_map[domain];
+      std::string key = m_locale_name + "#" + domain + "#" + m_domains_map[domain];
 
       bool found;
       {
@@ -103,7 +107,7 @@ public:
             s_gettext.locale_map[key] = new_locale;
           }
         } catch (std::runtime_error e) {
-          raise_warning("Gettext: Locale not found, falling back to default locale: %s", m_locale.name().c_str());
+          raise_warning("Gettext: Locale not found, falling back to default locale: %s", m_locale_name.c_str());
           WriteLock lock(s_gettext.locale_mutex);
           // Check that no other thread creates the entry in the meantime
           if (s_gettext.locale_map.count(key) == 0) {
@@ -119,6 +123,7 @@ public:
 
     // Default locale and domain of the request
     std::locale m_locale;
+    std::string m_locale_name;
     std::string m_domain;
 
     // Map of domain => locale path
