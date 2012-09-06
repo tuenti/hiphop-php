@@ -20,6 +20,9 @@
 #include <runtime/base/runtime_error.h>
 #include <runtime/base/type_conversions.h>
 #include <runtime/base/builtin_functions.h>
+#include <runtime/ext/ext_gettext.h>
+#include <sstream>
+#include <boost/locale.hpp>
 
 namespace HPHP {
 
@@ -592,6 +595,16 @@ String DateTime::rfcFormat(CStrRef format) const {
   return s.detach();
 }
 
+size_t boost_strftime(char *buf, size_t buf_len, const char *format, struct tm *ta) {
+  std::stringstream ss; 
+  ss.imbue(get_request_locale());
+
+  time_t ts = mktime(ta);
+  ss <<boost::locale::as::ftime(format) <<ts;
+  strncpy(buf, ss.str().c_str(), buf_len);
+  return ss.str().size() + 1;
+}
+
 String DateTime::stdcFormat(CStrRef format) const {
   struct tm ta;
   timelib_time_offset *offset = NULL;
@@ -617,7 +630,8 @@ String DateTime::stdcFormat(CStrRef format) const {
   int max_reallocs = 5;
   size_t buf_len = 256, real_len;
   char *buf = (char *)malloc(buf_len);
-  while ((real_len = strftime(buf, buf_len, format.data(), &ta)) == buf_len ||
+
+  while ((real_len = boost_strftime(buf, buf_len, format.data(), &ta)) == buf_len ||
          real_len == 0) {
     buf_len *= 2;
     free(buf);

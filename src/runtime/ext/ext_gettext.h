@@ -26,6 +26,7 @@ namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
 
 void set_request_locale(CStrRef locale);
+std::locale get_request_locale();
 Variant f_textdomain(CStrRef domain);
 Variant f_gettext(CStrRef msgid);
 Variant f__(CStrRef msgid);
