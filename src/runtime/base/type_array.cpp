@@ -29,6 +29,7 @@
 #include <runtime/base/array/array_util.h>
 #include <runtime/base/runtime_option.h>
 #include <runtime/ext/ext_iconv.h>
+#include <runtime/ext/ext_gettext.h>
 #include <unicode/coll.h> // icu
 #include <util/parser/hphp.tab.hpp>
 
@@ -1236,7 +1237,7 @@ int Array::SortLocaleStringAscending(CVarRef v1, CVarRef v2,
   String s1 = v1.toString();
   String s2 = v2.toString();
 
-  return strcoll(s1.data(), s2.data());
+  return locale_strcoll(s1.data(), s2.data());
 }
 
 int Array::SortLocaleStringDescending(CVarRef v1, CVarRef v2,
@@ -1244,7 +1245,7 @@ int Array::SortLocaleStringDescending(CVarRef v1, CVarRef v2,
   String s1 = v1.toString();
   String s2 = v2.toString();
 
-  return strcoll(s2.data(), s1.data());
+  return locale_strcoll(s2.data(), s1.data());
 }
 
 int Array::SortNatural(CVarRef v1, CVarRef v2, const void *data) {

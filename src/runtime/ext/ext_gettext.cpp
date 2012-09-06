@@ -202,4 +202,9 @@ Variant f_bind_textdomain_codeset(CStrRef domain, CStrRef codeset) {
     throw NotImplementedException(__func__);
 }
 
+int locale_strcoll(CStrRef str1, CStrRef str2) {
+    boost::locale::comparator<char> comp(get_request_locale(), boost::locale::collator_base::secondary);
+    return comp(str1.c_str(), str2.c_str());
+}
+
 }

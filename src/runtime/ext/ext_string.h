@@ -286,9 +286,8 @@ inline int f_strnatcasecmp(CStrRef str1, CStrRef str2) {
   return string_natural_cmp(str1.data(), str1.size(), str2.data(), str2.size(),
                             true);
 }
-inline int f_strcoll(CStrRef str1, CStrRef str2) {
-  return strcoll(str1, str2);
-}
+
+int f_strcoll(CStrRef str1, CStrRef str2);
 
 Variant f_substr_compare(CStrRef main_str, CStrRef str, int offset,
                          int length = 0, bool case_insensitivity = false);

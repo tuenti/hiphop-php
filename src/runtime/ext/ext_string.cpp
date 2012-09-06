@@ -297,6 +297,10 @@ String f_number_format(double number, int decimals /* = 0 */,
   return String(ret, AttachString);
 }
 
+int f_strcoll(CStrRef str1, CStrRef str2) {
+  return locale_strcoll(str1, str2);
+}
+
 Variant f_substr_compare(CStrRef main_str, CStrRef str, int offset,
                          int length /* = 0 */,
                          bool case_insensitivity /* = false */) {
