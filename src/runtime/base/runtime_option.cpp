@@ -1040,7 +1040,13 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
   }
   {
     config["ServerVariables"].get(ServerVariables);
+    for (std::map<std::string, std::string>::iterator i = ServerVariables.begin(); i != ServerVariables.end(); i++) {
+      i->second = Util::replaceEnv(i->second);
+    }
     config["EnvVariables"].get(EnvVariables);
+    for (std::map<std::string, std::string>::iterator i = EnvVariables.begin(); i != EnvVariables.end(); i++) {
+      i->second = Util::replaceEnv(i->second);
+    }
   }
   {
     Hdf eval = config["Eval"];
