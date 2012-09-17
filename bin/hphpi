@@ -1,0 +1,2 @@
+#!/bin/bash
+LD_LIBRARY_PATH=/opt/hiphop/lib /opt/hiphop/bin/hphpi -- $*
