@@ -885,8 +885,8 @@ Compression is enabled by default, the threshold which control the minimum strin
 = GeoIP
 
   GeoIP {
-    Enable = true
-    CustomDirectory
+    Enabled = true
+    CustomDirectory = /srv/data/geoip/
     OpenFlags = 8
   }
 
