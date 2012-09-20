@@ -21,6 +21,7 @@
 #include <string.h>
 #include <boost/locale.hpp>
 #include <util/lock.h>
+#include <util/logger.h>
 #include <iostream>
 #include <stdexcept>
 
@@ -56,8 +57,13 @@ static GettextData s_gettext;
 class GettextRequestData : public RequestEventHandler {
 public:
   virtual void requestInit() {
-      m_locale = s_gettext.default_locale;
-      m_locale_name = s_gettext.default_locale_name; 
+      if (!RuntimeOption::GettextDefaultLocale.empty()) {
+        m_locale_name = RuntimeOption::GettextDefaultLocale; 
+        m_locale = s_gettext.gen(m_locale_name);
+      } else {
+        m_locale = s_gettext.default_locale;
+        m_locale_name = s_gettext.default_locale_name; 
+      }
       m_domain = s_gettext.default_domain;
       m_domains_map[m_domain] = s_gettext.default_path;
   }
@@ -73,6 +79,9 @@ public:
   void set_locale(std::string locale) {
       m_locale = s_gettext.gen(locale);
       m_locale_name = locale;
+      if (RuntimeOption::GettextDebug) {
+        Logger::Verbose("[Gettext] Changing default locale to %s", locale.c_str());
+      }
   }
 
   std::locale & get_cached_locale(std::string domain) {
@@ -88,6 +97,10 @@ public:
       }
 
       if (!found) {
+        if (RuntimeOption::GettextDebug) {
+          Logger::Verbose("[Gettext] Creating locale for %s", key.c_str());
+        }
+
         boost::locale::gnu_gettext::messages_info info;
         info.paths.push_back(m_domains_map[domain]);
         info.domains.push_back(boost::locale::gnu_gettext::messages_info::domain(domain));

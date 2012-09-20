@@ -378,8 +378,8 @@ double RuntimeOption::ProfilerTraceExpansion = 1.2;
 int RuntimeOption::ProfilerMaxTraceBuffer = 0;
 
 // Tuenti specific config
-std::string RuntimeOption::UserPartitionCacheFile = "/tmp/user_partitions_cache.bin";
-std::string RuntimeOption::BucketCacheFile = "/tmp/bucketcache.bin";
+std::string RuntimeOption::UserPartitionCacheFile;
+std::string RuntimeOption::BucketCacheFile;
 
 int RuntimeOption::BucketCacheTTL = 3600;
 int RuntimeOption::BucketCacheStaleDataReusability = 120;
@@ -395,11 +395,14 @@ int RuntimeOption::MemcachePoolDebug = false;
 bool RuntimeOption::EnableForeachWarning = true;
 
 bool RuntimeOption::GeoIPEnabled = true;
-std::string RuntimeOption::GeoIPCustomDirectory = "";
+std::string RuntimeOption::GeoIPCustomDirectory;
 int RuntimeOption::GeoIPOpenFlags = 8;
 bool RuntimeOption::GeoIPAutoreload = false;
 
 bool RuntimeOption::GmagickEnabled = true;
+
+std::string RuntimeOption::GettextDefaultLocale;
+bool RuntimeOption::GettextDebug = false;
 
 ///////////////////////////////////////////////////////////////////////////////
 // keep this block after all the above static variables, or we will have
@@ -1154,6 +1157,11 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
   {
      Hdf gmagick_config = config["Gmagick"];
      GmagickEnabled = gmagick_config["Enabled"].getBool(true);
+  }
+  {
+     Hdf gettext_config = config["Gettext"];
+     GettextDefaultLocale = gettext_config["DefaultLocale"].getString("");
+     GettextDebug = gettext_config["Debug"].getBool(false);
   }
 
   Extension::LoadModules(config);

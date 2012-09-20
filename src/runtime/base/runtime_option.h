@@ -409,6 +409,9 @@ public:
   static bool GeoIPAutoreload;
 
   static bool GmagickEnabled;
+
+  static std::string GettextDefaultLocale;
+  static bool GettextDebug;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
