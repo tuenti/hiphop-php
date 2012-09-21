@@ -1269,7 +1269,7 @@ String resolve_include(CStrRef file, const char* currentDir,
       return can_path;
     }
 
-  } else {
+  } else if (strlen(c_file) > 0) {
 
     Array includePaths = g_context->getIncludePathArray();
     unsigned int path_count = includePaths.size();
@@ -1334,7 +1334,7 @@ static Variant include_impl(CStrRef file, bool once,
   if (can_path.isNull()) {
     // Failure
     if (raiseNotice) {
-      raise_notice("Tried to invoke %s but file not found.", file->data());
+      raise_warning("Tried to invoke %s but file not found.", file->data());
     }
     if (required) {
       String ms = "Required file that does not exist: ";
