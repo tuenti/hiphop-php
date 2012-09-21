@@ -164,10 +164,6 @@ INSTALL(FILES ${CMAKE_SOURCE_DIR}/bin/magic.mgc
         DESTINATION lib
         COMPONENT runtime)
 
-INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/hphpi
-        DESTINATION /usr/bin
-        COMPONENT runtime)
-
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/src/runtime/base/memory/smart_allocator.inc_gen
         DESTINATION src/runtime/base/memory
         COMPONENT dev)
@@ -183,6 +179,10 @@ else ()
     message(STATUS "Building release package")
     SET(CPACK_PACKAGE_NAME "hiphop")
     SET(CPACK_PACKAGING_INSTALL_PREFIX "/opt/hiphop")
+
+    INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/hphpi
+        DESTINATION /usr/bin
+        COMPONENT runtime)
 endif ()
 
 SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "dpaneda@tuenti.com")
