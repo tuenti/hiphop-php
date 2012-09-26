@@ -205,7 +205,7 @@ bool TestExtMemcachepool::test_MemcachePool_incdec() {
   VERIFY(memc->t_decrement(key, 2));
   VS(memc->t_get(key), "11");
   VERIFY(memc->t_decrement(key, 10));
-  VS(memc->t_get(key), "1 ");
+  VS(memc->t_get(key), "1");
   VERIFY(memc->t_delete(key));
   VERIFY(! memc->t_increment(key, 1));
   VERIFY(! memc->t_decrement(key, 1));

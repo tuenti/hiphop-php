@@ -127,9 +127,10 @@ Object c_MemcachePool::ti_getstoragememcache(const char *, int storage_id, int t
     st_data = &(MEMCACHEG(storage_map)[storage_id]);
     st_data->last_config_update = timestamp;
     st_data->persistent = persistent;
-    st_data->memcachepool_object = NEWOBJ(c_MemcachePool);
+    st_data->memcachepool_object = new c_MemcachePool;
     // We don't want this object to be destroyed when it gets unreferenced on PHP
     st_data->memcachepool_object->incRefCount();
+    st_data->memcachepool_object->incPersistent();
 
     empty = true;
   } else {
