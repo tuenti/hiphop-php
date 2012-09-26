@@ -639,6 +639,11 @@ bool f_is_writeable(CStrRef filename) {
 }
 
 bool f_is_readable(CStrRef filename) {
+  // check whether it's an included php file
+  if (!resolve_include(filename, "", &is_file_included, NULL).isNull()) {
+    return true;
+  }
+
   struct stat sb;
   CHECK_SYSTEM_NO_WARN(stat(File::TranslatePath(filename, true).data(), &sb));
   CHECK_SYSTEM_NO_WARN(access(File::TranslatePath(filename, true).data(), R_OK));
@@ -653,6 +658,11 @@ bool f_is_executable(CStrRef filename) {
 }
 
 bool f_is_file(CStrRef filename) {
+  // check whether it's an included php file
+  if (!resolve_include(filename, "", &is_file_included, NULL).isNull()) {
+    return true;
+  }
+
   struct stat sb;
   CHECK_SYSTEM_NO_WARN(stat(File::TranslatePath(filename, true).data(), &sb));
   return (sb.st_mode & S_IFMT) == S_IFREG;
@@ -716,8 +726,7 @@ static bool is_file_included(CStrRef file, void* ctx) {
 
 bool f_file_exists(CStrRef filename) {
   // check whether it's an included php file
-  if (!resolve_include(filename, "",
-                       &is_file_included, NULL).isNull()) {
+  if (!resolve_include(filename, "", &is_file_included, NULL).isNull()) {
     return true;
   }
   // ignore all other php files
