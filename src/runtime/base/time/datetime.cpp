@@ -602,7 +602,7 @@ size_t boost_strftime(char *buf, size_t buf_len, const char *format, struct tm *
   time_t ts = mktime(ta);
   ss <<boost::locale::as::ftime(format) <<ts;
   strncpy(buf, ss.str().c_str(), buf_len);
-  return ss.str().size();
+  return ss.str().size() >= buf_len ? buf_len : ss.str().size();
 }
 
 String DateTime::stdcFormat(CStrRef format) const {
