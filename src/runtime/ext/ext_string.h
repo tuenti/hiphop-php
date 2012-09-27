@@ -159,10 +159,9 @@ inline String f_htmlspecialchars(CStrRef str, int quote_style = k_ENT_COMPAT,
                                  CStrRef charset = "ISO-8859-1",
                                  bool double_encode = true) {
   // dropping double_encode parameters and see runtime/base/zend_html.h
-  const char *scharset = charset.data();
-  if (!*scharset) scharset = "UTF-8";
+  // dropping charset parameter to avoid utf8 entity encoding
   return StringUtil::HtmlEncode(str, (StringUtil::QuoteStyle)quote_style,
-                                scharset, false);
+                                "ISO-8859-1", false);
 }
 inline String f_quoted_printable_encode(CStrRef str) {
   return StringUtil::QuotedPrintableEncode(str);
