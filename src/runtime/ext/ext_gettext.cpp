@@ -32,10 +32,16 @@ class GettextData {
 public:
 
   GettextData() {
-      gen.locale_cache_enabled(true);
+      // Select std backend as default
+      boost::locale::localization_backend_manager std_be = boost::locale::localization_backend_manager::global();
+      std_be.select("std");
+      boost::locale::localization_backend_manager::global(std_be);
+      gen = new boost::locale::generator(std_be);
+
+      gen->locale_cache_enabled(true);
       // Storing default locale. 
       // Is has to be done here because gettext is not thread safe
-      default_locale = gen("");
+      default_locale = gen->generate("");
       std::locale::global(default_locale);
       default_locale_name = setlocale(LC_ALL, NULL);
       default_domain = textdomain(NULL);
@@ -49,7 +55,7 @@ public:
 
   hphp_hash_map<std::string, std::locale> locale_map;
   ReadWriteMutex locale_mutex;
-  boost::locale::generator gen;
+  boost::locale::generator *gen;
 };
 
 static GettextData s_gettext;
@@ -59,7 +65,7 @@ public:
   virtual void requestInit() {
       if (!RuntimeOption::GettextDefaultLocale.empty()) {
         m_locale_name = RuntimeOption::GettextDefaultLocale; 
-        m_locale = s_gettext.gen(m_locale_name);
+        m_locale = s_gettext.gen->generate(m_locale_name);
       } else {
         m_locale = s_gettext.default_locale;
         m_locale_name = s_gettext.default_locale_name; 
@@ -77,7 +83,7 @@ public:
   }
 
   void set_locale(std::string locale) {
-      m_locale = s_gettext.gen(locale);
+      m_locale = s_gettext.gen->generate(locale);
       m_locale_name = locale;
       if (RuntimeOption::GettextDebug) {
         Logger::Verbose("[Gettext] Changing default locale to %s", locale.c_str());
