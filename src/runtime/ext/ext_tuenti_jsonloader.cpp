@@ -54,6 +54,7 @@ Variant f_cached_json_decode(CStrRef json_file, bool assoc /* = false */,
 
   struct stat json_stat;
   time_t now = time(NULL);
+  int stat_err;
 
   if (s_json_store.exists(json_file)) {
     Variant entry;
@@ -68,9 +69,9 @@ Variant f_cached_json_decode(CStrRef json_file, bool assoc /* = false */,
     }
     
     // We hit refresh timeout, checking file modification time
-    stat(json_file.data(), &json_stat);
+    stat_err = stat(json_file.data(), &json_stat);
  
-    if (json_stat.st_mtime <= lastupdate) {
+    if (!stat_err && json_stat.st_mtime <= lastupdate) {
       debug_printf("Cache entry found, entry is still valid, but need to update lastupdate\n");
       // No need to reparse
       Array newentry;
@@ -81,19 +82,23 @@ Variant f_cached_json_decode(CStrRef json_file, bool assoc /* = false */,
       return entry;
     }
   } else {
-    stat(json_file.data(), &json_stat);
+    stat_err = stat(json_file.data(), &json_stat);
   }
 
-  String file_contents = f_file_get_contents(json_file);
-
-  if (! file_contents) return null;
-
-  Variant decoded_json = f_json_decode(file_contents, assoc, loose);
-
   Array newentry;
-  newentry.append(decoded_json);
-  newentry.append(json_stat.st_mtime);
-  newentry.append(now);
+  if (stat_err) {
+    debug_printf("File not found\n");
+    newentry.append(null);
+    newentry.append(0);
+    newentry.append(now);
+  } else {
+    String file_contents = f_file_get_contents(json_file);
+    Variant decoded_json = file_contents ?
+      f_json_decode(file_contents, assoc, loose) : null;
+    newentry.append(decoded_json);
+    newentry.append(json_stat.st_mtime);
+    newentry.append(now);
+  }
 
   debug_printf("Cache entry not found or old, decoding and storing it\n");
 
