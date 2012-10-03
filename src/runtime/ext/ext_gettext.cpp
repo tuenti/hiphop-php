@@ -30,20 +30,20 @@ IMPLEMENT_DEFAULT_EXTENSION(gettext);
 
 class GettextData {
 public:
-
   GettextData() {
       // Select std backend as default
       boost::locale::localization_backend_manager std_be = boost::locale::localization_backend_manager::global();
       std_be.select("std");
+      std_be.select("icu", boost::locale::collation_facet);
       boost::locale::localization_backend_manager::global(std_be);
       gen = new boost::locale::generator(std_be);
 
       gen->locale_cache_enabled(true);
       // Storing default locale. 
       // Is has to be done here because gettext is not thread safe
-      default_locale = gen->generate("");
-      std::locale::global(default_locale);
       default_locale_name = setlocale(LC_ALL, NULL);
+      default_locale = gen->generate(default_locale_name);
+      std::locale::global(default_locale);
       default_domain = textdomain(NULL);
       default_path = bindtextdomain(default_domain.c_str(), NULL);
   }
@@ -227,7 +227,7 @@ Variant f_bind_textdomain_codeset(CStrRef domain, CStrRef codeset) {
 }
 
 int locale_strcoll(CStrRef str1, CStrRef str2) {
-    boost::locale::comparator<char> comp(get_request_locale(), boost::locale::collator_base::secondary);
+    boost::locale::comparator<char> comp(get_request_locale());
     return comp(str1.c_str(), str2.c_str());
 }
 
