@@ -287,6 +287,9 @@ static bool create_new_socket(const char *&name, int port, Variant &errnum,
   int domain = AF_INET;
   int type = SOCK_STREAM;
   if (strncmp(name, "udp://", 6) == 0 || strncmp(name, "udg://", 6) == 0) {
+    if (strncmp(name, "udg://", 6) == 0) {
+      domain = AF_UNIX;
+    }
     type = SOCK_DGRAM;
     name += 6;
   } else if (strncmp(name, "tcp://", 6) == 0) {
