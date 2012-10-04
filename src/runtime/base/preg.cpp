@@ -57,30 +57,33 @@ namespace HPHP {
 class pcre_cache_entry {
 public:
   ~pcre_cache_entry() {
-    free(re);
-    if (extra) free(extra);
-#if HAVE_SETLOCALE
+    pcre_free(re);
+    if (extra) pcre_free(extra);
+#if USE_SETLOCALE
     free(locale);
-    if (tables) free(tables);
+    if (tables) pcre_free(tables);
 #endif
   }
 
   pcre *re;
   pcre_extra *extra; // Holds results of studying
   int preg_options;
-#if HAVE_SETLOCALE
+#if USE_SETLOCALE
   char *locale;
   unsigned const char *tables;
 #endif
   int compile_options;
 };
 
-typedef hphp_hash_map<StringData *, pcre_cache_entry*,
-                      string_data_hash, string_data_same> PCREStringMap;
+typedef hphp_hash_map<std::string, pcre_cache_entry*> PCREStringMap;
 
 // TODO LRU cache
 class PCRECache {
 public:
+  PCRECache() { 
+    memset(&extra_data, 0, sizeof(extra_data));
+  }
+
   ~PCRECache() { }
 
   void cleanup() {
@@ -88,27 +91,25 @@ public:
     for (PCREStringMap::iterator it = m_cache.begin(); it != m_cache.end();
          ++it) {
       delete it->second;
-      if (!it->first->isStatic()) {
-        delete it->first;
-      }
     }
+    m_cache.clear();
   }
 
   pcre_cache_entry *find(CStrRef regex) {
     TAINT_OBSERVER_CAP_STACK();
-    PCREStringMap::const_iterator it = m_cache.find(regex.get());
+    PCREStringMap::const_iterator it = m_cache.find(regex.data());
     if (it != m_cache.end()) return it->second;
     return NULL;
   }
 
   void set(CStrRef regex, pcre_cache_entry *pce) {
     TAINT_OBSERVER_CAP_STACK();
-    PCREStringMap::iterator it = m_cache.find(regex.get());
+    PCREStringMap::iterator it = m_cache.find(regex.data());
     if (it != m_cache.end()) {
       delete it->second;
       it->second = pce;
     } else {
-      m_cache[regex->copy(true)] = pce;
+      m_cache[regex->data()] = pce;
     }
   }
 
@@ -136,13 +137,14 @@ static pcre_cache_entry *pcre_get_compiled_regex_cache(CStrRef regex) {
      * and if it is, we flush it and compile the pattern from scratch.
      */
     if (pcre_info(pce->re, NULL, NULL) == PCRE_ERROR_BADMAGIC) {
+      Logger::Warning("Detected corruption on the pcre cache");
       pcre_cache.cleanup();
     } else {
-#if HAVE_SETLOCALE
+#if USE_SETLOCALE
       if (!strcmp(pce->locale, locale)) {
 #endif
         return pce;
-#if HAVE_SETLOCALE
+#if USE_SETLOCALE
       }
 #endif
     }
@@ -253,7 +255,7 @@ static pcre_cache_entry *pcre_get_compiled_regex_cache(CStrRef regex) {
   }
 
   unsigned const char *tables = NULL;
-#if HAVE_SETLOCALE
+#if USE_SETLOCALE
   if (strcmp(locale, "C")) {
     tables = pcre_maketables();
   }
@@ -292,7 +294,7 @@ static pcre_cache_entry *pcre_get_compiled_regex_cache(CStrRef regex) {
   new_entry->extra = extra;
   new_entry->preg_options = poptions;
   new_entry->compile_options = coptions;
-#if HAVE_SETLOCALE
+#if USE_SETLOCALE
   char *locale = setlocale(LC_CTYPE, NULL);
   new_entry->locale = strdup(locale);
   new_entry->tables = tables;
@@ -303,11 +305,9 @@ static pcre_cache_entry *pcre_get_compiled_regex_cache(CStrRef regex) {
 
 static void set_extra_limits(pcre_extra *&extra) {
   if (extra == NULL) {
-    pcre_extra &extra_data = s_pcre_cache->extra_data;
-    extra_data.flags = PCRE_EXTRA_MATCH_LIMIT |
-      PCRE_EXTRA_MATCH_LIMIT_RECURSION;
-    extra = &extra_data;
+    extra = &s_pcre_cache->extra_data;
   }
+  extra->flags |= PCRE_EXTRA_MATCH_LIMIT | PCRE_EXTRA_MATCH_LIMIT_RECURSION;
   extra->match_limit = RuntimeOption::PregBacktraceLimit;
   extra->match_limit_recursion = RuntimeOption::PregRecursionLimit;
 }
