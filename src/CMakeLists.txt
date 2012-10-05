@@ -210,6 +210,7 @@ SET(DDEPS "${DDEPS}, libgraphicsmagick3 (>= 1.3.12-1+b1)")
 SET(DDEPS "${DDEPS}, libgeoip1")
 SET(DDEPS "${DDEPS}, libmagic1")
 SET(DDEPS "${DDEPS}, libc-ares2")
+SET(DDEPS "${DDEPS}, libjemalloc1")
 
 SET(CPACK_DEBIAN_PACKAGE_DEPENDS "${DDEPS}")
 

@@ -32,13 +32,6 @@ ExternalProject_Add(
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --disable-sasl --prefix=<INSTALL_DIR>
 )
 
-ExternalProject_Add(
-    jemalloc
-    URL http://www.canonware.com/download/jemalloc/jemalloc-3.0.0.tar.bz2
-    INSTALL_DIR ${CMAKE_BINARY_DIR}/external_build/
-    CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR>
-)
-
 if (NOT SKIP_BUNDLED_XHP)
     add_subdirectory(xhp/xhp)
 endif()

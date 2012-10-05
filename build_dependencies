@@ -39,3 +39,5 @@ libboost-system1.49-dev
 libboost-system1.49.0
 libboost-thread1.49.0
 libboost1.49-dev
+libjemalloc-dev
+libjemalloc1
