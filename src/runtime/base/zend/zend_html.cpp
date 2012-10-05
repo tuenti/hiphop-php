@@ -510,6 +510,11 @@ char *string_html_encode(const char *input, int &len, bool encode_double_quote,
     return NULL;
   }
 
+  // Set 100 M as the html encoding limit
+  if (len > 100 * 1024 * 1024) {
+    return NULL;
+  }
+
   if (!EntityMapInited) {
     Lock lock(EntityMapMutex);
     if (!EntityMapInited) {
