@@ -31,7 +31,8 @@ IMPLEMENT_SMART_ALLOCATION_NOCALLBACKS(SmallArray);
 SmallArray::SmallArray() : m_nNumOfElements(0),
                            m_nListHead(ArrayData::invalid_index),
                            m_nListTail(ArrayData::invalid_index),
-                           m_nNextFreeElement(0) {
+                           m_nNextFreeElement(0),
+                           m_siPastEnd(0) {
   m_pos = ArrayData::invalid_index;
 }
 
