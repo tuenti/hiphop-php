@@ -83,11 +83,11 @@ void raise_strict_warning(const char *fmt, ...) {
                          "HipHop Strict Warning:  ");
 }
 
-static int64 g_warning_counter = 0;
+static IMPLEMENT_THREAD_LOCAL(int64, g_warning_counter);
 
 void raise_warning(const std::string &msg) {
   if (RuntimeOption::WarningFrequency <= 0 ||
-      (g_warning_counter++) % RuntimeOption::WarningFrequency != 0) {
+      ((*g_warning_counter)++) % RuntimeOption::WarningFrequency != 0) {
     return;
   }
   int errnum = ErrorConstants::WARNING;
@@ -103,7 +103,7 @@ void raise_warning(const std::string &msg) {
 void raise_warning(const char *fmt, ...) {
   std::string msg;
   if (RuntimeOption::WarningFrequency <= 0 ||
-      (g_warning_counter++) % RuntimeOption::WarningFrequency != 0) {
+      ((*g_warning_counter)++) % RuntimeOption::WarningFrequency != 0) {
     return;
   }
   int errnum = ErrorConstants::WARNING;
@@ -135,11 +135,11 @@ void raise_debugging(const char *fmt, ...) {
   raise_debugging(msg);
 }
 
-static int64 g_notice_counter = 0;
+static IMPLEMENT_THREAD_LOCAL(int64, g_notice_counter);
 
 void raise_notice(const std::string &msg) {
   if (RuntimeOption::NoticeFrequency <= 0 ||
-      (g_notice_counter++) % RuntimeOption::NoticeFrequency != 0) {
+      ((*g_notice_counter)++) % RuntimeOption::NoticeFrequency != 0) {
     return;
   }
   int errnum = ErrorConstants::NOTICE;
@@ -155,7 +155,7 @@ void raise_notice(const std::string &msg) {
 void raise_notice(const char *fmt, ...) {
   std::string msg;
   if (RuntimeOption::NoticeFrequency <= 0 ||
-      (g_notice_counter++) % RuntimeOption::NoticeFrequency != 0) {
+      ((*g_notice_counter)++) % RuntimeOption::NoticeFrequency != 0) {
     return;
   }
   int errnum = ErrorConstants::NOTICE;
