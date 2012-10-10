@@ -73,7 +73,7 @@ bool RuntimeOption::AssertActive = false;
 bool RuntimeOption::AssertWarning = false;
 int RuntimeOption::NoticeFrequency = 1;
 int RuntimeOption::WarningFrequency = 1;
-int64 RuntimeOption::SerializationSizeLimit = 0;
+int64 RuntimeOption::SerializationSizeLimit = (1 << 28); // 256 MB
 int64 RuntimeOption::StringOffsetLimit = 10 * 1024 * 1024; // 10MB
 
 std::string RuntimeOption::AccessLogDefaultFormat;
@@ -609,7 +609,7 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
     DropCacheCycle = rlimit["DropCacheCycle"].getInt64(0);
     MaxSQLRowCount = rlimit["MaxSQLRowCount"].getInt64(0);
     MaxMemcacheKeyCount = rlimit["MaxMemcacheKeyCount"].getInt64(0);
-    SerializationSizeLimit = rlimit["SerializationSizeLimit"].getInt64(0);
+    SerializationSizeLimit = rlimit["SerializationSizeLimit"].getInt64(1 << 28); // 256 MB)
     StringOffsetLimit = rlimit["StringOffsetLimit"].getInt64(10 * 1024 * 1024);
   }
   {
