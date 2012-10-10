@@ -162,11 +162,13 @@ ssize_t ZendArray::size() const {
 }
 
 void ZendArray::iter_dirty_set() const {
-  m_flag |= IterationDirty;
+  if (!isStatic())
+    m_flag |= IterationDirty;
 }
 
 void ZendArray::iter_dirty_reset() const {
-  m_flag &= ~IterationDirty;
+  if (!isStatic())
+    m_flag &= ~IterationDirty;
 }
 
 void ZendArray::iter_dirty_check() const {
@@ -974,13 +976,15 @@ ArrayData *ZendArray::set(CVarRef k, CVarRef v, bool copy) {
   } else {
     ASSERT(k.isString());
     StringData *sd = getStringKey(tva);
-    if (UNLIKELY(copy)) {
+    //if (UNLIKELY(copy)) {
+    if (copy) {
       ZendArray *a = copyImpl();
       a->update(sd, v);
       return a;
-    }
+    } else {
     update(sd, v);
     return NULL;
+    }
   }
 }
 
