@@ -20,7 +20,17 @@
 #include <util/logger.h>
 
 namespace HPHP {
-IMPLEMENT_DEFAULT_EXTENSION(geoip);
+
+class geoipExtension : public Extension {
+  public:
+    geoipExtension() : Extension("geoip") { }
+
+    virtual void moduleInit() {
+      if (RuntimeOption::GeoIPCustomDirectory.size() > 0) {
+        GeoIP_setup_custom_directory((char *)RuntimeOption::GeoIPCustomDirectory.c_str());
+      }
+    }
+} s_geoip_extension;
 
 class GeoIPRequestData {
 public:
@@ -31,10 +41,6 @@ public:
     }
      
     open_flags = RuntimeOption::GeoIPOpenFlags;
-
-    if (RuntimeOption::GeoIPCustomDirectory.size() > 0) {
-      GeoIP_setup_custom_directory((char *)RuntimeOption::GeoIPCustomDirectory.c_str());
-    }
   }
 
   ~GeoIPRequestData() {
