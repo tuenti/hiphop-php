@@ -199,7 +199,9 @@ public:
     }
     s_st_allocs.erase(obj);
 #endif
+#ifndef DEBUG_MEMORY_LEAK
     ASSERT(isValid(obj));
+#endif
     m_freelist.push_back(obj);
 #ifdef SMART_ALLOCATOR_STACKTRACE
     {
