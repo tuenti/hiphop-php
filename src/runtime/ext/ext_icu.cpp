@@ -22,6 +22,7 @@
 #include <unicode/rbbi.h>
 #include <unicode/translit.h>
 #include <unicode/ustring.h>
+#include <unicode/uclean.h>
 #include "icu/LifeEventTokenizer.h"
 #include "icu/ICUMatcher.h"
 #include "icu/ICUTransliterator.h"
@@ -31,6 +32,20 @@ using namespace U_ICU_NAMESPACE;
 
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
+
+class IcuStaticInitializer {
+  public:
+    IcuStaticInitializer() {
+      UErrorCode status;
+      u_init(&status);
+    }
+
+    ~IcuStaticInitializer() {
+      u_cleanup();
+    }
+};
+
+static IcuStaticInitializer s_icu_initializer;
 
 // Need to have a valid installation of the transliteration data in /lib64.
 // Initialization will be taken care of by ext_array which also uses icu.
