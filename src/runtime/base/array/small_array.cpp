@@ -31,8 +31,8 @@ IMPLEMENT_SMART_ALLOCATION_NOCALLBACKS(SmallArray);
 SmallArray::SmallArray() : m_nNumOfElements(0),
                            m_nListHead(ArrayData::invalid_index),
                            m_nListTail(ArrayData::invalid_index),
-                           m_nNextFreeElement(0),
-                           m_siPastEnd(0) {
+                           m_siPastEnd(0),
+                           m_nNextFreeElement(0) {
   m_pos = ArrayData::invalid_index;
 }
 
@@ -42,6 +42,7 @@ SmallArray::SmallArray(unsigned int nSize, int64 n,
   m_nNumOfElements(nSize),
   m_nListHead(ArrayData::invalid_index),
   m_nListTail(ArrayData::invalid_index),
+  m_siPastEnd(0),
   m_nNextFreeElement(n) {
   const Variant **v = values;
   for (StringData **k = keys; *k; k++, v++) {
@@ -61,6 +62,7 @@ SmallArray::SmallArray(unsigned int nSize, int64 n,
   m_nNumOfElements(nSize),
   m_nListHead(ArrayData::invalid_index),
   m_nListTail(ArrayData::invalid_index),
+  m_siPastEnd(0),
   m_nNextFreeElement(n) {
   int64 *k = keys;
   for (const Variant **v = values; *v; v++, k++) {
