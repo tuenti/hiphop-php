@@ -105,6 +105,7 @@ class StringData {
    * Informational.
    */
   const char *data() const {
+    ASSERT(m_data[size()] == 0);
     TAINT_OBSERVER_REGISTER_ACCESSED(m_taint_data);
     return m_data;
   }
