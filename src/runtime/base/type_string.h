@@ -416,7 +416,7 @@ struct hphp_string_isame {
 };
 
 struct StringDataHashCompare {
-  bool equal(StringData *s1, StringData *s2) const {
+  bool equal(const StringData *s1, const StringData *s2) const {
     ASSERT(s1 && s2);
     return s1->same(s2);
   }
