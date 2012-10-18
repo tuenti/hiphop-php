@@ -291,11 +291,13 @@ public:
   void incRefCount() {
     atomic_inc(m_refCount);
   }
-  void decRefCount() {
+  int decRefCount() {
     ASSERT(m_refCount);
-    if (atomic_dec(m_refCount) == 0) {
+    int count = atomic_dec(m_refCount);
+    if (count == 0) {
       delete this;
     }
+    return count;
   }
 
   FiberAsyncFuncData *getOwnerThread() { return m_thread; }
@@ -386,7 +388,7 @@ void FiberWorker::doJob(FiberJob *job) {
 
   FiberAsyncFuncData *owner = job->getOwnerThread();
   {
-    Lock lock(job);
+    job->getMutex().lock();
     while (!job->destroy()) {
       job->wait(1);
     }
@@ -416,8 +418,10 @@ public:
 
   ~FiberAsyncFuncHandle() {
     if (!m_async || m_reqId == s_fiber_data->m_reqId) {
-      Lock lock(m_job);
-      m_job->decRefCount();
+      m_job->getMutex().lock();
+      if (m_job->decRefCount()) {
+        m_job->getMutex().unlock();
+      }
     }
   }
 
