@@ -1118,7 +1118,8 @@ bool f_openssl_open(CStrRef sealed_data, VRefParam open_data, CStrRef env_key,
   }
   EVP_PKEY *pkey = okey.getTyped<Key>()->m_key;
 
-  unsigned char *buf = (unsigned char *)malloc(sealed_data.size() + 1);
+  // openssl operates on 8 byte chunks, so we need some extra space
+  unsigned char *buf = (unsigned char *)malloc(sealed_data.size() + 9);
 
   EVP_CIPHER_CTX ctx;
   int len1, len2;
@@ -1877,7 +1878,8 @@ Variant f_openssl_seal(CStrRef data, VRefParam sealed_data, VRefParam env_keys,
   int len1, len2;
 
   unsigned char *buf;
-  buf = (unsigned char *)malloc(data.size() + EVP_CIPHER_CTX_block_size(&ctx));
+  // openssl operates on 8 byte chunks, so we need some extra space
+  buf = (unsigned char *)malloc(data.size() + EVP_CIPHER_CTX_block_size(&ctx) + 8);
   if (!EVP_SealInit(&ctx, EVP_rc4(), eks, eksl, NULL, pkeys, nkeys) ||
       !EVP_SealUpdate(&ctx, buf, &len1, (unsigned char *)data.data(),
                       data.size())) {
