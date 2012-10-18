@@ -25,6 +25,9 @@
 #include <iostream>
 #include <stdexcept>
 
+using namespace std;
+using namespace boost::locale;
+
 namespace HPHP {
 IMPLEMENT_DEFAULT_EXTENSION(gettext);
 
@@ -168,7 +171,7 @@ Variant f_textdomain(CStrRef domain) {
       s_gettext_request->m_domain = domain.c_str();
     }
 
-    return domain;
+    return s_gettext_request->m_domain;
 }
 
 Variant f_gettext(CStrRef msgid) {
@@ -227,8 +230,12 @@ Variant f_bind_textdomain_codeset(CStrRef domain, CStrRef codeset) {
 }
 
 int locale_strcoll(CStrRef str1, CStrRef str2) {
-    boost::locale::comparator<char> comp(get_request_locale());
-    return comp(str1.c_str(), str2.c_str());
+    const char *begin1, *end1, *begin2, *end2;
+    begin1 = str1.c_str();
+    begin2 = str2.c_str();
+    end1 = begin1 + str1.size();
+    end2 = begin2 + str2.size();
+    return use_facet<collator<char> >(get_request_locale()).compare(collator_base::tertiary, begin1, end1, begin2, end2);
 }
 
 }
