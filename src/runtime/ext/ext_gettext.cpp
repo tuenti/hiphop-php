@@ -85,6 +85,10 @@ public:
       return m_locale;
   }
 
+  String get_locale_name() {
+      return m_locale_name;
+  }
+
   void set_locale(std::string locale) {
       m_locale = s_gettext.gen->generate(locale);
       m_locale_name = locale;
@@ -164,6 +168,10 @@ void set_request_locale(CStrRef locale) {
 
 std::locale get_request_locale() {
     return s_gettext_request->get_locale();
+}
+
+String get_request_locale_name() {
+    return s_gettext_request->get_locale_name();
 }
 
 Variant f_textdomain(CStrRef domain) {
