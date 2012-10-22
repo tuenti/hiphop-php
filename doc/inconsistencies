@@ -233,4 +233,71 @@ In HipHop, they are the same.
 In PHP, jumping to a GOTO label across try/catch blocks is allowed. In HipHop,
 it isn't.
 
-(6) ReflectionProperty::setAccessible() is not supported.
+(6) ReflectionProperty::setAccessible() is not supported
+
+(7) ArrayObject is not supported
+
+(8) Assert
+
+Don't use with code as a string, like assert('is_numeric($user_id)'), use assert(is_numeric($user_id)). Build script ensures that assets are not executed on production, so there's no optimization on using the string version.
+
+(9) class_alias is not supported
+
+(10) runkit_constant_redefine is not supported
+
+(11) header()
+
+Don't use the optional second and third parameters of this function. Their semantic is very misleading and some of the combinations are not handled by HipHop.
+
+OK:
+
+  <?php
+  header('Content-type: text/xml');
+  header('HTTP/1.0 200 OK);
+
+BAD:
+
+  <?php
+  header('Status: 503 Internal Server Error');
+  header('Forbidden', NULL, 403);
+
+(12) Private variables could not be access from outside of the class
+
+This is true even when doing an include of other file on the container class
+
+a.php
+  class A { 
+    protected $data = 4;  
+    public $file = "b.php";
+  
+    function go () { 
+      $pp = $this->data;
+      include $this->file;
+    }
+  
+    private function ello() {
+      return $this->data;
+    }
+  }
+
+b.php
+  $a = new A();
+  $a->go();
+  
+  <?php
+  
+  var_dump($pp);
+  var_dump($this->ello());
+  var_dump($this->data);
+
+
+PHP execution:
+  int(4)
+  int(4)
+  int(4)
+
+HipHop execution:
+  int(4)
+  int(4)
+  HipHop Notice:  Undefined property: A::$data in b.php on line 5
+  NULL
