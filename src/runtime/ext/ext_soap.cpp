@@ -476,8 +476,8 @@ static bool do_request(c_SoapClient *client, xmlDoc *request,
   }
   response = client->o_root_invoke_few_args("__dorequest", -1, 5,
       String(buf, buf_size, CopyString),
-      String(location, AttachLiteral),
-      String(action, AttachLiteral),
+      String(location, strlen(location), CopyString),
+      String(action, strlen(action), CopyString),
       version, one_way);
   if (!response.isString()) {
     if (client->m_soap_fault.isNull()) {
@@ -1772,7 +1772,7 @@ static void send_soap_server_fault(sdlFunctionPtr function, Variant fault,
   xmlChar *buf; int size;
   xmlDocDumpMemory(doc_return, &buf, &size);
   if (buf) {
-    echo(String((const char *)buf, size, AttachLiteral));
+    echo(String((const char *)buf, size, CopyString));
     xmlFree(buf);
   }
   xmlFreeDoc(doc_return);
@@ -2069,16 +2069,16 @@ void c_SoapServer::t_handle(CStrRef request /* = null_string */) {
     if (!data || !*data || !size) {
       return;
     }
-    req = String(data, size, AttachLiteral);
+    req = String(data, size, CopyString);
 
     SystemGlobals *g = (SystemGlobals*)get_global_variables();
     if (g->GV(_SERVER).toArray().exists("HTTP_CONTENT_ENCODING")) {
       String encoding = g->GV(_SERVER)["HTTP_CONTENT_ENCODING"];
       Variant ret;
       if (encoding == "gzip" || encoding == "x-gzip") {
-        ret = f_gzinflate(String(data, size, AttachLiteral));
+        ret = f_gzinflate(String(data, size, CopyString));
       } else if (encoding == "deflate") {
-        ret = f_gzuncompress(String(data, size, AttachLiteral));
+        ret = f_gzuncompress(String(data, size, CopyString));
       } else {
         raise_warning("Request is encoded with unknown compression '%s'",
                         encoding.data());
@@ -2233,7 +2233,7 @@ void c_SoapServer::t_handle(CStrRef request /* = null_string */) {
   }
   output_xml_header(soap_version);
   if (buf) {
-    echo(String((char*)buf, size, AttachLiteral));
+    echo(String((char*)buf, size, CopyString));
     xmlFree(buf);
   }
 }
