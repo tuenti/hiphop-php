@@ -966,8 +966,16 @@ bool f_copy(CStrRef source, CStrRef dest,
   if (!context.isNull() || !File::IsPlainFilePath(source) ||
       !File::IsPlainFilePath(dest)) {
     Variant sfile = f_fopen(source, "r", false, context);
+    if (same(sfile, false)) return false;
     Variant dfile = f_fopen(dest, "w", false, context);
-    return f_stream_copy_to_stream(sfile, dfile).toBoolean();
+    if (same(dfile, false)) {
+      f_fclose(sfile);
+      return false;
+    }
+    bool ret = f_stream_copy_to_stream(sfile, dfile).toBoolean();
+    f_fclose(sfile);
+    f_fclose(dfile);
+    return ret;
   } else {
     int ret =
       RuntimeOption::UseDirectCopy ?
