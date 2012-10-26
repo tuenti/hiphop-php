@@ -116,7 +116,7 @@ String f_gethostbyname(CStrRef hostname) {
   }
 
   Util::HostEnt result;
-  if (!Util::safe_gethostbyname(hostname.data(), result)) {
+  if (!cached_gethostbyname(hostname.data(), result)) {
     if (RuntimeOption::EnableDnsCache) {
       f_apc_store(hostname, false, RuntimeOption::DnsCacheTTL,
                   SHARED_STORE_DNS_CACHE);
@@ -137,7 +137,7 @@ String f_gethostbyname(CStrRef hostname) {
 Variant f_gethostbynamel(CStrRef hostname) {
   IOStatusHelper io("gethostbynamel", hostname.data());
   Util::HostEnt result;
-  if (!Util::safe_gethostbyname(hostname.data(), result)) {
+  if (!cached_gethostbyname(hostname.data(), result)) {
     return false;
   }
 
@@ -931,6 +931,54 @@ Variant f_gethostname() {
   }
 
   return String(hostname, CopyString);
+}
+
+typedef hphp_hash_map<std::string, Util::HostEnt> HostEntCache;
+class ExtNetworkData {
+public:
+  HostEntCache hostEntCache;
+  ExtNetworkData() {
+    lastCleanup = 0;
+  }
+  void cleanupCache() {
+    time_t now = time(NULL);
+    if (now > lastCleanup + RuntimeOption::DnsCacheTTL) {
+      hostEntCache.clear();
+      lastCleanup = now;
+    }
+  }
+private:
+  time_t lastCleanup;
+};
+static IMPLEMENT_THREAD_LOCAL(ExtNetworkData, s_networkData);
+
+static void hostent_copy(Util::HostEnt &dst, const Util::HostEnt &src) {
+  ASSERT(!dst.tmphstbuf);
+  if (src.tmphstbuf) {
+    struct hostent *dup = Util::hostent_dup(&src.hostbuf);
+    dst.hostbuf = *dup;
+    dst.tmphstbuf = reinterpret_cast<char*>(dup);
+    dst.herr = src.herr;
+  } else {
+    dst = src;
+  }
+}
+
+bool cached_gethostbyname(const char *address, Util::HostEnt &result) {
+  if (RuntimeOption::EnableDnsCache) {
+    s_networkData->cleanupCache();
+    HostEntCache::const_iterator cached = s_networkData->hostEntCache.find(address);
+    if (cached != s_networkData->hostEntCache.end()) {
+      hostent_copy(result, cached->second);
+      return !result.herr;
+    }
+  }
+  bool ret = Util::safe_gethostbyname(address, result);
+  if (RuntimeOption::EnableDnsCache) {
+    Util::HostEnt& it = s_networkData->hostEntCache[address];
+    hostent_copy(it, result);
+  }
+  return ret;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -16,6 +16,7 @@
 */
 
 #include <runtime/ext/ext_socket.h>
+#include <runtime/ext/ext_network.h>
 #include <runtime/base/file/socket.h>
 #include <runtime/base/file/ssl_socket.h>
 #include <runtime/base/server/server_stats.h>
@@ -33,7 +34,6 @@
 #include <fcntl.h>
 #include <signal.h>
 #include <sys/uio.h>
-#include <util/network.h>
 #include <poll.h>
 
 #define PHP_NORMAL_READ 0x0001
@@ -135,7 +135,7 @@ static bool php_set_inet_addr(struct sockaddr_in *sin, const char *address,
     sin->sin_addr.s_addr = tmp.s_addr;
   } else {
     Util::HostEnt result;
-    if (!Util::safe_gethostbyname(address, result)) {
+    if (!cached_gethostbyname(address, result)) {
       /* Note: < -10000 indicates a host lookup error */
       SOCKET_ERROR(sock, "Host lookup failed", (-10000 - result.herr));
       return false;
@@ -327,7 +327,7 @@ Variant f_socket_create(int domain, int type, int protocol) {
 
 Variant f_socket_create_listen(int port, int backlog /* = 128 */) {
   Util::HostEnt result;
-  if (!Util::safe_gethostbyname("0.0.0.0", result)) {
+  if (!cached_gethostbyname("0.0.0.0", result)) {
     return false;
   }
 

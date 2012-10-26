@@ -69,6 +69,7 @@ foreach (t ${HPHP_EXCLUDE_FILES})
 endforeach(t ${HPHP_EXCLUDE_FILES})
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/runtime/base/memory/smart_allocator.core.inc ${CMAKE_CURRENT_SOURCE_DIR}/runtime/base/memory/smart_allocator.inc_gen COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/util/ares.h.in ${CMAKE_CURRENT_SOURCE_DIR}/util/ares.h)
 
 #FLEX_TARGET(HphpScanner ${CMAKE_CURRENT_SOURCE_DIR}/runtime/eval/parser/hphp.x ${CMAKE_CURRENT_SOURCE_DIR}/runtime/eval/parser/lex.eval_.cpp COMPILE_FLAGS " -w -i -Peval_")
 #BISON_TARGET(HphpParser ${CMAKE_CURRENT_SOURCE_DIR}/runtime/eval/parser/hphp.y ${CMAKE_CURRENT_SOURCE_DIR}/runtime/eval/parser/hphp.tab.cpp  COMPILE_FLAGS " -v -d -p eval_")

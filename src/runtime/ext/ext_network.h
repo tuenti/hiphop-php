@@ -21,6 +21,7 @@
 #include <runtime/base/base_includes.h>
 #include <runtime/ext/ext_stream.h>
 #include <syslog.h>
+#include <util/network.h>
 
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
@@ -53,6 +54,8 @@ inline bool f_getmxrr(CStrRef hostname, VRefParam mxhosts,
                       VRefParam weight = null) {
   return f_dns_get_mx(hostname, ref(mxhosts), weight);
 }
+
+bool cached_gethostbyname(const char *address, Util::HostEnt &result);
 
 ///////////////////////////////////////////////////////////////////////////////
 // socket

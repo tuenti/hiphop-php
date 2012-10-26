@@ -40,6 +40,7 @@ public:
   int herr;
 };
 
+struct hostent* hostent_dup(const struct hostent *hostent);
 bool safe_gethostbyname(const char *address, HostEnt &result);
 std::string safe_inet_ntoa(struct in_addr &in);
 

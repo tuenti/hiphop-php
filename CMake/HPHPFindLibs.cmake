@@ -250,6 +250,8 @@ if (LINUX)
 	endif()
 endif()
 
+find_package(CARes)
+
 if (LINUX OR APPLE)
 	FIND_LIBRARY (DL_LIB dl)
 	FIND_LIBRARY (RESOLV_LIB resolv)
