@@ -39,6 +39,9 @@ class ResolverLibInitializer {
 public:
   ResolverLibInitializer() {
     res_init();
+#ifdef CARES_FOUND
+    ares_library_init(ARES_LIB_INIT_ALL);
+#endif
   }
 };
 static ResolverLibInitializer _resolver_lib_initializer;
@@ -135,6 +138,7 @@ bool Util::safe_gethostbyname(const char *address, HostEnt &result) {
 #ifdef CARES_FOUND
   fd_set readers, writers;
   result.herr = 0;
+  result.tmphstbuf = 0;
   int nfds, count;
   struct timeval tv, *tvp;
   ares_channel ares_ch = s_networkData->aresChannel;
@@ -143,8 +147,13 @@ bool Util::safe_gethostbyname(const char *address, HostEnt &result) {
     FD_ZERO(&readers);
     FD_ZERO(&writers);
     nfds = ares_fds(ares_ch, &readers, &writers);
-    if (nfds == 0 || result.herr)
+    if (nfds == 0)
       break;
+    if (result.herr) {
+      ares_destroy(ares_ch);
+      ares_init(&s_networkData->aresChannel);
+      return false;
+    }
     tvp = ares_timeout(ares_ch, NULL, &tv);
     count = select(nfds, &readers, &writers, NULL, tvp);
     ares_process(ares_ch, &readers, &writers);

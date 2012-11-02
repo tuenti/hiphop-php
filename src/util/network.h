@@ -30,17 +30,29 @@ namespace HPHP { namespace Util {
 ///////////////////////////////////////////////////////////////////////////////
 // thread-safe network functions
 
+struct hostent* hostent_dup(const struct hostent *hostent);
+
 class HostEnt {
 public:
   HostEnt() : tmphstbuf(NULL) {}
   ~HostEnt() { if (tmphstbuf) free(tmphstbuf);}
+  HostEnt(const HostEnt &src) {
+    if (src.tmphstbuf) {
+      struct hostent *dup = hostent_dup(&src.hostbuf);
+      hostbuf = *dup;
+      tmphstbuf = reinterpret_cast<char*>(dup);
+    } else {
+      hostbuf = src.hostbuf;
+      tmphstbuf = src.tmphstbuf;
+    }
+    herr = src.herr;
+  }
 
   struct hostent hostbuf;
   char *tmphstbuf;
   int herr;
 };
 
-struct hostent* hostent_dup(const struct hostent *hostent);
 bool safe_gethostbyname(const char *address, HostEnt &result);
 std::string safe_inet_ntoa(struct in_addr &in);
 
