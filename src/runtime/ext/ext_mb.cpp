@@ -3178,6 +3178,7 @@ static void _php_mb_regex_init_options(const char *parg, int narg,
 
 bool f_mb_ereg_match(CStrRef pattern, CStrRef str,
                      CStrRef option /* = null_string */) {
+  throw NotImplementedException(__func__);
   Lock(s_mbstring_extension.onig_mutex);
   OnigSyntaxType *syntax;
   OnigOptionType noption = 0;
@@ -3337,6 +3338,7 @@ static Variant _php_mb_regex_ereg_replace_exec(CVarRef pattern,
 
 Variant f_mb_ereg_replace(CVarRef pattern, CStrRef replacement, CStrRef str,
                          CStrRef option /* = null_string */) {
+  throw NotImplementedException(__func__);
   Lock(s_mbstring_extension.onig_mutex);
   return _php_mb_regex_ereg_replace_exec(pattern, replacement,
                                          str, option, 0);
@@ -3344,17 +3346,20 @@ Variant f_mb_ereg_replace(CVarRef pattern, CStrRef replacement, CStrRef str,
 
 Variant f_mb_eregi_replace(CVarRef pattern, CStrRef replacement, CStrRef str,
                           CStrRef option /* = null_string */) {
+  throw NotImplementedException(__func__);
   Lock(s_mbstring_extension.onig_mutex);
   return _php_mb_regex_ereg_replace_exec(pattern, replacement,
                                          str, option, ONIG_OPTION_IGNORECASE);
 }
 
 int f_mb_ereg_search_getpos() {
+  throw NotImplementedException(__func__);
   Lock(s_mbstring_extension.onig_mutex);
   return MBSTRG(search_pos);
 }
 
 bool f_mb_ereg_search_setpos(int position) {
+  throw NotImplementedException(__func__);
   Lock(s_mbstring_extension.onig_mutex);
   if (position < 0 || position >= (int)MBSTRG(search_str).size()) {
     raise_warning("Position is out of range");
@@ -3366,6 +3371,7 @@ bool f_mb_ereg_search_setpos(int position) {
 }
 
 Variant f_mb_ereg_search_getregs() {
+  throw NotImplementedException(__func__);
   Lock(s_mbstring_extension.onig_mutex);
   OnigRegion *search_regs = MBSTRG(search_regs);
   if (search_regs && !MBSTRG(search_str).empty()) {
@@ -3389,6 +3395,7 @@ Variant f_mb_ereg_search_getregs() {
 
 bool f_mb_ereg_search_init(CStrRef str, CStrRef pattern /* = null_string */,
                            CStrRef option /* = null_string */) {
+  throw NotImplementedException(__func__);
   Lock(s_mbstring_extension.onig_mutex);
   OnigOptionType noption = MBSTRG(regex_default_options);
   OnigSyntaxType *syntax = MBSTRG(regex_default_syntax);
@@ -3515,18 +3522,21 @@ static Variant _php_mb_regex_ereg_search_exec(CStrRef pattern, CStrRef option,
 
 Variant f_mb_ereg_search(CStrRef pattern /* = null_string */,
                       CStrRef option /* = null_string */) {
+  throw NotImplementedException(__func__);
   Lock(s_mbstring_extension.onig_mutex);
   return _php_mb_regex_ereg_search_exec(pattern, option, 0);
 }
 
 Variant f_mb_ereg_search_pos(CStrRef pattern /* = null_string */,
                            CStrRef option /* = null_string */) {
+  throw NotImplementedException(__func__);
   Lock(s_mbstring_extension.onig_mutex);
   return _php_mb_regex_ereg_search_exec(pattern, option, 1);
 }
 
 Variant f_mb_ereg_search_regs(CStrRef pattern /* = null_string */,
                             CStrRef option /* = null_string */) {
+  throw NotImplementedException(__func__);
   Lock(s_mbstring_extension.onig_mutex);
   return _php_mb_regex_ereg_search_exec(pattern, option, 2);
 }
@@ -3597,16 +3607,19 @@ static Variant _php_mb_regex_ereg_exec(CVarRef pattern, CStrRef str,
 }
 
 Variant f_mb_ereg(CVarRef pattern, CStrRef str, VRefParam regs /* = null */) {
+  throw NotImplementedException(__func__);
   Lock(s_mbstring_extension.onig_mutex);
   return _php_mb_regex_ereg_exec(pattern, str, regs, 0);
 }
 
 Variant f_mb_eregi(CVarRef pattern, CStrRef str, VRefParam regs /* = null */) {
+  throw NotImplementedException(__func__);
   Lock(s_mbstring_extension.onig_mutex);
   return _php_mb_regex_ereg_exec(pattern, str, regs, 1);
 }
 
 Variant f_mb_regex_encoding(CStrRef encoding /* = null_string */) {
+  throw NotImplementedException(__func__);
   Lock(s_mbstring_extension.onig_mutex);
   if (encoding.empty()) {
     const char *retval = php_mb_regex_mbctype2name(MBSTRG(current_mbctype));

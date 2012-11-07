@@ -32,10 +32,10 @@ bool TestExtPreg::RunTests(const std::string &which) {
   RUN_TEST(test_preg_split);
   RUN_TEST(test_preg_quote);
   RUN_TEST(test_preg_last_error);
-  RUN_TEST(test_ereg_replace);
-  RUN_TEST(test_eregi_replace);
-  RUN_TEST(test_ereg);
-  RUN_TEST(test_eregi);
+//  RUN_TEST(test_ereg_replace);
+//  RUN_TEST(test_eregi_replace);
+//  RUN_TEST(test_ereg);
+//  RUN_TEST(test_eregi);
   RUN_TEST(test_split);
   RUN_TEST(test_spliti);
   RUN_TEST(test_sql_regcase);
