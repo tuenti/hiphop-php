@@ -73,6 +73,7 @@ public:
 #endif
 #elif !DEBUG
 #undef EXTRA_FIBER_LOCKING
+#define NO_FIBER_LOCKING 1
 #endif
 
 /**
@@ -82,7 +83,12 @@ class FiberSafe {
 public:
   FiberSafe() : m_fiberCount(0) {}
 
-  void incFiberCount() { ++m_fiberCount;}
+  void incFiberCount() {
+#ifdef NO_FIBER_LOCKING
+    abort();
+#endif
+    ++m_fiberCount;
+  }
   void decFiberCount() { --m_fiberCount;}
 
 protected:
@@ -104,7 +110,11 @@ protected:
     ASSERT(m_fiberCount >= 0);
     return true;
 #else
+#ifdef NO_FIBER_LOCKING
+    return false;
+#else
     return m_fiberCount > 0;
+#endif
 #endif
   }
 };

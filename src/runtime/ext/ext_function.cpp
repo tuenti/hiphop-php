@@ -123,6 +123,7 @@ Variant f_call_user_func(int _argc, CVarRef function, CArrRef _argv /* = null_ar
 }
 
 Object f_call_user_func_array_async(CVarRef function, CArrRef params) {
+  throw NotImplementedException(__func__);
 #ifdef CUFA_ASYNC_DEPRECATION_MSG
   raise_warning(CUFA_ASYNC_DEPRECATION_MSG);
 #else
@@ -134,6 +135,7 @@ Object f_call_user_func_array_async(CVarRef function, CArrRef params) {
 
 Object f_call_user_func_async(int _argc, CVarRef function,
                                CArrRef _argv /* = null_array */) {
+  throw NotImplementedException(__func__);
 #ifdef CUF_ASYNC_DEPRECATION_MSG
   raise_warning(CUF_ASYNC_DEPRECATION_MSG);
 #else
@@ -144,6 +146,7 @@ Object f_call_user_func_async(int _argc, CVarRef function,
 }
 
 Variant f_check_user_func_async(CVarRef handles, int timeout /* = -1 */) {
+  throw NotImplementedException(__func__);
   if (handles.isArray()) {
     return FiberAsyncFunc::Status(handles, timeout);
   }
@@ -154,6 +157,7 @@ Variant f_check_user_func_async(CVarRef handles, int timeout /* = -1 */) {
 Variant f_end_user_func_async(CObjRef handle,
                               int default_strategy /* = k_GLOBAL_STATE_IGNORE */,
                               CVarRef additional_strategies /* = null */) {
+  throw NotImplementedException(__func__);
   return FiberAsyncFunc::Result(handle,
                                 (FiberAsyncFunc::Strategy)default_strategy,
                                 additional_strategies);
