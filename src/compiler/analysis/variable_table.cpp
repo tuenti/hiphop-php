@@ -403,7 +403,6 @@ TypePtr VariableTable::add(Symbol *sym, TypePtr type,
                            ModifierExpressionPtr modifiers) {
   if (getAttribute(InsideStaticStatement)) {
     addStaticVariable(sym, ar);
-    ClassScopeRawPtr clsScope = getClassScope();
     if (ClassScope::NeedStaticArray(getClassScope(), getFunctionScope())) {
       forceVariant(ar, sym->getName(), AnyVars);
     }

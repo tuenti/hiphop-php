@@ -1113,14 +1113,6 @@ String ipaddr_convert(struct sockaddr *addr, int addrlen) {
 Variant f_getaddrinfo(CStrRef host, CStrRef port, int family /* = 0 */,
                       int socktype /* = 0 */, int protocol /* = 0 */,
                       int flags /* = 0 */) {
-  const char *hptr = NULL, *pptr = NULL;
-  if (!host.empty()) {
-    hptr = host.c_str();
-  }
-  if (!port.empty()) {
-    pptr = port.c_str();
-  }
-
   struct addrinfo hints, *res;
   struct addrinfo *res0 = NULL;
   int error;
