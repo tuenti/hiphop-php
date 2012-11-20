@@ -147,19 +147,19 @@ Variant f_geoip_db_avail(int64 database) {
 
 Variant f_geoip_db_filename(int64 database) {
   if (!is_db_avail(database))
-    return NULL;
+    return null_variant;
 
   if (NULL == GeoIPDBFileName[database])
-    return NULL;
+    return null_variant;
 
   return String(GeoIPDBFileName[database], CopyString);
 }
 
 Array f_geoip_db_get_all_info() {
-  if (!is_db_avail(GEOIP_COUNTRY_EDITION))
-    return NULL;
-
   Array return_value = Array::Create();
+
+  if (!is_db_avail(GEOIP_COUNTRY_EDITION))
+    return return_value;
 
   for (int i=0; i < NUM_DB_TYPES; i++)
   {
@@ -180,7 +180,7 @@ Array f_geoip_db_get_all_info() {
 
 Variant f_geoip_database_info(int64 database /* = k_GEOIP_COUNTRY_EDITION */) {
   if (!is_db_avail(database))
-    return NULL;
+    return null_variant;
 
   const char *db_info = GeoIP_database_info(s_geoip->gi[database]);
 
@@ -189,7 +189,7 @@ Variant f_geoip_database_info(int64 database /* = k_GEOIP_COUNTRY_EDITION */) {
 
 Variant f_geoip_country_code_by_name(CStrRef hostname) {
   if (!is_db_avail(GEOIP_COUNTRY_EDITION))
-    return NULL;
+    return null_variant;
 
   const char * country_code = GeoIP_country_code_by_name(s_geoip->gi[GEOIP_COUNTRY_EDITION], hostname.data());
   if (country_code == NULL) {
@@ -202,7 +202,7 @@ Variant f_geoip_country_code_by_name(CStrRef hostname) {
 
 Variant f_geoip_country_code3_by_name(CStrRef hostname) {
   if (!is_db_avail(GEOIP_COUNTRY_EDITION))
-    return NULL;
+    return null_variant;
 
   const char * country_code = GeoIP_country_code3_by_name(s_geoip->gi[GEOIP_COUNTRY_EDITION], hostname.data());
   if (country_code == NULL) {
@@ -215,7 +215,7 @@ Variant f_geoip_country_code3_by_name(CStrRef hostname) {
 
 Variant f_geoip_country_name_by_name(CStrRef hostname) {
   if (!is_db_avail(GEOIP_COUNTRY_EDITION))
-    return NULL;
+    return null_variant;
 
   const char *country_name = GeoIP_country_name_by_name(s_geoip->gi[GEOIP_COUNTRY_EDITION], hostname.data());
   if (country_name == NULL) {
@@ -228,7 +228,7 @@ Variant f_geoip_country_name_by_name(CStrRef hostname) {
 
 Variant f_geoip_continent_code_by_name(CStrRef hostname) {
   if (!is_db_avail(GEOIP_COUNTRY_EDITION))
-    return NULL;
+    return null_variant;
 
   int id = GeoIP_id_by_name(s_geoip->gi[GEOIP_COUNTRY_EDITION], hostname);
   if (id == 0) {
@@ -241,7 +241,7 @@ Variant f_geoip_continent_code_by_name(CStrRef hostname) {
 
 Variant f_geoip_org_by_name(CStrRef hostname) {
   if (!is_db_avail(GEOIP_COUNTRY_EDITION))
-    return NULL;
+    return null_variant;
 
   char *org = GeoIP_org_by_name(s_geoip->gi[GEOIP_COUNTRY_EDITION], hostname);
   if (org == NULL) {
@@ -254,15 +254,14 @@ Variant f_geoip_org_by_name(CStrRef hostname) {
 
 Array f_geoip_record_by_name(CStrRef hostname) {
   GeoIP * gi;
+  Array return_value = Array::Create();
 
   if (is_db_avail(GEOIP_CITY_EDITION_REV1, false)) {
     gi = s_geoip->gi[GEOIP_CITY_EDITION_REV1];
   } else if (is_db_avail(GEOIP_CITY_EDITION_REV0)) {
     gi = s_geoip->gi[GEOIP_CITY_EDITION_REV0];
   }
-  else return NULL;
-
-  Array return_value = Array::Create();
+  else return return_value;
 
   GeoIPRecord * gir = GeoIP_record_by_name(gi, hostname);
 
@@ -296,27 +295,27 @@ Array f_geoip_record_by_name(CStrRef hostname) {
 
 Variant f_geoip_id_by_name(CStrRef hostname) {
   if (!is_db_avail(GEOIP_NETSPEED_EDITION))
-    return NULL;
+    return null_variant;
 
   return GeoIP_id_by_name(s_geoip->gi[GEOIP_NETSPEED_EDITION], hostname.data());
 }
 
 Array f_geoip_region_by_name(CStrRef hostname) {
   GeoIP * gi;
+  Array return_value = Array::Create();
 
   if (is_db_avail(GEOIP_REGION_EDITION_REV1, false)) {
     gi = s_geoip->gi[GEOIP_REGION_EDITION_REV1];
   } else if (is_db_avail(GEOIP_REGION_EDITION_REV0)) {
     gi = s_geoip->gi[GEOIP_REGION_EDITION_REV0];
   }
-  else return NULL;
+  else return return_value;
 
-  Array return_value = Array::Create();
   GeoIPRegion * region = GeoIP_region_by_name(gi, hostname.data());
 
   if (NULL == region) {
     raise_notice("Host %s not found", hostname.data());
-    return false;
+    return return_value;
   }
 
   return_value.set("country_code", region->country_code);
@@ -329,7 +328,7 @@ Array f_geoip_region_by_name(CStrRef hostname) {
 
 Variant f_geoip_isp_by_name(CStrRef hostname) {
   if (!is_db_avail(GEOIP_ISP_EDITION))
-    return NULL;
+    return null_variant;
 
   char * isp = GeoIP_name_by_name(s_geoip->gi[GEOIP_ISP_EDITION], hostname.data());
   if (isp == NULL) {
