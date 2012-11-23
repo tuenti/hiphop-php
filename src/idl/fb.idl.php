@@ -91,6 +91,12 @@ DefineConstant(
     'type'   => Int64,
   ));
 
+DefineConstant(
+  array(
+    'name'   => "XHPROF_FLAGS_PLAIN",
+    'type'   => Int64,
+  ));
+
 // The following TAINT_* constants are used for an implementation of
 // dynamic taint analysis. See runtime/base/taint/README for details.
 

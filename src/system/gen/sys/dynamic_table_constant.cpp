@@ -2089,7 +2089,7 @@ public:
   hashNodeCon *next;
 };
 static hashNodeCon *conMapTable[8192];
-static hashNodeCon conBuckets[2202];
+static hashNodeCon conBuckets[2203];
 
 void init_builtin_constant_table() {
   const char *conMapData[] = {
@@ -4187,6 +4187,7 @@ void init_builtin_constant_table() {
       (const char *)"XHPROF_FLAGS_MEASURE_XHPROF_DISABLE", (const char *)-1, (const char *)32, (const char *)&k_XHPROF_FLAGS_MEASURE_XHPROF_DISABLE,
       (const char *)"XHPROF_FLAGS_MEMORY", (const char *)-1, (const char *)32, (const char *)&k_XHPROF_FLAGS_MEMORY,
       (const char *)"XHPROF_FLAGS_NO_BUILTINS", (const char *)-1, (const char *)32, (const char *)&k_XHPROF_FLAGS_NO_BUILTINS,
+      (const char *)"XHPROF_FLAGS_PLAIN", (const char *)-1, (const char *)32, (const char *)&k_XHPROF_FLAGS_PLAIN,
       (const char *)"XHPROF_FLAGS_TRACE", (const char *)-1, (const char *)32, (const char *)&k_XHPROF_FLAGS_TRACE,
       (const char *)"XHPROF_FLAGS_VTSC", (const char *)-1, (const char *)32, (const char *)&k_XHPROF_FLAGS_VTSC,
       (const char *)"XML_ATTRIBUTE_CDATA", (const char *)-1, (const char *)32, (const char *)&k_XML_ATTRIBUTE_CDATA,

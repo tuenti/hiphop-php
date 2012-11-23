@@ -240,6 +240,7 @@ extern const int64 k_XHPROF_FLAGS_MALLOC;
 extern const int64 k_XHPROF_FLAGS_MEASURE_XHPROF_DISABLE;
 extern const int64 k_XHPROF_FLAGS_MEMORY;
 extern const int64 k_XHPROF_FLAGS_NO_BUILTINS;
+extern const int64 k_XHPROF_FLAGS_PLAIN;
 extern const int64 k_XHPROF_FLAGS_TRACE;
 extern const int64 k_XHPROF_FLAGS_VTSC;
 

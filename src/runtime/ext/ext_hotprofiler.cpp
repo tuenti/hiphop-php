@@ -500,6 +500,7 @@ enum Flag {
   MeasureXhprofDisable  = 0x20,
   GetTrace              = 0x40,
   TrackMalloc           = 0x80,
+  Plain                 = 0x100,
 };
 
 /**
@@ -762,6 +763,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////
 // HierarchicalProfiler
 
+template <int depth>
 class HierarchicalProfiler : public Profiler {
 private:
   class CountMap {
@@ -803,7 +805,7 @@ public:
 
   virtual void endFrameEx() {
     char symbol[512];
-    m_stack->getStack(2, symbol, sizeof(symbol));
+    m_stack->getStack(depth, symbol, sizeof(symbol));
     CountMap &counts = m_stats[symbol];
     counts.count++;
     counts.wall_time += tsc() - m_stack->m_tsc_start;
@@ -1462,6 +1464,7 @@ public:
     Hierarchical = 2,
     Memory       = 3,
     Trace        = 4,
+    Plain        = 5,
     Sample       = 620002, // Rockfort's zip code
   };
 
@@ -1496,8 +1499,11 @@ public:
       case Simple:
         m_profiler = new SimpleProfiler();
         break;
+      case Plain:
+        m_profiler = new HierarchicalProfiler<-1>(flags);
+        break;
       case Hierarchical:
-        m_profiler = new HierarchicalProfiler(flags);
+        m_profiler = new HierarchicalProfiler<2>(flags);
         break;
       case Sample:
         m_profiler = new SampleProfiler();
@@ -1620,6 +1626,8 @@ void f_xhprof_enable(int flags/* = 0 */,
   }
   if (flags & Trace) {
     s_factory->start(ProfilerFactory::Trace, flags);
+  } else if (flags & Plain) {
+    s_factory->start(ProfilerFactory::Plain, flags);
   } else {
     s_factory->start(ProfilerFactory::Hierarchical, flags);
   }
@@ -1714,6 +1722,7 @@ const int64 k_XHPROF_FLAGS_TRACE = Trace;
 const int64 k_XHPROF_FLAGS_MEASURE_XHPROF_DISABLE = MeasureXhprofDisable;
 const int64 k_XHPROF_FLAGS_GET_TRACE = GetTrace;
 const int64 k_XHPROF_FLAGS_MALLOC = TrackMalloc;
+const int64 k_XHPROF_FLAGS_PLAIN = Plain;
 
 ///////////////////////////////////////////////////////////////////////////////
 // injected code
