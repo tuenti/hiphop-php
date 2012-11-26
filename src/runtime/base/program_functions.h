@@ -73,6 +73,7 @@ bool hphp_invoke(ExecutionContext *context, const std::string &cmd,
                  bool func, CArrRef funcParams, VRefParam funcRet,
                  const std::string &warmupDoc, const std::string &reqInitFunc,
                  const std::string &reqInitDoc,
+                 const std::string &reqShutdownFunc,
                  bool &error, std::string &errorMsg,
                  bool once = true, bool warmupOnly = false);
 void hphp_context_exit(ExecutionContext *context, bool psp,

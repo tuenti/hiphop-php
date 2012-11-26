@@ -189,6 +189,7 @@ flood error logs.
     WarmupDocument = filename
     RequestInitFunction = function_name
     RequestInitDocument = filename
+    RequestShutdownFunction = function_name
     ThreadDocuments {
       * = somedoc.php
       * = another.php

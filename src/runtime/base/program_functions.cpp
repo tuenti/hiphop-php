@@ -1133,13 +1133,14 @@ bool hphp_invoke_simple(const std::string &filename,
                         bool warmupOnly /* = false */) {
   bool error; string errorMsg;
   return hphp_invoke(g_context.getNoCheck(), filename, false, null_array, null,
-                     "", "", "", error, errorMsg, true, warmupOnly);
+                     "", "", "", "", error, errorMsg, true, warmupOnly);
 }
 
 bool hphp_invoke(ExecutionContext *context, const std::string &cmd,
                  bool func, CArrRef funcParams, VRefParam funcRet,
                  const string &warmupDoc, const string &reqInitFunc,
                  const string &reqInitDoc,
+                 const string &reqShutdownFunc,
                  bool &error, string &errorMsg,
                  bool once /* = true */, bool warmupOnly /* = false */) {
   bool isServer = (strcmp(RuntimeOption::ExecutionMode, "srv") == 0);
@@ -1177,6 +1178,9 @@ bool hphp_invoke(ExecutionContext *context, const std::string &cmd,
       } else {
         if (isServer) hphp_chdir_file(cmd);
         include_impl_invoke(cmd.c_str(), once, get_variable_table());
+      }
+      if (!reqShutdownFunc.empty()) {
+        invoke(reqShutdownFunc.c_str(), Array());
       }
     } catch (...) {
       handle_invoke_exception(ret, context, errorMsg, error);

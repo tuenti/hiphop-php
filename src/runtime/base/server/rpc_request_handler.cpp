@@ -222,7 +222,7 @@ bool RPCRequestHandler::executePHPFunction(Transport *transport,
         rpcFile = canonicalize_path(rpcFile, "", 0);
         rpcFile = getSourceFilename(rpcFile, sourceRootInfo);
         ret = hphp_invoke(m_context, rpcFile, false, Array(), null,
-                          warmupDoc, reqInitFunc, reqInitDoc,
+                          warmupDoc, reqInitFunc, reqInitDoc, "",
                           error, errorMsg, runOnce);
       }
       // no need to do the initialization for a second time
@@ -232,7 +232,7 @@ bool RPCRequestHandler::executePHPFunction(Transport *transport,
     }
     if (ret && !rpcFunc.empty()) {
       ret = hphp_invoke(m_context, rpcFunc, true, params, ref(funcRet),
-                        warmupDoc, reqInitFunc, reqInitDoc,
+                        warmupDoc, reqInitFunc, reqInitDoc, "",
                         error, errorMsg);
     }
     if (ret) {

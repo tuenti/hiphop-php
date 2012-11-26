@@ -312,6 +312,7 @@ bool HttpRequestHandler::executePHPRequest(Transport *transport,
                       RuntimeOption::WarmupDocument,
                       RuntimeOption::RequestInitFunction,
                       RuntimeOption::RequestInitDocument,
+                      RuntimeOption::RequestShutdownFunction,
                       error, errorMsg);
 
     if (ret) {
@@ -340,6 +341,7 @@ bool HttpRequestHandler::executePHPRequest(Transport *transport,
                           RuntimeOption::WarmupDocument,
                           RuntimeOption::RequestInitFunction,
                           RuntimeOption::RequestInitDocument,
+                          RuntimeOption::RequestShutdownFunction,
                           error, errorMsg);
         if (ret) {
           String content = context->obDetachContents();

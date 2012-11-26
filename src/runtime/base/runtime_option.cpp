@@ -193,6 +193,7 @@ std::string RuntimeOption::StartupDocument;
 std::string RuntimeOption::WarmupDocument;
 std::string RuntimeOption::RequestInitFunction;
 std::string RuntimeOption::RequestInitDocument;
+std::string RuntimeOption::RequestShutdownFunction;
 std::vector<std::string> RuntimeOption::ThreadDocuments;
 std::vector<std::string> RuntimeOption::ThreadLoopDocuments;
 
@@ -719,6 +720,7 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
     WarmupDocument = Util::replaceEnv(server["WarmupDocument"].getString());
     RequestInitFunction = server["RequestInitFunction"].getString();
     RequestInitDocument = Util::replaceEnv(server["RequestInitDocument"].getString());
+    RequestShutdownFunction = server["RequestShutdownFunction"].getString();
     server["ThreadDocuments"].get(ThreadDocuments);
     for (unsigned int i = 0; i < ThreadDocuments.size(); i++) {
       normalizePath(ThreadDocuments[i]);
