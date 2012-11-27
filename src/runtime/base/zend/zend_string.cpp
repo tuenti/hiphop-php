@@ -18,6 +18,7 @@
 #include <runtime/base/zend/zend_string.h>
 #include <runtime/base/zend/zend_printf.h>
 #include <runtime/base/zend/zend_math.h>
+#include <runtime/base/zend/crypt_blowfish.h>
 
 #include <util/lock.h>
 #include <math.h>
@@ -2434,6 +2435,12 @@ char *string_crypt(const char *key, const char *salt) {
     ito64(random_salt, rand(), 2);
     random_salt[2] = '\0';
     salt = random_salt;
+  }
+
+  if ((strlen(salt) > 2) && salt[0] == '$' && salt[1] == '2') {
+    #define CRYPT_OUTPUT_SIZE   (7 + 22 + 31 + 1)
+    static char output[CRYPT_OUTPUT_SIZE];
+      return strdup(_crypt_blowfish_rn(key, salt, output, sizeof(output)));
   }
 
 #ifdef HAVE_CRYPT_R
