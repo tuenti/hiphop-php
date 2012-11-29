@@ -328,6 +328,11 @@ bool HttpRequestHandler::executePHPRequest(Transport *transport,
     } else if (error) {
       code = 500;
 
+      std::string responseInfo = transport->getResponseInfo();
+      if (responseInfo.find("explicit_header") != string::npos) {
+        code = transport->getResponseCode();
+      }
+
       string errorPage = context->getErrorPage().data();
       if (errorPage.empty()) {
         errorPage = RuntimeOption::ErrorDocument500;
