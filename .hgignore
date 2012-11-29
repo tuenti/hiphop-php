@@ -46,3 +46,4 @@ build
 lib
 src/runtime/ext/filter/tests
 src/version
+src/util/ares.h
