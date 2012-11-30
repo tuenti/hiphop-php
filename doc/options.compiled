@@ -841,7 +841,7 @@ Aditional time to add to the TTL whenever the item is being reused because of th
 = Json Cache
 
   JsonCache {
-    RefreshTime = 1;
+    RefreshTime = 1
   }
 
 - RefreshTime (seconds)
@@ -851,9 +851,10 @@ This setting allow to change the default refresh value for cached Jsons. This is
 = MemcachePool
 
   MemcachePool {
-    HashStrategy = 0;
-    HashFunction = 11;
-    CompressThreshold = 1000;
+    HashStrategy = 0
+    HashFunction = 11
+    CompressThreshold = 1000
+    MemcachePoolDebug = false
   }
 
  - HashStrategy
