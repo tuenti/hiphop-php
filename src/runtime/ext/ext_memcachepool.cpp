@@ -167,14 +167,17 @@ c_MemcachePool::~c_MemcachePool() {
 
   if (MEMCACHEG(storage_map).size() > 0) {
       std::map<int, StorageData>::iterator it;
+      bool found = false;
 
       for (it = MEMCACHEG(storage_map).begin(); it != MEMCACHEG(storage_map).end(); it++) {
         if (this == (*it).second.memcachepool_object) {
+            found = true;
             break;
         }
       }
 
-      MEMCACHEG(storage_map).erase(it);
+      if (found)
+        MEMCACHEG(storage_map).erase(it);
   }
 
   delete MEMCACHEG(obj_map)[this];
