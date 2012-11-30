@@ -158,7 +158,9 @@ Variant BinaryOpExpression::eval(VariableEnvironment &env) const {
     (t1 == KindOfInt64 && t2 == KindOfInt32 ||
      t1 == KindOfInt32 && t2 == KindOfInt64 ||
      t1 == KindOfString && t2 == KindOfStaticString ||
-     t1 == KindOfStaticString && t2 == KindOfString);
+     t1 == KindOfStaticString && t2 == KindOfString ||
+     t1 == KindOfUninit && t2 == KindOfNull ||
+     t1 == KindOfNull && t2 == KindOfUninit);
   switch (m_op) {
   case T_LOGICAL_XOR:
     SET_LINE;
