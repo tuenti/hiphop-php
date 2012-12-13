@@ -308,16 +308,34 @@ to_usec(int64 cycles, int64 MHz)
   return (cycles + MHz/2) / MHz;
 }
 
+static inline uint64
+cpu_to_usec(int64 cycles, int64 MHz)
+{
+#ifdef USE_VTSC_SYSCALL
+  return (cycles + MHz/2) / MHz;
+#else
+  // usecs are used instead of cycles
+  return cycles;
+#endif
+}
+
 static esyscall vtsc_syscall("vtsc");
 
 static inline uint64 vtsc(int64 MHz) {
+#ifdef USE_VTSC_SYSCALL
   if (vtsc_syscall.num > 0) {
     return syscall(vtsc_syscall.num);
   }
   struct rusage usage;
-  getrusage(RUSAGE_SELF, &usage);
+  getrusage(RUSAGE_THREAD, &usage);
   return
     tv_to_cycles(usage.ru_utime, MHz) + tv_to_cycles(usage.ru_stime, MHz);
+#else
+  struct timespec time;
+  clock_gettime(CLOCK_THREAD_CPUTIME_ID, &time);
+  // usecs are used instead of cycles
+  return time.tv_sec * 1000000 + (time.tv_nsec + 500) / 1000;
+#endif
 }
 
 #ifndef NO_JEMALLOC
@@ -569,7 +587,7 @@ public:
     arr.set("ct",  counts.count);
     arr.set("wt",  to_usec(counts.wall_time, MHz));
     if (flags & TrackCPU) {
-      arr.set("cpu", to_usec(counts.cpu, MHz));
+      arr.set("cpu", cpu_to_usec(counts.cpu, MHz));
     }
     if (flags & TrackMemory) {
       arr.set("mu",  counts.memory);
@@ -751,7 +769,7 @@ private:
       snprintf(buf, sizeof(buf),
                ",\"ct\": %lld,\"wt\": %lld,\"ut\": %lld,\"st\": 0",
                counts.count, to_usec(counts.tsc, m_MHz),
-               to_usec(counts.vtsc, m_MHz));
+               cpu_to_usec(counts.vtsc, m_MHz));
       print(buf);
 
       print("},\n");
