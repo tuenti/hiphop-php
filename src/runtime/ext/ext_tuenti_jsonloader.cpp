@@ -60,10 +60,11 @@ Variant f_cached_json_decode(CStrRef json_file, bool assoc /* = false */,
     Variant entry;
     s_json_store.get(json_file, entry);
     time_t lastupdate = (int) entry[LAST_UPDATE];
+    time_t lastcheck = (int) entry[LAST_CHECK];
 
-    debug_printf("Cache entry found, last updated on: %ld\n", lastupdate);
+    debug_printf("Cache entry found, lastcheck=%d lastupdate=%ld, now=%d\n", lastcheck, lastupdate, now);
 
-    if (now < lastupdate + json_refresh_time) {
+    if (now < lastcheck + json_refresh_time) {
       debug_printf("Cache entry found and fresh\n");
       return entry;    
     }
@@ -72,7 +73,7 @@ Variant f_cached_json_decode(CStrRef json_file, bool assoc /* = false */,
     stat_err = stat(json_file.data(), &json_stat);
  
     if (!stat_err && json_stat.st_mtime <= lastupdate) {
-      debug_printf("Cache entry found, entry is still valid, but need to update lastupdate\n");
+      debug_printf("Cache entry found, entry is still valid, but need to update lastcheck to %d\n", now);
       // No need to reparse
       Array newentry;
       newentry.append(entry[JSON]);
