@@ -60,9 +60,10 @@ Variant f_cached_json_decode(CStrRef json_file, bool assoc /* = false */,
     Variant entry;
     s_json_store.get(json_file, entry);
     time_t lastupdate = (int) entry[LAST_UPDATE];
+    time_t lastupdate_nsecs = (int) entry[LAST_UPDATE_NSECS];
     time_t lastcheck = (int) entry[LAST_CHECK];
 
-    debug_printf("Cache entry found, lastcheck=%d lastupdate=%ld, now=%d\n", lastcheck, lastupdate, now);
+    debug_printf("Cache entry found, lastcheck=%ld lastupdate=%ld:%ld, now=%ld\n", lastcheck, lastupdate, lastupdate_nsecs, now);
 
     if (now < lastcheck + json_refresh_time) {
       debug_printf("Cache entry found and fresh\n");
@@ -72,12 +73,13 @@ Variant f_cached_json_decode(CStrRef json_file, bool assoc /* = false */,
     // We hit refresh timeout, checking file modification time
     stat_err = stat(json_file.data(), &json_stat);
  
-    if (!stat_err && json_stat.st_mtime <= lastupdate) {
-      debug_printf("Cache entry found, entry is still valid, but need to update lastcheck to %d\n", now);
+    if (!stat_err && (json_stat.st_mtime != lastupdate || json_stat.st_mtim.tv_nsec != lastupdate_nsecs)) {
+      debug_printf("Cache entry found, entry is still valid, but need to update lastcheck to %ld\n", now);
       // No need to reparse
       Array newentry;
       newentry.append(entry[JSON]);
       newentry.append(json_stat.st_mtime);
+      newentry.append(json_stat.st_mtim.tv_nsec);
       newentry.append(now);
       s_json_store.store(json_file, newentry, 0, true);
       return entry;
@@ -91,6 +93,7 @@ Variant f_cached_json_decode(CStrRef json_file, bool assoc /* = false */,
     debug_printf("File not found\n");
     newentry.append(null);
     newentry.append(0);
+    newentry.append(0);
     newentry.append(now);
   } else {
     String file_contents = f_file_get_contents(json_file);
@@ -98,6 +101,7 @@ Variant f_cached_json_decode(CStrRef json_file, bool assoc /* = false */,
       f_json_decode(file_contents, assoc, loose) : null;
     newentry.append(decoded_json);
     newentry.append(json_stat.st_mtime);
+    newentry.append(json_stat.st_mtim.tv_nsec);
     newentry.append(now);
   }
 

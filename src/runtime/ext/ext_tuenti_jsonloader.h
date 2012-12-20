@@ -35,6 +35,7 @@ namespace HPHP {
 enum JsonEntry {
     JSON = 0,
     LAST_UPDATE,
+    LAST_UPDATE_NSECS,
     LAST_CHECK,
 };
 
