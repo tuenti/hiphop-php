@@ -1172,12 +1172,20 @@ bool hphp_invoke(ExecutionContext *context, const std::string &cmd,
   bool ret = true;
   if (!warmupOnly) {
     try {
-      ServerStatsHelper ssh("invoke");
-      if (func) {
-        funcRet->assignVal(invoke(cmd.c_str(), funcParams));
-      } else {
-        if (isServer) hphp_chdir_file(cmd);
-        include_impl_invoke(cmd.c_str(), once, get_variable_table());
+      try {
+        ServerStatsHelper ssh("invoke");
+        if (func) {
+          funcRet->assignVal(invoke(cmd.c_str(), funcParams));
+        } else {
+          if (isServer) hphp_chdir_file(cmd);
+          include_impl_invoke(cmd.c_str(), once, get_variable_table());
+        }
+      } catch (const ExitException& e) {
+        // invoke reqShutdownFunc when die() or exit() is performed
+        if (!reqShutdownFunc.empty()) {
+          invoke(reqShutdownFunc.c_str(), Array());
+        }
+        throw;
       }
       if (!reqShutdownFunc.empty()) {
         invoke(reqShutdownFunc.c_str(), Array());
