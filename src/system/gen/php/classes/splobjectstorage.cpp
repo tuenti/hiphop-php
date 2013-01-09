@@ -190,7 +190,7 @@ void c_SplObjectStorage::init() {
 /* SRC: classes/splobjectstorage.php line 24 */
 void c_SplObjectStorage::t_rewind() {
   INSTANCE_METHOD_INJECTION_BUILTIN(SplObjectStorage, SplObjectStorage::rewind);
-  x_rewind(toObject(m_storage));
+  x_reset(ref(m_storage));
 }
 namespace hphp_impl_splitter {}
 /* SRC: classes/splobjectstorage.php line 37 */
@@ -198,7 +198,7 @@ bool c_SplObjectStorage::t_valid() {
   INSTANCE_METHOD_INJECTION_BUILTIN(SplObjectStorage, SplObjectStorage::valid);
   {
     const Variant &tmp0((x_key(ref(m_storage))));
-    return !same(tmp0, false);
+    return !(x_is_null(tmp0));
   }
 }
 namespace hphp_impl_splitter {}
@@ -211,23 +211,33 @@ namespace hphp_impl_splitter {}
 /* SRC: classes/splobjectstorage.php line 62 */
 Variant c_SplObjectStorage::t_current() {
   INSTANCE_METHOD_INJECTION_BUILTIN(SplObjectStorage, SplObjectStorage::current);
-  return x_current(ref(m_storage));
+  {
+    Variant tmp0 = x_current(ref(m_storage));
+    if (toBoolean(tmp0)) {
+    } else {
+      tmp0 = (null);
+    }
+    return tmp0;
+  }
 }
 namespace hphp_impl_splitter {}
 /* SRC: classes/splobjectstorage.php line 74 */
 void c_SplObjectStorage::t_next() {
   INSTANCE_METHOD_INJECTION_BUILTIN(SplObjectStorage, SplObjectStorage::next);
-  x_next(ref(m_storage));
-  m_index++;
+  if (toBoolean(x_next(ref(m_storage)))) {
+    {
+      m_index++;
+    }
+  }
 }
 namespace hphp_impl_splitter {}
-/* SRC: classes/splobjectstorage.php line 87 */
+/* SRC: classes/splobjectstorage.php line 88 */
 int c_SplObjectStorage::t_count() {
   INSTANCE_METHOD_INJECTION_BUILTIN(SplObjectStorage, SplObjectStorage::count);
   return x_count(m_storage);
 }
 namespace hphp_impl_splitter {}
-/* SRC: classes/splobjectstorage.php line 102 */
+/* SRC: classes/splobjectstorage.php line 103 */
 bool c_SplObjectStorage::t_contains(CVarRef v_obj) {
   INSTANCE_METHOD_INJECTION_BUILTIN(SplObjectStorage, SplObjectStorage::contains);
   Variant v_object;
@@ -254,7 +264,7 @@ bool c_SplObjectStorage::t_contains(CVarRef v_obj) {
   return false;
 }
 namespace hphp_impl_splitter {}
-/* SRC: classes/splobjectstorage.php line 124 */
+/* SRC: classes/splobjectstorage.php line 125 */
 void c_SplObjectStorage::t_attach(CVarRef v_obj) {
   INSTANCE_METHOD_INJECTION_BUILTIN(SplObjectStorage, SplObjectStorage::attach);
   if ((x_is_object(v_obj) && !(t_contains(v_obj)))) {
@@ -264,7 +274,7 @@ void c_SplObjectStorage::t_attach(CVarRef v_obj) {
   }
 }
 namespace hphp_impl_splitter {}
-/* SRC: classes/splobjectstorage.php line 140 */
+/* SRC: classes/splobjectstorage.php line 141 */
 void c_SplObjectStorage::t_detach(CVarRef v_obj) {
   INSTANCE_METHOD_INJECTION_BUILTIN(SplObjectStorage, SplObjectStorage::detach);
   Primitive v_idx = 0;
