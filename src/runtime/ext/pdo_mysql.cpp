@@ -17,6 +17,7 @@
 
 #include <runtime/ext/pdo_mysql.h>
 #include <runtime/ext/ext_stream.h>
+#include <runtime/base/server/server_stats.h>
 #include <mysql/mysql.h>
 
 #ifdef PHP_MYSQL_UNIX_SOCK_ADDR
@@ -358,11 +359,15 @@ bool PDOMySqlConnection::create(CArrRef options) {
     unix_socket = vars[4].optval;
   }
 
-  /* TODO: - Check zval cache + ZTS */
-  if (mysql_real_connect(m_server, host, username.c_str(), password.c_str(),
-                         dbname, port, unix_socket, connect_opts) == NULL) {
-    handleError(__FILE__, __LINE__);
-    goto cleanup;
+  {
+    IOStatusHelper io("mysql::connect", host, port);
+
+    /* TODO: - Check zval cache + ZTS */
+    if (mysql_real_connect(m_server, host, username.c_str(), password.c_str(),
+                           dbname, port, unix_socket, connect_opts) == NULL) {
+      handleError(__FILE__, __LINE__);
+      goto cleanup;
+    }
   }
 
   if (!auto_commit) {
@@ -486,6 +491,7 @@ bool PDOMySqlConnection::preparer(CStrRef sql, sp_PDOStatement *stmt,
 }
 
 int64 PDOMySqlConnection::doer(CStrRef sql) {
+  IOStatusHelper io("mysql::query");
   if (mysql_real_query(m_server, sql.data(), sql.size())) {
     handleError(__FILE__, __LINE__);
     return -1;
@@ -913,6 +919,7 @@ bool PDOMySqlStatement::executer() {
     m_result = NULL;
   }
 
+  IOStatusHelper io("mysql::query");
   if (mysql_real_query(m_server, active_query_string.data(),
                        active_query_string.size()) != 0) {
     handleError(__FILE__, __LINE__);

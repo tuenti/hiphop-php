@@ -20,6 +20,7 @@
 #include <runtime/base/ini_setting.h>
 #include <runtime/ext/ext_function.h>
 #include <runtime/ext/ext_error.h>
+#include <runtime/base/server/server_stats.h>
 #include <util/logger.h>
 #include <runtime/ext/ext_zlib.h>
 
@@ -284,6 +285,8 @@ bool c_MemcachePool::t_add(CStrRef key, CVarRef var, int flag /*= 0*/,
 
   String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
 
+  IOStatusHelper io("memcachepool::add");
+
   memcached_return_t ret = memcached_add(MEMCACHEL(tcp_st),
                                         key.c_str(), key.length(),
                                         serialized.c_str(),
@@ -302,6 +305,8 @@ bool c_MemcachePool::t_set(CStrRef key, CVarRef var, int flag /*= 0*/,
   }
 
   String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
+
+  IOStatusHelper io("memcachepool::set");
 
   memcached_return_t ret = memcached_set(MEMCACHEL(tcp_st),
                                         key.c_str(), key.length(),
@@ -322,6 +327,8 @@ bool c_MemcachePool::t_cas(CStrRef key, CVarRef var, int flag,
 
   String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
 
+  IOStatusHelper io("memcachepool::cas");
+
   memcached_return_t ret = memcached_cas(MEMCACHEL(tcp_st),
                                         key.c_str(), key.length(),
                                         serialized.c_str(),
@@ -340,6 +347,8 @@ bool c_MemcachePool::t_replace(CStrRef key, CVarRef var, int flag /*= 0*/,
   }
 
   String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
+
+  IOStatusHelper io("memcachepool::replace");
 
   memcached_return_t ret = memcached_replace(MEMCACHEL(tcp_st),
                                              key.c_str(), key.length(),
@@ -394,6 +403,8 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
 
   if (real_keys.empty())
     return return_val;
+
+  IOStatusHelper io("memcachepool::get");
 
   memcached_return_t ret = memcached_mget(memc, &real_keys[0], &key_len[0], 
                                           real_keys.size());
@@ -457,6 +468,8 @@ bool c_MemcachePool::t_delete(CStrRef key, int expire /*= 0*/) {
     return false;
   }
 
+  IOStatusHelper io("memcachepool::delete");
+
   memcached_return_t ret = memcached_delete(MEMCACHEL(tcp_st),
                                             key.c_str(), key.length(),
                                             expire);
@@ -469,6 +482,8 @@ Variant c_MemcachePool::t_increment(CStrRef key, int offset /*= 1*/) {
     raise_warning("Key cannot be empty");
     return false;
   }
+
+  IOStatusHelper io("memcachepool::increment");
 
   uint64_t value;
   memcached_return_t ret = memcached_increment(MEMCACHEL(tcp_st), key.c_str(),
@@ -487,6 +502,8 @@ Variant c_MemcachePool::t_decrement(CStrRef key, int offset /*= 1*/) {
     raise_warning("Key cannot be empty");
     return false;
   }
+
+  IOStatusHelper io("memcachepool::decrement");
 
   uint64_t value;
   memcached_return_t ret = memcached_decrement(MEMCACHEL(tcp_st), key.c_str(),
@@ -515,6 +532,8 @@ Variant c_MemcachePool::t_getversion() {
   char version[16];
   int version_len = 0;
 
+  IOStatusHelper io("memcachepool::getversion");
+
   memcached_return_t ret = memcached_version(MEMCACHEL(tcp_st));
 
   if (ret != MEMCACHED_SUCCESS) {
@@ -541,6 +560,9 @@ Variant c_MemcachePool::t_getversion() {
 
 bool c_MemcachePool::t_flush(int expire /*= 0*/) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::flush);
+
+  IOStatusHelper io("memcachepool::flush");
+
   memcached_return_t ret = memcached_flush(MEMCACHEL(tcp_st), expire);
     
   return check_memcache_return(MEMCACHEL(tcp_st), ret, "", "Error flushing servers");
@@ -585,6 +607,9 @@ Array static memcache_build_stats(const memcached_st *ptr,
                                 memcached_stat_st *memc_stat,
                                 memcached_return_t *ret) {
   char **curr_key;
+
+  IOStatusHelper io("memcachepool::stats");
+
   char **stat_keys = memcached_stat_get_keys(ptr, memc_stat, ret);
 
   if (*ret != MEMCACHED_SUCCESS) {
