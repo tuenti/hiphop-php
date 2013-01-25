@@ -73,7 +73,7 @@ Variant f_cached_json_decode(CStrRef json_file, bool assoc /* = false */,
     // We hit refresh timeout, checking file modification time
     stat_err = stat(json_file.data(), &json_stat);
  
-    if (!stat_err && (json_stat.st_mtime != lastupdate || json_stat.st_mtim.tv_nsec != lastupdate_nsecs)) {
+    if (!stat_err && json_stat.st_mtime == lastupdate && json_stat.st_mtim.tv_nsec == lastupdate_nsecs) {
       debug_printf("Cache entry found, entry is still valid, but need to update lastcheck to %ld\n", now);
       // No need to reparse
       Array newentry;
