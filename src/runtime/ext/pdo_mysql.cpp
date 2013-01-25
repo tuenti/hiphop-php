@@ -18,6 +18,7 @@
 #include <runtime/ext/pdo_mysql.h>
 #include <runtime/ext/ext_stream.h>
 #include <runtime/base/server/server_stats.h>
+#include <util/db_mysql.h>
 #include <mysql/mysql.h>
 
 #ifdef PHP_MYSQL_UNIX_SOCK_ADDR
@@ -213,6 +214,13 @@ static long pdo_attr_lval(CArrRef options, int opt, long defaultValue) {
   return defaultValue;
 }
 
+static double pdo_attr_doubleval(CArrRef options, int opt, double defaultValue) {
+  if (options.exists(opt)) {
+    return options[opt].toDouble();
+  }
+  return defaultValue;
+}
+
 static String pdo_attr_strval(CArrRef options, int opt, const char *def) {
   if (options.exists(opt)) {
     return options[opt].toString();
@@ -272,8 +280,10 @@ bool PDOMySqlConnection::create(CArrRef options) {
   m_buffered = m_emulate_prepare = 1;
 
   /* handle MySQL options */
-  if (!options.empty()) {
-    long connect_timeout = pdo_attr_lval(options, PDO_ATTR_TIMEOUT, 30);
+  {
+    long read_timeout = RuntimeOption::MySQLReadTimeout;
+    long write_timeout = RuntimeOption::MySQLWriteTimeout;
+    long connect_timeout_ms = (long) (1000.0 * pdo_attr_doubleval(options, PDO_ATTR_TIMEOUT, 30));
     long local_infile = pdo_attr_lval(options, PDO_MYSQL_ATTR_LOCAL_INFILE, 0);
     String init_cmd, default_file, default_group;
     long compress = 0;
@@ -294,8 +304,17 @@ bool PDOMySqlConnection::create(CArrRef options) {
       connect_opts |= CLIENT_IGNORE_SPACE;
     }
 
-    if (mysql_options(m_server, MYSQL_OPT_CONNECT_TIMEOUT,
-                      (const char *)&connect_timeout)) {
+    if (MySQLUtil::set_mysql_timeout(m_server, MySQLUtil::ConnectTimeout, connect_timeout_ms)) {
+      handleError(__FILE__, __LINE__);
+      goto cleanup;
+    }
+
+    if (read_timeout > 0 && MySQLUtil::set_mysql_timeout(m_server, MySQLUtil::ReadTimeout, read_timeout)) {
+      handleError(__FILE__, __LINE__);
+      goto cleanup;
+    }
+
+    if (write_timeout > 0 && MySQLUtil::set_mysql_timeout(m_server, MySQLUtil::WriteTimeout, write_timeout)) {
       handleError(__FILE__, __LINE__);
       goto cleanup;
     }
@@ -305,14 +324,14 @@ bool PDOMySqlConnection::create(CArrRef options) {
       handleError(__FILE__, __LINE__);
       goto cleanup;
     }
+
 #ifdef MYSQL_OPT_RECONNECT
-    /* since 5.0.3, the default for this option is 0 if not specified.
-     * we want the old behaviour */
     {
-      long reconnect = 1;
+      long reconnect = RuntimeOption::MySQLReconnect;
       mysql_options(m_server, MYSQL_OPT_RECONNECT, (const char*)&reconnect);
     }
 #endif
+
     init_cmd = pdo_attr_strval(options, PDO_MYSQL_ATTR_INIT_COMMAND, NULL);
     if (!init_cmd.empty()) {
       if (mysql_options(m_server, MYSQL_INIT_COMMAND, init_cmd.data())) {
@@ -368,10 +387,19 @@ bool PDOMySqlConnection::create(CArrRef options) {
       handleError(__FILE__, __LINE__);
       goto cleanup;
     }
-  }
 
-  if (!auto_commit) {
-    mysql_autocommit(m_server, auto_commit);
+    if (!auto_commit) {
+      mysql_autocommit(m_server, auto_commit);
+    }
+
+    if (RuntimeOption::MySQLWaitTimeout > 0) {
+      String query("set session wait_timeout=");
+      query += String((int64)(RuntimeOption::MySQLWaitTimeout / 1000));
+      if (mysql_real_query(m_server, query.data(), query.size())) {
+        raise_notice("MySQL::connect: failed setting session wait timeout: %s",
+                     mysql_error(m_server));
+      }
+    }
   }
 
   m_attached = 1;

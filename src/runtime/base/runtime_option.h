@@ -224,11 +224,13 @@ public:
   static bool MySQLLocalize;  // whether to localize MySQL query results
   static int  MySQLConnectTimeout;
   static int  MySQLReadTimeout;
+  static int  MySQLWriteTimeout;
   static int  MySQLWaitTimeout;
   static int  MySQLSlowQueryThreshold;
   static bool MySQLKillOnTimeout;
   static int  MySQLMaxRetryOpenOnFail;
   static int  MySQLMaxRetryQueryOnFail;
+  static bool MySQLReconnect;
 
   static int  HttpDefaultTimeout;
   static int  HttpSlowQueryThreshold;

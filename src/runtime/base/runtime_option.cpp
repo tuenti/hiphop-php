@@ -228,12 +228,14 @@ bool RuntimeOption::AlwaysUseRelativePath = false;
 bool RuntimeOption::MySQLReadOnly = false;
 bool RuntimeOption::MySQLLocalize = false;
 int RuntimeOption::MySQLConnectTimeout = 1000;
-int RuntimeOption::MySQLReadTimeout = 1000;
+int RuntimeOption::MySQLReadTimeout = 30000;
+int RuntimeOption::MySQLWriteTimeout = 30000;
 int RuntimeOption::MySQLWaitTimeout = -1;
 int RuntimeOption::MySQLSlowQueryThreshold = 1000; // ms
 bool RuntimeOption::MySQLKillOnTimeout = false;
 int RuntimeOption::MySQLMaxRetryOpenOnFail = 1;
 int RuntimeOption::MySQLMaxRetryQueryOnFail = 1;
+bool RuntimeOption::MySQLReconnect = false;
 
 int RuntimeOption::HttpDefaultTimeout = 30;
 int RuntimeOption::HttpSlowQueryThreshold = 5000; // ms
@@ -942,12 +944,14 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
     MySQLReadOnly = mysql["ReadOnly"].getBool();
     MySQLLocalize = mysql["Localize"].getBool();
     MySQLConnectTimeout = mysql["ConnectTimeout"].getInt32(1000);
-    MySQLReadTimeout = mysql["ReadTimeout"].getInt32(1000);
+    MySQLReadTimeout = mysql["ReadTimeout"].getInt32(30000);
+    MySQLWriteTimeout = mysql["WriteTimeout"].getInt32(30000);
     MySQLWaitTimeout = mysql["WaitTimeout"].getInt32(-1);
     MySQLSlowQueryThreshold = mysql["SlowQueryThreshold"].getInt32(1000);
     MySQLKillOnTimeout = mysql["KillOnTimeout"].getBool();
     MySQLMaxRetryOpenOnFail = mysql["MaxRetryOpenOnFail"].getInt32(1);
     MySQLMaxRetryQueryOnFail = mysql["MaxRetryQueryOnFail"].getInt32(1);
+    MySQLReconnect = mysql["Reconnect"].getBool(false);
   }
   {
     Hdf http = config["Http"];

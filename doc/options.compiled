@@ -755,10 +755,12 @@ users can use the same machine serving their own source files.
     ReadOnly = false
     Localize = false           # true for native driver that's faster
     ConnectTimeout = 1000      # in ms
-    ReadTimeout = 1000         # in ms
+    ReadTimeout = 30000        # in ms
+    WriteTimeout = 30000       # in ms
     WaitTimeout = -1           # in ms, -1 means "don't set"
     SlowQueryThreshold = 1000  # in ms, log slow queries as errors
     KillOnTimeout = false
+    Reconnect = false
   }
 
 - KillOnTimeout
