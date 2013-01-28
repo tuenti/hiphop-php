@@ -283,7 +283,7 @@ bool PDOMySqlConnection::create(CArrRef options) {
   {
     long read_timeout = RuntimeOption::MySQLReadTimeout;
     long write_timeout = RuntimeOption::MySQLWriteTimeout;
-    long connect_timeout_ms = (long) (1000.0 * pdo_attr_doubleval(options, PDO_ATTR_TIMEOUT, 30));
+    long connect_timeout_ms = (long) (1000.0 * pdo_attr_doubleval(options, PDO_ATTR_TIMEOUT, RuntimeOption::MySQLConnectTimeout / 1000.0));
     long local_infile = pdo_attr_lval(options, PDO_MYSQL_ATTR_LOCAL_INFILE, 0);
     String init_cmd, default_file, default_group;
     long compress = 0;
