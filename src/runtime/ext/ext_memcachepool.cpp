@@ -560,7 +560,6 @@ Variant c_MemcachePool::t_getversion() {
 
 bool c_MemcachePool::t_flush(int expire /*= 0*/) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::flush);
-
   IOStatusHelper io("memcachepool::flush");
 
   memcached_return_t ret = memcached_flush(MEMCACHEL(tcp_st), expire);
@@ -710,7 +709,7 @@ Array c_MemcachePool::t_getextendedstats(CStrRef type /* = null_string */,
 }
 
 bool c_MemcachePool::t_setserverparams(CStrRef host, int port /* = 11211 */,
-                                   int timeout /* = 0 */,
+                                   double timeout /* = 0 */,
                                    int retry_interval /* = 0 */,
                                    bool status /* = true */) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::setserverparams);
@@ -809,7 +808,7 @@ bool c_MemcachePool::t_setfailurecallback(CVarRef failure_callback) {
 }
 
 bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port, 
-                             bool persistent, int weight, int timeout, 
+                             bool persistent, int weight, double timeout, 
                              int retry_interval, bool status) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::addserver);
   memcached_return_t ret  = MEMCACHED_SUCCESS;

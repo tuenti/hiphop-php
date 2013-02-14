@@ -778,7 +778,7 @@ DefineFunction(
       ),
       array(
         'name'   => "timeout",
-        'type'   => Int32,
+        'type'   => Double,
         'value'  => "0",
 				'desc'   => "Value in seconds which will be used for connecting to the
 				daemon. Think twice before changing the default value of 1 second - you
@@ -894,8 +894,8 @@ DefineFunction(
       ),
       array(
         'name'   => "timeout",
-        'type'   => Int32,
-        'value'  => "0",
+        'type'   => Double,
+        'value'  => "1",
 				'desc'   => "Value in seconds which will be used for connecting to the
 				daemon. Think twice before changing the default value of 1 second - you
 				can lose all the advantages of caching if your connection is too slow.",
