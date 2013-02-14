@@ -16,4 +16,5 @@ export CC=gcc-4.6
 export CXX=g++-4.6
 
 cmake ..
-make -j 4 package
+make -j 4
+#make -j 4 package
