@@ -186,6 +186,10 @@ bool f_is_subclass_of(CVarRef class_or_object, CStrRef class_name) {
 }
 
 bool f_method_exists(CVarRef class_or_object, CStrRef method_name) {
+  // This also invokes autoloader
+  if (!f_class_exists(get_classname(class_or_object)))
+      return false;
+
   const ClassInfo *classInfo =
     ClassInfo::FindClass(get_classname(class_or_object));
   if (classInfo) {
@@ -200,6 +204,11 @@ bool f_property_exists(CVarRef class_or_object, CStrRef property) {
     // Call o_exists for objects, to include dynamic properties.
     return class_or_object.toObject()->o_propExists(property);
   }
+
+  // This also invokes autoloader
+  if (!f_class_exists(get_classname(class_or_object)))
+      return false;
+
   const ClassInfo *classInfo =
     ClassInfo::FindClass(get_classname(class_or_object));
   while (classInfo) {
