@@ -77,21 +77,7 @@ Variant f_json_decode(CStrRef json, bool assoc /* = false */,
     return d;
   }
 
-  char ch0 = json.charAt(0);
-  if (json.size() > 1 && ch0 == '"' && json.charAt(json.size() - 1) == '"') {
-    return json.substr(1, json.size() - 2);
-  }
-
-  if ((json_options & k_JSON_FB_LOOSE) && json.size() > 1 &&
-      ch0 == '\'' && json.charAt(json.size() - 1) == '\'') {
-    return json.substr(1, json.size() - 2);
-  }
-
-  if (ch0 == '{' || ch0 == '[') { /* invalid JSON string */
-    return null;
-  }
-
-  return json;
+  return null;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
