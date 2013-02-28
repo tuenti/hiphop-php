@@ -1,2 +1,23 @@
 #!/bin/bash
-LD_LIBRARY_PATH=/opt/hiphop/lib /opt/hiphop/bin/hphpi -- $*
+
+args=""
+argsmode="hphpi"
+
+while [ $# -gt 0 ]; do
+  if [ "$argsmode" = "hphpi" -a -r "$1" ]; then
+    # Once we find an argument that corresponds to a file, we add the -- separator
+    args="$args -- '$1'"
+    argsmode="command"
+  else
+    args="$args '$1'"
+  fi
+  shift
+done
+
+if [ $argsmode = "hphpi" ]; then
+  echo "No valid PHP script in the command line"
+  exit 1
+fi
+
+export LD_LIBRARY_PATH=/opt/hiphop/lib
+eval "/opt/hiphop/bin/hphpi $args"
