@@ -14,10 +14,5 @@ while [ $# -gt 0 ]; do
   shift
 done
 
-if [ $argsmode = "hphpi" ]; then
-  echo "No valid PHP script in the command line"
-  exit 1
-fi
-
 export LD_LIBRARY_PATH=/opt/hiphop/lib
 eval "/opt/hiphop/bin/hphpi $args"
