@@ -20,7 +20,7 @@ SET(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake" ${CMAKE_MODULE_PATH})
 include("${CMAKE_CURRENT_SOURCE_DIR}/CMake/HPHPFunctions.cmake")
 include(CheckFunctionExists)
 
-add_custom_target(update_version ALL hg parents --template=\"HPHP_VERSION({node})\\n\" >${CMAKE_SOURCE_DIR}/src/version)
+add_custom_target(update_version ALL  git log -1 --format=\"HPHP_VERSION(%H)\" >${CMAKE_SOURCE_DIR}/src/version)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src)
 

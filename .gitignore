@@ -68,3 +68,5 @@ tags
 doc/www.pid
 build
 lib
+src/version
+src/util/ares.h
