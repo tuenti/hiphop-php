@@ -33,6 +33,7 @@ SOFTWARE.
 #include <runtime/base/type_conversions.h>
 #include <runtime/base/builtin_functions.h>
 #include <runtime/base/zend/utf8_decode.h>
+#include <runtime/base/zend/zend_strtod.h>
 
 #include <system/lib/systemlib.h>
 
@@ -374,11 +375,11 @@ static void json_create_zval(Variant &z, StringBuffer &buf, int type) {
         if (len == MAX_LENGTH_OF_LONG - 1) {
           int cmp = strcmp(p + (neg ? 1 : 0), long_min_digits);
           if (!(cmp < 0 || (cmp == 0 && neg))) {
-            z = strtod(p, NULL);
+            z = zend_strtod(p, NULL);
             return;
           }
         } else {
-          z = strtod(p, NULL);
+          z = zend_strtod(p, NULL);
           return;
         }
       }
@@ -386,7 +387,7 @@ static void json_create_zval(Variant &z, StringBuffer &buf, int type) {
     }
     break;
   case KindOfDouble:
-    z = buf.data() ? strtod(buf.data(), NULL) : 0.0;
+    z = buf.data() ? zend_strtod(buf.data(), NULL) : 0.0;
     break;
   case KindOfString:
     z = buf.detach();
