@@ -27,6 +27,8 @@ namespace HPHP {
 
 extern const int64 k_MEMCACHE_COMPRESSED;
 extern const int64 k_MEMCACHE_SERIALIZED;
+extern const int64 k_MEMCACHE_STRATEGY_STANDARD;
+extern const int64 k_MEMCACHE_STRATEGY_CONSISTENT;
 
 ///////////////////////////////////////////////////////////////////////////////
 // class MemcachePool
@@ -60,6 +62,8 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
   DECLARE_METHOD_INVOKE_HELPERS(replace);
   public: Variant t_get(CVarRef key, VRefParam flags = null, VRefParam cas = null);
   DECLARE_METHOD_INVOKE_HELPERS(get);
+  public: bool t_prefetch(CVarRef key);
+  DECLARE_METHOD_INVOKE_HELPERS(prefetch);
   public: bool t_delete(CStrRef key, int expire = 0);
   DECLARE_METHOD_INVOKE_HELPERS(delete);
   public: Variant t_increment(CStrRef key, int offset = 1);
@@ -88,17 +92,21 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
   DECLARE_METHOD_INVOKE_HELPERS(setfailurecallback);
   public: bool t_addserver(CStrRef host, int tcp_port = 11211, int udp_port = 0, bool persistent = false, int weight = 0, double timeout = 1, int retry_interval = 0, bool status = true);
   DECLARE_METHOD_INVOKE_HELPERS(addserver);
+  public: bool t_sethashstrategy(int64 hashstrategy);
+  DECLARE_METHOD_INVOKE_HELPERS(sethashstrategy);
   public: Variant t___destruct();
   DECLARE_METHOD_INVOKE_HELPERS(__destruct);
 
   // implemented by HPHP
   public: c_MemcachePool *create();
+  public: void close();
   private: 
+    memcached_st * get_udp_memc();
+    bool prefetch(CVarRef key);
     bool check_memcache_return(memcached_st * st, memcached_return_t ret, 
                                String key = "", char *default_msg = "");
     void exec_failure_callback(const char * hostname, int tcp_port, int udp_port,
                                memcached_return_t ret, const char * error, Array backtrace);
-  public: void close();
 };
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -20,6 +20,7 @@
 #include <runtime/ext/ext_options.h>
 #include <runtime/ext/ext_json.h>
 #include <test/test_memcached_info.inc>
+#include <iostream>
 
 IMPLEMENT_SEP_EXTENSION_TEST(Memcachepool);
 ///////////////////////////////////////////////////////////////////////////////
@@ -27,7 +28,6 @@ IMPLEMENT_SEP_EXTENSION_TEST(Memcachepool);
 bool TestExtMemcachepool::RunTests(const std::string &which) {
   bool ret = true;
 
-  //RUN_TEST(test_MemcachePool_getInstance);
   RUN_TEST(test_MemcachePool_flush);
   RUN_TEST(test_MemcachePool_get_set);
   RUN_TEST(test_MemcachePool_add);
@@ -37,19 +37,21 @@ bool TestExtMemcachepool::RunTests(const std::string &which) {
   RUN_TEST(test_MemcachePool_cas);
   RUN_TEST(test_MemcachePool_delete);
   RUN_TEST(test_MemcachePool_types);
+  RUN_TEST(test_MemcachePool_prefetch);
+  RUN_TEST(test_MemcachePool_getInstance);
 
   return ret;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
-#define CREATE_MEMCACHED()                                              \
-  p_MemcachePool memc(p_MemcachePool(NEWOBJ(c_MemcachePool))->create());\
-  memc->t_addserver(TEST_MEMCACHED_HOSTNAME, TEST_MEMCACHED_PORT);      \
-  Variant memc_version = memc->t_getversion();                          \
-  if (memc_version.same(false)) {                                       \
-    SKIP("No memcached running");                                       \
-    return Count(true);                                                 \
+#define CREATE_MEMCACHED()                                                                  \
+  p_MemcachePool memc(p_MemcachePool(NEWOBJ(c_MemcachePool))->create());                    \
+  memc->t_addserver(TEST_MEMCACHED_HOSTNAME, TEST_MEMCACHED_PORT, TEST_MEMCACHED_PORT);     \
+  Variant memc_version = memc->t_getversion();                                              \
+  if (memc_version.same(false)) {                                                           \
+    SKIP("No memcached running");                                                           \
+    return Count(true);                                                                     \
   }
 
 
@@ -194,18 +196,18 @@ bool TestExtMemcachepool::test_MemcachePool_incdec() {
 
   VERIFY(! memc->t_increment(key, 1));
   VERIFY(! memc->t_decrement(key, 1));
-  VERIFY(memc->t_add(key, "0"));
-  VS(memc->t_get(key), "0"); // Memcachepool extension does not store type
+  VERIFY(memc->t_add(key, 0));
+  VS(memc->t_get(key), 0);
   VERIFY(memc->t_increment(key, 1));
-  VS(memc->t_get(key), "1");
+  VS(memc->t_get(key), 1);
   VERIFY(memc->t_increment(key, 10));
-  VS(memc->t_get(key), "11");
+  VS(memc->t_get(key), 11);
   VERIFY(memc->t_increment(key, 2));
-  VS(memc->t_get(key), "13");
+  VS(memc->t_get(key), 13);
   VERIFY(memc->t_decrement(key, 2));
-  VS(memc->t_get(key), "11");
+  VS(memc->t_get(key), 11);
   VERIFY(memc->t_decrement(key, 10));
-  VS(memc->t_get(key), "1");
+  VS(memc->t_get(key), 1);
   VERIFY(memc->t_delete(key));
   VERIFY(! memc->t_increment(key, 1));
   VERIFY(! memc->t_decrement(key, 1));
@@ -320,6 +322,85 @@ bool TestExtMemcachepool::test_MemcachePool_types() {
   res = memc->t_get("float");
   VERIFY(res.isDouble());
   VERIFY(memc->t_delete("float"));
+
+  return Count(true);
+}
+
+bool TestExtMemcachepool::test_MemcachePool_prefetch() {
+  CREATE_MEMCACHED();
+  Array keysArray;
+  keysArray.add("olakase", Array::Create());
+  keysArray.add("prefetcheaokase", CREATE_VECTOR1(1));
+  keysArray.add("loooooooooooooooonger_stringgggggg", "with a loooooooooooooooonnnnnnnnnger payloadddddddddddd");
+  keysArray.add("string", "just a string");
+  keysArray.add("array", CREATE_VECTOR4(1, 2, 3, "foo"));
+  keysArray.add("map", CREATE_MAP1("fbid", 101501853510151001LL));
+  Object obj = f_json_decode("{\"a\":1,\"b\":2.3,\"3\":\"test\"}", true);
+  keysArray.add("object", obj.toArray());
+
+  // Set all elements
+  for (ArrayIter iter(keysArray); iter; ++iter) {
+    VERIFY(memc->t_set(iter.first(), iter.second(), 0, 0));
+  }
+
+  // Prefetch the keys in many different ways
+  VERIFY(memc->t_prefetch(keysArray.keys()));
+  Variant res = memc->t_get(keysArray.keys());
+  VERIFY(res.isArray());
+  Array resArray = res.toArray();
+  VS(resArray->size(), keysArray.size());
+  for (ArrayIter iter(resArray); iter; ++iter) {
+    VS(iter.second(), keysArray[iter.first()]);
+  }
+
+  VERIFY(memc->t_prefetch(keysArray.keys()));
+  res = memc->t_get(Array::Create());
+  VERIFY(res.isArray());
+  resArray = res.toArray();
+  VS(resArray->size(), keysArray.size());
+  for (ArrayIter iter(resArray); iter; ++iter) {
+    VS(iter.second(), keysArray[iter.first()]);
+  }
+
+  for (ArrayIter iter(keysArray); iter; ++iter) {
+    VERIFY(memc->t_prefetch(iter.first()));
+  }
+  res = memc->t_get(keysArray.keys());
+  VERIFY(res.isArray());
+  resArray = res.toArray();
+  VS(resArray->size(), keysArray.size());
+  for (ArrayIter iter(resArray); iter; ++iter) {
+    VS(iter.second(), keysArray[iter.first()]);
+  }
+
+  VERIFY(memc->t_prefetch("olakase"));
+  VERIFY(memc->t_prefetch("prefetcheaokase"));
+  res = memc->t_get(keysArray.keys());
+  VERIFY(res.isArray());
+  resArray = res.toArray();
+  VS(resArray->size(), keysArray.size());
+  for (ArrayIter iter(resArray); iter; ++iter) {
+    VS(iter.second(), keysArray[iter.first()]);
+  }
+
+  res = memc->t_get(keysArray.keys());
+  VERIFY(res.isArray());
+  resArray = res.toArray();
+  VS(resArray->size(), keysArray.size());
+  for (ArrayIter iter(resArray); iter; ++iter) {
+    VS(iter.second(), keysArray[iter.first()]);
+  }
+
+  // Test mix prefetch with simple gets (simple gets should throw away
+  // prefetch results and just return the key is being fetched
+  VERIFY(memc->t_prefetch("olakase"));
+  VERIFY(memc->t_prefetch("prefetcheaokase"));
+  res = memc->t_get("map");
+  VS(res, keysArray["map"]);
+
+  VERIFY(memc->t_prefetch(keysArray.keys()));
+  res = memc->t_get("string");
+  VS(res, keysArray["string"]);
 
   return Count(true);
 }

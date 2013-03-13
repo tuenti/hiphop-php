@@ -186,6 +186,8 @@ extern const int64 k_JSON_NUMERIC_CHECK;
 extern const int64 k_JSON_UNESCAPED_SLASHES;
 extern const int64 k_MEMCACHE_COMPRESSED;
 extern const int64 k_MEMCACHE_SERIALIZED;
+extern const int64 k_MEMCACHE_STRATEGY_CONSISTENT;
+extern const int64 k_MEMCACHE_STRATEGY_STANDARD;
 extern const double k_NAN;
 extern const int64 k_OPENSSL_RAW_DATA;
 extern const int64 k_OPENSSL_ZERO_PADDING;

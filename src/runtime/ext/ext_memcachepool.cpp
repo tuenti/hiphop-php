@@ -30,12 +30,13 @@ IMPLEMENT_DEFAULT_EXTENSION(memcachepool);
 /* use lowest byte for flags */
 const int64 k_MEMCACHE_SERIALIZED = 1;
 const int64 k_MEMCACHE_COMPRESSED = 2;
+const int64 k_MEMCACHE_STRATEGY_STANDARD = 0;
+const int64 k_MEMCACHE_STRATEGY_CONSISTENT = 1;
 
 /* use second lowest byte to indicate data type */
 const int64 MMC_TYPE_BOOL   = 0x0100;
 const int64 MMC_TYPE_LONG   = 0x0300;
 const int64 MMC_TYPE_DOUBLE = 0x0700;
-
 
 class MemcacheObjectData;
 
@@ -93,15 +94,14 @@ class MemcacheObjectData {
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_DISTRIBUTION, RuntimeOption::MemcachePoolHashStrategy);
     memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_HASH, RuntimeOption::MemcachePoolHashFunction);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_HASH, RuntimeOption::MemcachePoolHashFunction);
-
     memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 1);
+    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 1);
+    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_MGET_FLUSH_OLD_RESULTS, 0);
 
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_USE_UDP, 1);
-    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 1);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 1);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_NOREPLY, 0);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_NO_BLOCK, 1);
-    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_UDP_ALWAYS_FLUSH, 1);
   }
 
   ~MemcacheObjectData() {
@@ -263,7 +263,9 @@ Variant static memcache_fetch_from_storage(const char *payload,
 
   if (flags & k_MEMCACHE_SERIALIZED) {
     ret = f_unserialize(ret);
-  } switch (flags & 0x0f00) {
+  }
+
+  switch (flags & 0x0f00) {
     case MMC_TYPE_LONG:
       return ret.toInt64();
     case MMC_TYPE_DOUBLE:
@@ -360,30 +362,18 @@ bool c_MemcachePool::t_replace(CStrRef key, CVarRef var, int flag /*= 0*/,
   return check_memcache_return(MEMCACHEL(tcp_st), ret, key);
 }
 
-Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam cas /*= null*/) {
-  INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::get);
-  TAINT_OBSERVER(TAINT_BIT_ALL, TAINT_BIT_NONE);
-
-  // Use UDP if we have any server available
-  memcached_st *memc = MEMCACHEL(tcp_st);
+memcached_st * c_MemcachePool::get_udp_memc() {
   if (memcached_server_count(MEMCACHEL(udp_st)) > 0)
-    memc = MEMCACHEL(udp_st);
+    return MEMCACHEL(udp_st);
+  return MEMCACHEL(tcp_st);
+}
 
+bool c_MemcachePool::prefetch(CVarRef key) {
   std::vector<const char *> real_keys;
   std::vector<size_t> key_len;
-  Array keyArr;
 
-  if (key.is(KindOfArray)) {
-    keyArr = key.toArray();
-
-    if (cas.isReferenced())
-      cas = Array();
-    if (flags.isReferenced())
-      flags = Array();
-  }
-  else {
-    keyArr = Array(key);
-  }
+  memcached_st *memc = get_udp_memc();
+  Array keyArr = key.is(KindOfArray) ? key.toArray() : Array(key);
 
   real_keys.reserve(keyArr.size());
   key_len.reserve(keyArr.size());
@@ -393,28 +383,47 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
     key_len.push_back(iter.second().toString().length());
   }
 
+  if (real_keys.empty())
+    return true;
+
+  IOStatusHelper io("memcachepool::prefetch");
+  memcached_return_t ret = memcached_mget(memc, &real_keys[0], &key_len[0],
+                                          real_keys.size());
+
+  return check_memcache_return(memc, ret, "", "Error doing multiget");
+}
+
+bool c_MemcachePool::t_prefetch(CVarRef key) {
+  INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::prefetch);
+
+  return prefetch(key);
+}
+
+Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam cas /*= null*/) {
+  INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::get);
+
+  if (!prefetch(key))
+    return false;
+
+  memcached_result_st result;
+  memcached_return_t ret;
+  Array acas, aflags, return_val = Array::Create();
   const char *payload, *res_key;
   size_t payload_len, res_key_len;
   int64 cflags, ccas;
-  memcached_result_st result;
   String curkey;
 
-  Array return_val = Array::Create();
+  memcached_st *memc = get_udp_memc();
+  Array keyArr = key.is(KindOfArray) ? key.toArray() : Array(key);
 
-  if (real_keys.empty())
-    return return_val;
-
-  IOStatusHelper io("memcachepool::get");
-
-  memcached_return_t ret = memcached_mget(memc, &real_keys[0], &key_len[0], 
-                                          real_keys.size());
-
-  if (ret != MEMCACHED_SUCCESS) {
-    return check_memcache_return(memc, ret, "", "Error doing multiget");
-  }
+  if (cas.isReferenced())
+    cas = Array::Create();
+  if (flags.isReferenced())
+    flags = Array::Create();
 
   memcached_result_create(memc, &result);
 
+  IOStatusHelper io("memcachepool::get");
   while ((memcached_fetch_result(memc, &result, &ret)) != NULL) {
     if (ret != MEMCACHED_SUCCESS) {
       check_memcache_return(memc, ret, "", "Error getting multiget results");
@@ -432,33 +441,32 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
 
     return_val.set(curkey, memcache_fetch_from_storage(payload, payload_len, cflags));
 
-    if (flags.isReferenced()) {
-      if (key.is(KindOfArray))
-        flags->set(curkey, cflags, true);
-      else
-        flags = cflags;
-    }
-        
-    if (cas.isReferenced()) {
-      if (key.is(KindOfArray))
-        cas->set(curkey, ccas, true);
-      else
-        cas = ccas;
-    }
+    if (flags.isReferenced()) flags->set(curkey, cflags, true);
+    if (cas.isReferenced())   cas->set(curkey, ccas, true);
   }
+
   if ((ret != MEMCACHED_END) && (ret != MEMCACHED_NOTFOUND)) {
     check_memcache_return(memc, ret, "", "Error getting multiget results");
   }
 
   memcached_result_free(&result);
 
-  if (key.is(KindOfArray))
+  if (key.is(KindOfArray)) {
     return return_val;
-  else {
-    if (return_val[curkey].is(KindOfNull))
-        return false;
-    return return_val[curkey];
   }
+
+  // In the case of a single get, we only use the value for the key which is
+  // being fetch. This is not the most efficient code, but we only use multigets
+  // on live code.
+  if (cas.isReferenced())
+    cas = cas->toArray()[key];
+  if (flags.isReferenced())
+    flags = flags->toArray()[key];
+
+  if (return_val[key].is(KindOfNull))
+    return false;
+
+  return return_val[key];
 }
 
 bool c_MemcachePool::t_delete(CStrRef key, int expire /*= 0*/) {
@@ -840,6 +848,7 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
     ret = memcached_server_add_unix_socket_with_weight(MEMCACHEL(tcp_st),
                                                        unix_sock.c_str(), weight);
     check_memcache_return(MEMCACHEL(udp_st), ret, "", "Cannot add server");
+    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_NO_BLOCK, 1);
   }
 
   if ((ret == MEMCACHED_SUCCESS) && (ret2 == MEMCACHED_SUCCESS)) {
@@ -848,6 +857,15 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
   }
 
   return false;
+}
+
+bool c_MemcachePool::t_sethashstrategy(int64 hashstrategy) {
+  memcached_return_t ret, ret2;
+
+  ret = memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_DISTRIBUTION, hashstrategy);
+  ret2 = memcached_behavior_set(MEMCACHEL(udp_st), MEMCACHED_BEHAVIOR_DISTRIBUTION, hashstrategy);
+
+  return ((ret != MEMCACHED_SUCCESS) || (ret2 != MEMCACHED_SUCCESS));
 }
 
 Variant c_MemcachePool::t___destruct() {

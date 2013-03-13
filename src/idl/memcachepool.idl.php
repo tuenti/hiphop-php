@@ -92,7 +92,9 @@ BeginClass(
     'desc'   => "Represents a connection to a set of memcache servers.",
     'flags'  =>  HasDocComment,
 	'footer' => <<<EOT
+  public: void close();
   private: 
+    bool prefetch(CVarRef key);
     bool check_memcache_return(memcached_st * st, memcached_return_t ret, 
                                String key = "", char *default_msg = "");
     void exec_failure_callback(const char * hostname, int tcp_port, int udp_port,
@@ -455,9 +457,25 @@ DefineFunction(
 				and will be written to this parameter.",
 			),
     ),
-    'taint_observer' => array(
-      'set_mask'   => "TAINT_BIT_ALL",
-      'clear_mask' => "TAINT_BIT_NONE",
+  ));
+
+DefineFunction(
+  array(
+    'name'   => "prefetch",
+		'desc'   => "MemcachePool::prefetch() prefetch some keys, without actual
+		returning the values of those keys. You need to call later to get, in order
+		to fetch the results.",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Boolean,
+      'desc'   => "Returns TRUE on success or FALSE on failure.",
+    ),
+    'args'   => array(
+      array(
+        'name'   => "key",
+        'type'   => Variant,
+        'desc'   => "The key or array of keys to fetch.",
+      ),
     ),
   ));
 
@@ -873,7 +891,7 @@ DefineFunction(
        array(
         'name'   => "udp_port",
         'type'   => Int32,
-        'value'  => "11211",
+        'value'  => "0",
 				'desc'   => "Point to the UDP port where memcached is listening for
 				connections. Set this parameter to 0 when using UNIX od TCP domain sockets.",
       ),
@@ -931,6 +949,26 @@ DefineFunction(
 
 DefineFunction(
   array(
+    'name'   => "sethashstrategy",
+		'desc'   => "MemcachePool::setHashStrategy() allow you to change the default
+		strategy for your MemcachePool instance",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Boolean,
+      'desc'   => "Returns TRUE on success or FALSE on failure.",
+    ),
+    'args'   => array(
+      array(
+        'name'   => "hashstrategy",
+        'type'   => Int64,
+				'desc'   => "Hash strategy",
+      ),
+    ),
+  ));
+
+
+DefineFunction(
+  array(
     'name'   => "__destruct",
     'flags'  =>  HasDocComment,
     'return' => array(
@@ -944,3 +982,5 @@ EndClass(
 
 DefineConstant(array('name' => "MEMCACHE_COMPRESSED", 'type' => Int64,));
 DefineConstant(array('name' => "MEMCACHE_SERIALIZED", 'type' => Int64,));
+DefineConstant(array('name' => "MEMCACHE_STRATEGY_STANDARD", 'type' => Int64,));
+DefineConstant(array('name' => "MEMCACHE_STRATEGY_CONSISTENT", 'type' => Int64,));

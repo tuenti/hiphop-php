@@ -37,6 +37,7 @@ class TestExtMemcachepool : public TestCppExt {
   bool test_MemcachePool_cas();
   bool test_MemcachePool_delete();
   bool test_MemcachePool_types();
+  bool test_MemcachePool_prefetch();
 };
 
 ///////////////////////////////////////////////////////////////////////////////

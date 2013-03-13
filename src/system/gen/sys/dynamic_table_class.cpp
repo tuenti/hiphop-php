@@ -9059,6 +9059,7 @@ CallInfo c_MemcachePool::ci_connect((void*)&c_MemcachePool::i_connect, (void*)&c
 CallInfo c_MemcachePool::ci_setserverparams((void*)&c_MemcachePool::i_setserverparams, (void*)&c_MemcachePool::ifa_setserverparams, 5, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_replace((void*)&c_MemcachePool::i_replace, (void*)&c_MemcachePool::ifa_replace, 4, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_decrement((void*)&c_MemcachePool::i_decrement, (void*)&c_MemcachePool::ifa_decrement, 2, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_prefetch((void*)&c_MemcachePool::i_prefetch, (void*)&c_MemcachePool::ifa_prefetch, 1, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_delete((void*)&c_MemcachePool::i_delete, (void*)&c_MemcachePool::ifa_delete, 2, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_get((void*)&c_MemcachePool::i_get, (void*)&c_MemcachePool::ifa_get, 3, 4, 0x0000000000000006LL);
 CallInfo c_MemcachePool::ci_setoptimeout((void*)&c_MemcachePool::i_setoptimeout, (void*)&c_MemcachePool::ifa_setoptimeout, 1, 4, 0x0000000000000000LL);
@@ -9068,6 +9069,7 @@ CallInfo c_MemcachePool::ci_setfailurecallback((void*)&c_MemcachePool::i_setfail
 CallInfo c_MemcachePool::ci_getextendedstats((void*)&c_MemcachePool::i_getextendedstats, (void*)&c_MemcachePool::ifa_getextendedstats, 3, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_add((void*)&c_MemcachePool::i_add, (void*)&c_MemcachePool::ifa_add, 4, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_cas((void*)&c_MemcachePool::i_cas, (void*)&c_MemcachePool::ifa_cas, 5, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_sethashstrategy((void*)&c_MemcachePool::i_sethashstrategy, (void*)&c_MemcachePool::ifa_sethashstrategy, 1, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_flush((void*)&c_MemcachePool::i_flush, (void*)&c_MemcachePool::ifa_flush, 1, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_getserverstatus((void*)&c_MemcachePool::i_getserverstatus, (void*)&c_MemcachePool::ifa_getserverstatus, 2, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci___construct((void*)&c_MemcachePool::i___construct, (void*)&c_MemcachePool::ifa___construct, 0, 4, 0x0000000000000000LL);
@@ -9098,6 +9100,9 @@ Variant c_MemcachePool::i_replace(MethodCallPackage &mcp, CArrRef params) {
 }
 Variant c_MemcachePool::i_get(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa_get);
+}
+Variant c_MemcachePool::i_prefetch(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_prefetch);
 }
 Variant c_MemcachePool::i_delete(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa_delete);
@@ -9165,6 +9170,9 @@ Variant c_MemcachePool::i_addserver(MethodCallPackage &mcp, CArrRef params) {
     CVarRef arg7((ad->getValue(pos = ad->iter_advance(pos))));
     return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
   }
+}
+Variant c_MemcachePool::i_sethashstrategy(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_sethashstrategy);
 }
 Variant c_MemcachePool::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
@@ -9283,6 +9291,15 @@ Variant c_MemcachePool::ifa_get(MethodCallPackage &mcp, int count, INVOKE_FEW_AR
   if (count <= 2) return (self->t_get(arg0, arg1));
   VRefParam arg2(vref(a2));
   return (self->t_get(arg0, arg1, arg2));
+}
+Variant c_MemcachePool::ifa_prefetch(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_prefetch, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("prefetch", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_prefetch(arg0));
 }
 Variant c_MemcachePool::ifa_delete(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
@@ -9448,6 +9465,15 @@ Variant c_MemcachePool::ifa_addserver(MethodCallPackage &mcp, int count, INVOKE_
   CVarRef arg5(a5);
   return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5));
 }
+Variant c_MemcachePool::ifa_sethashstrategy(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_sethashstrategy, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("sethashstrategy", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_sethashstrategy(arg0));
+}
 Variant c_MemcachePool::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
     return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_MemcachePool);
@@ -9472,9 +9498,11 @@ const MethodCallInfoTable c_MemcachePool::s_call_info_table[] = {
   { 0x0D31D0AC229C615FLL, 1, 11, "__construct", &c_MemcachePool::ci___construct },
   { 0x573E46DE52BFF8A1LL, 1, 3, "cas", &c_MemcachePool::ci_cas },
   { 0x399A6427C2185621LL, 0, 3, "set", &c_MemcachePool::ci_set },
+  { 0x7C83062D46883AE2LL, 1, 15, "sethashstrategy", &c_MemcachePool::ci_sethashstrategy },
   { 0x4770E54B86BF7765LL, 1, 16, "getextendedstats", &c_MemcachePool::ci_getextendedstats },
   { 0x56CD24186237AAE6LL, 1, 9, "addserver", &c_MemcachePool::ci_addserver },
   { 0x25DCCC35D69AD828LL, 1, 3, "get", &c_MemcachePool::ci_get },
+  { 0x7A618D99DCA6D2F2LL, 1, 8, "prefetch", &c_MemcachePool::ci_prefetch },
   { 0x7F974836AACC1EF3LL, 1, 10, "__destruct", &c_MemcachePool::ci___destruct },
   { 0x29D0817AA3023DB6LL, 1, 18, "setfailurecallback", &c_MemcachePool::ci_setfailurecallback },
   { 0x742B441E13CD7279LL, 1, 8, "pconnect", &c_MemcachePool::ci_pconnect },
@@ -9489,10 +9517,10 @@ const int c_MemcachePool::s_call_info_index[] = {
   -1,-1,-1,3,-1,-1,-1,5,
   -1,-1,6,7,-1,-1,8,-1,
   -1,9,10,-1,-1,-1,11,12,
-  -1,13,-1,-1,-1,15,16,-1,
-  17,-1,-1,-1,-1,-1,-1,-1,
-  -1,-1,-1,18,-1,-1,19,-1,
-  -1,20,21,-1,-1,22,23,-1,
+  -1,13,15,-1,-1,16,17,-1,
+  18,-1,-1,-1,-1,-1,-1,-1,
+  -1,-1,19,20,-1,-1,21,-1,
+  -1,22,23,-1,-1,24,25,-1,
 
 };
 c_MemcachePool *c_MemcachePool::create() {
