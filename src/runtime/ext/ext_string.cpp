@@ -715,12 +715,10 @@ Variant f_setlocale(int _argc, int category, CVarRef locale, CArrRef _argv /* = 
       const char *retval = setlocale(category, loc);
       if (retval) {
         String ret(retval, CopyString);
-        if ((category == LC_ALL) || (category == LC_MESSAGES)) {
-          if (loc) {
-            set_request_locale(slocale);
-          } else {
-            return get_request_locale_name();
-          }
+        if (loc) {
+          set_request_locale(slocale);
+        } else {
+          return get_request_locale_name();
         }
         return ret;
       }
