@@ -96,8 +96,10 @@ class MemcacheObjectData {
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_HASH, RuntimeOption::MemcachePoolHashFunction);
     memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 1);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 1);
-    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_MGET_FLUSH_OLD_RESULTS, 0);
+    memcached_behavior_set(tcp_st, MEMCACHED_BEHAVIOR_SUPPORT_CAS, 1);
+    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_SUPPORT_CAS, 1);
 
+    memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_MGET_FLUSH_OLD_RESULTS, 0);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_USE_UDP, 1);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 1);
     memcached_behavior_set(udp_st, MEMCACHED_BEHAVIOR_NOREPLY, 0);
@@ -847,8 +849,9 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
 
     ret = memcached_server_add_unix_socket_with_weight(MEMCACHEL(tcp_st),
                                                        unix_sock.c_str(), weight);
-    check_memcache_return(MEMCACHEL(udp_st), ret, "", "Cannot add server");
+    check_memcache_return(MEMCACHEL(tcp_st), ret, "", "Cannot add server");
     memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_NO_BLOCK, 1);
+    memcached_behavior_set(MEMCACHEL(tcp_st), MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 0);
   }
 
   if ((ret == MEMCACHED_SUCCESS) && (ret2 == MEMCACHED_SUCCESS)) {
