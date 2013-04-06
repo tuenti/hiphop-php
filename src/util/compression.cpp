@@ -268,7 +268,7 @@ char *StreamCompressor::compress(const char *data, int &len, bool trailer) {
   }
 
   free(s2);
-  Logger::Error("%s", zError(status));
+  Logger::Error("StreamCompressor::compress: %s", zError(status));
   return NULL;
 }
 
@@ -316,13 +316,13 @@ char *gzencode(const char *data, int &len, int level, int encoding_mode) {
     /* windowBits is passed < 0 to suppress zlib header & trailer */
     if ((status = deflateInit2(&stream, level, Z_DEFLATED, -MAX_WBITS,
                                MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY)) != Z_OK) {
-      Logger::Warning("%s", zError(status));
+      Logger::Warning("gzencode: %s", zError(status));
       return false;
     }
     break;
   case CODING_DEFLATE:
     if ((status = deflateInit(&stream, level)) != Z_OK) {
-      Logger::Warning("%s", zError(status));
+      Logger::Warning("gzencode: %s", zError(status));
       return false;
     }
     break;
@@ -369,7 +369,7 @@ char *gzencode(const char *data, int &len, int level, int encoding_mode) {
   }
 
   free(s2);
-  Logger::Warning("%s", zError(status));
+  Logger::Warning("gzencode: %s", zError(status));
   return NULL;
 }
 
@@ -428,7 +428,7 @@ char *gzdecode(const char *data, int &len) {
   }
 
   free(s2);
-  Logger::Warning("%s", zError(status));
+  Logger::Warning("gzdecode: %s", zError(status));
   return NULL;
 }
 
@@ -462,7 +462,7 @@ char *gzcompress(const char *data, int &len, int level /* = -1 */) {
   }
 
   free(s2);
-  Logger::Warning("%s", zError(status));
+  Logger::Warning("gzcompress: %s", zError(status));
   return NULL;
 }
 
@@ -497,7 +497,7 @@ char *gzuncompress(const char *data, int &len, int limit /* = 0 */) {
   }
 
   free(s2);
-  Logger::Warning("%s", zError(status));
+  Logger::Warning("gzuncompress: %s", zError(status));
   return NULL;
 }
 
@@ -552,7 +552,7 @@ char *gzdeflate(const char *data, int &len, int level /* = -1 */) {
   }
 
   free(s2);
-  Logger::Warning("%s", zError(status));
+  Logger::Warning("gzdeflate: %s", zError(status));
   return NULL;
 }
 
@@ -614,7 +614,7 @@ char *gzinflate(const char *data, int &len, int limit /* = 0 */) {
   }
 
   free(s2);
-  Logger::Warning("%s", zError(status));
+  Logger::Warning("gzinflate: %s", zError(status));
   return NULL;
 }
 
