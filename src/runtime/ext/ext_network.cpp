@@ -103,47 +103,28 @@ Variant f_gethostbyaddr(CStrRef ip_address) {
 
 String f_gethostbyname(CStrRef hostname) {
   IOStatusHelper io("gethostbyname", hostname.data());
-  if (RuntimeOption::EnableDnsCache) {
-    Variant success;
-    Variant resolved = f_apc_fetch(hostname, ref(success),
-                                   SHARED_STORE_DNS_CACHE);
-    if (same(success, true)) {
-      if (same(resolved, false)) {
-        return hostname;
-      }
-      return resolved.toString();
-    }
-  }
 
-  Util::HostEnt result;
-  if (!cached_gethostbyname(hostname.data(), result)) {
-    if (RuntimeOption::EnableDnsCache) {
-      f_apc_store(hostname, false, RuntimeOption::DnsCacheTTL,
-                  SHARED_STORE_DNS_CACHE);
-    }
+  const Util::HostEnt *result = cached_gethostbyname(hostname.data());
+  if (result == NULL) {
     return hostname;
   }
 
   struct in_addr in;
-  memcpy(&in.s_addr, *(result.hostbuf.h_addr_list), sizeof(in.s_addr));
+  result->get_current_address(&in);
   String ret(Util::safe_inet_ntoa(in));
-  if (RuntimeOption::EnableDnsCache) {
-    f_apc_store(hostname, ret, RuntimeOption::DnsCacheTTL,
-                SHARED_STORE_DNS_CACHE);
-  }
   return ret;
 }
 
 Variant f_gethostbynamel(CStrRef hostname) {
   IOStatusHelper io("gethostbynamel", hostname.data());
-  Util::HostEnt result;
-  if (!cached_gethostbyname(hostname.data(), result)) {
+  const Util::HostEnt *result = cached_gethostbyname(hostname.data());
+  if (result == NULL) {
     return false;
   }
 
   Array ret;
-  for (int i = 0 ; result.hostbuf.h_addr_list[i] != 0 ; i++) {
-    struct in_addr in = *(struct in_addr *)result.hostbuf.h_addr_list[i];
+  for (int i = 0 ; result->hostbuf.h_addr_list[i] != 0 ; i++) {
+    struct in_addr in = *(struct in_addr *)result->hostbuf.h_addr_list[i];
     ret.append(String(Util::safe_inet_ntoa(in)));
   }
   return ret;
@@ -952,33 +933,25 @@ private:
 };
 static IMPLEMENT_THREAD_LOCAL(ExtNetworkData, s_networkData);
 
-static void hostent_copy(Util::HostEnt &dst, const Util::HostEnt &src) {
-  ASSERT(!dst.tmphstbuf);
-  if (src.tmphstbuf) {
-    struct hostent *dup = Util::hostent_dup(&src.hostbuf);
-    dst.hostbuf = *dup;
-    dst.tmphstbuf = reinterpret_cast<char*>(dup);
-    dst.herr = src.herr;
-  } else {
-    dst = src;
-  }
-}
-
-bool cached_gethostbyname(const char *address, Util::HostEnt &result) {
+const Util::HostEnt * cached_gethostbyname(const char *address) {
   if (RuntimeOption::EnableDnsCache) {
     s_networkData->cleanupCache();
-    HostEntCache::const_iterator cached = s_networkData->hostEntCache.find(address);
+    HostEntCache::iterator cached = s_networkData->hostEntCache.find(address);
     if (cached != s_networkData->hostEntCache.end()) {
-      hostent_copy(result, cached->second);
-      return !result.herr;
+      cached->second.rotate_index();
+      return &cached->second;
     }
   }
-  bool ret = Util::safe_gethostbyname(address, result);
-  if (RuntimeOption::EnableDnsCache) {
-    Util::HostEnt& it = s_networkData->hostEntCache[address];
-    hostent_copy(it, result);
+  Util::HostEnt * result = new Util::HostEnt;
+  if (!Util::safe_gethostbyname(address, *result)) {
+    delete result;
+    return NULL;
   }
-  return ret;
+
+  if (RuntimeOption::EnableDnsCache) {
+    s_networkData->hostEntCache[address] = *result;
+  }
+  return result;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

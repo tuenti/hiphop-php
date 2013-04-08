@@ -163,13 +163,20 @@ bool Util::safe_gethostbyname(const char *address, HostEnt &result) {
   struct hostent *hp;
   int res;
 
-  size_t hstbuflen = 1024;
-  result.tmphstbuf = (char*)malloc(hstbuflen);
+  result.hstbuflen = 1024;
+  result.tmphstbuf = (char*)malloc(result.hstbuflen);
   while ((res = gethostbyname_r(address, &result.hostbuf, result.tmphstbuf,
-                                hstbuflen, &hp, &result.herr)) == ERANGE) {
-    hstbuflen *= 2;
-    result.tmphstbuf = (char*)realloc(result.tmphstbuf, hstbuflen);
+                                result.hstbuflen, &hp, &result.herr)) == ERANGE) {
+    result.hstbuflen *= 2;
+    result.tmphstbuf = (char*)realloc(result.tmphstbuf, result.hstbuflen);
   }
+
+  result.index = 0;
+  result.n_addrs = 0;
+  for(char** addr = result.hostbuf.h_addr_list; *addr; addr++) {
+    result.n_addrs++;
+  }
+
   return !res && hp;
 #endif
 #endif

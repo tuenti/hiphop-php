@@ -134,19 +134,18 @@ static bool php_set_inet_addr(struct sockaddr_in *sin, const char *address,
   if (inet_aton(address, &tmp)) {
     sin->sin_addr.s_addr = tmp.s_addr;
   } else {
-    Util::HostEnt result;
-    if (!cached_gethostbyname(address, result)) {
+    const Util::HostEnt *result = cached_gethostbyname(address);
+    if (result == NULL) {
       /* Note: < -10000 indicates a host lookup error */
-      SOCKET_ERROR(sock, "Host lookup failed", (-10000 - result.herr));
+      SOCKET_ERROR(sock, "Host lookup failed", (-10000 - result->herr));
       return false;
     }
-    if (result.hostbuf.h_addrtype != AF_INET) {
+    if (result->hostbuf.h_addrtype != AF_INET) {
       raise_warning("Host lookup failed: Non AF_INET domain "
                       "returned on AF_INET socket");
       return false;
     }
-    memcpy(&(sin->sin_addr.s_addr), result.hostbuf.h_addr_list[0],
-           result.hostbuf.h_length);
+    result->get_current_address(&(sin->sin_addr));
   }
 
   return true;
@@ -326,15 +325,15 @@ Variant f_socket_create(int domain, int type, int protocol) {
 }
 
 Variant f_socket_create_listen(int port, int backlog /* = 128 */) {
-  Util::HostEnt result;
-  if (!cached_gethostbyname("0.0.0.0", result)) {
+  const Util::HostEnt * result = cached_gethostbyname("0.0.0.0");
+  if (result == NULL) {
     return false;
   }
 
   struct sockaddr_in la;
-  memcpy((char *) &la.sin_addr, result.hostbuf.h_addr,
-         result.hostbuf.h_length);
-  la.sin_family = result.hostbuf.h_addrtype;
+  memcpy((char *) &la.sin_addr, result->hostbuf.h_addr,
+         result->hostbuf.h_length);
+  la.sin_family = result->hostbuf.h_addrtype;
   la.sin_port = htons((unsigned short)port);
 
   Socket *sock = new Socket(socket(PF_INET, SOCK_STREAM, 0), PF_INET,

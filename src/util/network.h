@@ -34,23 +34,23 @@ struct hostent* hostent_dup(const struct hostent *hostent);
 
 class HostEnt {
 public:
-  HostEnt() : tmphstbuf(NULL) {}
-  ~HostEnt() { if (tmphstbuf) free(tmphstbuf);}
-  HostEnt(const HostEnt &src) {
-    if (src.tmphstbuf) {
-      struct hostent *dup = hostent_dup(&src.hostbuf);
-      hostbuf = *dup;
-      tmphstbuf = reinterpret_cast<char*>(dup);
-    } else {
-      hostbuf = src.hostbuf;
-      tmphstbuf = src.tmphstbuf;
-    }
-    herr = src.herr;
+  HostEnt() : tmphstbuf(NULL), hstbuflen(0), index(0), n_addrs(0) {}
+  ~HostEnt() { if (tmphstbuf) free(tmphstbuf); }
+
+  void rotate_index() {
+    if (++index >= n_addrs) index = 0;
+  }
+
+  void get_current_address(struct in_addr *in) const {
+    memcpy(&(in->s_addr), hostbuf.h_addr_list[index], hostbuf.h_length);
   }
 
   struct hostent hostbuf;
   char *tmphstbuf;
+  size_t hstbuflen;
   int herr;
+  // Index to rotate through all available adresses
+  int index, n_addrs;
 };
 
 bool safe_gethostbyname(const char *address, HostEnt &result);

@@ -55,7 +55,7 @@ inline bool f_getmxrr(CStrRef hostname, VRefParam mxhosts,
   return f_dns_get_mx(hostname, ref(mxhosts), weight);
 }
 
-bool cached_gethostbyname(const char *address, Util::HostEnt &result);
+const Util::HostEnt * cached_gethostbyname(const char *address);
 
 ///////////////////////////////////////////////////////////////////////////////
 // socket
