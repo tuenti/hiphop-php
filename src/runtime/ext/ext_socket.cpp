@@ -137,7 +137,7 @@ static bool php_set_inet_addr(struct sockaddr_in *sin, const char *address,
     const Util::HostEnt *result = cached_gethostbyname(address);
     if (result == NULL) {
       /* Note: < -10000 indicates a host lookup error */
-      SOCKET_ERROR(sock, "Host lookup failed", (-10000 - result->herr));
+      SOCKET_ERROR(sock, "Host lookup failed", errno);
       return false;
     }
     if (result->hostbuf.h_addrtype != AF_INET) {

@@ -101,7 +101,7 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
   public: c_MemcachePool *create();
   public: void close();
   private: 
-    memcached_st * get_udp_memc();
+    memcached_st * get_read_memc();
     bool prefetch(CVarRef key);
     bool check_memcache_return(memcached_st * st, memcached_return_t ret, 
                                String key = "", char *default_msg = "");
