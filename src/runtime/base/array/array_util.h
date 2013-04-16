@@ -59,14 +59,14 @@ public:
    * into numerically keyed map. When "preserve_keys" is false, a map will
    * turn into vectors, unless keys are not numeric.
    */
-  static Variant Slice(CArrRef input, int offset, int length,
+  static Variant Slice(CArrRef input, int offset, int64 length,
                        bool preserve_keys);
 
   /**
    * Removes the elements designated by offset and length and replace them
    * with supplied array.
    */
-  static Variant Splice(CArrRef input, int offset, int length = 0,
+  static Variant Splice(CArrRef input, int offset, int64 length = 0,
                         CVarRef replacement = null_variant,
                         Array *removed = NULL);
 
