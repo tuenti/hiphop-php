@@ -533,12 +533,16 @@ FILE * LightProcess::popenat(const char *command, const char *type, const char *
 }
 
 int LightProcess::pcloseat(FILE *f) {
-  int status;
+  int status, pid;
   fclose(f);
-  waitpid(s_pidMap[f], &status, 0);
 
-  Lock lock(s_pidMutex);
-  s_pidMap.erase(f);
+  {
+    Lock lock(s_pidMutex);
+    pid = s_pidMap[f];
+    s_pidMap.erase(f);
+  }
+
+  waitpid(pid, &status, 0);
 
   return status;
 }
