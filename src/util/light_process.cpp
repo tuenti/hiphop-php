@@ -39,6 +39,8 @@ namespace HPHP {
 
 static const unsigned int BUFFER_SIZE = 4096;
 Mutex LightProcess::s_mutex;
+Mutex LightProcess::s_pidMutex;
+std::map<FILE *, int64> LightProcess::s_pidMap;
 
 static void read_buf(FILE *fin, char *buf) {
   if (!fgets(buf, BUFFER_SIZE, fin)) {
@@ -482,37 +484,68 @@ int LightProcess::GetId() {
 
 FILE *LightProcess::popen(const char *cmd, const char *type,
                           const char *cwd /* = NULL */) {
-  if (!Available()) {
-    // fallback to normal popen
-    Logger::Verbose("Light-weight fork not available; "
-                    "use the heavy one instead.");
-  } else {
-    FILE *f = LightPopenImpl(cmd, type, cwd);
-    if (f) {
-      return f;
-    }
-    Logger::Verbose("Light-weight fork failed; use the heavy one instead.");
+  return Available() ? LightPopenImpl(cmd, type, cwd) : HeavyPopenImpl(cmd, type, cwd);
+}
+
+FILE * LightProcess::popenat(const char *command, const char *type, const char * cwd)
+{
+  int p[2];
+  pid_t pid;
+
+  if (pipe(p) != 0)
+      return NULL;
+
+  pid = fork();
+
+  if (pid < 0)
+      return NULL;
+  else if (pid == 0)
+  {
+      if (cwd && *cwd) {
+        chdir(cwd);
+      }
+
+      if (type[0] == 'r') {
+        close(p[0]);
+        dup2(p[1], 1);
+      } else {
+        close(p[1]);
+        dup2(p[0], 0);
+      }
+
+      execl("/bin/sh", "sh", "-c", command, NULL);
+      perror("execl");
+      exit(1);
   }
-  return HeavyPopenImpl(cmd, type, cwd);
+
+  FILE *f;
+  if (type[0] == 'r') {
+    close(p[1]);
+    f = fdopen(p[0], type);
+  } else {
+    close(p[0]);
+    f = fdopen(p[1], type);
+  }
+
+  Lock lock(s_pidMutex);
+  s_pidMap[f] = pid;
+  return f;
+}
+
+int LightProcess::pcloseat(FILE *f) {
+  int status;
+  fclose(f);
+  waitpid(s_pidMap[f], &status, 0);
+
+  Lock lock(s_pidMutex);
+  s_pidMap.erase(f);
+
+  return status;
 }
 
 FILE *LightProcess::HeavyPopenImpl(const char *cmd, const char *type,
                                    const char *cwd) {
-  if (cwd && *cwd) {
-    string old_cwd = Process::GetCurrentDirectory();
-    if (old_cwd != cwd) {
-      Lock lock(s_mutex);
-      if (chdir(cwd)) {
-        Logger::Warning("Failed to chdir to %s.", cwd);
-      }
-      FILE *f = ::popen(cmd, type);
-      if (chdir(old_cwd.c_str())) {
-        // error occured changing cwd back
-      }
-      return f;
-    }
-  }
-  return ::popen(cmd, type);
+  return popenat(cmd, type, cwd);
 }
 
 FILE *LightProcess::LightPopenImpl(const char *cmd, const char *type,
@@ -550,7 +583,7 @@ FILE *LightProcess::LightPopenImpl(const char *cmd, const char *type,
 
 int LightProcess::pclose(FILE *f) {
   if (!Available()) {
-    return ::pclose(f);
+    return pcloseat(f);
   }
 
   int id = GetId();

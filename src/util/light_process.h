@@ -81,6 +81,8 @@ private:
                               const char *cwd);
   static FILE *HeavyPopenImpl(const char *cmd, const char *type,
                               const char *cwd);
+  static FILE *popenat(const char *command, const char *type, const char * cwd);
+  static int pcloseat(FILE *f);
 
   static Mutex s_mutex;
   pid_t m_shadowProcess;
@@ -91,6 +93,8 @@ private:
   int m_afdt_fd;
   int m_afdt_lfd;
   std::map<int64, int64> m_popenMap;
+  static Mutex s_pidMutex;
+  static std::map<FILE *, int64> s_pidMap;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
