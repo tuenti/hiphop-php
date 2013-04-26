@@ -492,7 +492,7 @@ FILE * LightProcess::popenat(const char *command, const char *type, const char *
   int p[2];
   pid_t pid;
 
-  if (pipe(p) != 0)
+  if (pipe2(p, O_CLOEXEC) != 0)
       return NULL;
 
   pid = fork();
