@@ -50,6 +50,8 @@ public:
     POST,
     HEAD,
     AUTO, // check GET parameter first, then POST
+    PUT,
+    DELETE,
   };
 
   // TODO: add all status codes

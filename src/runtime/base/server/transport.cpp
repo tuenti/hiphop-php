@@ -67,8 +67,10 @@ void Transport::onRequestStart(const timespec &queueTime) {
 
 const char *Transport::getMethodName() {
   switch (getMethod()) {
-    case GET:  return "GET";
-    case HEAD: return "HEAD";
+    case GET:    return "GET";
+    case HEAD:   return "HEAD";
+    case PUT:    return "PUT";
+    case DELETE: return "DELETE";
     case POST: {
       const char *m = getExtendedMethod();
       return m ? m : "POST";

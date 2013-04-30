@@ -305,8 +305,10 @@ void HttpProtocol::PrepareSystemVariables(Transport *transport,
   server.set("SERVER_ADMIN", "");
   server.set("SERVER_SIGNATURE", "");
   switch (transport->getMethod()) {
-  case Transport::GET:  server.set("REQUEST_METHOD", "GET");  break;
-  case Transport::HEAD: server.set("REQUEST_METHOD", "HEAD"); break;
+  case Transport::GET:    server.set("REQUEST_METHOD", "GET");    break;
+  case Transport::HEAD:   server.set("REQUEST_METHOD", "HEAD");   break;
+  case Transport::PUT:    server.set("REQUEST_METHOD", "PUT");    break;
+  case Transport::DELETE: server.set("REQUEST_METHOD", "DELETE"); break;
   case Transport::POST:
     if (transport->getExtendedMethod() == NULL) {
       server.set("REQUEST_METHOD", "POST");

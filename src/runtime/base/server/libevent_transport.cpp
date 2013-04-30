@@ -63,6 +63,12 @@ LibEventTransport::LibEventTransport(LibEventServer *server,
   case EVHTTP_REQ_HEAD:
     m_method = Transport::HEAD;
     break;
+  case EVHTTP_REQ_PUT:
+    m_method = Transport::PUT;
+    break;
+  case EVHTTP_REQ_DELETE:
+    m_method = Transport::DELETE;
+    break;
   default:
     ASSERT(false);
     m_method = Transport::UnknownMethod;
