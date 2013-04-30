@@ -25,7 +25,30 @@
 #include <runtime/ext/ext_zlib.h>
 
 namespace HPHP {
-IMPLEMENT_DEFAULT_EXTENSION(memcachepool);
+
+static class memcachePoolExtension : public Extension {
+public:
+  memcachePoolExtension() : Extension("memcachePool") {}
+
+  // implementing IDebuggable
+  virtual int  debuggerSupport() {
+    return SupportInfo;
+  }
+  virtual void debuggerInfo(InfoVec &info) {
+    AddServerStats(info, "mcc.object_count");
+    AddServerStats(info, "mcc.add");
+    AddServerStats(info, "mcc.replace");
+    AddServerStats(info, "mcc.set");
+    AddServerStats(info, "mcc.inc");
+    AddServerStats(info, "mcc.dec");
+    AddServerStats(info, "mcc.flush");
+    AddServerStats(info, "mcc.get");
+    AddServerStats(info, "mcc.hit");
+    AddServerStats(info, "mcc.delete");
+    AddServerStats(info, "mcc.prefetch");
+  }
+
+} s_memcachepool_extension;
 
 /* use lowest byte for flags */
 const int64 k_MEMCACHE_SERIALIZED = 1;
@@ -100,6 +123,7 @@ class MemcacheObjectData {
     memcached_behavior_set(read_st,  MEMCACHED_BEHAVIOR_SUPPORT_CAS, 1);
 
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_USE_UDP, 1);
+    memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_UDP_ALWAYS_FLUSH, 1);
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 1);
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_NOREPLY, 0);
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_NO_BLOCK, 1);
@@ -125,6 +149,9 @@ Object c_MemcachePool::ti_getstoragememcache(const char *, int storage_id, int t
   if (MEMCACHEG(storage_map).count(storage_id) < 1) {
     if (RuntimeOption::MemcachePoolDebug) {
       Logger::Verbose("[MemcachePool] Creating new MemcachePool object for storage id  %d", storage_id);
+    }
+    if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
+      ServerStats::Log("mcc.object_count", 1);
     }
     // Insert new entry
     st_data = &(MEMCACHEG(storage_map)[storage_id]);
@@ -164,6 +191,10 @@ c_MemcachePool::c_MemcachePool(const ObjectStaticCallbacks *cb) : ExtObjectData(
 c_MemcachePool::~c_MemcachePool() {
   if (RuntimeOption::MemcachePoolDebug) {
     Logger::Verbose("[MemcachePool] Destroying MemcachePool object %p", this);
+  }
+
+  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
+    ServerStats::Log("mcc.object_count", -1);
   }
 
   close();
@@ -290,6 +321,9 @@ bool c_MemcachePool::t_add(CStrRef key, CVarRef var, int flag /*= 0*/,
   String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
 
   IOStatusHelper io("memcachepool::add");
+  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
+    ServerStats::Log("mcc.add", 1);
+  }
 
   memcached_return_t ret = memcached_add(MEMCACHEL(write_st),
                                         key.c_str(), key.length(),
@@ -311,6 +345,9 @@ bool c_MemcachePool::t_set(CStrRef key, CVarRef var, int flag /*= 0*/,
   String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
 
   IOStatusHelper io("memcachepool::set");
+  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
+    ServerStats::Log("mcc.set", 1);
+  }
 
   memcached_return_t ret = memcached_set(MEMCACHEL(write_st),
                                         key.c_str(), key.length(),
@@ -353,6 +390,9 @@ bool c_MemcachePool::t_replace(CStrRef key, CVarRef var, int flag /*= 0*/,
   String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
 
   IOStatusHelper io("memcachepool::replace");
+  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
+    ServerStats::Log("mcc.replace", 1);
+  }
 
   memcached_return_t ret = memcached_replace(MEMCACHEL(write_st),
                                              key.c_str(), key.length(),
@@ -388,7 +428,6 @@ bool c_MemcachePool::prefetch(CVarRef key) {
   if (real_keys.empty())
     return true;
 
-  IOStatusHelper io("memcachepool::prefetch");
   memcached_return_t ret = memcached_mget(memc, &real_keys[0], &key_len[0],
                                           real_keys.size());
 
@@ -397,6 +436,11 @@ bool c_MemcachePool::prefetch(CVarRef key) {
 
 bool c_MemcachePool::t_prefetch(CVarRef key) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::prefetch);
+
+  IOStatusHelper io("memcachepool::prefetch");
+  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
+    ServerStats::Log("mcc.prefetch", 1);
+  }
 
   return prefetch(key);
 }
@@ -426,6 +470,10 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
   memcached_result_create(memc, &result);
 
   IOStatusHelper io("memcachepool::get");
+  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
+    ServerStats::Log("mcc.get", keyArr.size());
+  }
+
   while ((memcached_fetch_result(memc, &result, &ret)) != NULL) {
     if (ret != MEMCACHED_SUCCESS) {
       check_memcache_return(memc, ret, "", "Error getting multiget results");
@@ -445,6 +493,10 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
 
     if (flags.isReferenced()) flags->set(curkey, cflags, true);
     if (cas.isReferenced())   cas->set(curkey, ccas, true);
+  }
+
+  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
+    ServerStats::Log("mcc.hits", return_val.size());
   }
 
   if ((ret != MEMCACHED_END) && (ret != MEMCACHED_NOTFOUND)) {
@@ -479,6 +531,9 @@ bool c_MemcachePool::t_delete(CStrRef key, int expire /*= 0*/) {
   }
 
   IOStatusHelper io("memcachepool::delete");
+  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
+    ServerStats::Log("mcc.delete", 1);
+  }
 
   memcached_return_t ret = memcached_delete(MEMCACHEL(write_st),
                                             key.c_str(), key.length(),
@@ -494,6 +549,9 @@ Variant c_MemcachePool::t_increment(CStrRef key, int offset /*= 1*/) {
   }
 
   IOStatusHelper io("memcachepool::increment");
+  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
+    ServerStats::Log("mcc.inc", 1);
+  }
 
   uint64_t value;
   memcached_return_t ret = memcached_increment(MEMCACHEL(write_st), key.c_str(),
@@ -514,6 +572,9 @@ Variant c_MemcachePool::t_decrement(CStrRef key, int offset /*= 1*/) {
   }
 
   IOStatusHelper io("memcachepool::decrement");
+  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
+    ServerStats::Log("mcc.dec", 1);
+  }
 
   uint64_t value;
   memcached_return_t ret = memcached_decrement(MEMCACHEL(write_st), key.c_str(),
@@ -573,7 +634,10 @@ bool c_MemcachePool::t_flush(int expire /*= 0*/) {
   IOStatusHelper io("memcachepool::flush");
 
   memcached_return_t ret = memcached_flush(MEMCACHEL(write_st), expire);
-    
+  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
+    ServerStats::Log("mcc.flush", 1);
+  }
+
   return check_memcache_return(MEMCACHEL(write_st), ret, "", "Error flushing servers");
 }
 
