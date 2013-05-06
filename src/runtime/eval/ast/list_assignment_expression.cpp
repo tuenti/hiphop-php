@@ -68,7 +68,7 @@ void SubListElement::collectOffsets(TempExpressionListPtr texp) {
 }
 
 void SubListElement::set(VariableEnvironment &env, CVarRef val) const {
-  if (val.toArray().size() < m_elems.size()) {
+  if (val.is(KindOfArray) && val.toArray().size() < m_elems.size()) {
     raise_notice("Not enough elements on rval value to fill the list() expression (%d < %d)",
                   val.toArray().size(), m_elems.size());
   }
