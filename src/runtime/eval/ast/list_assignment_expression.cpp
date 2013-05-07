@@ -68,14 +68,10 @@ void SubListElement::collectOffsets(TempExpressionListPtr texp) {
 }
 
 void SubListElement::set(VariableEnvironment &env, CVarRef val) const {
-  if (val.is(KindOfArray) && val.toArray().size() < m_elems.size()) {
-    raise_notice("Not enough elements on rval value to fill the list() expression (%d < %d)",
-                  val.toArray().size(), m_elems.size());
-  }
   for (int i = m_elems.size() - 1; i >= 0; i--) {
     const ListElementPtr &le = m_elems[i];
     if (le) {
-      le->set(env, val[i]);
+      le->set(env, val.rvalAt(i, AccessFlags::Key));
     }
   }
 }
