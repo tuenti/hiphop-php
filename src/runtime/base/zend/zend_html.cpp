@@ -506,9 +506,6 @@ static void init_entity_table() {
 char *string_html_encode(const char *input, int &len, bool encode_double_quote,
                          bool encode_single_quote, bool utf8, bool nbsp) {
   ASSERT(input);
-  if (!*input) {
-    return NULL;
-  }
 
   // Set 100 M as the html encoding limit
   if (len > 100 * 1024 * 1024) {
@@ -543,7 +540,7 @@ char *string_html_encode(const char *input, int &len, bool encode_double_quote,
     return NULL;
   }
   char *q = ret;
-  for (const char *p = input; *p; p++) {
+  for (const char *p = input; p < input + len; p++) {
     unsigned char c = *p;
     switch (c) {
     case '"':
