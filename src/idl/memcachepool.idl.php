@@ -966,6 +966,24 @@ DefineFunction(
     ),
   ));
 
+DefineFunction(
+  array(
+    'name'   => "sethashfunction",
+		'desc'   => "MemcachePool::setHashFunction() allow you to change the default
+		function for your MemcachePool instance",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Boolean,
+      'desc'   => "Returns TRUE on success or FALSE on failure.",
+    ),
+    'args'   => array(
+      array(
+        'name'   => "hashfunction",
+        'type'   => Int64,
+				'desc'   => "Hash function",
+      ),
+    ),
+  ));
 
 DefineFunction(
   array(
@@ -984,3 +1002,6 @@ DefineConstant(array('name' => "MEMCACHE_COMPRESSED", 'type' => Int64,));
 DefineConstant(array('name' => "MEMCACHE_SERIALIZED", 'type' => Int64,));
 DefineConstant(array('name' => "MEMCACHE_STRATEGY_STANDARD", 'type' => Int64,));
 DefineConstant(array('name' => "MEMCACHE_STRATEGY_CONSISTENT", 'type' => Int64,));
+DefineConstant(array('name' => "MEMCACHE_HASH_CRC32", 'type' => Int64,));
+DefineConstant(array('name' => "MEMCACHE_HASH_FNV", 'type' => Int64,));
+DefineConstant(array('name' => "MEMCACHE_HASH_MURMUR", 'type' => Int64,));
