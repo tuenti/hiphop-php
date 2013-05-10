@@ -9049,6 +9049,7 @@ const int c_MemcachePool::s_instanceof_index[] = {
   -1,0,
 };
 CallInfo c_MemcachePool::ci_getstoragememcache((void*)&c_MemcachePool::i_getstoragememcache, (void*)&c_MemcachePool::ifa_getstoragememcache, 4, 12, 0x0000000000000004LL);
+CallInfo c_MemcachePool::ci_sethashfunction((void*)&c_MemcachePool::i_sethashfunction, (void*)&c_MemcachePool::ifa_sethashfunction, 1, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_increment((void*)&c_MemcachePool::i_increment, (void*)&c_MemcachePool::ifa_increment, 2, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_close((void*)&c_MemcachePool::i_close, (void*)&c_MemcachePool::ifa_close, 0, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_getstats((void*)&c_MemcachePool::i_getstats, (void*)&c_MemcachePool::ifa_getstats, 3, 4, 0x0000000000000000LL);
@@ -9173,6 +9174,9 @@ Variant c_MemcachePool::i_addserver(MethodCallPackage &mcp, CArrRef params) {
 }
 Variant c_MemcachePool::i_sethashstrategy(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa_sethashstrategy);
+}
+Variant c_MemcachePool::i_sethashfunction(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_sethashfunction);
 }
 Variant c_MemcachePool::i___destruct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___destruct);
@@ -9474,6 +9478,15 @@ Variant c_MemcachePool::ifa_sethashstrategy(MethodCallPackage &mcp, int count, I
   CVarRef arg0(a0);
   return (self->t_sethashstrategy(arg0));
 }
+Variant c_MemcachePool::ifa_sethashfunction(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_sethashfunction, coo_MemcachePool);
+  }
+  c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
+  if (UNLIKELY(count != 1)) return throw_wrong_arguments("sethashfunction", count, 1, 1, 1);
+  CVarRef arg0(a0);
+  return (self->t_sethashfunction(arg0));
+}
 Variant c_MemcachePool::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
     return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___destruct, coo_MemcachePool);
@@ -9484,6 +9497,7 @@ Variant c_MemcachePool::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE
 }
 const MethodCallInfoTable c_MemcachePool::s_call_info_table[] = {
   { 0x78AE97BFBEBF5341LL, 1, 5, "close", &c_MemcachePool::ci_close },
+  { 0x4AF6E88FB3812D02LL, 1, 15, "sethashfunction", &c_MemcachePool::ci_sethashfunction },
   { 0x42FAC655280A6146LL, 1, 7, "replace", &c_MemcachePool::ci_replace },
   { 0x39099707DF7945C7LL, 1, 9, "increment", &c_MemcachePool::ci_increment },
   { 0x15D34462FC79458BLL, 1, 3, "add", &c_MemcachePool::ci_add },
@@ -9513,14 +9527,14 @@ const MethodCallInfoTable c_MemcachePool::s_call_info_table[] = {
 };
 const int c_MemcachePool::s_call_info_index[] = {
   63,
-  -1,0,-1,-1,-1,-1,1,2,
-  -1,-1,-1,3,-1,-1,-1,5,
-  -1,-1,6,7,-1,-1,8,-1,
-  -1,9,10,-1,-1,-1,11,12,
-  -1,13,15,-1,-1,16,17,-1,
-  18,-1,-1,-1,-1,-1,-1,-1,
-  -1,-1,19,20,-1,-1,21,-1,
-  -1,22,23,-1,-1,24,25,-1,
+  -1,0,1,-1,-1,-1,2,3,
+  -1,-1,-1,4,-1,-1,-1,6,
+  -1,-1,7,8,-1,-1,9,-1,
+  -1,10,11,-1,-1,-1,12,13,
+  -1,14,16,-1,-1,17,18,-1,
+  19,-1,-1,-1,-1,-1,-1,-1,
+  -1,-1,20,21,-1,-1,22,-1,
+  -1,23,24,-1,-1,25,26,-1,
 
 };
 c_MemcachePool *c_MemcachePool::create() {

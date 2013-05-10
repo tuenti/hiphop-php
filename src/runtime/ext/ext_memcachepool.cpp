@@ -55,6 +55,9 @@ const int64 k_MEMCACHE_SERIALIZED = 1;
 const int64 k_MEMCACHE_COMPRESSED = 2;
 const int64 k_MEMCACHE_STRATEGY_STANDARD = 0;
 const int64 k_MEMCACHE_STRATEGY_CONSISTENT = 1;
+const int64 k_MEMCACHE_HASH_CRC32 = 2;
+const int64 k_MEMCACHE_HASH_MURMUR = 8;
+const int64 k_MEMCACHE_HASH_FNV = 11;
 
 /* use second lowest byte to indicate data type */
 const int64 MMC_TYPE_BOOL   = 0x0100;
@@ -436,7 +439,6 @@ bool c_MemcachePool::prefetch(CVarRef key) {
 
 bool c_MemcachePool::t_prefetch(CVarRef key) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::prefetch);
-
   IOStatusHelper io("memcachepool::prefetch");
   if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
     ServerStats::Log("mcc.prefetch", 1);
@@ -447,7 +449,6 @@ bool c_MemcachePool::t_prefetch(CVarRef key) {
 
 Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam cas /*= null*/) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::get);
-
   if (!prefetch(key))
     return false;
 
@@ -933,12 +934,27 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
 }
 
 bool c_MemcachePool::t_sethashstrategy(int64 hashstrategy) {
+  INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::sethashstrategy);
   memcached_return_t ret, ret2;
 
   ret = memcached_behavior_set(MEMCACHEL(write_st), MEMCACHED_BEHAVIOR_DISTRIBUTION, hashstrategy);
   ret2 = memcached_behavior_set(MEMCACHEL(read_st), MEMCACHED_BEHAVIOR_DISTRIBUTION, hashstrategy);
 
   return ((ret != MEMCACHED_SUCCESS) || (ret2 != MEMCACHED_SUCCESS));
+}
+
+bool c_MemcachePool::t_sethashfunction(int64 hashfunction) {
+  INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::sethashfunction);
+  memcached_return_t ret, ret2, ret3, ret4;
+
+  ret = memcached_behavior_set_key_hash(MEMCACHEL(write_st), (memcached_hash_t) hashfunction);
+  ret2 = memcached_behavior_set_key_hash(MEMCACHEL(read_st), (memcached_hash_t) hashfunction);
+
+  ret3 = memcached_behavior_set_distribution_hash(MEMCACHEL(write_st), (memcached_hash_t) hashfunction);
+  ret4 = memcached_behavior_set_distribution_hash(MEMCACHEL(read_st), (memcached_hash_t) hashfunction);
+
+  return ((ret != MEMCACHED_SUCCESS) || (ret2 != MEMCACHED_SUCCESS) ||
+          (ret3 != MEMCACHED_SUCCESS) || (ret4 != MEMCACHED_SUCCESS));
 }
 
 Variant c_MemcachePool::t___destruct() {

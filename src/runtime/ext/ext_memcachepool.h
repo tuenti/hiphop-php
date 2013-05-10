@@ -29,6 +29,9 @@ extern const int64 k_MEMCACHE_COMPRESSED;
 extern const int64 k_MEMCACHE_SERIALIZED;
 extern const int64 k_MEMCACHE_STRATEGY_STANDARD;
 extern const int64 k_MEMCACHE_STRATEGY_CONSISTENT;
+extern const int64 k_MEMCACHE_HASH_CRC32;
+extern const int64 k_MEMCACHE_HASH_MURMUR;
+extern const int64 k_MEMCACHE_HASH_FNV;
 
 ///////////////////////////////////////////////////////////////////////////////
 // class MemcachePool
@@ -94,6 +97,8 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
   DECLARE_METHOD_INVOKE_HELPERS(addserver);
   public: bool t_sethashstrategy(int64 hashstrategy);
   DECLARE_METHOD_INVOKE_HELPERS(sethashstrategy);
+  public: bool t_sethashfunction(int64 hashfunction);
+  DECLARE_METHOD_INVOKE_HELPERS(sethashfunction);
   public: Variant t___destruct();
   DECLARE_METHOD_INVOKE_HELPERS(__destruct);
 

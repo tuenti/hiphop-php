@@ -120,6 +120,7 @@ StaticString s_sys_ss924a5deb("add");
 StaticString s_sys_ss93209dde("OPT_RECV_TIMEOUT");
 StaticString s_sys_ss9332a8ac("internal");
 VarNR s_sys_svs9332a8ac;
+StaticString s_sys_ss93412e2d("sethashfunction");
 StaticString s_sys_ss935fd125("-");
 StaticString s_sys_ss9370ee75("ATTR_AUTOCOMMIT");
 StaticString s_sys_ss93a1e99d("getMultiByKey");

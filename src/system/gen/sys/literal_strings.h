@@ -125,6 +125,7 @@ extern StaticString s_sys_ss924a5deb;
 extern StaticString s_sys_ss93209dde;
 extern StaticString s_sys_ss9332a8ac;
 extern VarNR s_sys_svs9332a8ac;
+extern StaticString s_sys_ss93412e2d;
 extern StaticString s_sys_ss935fd125;
 extern StaticString s_sys_ss9370ee75;
 extern StaticString s_sys_ss93a1e99d;

@@ -2089,7 +2089,7 @@ public:
   hashNodeCon *next;
 };
 static hashNodeCon *conMapTable[8192];
-static hashNodeCon conBuckets[2205];
+static hashNodeCon conBuckets[2208];
 
 void init_builtin_constant_table() {
   const char *conMapData[] = {
@@ -2928,6 +2928,9 @@ void init_builtin_constant_table() {
       (const char *)"MCRYPT_WAKE", (const char *)-1, (const char *)128, (const char *)&k_MCRYPT_WAKE,
       (const char *)"MCRYPT_XTEA", (const char *)-1, (const char *)128, (const char *)&k_MCRYPT_XTEA,
       (const char *)"MEMCACHE_COMPRESSED", (const char *)-1, (const char *)32, (const char *)&k_MEMCACHE_COMPRESSED,
+      (const char *)"MEMCACHE_HASH_CRC32", (const char *)-1, (const char *)32, (const char *)&k_MEMCACHE_HASH_CRC32,
+      (const char *)"MEMCACHE_HASH_FNV", (const char *)-1, (const char *)32, (const char *)&k_MEMCACHE_HASH_FNV,
+      (const char *)"MEMCACHE_HASH_MURMUR", (const char *)-1, (const char *)32, (const char *)&k_MEMCACHE_HASH_MURMUR,
       (const char *)"MEMCACHE_SERIALIZED", (const char *)-1, (const char *)32, (const char *)&k_MEMCACHE_SERIALIZED,
       (const char *)"MEMCACHE_STRATEGY_CONSISTENT", (const char *)-1, (const char *)32, (const char *)&k_MEMCACHE_STRATEGY_CONSISTENT,
       (const char *)"MEMCACHE_STRATEGY_STANDARD", (const char *)-1, (const char *)32, (const char *)&k_MEMCACHE_STRATEGY_STANDARD,
