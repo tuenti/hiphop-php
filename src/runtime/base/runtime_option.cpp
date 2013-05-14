@@ -1151,7 +1151,7 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
      MemcachePoolHashStrategy = memcachepool_config["HashStrategy"].getInt32(0);
      MemcachePoolHashFunction = memcachepool_config["HashFunction"].getInt32(11);
      MemcachePoolCompressThreshold = memcachepool_config["CompressThreshold"].getInt32(1000);
-     MemcachePoolDebug = memcachepool_config["MemcachePoolDebug"].getBool(false);
+     MemcachePoolDebug = memcachepool_config["Debug"].getBool(false);
   }
   {
      Hdf geoip_config = config["GeoIP"];
