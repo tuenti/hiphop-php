@@ -89,6 +89,7 @@
 #include <test/test_ext_url.h>
 #include <test/test_ext_userpartition.h>
 #include <test/test_ext_variable.h>
+#include <test/test_ext_xconfig.h>
 #include <test/test_ext_xml.h>
 #include <test/test_ext_xmlreader.h>
 #include <test/test_ext_xmlwriter.h>

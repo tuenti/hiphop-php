@@ -74,6 +74,7 @@
 #include "url.inc"
 #include "userpartition.inc"
 #include "variable.inc"
+#include "xconfig.inc"
 #include "xml.inc"
 #include "xmlreader.inc"
 #include "xmlwriter.inc"

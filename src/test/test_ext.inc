@@ -74,6 +74,7 @@ RUN_TESTSUITE(TestExtTuenti_jsonloader);
 RUN_TESTSUITE(TestExtUrl);
 RUN_TESTSUITE(TestExtUserpartition);
 RUN_TESTSUITE(TestExtVariable);
+RUN_TESTSUITE(TestExtXconfig);
 RUN_TESTSUITE(TestExtXml);
 RUN_TESTSUITE(TestExtXmlreader);
 RUN_TESTSUITE(TestExtXmlwriter);

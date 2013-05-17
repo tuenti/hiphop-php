@@ -363,4 +363,6 @@ endif()
 		target_link_libraries(${target} ${PAM_LIBRARY})
 	endif()
 
+	target_link_libraries(${target} xconfig)
+
 endmacro()
