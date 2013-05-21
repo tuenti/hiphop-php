@@ -19,6 +19,8 @@
 #include <xconfig/xconfig.h>
 
 using boost::shared_ptr;
+using std::string;
+using std::vector;
 
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
@@ -31,7 +33,6 @@ c_XConfig::~c_XConfig()
 void c_XConfig::t___construct(CStrRef path, CStrRef socket)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::__construct);
-  //xc = new XConfig(new XConfigFileConnection(path->toCPPString()));
   xc = shared_ptr<XConfig>(new XConfig(new XConfigFileConnection(path->toCPPString())));
 }
 
@@ -76,24 +77,25 @@ Variant c_XConfig::get_value(const XConfigNode& node)
     return String(xc->get_string(node));
   case XConfigTypeSequence:
   {
-    std::vector<XConfigNode> children = xc->get_children(node);
+    vector<XConfigNode> children = xc->get_children(node);
     Array ret(ArrayInit(children.size()));
-    for (std::vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
+    for (vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
       ret.append(get_value(*it));
     }
     return ret;
   } 
   case XConfigTypeMap:
   {
-    std::vector<XConfigNode> children = xc->get_children(node);
+    vector<XConfigNode> children = xc->get_children(node);
     Array ret(ArrayInit(children.size()));
-    for (std::vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
+    for (vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
         ret.set(String(xc->get_name(*it)), get_value(*it));
     }
     return ret;
   } 
+  default:
+    throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create(String("Wrong Type")));
   }
-  return 3;
 }
 Variant c_XConfig::t_getvalue(CVarRef key)
 {
@@ -150,8 +152,12 @@ Array c_XConfig::t_getmapkeys(CVarRef key)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::getmapkeys);
   XConfigNode node = get_node_from_variant(key);
-return Array();
-//  return xc->get_map_keys(node);
+  vector<string> keys = xc->get_map_keys(node);
+  Array ret(ArrayInit(keys.size()));
+  for (vector<string>::const_iterator it = keys.begin(); it != keys.end(); ++it) {
+    ret.append(String(*it));
+  }
+  return ret;
 }
 Object c_XConfig::t_getnode(CVarRef key)
 {
@@ -192,9 +198,9 @@ Object c_XConfigNode::t_getparent()
 Array c_XConfigNode::t_getchildren()
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfigNode, XConfigNode::getchildren);
-  std::vector<XConfigNode> children = xc->get_children(*node);
+  vector<XConfigNode> children = xc->get_children(*node);
   Array ret(ArrayInit(children.size()));
-  for (std::vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
+  for (vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
     c_XConfigNode* c_node = (NEWOBJ(c_XConfigNode)())->create();
     c_node->_init(xc, *it);
     ret.append(c_node);
