@@ -76,8 +76,8 @@ Variant c_XConfig::get_value(const XConfigNode& node)
     return String(xc->get_string(node));
   case XConfigTypeSequence:
   {
-    Array ret;
     std::vector<XConfigNode> children = xc->get_children(node);
+    Array ret(ArrayInit(children.size()));
     for (std::vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
       ret.append(get_value(*it));
     }
@@ -85,8 +85,8 @@ Variant c_XConfig::get_value(const XConfigNode& node)
   } 
   case XConfigTypeMap:
   {
-    Array ret;
     std::vector<XConfigNode> children = xc->get_children(node);
+    Array ret(ArrayInit(children.size()));
     for (std::vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
         ret.set(String(xc->get_name(*it)), get_value(*it));
     }
@@ -120,10 +120,7 @@ Array c_XConfig::t_getmtime(CVarRef key)
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::getmtime);
   XConfigNode node = get_node_from_variant(key);
   struct timespec ts = xc->get_mtime(node);
-  Array ret;
-  ret.append(ts.tv_sec);
-  ret.append(ts.tv_nsec);
-  return ret;
+  return ArrayInit(2).set(ts.tv_sec).set(ts.tv_nsec).create();
 }
 bool c_XConfig::t_isscalar(CVarRef key)
 {
@@ -195,8 +192,8 @@ Object c_XConfigNode::t_getparent()
 Array c_XConfigNode::t_getchildren()
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfigNode, XConfigNode::getchildren);
-  Array ret;
   std::vector<XConfigNode> children = xc->get_children(*node);
+  Array ret(ArrayInit(children.size()));
   for (std::vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
     c_XConfigNode* c_node = (NEWOBJ(c_XConfigNode)())->create();
     c_node->_init(xc, *it);
