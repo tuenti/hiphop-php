@@ -18,20 +18,21 @@
 #include <runtime/ext/ext_xconfig.h>
 #include <xconfig/xconfig.h>
 
+using boost::shared_ptr;
+
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
-c_XConfig::c_XConfig(const ObjectStaticCallbacks *cb) : ExtObjectData(cb), xc(0)
+c_XConfig::c_XConfig(const ObjectStaticCallbacks *cb) : ExtObjectData(cb)
 {
 }
 c_XConfig::~c_XConfig()
 {
-  if (xc)
-    delete xc;
 }
 void c_XConfig::t___construct(CStrRef path, CStrRef socket)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::__construct);
-  xc = new XConfig(new XConfigFileConnection(path->toCPPString()));
+  //xc = new XConfig(new XConfigFileConnection(path->toCPPString()));
+  xc = shared_ptr<XConfig>(new XConfig(new XConfigFileConnection(path->toCPPString())));
 }
 
 XConfigNode c_XConfig::get_node_from_variant(CVarRef key) {
@@ -41,7 +42,7 @@ XConfigNode c_XConfig::get_node_from_variant(CVarRef key) {
   {
     c_XConfigNode* c_node = key.toObject().getTyped<c_XConfigNode>(true, true);
     if (c_node) {
-      if (&c_node->getXConfig() == xc) {
+      if (c_node->getXConfig() == xc) {
         node = c_node->getNode();
       }
     }
@@ -160,7 +161,7 @@ Object c_XConfig::t_getnode(CVarRef key)
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::getnode);
   XConfigNode node = get_node_from_variant(key);
   c_XConfigNode* ret = (NEWOBJ(c_XConfigNode)())->create();
-  ret->_init(*xc, node);
+  ret->_init(xc, node);
   return ret;
 }
 
@@ -188,7 +189,7 @@ Object c_XConfigNode::t_getparent()
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfigNode, XConfigNode::getparent);
   c_XConfigNode* ret = (NEWOBJ(c_XConfigNode)())->create();
-  ret->_init(*xc, xc->get_parent(*node));
+  ret->_init(xc, xc->get_parent(*node));
   return ret;
 }
 Array c_XConfigNode::t_getchildren()
@@ -198,7 +199,7 @@ Array c_XConfigNode::t_getchildren()
   std::vector<XConfigNode> children = xc->get_children(*node);
   for (std::vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
     c_XConfigNode* c_node = (NEWOBJ(c_XConfigNode)())->create();
-    c_node->_init(*xc, *it);
+    c_node->_init(xc, *it);
     ret.append(c_node);
   }
   return ret;
@@ -208,18 +209,18 @@ String c_XConfigNode::t_getname()
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfigNode, XConfigNode::getname);
   return xc->get_name(*node);
 }
-void c_XConfigNode::_init(XConfig& xc, const XConfigNode& n)
+void c_XConfigNode::_init(boost::shared_ptr<XConfig> xc, const XConfigNode& n)
 {
   *this->node = n;
-  this->xc = &xc;
+  this->xc = xc;
 }
 const XConfigNode& c_XConfigNode::getNode() const
 {
   return *node;
 }
-const XConfig& c_XConfigNode::getXConfig() const
+boost::shared_ptr<XConfig> c_XConfigNode::getXConfig() const
 {
-  return *xc;
+  return xc;
 }
 
 c_XConfigException::c_XConfigException(const ObjectStaticCallbacks *cb) : c_Exception(cb)
