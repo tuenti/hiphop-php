@@ -53,18 +53,28 @@ XConfigNode c_XConfig::get_node_from_variant(CVarRef key) {
     if (c_node) {
       if (c_node->getXConfig() == xc) {
         node = c_node->getNode();
+      } else {
+        throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create("XConfigNode object belongs to another XConfig instance"));
       }
+    } else {
+      throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create("Expected XConfigNode object"));
     }
   }
     break;
   case KindOfStaticString:
   case KindOfString:
-  {
     node = xc->get_node(key.toString()->toCPPString());
     break;
-  }
   case KindOfArray:
-    // TODO
+  {
+    vector<string> keys(key.toArray().size());
+    int i = 0;
+    for (ArrayIter iter(key.toArray()); iter; ++iter, ++i) {
+      keys[i] = iter.second().toString()->toCPPString();
+    }
+    node = xc->get_node(keys);
+  }
+    break;
   default:
     throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create(key));
     break;
