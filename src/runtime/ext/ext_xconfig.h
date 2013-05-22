@@ -28,6 +28,12 @@ class XConfigNode;
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
 
+extern const int q_XConfig___TYPE_STRING;
+extern const int q_XConfig___TYPE_BOOLEAN;
+extern const int q_XConfig___TYPE_INTEGER;
+extern const int q_XConfig___TYPE_FLOAT;
+extern const int q_XConfig___TYPE_MAP;
+extern const int q_XConfig___TYPE_SEQUENCE;
 
 ///////////////////////////////////////////////////////////////////////////////
 // class XConfig
@@ -65,6 +71,7 @@ class c_XConfig : public ExtObjectData {
 
   // implemented by HPHP
   public: c_XConfig *create(String path, String socket = null);
+  static const ClassPropTable os_prop_table;
 
 private:
   boost::shared_ptr<XConfig> xc;

@@ -14,6 +14,7 @@
 // Preamble: C++ code inserted at beginning of ext_{name}.h
 
 DefinePreamble(<<<CPP
+#include <boost/shared_ptr.hpp>
 #include <boost/scoped_ptr.hpp>
 class XConfig;
 class XConfigNode;
@@ -103,13 +104,20 @@ BeginClass(
     'footer' => <<<EOT
 
 private:
-  XConfig* xc;
+  boost::shared_ptr<XConfig> xc;
 
   XConfigNode get_node_from_variant(CVarRef key);
   Variant get_value(const XConfigNode& node);
 EOT
 ,
   ));
+
+DefineConstant(array('name' => "TYPE_STRING", 'type' => Int32,));
+DefineConstant(array('name' => "TYPE_BOOLEAN", 'type' => Int32,));
+DefineConstant(array('name' => "TYPE_INTEGER", 'type' => Int32,));
+DefineConstant(array('name' => "TYPE_FLOAT", 'type' => Int32,));
+DefineConstant(array('name' => "TYPE_MAP", 'type' => Int32,));
+DefineConstant(array('name' => "TYPE_SEQUENCE", 'type' => Int32,));
 
 DefineFunction(
   array(
@@ -318,12 +326,12 @@ BeginClass(
 
   friend class c_XConfig;
 private:
-  XConfig* xc;
+  boost::shared_ptr<XConfig> xc;
   boost::scoped_ptr<XConfigNode> node;
 
-  void _init(XConfig& xc, const XConfigNode& n);
+  void _init(boost::shared_ptr<XConfig> xc, const XConfigNode& n);
   const XConfigNode& getNode() const;
-  const XConfig& getXConfig() const;
+  boost::shared_ptr<XConfig> getXConfig() const;
 EOT
 ,
   ));

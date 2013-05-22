@@ -24,6 +24,14 @@ using std::vector;
 
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
+
+const int q_XConfig___TYPE_STRING = XConfigTypeString;
+const int q_XConfig___TYPE_BOOLEAN = XConfigTypeBoolean;
+const int q_XConfig___TYPE_INTEGER = XConfigTypeInteger;
+const int q_XConfig___TYPE_FLOAT = XConfigTypeFloat;
+const int q_XConfig___TYPE_MAP = XConfigTypeMap;
+const int q_XConfig___TYPE_SEQUENCE = XConfigTypeSequence;
+
 c_XConfig::c_XConfig(const ObjectStaticCallbacks *cb) : ExtObjectData(cb)
 {
 }
