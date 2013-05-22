@@ -23,8 +23,10 @@
 #include <runtime/base/base_includes.h>
 #include <boost/shared_ptr.hpp>
 #include <boost/scoped_ptr.hpp>
+namespace xconfig {
 class XConfig;
 class XConfigNode;
+}
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -74,10 +76,10 @@ class c_XConfig : public ExtObjectData {
   static const ClassPropTable os_prop_table;
 
 private:
-  boost::shared_ptr<XConfig> xc;
+  boost::shared_ptr<xconfig::XConfig> xc;
 
-  XConfigNode get_node_from_variant(CVarRef key);
-  Variant get_value(const XConfigNode& node);
+  xconfig::XConfigNode get_node_from_variant(CVarRef key);
+  Variant get_value(const xconfig::XConfigNode& node);
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -107,12 +109,12 @@ class c_XConfigNode : public ExtObjectData {
 
   friend class c_XConfig;
 private:
-  boost::shared_ptr<XConfig> xc;
-  boost::scoped_ptr<XConfigNode> node;
+  boost::shared_ptr<xconfig::XConfig> xc;
+  boost::scoped_ptr<xconfig::XConfigNode> node;
 
-  void _init(boost::shared_ptr<XConfig> xc, const XConfigNode& n);
-  const XConfigNode& getNode() const;
-  boost::shared_ptr<XConfig> getXConfig() const;
+  void _init(boost::shared_ptr<xconfig::XConfig> xc, const xconfig::XConfigNode& n);
+  const xconfig::XConfigNode& getNode() const;
+  boost::shared_ptr<xconfig::XConfig> getXConfig() const;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

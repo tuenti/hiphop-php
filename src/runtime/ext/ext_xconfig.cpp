@@ -21,16 +21,21 @@
 using boost::shared_ptr;
 using std::string;
 using std::vector;
+using xconfig::XConfig;
+using xconfig::XConfigNode;
+using xconfig::XConfigFileConnection;
+using xconfig::XConfigNotFound;
+using xconfig::XConfigNotConnected;
 
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
 
-const int q_XConfig___TYPE_STRING = XConfigTypeString;
-const int q_XConfig___TYPE_BOOLEAN = XConfigTypeBoolean;
-const int q_XConfig___TYPE_INTEGER = XConfigTypeInteger;
-const int q_XConfig___TYPE_FLOAT = XConfigTypeFloat;
-const int q_XConfig___TYPE_MAP = XConfigTypeMap;
-const int q_XConfig___TYPE_SEQUENCE = XConfigTypeSequence;
+const int q_XConfig___TYPE_STRING = xconfig::TYPE_STRING;
+const int q_XConfig___TYPE_BOOLEAN = xconfig::TYPE_BOOLEAN;
+const int q_XConfig___TYPE_INTEGER = xconfig::TYPE_INTEGER;
+const int q_XConfig___TYPE_FLOAT = xconfig::TYPE_FLOAT;
+const int q_XConfig___TYPE_MAP = xconfig::TYPE_MAP;
+const int q_XConfig___TYPE_SEQUENCE = xconfig::TYPE_SEQUENCE;
 
 c_XConfig::c_XConfig(const ObjectStaticCallbacks *cb) : ExtObjectData(cb)
 {
@@ -85,15 +90,17 @@ XConfigNode c_XConfig::get_node_from_variant(CVarRef key) {
 Variant c_XConfig::get_value(const XConfigNode& node)
 {
   switch(xc->get_type(node)) {
-  case XConfigTypeBoolean:
+  case xconfig::TYPE_NULL:
+    return null;
+  case xconfig::TYPE_BOOLEAN:
     return String(xc->get_bool(node));
-  case XConfigTypeInteger:
+  case xconfig::TYPE_INTEGER:
     return String(xc->get_int(node));
-  case XConfigTypeFloat:
+  case xconfig::TYPE_FLOAT:
     return String(xc->get_float(node));
-  case XConfigTypeString:
+  case xconfig::TYPE_STRING:
     return String(xc->get_string(node));
-  case XConfigTypeSequence:
+  case xconfig::TYPE_SEQUENCE:
   {
     vector<XConfigNode> children = xc->get_children(node);
     Array ret(ArrayInit(children.size()));
@@ -102,7 +109,7 @@ Variant c_XConfig::get_value(const XConfigNode& node)
     }
     return ret;
   } 
-  case XConfigTypeMap:
+  case xconfig::TYPE_MAP:
   {
     vector<XConfigNode> children = xc->get_children(node);
     Array ret(ArrayInit(children.size()));
