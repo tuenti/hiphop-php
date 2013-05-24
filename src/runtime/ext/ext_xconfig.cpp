@@ -15,10 +15,15 @@
    +----------------------------------------------------------------------+
 */
 
+#include <utility>
+#include <boost/make_shared.hpp>
+#include <boost/unordered_map.hpp>
+
 #include <runtime/ext/ext_xconfig.h>
 #include <xconfig/xconfig.h>
 
 using boost::shared_ptr;
+using boost::unordered_map;
 using std::string;
 using std::vector;
 using xconfig::XConfig;
@@ -28,6 +33,53 @@ using xconfig::XConfigNotFound;
 using xconfig::XConfigNotConnected;
 
 namespace HPHP {
+///////////////////////////////////////////////////////////////////////////////
+class XConfigCache: public RequestEventHandler {
+  struct Item {
+    shared_ptr<XConfig> xc;
+    time_t last_use;
+  };
+  typedef std::pair<string, string> CacheKey;
+
+  static const int timeout = 30;
+
+  public:
+  // Static cache per thread
+  unordered_map<CacheKey, Item> cache;
+
+  virtual void requestInit() {
+  }
+
+  // Remove timed out entries at request shutdown;
+  virtual void requestShutdown() {
+    if (RuntimeOption::XConfigCacheEnabled) {
+      time_t threshold = ::time(NULL) - RuntimeOption::XConfigCacheTimeout;
+      for (unordered_map<CacheKey, Item>::iterator it = cache.begin(); it != cache.end();) {
+        if (it->second.last_use < threshold)
+          it = cache.erase(it);
+        else
+          ++it;
+      }
+    }
+  }
+
+  // Get a XConfig object from cache
+  shared_ptr<XConfig> getXConfig(CStrRef path, CStrRef socket) {
+    if (RuntimeOption::XConfigCacheEnabled) {
+      Item& it = cache[CacheKey(path->toCPPString(), socket->toCPPString())];
+      it.last_use = time(NULL);
+      if (!it.xc) {
+        it.xc = boost::make_shared<XConfig>(new XConfigFileConnection(path->toCPPString()), true);
+      }
+      return it.xc;
+    } else {
+      return boost::make_shared<XConfig>(new XConfigFileConnection(path->toCPPString()), true);
+    }
+  }
+};
+
+IMPLEMENT_STATIC_REQUEST_LOCAL(XConfigCache, s_xconfig_cache);
+
 ///////////////////////////////////////////////////////////////////////////////
 
 const int q_XConfig___TYPE_STRING = xconfig::TYPE_STRING;
@@ -46,45 +98,51 @@ c_XConfig::~c_XConfig()
 void c_XConfig::t___construct(CStrRef path, CStrRef socket)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::__construct);
-  xc = shared_ptr<XConfig>(new XConfig(new XConfigFileConnection(path->toCPPString())));
+  xc = s_xconfig_cache->getXConfig(path, socket);
 }
 
 XConfigNode c_XConfig::get_node_from_variant(CVarRef key) {
-  XConfigNode node;
-  switch (key.getType()) {
-  case KindOfObject:
-  {
-    c_XConfigNode* c_node = key.toObject().getTyped<c_XConfigNode>(true, true);
-    if (c_node) {
-      if (c_node->getXConfig() == xc) {
-        node = c_node->getNode();
+  try {
+    XConfigNode node;
+    switch (key.getType()) {
+    case KindOfObject:
+    {
+      c_XConfigNode* c_node = key.toObject().getTyped<c_XConfigNode>(true, true);
+      if (c_node) {
+        if (c_node->getXConfig() == xc) {
+          node = c_node->getNode();
+        } else {
+          throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create("XConfigNode object belongs to another XConfig instance"));
+        }
       } else {
-        throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create("XConfigNode object belongs to another XConfig instance"));
+        throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create("Expected XConfigNode object"));
       }
-    } else {
-      throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create("Expected XConfigNode object"));
     }
-  }
-    break;
-  case KindOfStaticString:
-  case KindOfString:
-    node = xc->get_node(key.toString()->toCPPString());
-    break;
-  case KindOfArray:
-  {
-    vector<string> keys(key.toArray().size());
-    int i = 0;
-    for (ArrayIter iter(key.toArray()); iter; ++iter, ++i) {
-      keys[i] = iter.second().toString()->toCPPString();
+      break;
+    case KindOfStaticString:
+    case KindOfString:
+      node = xc->get_node(key.toString()->toCPPString());
+      break;
+    case KindOfArray:
+    {
+      vector<string> keys(key.toArray().size());
+      int i = 0;
+      for (ArrayIter iter(key.toArray()); iter; ++iter, ++i) {
+        keys[i] = iter.second().toString()->toCPPString();
+      }
+      node = xc->get_node(keys);
     }
-    node = xc->get_node(keys);
+      break;
+    default:
+      throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create(key));
+      break;
+    }
+    return node;
+  } catch (const XConfigNotFound& e) {
+    throw Object((NEWOBJ(c_XConfigNotFoundException)())->create(String("key '") + key.toString() + "' not found"));
+  } catch (const XConfigNotConnected& e) {
+    throw Object((NEWOBJ(c_XConfigNotConnectedException)())->create(String("XConfig not connected")));
   }
-    break;
-  default:
-    throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create(key));
-    break;
-  }
-  return node;
 }
 
 Variant c_XConfig::get_value(const XConfigNode& node)
@@ -125,14 +183,8 @@ Variant c_XConfig::get_value(const XConfigNode& node)
 Variant c_XConfig::t_getvalue(CVarRef key)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::getvalue);
-  try {
-    XConfigNode node = get_node_from_variant(key);
-    return get_value(node);
-  } catch (const XConfigNotFound& e) {
-    throw Object((NEWOBJ(c_XConfigNotFoundException)())->create(String("key '") + key.toString() + "' not found"));
-  } catch (const XConfigNotConnected& e) {
-    throw Object((NEWOBJ(c_XConfigNotConnectedException)())->create(String("XConfig not connected")));
-  }
+  XConfigNode node = get_node_from_variant(key);
+  return get_value(node);
 }
 
 int c_XConfig::t_gettype(CVarRef key)

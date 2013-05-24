@@ -905,3 +905,10 @@ Flags used when opening db file.
   Gmagick {
     Enable = true
   }
+
+= XConfig
+
+  XConfig {
+    CacheEnable = true
+    CacheTimeout = 30
+  }

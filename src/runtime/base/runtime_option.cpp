@@ -409,6 +409,9 @@ bool RuntimeOption::GmagickEnabled = true;
 std::string RuntimeOption::GettextDefaultLocale;
 bool RuntimeOption::GettextDebug = false;
 
+bool RuntimeOption::XConfigCacheEnabled = false;
+int RuntimeOption::XConfigCacheTimeout = 30;
+
 ///////////////////////////////////////////////////////////////////////////////
 // keep this block after all the above static variables, or we will have
 // static variable dependency problems on initialization
@@ -1172,6 +1175,11 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
      Hdf gettext_config = config["Gettext"];
      GettextDefaultLocale = gettext_config["DefaultLocale"].getString("");
      GettextDebug = gettext_config["Debug"].getBool(false);
+  }
+  {
+     Hdf gettext_config = config["XConfig"];
+     XConfigCacheEnabled = gettext_config["CacheEnabled"].getBool(true);
+     XConfigCacheTimeout = gettext_config["CacheTimeout"].getInt32(30);
   }
 
   Extension::LoadModules(config);

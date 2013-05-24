@@ -417,6 +417,9 @@ public:
 
   static std::string GettextDefaultLocale;
   static bool GettextDebug;
+
+  static bool XConfigCacheEnabled;
+  static int XConfigCacheTimeout;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
