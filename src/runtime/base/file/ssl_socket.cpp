@@ -173,7 +173,7 @@ SSL *SSLSocket::createSSL(SSL_CTX *ctx) {
 SSLSocket::SSLSocket()
     : m_handle(NULL), m_ssl_active(false), m_method((CryptoMethod)-1),
       m_client(false), m_connect_timeout(0), m_enable_on_connect(false),
-      m_state_set(false), m_is_blocked(true) {
+      m_state_set(false), m_is_blocked(true), m_eof(false) {
 }
 
 SSLSocket::SSLSocket(int sockfd, int type, const char *address /* = NULL */,
@@ -181,7 +181,7 @@ SSLSocket::SSLSocket(int sockfd, int type, const char *address /* = NULL */,
     : Socket(sockfd, type, address, port),
       m_handle(NULL), m_ssl_active(false), m_method((CryptoMethod)-1),
       m_client(false), m_connect_timeout(0), m_enable_on_connect(false),
-      m_state_set(false), m_is_blocked(true) {
+      m_state_set(false), m_is_blocked(true),m_eof(false) {
 }
 
 SSLSocket::~SSLSocket() {
@@ -587,6 +587,10 @@ bool SSLSocket::enableCrypto(bool activate /* = true */) {
     m_ssl_active = false;
   }
   return true;
+}
+
+bool SSLSocket::eof() {
+  return m_eof || Socket::eof();
 }
 
 bool SSLSocket::checkLiveness() {

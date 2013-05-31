@@ -63,6 +63,7 @@ public:
   virtual bool close();
   virtual int64 readImpl(char *buffer, int64 length);
   virtual int64 writeImpl(const char *buffer, int64 length);
+  virtual bool eof();
   virtual bool checkLiveness();
 
   Array &getContext() { return m_context;}
@@ -79,6 +80,7 @@ private:
   bool m_enable_on_connect;
   bool m_state_set;
   bool m_is_blocked;
+  bool m_eof;
 
   bool closeImpl();
   bool handleError(int64 nr_bytes, bool is_init);

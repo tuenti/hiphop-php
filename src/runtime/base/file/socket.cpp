@@ -48,13 +48,13 @@ IMPLEMENT_STATIC_REQUEST_LOCAL(SocketData, s_socket_data);
 // constructors and destructor
 
 Socket::Socket()
-  : File(true), m_port(0), m_type(-1), m_error(0), m_eof(false), m_timeout(0),
+  : File(true), m_port(0), m_type(-1), m_error(0), m_timeout(0),
     m_timedOut(false), m_bytesSent(0) {
 }
 
 Socket::Socket(int sockfd, int type, const char *address /* = NULL */,
                int port /* = 0 */)
-  : File(true), m_port(port), m_type(type), m_error(0), m_eof(false),
+  : File(true), m_port(port), m_type(type), m_error(0),
     m_timeout(0), m_timedOut(false), m_bytesSent(0) {
   if (address) m_address = address;
   m_fd = sockfd;
@@ -150,7 +150,6 @@ int64 Socket::readImpl(char *buffer, int64 length) {
     int flags = fcntl(m_fd, F_GETFL, 0);
     if ((flags & O_NONBLOCK) == 0) {
       if (!waitForData()) {
-        m_eof = true;
         return 0;
       }
       recvFlags = MSG_DONTWAIT; // polled, so no need to wait any more
@@ -158,16 +157,12 @@ int64 Socket::readImpl(char *buffer, int64 length) {
   }
 
   int64 ret = recv(m_fd, buffer, length, recvFlags);
-  if (ret == 0 || (ret == -1 && errno != EWOULDBLOCK)) {
-    m_eof = true;
-  }
   return (ret < 0) ? 0 : ret;
 }
 
 int64 Socket::writeImpl(const char *buffer, int64 length) {
   ASSERT(m_fd);
   ASSERT(length > 0);
-  m_eof = false;
   IOStatusHelper io("socket::send", m_address.c_str(), m_port);
   int64 ret = send(m_fd, buffer, length, 0);
   if (ret >= 0) {
@@ -177,7 +172,10 @@ int64 Socket::writeImpl(const char *buffer, int64 length) {
 }
 
 bool Socket::eof() {
-  return m_eof;
+  ASSERT(m_fd);
+  char buf;
+  int ret = recv(m_fd, &buf, sizeof(buf), MSG_PEEK);
+  return (ret == 0 || (ret == -1 && errno != EWOULDBLOCK));
 }
 
 Array Socket::getMetaData() {
