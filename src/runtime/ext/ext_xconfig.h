@@ -78,8 +78,8 @@ class c_XConfig : public ExtObjectData {
 private:
   boost::shared_ptr<xconfig::XConfig> xc;
 
-  xconfig::XConfigNode get_node_from_variant(CVarRef key);
-  Variant get_value(const xconfig::XConfigNode& node);
+  xconfig::XConfigNode getNodeFromVariant(CVarRef key);
+  Variant getValue(const xconfig::XConfigNode& node);
 };
 
 ///////////////////////////////////////////////////////////////////////////////

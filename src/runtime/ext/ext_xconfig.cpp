@@ -16,6 +16,8 @@
 */
 
 #include <utility>
+#include <string>
+#include <vector>
 #include <boost/make_shared.hpp>
 #include <boost/unordered_map.hpp>
 
@@ -28,9 +30,9 @@ using std::string;
 using std::vector;
 using xconfig::XConfig;
 using xconfig::XConfigNode;
-using xconfig::XConfigFileConnection;
 using xconfig::XConfigNotFound;
 using xconfig::XConfigNotConnected;
+using xconfig::UnixConnectionPool;
 
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
@@ -46,6 +48,7 @@ class XConfigCache: public RequestEventHandler {
   public:
   // Static cache per thread
   unordered_map<CacheKey, Item> cache;
+  UnixConnectionPool pool;
 
   virtual void requestInit() {
   }
@@ -65,15 +68,19 @@ class XConfigCache: public RequestEventHandler {
 
   // Get a XConfig object from cache
   shared_ptr<XConfig> getXConfig(CStrRef path, CStrRef socket) {
-    if (RuntimeOption::XConfigCacheEnabled) {
-      Item& it = cache[CacheKey(path->toCPPString(), socket->toCPPString())];
-      it.last_use = time(NULL);
-      if (!it.xc) {
-        it.xc = boost::make_shared<XConfig>(new XConfigFileConnection(path->toCPPString()), true);
+    try {
+      if (RuntimeOption::XConfigCacheEnabled) {
+        Item& it = cache[CacheKey(path->toCPPString(), socket->toCPPString())];
+        it.last_use = time(NULL);
+        if (!it.xc) {
+          it.xc = boost::make_shared<XConfig>(pool.getConnection(path->toCPPString(), socket->toCPPString()), true);
+        }
+        return it.xc;
+      } else {
+        return boost::make_shared<XConfig>(pool.getConnection(path->toCPPString(), socket->toCPPString()), true);
       }
-      return it.xc;
-    } else {
-      return boost::make_shared<XConfig>(new XConfigFileConnection(path->toCPPString()), true);
+    } catch (const XConfigNotConnected& e) {
+      throw Object((NEWOBJ(c_XConfigNotConnectedException)())->create(String("XConfig could not connect to ") + socket));
     }
   }
 };
@@ -101,41 +108,39 @@ void c_XConfig::t___construct(CStrRef path, CStrRef socket)
   xc = s_xconfig_cache->getXConfig(path, socket);
 }
 
-XConfigNode c_XConfig::get_node_from_variant(CVarRef key) {
+XConfigNode c_XConfig::getNodeFromVariant(CVarRef key) {
   try {
     XConfigNode node;
     switch (key.getType()) {
-    case KindOfObject:
-    {
-      c_XConfigNode* c_node = key.toObject().getTyped<c_XConfigNode>(true, true);
-      if (c_node) {
-        if (c_node->getXConfig() == xc) {
-          node = c_node->getNode();
+      case KindOfObject: {
+        c_XConfigNode* c_node = key.toObject().getTyped<c_XConfigNode>(true, true);
+        if (c_node) {
+          if (c_node->getXConfig() == xc) {
+            node = c_node->getNode();
+          } else {
+            throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create("XConfigNode object belongs to another XConfig instance"));
+          }
         } else {
-          throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create("XConfigNode object belongs to another XConfig instance"));
+          throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create("Expected XConfigNode object"));
         }
-      } else {
-        throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create("Expected XConfigNode object"));
+        break;
       }
-    }
-      break;
-    case KindOfStaticString:
-    case KindOfString:
-      node = xc->get_node(key.toString()->toCPPString());
-      break;
-    case KindOfArray:
-    {
-      vector<string> keys(key.toArray().size());
-      int i = 0;
-      for (ArrayIter iter(key.toArray()); iter; ++iter, ++i) {
-        keys[i] = iter.second().toString()->toCPPString();
+      case KindOfStaticString:
+      case KindOfString:
+        node = xc->getNode(key.toString()->toCPPString());
+        break;
+      case KindOfArray: {
+        vector<string> keys(key.toArray().size());
+        int i = 0;
+        for (ArrayIter iter(key.toArray()); iter; ++iter, ++i) {
+          keys[i] = iter.second().toString()->toCPPString();
+        }
+        node = xc->getNode(keys);
+        break;
       }
-      node = xc->get_node(keys);
-    }
-      break;
-    default:
-      throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create(key));
-      break;
+      default:
+        throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create(key));
+        break;
     }
     return node;
   } catch (const XConfigNotFound& e) {
@@ -145,91 +150,89 @@ XConfigNode c_XConfig::get_node_from_variant(CVarRef key) {
   }
 }
 
-Variant c_XConfig::get_value(const XConfigNode& node)
+Variant c_XConfig::getValue(const XConfigNode& node)
 {
-  switch(xc->get_type(node)) {
-  case xconfig::TYPE_NULL:
-    return null;
-  case xconfig::TYPE_BOOLEAN:
-    return String(xc->get_bool(node));
-  case xconfig::TYPE_INTEGER:
-    return String(xc->get_int(node));
-  case xconfig::TYPE_FLOAT:
-    return String(xc->get_float(node));
-  case xconfig::TYPE_STRING:
-    return String(xc->get_string(node));
-  case xconfig::TYPE_SEQUENCE:
-  {
-    vector<XConfigNode> children = xc->get_children(node);
-    Array ret(ArrayInit(children.size()));
-    for (vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
-      ret.append(get_value(*it));
+  switch (xc->getType(node)) {
+    case xconfig::TYPE_NULL:
+      return null;
+    case xconfig::TYPE_BOOLEAN:
+      return String(xc->getBool(node));
+    case xconfig::TYPE_INTEGER:
+      return String(xc->getInt(node));
+    case xconfig::TYPE_FLOAT:
+      return String(xc->getFloat(node));
+    case xconfig::TYPE_STRING:
+      return String(xc->getString(node));
+    case xconfig::TYPE_SEQUENCE: {
+      vector<XConfigNode> children = xc->getChildren(node);
+      Array ret(ArrayInit(children.size()));
+      for (vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
+        ret.append(getValue(*it));
+      }
+      return ret;
     }
-    return ret;
-  } 
-  case xconfig::TYPE_MAP:
-  {
-    vector<XConfigNode> children = xc->get_children(node);
-    Array ret(ArrayInit(children.size()));
-    for (vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
-        ret.set(String(xc->get_name(*it)), get_value(*it));
+    case xconfig::TYPE_MAP: {
+      vector<XConfigNode> children = xc->getChildren(node);
+      Array ret(ArrayInit(children.size()));
+      for (vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
+          ret.set(String(xc->getName(*it)), getValue(*it));
+      }
+      return ret;
     }
-    return ret;
-  } 
-  default:
-    throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create(String("Wrong Type")));
+    default:
+      throw Object((NEWOBJ(c_XConfigWrongTypeException)())->create(String("Wrong Type")));
   }
 }
 Variant c_XConfig::t_getvalue(CVarRef key)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::getvalue);
-  XConfigNode node = get_node_from_variant(key);
-  return get_value(node);
+  XConfigNode node = getNodeFromVariant(key);
+  return getValue(node);
 }
 
 int c_XConfig::t_gettype(CVarRef key)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::gettype);
-  XConfigNode node = get_node_from_variant(key);
-  return xc->get_type(node);
+  XConfigNode node = getNodeFromVariant(key);
+  return xc->getType(node);
 }
 
 Array c_XConfig::t_getmtime(CVarRef key)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::getmtime);
-  XConfigNode node = get_node_from_variant(key);
-  struct timespec ts = xc->get_mtime(node);
+  XConfigNode node = getNodeFromVariant(key);
+  struct timespec ts = xc->getMtime(node);
   return ArrayInit(2).set(ts.tv_sec).set(ts.tv_nsec).create();
 }
 bool c_XConfig::t_isscalar(CVarRef key)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::isscalar);
-  XConfigNode node = get_node_from_variant(key);
-  return xc->is_scalar(node);
+  XConfigNode node = getNodeFromVariant(key);
+  return xc->isScalar(node);
 }
 bool c_XConfig::t_ismap(CVarRef key)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::ismap);
-  XConfigNode node = get_node_from_variant(key);
-  return xc->is_map(node);
+  XConfigNode node = getNodeFromVariant(key);
+  return xc->isMap(node);
 }
 bool c_XConfig::t_issequence(CVarRef key)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::issequence);
-  XConfigNode node = get_node_from_variant(key);
-  return xc->is_sequence(node);
+  XConfigNode node = getNodeFromVariant(key);
+  return xc->isSequence(node);
 }
 int64 c_XConfig::t_getcount(CVarRef key)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::getcount);
-  XConfigNode node = get_node_from_variant(key);
-  return xc->get_count(node);
+  XConfigNode node = getNodeFromVariant(key);
+  return xc->getCount(node);
 }
 Array c_XConfig::t_getmapkeys(CVarRef key)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::getmapkeys);
-  XConfigNode node = get_node_from_variant(key);
-  vector<string> keys = xc->get_map_keys(node);
+  XConfigNode node = getNodeFromVariant(key);
+  vector<string> keys = xc->getMapKeys(node);
   Array ret(ArrayInit(keys.size()));
   for (vector<string>::const_iterator it = keys.begin(); it != keys.end(); ++it) {
     ret.append(String(*it));
@@ -239,7 +242,7 @@ Array c_XConfig::t_getmapkeys(CVarRef key)
 Object c_XConfig::t_getnode(CVarRef key)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::getnode);
-  XConfigNode node = get_node_from_variant(key);
+  XConfigNode node = getNodeFromVariant(key);
   c_XConfigNode* ret = (NEWOBJ(c_XConfigNode)())->create();
   ret->_init(xc, node);
   return ret;
@@ -269,13 +272,13 @@ Object c_XConfigNode::t_getparent()
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfigNode, XConfigNode::getparent);
   c_XConfigNode* ret = (NEWOBJ(c_XConfigNode)())->create();
-  ret->_init(xc, xc->get_parent(*node));
+  ret->_init(xc, xc->getParent(*node));
   return ret;
 }
 Array c_XConfigNode::t_getchildren()
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfigNode, XConfigNode::getchildren);
-  vector<XConfigNode> children = xc->get_children(*node);
+  vector<XConfigNode> children = xc->getChildren(*node);
   Array ret(ArrayInit(children.size()));
   for (vector<XConfigNode>::const_iterator it = children.begin(); it != children.end(); ++it) {
     c_XConfigNode* c_node = (NEWOBJ(c_XConfigNode)())->create();
@@ -287,7 +290,7 @@ Array c_XConfigNode::t_getchildren()
 String c_XConfigNode::t_getname()
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfigNode, XConfigNode::getname);
-  return xc->get_name(*node);
+  return xc->getName(*node);
 }
 void c_XConfigNode::_init(boost::shared_ptr<XConfig> xc, const XConfigNode& n)
 {
@@ -372,4 +375,4 @@ Variant c_XConfigWrongTypeException::t___destruct()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-}
+}  // namespace HPHP
