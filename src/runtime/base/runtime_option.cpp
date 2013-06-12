@@ -409,7 +409,8 @@ bool RuntimeOption::GmagickEnabled = true;
 std::string RuntimeOption::GettextDefaultLocale;
 bool RuntimeOption::GettextDebug = false;
 
-bool RuntimeOption::XConfigCacheEnabled = false;
+bool RuntimeOption::XConfigAutoReload = true;
+bool RuntimeOption::XConfigLocalCacheEnabled = false;
 int RuntimeOption::XConfigCacheTimeout = 30;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1178,7 +1179,8 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
   }
   {
      Hdf gettext_config = config["XConfig"];
-     XConfigCacheEnabled = gettext_config["CacheEnabled"].getBool(true);
+     XConfigAutoReload = gettext_config["AutoReload"].getBool(true);
+     XConfigLocalCacheEnabled = gettext_config["LocalCacheEnabled"].getBool(false);
      XConfigCacheTimeout = gettext_config["CacheTimeout"].getInt32(30);
   }
 

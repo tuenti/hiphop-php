@@ -37,48 +37,25 @@ using xconfig::UnixConnectionPool;
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
 class XConfigCache: public RequestEventHandler {
-  struct Item {
-    shared_ptr<XConfig> xc;
-    time_t last_use;
-  };
-  typedef std::pair<string, string> CacheKey;
-
-  static const int timeout = 30;
-
-  public:
-  // Static cache per thread
-  unordered_map<CacheKey, Item> cache;
+public:
   UnixConnectionPool pool;
+
+  XConfigCache() : pool(RuntimeOption::XConfigLocalCacheEnabled, RuntimeOption::XConfigCacheTimeout) {
+printf("XConfigCache %d %d\n", RuntimeOption::XConfigLocalCacheEnabled, RuntimeOption::XConfigCacheTimeout);
+  }
 
   virtual void requestInit() {
   }
 
   // Remove timed out entries at request shutdown;
   virtual void requestShutdown() {
-    if (RuntimeOption::XConfigCacheEnabled) {
-      time_t threshold = ::time(NULL) - RuntimeOption::XConfigCacheTimeout;
-      for (unordered_map<CacheKey, Item>::iterator it = cache.begin(); it != cache.end();) {
-        if (it->second.last_use < threshold)
-          it = cache.erase(it);
-        else
-          ++it;
-      }
-    }
+	pool.flushLocal();
   }
 
-  // Get a XConfig object from cache
+  // Get a XConfig object from connection pool
   shared_ptr<XConfig> getXConfig(CStrRef path, CStrRef socket) {
     try {
-      if (RuntimeOption::XConfigCacheEnabled) {
-        Item& it = cache[CacheKey(path->toCPPString(), socket->toCPPString())];
-        it.last_use = time(NULL);
-        if (!it.xc) {
-          it.xc = boost::make_shared<XConfig>(pool.getConnection(path->toCPPString(), socket->toCPPString()), true);
-        }
-        return it.xc;
-      } else {
-        return boost::make_shared<XConfig>(pool.getConnection(path->toCPPString(), socket->toCPPString()), true);
-      }
+      return boost::make_shared<XConfig>(pool.getConnection(path->toCPPString(), socket->toCPPString()), RuntimeOption::XConfigAutoReload);
     } catch (const XConfigNotConnected& e) {
       throw Object((NEWOBJ(c_XConfigNotConnectedException)())->create(String("XConfig could not connect to ") + socket));
     }
@@ -95,17 +72,32 @@ const int q_XConfig___TYPE_INTEGER = xconfig::TYPE_INTEGER;
 const int q_XConfig___TYPE_FLOAT = xconfig::TYPE_FLOAT;
 const int q_XConfig___TYPE_MAP = xconfig::TYPE_MAP;
 const int q_XConfig___TYPE_SEQUENCE = xconfig::TYPE_SEQUENCE;
+const StaticString q_XConfig___DEFAULT_SOCKET(xconfig::UnixConnection::DEFAULT_SOCKET);
 
 c_XConfig::c_XConfig(const ObjectStaticCallbacks *cb) : ExtObjectData(cb)
 {
 }
+
 c_XConfig::~c_XConfig()
 {
 }
+
 void c_XConfig::t___construct(CStrRef path, CStrRef socket)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::__construct);
   xc = s_xconfig_cache->getXConfig(path, socket);
+}
+
+void c_XConfig::t_reload()
+{
+  INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::reload);
+  xc->reload();
+}
+
+void c_XConfig::t_close()
+{
+  INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::close);
+  xc->close();
 }
 
 XConfigNode c_XConfig::getNodeFromVariant(CVarRef key) {

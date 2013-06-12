@@ -1555,19 +1555,27 @@ const int c_XConfig::s_instanceof_index[] = {
   1,
   -1,0,
 };
+CallInfo c_XConfig::ci_getnode((void*)&c_XConfig::i_getnode, (void*)&c_XConfig::ifa_getnode, 1, 4, 0x0000000000000000LL);
 CallInfo c_XConfig::ci_getcount((void*)&c_XConfig::i_getcount, (void*)&c_XConfig::ifa_getcount, 1, 4, 0x0000000000000000LL);
-CallInfo c_XConfig::ci___construct((void*)&c_XConfig::i___construct, (void*)&c_XConfig::ifa___construct, 2, 4, 0x0000000000000000LL);
+CallInfo c_XConfig::ci_close((void*)&c_XConfig::i_close, (void*)&c_XConfig::ifa_close, 0, 4, 0x0000000000000000LL);
+CallInfo c_XConfig::ci_isscalar((void*)&c_XConfig::i_isscalar, (void*)&c_XConfig::ifa_isscalar, 1, 4, 0x0000000000000000LL);
+CallInfo c_XConfig::ci_reload((void*)&c_XConfig::i_reload, (void*)&c_XConfig::ifa_reload, 0, 4, 0x0000000000000000LL);
+CallInfo c_XConfig::ci_getmapkeys((void*)&c_XConfig::i_getmapkeys, (void*)&c_XConfig::ifa_getmapkeys, 1, 4, 0x0000000000000000LL);
+CallInfo c_XConfig::ci_ismap((void*)&c_XConfig::i_ismap, (void*)&c_XConfig::ifa_ismap, 1, 4, 0x0000000000000000LL);
 CallInfo c_XConfig::ci_getvalue((void*)&c_XConfig::i_getvalue, (void*)&c_XConfig::ifa_getvalue, 1, 4, 0x0000000000000000LL);
 CallInfo c_XConfig::ci_issequence((void*)&c_XConfig::i_issequence, (void*)&c_XConfig::ifa_issequence, 1, 4, 0x0000000000000000LL);
 CallInfo c_XConfig::ci___destruct((void*)&c_XConfig::i___destruct, (void*)&c_XConfig::ifa___destruct, 0, 4, 0x0000000000000000LL);
 CallInfo c_XConfig::ci_gettype((void*)&c_XConfig::i_gettype, (void*)&c_XConfig::ifa_gettype, 1, 4, 0x0000000000000000LL);
-CallInfo c_XConfig::ci_getnode((void*)&c_XConfig::i_getnode, (void*)&c_XConfig::ifa_getnode, 1, 4, 0x0000000000000000LL);
-CallInfo c_XConfig::ci_getmapkeys((void*)&c_XConfig::i_getmapkeys, (void*)&c_XConfig::ifa_getmapkeys, 1, 4, 0x0000000000000000LL);
-CallInfo c_XConfig::ci_ismap((void*)&c_XConfig::i_ismap, (void*)&c_XConfig::ifa_ismap, 1, 4, 0x0000000000000000LL);
 CallInfo c_XConfig::ci_getmtime((void*)&c_XConfig::i_getmtime, (void*)&c_XConfig::ifa_getmtime, 1, 4, 0x0000000000000000LL);
-CallInfo c_XConfig::ci_isscalar((void*)&c_XConfig::i_isscalar, (void*)&c_XConfig::ifa_isscalar, 1, 4, 0x0000000000000000LL);
+CallInfo c_XConfig::ci___construct((void*)&c_XConfig::i___construct, (void*)&c_XConfig::ifa___construct, 2, 4, 0x0000000000000000LL);
 Variant c_XConfig::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
+}
+Variant c_XConfig::i_reload(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_reload);
+}
+Variant c_XConfig::i_close(MethodCallPackage &mcp, CArrRef params) {
+  return invoke_meth_few_handler(mcp, params, &ifa_close);
 }
 Variant c_XConfig::i_getvalue(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa_getvalue);
@@ -1609,6 +1617,22 @@ Variant c_XConfig::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW
   if (count <= 1) return (self->t___construct(arg0), null);
   CVarRef arg1(a1);
   return (self->t___construct(arg0, arg1), null);
+}
+Variant c_XConfig::ifa_reload(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_reload, coo_XConfig);
+  }
+  c_XConfig *self ATTRIBUTE_UNUSED (static_cast<c_XConfig*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("reload", 0, 1);
+  return (self->t_reload(), null);
+}
+Variant c_XConfig::ifa_close(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(mcp.obj == 0)) {
+    return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_close, coo_XConfig);
+  }
+  c_XConfig *self ATTRIBUTE_UNUSED (static_cast<c_XConfig*>(mcp.obj));
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("close", 0, 1);
+  return (self->t_close(), null);
 }
 Variant c_XConfig::ifa_getvalue(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
@@ -1700,10 +1724,12 @@ Variant c_XConfig::ifa___destruct(MethodCallPackage &mcp, int count, INVOKE_FEW_
   return (self->t___destruct());
 }
 const MethodCallInfoTable c_XConfig::s_call_info_table[] = {
+  { 0x78AE97BFBEBF5341LL, 1, 5, "close", &c_XConfig::ci_close },
   { 0x4E1843B68F3E46E2LL, 1, 10, "isSequence", &c_XConfig::ci_issequence },
   { 0x56879BCEB40997E3LL, 1, 8, "getValue", &c_XConfig::ci_getvalue },
   { 0x665EEB3EF3E5FDA3LL, 0, 8, "isScalar", &c_XConfig::ci_isscalar },
   { 0x68EA42F96F4D67E3LL, 0, 10, "getMapKeys", &c_XConfig::ci_getmapkeys },
+  { 0x59AA8AC97926CA05LL, 1, 6, "reload", &c_XConfig::ci_reload },
   { 0x1D3B08AA0AF50F06LL, 1, 7, "getType", &c_XConfig::ci_gettype },
   { 0x68F9EC86B07BF46DLL, 1, 8, "getCount", &c_XConfig::ci_getcount },
   { 0x3E9BCFD303F9512ELL, 1, 5, "isMap", &c_XConfig::ci_ismap },
@@ -1715,10 +1741,10 @@ const MethodCallInfoTable c_XConfig::s_call_info_table[] = {
 };
 const int c_XConfig::s_call_info_index[] = {
   31,
-  -1,-1,0,1,-1,-1,4,-1,
-  -1,-1,-1,-1,-1,5,6,-1,
-  -1,-1,7,8,9,-1,-1,-1,
-  -1,-1,-1,-1,-1,-1,-1,10,
+  -1,0,1,2,-1,5,6,-1,
+  -1,-1,-1,-1,-1,7,8,-1,
+  -1,-1,9,10,11,-1,-1,-1,
+  -1,-1,-1,-1,-1,-1,-1,12,
 
 };
 c_XConfig *c_XConfig::create(String a0, String a1) {
@@ -13248,54 +13274,56 @@ static const int64 cpt_static_inits[] = {
   0x0000038d00000037,
   (int64)&q_XConfig___TYPE_FLOAT,
   0x0000038f00000037,
+  (int64)&q_XConfig___DEFAULT_SOCKET,
+  0x0000039100000077,
   (int64)&q_XConfig___TYPE_MAP,
-  0x0000039100000037,
-  (int64)&q_XConfig___TYPE_SEQUENCE,
   0x0000039300000037,
+  (int64)&q_XConfig___TYPE_SEQUENCE,
+  0x0000039500000037,
   (int64)&q_XMLReader___DOC_FRAGMENT,
-  0x0000039500000047,
-  (int64)&q_XMLReader___NOTATION,
   0x0000039700000047,
-  (int64)&q_XMLReader___COMMENT,
+  (int64)&q_XMLReader___NOTATION,
   0x0000039900000047,
-  (int64)&q_XMLReader___ELEMENT,
+  (int64)&q_XMLReader___COMMENT,
   0x0000039b00000047,
-  (int64)&q_XMLReader___SUBST_ENTITIES,
+  (int64)&q_XMLReader___ELEMENT,
   0x0000039d00000047,
-  (int64)&q_XMLReader___DEFAULTATTRS,
+  (int64)&q_XMLReader___SUBST_ENTITIES,
   0x0000039f00000047,
-  (int64)&q_XMLReader___CDATA,
+  (int64)&q_XMLReader___DEFAULTATTRS,
   0x000003a100000047,
-  (int64)&q_XMLReader___LOADDTD,
+  (int64)&q_XMLReader___CDATA,
   0x000003a300000047,
-  (int64)&q_XMLReader___TEXT,
+  (int64)&q_XMLReader___LOADDTD,
   0x000003a500000047,
-  (int64)&q_XMLReader___WHITESPACE,
+  (int64)&q_XMLReader___TEXT,
   0x000003a700000047,
-  (int64)&q_XMLReader___DOC_TYPE,
+  (int64)&q_XMLReader___WHITESPACE,
   0x000003a900000047,
-  (int64)&q_XMLReader___SIGNIFICANT_WHITESPACE,
+  (int64)&q_XMLReader___DOC_TYPE,
   0x000003ab00000047,
-  (int64)&q_XMLReader___PI,
+  (int64)&q_XMLReader___SIGNIFICANT_WHITESPACE,
   0x000003ad00000047,
-  (int64)&q_XMLReader___DOC,
+  (int64)&q_XMLReader___PI,
   0x000003af00000047,
-  (int64)&q_XMLReader___ENTITY,
+  (int64)&q_XMLReader___DOC,
   0x000003b100000047,
-  (int64)&q_XMLReader___END_ELEMENT,
+  (int64)&q_XMLReader___ENTITY,
   0x000003b300000047,
-  (int64)&q_XMLReader___XML_DECLARATION,
+  (int64)&q_XMLReader___END_ELEMENT,
   0x000003b500000047,
-  (int64)&q_XMLReader___NONE,
+  (int64)&q_XMLReader___XML_DECLARATION,
   0x000003b700000047,
-  (int64)&q_XMLReader___END_ENTITY,
+  (int64)&q_XMLReader___NONE,
   0x000003b900000047,
-  (int64)&q_XMLReader___ATTRIBUTE,
+  (int64)&q_XMLReader___END_ENTITY,
   0x000003bb00000047,
-  (int64)&q_XMLReader___VALIDATE,
+  (int64)&q_XMLReader___ATTRIBUTE,
   0x000003bd00000047,
-  (int64)&q_XMLReader___ENTITY_REF,
+  (int64)&q_XMLReader___VALIDATE,
   0x000003bf00000047,
+  (int64)&q_XMLReader___ENTITY_REF,
+  0x000003c100000047,
 };
 static const ClassPropTableEntry cpt_table_entries[] = {
   {0x44D1DA387595A403LL,5,1,0,36,4,0,&NAMSTR(s_sys_ss7595a403, "SORT_REGULAR") },
@@ -13777,32 +13805,33 @@ static const ClassPropTableEntry cpt_table_entries[] = {
   {0x6CE7A3515C4C27A3LL,3,906,0,100,3,0,&NAMSTR(s_sys_ss5c4c27a3, "TYPE_INTEGER") },
   {0x5F93BE120D50EE75LL,-1,908,0,100,3,0,&NAMSTR(s_sys_ss0d50ee75, "TYPE_BOOLEAN") },
   {0x60DE352DE0554EB8LL,-1,910,0,100,3,0,&NAMSTR(s_sys_sse0554eb8, "TYPE_STRING") },
-  {0x45DF0DF700D8024DLL,1,912,0,100,3,0,&NAMSTR(s_sys_ss00d8024d, "TYPE_FLOAT") },
-  {0x0B4ED910DEA3E99ELL,1,914,0,100,3,0,&NAMSTR(s_sys_ssdea3e99e, "TYPE_MAP") },
-  {0x6E9411D0C93C98AFLL,0,916,0,100,3,0,&NAMSTR(s_sys_ssc93c98af, "TYPE_SEQUENCE") },
+  {0x45DF0DF700D8024DLL,2,912,0,36,3,0,&NAMSTR(s_sys_ss00d8024d, "TYPE_FLOAT") },
+  {0x4B61C9A6C290289DLL,0,914,0,100,7,0,&NAMSTR(s_sys_ssc290289d, "DEFAULT_SOCKET") },
+  {0x0B4ED910DEA3E99ELL,1,916,0,100,3,0,&NAMSTR(s_sys_ssdea3e99e, "TYPE_MAP") },
+  {0x6E9411D0C93C98AFLL,-2,918,0,100,3,0,&NAMSTR(s_sys_ssc93c98af, "TYPE_SEQUENCE") },
 
-  {0x13B3121CBF212DC1LL,1,918,0,100,4,0,&NAMSTR(s_sys_ssbf212dc1, "DOC_FRAGMENT") },
-  {0x6071F0A4D7F152C9LL,8,920,0,100,4,0,&NAMSTR(s_sys_ssd7f152c9, "NOTATION") },
-  {0x16AD79F9AF3ECC0DLL,11,922,0,100,4,0,&NAMSTR(s_sys_ssaf3ecc0d, "COMMENT") },
-  {0x5BB72110C0F94F8FLL,16,924,0,36,4,0,&NAMSTR(s_sys_ssc0f94f8f, "ELEMENT") },
-  {0x4431B68F8476210FLL,0,926,0,100,4,0,&NAMSTR(s_sys_ss8476210f, "SUBST_ENTITIES") },
-  {0x66710CEFCACCEAD4LL,15,928,0,100,4,0,&NAMSTR(s_sys_sscaccead4, "DEFAULTATTRS") },
-  {0x0A70D397C0570F56LL,15,930,0,100,4,0,&NAMSTR(s_sys_ssc0570f56, "CDATA") },
-  {0x69070452A320C4D8LL,-2,932,0,100,4,0,&NAMSTR(s_sys_ssa320c4d8, "LOADDTD") },
-  {0x4D26D167066BB11DLL,-2,934,0,36,4,0,&NAMSTR(s_sys_ss066bb11d, "TEXT") },
-  {0x507641F239996F9DLL,2,936,0,100,4,0,&NAMSTR(s_sys_ss39996f9d, "WHITESPACE") },
-  {0x7EB865DC91D7AC1FLL,-10,938,0,100,4,0,&NAMSTR(s_sys_ss91d7ac1f, "DOC_TYPE") },
-  {0x4A21896B12C338E5LL,4,940,0,100,4,0,&NAMSTR(s_sys_ss12c338e5, "SIGNIFICANT_WHITESPACE") },
-  {0x18CF3E4A60E4AAACLL,-10,942,0,100,4,0,&NAMSTR(s_sys_ss60e4aaac, "PI") },
-  {0x5C1091C88F8EB6EDLL,-3,944,0,100,4,0,&NAMSTR(s_sys_ss8f8eb6ed, "DOC") },
-  {0x18FB7BF5786BF72FLL,-2,946,0,100,4,0,&NAMSTR(s_sys_ss786bf72f, "ENTITY") },
-  {0x3EBBF7FE181568B0LL,3,948,0,36,4,0,&NAMSTR(s_sys_ss181568b0, "END_ELEMENT") },
-  {0x2907A7E1425D0970LL,-9,950,0,100,4,0,&NAMSTR(s_sys_ss425d0970, "XML_DECLARATION") },
-  {0x2EFDCA1922BFB273LL,-14,952,0,36,4,0,&NAMSTR(s_sys_ss22bfb273, "NONE") },
-  {0x66785D8330DBC573LL,-2,954,0,100,4,0,&NAMSTR(s_sys_ss30dbc573, "END_ENTITY") },
-  {0x21A6FB97A47EB4F5LL,-11,956,0,100,4,0,&NAMSTR(s_sys_ssa47eb4f5, "ATTRIBUTE") },
-  {0x1CA408E02262F737LL,-16,958,0,100,4,0,&NAMSTR(s_sys_ss2262f737, "VALIDATE") },
-  {0x631C49B1B9F742FCLL,-7,960,0,100,4,0,&NAMSTR(s_sys_ssb9f742fc, "ENTITY_REF") },
+  {0x13B3121CBF212DC1LL,1,920,0,100,4,0,&NAMSTR(s_sys_ssbf212dc1, "DOC_FRAGMENT") },
+  {0x6071F0A4D7F152C9LL,8,922,0,100,4,0,&NAMSTR(s_sys_ssd7f152c9, "NOTATION") },
+  {0x16AD79F9AF3ECC0DLL,11,924,0,100,4,0,&NAMSTR(s_sys_ssaf3ecc0d, "COMMENT") },
+  {0x5BB72110C0F94F8FLL,16,926,0,36,4,0,&NAMSTR(s_sys_ssc0f94f8f, "ELEMENT") },
+  {0x4431B68F8476210FLL,0,928,0,100,4,0,&NAMSTR(s_sys_ss8476210f, "SUBST_ENTITIES") },
+  {0x66710CEFCACCEAD4LL,15,930,0,100,4,0,&NAMSTR(s_sys_sscaccead4, "DEFAULTATTRS") },
+  {0x0A70D397C0570F56LL,15,932,0,100,4,0,&NAMSTR(s_sys_ssc0570f56, "CDATA") },
+  {0x69070452A320C4D8LL,-2,934,0,100,4,0,&NAMSTR(s_sys_ssa320c4d8, "LOADDTD") },
+  {0x4D26D167066BB11DLL,-2,936,0,36,4,0,&NAMSTR(s_sys_ss066bb11d, "TEXT") },
+  {0x507641F239996F9DLL,2,938,0,100,4,0,&NAMSTR(s_sys_ss39996f9d, "WHITESPACE") },
+  {0x7EB865DC91D7AC1FLL,-10,940,0,100,4,0,&NAMSTR(s_sys_ss91d7ac1f, "DOC_TYPE") },
+  {0x4A21896B12C338E5LL,4,942,0,100,4,0,&NAMSTR(s_sys_ss12c338e5, "SIGNIFICANT_WHITESPACE") },
+  {0x18CF3E4A60E4AAACLL,-10,944,0,100,4,0,&NAMSTR(s_sys_ss60e4aaac, "PI") },
+  {0x5C1091C88F8EB6EDLL,-3,946,0,100,4,0,&NAMSTR(s_sys_ss8f8eb6ed, "DOC") },
+  {0x18FB7BF5786BF72FLL,-2,948,0,100,4,0,&NAMSTR(s_sys_ss786bf72f, "ENTITY") },
+  {0x3EBBF7FE181568B0LL,3,950,0,36,4,0,&NAMSTR(s_sys_ss181568b0, "END_ELEMENT") },
+  {0x2907A7E1425D0970LL,-9,952,0,100,4,0,&NAMSTR(s_sys_ss425d0970, "XML_DECLARATION") },
+  {0x2EFDCA1922BFB273LL,-14,954,0,36,4,0,&NAMSTR(s_sys_ss22bfb273, "NONE") },
+  {0x66785D8330DBC573LL,-2,956,0,100,4,0,&NAMSTR(s_sys_ss30dbc573, "END_ENTITY") },
+  {0x21A6FB97A47EB4F5LL,-11,958,0,100,4,0,&NAMSTR(s_sys_ssa47eb4f5, "ATTRIBUTE") },
+  {0x1CA408E02262F737LL,-16,960,0,100,4,0,&NAMSTR(s_sys_ss2262f737, "VALIDATE") },
+  {0x631C49B1B9F742FCLL,-7,962,0,100,4,0,&NAMSTR(s_sys_ssb9f742fc, "ENTITY_REF") },
 
 };
 static const int cpt_hash_entries[] = {
@@ -13885,7 +13914,7 @@ static const int cpt_hash_entries[] = {
   -1,
   -1,
   // XConfig hash
-  5,4,3,-1,-1,-1,-1,2,-1,-1,1,-1,0,-1,-1,-1,
+  6,5,3,-1,-1,-1,-1,2,-1,-1,1,-1,0,-1,-1,-1,
   // XConfig lists
   -1,
   -1,
@@ -13955,7 +13984,7 @@ const ClassPropTable c_XConfig::os_prop_table = {
 };
 const ClassPropTable c_XMLReader::os_prop_table = {
   -1,-1,-1,-1,63,17,1,0,
-  cpt_hash_entries+1301,0,cpt_table_entries+469,cpt_static_inits
+  cpt_hash_entries+1301,0,cpt_table_entries+470,cpt_static_inits
 };
 
 ///////////////////////////////////////////////////////////////////////////////

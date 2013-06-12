@@ -3,7 +3,6 @@
    | HipHop for PHP                                                       |
    +----------------------------------------------------------------------+
    | Copyright (c) 2010- Facebook, Inc. (http://www.facebook.com)         |
-   | Copyright (c) 1997-2010 The PHP Group                                |
    +----------------------------------------------------------------------+
    | This source file is subject to version 3.01 of the PHP license,      |
    | that is bundled with this package in the file LICENSE, and is        |
@@ -31,13 +30,13 @@ class XConfigNode;
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////
 
-extern const int q_XConfig___TYPE_STRING;
-extern const int q_XConfig___TYPE_BOOLEAN;
-extern const int q_XConfig___TYPE_INTEGER;
-extern const int q_XConfig___TYPE_FLOAT;
-extern const int q_XConfig___TYPE_MAP;
-extern const int q_XConfig___TYPE_SEQUENCE;
-extern const StaticString q_XConfig___DEFAULT_SOCKET;
+extern const int q_XConfig_TYPE_STRING;
+extern const int q_XConfig_TYPE_BOOLEAN;
+extern const int q_XConfig_TYPE_INTEGER;
+extern const int q_XConfig_TYPE_FLOAT;
+extern const int q_XConfig_TYPE_MAP;
+extern const int q_XConfig_TYPE_SEQUENCE;
+extern const StaticString q_XConfig_DEFAULT_SOCKET;
 
 ///////////////////////////////////////////////////////////////////////////////
 // class XConfig
@@ -79,7 +78,6 @@ class c_XConfig : public ExtObjectData {
 
   // implemented by HPHP
   public: c_XConfig *create(String path, String socket = null);
-  static const ClassPropTable os_prop_table;
 
 private:
   boost::shared_ptr<xconfig::XConfig> xc;

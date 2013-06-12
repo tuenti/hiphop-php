@@ -16,8 +16,11 @@
 DefinePreamble(<<<CPP
 #include <boost/shared_ptr.hpp>
 #include <boost/scoped_ptr.hpp>
+
+namespace xconfig {
 class XConfig;
 class XConfigNode;
+}
 CPP
 );
 
@@ -104,10 +107,10 @@ BeginClass(
     'footer' => <<<EOT
 
 private:
-  boost::shared_ptr<XConfig> xc;
+  boost::shared_ptr<xconfig::XConfig> xc;
 
-  XConfigNode get_node_from_variant(CVarRef key);
-  Variant get_value(const XConfigNode& node);
+  xconfig::XConfigNode getNodeFromVariant(CVarRef key);
+  Variant getValue(const xconfig::XConfigNode& node);
 EOT
 ,
   ));
@@ -118,6 +121,7 @@ DefineConstant(array('name' => "TYPE_INTEGER", 'type' => Int32,));
 DefineConstant(array('name' => "TYPE_FLOAT", 'type' => Int32,));
 DefineConstant(array('name' => "TYPE_MAP", 'type' => Int32,));
 DefineConstant(array('name' => "TYPE_SEQUENCE", 'type' => Int32,));
+DefineConstant(array('name' => "DEFAULT_SOCKET", 'type' => String,));
 
 DefineFunction(
   array(
@@ -138,6 +142,30 @@ DefineFunction(
         'value'  => "null",
         'desc'   => "Socket where to find xconfig instance",
       ),
+    ),
+  ));
+
+DefineFunction(
+  array(
+    'name'   => "reload",
+    'desc'   => "Try to reload the configuration tree",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => null,
+    ),
+    'args'   => array(
+    ),
+  ));
+
+DefineFunction(
+  array(
+    'name'   => "close",
+    'desc'   => "Close the connection",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => null,
+    ),
+    'args'   => array(
     ),
   ));
 
@@ -326,12 +354,12 @@ BeginClass(
 
   friend class c_XConfig;
 private:
-  boost::shared_ptr<XConfig> xc;
-  boost::scoped_ptr<XConfigNode> node;
+  boost::shared_ptr<xconfig::XConfig> xc;
+  boost::scoped_ptr<xconfig::XConfigNode> node;
 
-  void _init(boost::shared_ptr<XConfig> xc, const XConfigNode& n);
-  const XConfigNode& getNode() const;
-  boost::shared_ptr<XConfig> getXConfig() const;
+  void _init(boost::shared_ptr<xconfig::XConfig> xc, const xconfig::XConfigNode& n);
+  const xconfig::XConfigNode& getNode() const;
+  boost::shared_ptr<xconfig::XConfig> getXConfig() const;
 EOT
 ,
   ));
