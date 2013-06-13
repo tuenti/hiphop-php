@@ -44,7 +44,7 @@ boost::once_flag s_xconfig_once = BOOST_ONCE_INIT;
 UnixConnectionPool* s_xconfig_pool = 0;
 
 void xconfig_pool_init() {
-  s_xconfig_pool = new UnixConnectionPool(/*localCacheEnabled=*/false, RuntimeOption::XConfigCacheTimeout);
+  s_xconfig_pool = new UnixConnectionPool(RuntimeOption::XConfigCacheTimeout);
 }
 
 // Get a XConfig object from connection s_xconfig_pool
