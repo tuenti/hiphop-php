@@ -20,6 +20,7 @@
 #include <vector>
 #include <boost/make_shared.hpp>
 #include <boost/unordered_map.hpp>
+#include <boost/thread/once.hpp>
 
 #include <runtime/ext/ext_xconfig.h>
 #include <xconfig/xconfig.h>
@@ -35,34 +36,26 @@ using xconfig::XConfigNotConnected;
 using xconfig::UnixConnectionPool;
 
 namespace HPHP {
+
 ///////////////////////////////////////////////////////////////////////////////
-class XConfigCache: public RequestEventHandler {
-public:
-  UnixConnectionPool pool;
 
-  XConfigCache() : pool(RuntimeOption::XConfigLocalCacheEnabled, RuntimeOption::XConfigCacheTimeout) {
-printf("XConfigCache %d %d\n", RuntimeOption::XConfigLocalCacheEnabled, RuntimeOption::XConfigCacheTimeout);
+// connection pool is shared for all the threads
+boost::once_flag s_xconfig_once = BOOST_ONCE_INIT;
+UnixConnectionPool* s_xconfig_pool = 0;
+
+void xconfig_pool_init() {
+  s_xconfig_pool = new UnixConnectionPool(/*localCacheEnabled=*/false, RuntimeOption::XConfigCacheTimeout);
+}
+
+// Get a XConfig object from connection s_xconfig_pool
+shared_ptr<XConfig> getXConfigInstance(CStrRef path, CStrRef socket, bool autoreload) {
+  boost::call_once(s_xconfig_once, xconfig_pool_init);
+  try {
+    return boost::make_shared<XConfig>(s_xconfig_pool->getConnection(path->toCPPString(), socket->toCPPString()), autoreload);
+  } catch (const XConfigNotConnected& e) {
+    throw Object((NEWOBJ(c_XConfigNotConnectedException)())->create(String("XConfig could not connect to ") + socket));
   }
-
-  virtual void requestInit() {
-  }
-
-  // Remove timed out entries at request shutdown;
-  virtual void requestShutdown() {
-	pool.flushLocal();
-  }
-
-  // Get a XConfig object from connection pool
-  shared_ptr<XConfig> getXConfig(CStrRef path, CStrRef socket) {
-    try {
-      return boost::make_shared<XConfig>(pool.getConnection(path->toCPPString(), socket->toCPPString()), RuntimeOption::XConfigAutoReload);
-    } catch (const XConfigNotConnected& e) {
-      throw Object((NEWOBJ(c_XConfigNotConnectedException)())->create(String("XConfig could not connect to ") + socket));
-    }
-  }
-};
-
-IMPLEMENT_STATIC_REQUEST_LOCAL(XConfigCache, s_xconfig_cache);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -82,10 +75,10 @@ c_XConfig::~c_XConfig()
 {
 }
 
-void c_XConfig::t___construct(CStrRef path, CStrRef socket)
+void c_XConfig::t___construct(CStrRef path, CStrRef socket, bool autoreload)
 {
   INSTANCE_METHOD_INJECTION_BUILTIN(XConfig, XConfig::__construct);
-  xc = s_xconfig_cache->getXConfig(path, socket);
+  xc = getXConfigInstance(path, socket, autoreload);
 }
 
 void c_XConfig::t_reload()

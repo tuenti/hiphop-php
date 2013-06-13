@@ -909,6 +909,5 @@ Flags used when opening db file.
 = XConfig
 
   XConfig {
-    CacheEnable = true
     CacheTimeout = 30
   }

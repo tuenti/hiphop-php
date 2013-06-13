@@ -1567,7 +1567,7 @@ CallInfo c_XConfig::ci_issequence((void*)&c_XConfig::i_issequence, (void*)&c_XCo
 CallInfo c_XConfig::ci___destruct((void*)&c_XConfig::i___destruct, (void*)&c_XConfig::ifa___destruct, 0, 4, 0x0000000000000000LL);
 CallInfo c_XConfig::ci_gettype((void*)&c_XConfig::i_gettype, (void*)&c_XConfig::ifa_gettype, 1, 4, 0x0000000000000000LL);
 CallInfo c_XConfig::ci_getmtime((void*)&c_XConfig::i_getmtime, (void*)&c_XConfig::ifa_getmtime, 1, 4, 0x0000000000000000LL);
-CallInfo c_XConfig::ci___construct((void*)&c_XConfig::i___construct, (void*)&c_XConfig::ifa___construct, 2, 4, 0x0000000000000000LL);
+CallInfo c_XConfig::ci___construct((void*)&c_XConfig::i___construct, (void*)&c_XConfig::ifa___construct, 3, 4, 0x0000000000000000LL);
 Variant c_XConfig::i___construct(MethodCallPackage &mcp, CArrRef params) {
   return invoke_meth_few_handler(mcp, params, &ifa___construct);
 }
@@ -1612,11 +1612,13 @@ Variant c_XConfig::ifa___construct(MethodCallPackage &mcp, int count, INVOKE_FEW
     return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa___construct, coo_XConfig);
   }
   c_XConfig *self ATTRIBUTE_UNUSED (static_cast<c_XConfig*>(mcp.obj));
-  if (UNLIKELY(count < 1 || count > 2)) return throw_wrong_arguments("__construct", count, 1, 2, 1);
+  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("__construct", count, 1, 3, 1);
   CVarRef arg0(a0);
   if (count <= 1) return (self->t___construct(arg0), null);
   CVarRef arg1(a1);
-  return (self->t___construct(arg0, arg1), null);
+  if (count <= 2) return (self->t___construct(arg0, arg1), null);
+  CVarRef arg2(a2);
+  return (self->t___construct(arg0, arg1, arg2), null);
 }
 Variant c_XConfig::ifa_reload(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {
@@ -1747,10 +1749,10 @@ const int c_XConfig::s_call_info_index[] = {
   -1,-1,-1,-1,-1,-1,-1,12,
 
 };
-c_XConfig *c_XConfig::create(String a0, String a1) {
+c_XConfig *c_XConfig::create(String a0, String a1, bool a2) {
   CountableHelper h(this);
   init();
-  t___construct(a0, a1);
+  t___construct(a0, a1, a2);
   return this;
 }
 const ObjectStaticCallbacks cw_XConfig = {

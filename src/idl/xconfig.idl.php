@@ -142,6 +142,12 @@ DefineFunction(
         'value'  => "null",
         'desc'   => "Socket where to find xconfig instance",
       ),
+      array(
+        'name'   => "autoreload",
+        'type'   => Boolean,
+        'value'  => "true",
+        'desc'   => "If set to true reloading will be done automatically",
+      ),
     ),
   ));
 

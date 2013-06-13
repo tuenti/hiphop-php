@@ -50,7 +50,7 @@ class c_XConfig : public ExtObjectData {
   // need to implement
   public: c_XConfig(const ObjectStaticCallbacks *cb = &cw_XConfig);
   public: ~c_XConfig();
-  public: void t___construct(CStrRef path, CStrRef socket = null);
+  public: void t___construct(CStrRef path, CStrRef socket = null, bool autoreload = true);
   DECLARE_METHOD_INVOKE_HELPERS(__construct);
   public: void t_reload();
   DECLARE_METHOD_INVOKE_HELPERS(reload);
@@ -78,7 +78,7 @@ class c_XConfig : public ExtObjectData {
   DECLARE_METHOD_INVOKE_HELPERS(__destruct);
 
   // implemented by HPHP
-  public: c_XConfig *create(String path, String socket = null);
+  public: c_XConfig *create(String path, String socket = null, bool autoreload = true);
   static const ClassPropTable os_prop_table;
 
 private:
