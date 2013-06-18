@@ -311,8 +311,8 @@ int RuntimeOption::ApcPurgeFrequency = 4096;
 bool RuntimeOption::ApcAllowObj = false;
 int RuntimeOption::ApcTTLLimit = -1;
 
-bool RuntimeOption::EnableDnsCache = false;
-int RuntimeOption::DnsCacheTTL = 10 * 60; // 10 minutes
+bool RuntimeOption::EnableDnsCache = true;
+int RuntimeOption::DnsCacheTTL = 60; // 1 minute
 time_t RuntimeOption::DnsCacheKeyMaturityThreshold = 20;
 size_t RuntimeOption::DnsCacheMaximumCapacity = 0;
 int RuntimeOption::DnsCacheKeyFrequencyUpdatePeriod = 1000;
@@ -805,7 +805,7 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
 
     Hdf dns = server["DnsCache"];
     EnableDnsCache = dns["Enable"].getBool();
-    DnsCacheTTL = dns["TTL"].getInt32(600); // 10 minutes
+    DnsCacheTTL = dns["TTL"].getInt32(60); // 1 minute
     DnsCacheKeyMaturityThreshold = dns["KeyMaturityThreshold"].getInt32(20);
     DnsCacheMaximumCapacity = dns["MaximumCapacity"].getInt64(0);
     DnsCacheKeyFrequencyUpdatePeriod = dns["KeyFrequencyUpdatePeriod"].
