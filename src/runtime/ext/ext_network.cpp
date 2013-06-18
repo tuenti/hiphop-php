@@ -922,8 +922,9 @@ public:
     lastCleanup = 0;
   }
   void cleanupCache() {
+    // If DNS cache is deactivated, we just always clean the hash table
     time_t now = time(NULL);
-    if (now > lastCleanup + RuntimeOption::DnsCacheTTL) {
+    if ((!RuntimeOption::EnableDnsCache) || (now > lastCleanup + RuntimeOption::DnsCacheTTL)) {
       hostEntCache.clear();
       lastCleanup = now;
     }
@@ -934,23 +935,21 @@ private:
 static IMPLEMENT_THREAD_LOCAL(ExtNetworkData, s_networkData);
 
 const Util::HostEnt * cached_gethostbyname(const char *address) {
-  if (RuntimeOption::EnableDnsCache) {
-    s_networkData->cleanupCache();
-    HostEntCache::iterator cached = s_networkData->hostEntCache.find(address);
-    if (cached != s_networkData->hostEntCache.end()) {
-      cached->second.rotate_index();
-      return &cached->second;
-    }
+  s_networkData->cleanupCache();
+
+  HostEntCache::iterator cached = s_networkData->hostEntCache.find(address);
+  if (cached != s_networkData->hostEntCache.end()) {
+    cached->second.rotate_index();
+    return &cached->second;
   }
+
   Util::HostEnt * result = new Util::HostEnt;
   if (!Util::safe_gethostbyname(address, *result)) {
     delete result;
     return NULL;
   }
 
-  if (RuntimeOption::EnableDnsCache) {
-    s_networkData->hostEntCache[address] = *result;
-  }
+  s_networkData->hostEntCache[address] = *result;
   return result;
 }
 
