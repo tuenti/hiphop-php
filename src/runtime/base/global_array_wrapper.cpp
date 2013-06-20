@@ -63,7 +63,7 @@ CVarRef GlobalArrayWrapper::get(int64   k, bool error /* = false */) const {
 CVarRef GlobalArrayWrapper::get(litstr  k, bool error /* = false */) const {
   if (exists(k)) {
     return m_globals->get(k);
-  } else {
+  } else if (error) {
     raise_notice("Undefined index: %s", k);
   }
   return null_variant;
@@ -72,8 +72,8 @@ CVarRef GlobalArrayWrapper::get(litstr  k, bool error /* = false */) const {
 CVarRef GlobalArrayWrapper::get(CStrRef k, bool error /* = false */) const {
   if (exists(k)) {
     return m_globals->get(k);
-  } else {
-     raise_notice("Undefined index: %s", k.data());
+  } else if (error) {
+    raise_notice("Undefined index: %s", k.data());
   }
   return null_variant;
 }
