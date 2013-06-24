@@ -173,8 +173,15 @@ int64 Socket::writeImpl(const char *buffer, int64 length) {
 
 bool Socket::eof() {
   ASSERT(m_fd);
+
+  if ((m_writepos - m_readpos) > 0) {
+      // We don't give eof if we still have buffered data
+      return false;
+  }
+
   char buf;
-  int ret = recv(m_fd, &buf, sizeof(buf), MSG_PEEK);
+  int ret = recv(m_fd, &buf, sizeof(buf), MSG_DONTWAIT | MSG_PEEK);
+
   return (ret == 0 || (ret == -1 && errno != EWOULDBLOCK));
 }
 
