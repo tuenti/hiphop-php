@@ -449,8 +449,6 @@ bool c_MemcachePool::t_prefetch(CVarRef key) {
 
 Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam cas /*= null*/) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::get);
-  if (!prefetch(key))
-    return false;
 
   memcached_result_st result;
   memcached_return_t ret;
@@ -459,6 +457,14 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
   size_t payload_len, res_key_len;
   int64 cflags, ccas;
   String curkey;
+
+  if (!prefetch(key)) {
+    if (key.is(KindOfArray)) {
+      return return_val;
+    } else {
+      return false;
+    }
+  }
 
   memcached_st *memc = get_read_memc();
   Array keyArr = key.is(KindOfArray) ? key.toArray() : Array(key);
