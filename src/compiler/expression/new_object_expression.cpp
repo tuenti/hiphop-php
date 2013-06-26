@@ -273,6 +273,8 @@ bool NewObjectExpression::preOutputCPP(CodeGenerator &cg, AnalysisResultPtr ar,
     return false;
   }
 
+  if (outputLineMap(cg, ar)) cg_printf("0);\n");
+
   string &cname = isSelf() || isParent() ? m_name : m_origName;
   if (m_name.empty() || !m_classScope || m_dynamic) {
     // Short circuit out if inExpression() returns false
