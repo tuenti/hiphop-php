@@ -124,11 +124,13 @@ class MemcacheObjectData {
     memcached_behavior_set(read_st,  MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 1);
     memcached_behavior_set(write_st, MEMCACHED_BEHAVIOR_SUPPORT_CAS, 1);
     memcached_behavior_set(read_st,  MEMCACHED_BEHAVIOR_SUPPORT_CAS, 1);
+    memcached_behavior_set(write_st, MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 1);
+    memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 1);
+    memcached_behavior_set(write_st, MEMCACHED_BEHAVIOR_NOREPLY, 0);
+    memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_NOREPLY, 0);
 
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_USE_UDP, 1);
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_UDP_ALWAYS_FLUSH, 1);
-    memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 1);
-    memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_NOREPLY, 0);
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_NO_BLOCK, 1);
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_MGET_FLUSH_OLD_RESULTS, 0);
   }
