@@ -5,14 +5,23 @@ argsmode="hphpi"
 
 while [ $# -gt 0 ]; do
   if [ "$argsmode" = "hphpi" -a -r "$1" ]; then
-    # Once we find an argument that corresponds to a file, we add the -- separator
-    args="$args -- '$1'"
-    argsmode="command"
-  else
-    args="$args '$1'"
+    filename=$1
+    extension=${filename##*.}
+
+    if  [ "$extension" = "php" ]; then
+      # Once we find an argument that corresponds to a file, we add the -- separator
+      args="$args -- '$1'"
+      argsmode="command"
+      shift && continue
+    fi
   fi
+
+  args="$args '$1'"
   shift
 done
+
+# Add default config if we found it
+[ -r "/srv/hh/server.hdf" ] && args="-c /srv/hh/server.hdf $args"
 
 export LD_LIBRARY_PATH=/opt/hiphop/lib
 eval "/opt/hiphop/bin/hphpi $args"
