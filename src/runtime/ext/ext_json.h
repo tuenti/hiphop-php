@@ -27,6 +27,8 @@ namespace HPHP {
 
 String f_json_encode(CVarRef value, CVarRef options = 0);
 Variant f_json_decode(CStrRef json, bool assoc = false, CVarRef options = 0);
+int64 f_json_last_error();
+String f_json_last_error_msg();
 extern const int64 k_JSON_HEX_TAG;
 extern const int64 k_JSON_HEX_AMP;
 extern const int64 k_JSON_HEX_APOS;
@@ -35,6 +37,16 @@ extern const int64 k_JSON_FORCE_OBJECT;
 extern const int64 k_JSON_NUMERIC_CHECK;
 extern const int64 k_JSON_UNESCAPED_SLASHES;
 extern const int64 k_JSON_FB_LOOSE;
+extern const int64 k_JSON_ERROR_NONE;
+extern const int64 k_JSON_ERROR_DEPTH;
+extern const int64 k_JSON_ERROR_STATE_MISMATCH;
+extern const int64 k_JSON_ERROR_CTRL_CHAR;
+extern const int64 k_JSON_ERROR_SYNTAX;
+extern const int64 k_JSON_ERROR_UTF8;
+extern const int64 k_JSON_ERROR_RECURSION;
+extern const int64 k_JSON_ERROR_INF_OR_NAN;
+extern const int64 k_JSON_ERROR_UNSUPPORTED_TYPE;
+
 ///////////////////////////////////////////////////////////////////////////////
 }
 

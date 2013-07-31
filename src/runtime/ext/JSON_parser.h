@@ -18,5 +18,17 @@
 
 #include <runtime/base/complex_types.h>
 
-bool JSON_parser(HPHP::Variant &z, const char *p, int length,
+enum error_codes {
+  JSON_ERROR_NONE = 0,
+  JSON_ERROR_DEPTH,
+  JSON_ERROR_STATE_MISMATCH,
+  JSON_ERROR_CTRL_CHAR,
+  JSON_ERROR_SYNTAX,
+  JSON_ERROR_UTF8,
+  JSON_ERROR_RECURSION,
+  JSON_ERROR_INF_OR_NAN,
+  JSON_ERROR_UNSUPPORTED_TYPE
+};
+
+int JSON_parser(HPHP::Variant &z, const char *p, int length,
                  bool assoc/*<fb>*/, bool loose/*</fb>*/);

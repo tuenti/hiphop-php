@@ -321,32 +321,32 @@ private:
 #define MODE_ARRAY  4
 
 /**
- * Push a mode onto the stack. Return false if there is overflow.
+ * Push a mode onto the stack. Return error if there is overflow.
  */
 static int push(json_parser *json, int mode) {
   json->the_top += 1;
   if (json->the_top >= JSON_PARSER_MAX_DEPTH) {
-    return false;
+    return JSON_ERROR_DEPTH;
   }
   json->the_stack[json->the_top] = mode;
   if (json->the_top > json->the_mark) {
     json->the_mark = json->the_top;
   }
-  return true;
+  return JSON_ERROR_NONE;
 }
 
 
 /**
  * Pop the stack, assuring that the current mode matches the expectation.
- * Return false if there is underflow or if the modes mismatch.
+ * Return error if there is underflow or if the modes mismatch.
  */
 static int pop(json_parser *json, int mode) {
   if (json->the_top < 0 || json->the_stack[json->the_top] != mode) {
-    return false;
+    return JSON_ERROR_STATE_MISMATCH;
   }
   json->the_stack[json->the_top] = 0;
   json->the_top -= 1;
-  return true;
+  return JSON_ERROR_NONE;
 }
 
 static int dehexchar(char c) {
@@ -489,7 +489,7 @@ static void attach_zval(json_parser *json, int up, int cur, StringBuffer &key,
  * It is implemented as a Pushdown Automaton; that means it is a finite state
  * machine with a stack.
  */
-bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
+int JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
                  bool loose/*</fb>*/) {
   int b;  /* the next character */
   int c;  /* the next character class */
@@ -497,6 +497,7 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
   json_parser *the_json = s_json_parser.get(); /* the parser state */
   JsonParserCleaner cleaner(the_json);
   int the_state = 0;
+  int ret;
 
   /*<fb>*/
   int qchr = 0;
@@ -523,7 +524,7 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
     b = decoder.decode();
     if (b == UTF8_END) break; // UTF-8 decoding finishes successfully.
     if (b == UTF8_ERROR) {
-      return false;
+      return JSON_ERROR_SYNTAX;
     }
     ASSERT(b >= 0);
 
@@ -532,7 +533,7 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
       c = byte_class[b];
       /*</fb>*/
       if (c <= S_ERR) {
-        return false;
+        return JSON_ERROR_CTRL_CHAR;
       }
     } else {
       c = S_ETC;
@@ -566,8 +567,9 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
           empty }
         */
       case -9:
-        if (!pop(the_json, MODE_KEY)) {
-          return false;
+        ret = pop(the_json, MODE_KEY);
+        if (ret != JSON_ERROR_NONE) {
+          return ret;
         }
         the_state = 9;
         break;
@@ -575,8 +577,9 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
           {
         */
       case -8:
-        if (!push(the_json, MODE_KEY)) {
-          return false;
+        ret = push(the_json, MODE_KEY);
+        if (ret != JSON_ERROR_NONE) {
+          return ret;
         }
 
         the_state = 1;
@@ -610,7 +613,7 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
           trailing comma just didn't happen.
         */
         if (loose) {
-          if (pop(the_json, MODE_KEY)) {
+          if (pop(the_json, MODE_KEY) == JSON_ERROR_NONE) {
             push(the_json, MODE_OBJECT);
           }
         }
@@ -626,9 +629,9 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
           JSON_RESET_TYPE();
         }
 
-
-        if (!pop(the_json, MODE_OBJECT)) {
-          return false;
+        ret = pop(the_json, MODE_OBJECT);
+        if (ret != JSON_ERROR_NONE) {
+          return ret;
         }
         the_state = 9;
         break;
@@ -636,8 +639,9 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
           [
         */
       case -6:
-        if (!push(the_json, MODE_ARRAY)) {
-          return false;
+        ret = push(the_json, MODE_ARRAY);
+        if (ret != JSON_ERROR_NONE) {
+          return ret;
         }
         the_state = 2;
 
@@ -668,8 +672,9 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
             JSON_RESET_TYPE();
           }
 
-          if (!pop(the_json, MODE_ARRAY)) {
-            return false;
+          ret = pop(the_json, MODE_ARRAY);
+          if (ret != JSON_ERROR_NONE) {
+            return ret;
           }
           the_state = 9;
         }
@@ -696,7 +701,7 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
           }
           /* fall through if not KindOfString */
         default:
-          return false;
+          return JSON_ERROR_SYNTAX;
         }
         break;
         /*
@@ -713,8 +718,8 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
 
           switch (JSON(the_stack)[JSON(the_top)]) {
           case MODE_OBJECT:
-            if (pop(the_json, MODE_OBJECT) &&
-                push(the_json, MODE_KEY)) {
+            if ((pop(the_json, MODE_OBJECT) == JSON_ERROR_NONE) &&
+                (push(the_json, MODE_KEY) == JSON_ERROR_NONE)) {
               if (type != -1) {
                 Variant &top = JSON(the_zstack)[JSON(the_top)];
                 object_set(top, *key, mval, assoc);
@@ -729,7 +734,7 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
             the_state = 28;
             break;
           default:
-            return false;
+            return JSON_ERROR_SYNTAX;
           }
           buf->reset();
           JSON_RESET_TYPE();
@@ -756,7 +761,8 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
           :
         */
       case -2:
-        if (pop(the_json, MODE_KEY) && push(the_json, MODE_OBJECT)) {
+        if ((pop(the_json, MODE_KEY) == JSON_ERROR_NONE) &&
+            (push(the_json, MODE_OBJECT) == JSON_ERROR_NONE)) {
           the_state = 28;
           break;
         }
@@ -764,7 +770,7 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
           syntax error
         */
       case -1:
-        return false;
+        return JSON_ERROR_SYNTAX;
       }
     } else {
       /*
@@ -826,5 +832,9 @@ bool JSON_parser(Variant &z, const char *p, int length, bool assoc/*<fb>*/,
     }
   }
 
-  return the_state == 9 && pop(the_json, MODE_DONE);
+  if (the_state == 9) {
+    return pop(the_json, MODE_DONE);
+  } else {
+    return JSON_ERROR_SYNTAX;
+  }
 }

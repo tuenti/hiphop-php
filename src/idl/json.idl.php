@@ -73,6 +73,60 @@ DefineConstant(
     'type'   => Int64,
   ));
 
+DefineConstant(
+  array(
+    'name'   => "JSON_ERROR_NONE",
+    'type'   => Int64,
+  ));
+
+DefineConstant(
+  array(
+    'name'   => "JSON_ERROR_DEPTH",
+    'type'   => Int64,
+  ));
+
+DefineConstant(
+  array(
+    'name'   => "JSON_ERROR_STATE_MISMATCH",
+    'type'   => Int64,
+  ));
+
+DefineConstant(
+  array(
+    'name'   => "JSON_ERROR_CTRL_CHAR",
+    'type'   => Int64,
+  ));
+
+DefineConstant(
+  array(
+    'name'   => "JSON_ERROR_SYNTAX",
+    'type'   => Int64,
+  ));
+
+DefineConstant(
+  array(
+    'name'   => "JSON_ERROR_UTF8",
+    'type'   => Int64,
+  ));
+
+DefineConstant(
+  array(
+    'name'   => "JSON_ERROR_RECURSION",
+    'type'   => Int64,
+  ));
+
+DefineConstant(
+  array(
+    'name'   => "JSON_ERROR_INF_OR_NAN",
+    'type'   => Int64,
+  ));
+
+DefineConstant(
+  array(
+    'name'   => "JSON_ERROR_UNSUPPORTED_TYPE",
+    'type'   => Int64,
+  ));
+
 ///////////////////////////////////////////////////////////////////////////////
 // Functions
 //
@@ -155,6 +209,28 @@ DefineFunction(
     'taint_observer' => array(
       'set_mask'   => "TAINT_BIT_MUTATED",
       'clear_mask' => "TAINT_BIT_NONE",
+    ),
+  ));
+
+DefineFunction(
+  array(
+    'name'   => "json_last_error",
+    'desc'   => "Returns the error code of the last json_encode() or json_decode() call.",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => Int64,
+      'desc'   => "Returns the error code of the last json_encode() or json_decode() call",
+    ),
+  ));
+
+DefineFunction(
+  array(
+    'name'   => "json_last_error_msg",
+    'desc'   => "Returns the error string of the last json_encode() or json_decode() call.",
+    'flags'  =>  HasDocComment,
+    'return' => array(
+      'type'   => String,
+      'desc'   => "Returns the error string of the last json_encode() or json_decode() call",
     ),
   ));
 

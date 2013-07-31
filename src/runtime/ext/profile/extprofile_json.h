@@ -37,6 +37,16 @@ inline Variant x_json_decode(CStrRef json, bool assoc = false, CVarRef options =
   return f_json_decode(json, assoc, options);
 }
 
+inline int64 x_json_last_error() {
+  FUNCTION_INJECTION_BUILTIN(json_last_error);
+  return f_json_last_error();
+}
+
+inline String x_json_last_error_msg() {
+  FUNCTION_INJECTION_BUILTIN(json_last_error_msg);
+  return f_json_last_error_msg();
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 }

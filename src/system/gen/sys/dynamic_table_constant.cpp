@@ -2089,7 +2089,7 @@ public:
   hashNodeCon *next;
 };
 static hashNodeCon *conMapTable[8192];
-static hashNodeCon conBuckets[2208];
+static hashNodeCon conBuckets[2217];
 
 void init_builtin_constant_table() {
   const char *conMapData[] = {
@@ -2715,6 +2715,15 @@ void init_builtin_constant_table() {
       (const char *)"INPUT_SERVER", (const char *)-1, (const char *)32, (const char *)&k_INPUT_SERVER,
       (const char *)"INPUT_SESSION", (const char *)-1, (const char *)32, (const char *)&k_INPUT_SESSION,
       (const char *)"INTL_MAX_LOCALE_LEN", (const char *)-1, (const char *)32, (const char *)&k_INTL_MAX_LOCALE_LEN,
+      (const char *)"JSON_ERROR_CTRL_CHAR", (const char *)-1, (const char *)32, (const char *)&k_JSON_ERROR_CTRL_CHAR,
+      (const char *)"JSON_ERROR_DEPTH", (const char *)-1, (const char *)32, (const char *)&k_JSON_ERROR_DEPTH,
+      (const char *)"JSON_ERROR_INF_OR_NAN", (const char *)-1, (const char *)32, (const char *)&k_JSON_ERROR_INF_OR_NAN,
+      (const char *)"JSON_ERROR_NONE", (const char *)-1, (const char *)32, (const char *)&k_JSON_ERROR_NONE,
+      (const char *)"JSON_ERROR_RECURSION", (const char *)-1, (const char *)32, (const char *)&k_JSON_ERROR_RECURSION,
+      (const char *)"JSON_ERROR_STATE_MISMATCH", (const char *)-1, (const char *)32, (const char *)&k_JSON_ERROR_STATE_MISMATCH,
+      (const char *)"JSON_ERROR_SYNTAX", (const char *)-1, (const char *)32, (const char *)&k_JSON_ERROR_SYNTAX,
+      (const char *)"JSON_ERROR_UNSUPPORTED_TYPE", (const char *)-1, (const char *)32, (const char *)&k_JSON_ERROR_UNSUPPORTED_TYPE,
+      (const char *)"JSON_ERROR_UTF8", (const char *)-1, (const char *)32, (const char *)&k_JSON_ERROR_UTF8,
       (const char *)"JSON_FB_LOOSE", (const char *)-1, (const char *)32, (const char *)&k_JSON_FB_LOOSE,
       (const char *)"JSON_FORCE_OBJECT", (const char *)-1, (const char *)32, (const char *)&k_JSON_FORCE_OBJECT,
       (const char *)"JSON_HEX_AMP", (const char *)-1, (const char *)32, (const char *)&k_JSON_HEX_AMP,

@@ -33,7 +33,32 @@ const int64 k_JSON_UNESCAPED_SLASHES = 1<<6;
 // intentionally higher so when PHP adds more options we're fine
 const int64 k_JSON_FB_LOOSE      = 1<<20;
 
+const int64 k_JSON_ERROR_NONE             = JSON_ERROR_NONE;
+const int64 k_JSON_ERROR_DEPTH            = JSON_ERROR_DEPTH;
+const int64 k_JSON_ERROR_STATE_MISMATCH   = JSON_ERROR_STATE_MISMATCH;
+const int64 k_JSON_ERROR_CTRL_CHAR        = JSON_ERROR_CTRL_CHAR;
+const int64 k_JSON_ERROR_SYNTAX           = JSON_ERROR_SYNTAX;
+const int64 k_JSON_ERROR_UTF8             = JSON_ERROR_UTF8;
+const int64 k_JSON_ERROR_RECURSION        = JSON_ERROR_RECURSION;
+const int64 k_JSON_ERROR_INF_OR_NAN       = JSON_ERROR_INF_OR_NAN;
+const int64 k_JSON_ERROR_UNSUPPORTED_TYPE = JSON_ERROR_UNSUPPORTED_TYPE;
+
 ///////////////////////////////////////////////////////////////////////////////
+
+class JsonRequestData : public RequestEventHandler {
+public:
+  virtual void requestInit() {
+    last_error = k_JSON_ERROR_NONE;
+  }
+
+  virtual void requestShutdown() {
+    last_error = k_JSON_ERROR_NONE;
+  }
+
+  int64 last_error;
+};
+
+IMPLEMENT_STATIC_REQUEST_LOCAL(JsonRequestData, s_json_data);
 
 String f_json_encode(CVarRef value, CVarRef options /* = 0 */) {
   int64 json_options = options.toInt64();
@@ -57,7 +82,8 @@ Variant f_json_decode(CStrRef json, bool assoc /* = false */,
   }
 
   Variant z;
-  if (JSON_parser(z, json.data(), json.size(), assoc, (json_options & k_JSON_FB_LOOSE))) {
+  s_json_data->last_error = JSON_parser(z, json.data(), json.size(), assoc, (json_options & k_JSON_FB_LOOSE));
+  if (s_json_data->last_error == JSON_ERROR_NONE) {
     return z;
   }
 
@@ -78,6 +104,35 @@ Variant f_json_decode(CStrRef json, bool assoc /* = false */,
   }
 
   return null;
+}
+
+int64 f_json_last_error() {
+  return s_json_data->last_error;
+}
+
+String f_json_last_error_msg() {
+  switch(s_json_data->last_error) {
+    case JSON_ERROR_NONE:
+      return  "No error";
+    case JSON_ERROR_DEPTH:
+      return "Maximum stack depth exceeded";
+    case JSON_ERROR_STATE_MISMATCH:
+      return "State mismatch (invalid or malformed JSON)";
+    case JSON_ERROR_CTRL_CHAR:
+      return "Control character error, possibly incorrectly encoded";
+    case JSON_ERROR_SYNTAX:
+      return "Syntax error";
+    case JSON_ERROR_UTF8:
+      return "Malformed UTF-8 characters, possibly incorrectly encoded";
+    case JSON_ERROR_RECURSION:
+      return "Recursion detected";
+    case JSON_ERROR_INF_OR_NAN:
+      return "Inf and NaN cannot be JSON encoded";
+    case JSON_ERROR_UNSUPPORTED_TYPE:
+      return "Type is not supported";
+    default:
+      return "Unknown error";
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

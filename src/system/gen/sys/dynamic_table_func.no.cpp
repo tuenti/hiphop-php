@@ -1479,6 +1479,13 @@ Variant ifa_pixelsetblackquantum(void *extra, int count, INVOKE_FEW_ARGS_IMPL_AR
 Variant i_pixelsetblackquantum(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_pixelsetblackquantum);
 }
+Variant ifa_json_last_error_msg(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("json_last_error_msg", 0, 1);
+  return (x_json_last_error_msg());
+}
+Variant i_json_last_error_msg(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_json_last_error_msg);
+}
 Variant ifa_imap_msgno(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count != 2)) return throw_wrong_arguments("imap_msgno", count, 2, 2, 1);
   CVarRef arg0(a0);
@@ -20228,6 +20235,13 @@ Variant ifa_tanh(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
 Variant i_tanh(void *extra, CArrRef params) {
   return invoke_func_few_handler(extra, params, &ifa_tanh);
 }
+Variant ifa_json_last_error(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
+  if (UNLIKELY(count > 0)) return throw_toomany_arguments("json_last_error", 0, 1);
+  return (x_json_last_error());
+}
+Variant i_json_last_error(void *extra, CArrRef params) {
+  return invoke_func_few_handler(extra, params, &ifa_json_last_error);
+}
 Variant ifa_fb_intercept(void *extra, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(count < 2 || count > 3)) return throw_wrong_arguments("fb_intercept", count, 2, 3, 1);
   CVarRef arg0(a0);
@@ -21970,6 +21984,7 @@ CallInfo ci_magickgetimagefilename((void*)&i_magickgetimagefilename, (void*)&ifa
 CallInfo ci_hphp_splfileinfo_gettype((void*)&i_hphp_splfileinfo_gettype, (void*)&ifa_hphp_splfileinfo_gettype, 1, 0, 0x0000000000000000LL);
 CallInfo ci_inclued_get_data((void*)&i_inclued_get_data, (void*)&ifa_inclued_get_data, 0, 0, 0x0000000000000000LL);
 CallInfo ci_pixelsetblackquantum((void*)&i_pixelsetblackquantum, (void*)&ifa_pixelsetblackquantum, 2, 0, 0x0000000000000000LL);
+CallInfo ci_json_last_error_msg((void*)&i_json_last_error_msg, (void*)&ifa_json_last_error_msg, 0, 0, 0x0000000000000000LL);
 CallInfo ci_imap_msgno((void*)&i_imap_msgno, (void*)&ifa_imap_msgno, 2, 0, 0x0000000000000000LL);
 CallInfo ci_stream_socket_shutdown((void*)&i_stream_socket_shutdown, (void*)&ifa_stream_socket_shutdown, 2, 0, 0x0000000000000000LL);
 CallInfo ci_usort((void*)&i_usort, (void*)&ifa_usort, 2, 0, 0x0000000000000001LL);
@@ -23840,6 +23855,7 @@ CallInfo ci_log((void*)&i_log, (void*)&ifa_log, 2, 0, 0x0000000000000000LL);
 CallInfo ci_hash_final((void*)&i_hash_final, (void*)&ifa_hash_final, 2, 0, 0x0000000000000000LL);
 CallInfo ci_pixelgetexceptionstring((void*)&i_pixelgetexceptionstring, (void*)&ifa_pixelgetexceptionstring, 1, 0, 0x0000000000000000LL);
 CallInfo ci_tanh((void*)&i_tanh, (void*)&ifa_tanh, 1, 0, 0x0000000000000000LL);
+CallInfo ci_json_last_error((void*)&i_json_last_error, (void*)&ifa_json_last_error, 0, 0, 0x0000000000000000LL);
 CallInfo ci_fb_intercept((void*)&i_fb_intercept, (void*)&ifa_fb_intercept, 3, 0, 0x0000000000000000LL);
 CallInfo ci_is_readable((void*)&i_is_readable, (void*)&ifa_is_readable, 1, 0, 0x0000000000000000LL);
 CallInfo ci_lstat((void*)&i_lstat, (void*)&ifa_lstat, 1, 0, 0x0000000000000000LL);
@@ -24125,6 +24141,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
       }
       HASH_GUARD(0x7848970191D5A04CLL, mysql_connect_with_db) {
         ci = &ci_mysql_connect_with_db;
+        return true;
+      }
+      break;
+    case 84:
+      HASH_GUARD(0x4962669800044054LL, json_last_error) {
+        ci = &ci_json_last_error;
         return true;
       }
       break;
@@ -28149,6 +28171,12 @@ bool get_call_info_builtin(const CallInfo *&ci, void *&extra, const char *s, int
     case 2740:
       HASH_GUARD(0x1BAFB965204D0AB4LL, openssl_x509_check_private_key) {
         ci = &ci_openssl_x509_check_private_key;
+        return true;
+      }
+      break;
+    case 2756:
+      HASH_GUARD(0x01D7C50B5E2BCAC4LL, json_last_error_msg) {
+        ci = &ci_json_last_error_msg;
         return true;
       }
       break;
