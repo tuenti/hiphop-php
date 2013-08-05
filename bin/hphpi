@@ -21,7 +21,7 @@ while [ $# -gt 0 ]; do
 done
 
 # Add default config if we found it
-[ -r "/srv/hh/server.hdf" ] && args="-c /srv/hh/server.hdf $args"
+[ -r "/srv/hh/script.hdf" ] && args="-c /srv/hh/script.hdf $args"
 
 export LD_LIBRARY_PATH=/opt/hiphop/lib
 eval "/opt/hiphop/bin/hphpi $args"
