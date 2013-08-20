@@ -19,7 +19,7 @@
 #define __EXT_MYSQL_H__
 
 #include <runtime/base/base_includes.h>
-#include <mysql/mysql.h>
+#include <mysql.h>
 
 #ifdef PHP_MYSQL_UNIX_SOCK_ADDR
 #ifdef MYSQL_UNIX_ADDR
