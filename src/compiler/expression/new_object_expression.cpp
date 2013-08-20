@@ -273,8 +273,6 @@ bool NewObjectExpression::preOutputCPP(CodeGenerator &cg, AnalysisResultPtr ar,
     return false;
   }
 
-  if (outputLineMap(cg, ar)) cg_printf("0);\n");
-
   string &cname = isSelf() || isParent() ? m_name : m_origName;
   if (m_name.empty() || !m_classScope || m_dynamic) {
     // Short circuit out if inExpression() returns false
@@ -282,6 +280,8 @@ bool NewObjectExpression::preOutputCPP(CodeGenerator &cg, AnalysisResultPtr ar,
 
     if (m_nameExp) m_nameExp->preOutputCPP(cg, ar, 0);
     cg.wrapExpressionBegin();
+    if (outputLineMap(cg, ar)) cg_printf("0);\n");
+
     m_ciTemp = cg.createNewLocalId(shared_from_this());
     m_objectTemp = cg.createNewLocalId(shared_from_this());
     cg_printf("Object obj%d(", m_objectTemp);
