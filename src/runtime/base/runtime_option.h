@@ -403,6 +403,8 @@ public:
   static int MemcachePoolHashFunction;
   static int MemcachePoolCompressThreshold;
   static int MemcachePoolDebug;
+  static int MemcachePoolMsgWatermark;
+  static int MemcachePoolBytesWatermark;
 
   static bool EnableForeachWarning;
 

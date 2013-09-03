@@ -42,10 +42,12 @@ public:
     AddServerStats(info, "mcc.inc");
     AddServerStats(info, "mcc.dec");
     AddServerStats(info, "mcc.flush");
-    AddServerStats(info, "mcc.get");
-    AddServerStats(info, "mcc.hit");
+    AddServerStats(info, "mcc.get_ops");
+    AddServerStats(info, "mcc.get_keys");
+    AddServerStats(info, "mcc.hit_keys");
     AddServerStats(info, "mcc.delete");
-    AddServerStats(info, "mcc.prefetch");
+    AddServerStats(info, "mcc.prefetch_ops");
+    AddServerStats(info, "mcc.timeout_ops");
   }
 
 } s_memcachepool_extension;
@@ -128,6 +130,10 @@ class MemcacheObjectData {
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 1);
     memcached_behavior_set(write_st, MEMCACHED_BEHAVIOR_NOREPLY, 0);
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_NOREPLY, 0);
+    memcached_behavior_set(write_st, MEMCACHED_BEHAVIOR_IO_MSG_WATERMARK, RuntimeOption::MemcachePoolMsgWatermark);
+    memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_IO_MSG_WATERMARK, RuntimeOption::MemcachePoolMsgWatermark);
+    memcached_behavior_set(write_st, MEMCACHED_BEHAVIOR_IO_BYTES_WATERMARK, RuntimeOption::MemcachePoolBytesWatermark);
+    memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_IO_BYTES_WATERMARK, RuntimeOption::MemcachePoolBytesWatermark);
 
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_USE_UDP, 1);
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_UDP_ALWAYS_FLUSH, 1);
@@ -140,6 +146,12 @@ class MemcacheObjectData {
     memcached_free(read_st);
   }
 };
+
+inline static void log_stat(const std::string &name, int64 value) {
+  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
+    ServerStats::Log(name, value);
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // methods
@@ -155,9 +167,7 @@ Object c_MemcachePool::ti_getstoragememcache(const char *, int storage_id, int t
     if (RuntimeOption::MemcachePoolDebug) {
       Logger::Verbose("[MemcachePool] Creating new MemcachePool object for storage id  %d", storage_id);
     }
-    if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
-      ServerStats::Log("mcc.object_count", 1);
-    }
+    log_stat("mcc.object_count", 1);
     // Insert new entry
     st_data = &(MEMCACHEG(storage_map)[storage_id]);
     st_data->last_config_update = timestamp;
@@ -198,9 +208,7 @@ c_MemcachePool::~c_MemcachePool() {
     Logger::Verbose("[MemcachePool] Destroying MemcachePool object %p", this);
   }
 
-  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
-    ServerStats::Log("mcc.object_count", -1);
-  }
+  log_stat("mcc.object_count", -1);
 
   close();
 
@@ -326,9 +334,7 @@ bool c_MemcachePool::t_add(CStrRef key, CVarRef var, int flag /*= 0*/,
   String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
 
   IOStatusHelper io("memcachepool::add");
-  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
-    ServerStats::Log("mcc.add", 1);
-  }
+  log_stat("mcc.add", 1);
 
   memcached_return_t ret = memcached_add(MEMCACHEL(write_st),
                                         key.c_str(), key.length(),
@@ -350,9 +356,7 @@ bool c_MemcachePool::t_set(CStrRef key, CVarRef var, int flag /*= 0*/,
   String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
 
   IOStatusHelper io("memcachepool::set");
-  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
-    ServerStats::Log("mcc.set", 1);
-  }
+  log_stat("mcc.set", 1);
 
   memcached_return_t ret = memcached_set(MEMCACHEL(write_st),
                                         key.c_str(), key.length(),
@@ -395,9 +399,7 @@ bool c_MemcachePool::t_replace(CStrRef key, CVarRef var, int flag /*= 0*/,
   String serialized = memcache_prepare_for_storage(var, flag, MEMCACHEL(compress_threshold));
 
   IOStatusHelper io("memcachepool::replace");
-  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
-    ServerStats::Log("mcc.replace", 1);
-  }
+  log_stat("mcc.replace", 1);
 
   memcached_return_t ret = memcached_replace(MEMCACHEL(write_st),
                                              key.c_str(), key.length(),
@@ -422,6 +424,8 @@ bool c_MemcachePool::prefetch(CVarRef key) {
   memcached_st *memc = get_read_memc();
   Array keyArr = key.is(KindOfArray) ? key.toArray() : Array(key);
 
+  log_stat("mcc.get_keys", keyArr.size());
+
   real_keys.reserve(keyArr.size());
   key_len.reserve(keyArr.size());
 
@@ -442,16 +446,13 @@ bool c_MemcachePool::prefetch(CVarRef key) {
 bool c_MemcachePool::t_prefetch(CVarRef key) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::prefetch);
   IOStatusHelper io("memcachepool::prefetch");
-  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
-    ServerStats::Log("mcc.prefetch", 1);
-  }
+  log_stat("mcc.prefetch_ops", 1);
 
   return prefetch(key);
 }
 
 Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam cas /*= null*/) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::get);
-
   memcached_result_st result;
   memcached_return_t ret;
   Array acas, aflags, return_val = Array::Create();
@@ -459,6 +460,9 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
   size_t payload_len, res_key_len;
   int64 cflags, ccas;
   String curkey;
+
+  IOStatusHelper io("memcachepool::get");
+  log_stat("mcc.get_ops", 1);
 
   if (!prefetch(key)) {
     if (key.is(KindOfArray)) {
@@ -477,11 +481,6 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
     flags = Array::Create();
 
   memcached_result_create(memc, &result);
-
-  IOStatusHelper io("memcachepool::get");
-  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
-    ServerStats::Log("mcc.get", keyArr.size());
-  }
 
   while ((memcached_fetch_result(memc, &result, &ret)) != NULL) {
     if (ret != MEMCACHED_SUCCESS) {
@@ -504,9 +503,11 @@ Variant c_MemcachePool::t_get(CVarRef key, VRefParam flags /*= null*/, VRefParam
     if (cas.isReferenced())   cas->set(curkey, ccas, true);
   }
 
-  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
-    ServerStats::Log("mcc.hits", return_val.size());
+  if ((ret == MEMCACHED_UNKNOWN_READ_FAILURE) || (ret == MEMCACHED_TIMEOUT)) {
+    log_stat("mcc.timeout_ops", 1);
   }
+
+  log_stat("mcc.hit_keys", return_val.size());
 
   if ((ret != MEMCACHED_END) && (ret != MEMCACHED_NOTFOUND)) {
     check_memcache_return(memc, ret, "", "Error getting multiget results");
@@ -540,9 +541,7 @@ bool c_MemcachePool::t_delete(CStrRef key, int expire /*= 0*/) {
   }
 
   IOStatusHelper io("memcachepool::delete");
-  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
-    ServerStats::Log("mcc.delete", 1);
-  }
+  log_stat("mcc.delete", 1);
 
   memcached_return_t ret = memcached_delete(MEMCACHEL(write_st),
                                             key.c_str(), key.length(),
@@ -558,9 +557,7 @@ Variant c_MemcachePool::t_increment(CStrRef key, int offset /*= 1*/) {
   }
 
   IOStatusHelper io("memcachepool::increment");
-  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
-    ServerStats::Log("mcc.inc", 1);
-  }
+  log_stat("mcc.inc", 1);
 
   uint64_t value;
   memcached_return_t ret = memcached_increment(MEMCACHEL(write_st), key.c_str(),
@@ -581,9 +578,7 @@ Variant c_MemcachePool::t_decrement(CStrRef key, int offset /*= 1*/) {
   }
 
   IOStatusHelper io("memcachepool::decrement");
-  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
-    ServerStats::Log("mcc.dec", 1);
-  }
+  log_stat("mcc.dec", 1);
 
   uint64_t value;
   memcached_return_t ret = memcached_decrement(MEMCACHEL(write_st), key.c_str(),
@@ -643,19 +638,25 @@ bool c_MemcachePool::t_flush(int expire /*= 0*/) {
   IOStatusHelper io("memcachepool::flush");
 
   memcached_return_t ret = memcached_flush(MEMCACHEL(write_st), expire);
-  if (RuntimeOption::EnableStats && RuntimeOption::EnableMemcacheStats) {
-    ServerStats::Log("mcc.flush", 1);
-  }
+  log_stat("mcc.flush", 1);
 
   return check_memcache_return(MEMCACHEL(write_st), ret, "", "Error flushing servers");
 }
 
-bool c_MemcachePool::t_setoptimeout(int64 timeoutms) {
+bool c_MemcachePool::t_setoptimeout(int64 tcp_timeoutms, int64 poll_timeoutms, int64 udp_timeoutms) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::setoptimeout);
-  memcached_behavior_set(MEMCACHEL(write_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeoutms);
-  memcached_behavior_set(MEMCACHEL(read_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, timeoutms);
-  memcached_behavior_set(MEMCACHEL(write_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeoutms);
-  memcached_behavior_set(MEMCACHEL(read_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, timeoutms);
+  // First parameter value is used by default
+  if (poll_timeoutms == 0) {
+    poll_timeoutms = tcp_timeoutms;
+  }
+  if (udp_timeoutms == 0) {
+    udp_timeoutms = tcp_timeoutms;
+  }
+
+  memcached_behavior_set(MEMCACHEL(write_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, tcp_timeoutms);
+  memcached_behavior_set(MEMCACHEL(read_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, udp_timeoutms);
+  memcached_behavior_set(MEMCACHEL(write_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, poll_timeoutms);
+  memcached_behavior_set(MEMCACHEL(read_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, udp_timeoutms);
 
   return true;
 }

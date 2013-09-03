@@ -9063,7 +9063,7 @@ CallInfo c_MemcachePool::ci_decrement((void*)&c_MemcachePool::i_decrement, (void
 CallInfo c_MemcachePool::ci_prefetch((void*)&c_MemcachePool::i_prefetch, (void*)&c_MemcachePool::ifa_prefetch, 1, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_delete((void*)&c_MemcachePool::i_delete, (void*)&c_MemcachePool::ifa_delete, 2, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_get((void*)&c_MemcachePool::i_get, (void*)&c_MemcachePool::ifa_get, 3, 4, 0x0000000000000006LL);
-CallInfo c_MemcachePool::ci_setoptimeout((void*)&c_MemcachePool::i_setoptimeout, (void*)&c_MemcachePool::ifa_setoptimeout, 1, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_setoptimeout((void*)&c_MemcachePool::i_setoptimeout, (void*)&c_MemcachePool::ifa_setoptimeout, 3, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_addserver((void*)&c_MemcachePool::i_addserver, (void*)&c_MemcachePool::ifa_addserver, 8, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_setcompressthreshold((void*)&c_MemcachePool::i_setcompressthreshold, (void*)&c_MemcachePool::ifa_setcompressthreshold, 2, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_setfailurecallback((void*)&c_MemcachePool::i_setfailurecallback, (void*)&c_MemcachePool::ifa_setfailurecallback, 1, 4, 0x0000000000000000LL);
@@ -9361,9 +9361,13 @@ Variant c_MemcachePool::ifa_setoptimeout(MethodCallPackage &mcp, int count, INVO
     return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_setoptimeout, coo_MemcachePool);
   }
   c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
-  if (UNLIKELY(count != 1)) return throw_wrong_arguments("setoptimeout", count, 1, 1, 1);
+  if (UNLIKELY(count < 1 || count > 3)) return throw_wrong_arguments("setoptimeout", count, 1, 3, 1);
   CVarRef arg0(a0);
-  return (self->t_setoptimeout(arg0));
+  if (count <= 1) return (self->t_setoptimeout(arg0));
+  CVarRef arg1(a1);
+  if (count <= 2) return (self->t_setoptimeout(arg0, arg1));
+  CVarRef arg2(a2);
+  return (self->t_setoptimeout(arg0, arg1, arg2));
 }
 Variant c_MemcachePool::ifa_close(MethodCallPackage &mcp, int count, INVOKE_FEW_ARGS_IMPL_ARGS) {
   if (UNLIKELY(mcp.obj == 0)) {

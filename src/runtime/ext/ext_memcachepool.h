@@ -77,7 +77,7 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
   DECLARE_METHOD_INVOKE_HELPERS(getversion);
   public: bool t_flush(int expire = 0);
   DECLARE_METHOD_INVOKE_HELPERS(flush);
-  public: bool t_setoptimeout(int64 timeoutms);
+  public: bool t_setoptimeout(int64 connect_timeoutms, int64 poll_timeoutms = 0, int64 udp_timeoutms = 0);
   DECLARE_METHOD_INVOKE_HELPERS(setoptimeout);
   public: bool t_close();
   DECLARE_METHOD_INVOKE_HELPERS(close);

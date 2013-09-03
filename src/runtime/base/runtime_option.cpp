@@ -394,6 +394,8 @@ int RuntimeOption::MemcachePoolHashStrategy = 0;
 int RuntimeOption::MemcachePoolHashFunction = 11;
 int RuntimeOption::MemcachePoolCompressThreshold = 1000;
 int RuntimeOption::MemcachePoolDebug = false;
+int RuntimeOption::MemcachePoolMsgWatermark = 500;
+int RuntimeOption::MemcachePoolBytesWatermark = 65 * 1024;
 
 bool RuntimeOption::EnableForeachWarning = true;
 
@@ -1152,6 +1154,8 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
      MemcachePoolHashFunction = memcachepool_config["HashFunction"].getInt32(11);
      MemcachePoolCompressThreshold = memcachepool_config["CompressThreshold"].getInt32(1000);
      MemcachePoolDebug = memcachepool_config["Debug"].getBool(false);
+     MemcachePoolMsgWatermark = memcachepool_config["MsgWatermark"].getInt32(500);
+     MemcachePoolBytesWatermark = memcachepool_config["BytesWatermark"].getInt32(65 * 1024);
   }
   {
      Hdf geoip_config = config["GeoIP"];

@@ -609,8 +609,18 @@ DefineFunction(
     ),
     'args'   => array(
       array(
-        'name'   => "timeoutms",
+        'name'   => "connect_timeoutms",
         'type'   => Int64,
+      ),
+       array(
+        'name'   => "poll_timeoutms",
+        'type'   => Int64,
+        'value'  => "0",
+      ),
+       array(
+        'name'   => "udp_timeoutms",
+        'type'   => Int64,
+        'value'  => "0",
       ),
     ),
   ));
