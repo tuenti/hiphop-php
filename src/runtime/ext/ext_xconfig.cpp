@@ -141,11 +141,11 @@ Variant c_XConfig::getValue(const XConfigNode& node)
     case xconfig::TYPE_NULL:
       return null;
     case xconfig::TYPE_BOOLEAN:
-      return String(xc->getBool(node));
+      return xc->getBool(node);
     case xconfig::TYPE_INTEGER:
-      return String(xc->getInt(node));
+      return xc->getInt(node);
     case xconfig::TYPE_FLOAT:
-      return String(xc->getFloat(node));
+      return xc->getFloat(node);
     case xconfig::TYPE_STRING:
       return String(xc->getString(node));
     case xconfig::TYPE_SEQUENCE: {
