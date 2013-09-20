@@ -132,6 +132,9 @@ class MemcacheObjectData {
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_NOREPLY, 0);
     memcached_behavior_set(write_st, MEMCACHED_BEHAVIOR_IO_MSG_WATERMARK, RuntimeOption::MemcachePoolMsgWatermark);
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_IO_MSG_WATERMARK, RuntimeOption::MemcachePoolMsgWatermark);
+    memcached_behavior_set(write_st, MEMCACHED_BEHAVIOR_CACHE_LOOKUPS, 1);
+    memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_CACHE_LOOKUPS, 1);
+
     memcached_behavior_set(write_st, MEMCACHED_BEHAVIOR_IO_BYTES_WATERMARK, RuntimeOption::MemcachePoolBytesWatermark);
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_IO_BYTES_WATERMARK, RuntimeOption::MemcachePoolBytesWatermark);
 
