@@ -93,7 +93,7 @@ class c_MemcachePool : public ExtObjectData, public Sweepable {
   DECLARE_METHOD_INVOKE_HELPERS(setserverparams);
   public: bool t_setfailurecallback(CVarRef failure_callback = null_variant);
   DECLARE_METHOD_INVOKE_HELPERS(setfailurecallback);
-  public: bool t_addserver(CStrRef host, int tcp_port = 11211, int udp_port = 0, bool persistent = false, int weight = 0, double timeout = 1, int retry_interval = 0, bool status = true);
+  public: bool t_addserver(CStrRef host, int tcp_port = 11211, int udp_port = 0, bool persistent = false, int weight = 0, double timeout = 1, int retry_interval = 0, bool status = true, CStrRef consistentid = null_string);
   DECLARE_METHOD_INVOKE_HELPERS(addserver);
   public: bool t_sethashstrategy(int64 hashstrategy);
   DECLARE_METHOD_INVOKE_HELPERS(sethashstrategy);

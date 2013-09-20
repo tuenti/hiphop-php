@@ -893,23 +893,24 @@ bool c_MemcachePool::t_setfailurecallback(CVarRef failure_callback) {
 
 bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port, 
                              bool persistent, int weight, double timeout, 
-                             int retry_interval, bool status) {
+                             int retry_interval, bool status, CStrRef consistentid) {
   INSTANCE_METHOD_INJECTION_BUILTIN(MemcachePool, MemcachePool::addserver);
   memcached_return_t ret  = MEMCACHED_SUCCESS;
   memcached_return_t ret2 = MEMCACHED_SUCCESS;
   int port = 0;
+  CStrRef consistent_id = consistentid.empty() ? host : consistentid;
 
   if (tcp_port > 0) {
     port = tcp_port;
-    ret = memcached_server_add_with_weight(MEMCACHEL(write_st), host.c_str(),
-                                             tcp_port, weight);
+    ret = memcached_server_add_with_consistentid(MEMCACHEL(write_st), host.c_str(),
+                                             tcp_port, weight, consistent_id.c_str());
     check_memcache_return(MEMCACHEL(write_st), ret, "", "Cannot add server");
   }
 
   if (udp_port > 0) {
     port = udp_port;
-    ret2 = memcached_server_add_udp_with_weight(MEMCACHEL(read_st), host.c_str(),
-                                              udp_port, weight);
+    ret2 = memcached_server_add_udp_with_consistentid(MEMCACHEL(read_st), host.c_str(),
+                                              udp_port, weight, consistent_id.c_str());
 
     check_memcache_return(MEMCACHEL(read_st), ret, "", "Cannot add server");
   }
@@ -923,14 +924,14 @@ bool c_MemcachePool::t_addserver(CStrRef host, int tcp_port, int udp_port,
 
     memcached_behavior_set(MEMCACHEL(write_st), MEMCACHED_BEHAVIOR_NO_BLOCK, 1);
     memcached_behavior_set(MEMCACHEL(write_st), MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 0);
-    ret = memcached_server_add_unix_socket_with_weight(MEMCACHEL(write_st), unix_sock.c_str(), weight);
+    ret = memcached_server_add_unix_socket_with_consistentid(MEMCACHEL(write_st), unix_sock.c_str(), weight, consistent_id.c_str());
     check_memcache_return(MEMCACHEL(write_st), ret, "", "Cannot add server to write instance");
 
     memcached_behavior_set(MEMCACHEL(read_st), MEMCACHED_BEHAVIOR_BINARY_PROTOCOL, 0);
     memcached_behavior_set(MEMCACHEL(read_st), MEMCACHED_BEHAVIOR_USE_UDP, 0);
     memcached_behavior_set(MEMCACHEL(read_st), MEMCACHED_BEHAVIOR_NO_BLOCK, 0);
     memcached_behavior_set(MEMCACHEL(read_st), MEMCACHED_BEHAVIOR_CHECK_OPAQUE, 0);
-    ret2 = memcached_server_add_unix_socket_with_weight(MEMCACHEL(read_st), unix_sock.c_str(), weight);
+    ret2 = memcached_server_add_unix_socket_with_consistentid(MEMCACHEL(read_st), unix_sock.c_str(), weight, consistent_id.c_str());
     check_memcache_return(MEMCACHEL(read_st), ret, "", "Cannot add server to read instance");
   }
 

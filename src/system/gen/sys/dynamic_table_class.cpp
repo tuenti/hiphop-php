@@ -9064,7 +9064,7 @@ CallInfo c_MemcachePool::ci_prefetch((void*)&c_MemcachePool::i_prefetch, (void*)
 CallInfo c_MemcachePool::ci_delete((void*)&c_MemcachePool::i_delete, (void*)&c_MemcachePool::ifa_delete, 2, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_get((void*)&c_MemcachePool::i_get, (void*)&c_MemcachePool::ifa_get, 3, 4, 0x0000000000000006LL);
 CallInfo c_MemcachePool::ci_setoptimeout((void*)&c_MemcachePool::i_setoptimeout, (void*)&c_MemcachePool::ifa_setoptimeout, 3, 4, 0x0000000000000000LL);
-CallInfo c_MemcachePool::ci_addserver((void*)&c_MemcachePool::i_addserver, (void*)&c_MemcachePool::ifa_addserver, 8, 4, 0x0000000000000000LL);
+CallInfo c_MemcachePool::ci_addserver((void*)&c_MemcachePool::i_addserver, (void*)&c_MemcachePool::ifa_addserver, 9, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_setcompressthreshold((void*)&c_MemcachePool::i_setcompressthreshold, (void*)&c_MemcachePool::ifa_setcompressthreshold, 2, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_setfailurecallback((void*)&c_MemcachePool::i_setfailurecallback, (void*)&c_MemcachePool::ifa_setfailurecallback, 1, 4, 0x0000000000000000LL);
 CallInfo c_MemcachePool::ci_getextendedstats((void*)&c_MemcachePool::i_getextendedstats, (void*)&c_MemcachePool::ifa_getextendedstats, 3, 4, 0x0000000000000000LL);
@@ -9150,7 +9150,7 @@ Variant c_MemcachePool::i_addserver(MethodCallPackage &mcp, CArrRef params) {
   }
   c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
   int count ATTRIBUTE_UNUSED = params.size();
-  if (UNLIKELY(count < 1 || count > 8)) return throw_wrong_arguments("addserver", count, 1, 8, 1);
+  if (UNLIKELY(count < 1 || count > 9)) return throw_wrong_arguments("addserver", count, 1, 9, 1);
   {
     ArrayData *ad(params.get());
     ssize_t pos = ad ? ad->iter_begin() : ArrayData::invalid_index;
@@ -9169,7 +9169,9 @@ Variant c_MemcachePool::i_addserver(MethodCallPackage &mcp, CArrRef params) {
     CVarRef arg6((ad->getValue(pos = ad->iter_advance(pos))));
     if (count <= 7) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5, arg6));
     CVarRef arg7((ad->getValue(pos = ad->iter_advance(pos))));
-    return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
+    if (count <= 8) return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
+    CVarRef arg8((ad->getValue(pos = ad->iter_advance(pos))));
+    return (self->t_addserver(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8));
   }
 }
 Variant c_MemcachePool::i_sethashstrategy(MethodCallPackage &mcp, CArrRef params) {
@@ -9459,7 +9461,7 @@ Variant c_MemcachePool::ifa_addserver(MethodCallPackage &mcp, int count, INVOKE_
     return ObjectData::ifa_dummy(mcp, count, INVOKE_FEW_ARGS_PASS_ARGS, ifa_addserver, coo_MemcachePool);
   }
   c_MemcachePool *self ATTRIBUTE_UNUSED (static_cast<c_MemcachePool*>(mcp.obj));
-  if (UNLIKELY(count < 1)) return throw_wrong_arguments("addserver", count, 1, 8, 1);
+  if (UNLIKELY(count < 1)) return throw_wrong_arguments("addserver", count, 1, 9, 1);
   CVarRef arg0(a0);
   if (count <= 1) return (self->t_addserver(arg0));
   CVarRef arg1(a1);

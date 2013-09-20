@@ -954,6 +954,13 @@ DefineFunction(
 				immediately depending on the memcache.allow_failover setting. Default to
 				TRUE, meaning the server should be considered online.",
       ),
+      array(
+        'name'   => "consistentid",
+        'type'   => String,
+        'value'  => "null_string",
+				'desc'   => "Id used to generate the consistent hashing ring distribution.
+				If set to default value (empty string) the hostname will be used instead.",
+      ),
     ),
   ));
 
