@@ -143,7 +143,7 @@ Variant c_XConfig::getValue(const XConfigNode& node)
     case xconfig::TYPE_BOOLEAN:
       return xc->getBool(node);
     case xconfig::TYPE_INTEGER:
-      return xc->getInt(node);
+      return (int64)xc->getInt(node);
     case xconfig::TYPE_FLOAT:
       return xc->getFloat(node);
     case xconfig::TYPE_STRING:
