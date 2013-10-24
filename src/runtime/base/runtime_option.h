@@ -185,6 +185,7 @@ public:
   static bool Utf8izeReplace;
 
   static std::string StartupDocument;
+  static std::string ThreadStartupDocument;
   static std::string WarmupDocument;
   static std::string RequestInitFunction;
   static std::string RequestInitDocument;
@@ -205,6 +206,7 @@ public:
   static std::vector<std::string> AllowedExecCmds;
 
   static std::string TakeoverFilename;
+  static bool TakeoverWaitThreadReady;
   static int AdminServerPort;
   static int AdminThreadCount;
   static std::string AdminPassword;

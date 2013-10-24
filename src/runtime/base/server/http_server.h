@@ -46,6 +46,7 @@ public:
   void watchDog();
 
   void takeoverShutdown(LibEventServerWithTakeover* server);
+  void onThreadEnter(LibEventServerWithTakeover* server);
 
   ServerPtr getPageServer() { return m_pageServer;}
 

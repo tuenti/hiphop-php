@@ -140,7 +140,7 @@ public:
     return m_dispatcher.getQueuedJobs();
   }
 
-  void onThreadEnter();
+  virtual void onThreadEnter();
 
   /**
    * Request handler called by evhttp library.

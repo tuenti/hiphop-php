@@ -54,6 +54,8 @@ public:
   void afdtResponse(String response, int fd);
   int afdtRequest(String request, String* response);
 
+  virtual void onThreadEnter();
+
 protected:
   virtual void start();
   virtual int getAcceptSocket();
@@ -65,11 +67,13 @@ protected:
   std::string m_transfer_fname;
   std::set<TakeoverListener*> m_takeover_listeners;
   bool m_took_over;
+  volatile bool m_some_thread_available;
 };
 
 class TakeoverListener {
 public:
   virtual ~TakeoverListener();
+  virtual void onThreadEnter(LibEventServerWithTakeover* server) = 0;
   virtual void takeoverShutdown(LibEventServerWithTakeover* server) = 0;
 };
 

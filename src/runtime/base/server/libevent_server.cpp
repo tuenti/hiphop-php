@@ -201,6 +201,8 @@ int LibEventServer::getAcceptSocket() {
 void LibEventServer::start() {
   if (getStatus() == RUNNING) return;
 
+  m_dispatcher.start();
+
   if (getAcceptSocket() != 0) {
     throw FailedToListenException(m_address, m_port);
   }
@@ -217,7 +219,6 @@ void LibEventServer::start() {
   }
 
   setStatus(RUNNING);
-  m_dispatcher.start();
   m_dispatcherThread.start();
   m_timeoutThread.start();
 }

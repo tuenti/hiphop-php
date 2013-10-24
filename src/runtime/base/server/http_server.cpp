@@ -206,6 +206,34 @@ void HttpServer::takeoverShutdown(LibEventServerWithTakeover* server) {
   stop();
 }
 
+void HttpServer::onThreadEnter(LibEventServerWithTakeover* server) {
+  ASSERT(server == m_pageServer.get());
+  // We want to synchronously shut down our satellite servers to free up ports,
+  // then asynchronously shut down everything else.
+  if (!RuntimeOption::ThreadStartupDocument.empty()) {
+    Hdf hdf;
+    hdf["cmd"] = Transport::GET;
+    hdf["url"] = RuntimeOption::ThreadStartupDocument;
+    hdf["remote_host"] = RuntimeOption::ServerIP;
+
+    ReplayTransport rt;
+    rt.replayInput(hdf);
+    HttpRequestHandler handler;
+    handler.handleRequest(&rt);
+    int code = rt.getResponseCode();
+    if (code == 200) {
+      Logger::Info("ThreadStartupDocument %s returned 200 OK: %s",
+                   RuntimeOption::ThreadStartupDocument.c_str(),
+                   rt.getResponse().c_str());
+    } else {
+      Logger::Error("ThreadStartupDocument %s failed %d: %s",
+                    RuntimeOption::ThreadStartupDocument.c_str(),
+                    code, rt.getResponse().data());
+      return;
+    }
+  }
+}
+
 HttpServer::~HttpServer() {
   stop();
 }

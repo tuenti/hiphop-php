@@ -190,6 +190,7 @@ bool RuntimeOption::EnableCliRTTI = false;
 bool RuntimeOption::Utf8izeReplace = true;
 
 std::string RuntimeOption::StartupDocument;
+std::string RuntimeOption::ThreadStartupDocument;
 std::string RuntimeOption::WarmupDocument;
 std::string RuntimeOption::RequestInitFunction;
 std::string RuntimeOption::RequestInitDocument;
@@ -210,6 +211,7 @@ bool RuntimeOption::WhitelistExecWarningOnly = false;
 std::vector<std::string> RuntimeOption::AllowedExecCmds;
 
 std::string RuntimeOption::TakeoverFilename;
+bool RuntimeOption::TakeoverWaitThreadReady = false;
 int RuntimeOption::AdminServerPort;
 int RuntimeOption::AdminThreadCount = 1;
 std::string RuntimeOption::AdminPassword;
@@ -670,6 +672,7 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
       server["AlwaysPopulateRawPostData"].getBool(true);
     LibEventSyncSend = server["LibEventSyncSend"].getBool(true);
     TakeoverFilename = server["TakeoverFilename"].getString();
+    TakeoverWaitThreadReady = server["TakeoverWaitThreadReady"].getBool(false);
     ExpiresActive = server["ExpiresActive"].getBool(true);
     ExpiresDefault = server["ExpiresDefault"].getInt32(2592000);
     if (ExpiresDefault < 0) ExpiresDefault = 2592000;
@@ -723,6 +726,8 @@ void RuntimeOption::Load(Hdf &config, StringVec *overwrites /* = NULL */) {
 
     StartupDocument = Util::replaceEnv(server["StartupDocument"].getString());
     normalizePath(StartupDocument);
+    ThreadStartupDocument = Util::replaceEnv(server["ThreadStartupDocument"].getString());
+    normalizePath(ThreadStartupDocument);
     WarmupDocument = Util::replaceEnv(server["WarmupDocument"].getString());
     RequestInitFunction = server["RequestInitFunction"].getString();
     RequestInitDocument = Util::replaceEnv(server["RequestInitDocument"].getString());

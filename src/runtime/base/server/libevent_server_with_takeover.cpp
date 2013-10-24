@@ -86,7 +86,8 @@ LibEventServerWithTakeover::LibEventServerWithTakeover
 (const std::string &address, int port, int thread, int timeoutSeconds)
   : LibEventServer(address, port, thread, timeoutSeconds),
     m_delete_handle(NULL),
-    m_took_over(false)
+    m_took_over(false),
+    m_some_thread_available(false)
 {
 }
 
@@ -199,6 +200,12 @@ int LibEventServerWithTakeover::getAcceptSocket() {
     return -1;
   }
 
+  if (RuntimeOption::TakeoverWaitThreadReady) {
+    Logger::Info("takeover: waiting for server to be started before socket acquisition");
+    while (!m_some_thread_available) {
+      usleep(10000);
+    }
+  }
   Logger::Info("takeover: beginning listen socket acquisition");
   uint8_t fd_request[3] = P_VERSION C_FD_REQ;
   uint8_t fd_response[3] = {0,0,0};
@@ -313,6 +320,20 @@ void LibEventServerWithTakeover::stop() {
   }
   m_accept_sock = -1;
   LibEventServer::stop();
+}
+
+void LibEventServerWithTakeover::onThreadEnter() {
+    LibEventServer::onThreadEnter();
+
+    Logger::Info("takeover: starting thread");
+    for (std::set<TakeoverListener*>::iterator it =
+           m_takeover_listeners.begin();
+         it != m_takeover_listeners.end(); ++it) {
+      (*it)->onThreadEnter(this);
+    }
+    Logger::Info("takeover: thread started");
+
+    m_some_thread_available = true;
 }
 
 TakeoverListener::~TakeoverListener() {
