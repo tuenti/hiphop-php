@@ -134,6 +134,7 @@ class MemcacheObjectData {
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_IO_MSG_WATERMARK, RuntimeOption::MemcachePoolMsgWatermark);
     memcached_behavior_set(write_st, MEMCACHED_BEHAVIOR_CACHE_LOOKUPS, 1);
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_CACHE_LOOKUPS, 1);
+    memcached_behavior_set(write_st, MEMCACHED_BEHAVIOR_NO_BLOCK, 1);
 
     memcached_behavior_set(write_st, MEMCACHED_BEHAVIOR_IO_BYTES_WATERMARK, RuntimeOption::MemcachePoolBytesWatermark);
     memcached_behavior_set(read_st, MEMCACHED_BEHAVIOR_IO_BYTES_WATERMARK, RuntimeOption::MemcachePoolBytesWatermark);
@@ -660,6 +661,10 @@ bool c_MemcachePool::t_setoptimeout(int64 tcp_timeoutms, int64 poll_timeoutms, i
   memcached_behavior_set(MEMCACHEL(read_st), MEMCACHED_BEHAVIOR_CONNECT_TIMEOUT, udp_timeoutms);
   memcached_behavior_set(MEMCACHEL(write_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, poll_timeoutms);
   memcached_behavior_set(MEMCACHEL(read_st), MEMCACHED_BEHAVIOR_POLL_TIMEOUT, udp_timeoutms);
+  memcached_behavior_set(MEMCACHEL(write_st), MEMCACHED_BEHAVIOR_SND_TIMEOUT, poll_timeoutms);
+  memcached_behavior_set(MEMCACHEL(read_st), MEMCACHED_BEHAVIOR_SND_TIMEOUT, udp_timeoutms);
+  memcached_behavior_set(MEMCACHEL(write_st), MEMCACHED_BEHAVIOR_RCV_TIMEOUT, poll_timeoutms);
+  memcached_behavior_set(MEMCACHEL(read_st), MEMCACHED_BEHAVIOR_RCV_TIMEOUT, udp_timeoutms);
 
   return true;
 }
