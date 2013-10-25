@@ -18,7 +18,7 @@
 #define __DB_MYSQL_H__
 
 #include "base.h"
-#include <mysql/mysql.h>
+#include <mysql.h>
 
 namespace HPHP {
 ///////////////////////////////////////////////////////////////////////////////

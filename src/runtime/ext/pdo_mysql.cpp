@@ -19,7 +19,7 @@
 #include <runtime/ext/ext_stream.h>
 #include <runtime/base/server/server_stats.h>
 #include <util/db_mysql.h>
-#include <mysql/mysql.h>
+#include <mysql.h>
 
 #ifdef PHP_MYSQL_UNIX_SOCK_ADDR
 #ifdef MYSQL_UNIX_ADDR
