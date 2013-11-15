@@ -486,6 +486,20 @@ bool HttpServer::startServer(bool pageServer) {
   int port = pageServer ?
     RuntimeOption::ServerPort : RuntimeOption::AdminServerPort;
 
+  // Just try to listen couple of times with some delay
+  for (unsigned int i = 0; i < 5; i++) {
+    try {
+      if (pageServer) {
+        m_pageServer->start();
+      } else {
+        m_adminServer->start();
+      }
+      return true;
+    } catch (FailedToListenException &e) {
+      sleep(1);
+    }
+  }
+
   // 1. try something nice
   for (unsigned int i = 0; i < 60; i++) {
     try {

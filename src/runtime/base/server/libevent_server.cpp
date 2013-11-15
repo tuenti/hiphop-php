@@ -272,7 +272,7 @@ void LibEventServer::dispatch() {
 
 void LibEventServer::stop() {
   Lock lock(m_mutex);
-  if (getStatus() != RUNNING || m_server == NULL) return;
+  if (getStatus() != RUNNING || m_server == NULL || evhttp_sock == NULL) return;
 
   // inform LibEventServer::onRequest() to stop queuing
   setStatus(STOPPING);
