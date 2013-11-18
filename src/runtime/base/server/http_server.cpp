@@ -202,7 +202,6 @@ void HttpServer::takeoverShutdown(LibEventServerWithTakeover* server) {
   ASSERT(server == m_pageServer.get());
   // We want to synchronously shut down our satellite servers to free up ports,
   // then asynchronously shut down everything else.
-  onServerShutdown();
   stop();
 }
 
