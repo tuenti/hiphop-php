@@ -332,6 +332,9 @@ void LibEventServer::onThreadEnter() {
     (&ThreadInfo::s_threadInfo->m_reqInjectionData);
 }
 
+void  LibEventServer::onThreadExit(RequestHandler *handler) {
+}
+
 void LibEventServer::onRequest(struct evhttp_request *request) {
   if (RuntimeOption::EnableKeepAlive &&
       RuntimeOption::ConnectionTimeoutSeconds > 0) {

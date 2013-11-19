@@ -141,6 +141,7 @@ public:
   }
 
   virtual void onThreadEnter();
+  virtual void onThreadExit(RequestHandler *handler);
 
   /**
    * Request handler called by evhttp library.
