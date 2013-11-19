@@ -201,7 +201,10 @@ int LibEventServer::getAcceptSocket() {
 void LibEventServer::start() {
   if (getStatus() == RUNNING) return;
 
+  setStatus(RUNNING);
   m_dispatcher.start();
+  m_dispatcherThread.start();
+  m_timeoutThread.start();
 
   if (getAcceptSocket() != 0) {
     throw FailedToListenException(m_address, m_port);
@@ -217,10 +220,6 @@ void LibEventServer::start() {
     }
     Logger::Info("Listen on ssl port %d",m_port_ssl);
   }
-
-  setStatus(RUNNING);
-  m_dispatcherThread.start();
-  m_timeoutThread.start();
 }
 
 void LibEventServer::waitForEnd() {
