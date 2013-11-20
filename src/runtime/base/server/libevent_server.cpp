@@ -174,7 +174,7 @@ LibEventServer::LibEventServer(const std::string &address, int port,
 
 LibEventServer::~LibEventServer() {
   ASSERT (getStatus() == STOPPED || getStatus() == STOPPING ||
-          getStatus() == NOT_YET_STARTED);
+          getStatus() == NOT_YET_STARTED || getStatus() == STARTED);
   // We can't free event base when server is still working on it.
   // This will cause a leak with event base, but normally this happens when
   // process exits, so we're probably fine.
@@ -201,10 +201,12 @@ int LibEventServer::getAcceptSocket() {
 void LibEventServer::start() {
   if (getStatus() == RUNNING) return;
 
-  setStatus(RUNNING);
-  m_dispatcher.start();
-  m_dispatcherThread.start();
-  m_timeoutThread.start();
+  if (getStatus() != STARTED) {
+    setStatus(STARTED);
+    m_dispatcher.start();
+    m_dispatcherThread.start();
+    m_timeoutThread.start();
+  }
 
   if (getAcceptSocket() != 0) {
     throw FailedToListenException(m_address, m_port);
@@ -220,6 +222,8 @@ void LibEventServer::start() {
     }
     Logger::Info("Listen on ssl port %d",m_port_ssl);
   }
+
+  setStatus(RUNNING);
 }
 
 void LibEventServer::waitForEnd() {

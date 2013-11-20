@@ -94,6 +94,7 @@ public:
     RUNNING,
     STOPPING,
     STOPPED,
+    STARTED,
   };
 
   /**
