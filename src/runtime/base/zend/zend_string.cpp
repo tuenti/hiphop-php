@@ -2439,7 +2439,7 @@ char *string_crypt(const char *key, const char *salt) {
 
   if ((strlen(salt) > 2) && salt[0] == '$' && salt[1] == '2') {
     #define CRYPT_OUTPUT_SIZE   (7 + 22 + 31 + 1)
-    static char output[CRYPT_OUTPUT_SIZE];
+    char output[CRYPT_OUTPUT_SIZE];
 
     // Protection agains short salts which mimics PHP behaviour
     char * result = _crypt_blowfish_rn(key, salt, output, sizeof(output));
