@@ -1,0 +1,32 @@
+#!/bin/bash
+set -ue
+
+if (( $# ))
+then
+  cd $1
+fi
+
+INPUT_DIR=$1
+OUTPUT_DIR=$INPUT_DIR/hh_compiled
+
+find . -name '*.php' >/tmp/compile_list
+
+NUMCPUS=`grep -c '^processor' /proc/cpuinfo`
+export HPHP_HOME=/opt/hiphop
+export LD_LIBRARY_PATH=/opt/hiphop/lib
+export MAKEFLAGS="-j $NUMCPUS"
+
+export PATH="/usr/lib/ccache:$PATH"
+
+rm -rf $OUTPUT_DIR
+
+/opt/hiphop/bin/hphp -k 1 -o hh_compiled --input-list="/tmp/compile_list"
+
+echo "Compiled, your code is ready on $OUTPUT_DIR directory
+
+Don't know what to do? Check:
+https://sites.google.com/a/tuenti.com/eng/tools/hiphop/server-administration/command-line-options
+
+Basic run:
+  $OUTPUT_DIR/program -f file.php
+"

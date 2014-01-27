@@ -176,12 +176,14 @@ if (CMAKE_BUILD_TYPE STREQUAL Debug)
     message(STATUS "Building debug package")
     SET(CPACK_PACKAGE_NAME "hiphop-debug")
     SET(CPACK_PACKAGING_INSTALL_PREFIX "/opt/hiphop-debug")
-else ()  
+else ()
     message(STATUS "Building release package")
     SET(CPACK_PACKAGE_NAME "hiphop")
     SET(CPACK_PACKAGING_INSTALL_PREFIX "/opt/hiphop")
 
-    INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/hphpi
+    INSTALL(PROGRAMS
+      ${CMAKE_SOURCE_DIR}/bin/hphpi
+      ${CMAKE_SOURCE_DIR}/bin/hhcompile
         DESTINATION /usr/bin
         COMPONENT runtime)
 endif ()
@@ -191,7 +193,7 @@ SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "dpaneda@tuenti.com")
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "HipHop compiler and runtime dependencies")
 SET(CPACK_PACKAGE_VENDOR "Tuenti")
 SET(CPACK_PACKAGE_VERSION_MAJOR "1")
-SET(CPACK_PACKAGE_VERSION_MINOR "27")
+SET(CPACK_PACKAGE_VERSION_MINOR "28")
 SET(CPACK_PACKAGE_VERSION_PATCH "tuenti1")
 
 SET(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
