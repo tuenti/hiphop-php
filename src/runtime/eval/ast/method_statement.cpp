@@ -170,7 +170,7 @@ invokeStaticDirect(CStrRef cls, VariableEnvironment &env,
   MethScopeVariableEnvironment fenv(this);
   directBind(env, caller, fenv);
   fenv.setCurrentClass(cls.data());
-  EvalFrameInjection::EvalStaticClassNameHelper helper(cls, sp);
+  EvalFrameInjection::EvalStaticClassNameHelper helper(m_class->name(), sp);
   DECLARE_THREAD_INFO_NOINIT
   String clsName(m_class->name());
   EvalFrameInjection fi(clsName, m_fullName->data(), fenv,
