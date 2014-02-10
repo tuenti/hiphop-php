@@ -1,4 +1,7 @@
-g++
+cmake
+gcc-4.6
+g++-4.6
+libxconfig-dev
 libmysqlclient-dev
 libxml2-dev
 libmcrypt-dev
