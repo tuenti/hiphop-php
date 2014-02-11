@@ -2,7 +2,8 @@ cmake
 gcc-4.6
 g++-4.6
 libxconfig-dev
-libmysqlclient-dev
+libmysqlclient16
+libmysqlclient-dev=5.1.72-2
 libxml2-dev
 libmcrypt-dev
 libicu-dev
